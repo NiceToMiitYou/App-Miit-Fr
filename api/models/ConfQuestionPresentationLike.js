@@ -10,15 +10,18 @@ module.exports = {
   attributes: {
 
     isLiked : { 
-    	type: 'boolean' 
+    	type: 'boolean',
+        required: true
     },
 
     question: {
-    	model: 'ConfQuestionPresentation'
+    	model: 'ConfQuestionPresentation',
+        required: true
     },
 
     user: {
-    	model: 'ConfUser'
+    	model: 'ConfUser',
+        required: true
     }
   }
 };

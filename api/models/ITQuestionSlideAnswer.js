@@ -12,15 +12,18 @@ module.exports = {
   attributes: {
 
     answer : { 
-    	type: 'string' 
+    	type: 'string',
+    	required: true,
+    	minLength: 1
     },
 
     realId : { 
-    	type: 'int' 
+    	type: 'integer'
     },
 
     question: {
-    	model: 'ITQuestionSlide'
+    	model: 'ITQuestionSlide',
+    	required: true
     },
 
     users: {

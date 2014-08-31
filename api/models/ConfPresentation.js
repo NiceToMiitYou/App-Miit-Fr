@@ -10,19 +10,21 @@ module.exports = {
   attributes: {
 
     name : { 
-    	type: 'string' 
+    	type: 'string',
+        required: true
     },
 
     description : { 
-    	type: 'text' 
+    	type: 'text'
     },
 
     authors : { 
-    	type: 'text' 
+        type: 'text',
+        required: true
     },
 
     startTime : { 
-    	type: 'datetime' 
+    	type: 'datetime'
     },
 
     endTime : { 
@@ -30,7 +32,8 @@ module.exports = {
     },
 
     conference: {
-    	model: 'ConfConference'
+    	model: 'ConfConference',
+        required: true
     },
 
     slides: {

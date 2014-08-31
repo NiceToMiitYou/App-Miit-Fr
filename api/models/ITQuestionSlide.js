@@ -10,21 +10,21 @@ module.exports = {
   connection: 'ITEventsDatabase',
 
   attributes: {
-  	
+
     question : { 
-    	type: 'string'
+    	type: 'string',
+    	required: true,
+    	minLength: 6
     },
 
     type : { 
-    	type: 'int' 
-    },
-
-    isClosed : { 
-    	type: 'boolean' 
+    	type: 'integer',
+    	defaultsTo: 1
     },
 
     slide: {
-    	model: 'ITSlide'
+    	model: 'ITSlide',
+    	required: true
     },
 
     answers: {

@@ -12,11 +12,15 @@ module.exports = {
   attributes: {
 
     lastName : { 
-    	type: 'string'
+    	type: 'string',
+        required: true,
+        minLength: 1
     },
 
     firstName : {
-    	type: 'string'
+    	type: 'string',
+        required: true,
+        minLength: 1
     },
 
     fullName: function() {
@@ -27,13 +31,9 @@ module.exports = {
         type: 'string'
     },
 
-    password : {
-    	type: 'string',
-        index: true
-    },
-
     mail : {
-    	type: 'string'
+    	type: 'email',
+        unique: true
     },
     
     slideAnswers: {

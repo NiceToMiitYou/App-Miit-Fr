@@ -12,15 +12,19 @@ module.exports = {
   attributes: {
 
     name : { 
-    	type: 'string' 
+    	type: 'string',
+    	required: true,
+    	minLength: 1
     },
 
     isVisible : { 
-    	type: 'boolean' 
+    	type: 'boolean',
+    	defaultsTo: true
     },
 
     conference: {
-    	model: 'ITConference'
+    	model: 'ITConference',
+    	required: true
     },
 
     resources: {

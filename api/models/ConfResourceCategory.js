@@ -10,11 +10,14 @@ module.exports = {
   attributes: {
 
     name : {
-    	type: 'string' 
+    	type: 'string',
+        required: true,
+        minLength: 1
     },
 
     isVisible : { 
-    	type: 'boolean' 
+    	type: 'boolean',
+        defaultsTo: true
     },
 
     resources: {
@@ -23,7 +26,8 @@ module.exports = {
     },
 
     conference: {
-    	model: 'ConfConference'
+    	model: 'ConfConference',
+        required: true
     }
   }
 };

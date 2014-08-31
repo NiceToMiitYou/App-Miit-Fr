@@ -12,11 +12,14 @@ module.exports = {
   attributes: {
 
     answer : { 
-    	type: 'string' 
+    	type: 'string',
+    	required: true,
+    	minLength: 1
     },
 
     question: {
-    	model: 'ITQuestionQuizz'
+    	model: 'ITQuestionQuizz',
+    	required: true
     },
 
     users: {

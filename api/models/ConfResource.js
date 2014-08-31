@@ -10,15 +10,19 @@ module.exports = {
   attributes: {
 
     name : { 
-    	type: 'string' 
+    	type: 'string',
+        required: true,
+        minLength: 1
     },
 
-    path : { 
-        type: 'text' 
+    path : {
+        type: 'text',
+        required: true
     },
 
     category: {
-    	model: 'ConfResourceCategory'
+    	model: 'ConfResourceCategory',
+        required: true
     },
 
     slides: {

@@ -12,15 +12,18 @@ module.exports = {
   attributes: {
 
     name : { 
-    	type: 'string' 
+    	type: 'string',
+    	required: true,
+    	minLength: 1
     },
 
     description : { 
-    	type: 'text' 
+    	type: 'text'
     },
 
     maxTime : { 
-    	type: 'int'
+    	type: 'integer',
+    	defaultsTo: 0
     },
 
     startTime : { 

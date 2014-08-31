@@ -9,11 +9,15 @@ module.exports = {
   attributes: {
 
     lastName : { 
-    	type: 'string'
+    	type: 'string',
+        required: true,
+        minLength: 1
     },
 
     firstName : {
-    	type: 'string'
+    	type: 'string',
+        required: true,
+        minLength: 1
     },
 
     fullName: function() {
@@ -26,11 +30,13 @@ module.exports = {
 
     password : {
     	type: 'string',
-        index: true
+        unique: true
     },
 
     mail : {
-    	type: 'string'
+    	type: 'email',
+        unique: true,
+        required: true
     },
     
     messages: {
@@ -44,7 +50,7 @@ module.exports = {
     },
 
     realId: {
-        type: 'int'
+        type: 'integer'
     },
 
     slideAnswers: {

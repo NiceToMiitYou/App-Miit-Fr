@@ -8,17 +8,21 @@
 module.exports = {
 
   attributes: {
-    
+
   	title: {
-  		type: 'string'
+  		type: 'string',
+      required: true,
+      minLength: 1
   	},
   	
   	content: {
-  		type: 'text'
+  		type: 'text',
+      required: true
   	},
   	
     user: {
-        model: 'ConfUser'
+      model: 'ConfUser',
+      required: true
     }
   }
 };

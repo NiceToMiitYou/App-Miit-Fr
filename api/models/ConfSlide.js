@@ -18,19 +18,23 @@ module.exports = {
     },
 
     content : {
-    	type: 'text'
+    	type: 'text',
+        required: true
     },
 
     time : {
-    	type: 'int'
+    	type: 'integer',
+        defaultsTo: 0
     },
 
     type : {
-    	type: 'int'
+    	type: 'integer',
+        defaultsTo: 1
     },
 
     presentation: {
-    	model: 'ConfPresentation'
+    	model: 'ConfPresentation',
+        required: true
     },
 
     question: {

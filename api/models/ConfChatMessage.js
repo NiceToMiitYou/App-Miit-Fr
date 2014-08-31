@@ -9,15 +9,19 @@ module.exports = {
   attributes: {
     
     message: {
-        type: 'string'
+        type: 'string',
+        required: true,
+        minLength: 1
     },
     
     chatroom: {
-        model: 'ConfChatRoom'
+        model: 'ConfChatRoom',
+        required: true
     },
     
     user: {
-        model: 'ConfUser'
+        model: 'ConfUser',
+        required: true
     }
   }
 };

@@ -12,7 +12,9 @@ module.exports = {
   attributes: {
 
     name : { 
-    	type: 'string' 
+    	type: 'string',
+    	required: true,
+        minLength: 1
     },
 
     description : { 
@@ -20,7 +22,7 @@ module.exports = {
     },
 
     authors : { 
-    	type: 'text' 
+    	type: 'text'
     },
 
     startTime : { 
@@ -32,7 +34,8 @@ module.exports = {
     },
 
     conference: {
-    	model: 'ITConference'
+    	model: 'ITConference',
+    	required: true
     },
 
     slides: {

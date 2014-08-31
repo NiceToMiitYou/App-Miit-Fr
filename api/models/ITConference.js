@@ -12,7 +12,9 @@ module.exports = {
   attributes: {
 
     name : { 
-    	type: 'string' 
+    	type: 'string',
+        required: true,
+        minLength: 1
     },
 
     description : { 
@@ -20,7 +22,8 @@ module.exports = {
     },
 
     client: {
-    	model: 'ITClient'
+    	model: 'ITClient',
+        required: true
     },
 
     chatrooms: {

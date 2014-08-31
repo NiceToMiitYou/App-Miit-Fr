@@ -12,15 +12,20 @@ module.exports = {
   attributes: {
 
     name : { 
-    	type: 'string' 
+    	type: 'string',
+        required: true,
+        minLength: 1
     },
 
     path : { 
-    	type: 'text' 
+    	type: 'text',
+        required: true,
+        minLength: 6
     },
 
     category: {
-    	model: 'ITResourceCategory'
+    	model: 'ITResourceCategory',
+        required: true
     },
 
     slides: {

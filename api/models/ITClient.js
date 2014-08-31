@@ -12,11 +12,14 @@ module.exports = {
   attributes: {
 
     name : {
-    	type: 'string'
+    	type: 'string',
+        required: true,
+        minLength: 1
     },
 
     logo : {
-    	type: 'text'
+    	type: 'text',
+        required: true
 	},
 
     colorScheme : {

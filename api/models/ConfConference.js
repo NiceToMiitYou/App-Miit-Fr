@@ -10,27 +10,31 @@ module.exports = {
   attributes: {
 
     name : { 
-    	type: 'string' 
+    	type: 'string',
+        required: true
     },
 
     clientName : { 
-    	type: 'string' 
+    	type: 'string',
+        required: true
     },
 
     logo : { 
-    	type: 'text' 
+    	type: 'text',
+        required: true
     },
 
     colorScheme : { 
-    	type: 'text' 
+    	type: 'text',
+        required: true
     },
 
     description : { 
-    	type: 'text' 
+    	type: 'text'
     },
 
     realId: {
-        type: 'int'
+        type: 'integer'
     },
 
     presentations: {

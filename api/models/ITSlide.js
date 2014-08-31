@@ -10,7 +10,7 @@ module.exports = {
   connection: 'ITEventsDatabase',
 
   attributes: {
-  	
+
     notes : {
     	type: 'text'
     },
@@ -20,23 +20,28 @@ module.exports = {
     },
 
     content : {
-    	type: 'text'
+    	type: 'text',
+    	required: true
     },
 
     time : {
-    	type: 'int'
+    	type: 'integer',
+    	defaultsTo: 0
     },
 
     type : {
-    	type: 'int'
+    	type: 'integer',
+    	defaultsTo: 1
     },
 
     presentation: {
-    	model: 'ITPresentation'
+    	model: 'ITPresentation',
+    	required: true
     },
 
     question: {
-    	model: 'ITQuestionSlide'
+    	model: 'ITQuestionSlide',
+    	required: true
     },
 
     resources: {

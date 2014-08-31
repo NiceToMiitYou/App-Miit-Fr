@@ -10,11 +10,14 @@ module.exports = {
   attributes: {
 
     question : { 
-    	type: 'string' 
+    	type: 'string',
+        required: true,
+        minLength: 6
     },
 
     type : { 
-    	type: 'int' 
+    	type: 'integer',
+        required: true
     },
 
     answers: {
@@ -23,7 +26,8 @@ module.exports = {
     },
 
     quizz: {
-    	model: 'ConfQuizz'
+    	model: 'ConfQuizz',
+        required: true
     }
   }
 };

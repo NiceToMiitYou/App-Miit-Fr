@@ -10,19 +10,24 @@ module.exports = {
   attributes: {
 
     question : { 
-    	type: 'string'
+    	type: 'string',
+        required: true,
+        minLength: 6
     },
 
     type : { 
-    	type: 'int' 
+    	type: 'integer',
+        defaultsTo: 1
     },
 
     isClosed : { 
-    	type: 'boolean' 
+    	type: 'boolean',
+        defaultsTo: false
     },
 
     slide: {
-    	model: 'ConfSlide'
+    	model: 'ConfSlide',
+        required: true
     },
 
     answers: {

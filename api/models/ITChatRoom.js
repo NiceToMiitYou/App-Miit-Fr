@@ -12,11 +12,14 @@ module.exports = {
   attributes: {
 
     name : { 
-    	type: 'string'
+    	type: 'string',
+        required: true,
+        minLength: 1
     },
 
     type : {
-    	type: 'int'
+    	type: 'integer',
+        defaultsTo: 1
     },
 
     conference: {

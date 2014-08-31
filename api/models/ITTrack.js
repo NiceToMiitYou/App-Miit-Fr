@@ -12,15 +12,18 @@ module.exports = {
   attributes: {
 
     content : {
-    	type: 'text'
+    	type: 'text',
+    	required: true
     },
 
     user : {
-    	model: 'ITUser'
+    	model: 'ITUser',
+    	required: true
     },
 
     conference: {
-    	model: 'ITConference'
+    	model: 'ITConference',
+    	required: true
     }
   }
 };

@@ -10,11 +10,13 @@ module.exports = {
   attributes: {
 
     content : {
-    	type: 'text'
+    	type: 'text',
+        required: true
     },
 
     user : {
-    	model: 'ConfUser'
+    	model: 'ConfUser',
+        required: true
     }
   }
 };
