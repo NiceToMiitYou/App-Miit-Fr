@@ -3,11 +3,6 @@ var Connect = (function(){
   return {
     // Chat actions
     chatroom: {
-      // Create a new Chatroom
-      create: function(name, type, cb) {
-        io.socket.post('/api/chatroom/create', { name: name, type: type}, cb);
-      },
-
       // List all chatrooms
       list: function(cb) {
         io.socket.get('/api/chatroom/list', {}, cb);
@@ -52,8 +47,31 @@ var Connect = (function(){
       },
       // Logout action
       logout: function(cb) {
-        io.socket.post('/api/user/logout', {}, cb);
+        io.socket.get('/api/user/logout', {}, cb);
       }
+    },
+
+    // Question Action
+    question: {
+      
+      // Question about presentation
+      presentation: {
+        // Create a new question
+        create: function(question, cb) {
+          io.socket.post('/api/question/presentation/create', { question: question }, cb);
+        },
+
+        // Like a question
+        like: function(question, cb) {
+          io.socket.post('/api/question/presentation/like', { question: question }, cb);
+        },
+
+        // Dislike a question
+        dislike: function(question, cb) {
+          io.socket.post('/api/question/presentation/dislike', { question: question }, cb);
+        }
+      }
+
     },
 
     note: {

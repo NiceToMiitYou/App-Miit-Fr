@@ -11,6 +11,7 @@ module.exports = {
 
     question : { 
     	type: 'string',
+        unique: true,
         required: true
     },
 

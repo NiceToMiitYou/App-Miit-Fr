@@ -21,26 +21,6 @@ module.exports = {
   },
 
   /**
-   * `ConfChatController.create()`
-   */
-  create: function(req, res) {
-    ConfChatRoom.create({
-      name: req.param('name'),
-      type: req.param('type')
-    }).exec(function(err, created) {
-      if (err) return res.json({
-        done: false
-      });
-       
-      return res.json({
-        done: true,
-        chatroom: created
-      });
-    });
-  },
-
-
-  /**
    * `ConfChatController.send()`
    */
   send: function(req, res) {

@@ -90,6 +90,24 @@ module.exports.routes = {
     action: 'logout' 
   },
 
+  /******************
+   * Presentation Question Controller
+   ******************/
+   
+  'POST /api/question/presentation/create': {
+    controller: 'ConfQuestionPresentationController',
+    action: 'create'
+  },
+
+  'POST /api/question/presentation/like': {
+    controller: 'ConfQuestionPresentationController',
+    action: 'like'
+  },
+
+  'POST /api/question/presentation/dislike': {
+    controller: 'ConfQuestionPresentationController',
+    action: 'dislike'
+  },
 
   /******************
    * Note Controller

@@ -28,13 +28,7 @@ module.exports.policies = {
 
   '*': 'sessionAuth',
 
-  ChatController: {
-    '*': 'sessionAuth',
-
-    'create': 'adminAuth'
-  },
-
-  UserController: {
+  ConfUserController: {
     '*': 'sessionAuth',
 
     'login': 'anonymAuth'

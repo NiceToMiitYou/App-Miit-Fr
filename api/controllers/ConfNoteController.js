@@ -37,8 +37,6 @@ module.exports = {
         done: false
       });
 
-        sails.log.debug(note.user);
-
       if(note.user == req.session.user) {
         note.title = req.param('title');
         note.content = req.param('content');
