@@ -15,8 +15,8 @@ module.exports = {
     	type: 'string' 
     },
 
-    content : { 
-    	type: 'binary' 
+    path : { 
+    	type: 'text' 
     },
 
     category: {
