@@ -1,2 +1,3 @@
-ITEvents
-========
+# PublicServer
+
+a [Sails](http://sailsjs.org) application
