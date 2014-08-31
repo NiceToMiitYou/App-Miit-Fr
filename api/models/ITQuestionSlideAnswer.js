@@ -1,5 +1,5 @@
 /**
-* Name:string.js
+* ITQuestionSlideAnswer.js
 *
 * @description :: TODO: You might write a short summary of how this model works and what it represents here.
 * @docs        :: http://sailsjs.org/#!documentation/models
@@ -11,21 +11,22 @@ module.exports = {
 
   attributes: {
 
-    name : {
-    	type: 'string'
+    answer : { 
+    	type: 'string' 
     },
 
-    logo : {
-    	type: 'text'
-	},
-
-    colorScheme : {
-    	type: 'text'
+    realId : { 
+    	type: 'int' 
     },
 
-    conferences: {
-        collection: 'ITConference',
-        via: 'client'
+    question: {
+    	model: 'ITQuestionSlide'
+    },
+
+    users: {
+    	collection: 'ITUser',
+    	via: 'slideAnswers',
+    	dominant: true
     }
   }
 };

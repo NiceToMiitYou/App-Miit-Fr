@@ -4,13 +4,12 @@
 
 This document must be used to mark what must be made, the term and the person in charge.
 
-Use mm/dd/yy format.
+Use mm/dd/yy format for dates.
 
 ## The list
 
 What?                                                        | When?  | Who?
 -------------------------------------------------------------|--------|------
-Create all models from the MLD                               |09/01/14|Boris Tacyniak
 Create the api for ticket question                           |09/01/14|Boris Tacyniak
 Create the api for quizz question                            |09/02/14|Boris Tacyniak
 Create the api for slide question                            |09/04/14|Boris Tacyniak
@@ -21,4 +20,5 @@ Create a repository for the documentation                    |09/05/14|Jordan Co
 
 What?                                                        | When?  | Done   | Who?
 -------------------------------------------------------------|--------|--------|------
+Create all models from the MLD                               |09/01/14|08/31/14|Boris Tacyniak
 Create todolist                                              |08/31/14|08/31/14|Boris Tacyniak

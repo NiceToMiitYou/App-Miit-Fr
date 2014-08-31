@@ -1,5 +1,5 @@
 /**
-* Name:string.js
+* ConfResource.js
 *
 * @description :: TODO: You might write a short summary of how this model works and what it represents here.
 * @docs        :: http://sailsjs.org/#!documentation/models
@@ -7,25 +7,23 @@
 
 module.exports = {
 
-  connection: 'ITEventsDatabase',
-
   attributes: {
 
-    name : {
-    	type: 'string'
+    name : { 
+    	type: 'string' 
     },
 
-    logo : {
-    	type: 'text'
-	},
-
-    colorScheme : {
-    	type: 'text'
+    content : { 
+    	type: 'binary' 
     },
 
-    conferences: {
-        collection: 'ITConference',
-        via: 'client'
+    category: {
+    	model: 'ConfResourceCategory'
+    },
+
+    slides: {
+        collection: 'ConfSlide',
+        via: 'resources'
     }
   }
 };

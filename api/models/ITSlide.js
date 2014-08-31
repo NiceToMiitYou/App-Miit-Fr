@@ -1,5 +1,5 @@
 /**
-* ConfSlide.js
+* ITSlide.js
 *
 * @description :: TODO: You might write a short summary of how this model works and what it represents here.
 * @docs        :: http://sailsjs.org/#!documentation/models
@@ -7,8 +7,10 @@
 
 module.exports = {
 
-  attributes: {
+  connection: 'ITEventsDatabase',
 
+  attributes: {
+  	
     notes : {
     	type: 'text'
     },
@@ -30,15 +32,15 @@ module.exports = {
     },
 
     presentation: {
-    	model: 'ConfPresentation'
+    	model: 'ITPresentation'
     },
 
     question: {
-    	model: 'ConfQuestionSlide'
+    	model: 'ITQuestionSlide'
     },
 
     resources: {
-        collection: 'ConfResource',
+        collection: 'ITResource',
         via: 'slides',
         dominant: true
     }

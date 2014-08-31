@@ -1,5 +1,5 @@
 /**
-* Name:string.js
+* ITQuestionSlide.js
 *
 * @description :: TODO: You might write a short summary of how this model works and what it represents here.
 * @docs        :: http://sailsjs.org/#!documentation/models
@@ -10,22 +10,26 @@ module.exports = {
   connection: 'ITEventsDatabase',
 
   attributes: {
-
-    name : {
+  	
+    question : { 
     	type: 'string'
     },
 
-    logo : {
-    	type: 'text'
-	},
-
-    colorScheme : {
-    	type: 'text'
+    type : { 
+    	type: 'int' 
     },
 
-    conferences: {
-        collection: 'ITConference',
-        via: 'client'
+    isClosed : { 
+    	type: 'boolean' 
+    },
+
+    slide: {
+    	model: 'ITSlide'
+    },
+
+    answers: {
+    	collection: 'ITQuestionSlideAnswer',
+    	via: 'question'
     }
   }
 };

@@ -1,5 +1,5 @@
 /**
-* Name:string.js
+* ITTrack.js
 *
 * @description :: TODO: You might write a short summary of how this model works and what it represents here.
 * @docs        :: http://sailsjs.org/#!documentation/models
@@ -11,21 +11,16 @@ module.exports = {
 
   attributes: {
 
-    name : {
-    	type: 'string'
-    },
-
-    logo : {
-    	type: 'text'
-	},
-
-    colorScheme : {
+    content : {
     	type: 'text'
     },
 
-    conferences: {
-        collection: 'ITConference',
-        via: 'client'
+    user : {
+    	model: 'ITUser'
+    },
+
+    conference: {
+    	model: 'ITConference'
     }
   }
 };

@@ -1,10 +1,13 @@
 /**
-* ConfUser.js
+* ITUser.js
 *
-* @description :: ConfUser representation
+* @description :: TODO: You might write a short summary of how this model works and what it represents here.
+* @docs        :: http://sailsjs.org/#!documentation/models
 */
 
 module.exports = {
+
+  connection: 'ITEventsDatabase',
 
   attributes: {
 
@@ -33,38 +36,14 @@ module.exports = {
     	type: 'string'
     },
     
-    messages: {
-        collection: 'ConfChatMessage',
-        via: 'user'
-    },
-    
-    notes: {
-        collection: 'ConfNote',
-        via: 'user'
-    },
-
-    realId: {
-        type: 'int'
-    },
-
     slideAnswers: {
-        collection: 'ConfQuestionSlideAnswer',
+        collection: 'ITQuestionSlideAnswer',
         via: 'users'
     },
 
     quizzAnswers: {
-        collection: 'ConfQuestionQuizzAnswer',
+        collection: 'ITQuestionQuizzAnswer',
         via: 'users'
-    },
-
-    questionAsked: {
-        collection: 'ConfQuestionPresentation',
-        via: 'user'
-    },
-
-    questionLikes: {
-        collection: 'ConfQuestionPresentationLike',
-        via: 'user'
     },
 
     toJSON: function() {
