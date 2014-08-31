@@ -7,6 +7,8 @@
 
 module.exports = {
 
+  connection: 'ITEventsDatabase',
+
   attributes: {
 
     name : { 
