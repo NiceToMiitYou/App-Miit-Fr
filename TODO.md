@@ -1,0 +1,24 @@
+# TODO LIST
+
+## Introduction
+
+This document must be used to mark what must be made, the term and the person in charge.
+
+Use mm/dd/yy format.
+
+## The list
+
+What?                                                        | When?  | Who?
+-------------------------------------------------------------|--------|------
+Create all models from the MLD                               |09/01/14|Boris Tacyniak
+Create the api for ticket question                           |09/01/14|Boris Tacyniak
+Create the api for quizz question                            |09/02/14|Boris Tacyniak
+Create the api for slide question                            |09/04/14|Boris Tacyniak
+Create the api for resources                                 |09/05/14|Boris Tacyniak
+Create a repository for the documentation                    |09/05/14|Jordan Cortet
+
+## Already done
+
+What?                                                        | When?  | Done   | Who?
+-------------------------------------------------------------|--------|--------|------
+Create todolist                                              |08/31/14|08/31/14|Boris Tacyniak
