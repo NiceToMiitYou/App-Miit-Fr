@@ -1,6 +1,31 @@
 
 var Connect = (function(){
+  var eventsCallbacks = {};
+
+  lastestToken = 0;
+
   return {
+    // Bind an event
+    bind: function(event, cb) {
+      eventsCallbacks[event] = cb;
+
+      io.socket.on(event, function(cache) {
+
+        console.log('Event number: ' + cache.token);
+
+        if( lastestToken + 1 >= cache.token ) {
+          lastestToken ++;
+
+          if( typeof cb == 'function' )
+            cb(cache.data);
+        } else {
+          console.log('They ar missing token');
+        }
+
+
+      });
+    },
+
     // Chat actions
     chatroom: {
       // List all chatrooms
@@ -11,34 +36,8 @@ var Connect = (function(){
       // Send a message to the chatroom
       send: function(chatroom, message, cb) {
         io.socket.post('/api/chatroom/send', { message: message, chatroom: chatroom } , cb);
-      },
-
-      // Subscribe to a chatroom
-      subscribe: function(chatroom, handler, cb) {
-        io.socket.post('/api/chatroom/subscribe', { chatroom: chatroom }, function(res) {
-          if( res.done ) {
-            io.socket.removeAllListeners('chatroom-' + chatroom + '-new');
-            io.socket.on('chatroom-' + chatroom + '-new', handler);
-          }
-          if(typeof cb == 'function') {
-            cb(res);
-          }
-        });
-      },
-
-      // Unsubscribe to a chatroom
-      unsubscribe: function(chatroom, cb) {
-        io.socket.post('/api/chatroom/unsubscribe', { chatroom: chatroom }, function(res) {
-          if( res.done ){
-            io.socket.removeAllListeners('chatroom-' + chatroom + '-new');
-          }
-          if(typeof cb == 'function') {
-            cb(res);
-          }
-        });
       }
     },
-
     // User actions
     user: {
       // Login action
@@ -63,12 +62,12 @@ var Connect = (function(){
 
         // Like a question
         like: function(question, cb) {
-          io.socket.post('/api/question/presentation/like', { question: question }, cb);
+          io.socket.post('/api/question/presentation/like', { question: question, like: true }, cb);
         },
 
         // Dislike a question
         dislike: function(question, cb) {
-          io.socket.post('/api/question/presentation/dislike', { question: question }, cb);
+          io.socket.post('/api/question/presentation/like', { question: question, like: false }, cb);
         }
       }
 

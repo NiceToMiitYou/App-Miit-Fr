@@ -23,7 +23,7 @@ module.exports.sockets = {
   ***************************************************************************/
   onConnect: function(session, socket) {
 
-    // By default, do nothing.
+    sails.sockets.join(socket, 'AllConnectedToRT');
 
   },
 

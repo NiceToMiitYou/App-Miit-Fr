@@ -66,16 +66,6 @@ module.exports.routes = {
     action: 'send'
   },
 
-  'POST /api/chatroom/subscribe': {
-    controller: 'ConfChatController',
-    action: 'subscribe'
-  },
-
-  'POST /api/chatroom/unsubscribe': {
-    controller: 'ConfChatController',
-    action: 'unsubscribe'
-  },
-
   /******************
    * User Controller
    ******************/
@@ -103,12 +93,7 @@ module.exports.routes = {
     controller: 'ConfQuestionPresentationController',
     action: 'like'
   },
-
-  'POST /api/question/presentation/dislike': {
-    controller: 'ConfQuestionPresentationController',
-    action: 'dislike'
-  },
-
+  
   /******************
    * Note Controller
    ******************/

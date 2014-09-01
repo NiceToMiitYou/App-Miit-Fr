@@ -33,62 +33,13 @@ module.exports = {
         done: false
       });
 
-      sails.sockets.broadcast('chatroom-' + created.chatroom, 'chatroom-' + created.chatroom + '-new', created);
+      SocketEventCachingService.sendToAll('chatroom-new', created);
 
       return res.json({
         done: true,
         chatmessage: created
       });
     });
-  },
-
-  /**
-   * `ConfChatController.subscribe()`
-   */
-  subscribe: function(req, res) {
-    ConfChatRoom.findOne(req.param('chatroom')).exec(function(err, chatroom) {
-      if (err) return res.json({
-        done: false
-      });
-
-      if(req.isSocket == true) {
-        sails.sockets.join(req.socket, 'chatroom-' + chatroom.id);
-
-        return res.json({
-          done: true
-        });
-      }
-
-      return res.json({
-        done: false
-      });
-    
-    });
-  },
-
-  /**
-   * `ConfChatController.unsubscribe()`
-   */
-  unsubscribe: function(req, res) {
-    ConfChatRoom.findOne(req.param('chatroom')).exec(function(err, chatroom) {
-      if (err) return res.json({
-        done: false
-      });
-
-      if(req.isSocket == true) {
-        sails.sockets.leave(req.socket, 'chatroom-' + chatroom.id);
-
-        return res.json({
-          done: true
-        });
-      }
-
-      return res.json({
-        done: false
-      });
-    
-    });
   }
-
 };
 
