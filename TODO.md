@@ -10,7 +10,6 @@ Use mm/dd/yy format for dates.
 
 What?                                                        | When?  | Who?
 -------------------------------------------------------------|--------|------
-Create the api for ticket question                           |09/01/14|Boris Tacyniak
 Create the api for quizz question                            |09/02/14|Boris Tacyniak
 Create the api for slide question                            |09/04/14|Boris Tacyniak
 Create the api for resources                                 |09/05/14|Boris Tacyniak
@@ -20,5 +19,6 @@ Create a repository for the documentation                    |09/05/14|Jordan Co
 
 What?                                                        | When?  | Done   | Who?
 -------------------------------------------------------------|--------|--------|------
+Create the api for ticket question                           |09/01/14|09/01/14|Boris Tacyniak
 Create all models from the MLD                               |09/01/14|08/31/14|Boris Tacyniak
 Create todolist                                              |08/31/14|08/31/14|Boris Tacyniak
