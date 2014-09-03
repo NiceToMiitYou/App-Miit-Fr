@@ -38,12 +38,14 @@ module.exports = {
     
     slideAnswers: {
         collection: 'ITQuestionSlideAnswer',
-        via: 'users'
+        via: 'users',
+        dominant: true,
     },
 
     quizzAnswers: {
         collection: 'ITQuestionQuizzAnswer',
-        via: 'users'
+        via: 'users',
+        dominant: true
     },
 
     toJSON: function() {

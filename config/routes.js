@@ -93,7 +93,26 @@ module.exports.routes = {
     controller: 'ConfQuestionPresentationController',
     action: 'like'
   },
-  
+
+  /******************
+   * Quizz Question Controller
+   ******************/
+
+  'GET /api/question/quizz/list': {
+    controller: 'ConfQuestionQuizzController',
+    action: 'list'
+  },
+
+  'POST /api/question/quizz/questions': {
+    controller: 'ConfQuestionQuizzController',
+    action: 'questions'
+  },
+
+  'POST /api/question/quizz/answer': {
+    controller: 'ConfQuestionQuizzController',
+    action: 'answer'
+  },
+
   /******************
    * Note Controller
    ******************/

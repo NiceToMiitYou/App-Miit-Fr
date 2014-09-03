@@ -14,7 +14,7 @@ module.exports = {
     question : { 
     	type: 'string',
     	required: true,
-    	minLength: 6
+    	minLength: 3
     },
 
     type : { 

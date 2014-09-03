@@ -52,7 +52,24 @@ var Connect = (function(){
 
     // Question Action
     question: {
-      
+      // Question about quizz
+      quizz: {
+
+        // List all quizz
+        list: function(cb) {
+          io.socket.get('/api/question/quizz/list', {}, cb);
+        },
+
+        // List all questions and answers of a quizz
+        questions: function(quizz, cb) {
+          io.socket.post('/api/question/quizz/questions', { quizz: quizz }, cb);
+        },
+
+        answer: function(question, answers, cb) {
+          io.socket.post('/api/question/quizz/answer', { question: question, answers: answers }, cb);
+        },
+      },
+
       // Question about presentation
       presentation: {
         // Create a new question

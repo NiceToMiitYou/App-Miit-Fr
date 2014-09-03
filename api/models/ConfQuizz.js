@@ -32,7 +32,7 @@ module.exports = {
     	type: 'datetime' 
     },
 
-    question: {
+    questions: {
     	collection: 'ConfQuestionQuizz',
     	via: 'quizz'
     }

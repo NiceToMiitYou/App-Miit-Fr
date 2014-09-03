@@ -24,8 +24,7 @@ module.exports = {
 
     users: {
     	collection: 'ITUser',
-    	via: 'quizzAnswers',
-    	dominant: true
+    	via: 'quizzAnswers'
     }
   }
 };

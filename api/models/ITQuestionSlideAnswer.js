@@ -28,8 +28,7 @@ module.exports = {
 
     users: {
     	collection: 'ITUser',
-    	via: 'slideAnswers',
-    	dominant: true
+    	via: 'slideAnswers'
     }
   }
 };

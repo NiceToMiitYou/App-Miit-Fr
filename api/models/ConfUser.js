@@ -55,12 +55,14 @@ module.exports = {
 
     slideAnswers: {
         collection: 'ConfQuestionSlideAnswer',
-        via: 'users'
+        via: 'users',
+        dominant: true
     },
 
     quizzAnswers: {
         collection: 'ConfQuestionQuizzAnswer',
-        via: 'users'
+        via: 'users',
+        dominant: true
     },
 
     questionAsked: {

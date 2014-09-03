@@ -26,8 +26,7 @@ module.exports = {
 
     users: {
     	collection: 'ConfUser',
-    	via: 'slideAnswers',
-    	dominant: true
+    	via: 'slideAnswers'
     }
   }
 };
