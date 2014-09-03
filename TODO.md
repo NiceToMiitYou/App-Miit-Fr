@@ -10,7 +10,6 @@ Use mm/dd/yy format for dates.
 
 What?                                                        | When?  | Who?
 -------------------------------------------------------------|--------|------
-Create the api for quizz question                            |09/02/14|Boris Tacyniak
 Create the api for slide question                            |09/04/14|Boris Tacyniak
 Create the api for resources                                 |09/05/14|Boris Tacyniak
 Create a repository for the documentation                    |09/05/14|Jordan Cortet
