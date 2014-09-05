@@ -34,6 +34,10 @@ module.exports.policies = {
     'login': 'anonymAuth'
   },
 
+  ConfResourceController: {
+    'colorScheme': true
+  },
+
   /***************************************************************************
   *                                                                          *
   * Here's an example of mapping some policies to run before a controller    *

@@ -1,50 +1,35 @@
 /**
- * ConfQuestionQuizzController
+ * ConfQuestionSlideController
  *
- * @description :: Server-side logic for managing Confquestionquizzes
+ * @description :: Server-side logic for managing Confquestionslides
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
 module.exports = {
 	
   /**
-   * `ConfQuestionQuizzController.list()`
+   * `ConfQuestionSlideController.question()`
    */
-  list: function (req, res) {
-    ConfQuizz.find().exec(function(err, quizz) {
-      if( err || !quizz) return res.json({
+  question: function (req, res) {
+    ConfQuestionSlide.findOne({ slide: req.param('slide') }).populate('answers').exec(function(err, question) {
+      if( err || !question ) return res.json({
         done: false
       });
 
       return res.json({
           done: true,
-          quizz: quizz
+          question: question
       });
     });
   },
 
-  /**
-   * `ConfQuestionQuizzController.questions()`
-   */
-  questions: function (req, res) {
-    ConfQuestionQuizz.find({ quizz: req.param('quizz') }).populate('answers').exec(function(err, questions) {
-      if( err || !questions ) return res.json({
-        done: false
-      });
-
-      return res.json({
-          done: true,
-          questions: questions
-      });
-    });
-  },
 
   /**
-   * `ConfQuestionQuizzController.answer()`
+   * `ConfQuestionSlideController.answer()`
    */
   answer: function (req, res) {
-    ConfQuestionQuizz.findOne(req.param('question')).populate('answers').exec(function(err, question){
-      if( err || !question || !_.size(
+    ConfQuestionSlide.findOne(req.param('question')).populate('answers').exec(function(err, question){
+      if( err || !question || question.isClosed || !_.size(
                                       _.intersection(
                                         _.map(question.answers, 'id'), req.param('answers'))
                                       )
@@ -56,14 +41,14 @@ module.exports = {
       if( _.size(req.param('answers')) == 1 && question.type === 1 ||
           _.size(req.param('answers')) >= 1 && question.type !== 1 ) {
 
-        ConfUser.findOne(req.session.user).populate('quizzAnswers', { question: question.id }).exec(function(err, user){
-          if( err || !user || 0 < _.size(user.quizzAnswers) ) return res.json({
+        ConfUser.findOne(req.session.user).populate('slideAnswers', { question: question.id }).exec(function(err, user){
+          if( err || !user || 0 < _.size(user.slideAnswers) ) return res.json({
             done: false
           });
 
           // Register answers
           _(req.param('answers')).forEach(function(answer) {
-            user.quizzAnswers.add(answer);
+            user.slideAnswers.add(answer);
           });
         
           // Save result

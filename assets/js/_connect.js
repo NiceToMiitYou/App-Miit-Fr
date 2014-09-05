@@ -19,9 +19,8 @@ var Connect = (function(){
           if( typeof cb == 'function' )
             cb(cache.data);
         } else {
-          console.log('They ar missing token');
+          console.log('There a missing token');
         }
-
 
       });
     },
@@ -50,9 +49,9 @@ var Connect = (function(){
       }
     },
 
-    // Question Action
+    // Question Actions
     question: {
-      // Question about quizz
+      // Questions about quizz
       quizz: {
 
         // List all quizz
@@ -65,12 +64,13 @@ var Connect = (function(){
           io.socket.post('/api/question/quizz/questions', { quizz: quizz }, cb);
         },
 
+        // Answer to a question
         answer: function(question, answers, cb) {
           io.socket.post('/api/question/quizz/answer', { question: question, answers: answers }, cb);
         },
       },
 
-      // Question about presentation
+      // Questions about presentation
       presentation: {
         // Create a new question
         create: function(question, cb) {
@@ -86,10 +86,24 @@ var Connect = (function(){
         dislike: function(question, cb) {
           io.socket.post('/api/question/presentation/like', { question: question, like: false }, cb);
         }
-      }
+      },
 
+      // Questions about quizz
+      slide: {
+
+        // Get question of a slide
+        question: function(slide, cb) {
+          io.socket.get('/api/question/slide/question', { slide: slide }, cb);
+        },
+
+        // Answer to a question
+        answer: function(question, answers, cb) {
+          io.socket.post('/api/question/slide/answer', { question: question, answers: answers }, cb);
+        },
+      },
     },
 
+    // Notes Actions
     note: {
       // Create a new note
       create: function(title, content, cb) {
@@ -109,6 +123,13 @@ var Connect = (function(){
       // send me a note
       send: function(note, cb) {
         io.socket.post('/api/note/send', { note: note }, cb);
+      }
+    },
+
+    // Resources Actions
+    resources: {
+      list: function(cb) {
+        io.socket.get('/api/resources/list', {}, cb);
       }
     }
   };

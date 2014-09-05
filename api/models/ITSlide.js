@@ -40,8 +40,7 @@ module.exports = {
     },
 
     question: {
-    	model: 'ITQuestionSlide',
-    	required: true
+    	model: 'ITQuestionSlide'
     },
 
     resources: {

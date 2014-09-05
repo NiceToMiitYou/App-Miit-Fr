@@ -33,7 +33,10 @@ module.exports.routes = {
   ***************************************************************************/
 
   '/': {
-    view: 'homepage'
+    view: 'homepage',
+    locals: {
+      layout: 'layouts/public-application'
+    }
   },
 
   /***************************************************************************
@@ -95,6 +98,20 @@ module.exports.routes = {
   },
 
   /******************
+   * Slide Question Controller
+   ******************/
+   
+  'POST /api/question/slide/question': {
+    controller: 'ConfQuestionSlideController',
+    action: 'question'
+  },
+
+  'POST /api/question/slide/answer': {
+    controller: 'ConfQuestionSlideController',
+    action: 'answer'
+  },
+
+  /******************
    * Quizz Question Controller
    ******************/
 
@@ -136,4 +153,19 @@ module.exports.routes = {
     controller: 'ConfNoteController',
     action: 'send'
   },
+
+  /******************
+   * Resource Controller
+   ******************/
+   
+  'GET /assets/conference/colorScheme.css': {
+    controller: 'ConfResourceController',
+    action: 'colorScheme'
+  },
+
+  'GET /api/resources/list': {
+    controller: 'ConfResourceController',
+    action: 'list'
+  }
+
 };
