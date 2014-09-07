@@ -40,7 +40,7 @@ module.exports = {
 
       return res.json({
         done: true,
-        note: notes
+        notes: notes
       });
     });
   },
