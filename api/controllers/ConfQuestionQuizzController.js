@@ -11,14 +11,14 @@ module.exports = {
    * `ConfQuestionQuizzController.list()`
    */
   list: function (req, res) {
-    ConfQuizz.find().exec(function(err, quizz) {
+    ConfQuizz.find().exec(function(err, quizzes) {
       if( err || !quizz) return res.json({
         done: false
       });
 
       return res.json({
           done: true,
-          quizz: quizz
+          quizzes: quizzes
       });
     });
   },
