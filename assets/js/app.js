@@ -1,8 +1,22 @@
 
-(function(Connect){
+(function(){
 
-	io.socket.on('chatroom-new', function(data){
-		console.log(data)
-	});
+	// Create
+	function init() {
+		ITStorage.create('options');
 
-})(Connect);
+		ITStorage.create('chatrooms');
+		ITStorage.create('users');
+		ITStorage.create('notes');
+		ITStorage.create('resources');
+
+		ITStorage.create('quizzes');
+		ITStorage.create('questions');
+		ITStorage.create('presentations');
+	}
+
+	init();
+
+
+
+})();

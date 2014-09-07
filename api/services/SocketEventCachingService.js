@@ -2,9 +2,16 @@
 module.exports = {
 
 	sendToAll: function(event, data) {
-		sails.sockets.broadcast('AllConnectedToRT', event, {
-			token: 1,
-			data: data 
+		ConfLiveApplicationEvent.create({
+			name: event,
+			data: JSON.stringify(data.toJSON())
+		}).exec(function(err, model) {
+			if( err ) return sails.log.debug(err);
+
+			sails.sockets.broadcast('AllConnectedToRT', model.name, {
+				token: model.id,
+				data: model.data 
+			});
 		});
 	}
 

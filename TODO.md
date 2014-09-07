@@ -10,12 +10,13 @@ Use mm/dd/yy format for dates.
 
 What?                                                        | When?  | Who?
 -------------------------------------------------------------|--------|------
-Create the synchronization system                            |09/07/14|Boris Tacyniak
 
 ## Already done
 
 What?                                                        | When?  | Done   | Who?
 -------------------------------------------------------------|--------|--------|------
+Create the synchronization system                            |09/07/14|09/07/14|Boris Tacyniak
+Reorganizing routes and create storage system on client      |09/06/14|09/06/14|Boris Tacyniak
 Create the api for resources                                 |09/05/14|09/05/14|Boris Tacyniak
 Create a repository for the documentation                    |09/05/14|09/04/14|Jordan Cortet
 Create the api for slide question                            |09/04/14|09/04/14|Boris Tacyniak

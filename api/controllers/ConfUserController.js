@@ -8,6 +8,24 @@
 module.exports = {
 	
   /**
+   * `ConfUserController.list()`
+   */
+  list: function (req, res) {
+
+    ConfUser.find()
+      .exec(function(err, users){
+        if (err || !users) return res.json({
+          done: false
+        });
+
+        return res.json({
+          done: true,
+          users: users
+        });
+    });
+  },
+
+  /**
    * `ConfUserController.login()`
    */
   login: function (req, res) {

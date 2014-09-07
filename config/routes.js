@@ -20,7 +20,20 @@
  * http://sailsjs.org/#/documentation/concepts/Routes/RouteTargetSyntax.html
  */
 
-module.exports.routes = {
+function extend(target) {
+    var sources = [].slice.call(arguments, 1);
+    sources.forEach(function (source) {
+        for (var prop in source) {
+            target[prop] = source[prop];
+        }
+    });
+    
+    return target;
+}
+
+var publicAppRoutes = require('./routes/public.js');
+
+var routes = {
 
   /***************************************************************************
   *                                                                          *
@@ -48,124 +61,8 @@ module.exports.routes = {
   * for configuration options and examples.                                  *
   *                                                                          *
   ***************************************************************************/
-
-
-  /******************
-   * Chat Controller
-   ******************/
-
-  'POST /api/chatroom/create': {
-    controller: 'ConfChatController',
-    action: 'create'
-  },
-
-  'GET /api/chatroom/list': {
-    controller: 'ConfChatController',
-    action: 'list'
-  },
-
-  'POST /api/chatroom/send': {
-    controller: 'ConfChatController',
-    action: 'send'
-  },
-
-  /******************
-   * User Controller
-   ******************/
-   
-  'POST /api/user/login': {
-    controller: 'ConfUserController',
-    action: 'login'
-  },
-
-  'GET /api/user/logout': {
-    controller: 'ConfUserController',
-    action: 'logout' 
-  },
-
-  /******************
-   * Presentation Question Controller
-   ******************/
-   
-  'POST /api/question/presentation/create': {
-    controller: 'ConfQuestionPresentationController',
-    action: 'create'
-  },
-
-  'POST /api/question/presentation/like': {
-    controller: 'ConfQuestionPresentationController',
-    action: 'like'
-  },
-
-  /******************
-   * Slide Question Controller
-   ******************/
-   
-  'POST /api/question/slide/question': {
-    controller: 'ConfQuestionSlideController',
-    action: 'question'
-  },
-
-  'POST /api/question/slide/answer': {
-    controller: 'ConfQuestionSlideController',
-    action: 'answer'
-  },
-
-  /******************
-   * Quizz Question Controller
-   ******************/
-
-  'GET /api/question/quizz/list': {
-    controller: 'ConfQuestionQuizzController',
-    action: 'list'
-  },
-
-  'POST /api/question/quizz/questions': {
-    controller: 'ConfQuestionQuizzController',
-    action: 'questions'
-  },
-
-  'POST /api/question/quizz/answer': {
-    controller: 'ConfQuestionQuizzController',
-    action: 'answer'
-  },
-
-  /******************
-   * Note Controller
-   ******************/
-   
-  'POST /api/note/create': {
-    controller: 'ConfNoteController',
-    action: 'create'
-  },
-
-  'POST /api/note/update': {
-    controller: 'ConfNoteController',
-    action: 'update'
-  },
-
-  'POST /api/note/delete': {
-    controller: 'ConfNoteController',
-    action: 'delete'
-  },
-
-  'POST /api/note/send': {
-    controller: 'ConfNoteController',
-    action: 'send'
-  },
-
-  /******************
-   * Resource Controller
-   ******************/
-   
-  'GET /assets/conference/colorScheme.css': {
-    controller: 'ConfResourceController',
-    action: 'colorScheme'
-  },
-
-  'GET /api/resources/list': {
-    controller: 'ConfResourceController',
-    action: 'list'
-  }
-
 };
+
+extend(routes, publicAppRoutes);
+
+module.exports.routes = routes;

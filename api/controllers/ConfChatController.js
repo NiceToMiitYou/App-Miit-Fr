@@ -12,10 +12,10 @@ module.exports = {
    */
   list: function (req, res) {
 
-    ConfChatRoom.find().exec(function(err, models) {
+    ConfChatRoom.find().exec(function(err, chatrooms) {
       return res.json({
         done: true,
-        models: models
+        chatrooms: chatrooms
       });
     });
   },
@@ -24,6 +24,7 @@ module.exports = {
    * `ConfChatController.send()`
    */
   send: function(req, res) {
+
     ConfChatMessage.create({
       message: req.param('message'),
       user: req.session.user,
