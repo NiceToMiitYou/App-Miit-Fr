@@ -48,7 +48,7 @@ window.ITConnect = (function() {
           // Callback
           if( typeof cb == 'function' )
             cb(cache.data);
-        } else {
+        } else {c
           // Synchronise events
           synchronize();
         }

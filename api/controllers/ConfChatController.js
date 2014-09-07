@@ -38,7 +38,7 @@ module.exports = {
 
       return res.json({
         done: true,
-        chatmessage: created
+        message: created
       });
     });
   }
