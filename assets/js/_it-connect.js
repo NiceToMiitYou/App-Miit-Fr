@@ -144,7 +144,7 @@ window.ITConnect = (function() {
       // Create a new note
       create: function(title, content, cb) {
         io.socket.post(apiPublicPrefix + '/note/create', { title: title, content: content }, cb);
-      },.
+      },
 
       // List all user's note
       list: function(cb) {
