@@ -146,6 +146,11 @@ window.ITConnect = (function() {
         io.socket.post(apiPublicPrefix + '/note/create', { title: title, content: content }, cb);
       },
 
+      // List all user's note
+      list: function(cb) {
+        io.socket.get(apiPublicPrefix + '/note/list', {}, cb);
+      },
+
       // Update a note
       update: function(note, title, content, cb) {
         io.socket.post(apiPublicPrefix + '/note/update', { note: note, title: title, content: content }, cb);

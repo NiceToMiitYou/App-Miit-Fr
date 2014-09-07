@@ -27,12 +27,32 @@ module.exports = {
     });
   },
 
+  /**
+   * `ConfNoteController.list()`
+   */
+  list: function (req, res) {
+    ConfNote.find({,
+      user: req.session.user
+    }).exec(function(err, notes){
+      if( err || !notes ) return res.json({
+        done: false
+      });
+
+      return res.json({
+        done: true,
+        note: notes
+      });
+    });
+  },
 
   /**
    * `ConfNoteController.update()`
    */
   update: function (req, res) {
-    ConfNote.findOne(req.param('note')).exec(function(err, note){
+    ConfNote.findOne({
+      id: req.param('note'),
+      user: req.session.user
+    }).exec(function(err, note){
       if( err || !note ) return res.json({
         done: false
       });

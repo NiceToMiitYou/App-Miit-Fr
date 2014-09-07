@@ -104,6 +104,11 @@ routes['POST ' + apiPublicPrefix + '/note/create'] = {
 	action: 'create'
 };
 
+routes['GET ' + apiPublicPrefix + '/note/list'] = {
+	controller: 'ConfNoteController',
+	action: 'list'
+};
+
 routes['POST ' + apiPublicPrefix + '/note/update'] = {
 	controller: 'ConfNoteController',
 	action: 'update'
