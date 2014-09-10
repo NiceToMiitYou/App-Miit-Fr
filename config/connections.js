@@ -56,15 +56,6 @@ module.exports.connections = {
     database: 'itevents'
   },
 
-  ITEventsDatabase: {
-    adapter: 'sails-mysql',
-    host: 'localhost',
-    user: 'itevents',
-    password: 'password',
-    database: 'itevents'
-  },
-
-
   /***************************************************************************
   *                                                                          *
   * MongoDB is the leading NoSQL database.                                   *
