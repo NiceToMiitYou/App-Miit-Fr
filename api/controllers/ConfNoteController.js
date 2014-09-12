@@ -31,7 +31,7 @@ module.exports = {
    * `ConfNoteController.list()`
    */
   list: function (req, res) {
-    ConfNote.find({,
+    ConfNote.find({
       user: req.session.user
     }).exec(function(err, notes){
       if( err || !notes ) return res.json({
