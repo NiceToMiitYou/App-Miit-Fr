@@ -109,8 +109,8 @@ window.ITConnect = (function() {
       // Questions about presentation
       presentation: {
         // Create a new question
-        create: function(question, cb) {
-          io.socket.post(apiPublicPrefix + '/question/presentation/create', { question: question }, cb);
+        create: function(question, tags, cb) {
+          io.socket.post(apiPublicPrefix + '/question/presentation/create', { question: question, tags: tags }, cb);
         },
 
         // Like a question

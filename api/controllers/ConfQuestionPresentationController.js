@@ -11,21 +11,24 @@ module.exports = {
    * `ConfQuestionPresentationController.create()`
    */
   create: function (req, res) {
-    ConfQuestionPresentation.create({
-      question: req.param('question'),
-      user: req.session.user
-    }).exec(function(err, created){
-      if( err ) return res.json({
-        done: false
-      });
+    if(_.size(req.param('tags') >= 1) {
+      ConfQuestionPresentation.create({
+        question: req.param('question'),
+        user: req.session.user,
+        tags: req.param('tags')
+      }).exec(function(err, created){
+        if( err ) return res.json({
+          done: false
+        });
 
-      SocketEventCachingService.sendToAll('question-presentation-new', created);
+        SocketEventCachingService.sendToAll('question-presentation-new', created);
 
-      return res.json({
-        done: true,
-        question: created
+        return res.json({
+          done: true,
+          question: created
+        });
       });
-    });
+    }
   },
 
   /**

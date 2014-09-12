@@ -28,6 +28,11 @@ module.exports = {
     likes: {
     	collection: 'ConfQuestionPresentationLike',
     	via: 'question'
+    },
+
+    tags: {
+        collection: 'ConfQuestionPresentationTag',
+        via: 'questions'
     }
   }
 };
