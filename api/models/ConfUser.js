@@ -30,7 +30,7 @@ module.exports = {
 
     password : {
     	type: 'string',
-        unique: true
+        required: true
     },
 
     mail : {
