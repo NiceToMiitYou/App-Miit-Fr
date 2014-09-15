@@ -1,4 +1,4 @@
-/**c
+/**
  * Routes for the public app
  */
 
@@ -41,6 +41,11 @@ routes['GET ' + apiPublicPrefix + '/user/list'] = {
 routes['POST ' + apiPublicPrefix + '/user/login'] = {
 	controller: 'ConfUserController',
 	action: 'login'
+};
+
+routes['POST ' + apiPublicPrefix + '/user/register'] = {
+	controller: 'ConfUserController',
+	action: 'register'
 };
 
 routes['GET ' + apiPublicPrefix + '/user/logout'] = {

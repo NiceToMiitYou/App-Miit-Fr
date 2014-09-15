@@ -32,6 +32,9 @@ function extend(target) {
 }
 
 var publicAppRoutes = require('./routes/public.js');
+var liveAppRoutes = require('./routes/live.js');
+var masterAppRoutes = require('./routes/master.js');
+var adminAppRoutes = require('./routes/admin.js');
 
 var routes = {
 

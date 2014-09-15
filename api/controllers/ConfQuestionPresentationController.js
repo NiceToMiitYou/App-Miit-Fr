@@ -11,7 +11,7 @@ module.exports = {
    * `ConfQuestionPresentationController.create()`
    */
   create: function (req, res) {
-    if(_.size(req.param('tags') >= 1) {
+    if(_.size(req.param('tags')) >= 1) {
       ConfQuestionPresentation.create({
         question: req.param('question'),
         user: req.session.user,

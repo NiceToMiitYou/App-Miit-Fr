@@ -76,8 +76,12 @@ window.ITConnect = (function() {
         io.socket.get(apiPublicPrefix + '/user/list', {}, cb);
       },
       // Login action
-      login: function(password, cb) {
-        io.socket.post(apiPublicPrefix + '/user/login', { password: password }, cb);
+      login: function(mail, password, cb) {
+        io.socket.post(apiPublicPrefix + '/user/login', { mail: mail, password: password }, cb);
+      },
+      // Login action
+      register: function(mail, password, cb) {
+        io.socket.post(apiPublicPrefix + '/user/register', { mail: mail, password: password }, cb);
       },
       // Logout action
       logout: function(cb) {

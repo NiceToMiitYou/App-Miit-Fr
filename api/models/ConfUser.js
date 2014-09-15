@@ -75,6 +75,12 @@ module.exports = {
         via: 'user'
     },
 
+    roles: {
+        collection: 'ConfUserRoles',
+        via: 'users',
+        dominant: true
+    },
+
     toJSON: function() {
         var obj = this.toObject();
         delete obj.password;

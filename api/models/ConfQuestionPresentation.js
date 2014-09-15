@@ -31,7 +31,7 @@ module.exports = {
     },
 
     tags: {
-        collection: 'ConfQuestionPresentationTag',
+        collection: 'ConfTag',
         via: 'questions'
     }
   }

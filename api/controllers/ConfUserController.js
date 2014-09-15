@@ -30,12 +30,23 @@ module.exports = {
    */
   login: function (req, res) {
 
-    ConfUser.findOneByPassword(
-        req.param('password')
+    ConfUser.findOneByMail(
+        req.param('mail')
       )
       .exec(function(err, user){
-        if (err || !user) return res.json({
+        if ( err ) return res.json({
           done: false
+        });
+
+        if ( !user ) return res.json({
+          done: true,
+          exist: false
+        });
+
+        if ( user.password != req.param('password') ) return res.json({
+          done: true,
+          exist: true,
+          connected: false
         });
 
         req.session.user = user.id;
@@ -43,8 +54,29 @@ module.exports = {
 
         return res.json({
           done: true,
+          exist: true,
+          connected: true,
           user: user
         });
+    });
+  },
+
+  /**
+   * `ConfUserController.register()`
+   */
+  register: function (req, res) {
+    ConfUser.Create({
+      mail: req.param('mail'),
+      password: req.param('param')
+    }).exec(function(err, user) {
+      if ( err ) return res.json({
+        done: false
+      });
+
+      return res.json({
+        done: true,
+        user: user
+      });
     });
   },
 
