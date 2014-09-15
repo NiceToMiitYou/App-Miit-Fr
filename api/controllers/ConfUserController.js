@@ -65,7 +65,7 @@ module.exports = {
    * `ConfUserController.register()`
    */
   register: function (req, res) {
-    ConfUser.Create({
+    ConfUser.create({
       mail: req.param('mail'),
       password: req.param('param')
     }).exec(function(err, user) {

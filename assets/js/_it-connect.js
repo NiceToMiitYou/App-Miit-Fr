@@ -1,6 +1,8 @@
 window.ITConnect = (function() {
   var apiPublicPrefix = '/api/public';
 
+  var lastestTrack = null;
+
   var eventsCallbacks = {};
 
   lastestToken = 0;
@@ -175,6 +177,22 @@ window.ITConnect = (function() {
     resources: {
       list: function(cb) {
         io.socket.get(apiPublicPrefix + '/resources/list', {}, cb);
+      }
+    },
+
+    track: {
+      create: function(action, cb) {
+        if( lastestTrack ) {
+          io.socket.post(apiPublicPrefix + '/track/end', { track: lastestTrack }, cb);
+        }
+
+        io.socket.post(apiPublicPrefix + '/track/start', { action: action }, function(data) {
+          lastestTrack = data.track.id;
+
+          if(typeof cb == 'function') {
+            cb(data);
+          }
+        });
       }
     }
   };

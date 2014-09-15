@@ -9,12 +9,20 @@ module.exports = {
 
   attributes: {
 
-    content : {
-    	type: 'text',
+    action: {
+    	type: 'string',
         required: true
     },
 
-    user : {
+    start: {
+        type: 'datetime'
+    },
+
+    end: {
+        type: 'datetime'
+    },
+
+    user: {
     	model: 'ConfUser',
         required: true
     }

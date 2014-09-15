@@ -143,4 +143,19 @@ routes['GET ' + apiPublicPrefix + '/resources/list'] = {
 	action: 'list'
 };
 
+/******************
+* Track Controller
+******************/
+
+routes['POST ' + apiPublicPrefix + '/track/start'] = {
+	controller: 'ConfTrackController',
+	action: 'start'
+};
+
+routes['POST ' + apiPublicPrefix + '/trac/end'] = {
+	controller: 'ConfTrackController',
+	action: 'end'
+};
+
+
 module.exports = routes;
