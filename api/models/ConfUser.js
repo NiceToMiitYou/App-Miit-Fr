@@ -81,6 +81,13 @@ module.exports = {
         dominant: true
     },
 
+    isCorrectPassword: function(password) {
+        if( this.password != password ) {
+            return false;
+        }
+        return true;
+    }
+
     toJSON: function() {
         var obj = this.toObject();
         delete obj.password;

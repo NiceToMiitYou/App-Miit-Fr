@@ -43,7 +43,7 @@ module.exports = {
           exist: false
         });
 
-        if ( user.password != req.param('password') ) return res.json({
+        if ( user.isCorrectPassword( req.param('password') ) ) return res.json({
           done: true,
           exist: true,
           connected: false
