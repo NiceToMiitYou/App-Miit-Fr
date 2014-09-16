@@ -9,15 +9,11 @@ module.exports = {
   attributes: {
 
     lastName : { 
-    	type: 'string',
-        required: true,
-        minLength: 1
+    	type: 'string'
     },
 
     firstName : {
-    	type: 'string',
-        required: true,
-        minLength: 1
+    	type: 'string'
     },
 
     fullName: function() {
