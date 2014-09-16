@@ -183,7 +183,7 @@ window.ITConnect = (function() {
     track: {
       create: function(action, cb) {
         if( lastestTrack ) {
-          io.socket.post(apiPublicPrefix + '/track/end', { track: lastestTrack }, cb);
+          io.socket.post(apiPublicPrefix + '/track/end', { track: lastestTrack });
         }
 
         io.socket.post(apiPublicPrefix + '/track/start', { action: action }, function(data) {

@@ -34,6 +34,10 @@ module.exports.policies = {
     'login': 'anonymAuth'
   },
 
+  ConfLiveController: {
+    '*': 'masterAuth'
+  },
+
   ConfResourceController: {
     'colorScheme': true
   },

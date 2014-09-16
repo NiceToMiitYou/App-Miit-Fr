@@ -12,8 +12,7 @@ module.exports = {
    */
   list: function (req, res) {
 
-    ConfUser.find()
-      .exec(function(err, users){
+    ConfUser.find().exec(function(err, users){
         if (err || !users) return res.json({
           done: false
         });
@@ -32,8 +31,7 @@ module.exports = {
 
     ConfUser.findOneByMail(
         req.param('mail')
-      )
-      .exec(function(err, user){
+      ).exec(function(err, user){
         if ( err ) return res.json({
           done: false
         });
@@ -50,7 +48,7 @@ module.exports = {
         });
 
         req.session.user = user.id;
-        req.session.authenticated = true;
+        req.session.roles = user.roles;
 
         return res.json({
           done: true,
@@ -86,7 +84,7 @@ module.exports = {
   logout: function (req, res) {
 
     if (req.session.user) req.session.user = null;
-    if (req.session.authenticated) req.session.authenticated = false;
+    if (req.session.roles) req.session.roles = null;
 
     return res.json({
       done: true 

@@ -76,9 +76,7 @@ module.exports = {
     },
 
     roles: {
-        collection: 'ConfUserRoles',
-        via: 'users',
-        dominant: true
+        type: 'array'
     },
 
     isCorrectPassword: function(password) {
@@ -86,12 +84,13 @@ module.exports = {
             return false;
         }
         return true;
-    }
+    },
 
     toJSON: function() {
         var obj = this.toObject();
         delete obj.password;
         delete obj.mail;
+        delete obj.roles;
         return obj;
     }
   }
