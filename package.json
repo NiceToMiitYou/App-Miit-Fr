@@ -27,6 +27,14 @@
     "grunt-contrib-coffee": "~0.10.1",
     "less": "1.7.5"
   },
+  "devDependencies": {
+    "supertest": "~0.13.0",
+    "should": "~4.0.4",
+    "mocha": "~1.21.4",
+    "grunt-mocha-test": "~0.12.0",
+    "sinon": "~1.10.3",
+    "assert": "~1.1.2"
+  },
   "scripts": {
     "start": "node app.js",
     "debug": "node debug app.js"
@@ -35,6 +43,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/jord14k/ITEvents.git"
+  },
+  "scripts": {
+    "test": "grunt test"
   },
   "author": "Tacyniak Boris",
   "license": ""
