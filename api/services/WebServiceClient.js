@@ -6,8 +6,8 @@ module.exports = {
 		var jsonData = JSON.stringify(data);
 
 		var options = {
-		  host: sails.local.webservice.host,
-		  port: sails.local.webservice.port,
+		  host: sails.config.webservice.host,
+		  port: sails.config.webservice.port,
 
 		  path: path,
 		  method: method,

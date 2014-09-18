@@ -20,5 +20,11 @@ module.exports = {
   // models: {
   //   connection: 'someMongodbServer'
   // }
+  	port: 8080,
+
+   	webservice: {
+      	host: 'developpement.ws.itevents.fr',
+      	port: 443
+   	}
 
 };
