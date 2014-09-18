@@ -10,6 +10,7 @@ Use mm/dd/yy format for dates.
 
 What?                                                        | When?  | Who?
 -------------------------------------------------------------|--------|------
+Create all unit tests                                        |21/07/14|Boris Tacyniak
 
 ## Already done
 
