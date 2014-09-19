@@ -1,51 +1,50 @@
 /**
-* ConfSlide.js
-*
-* @description :: TODO: You might write a short summary of how this model works and what it represents here.
-* @docs        :: http://sailsjs.org/#!documentation/models
-*/
+ * ConfSlide.js
+ *
+ * @description :: TODO: You might write a short summary of how this model works and what it represents here.
+ * @docs        :: http://sailsjs.org/#!documentation/models
+ */
 
 module.exports = {
 
-  attributes: {
+    attributes: {
 
-    notes : {
-    	type: 'text'
-    },
+        notes: {
+            type: 'text'
+        },
 
-    title : {
-    	type: 'string'
-    },
+        title: {
+            type: 'string'
+        },
 
-    content : {
-    	type: 'text',
-        required: true
-    },
+        content: {
+            type: 'text',
+            required: true
+        },
 
-    time : {
-    	type: 'integer',
-        defaultsTo: 0
-    },
+        time: {
+            type: 'integer',
+            defaultsTo: 0
+        },
 
-    type : {
-    	type: 'integer',
-        defaultsTo: 1
-    },
+        type: {
+            type: 'integer',
+            defaultsTo: 1
+        },
 
-    presentation: {
-    	model: 'ConfPresentation',
-        required: true
-    },
+        presentation: {
+            model: 'ConfPresentation',
+            required: true
+        },
 
-    question: {
-    	model: 'ConfQuestionSlide'
-    },
+        question: {
+            model: 'ConfQuestionSlide'
+        },
 
-    resources: {
-        collection: 'ConfResource',
-        via: 'slides',
-        dominant: true
+        resources: {
+            collection: 'ConfResource',
+            via: 'slides',
+            dominant: true
+        }
     }
-  }
 };
-

@@ -1,37 +1,37 @@
-window.ITStorage = (function(){
-	var db = {};
+window.ITStorage = ( function() {
+    var db = {};
 
-	return {
-		// Create a storage area
-		create: function(name) {
-			// If name is not defined
-			if( ! ( name in db ) ) {
+    return {
+        // Create a storage area
+        create: function( name ) {
+            // If name is not defined
+            if ( !( name in db ) ) {
 
-				// Add a new area in the database
-				db[name] = (function(){
+                // Add a new area in the database
+                db[ name ] = ( function() {
 
-					// Datas of this area
-					var datas = {};
+                    // Datas of this area
+                    var datas = {};
 
-					return {
-						// Getter for this area
-						get: function(key) {
-							return datas[key];
-						},
+                    return {
+                        // Getter for this area
+                        get: function( key ) {
+                            return datas[ key ];
+                        },
 
-						// Setter for this area
-						set: function(key, value) {
-							datas[key] = value;
-						}
-					};
-				})();
+                        // Setter for this area
+                        set: function( key, value ) {
+                            datas[ key ] = value;
+                        }
+                    };
+                } )();
 
-				return true;
-			}
-			return false;
-		},
+                return true;
+            }
+            return false;
+        },
 
-		// Make an access to the database
-		db: db
-	};
-})();
+        // Make an access to the database
+        db: db
+    };
+} )();

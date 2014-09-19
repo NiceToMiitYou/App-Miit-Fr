@@ -1,28 +1,27 @@
 /**
-* ConfQuestionPresentationLike.js
-*
-* @description :: TODO: You might write a short summary of how this model works and what it represents here.
-* @docs        :: http://sailsjs.org/#!documentation/models
-*/
+ * ConfQuestionPresentationLike.js
+ *
+ * @description :: TODO: You might write a short summary of how this model works and what it represents here.
+ * @docs        :: http://sailsjs.org/#!documentation/models
+ */
 
 module.exports = {
 
-  attributes: {
+    attributes: {
 
-    isLiked : { 
-    	type: 'boolean',
-        required: true
-    },
+        isLiked: {
+            type: 'boolean',
+            required: true
+        },
 
-    question: {
-    	model: 'ConfQuestionPresentation',
-        required: true
-    },
+        question: {
+            model: 'ConfQuestionPresentation',
+            required: true
+        },
 
-    user: {
-    	model: 'ConfUser',
-        required: true
+        user: {
+            model: 'ConfUser',
+            required: true
+        }
     }
-  }
 };
-

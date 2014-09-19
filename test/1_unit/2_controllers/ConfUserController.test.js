@@ -1,67 +1,122 @@
+var request = require( 'supertest' );
+var should = require( 'should' );
+var agent;
 
-var request = require('supertest');
-var should = require('should');
+describe( 'ConfUserController', function() {
 
-describe('ConfUserController', function() {
+    before( function() {
+        agent = request.agent( sails.hooks.http.app );
+    } );
 
-  describe('#login()', function() {
+    describe( '#login()', function() {
 
-    it('wrong login', function (done) {
-      request(sails.hooks.http.app)
-        .post('/api/public/user/login')
-        .send({ mail: 'test', password: 'test' })
-        .expect(200)
-        .end(function(err, res) {
-        	if(err) done(err);
+        it( 'wrong login', function( done ) {
+            agent
+                .post( '/api/public/user/login' )
+                .send( {
+                    mail: 'test',
+                    password: 'test'
+                } )
+                .expect( 200 )
+                .end( function( err, res ) {
+                    if ( err ) return done( err );
 
-        	(res.body).should.be.an.instanceOf(Object);
-        	(res.body).should.have.properties({
-        		'done': true,
-        		'exist': false
-        	});
+                    ( res.body )
+                        .should.be.an.instanceOf( Object );
+                    ( res.body )
+                        .should.have.properties( {
+                            'done': true,
+                            'exist': false
+                        } );
 
-        	done();
-        });
-    });
+                    done();
+                } );
+        } );
 
-    it('login with test@test.fr and wrong password', function (done) {
-      request(sails.hooks.http.app)
-        .post('/api/public/user/login')
-        .send({ mail: 'test@test.fr', password: 'test' })
-        .expect(200)
-        .end(function(err, res) {
-            if(err) done(err);
+        it( 'login with test@test.fr and wrong password', function( done ) {
+            agent
+                .post( '/api/public/user/login' )
+                .send( {
+                    mail: 'test@test.fr',
+                    password: 'test'
+                } )
+                .expect( 200 )
+                .end( function( err, res ) {
+                    if ( err ) return done( err );
 
-            (res.body).should.be.an.instanceOf(Object);
-            (res.body).should.have.properties({
-                'done': true,
-                'exist': true,
-                'connected': false
-            });
+                    ( res.body )
+                        .should.be.an.instanceOf( Object );
+                    ( res.body )
+                        .should.have.properties( {
+                            'done': true,
+                            'exist': true,
+                            'connected': false
+                        } );
 
-            done();
-        });
-    });
+                    done();
+                } );
+        } );
 
-    it('login with test@test.fr and right password', function (done) {
-      request(sails.hooks.http.app)
-        .post('/api/public/user/login')
-        .send({ mail: 'test@test.fr', password: 'password' })
-        .expect(200)
-        .end(function(err, res) {
-            if(err) done(err);
+        it( 'login with test@test.fr and right password', function( done ) {
+            agent
+                .post( '/api/public/user/login' )
+                .send( {
+                    mail: 'test@test.fr',
+                    password: 'password'
+                } )
+                .expect( 200 )
+                .end( function( err, res ) {
+                    if ( err ) return done( err );
 
-            (res.body).should.be.an.instanceOf(Object);
-            (res.body).should.have.properties({
-                'done': true,
-                'exist': true,
-                'connected': true
-            });
-            
-            done();
-        });
-    });
+                    ( res.body )
+                        .should.be.an.instanceOf( Object );
+                    ( res.body )
+                        .should.have.properties( {
+                            'done': true,
+                            'exist': true,
+                            'connected': true
+                        } );
 
-  });
+                    agent.saveCookies( res );
 
-});
+                    done();
+                } );
+        } );
+
+        it( 'login twice', function( done ) {
+            agent
+                .post( '/api/public/user/login' )
+                .send( {
+                    mail: 'test@test.fr',
+                    password: 'password'
+                } )
+                .expect( 403 )
+                .end( done );
+        } );
+
+    } );
+
+
+    describe( '#logout()', function() {
+
+        it( 'logout', function( done ) {
+            agent
+                .get( '/api/public/user/logout' )
+                .expect( 200 )
+                .end( function( err, res ) {
+                    if ( err ) done( err );
+
+                    ( res.body )
+                        .should.be.an.instanceOf( Object );
+                    ( res.body )
+                        .should.have.properties( {
+                            'done': true
+                        } );
+
+                    done();
+                } );
+        } );
+
+    } );
+
+} );

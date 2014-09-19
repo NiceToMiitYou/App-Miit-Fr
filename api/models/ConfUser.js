@@ -1,94 +1,93 @@
 /**
-* ConfUser.js
-*
-* @description :: ConfUser representation
-*/
+ * ConfUser.js
+ *
+ * @description :: ConfUser representation
+ */
 
 module.exports = {
 
-  attributes: {
+    attributes: {
 
-    lastName : { 
-    	type: 'string'
-    },
+        lastName: {
+            type: 'string'
+        },
 
-    firstName : {
-    	type: 'string'
-    },
+        firstName: {
+            type: 'string'
+        },
 
-    fullName: function() {
-        return this.firstName + ' ' + this.lastName;
-    },
+        fullName: function() {
+            return this.firstName + ' ' + this.lastName;
+        },
 
-    society : {
-        type: 'string'
-    },
+        society: {
+            type: 'string'
+        },
 
-    password : {
-    	type: 'string',
-        required: true
-    },
+        password: {
+            type: 'string',
+            required: true
+        },
 
-    mail : {
-    	type: 'email',
-        unique: true,
-        required: true
-    },
-    
-    messages: {
-        collection: 'ConfChatMessage',
-        via: 'user'
-    },
-    
-    notes: {
-        collection: 'ConfNote',
-        via: 'user'
-    },
+        mail: {
+            type: 'email',
+            unique: true,
+            required: true
+        },
 
-    realId: {
-        type: 'integer'
-    },
+        messages: {
+            collection: 'ConfChatMessage',
+            via: 'user'
+        },
 
-    slideAnswers: {
-        collection: 'ConfQuestionSlideAnswer',
-        via: 'users',
-        dominant: true
-    },
+        notes: {
+            collection: 'ConfNote',
+            via: 'user'
+        },
 
-    quizzAnswers: {
-        collection: 'ConfQuestionQuizzAnswer',
-        via: 'users',
-        dominant: true
-    },
+        realId: {
+            type: 'integer'
+        },
 
-    questionAsked: {
-        collection: 'ConfQuestionPresentation',
-        via: 'user'
-    },
+        slideAnswers: {
+            collection: 'ConfQuestionSlideAnswer',
+            via: 'users',
+            dominant: true
+        },
 
-    questionLikes: {
-        collection: 'ConfQuestionPresentationLike',
-        via: 'user'
-    },
+        quizzAnswers: {
+            collection: 'ConfQuestionQuizzAnswer',
+            via: 'users',
+            dominant: true
+        },
 
-    roles: {
-        type: 'array'
-    },
+        questionAsked: {
+            collection: 'ConfQuestionPresentation',
+            via: 'user'
+        },
 
-    isCorrectPassword: function(password) {
-        if( this.password != password ) {
-            return false;
+        questionLikes: {
+            collection: 'ConfQuestionPresentationLike',
+            via: 'user'
+        },
+
+        roles: {
+            type: 'array'
+        },
+
+        isCorrectPassword: function( password ) {
+            if ( this.password != password ) {
+                return false;
+            }
+            return true;
+        },
+
+        toJSON: function() {
+            var obj = this.toObject();
+            delete obj.password;
+            delete obj.mail;
+            delete obj.roles;
+            return obj;
         }
-        return true;
-    },
-
-    toJSON: function() {
-        var obj = this.toObject();
-        delete obj.password;
-        delete obj.mail;
-        delete obj.roles;
-        return obj;
     }
-  }
 };
-

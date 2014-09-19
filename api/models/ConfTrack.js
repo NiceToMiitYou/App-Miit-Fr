@@ -1,31 +1,30 @@
 /**
-* ConfTrack.js
-*
-* @description :: TODO: You might write a short summary of how this model works and what it represents here.
-* @docs        :: http://sailsjs.org/#!documentation/models
-*/
+ * ConfTrack.js
+ *
+ * @description :: TODO: You might write a short summary of how this model works and what it represents here.
+ * @docs        :: http://sailsjs.org/#!documentation/models
+ */
 
 module.exports = {
 
-  attributes: {
+    attributes: {
 
-    action: {
-    	type: 'string',
-        required: true
-    },
+        action: {
+            type: 'string',
+            required: true
+        },
 
-    start: {
-        type: 'datetime'
-    },
+        start: {
+            type: 'datetime'
+        },
 
-    end: {
-        type: 'datetime'
-    },
+        end: {
+            type: 'datetime'
+        },
 
-    user: {
-    	model: 'ConfUser',
-        required: true
+        user: {
+            model: 'ConfUser',
+            required: true
+        }
     }
-  }
 };
-

@@ -20,52 +20,52 @@
  * http://sailsjs.org/#/documentation/concepts/Routes/RouteTargetSyntax.html
  */
 
-function extend(target) {
-    var sources = [].slice.call(arguments, 1);
-    sources.forEach(function (source) {
-        for (var prop in source) {
-            target[prop] = source[prop];
+function extend( target ) {
+    var sources = [].slice.call( arguments, 1 );
+    sources.forEach( function( source ) {
+        for ( var prop in source ) {
+            target[ prop ] = source[ prop ];
         }
-    });
-    
+    } );
+
     return target;
 }
 
-var publicAppRoutes = require('./routes/public.js');
-var liveAppRoutes = require('./routes/live.js');
-var masterAppRoutes = require('./routes/master.js');
-var adminAppRoutes = require('./routes/admin.js');
+var publicAppRoutes = require( './routes/public.js' );
+var liveAppRoutes = require( './routes/live.js' );
+var masterAppRoutes = require( './routes/master.js' );
+var adminAppRoutes = require( './routes/admin.js' );
 
 var routes = {
 
-  /***************************************************************************
-  *                                                                          *
-  * Make the view located at `views/homepage.ejs` (or `views/homepage.jade`, *
-  * etc. depending on your default view engine) your home page.              *
-  *                                                                          *
-  * (Alternatively, remove this and add an `index.html` file in your         *
-  * `assets` directory)                                                      *
-  *                                                                          *
-  ***************************************************************************/
+    /***************************************************************************
+     *                                                                          *
+     * Make the view located at `views/homepage.ejs` (or `views/homepage.jade`, *
+     * etc. depending on your default view engine) your home page.              *
+     *                                                                          *
+     * (Alternatively, remove this and add an `index.html` file in your         *
+     * `assets` directory)                                                      *
+     *                                                                          *
+     ***************************************************************************/
 
-  '/': {
-    view: 'homepage',
-    locals: {
-      layout: 'layouts/public-application'
-    }
-  },
+    '/': {
+        view: 'homepage',
+        locals: {
+            layout: 'layouts/public-application'
+        }
+    },
 
-  /***************************************************************************
-  *                                                                          *
-  * Custom routes here...                                                    *
-  *                                                                          *
-  *  If a request to a URL doesn't match any of the custom routes above, it  *
-  * is matched against Sails route blueprints. See `config/blueprints.js`    *
-  * for configuration options and examples.                                  *
-  *                                                                          *
-  ***************************************************************************/
+    /***************************************************************************
+     *                                                                          *
+     * Custom routes here...                                                    *
+     *                                                                          *
+     *  If a request to a URL doesn't match any of the custom routes above, it  *
+     * is matched against Sails route blueprints. See `config/blueprints.js`    *
+     * for configuration options and examples.                                  *
+     *                                                                          *
+     ***************************************************************************/
 };
 
-extend(routes, publicAppRoutes);
+extend( routes, publicAppRoutes );
 
 module.exports.routes = routes;

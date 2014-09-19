@@ -1,33 +1,32 @@
 /**
-* ConfQuestionQuizzAnswer.js
-*
-* @description :: TODO: You might write a short summary of how this model works and what it represents here.
-* @docs        :: http://sailsjs.org/#!documentation/models
-*/
+ * ConfQuestionQuizzAnswer.js
+ *
+ * @description :: TODO: You might write a short summary of how this model works and what it represents here.
+ * @docs        :: http://sailsjs.org/#!documentation/models
+ */
 
 module.exports = {
 
-  attributes: {
+    attributes: {
 
-    answer : { 
-    	type: 'string',
-        required: true,
-        minLength: 1
-    },
+        answer: {
+            type: 'string',
+            required: true,
+            minLength: 1
+        },
 
-    realId : { 
-    	type: 'integer'
-    },
+        realId: {
+            type: 'integer'
+        },
 
-    question: {
-    	model: 'ConfQuestionQuizz',
-        required: true
-    },
+        question: {
+            model: 'ConfQuestionQuizz',
+            required: true
+        },
 
-    users: {
-    	collection: 'ConfUser',
-    	via: 'quizzAnswers'
+        users: {
+            collection: 'ConfUser',
+            via: 'quizzAnswers'
+        }
     }
-  }
 };
-

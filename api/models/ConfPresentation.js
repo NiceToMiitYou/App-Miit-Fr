@@ -1,45 +1,44 @@
 /**
-* ConfPresentation.js
-*
-* @description :: TODO: You might write a short summary of how this model works and what it represents here.
-* @docs        :: http://sailsjs.org/#!documentation/models
-*/
+ * ConfPresentation.js
+ *
+ * @description :: TODO: You might write a short summary of how this model works and what it represents here.
+ * @docs        :: http://sailsjs.org/#!documentation/models
+ */
 
 module.exports = {
 
-  attributes: {
+    attributes: {
 
-    name : { 
-    	type: 'string',
-        required: true
-    },
+        name: {
+            type: 'string',
+            required: true
+        },
 
-    description : { 
-    	type: 'text'
-    },
+        description: {
+            type: 'text'
+        },
 
-    authors : { 
-        type: 'text',
-        required: true
-    },
+        authors: {
+            type: 'text',
+            required: true
+        },
 
-    startTime : { 
-    	type: 'datetime'
-    },
+        startTime: {
+            type: 'datetime'
+        },
 
-    endTime : { 
-    	type: 'datetime' 
-    },
+        endTime: {
+            type: 'datetime'
+        },
 
-    conference: {
-    	model: 'ConfConference',
-        required: true
-    },
+        conference: {
+            model: 'ConfConference',
+            required: true
+        },
 
-    slides: {
-    	collection: 'ConfSlide',
-    	via: 'presentation'
+        slides: {
+            collection: 'ConfSlide',
+            via: 'presentation'
+        }
     }
-  }
 };
-

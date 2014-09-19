@@ -1,29 +1,28 @@
 /**
-* ChatRoom.js
-*
-* @description :: Representation of chatrooms
-* @docs        :: http://sailsjs.org/#!documentation/models
-*/
+ * ChatRoom.js
+ *
+ * @description :: Representation of chatrooms
+ * @docs        :: http://sailsjs.org/#!documentation/models
+ */
 
 module.exports = {
 
-  attributes: {
+    attributes: {
 
-    name : {
-    	type: 'string',
-        required: true,
-        minLength: 1
-    },
+        name: {
+            type: 'string',
+            required: true,
+            minLength: 1
+        },
 
-    type : {
-    	type: 'integer',
-        defaultsTo: 1
-    },
-    
-    messages: {
-    	collection: 'ConfChatMessage',
-    	via: 'chatroom'
+        type: {
+            type: 'integer',
+            defaultsTo: 1
+        },
+
+        messages: {
+            collection: 'ConfChatMessage',
+            via: 'chatroom'
+        }
     }
-  }
 };
-

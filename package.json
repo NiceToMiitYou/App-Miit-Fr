@@ -38,7 +38,9 @@
     "sails-memory": "~0.10.3"
   },
   "scripts": {
-    "test": "grunt test"
+    "start": "node app.js --verbose",
+    "test": "grunt test",
+    "beautify": "echo 'js-beautify --config js-beautify.json -r -f ./api/**/*.js ./assets/**/*.js ./config/**/*.js ./tasks/**/*.js ./test/**/*.js' | zsh"
   },
   "main": "app.js",
   "repository": {

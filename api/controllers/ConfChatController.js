@@ -6,41 +6,42 @@
  */
 
 module.exports = {
-	
-  /**
-   * `ConfChatController.list()`
-   */
-  list: function (req, res) {
 
-    ConfChatRoom.find().exec(function(err, chatrooms) {
-      return res.json({
-        done: true,
-        chatrooms: chatrooms
-      });
-    });
-  },
+    /**
+     * `ConfChatController.list()`
+     */
+    list: function( req, res ) {
 
-  /**
-   * `ConfChatController.send()`
-   */
-  send: function(req, res) {
+        ConfChatRoom.find()
+            .exec( function( err, chatrooms ) {
+                return res.json( {
+                    done: true,
+                    chatrooms: chatrooms
+                } );
+            } );
+    },
 
-    ConfChatMessage.create({
-      message: req.param('message'),
-      user: req.session.user,
-      chatroom: req.param('chatroom')
-    }).exec(function(err, created) {
-      if (err) return res.json({
-        done: false
-      });
+    /**
+     * `ConfChatController.send()`
+     */
+    send: function( req, res ) {
 
-      SocketEventCachingService.sendToAll('chatroom-new', created);
+        ConfChatMessage.create( {
+            message: req.param( 'message' ),
+            user: req.session.user,
+            chatroom: req.param( 'chatroom' )
+        } )
+            .exec( function( err, created ) {
+                if ( err ) return res.json( {
+                    done: false
+                } );
 
-      return res.json({
-        done: true,
-        message: created
-      });
-    });
-  }
+                SocketEventCachingService.sendToAll( 'chatroom-new', created );
+
+                return res.json( {
+                    done: true,
+                    message: created
+                } );
+            } );
+    }
 };
-

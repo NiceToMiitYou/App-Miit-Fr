@@ -12,27 +12,27 @@
 
 module.exports = {
 
-	/***************************************************************************
-	 * Set the default database connection for models in the testing           *
-	 * environment (see config/connections.js and config/models.js )           *
-	 ***************************************************************************/
+    /***************************************************************************
+     * Set the default database connection for models in the testing           *
+     * environment (see config/connections.js and config/models.js )           *
+     ***************************************************************************/
 
-  	port: 8080,
+    port: 8080,
 
-  	connections: {
+    connections: {
 
-	  	LiveEventApplicationDatabase: {
-		    adapter: 'sails-memory'
-		},
+        LiveEventApplicationDatabase: {
+            adapter: 'sails-memory'
+        },
 
-		ConferenceDatabase: {
-		    adapter: 'sails-memory'
-		}
-  	},
+        ConferenceDatabase: {
+            adapter: 'sails-memory'
+        }
+    },
 
-   	webservice: {
-      	host: 'testing.ws.itevents.fr',
-      	port: 443
-   	}
+    webservice: {
+        host: 'testing.ws.itevents.fr',
+        port: 443
+    }
 
 };

@@ -7,27 +7,29 @@
 
 module.exports = {
 
-  /**
-   * `ConfLiveApplicationEventController.list()`
-   */
-  list: function(req, res) {
-  	ConfLiveApplicationEvent.find({
-  		where: {
-  			id: {
-  				'>=': req.param('token')
-  			}
-  		},
-  		sort: 'id ASC'
-  	}).exec(function(err, events) {
-  		if( err ) { return res.json({
-  			done: false
-  		}); }
+    /**
+     * `ConfLiveApplicationEventController.list()`
+     */
+    list: function( req, res ) {
+        ConfLiveApplicationEvent.find( {
+            where: {
+                id: {
+                    '>=': req.param( 'token' )
+                }
+            },
+            sort: 'id ASC'
+        } )
+            .exec( function( err, events ) {
+                if ( err ) {
+                    return res.json( {
+                        done: false
+                    } );
+                }
 
-  		return res.json({
-  			done: true,
-  			events: events
-  		});
-  	});
-  }
+                return res.json( {
+                    done: true,
+                    events: events
+                } );
+            } );
+    }
 };
-

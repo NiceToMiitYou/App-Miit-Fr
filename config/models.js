@@ -11,16 +11,16 @@
 
 module.exports.models = {
 
-  /***************************************************************************
-  *                                                                          *
-  * Your app's default connection. i.e. the name of one of your app's        *
-  * connections (see `config/connections.js`)                                *
-  *                                                                          *
-  ***************************************************************************/
+    /***************************************************************************
+     *                                                                          *
+     * Your app's default connection. i.e. the name of one of your app's        *
+     * connections (see `config/connections.js`)                                *
+     *                                                                          *
+     ***************************************************************************/
 
-  connection: 'ConferenceDatabase',
+    connection: 'ConferenceDatabase',
 
-  migrate: 'alter',
+    migrate: 'alter',
 
-  schema: true
+    schema: true
 };

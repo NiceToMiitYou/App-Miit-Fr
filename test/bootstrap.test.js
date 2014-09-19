@@ -1,18 +1,18 @@
-var Sails = require('sails');
+var Sails = require( 'sails' );
 
-before(function(done) {
-  Sails.lift({
-    
-	environment: 'testing'
+before( function( done ) {
+    Sails.lift( {
 
-  }, function(err, sails) {
-    if (err) return done(err);
+        environment: 'testing'
 
-    done(err, sails);
-  });
-});
+    }, function( err, sails ) {
+        if ( err ) return done( err );
 
-after(function(done) {
-  // here you can clear fixtures, etc.
-  sails.lower(done);
-});
+        done( err, sails );
+    } );
+} );
+
+after( function( done ) {
+    // here you can clear fixtures, etc.
+    sails.lower( done );
+} );

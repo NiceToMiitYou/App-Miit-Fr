@@ -6,89 +6,92 @@
  */
 
 module.exports = {
-	
-  /**
-   * `ConfUserController.list()`
-   */
-  list: function (req, res) {
 
-    ConfUser.find().exec(function(err, users){
-        if (err || !users) return res.json({
-          done: false
-        });
+    /**
+     * `ConfUserController.list()`
+     */
+    list: function( req, res ) {
 
-        return res.json({
-          done: true,
-          users: users
-        });
-    });
-  },
+        ConfUser.find()
+            .exec( function( err, users ) {
+                if ( err || !users ) return res.json( {
+                    done: false
+                } );
 
-  /**
-   * `ConfUserController.login()`
-   */
-  login: function (req, res) {
+                return res.json( {
+                    done: true,
+                    users: users
+                } );
+            } );
+    },
 
-    ConfUser.findOneByMail(
-        req.param('mail')
-      ).exec(function(err, user){
-        if ( err ) return res.json({
-          done: false
-        });
+    /**
+     * `ConfUserController.login()`
+     */
+    login: function( req, res ) {
 
-        if ( ! user ) return res.json({
-          done: true,
-          exist: false
-        });
+        ConfUser.findOneByMail(
+            req.param( 'mail' )
+        )
+            .exec( function( err, user ) {
+                if ( err ) return res.json( {
+                    done: false
+                } );
 
-        if ( ! user.isCorrectPassword( req.param('password') ) ) return res.json({
-          done: true,
-          exist: true,
-          connected: false
-        });
+                if ( !user ) return res.json( {
+                    done: true,
+                    exist: false
+                } );
 
-        req.session.user = user.id;
-        req.session.roles = user.roles;
+                if ( !user.isCorrectPassword( req.param( 'password' ) ) ) return res.json( {
+                    done: true,
+                    exist: true,
+                    connected: false
+                } );
 
-        return res.json({
-          done: true,
-          exist: true,
-          connected: true,
-          user: user
-        });
-    });
-  },
+                req.session.user = user.id;
+                req.session.roles = user.roles;
 
-  /**
-   * `ConfUserController.register()`
-   */
-  register: function (req, res) {
-    ConfUser.create({
-      mail: req.param('mail'),
-      password: req.param('param')
-    }).exec(function(err, user) {
-      if ( err ) return res.json({
-        done: false
-      });
+                return res.json( {
+                    done: true,
+                    exist: true,
+                    connected: true,
+                    user: user
+                } );
+            } );
+    },
 
-      return res.json({
-        done: true,
-        user: user
-      });
-    });
-  },
+    /**
+     * `ConfUserController.register()`
+     */
+    register: function( req, res ) {
+        ConfUser.create( {
+            mail: req.param( 'mail' ),
+            password: req.param( 'param' ),
+            roles: [ 'ROLE_USER' ]
+        } )
+            .exec( function( err, user ) {
+                if ( err ) return res.json( {
+                    done: false
+                } );
 
-  /**
-   * `ConfUserController.logout()`
-   */
-  logout: function (req, res) {
+                return res.json( {
+                    done: true,
+                    user: user
+                } );
+            } );
+    },
 
-    if (req.session.user) req.session.user = null;
-    if (req.session.roles) req.session.roles = null;
+    /**
+     * `ConfUserController.logout()`
+     */
+    logout: function( req, res ) {
 
-    return res.json({
-      done: true 
-    });
-  }
+        if ( req.session.user ) req.session.user = null;
+        if ( req.session.roles ) req.session.roles = null;
+
+        return res.json( {
+            done: true
+        } );
+    }
 };
-

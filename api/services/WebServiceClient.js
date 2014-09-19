@@ -1,42 +1,42 @@
-var https = require('https');
+var https = require( 'https' );
 
 module.exports = {
 
-	sendData: function(method, path, data , cb) {
-		var jsonData = JSON.stringify(data);
+    sendData: function( method, path, data, cb ) {
+        var jsonData = JSON.stringify( data );
 
-		var options = {
-		  host: sails.config.webservice.host,
-		  port: sails.config.webservice.port,
+        var options = {
+            host: sails.config.webservice.host,
+            port: sails.config.webservice.port,
 
-		  path: path,
-		  method: method,
-		  
-		  headers: {
-		    'Content-Type': 'application/json; charset=utf-8',
-		    'Content-Length': jsonData.length
-		  }
-		};
+            path: path,
+            method: method,
 
-		https.request(options, function(res) {
-		  	var msg = '';
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8',
+                'Content-Length': jsonData.length
+            }
+        };
 
-		  	res.setEncoding('utf8');
-		  
-		  	res.on('data', function(chunk) {
-		    	msg += chunk;
-		  	});
+        https.request( options, function( res ) {
+            var msg = '';
 
-		  	res.on('end', function() {
-			  	if(typeof cb == 'function') {
-				    cb(JSON.parse(msg));
-			  	}
-		  	});
-		});
+            res.setEncoding( 'utf8' );
 
-		req.write(jsonData);
-		req.end();
-	}
+            res.on( 'data', function( chunk ) {
+                msg += chunk;
+            } );
+
+            res.on( 'end', function() {
+                if ( typeof cb == 'function' ) {
+                    cb( JSON.parse( msg ) );
+                }
+            } );
+        } );
+
+        req.write( jsonData );
+        req.end();
+    }
 
 
 };

@@ -7,154 +7,154 @@ var apiPublicPrefix = '/api/public';
 var routes = {};
 
 /******************
-* Chat Controller
-******************/
+ * Chat Controller
+ ******************/
 
-routes['GET ' + apiPublicPrefix + '/chatroom/list'] = {
-	controller: 'ConfChatController',
-	action: 'list'
+routes[ 'GET ' + apiPublicPrefix + '/chatroom/list' ] = {
+    controller: 'ConfChatController',
+    action: 'list'
 };
 
-routes['POST ' + apiPublicPrefix + '/chatroom/send'] = {
-	controller: 'ConfChatController',
-	action: 'send'
-};
-
-/******************
-* LiveApplicationEvent Controller
-******************/
-
-routes['POST ' + apiPublicPrefix + '/synchronize'] = {
-	controller: 'ConfLiveApplicationEventController',
-	action: 'list' 
+routes[ 'POST ' + apiPublicPrefix + '/chatroom/send' ] = {
+    controller: 'ConfChatController',
+    action: 'send'
 };
 
 /******************
-* User Controller
-******************/
+ * LiveApplicationEvent Controller
+ ******************/
 
-routes['GET ' + apiPublicPrefix + '/user/list'] = {
-	controller: 'ConfUserController',
-	action: 'list' 
-};
-
-routes['POST ' + apiPublicPrefix + '/user/login'] = {
-	controller: 'ConfUserController',
-	action: 'login'
-};
-
-routes['POST ' + apiPublicPrefix + '/user/register'] = {
-	controller: 'ConfUserController',
-	action: 'register'
-};
-
-routes['GET ' + apiPublicPrefix + '/user/logout'] = {
-	controller: 'ConfUserController',
-	action: 'logout' 
+routes[ 'POST ' + apiPublicPrefix + '/synchronize' ] = {
+    controller: 'ConfLiveApplicationEventController',
+    action: 'list'
 };
 
 /******************
-* Presentation Question Controller
-******************/
+ * User Controller
+ ******************/
 
-routes['POST ' + apiPublicPrefix + '/question/presentation/create'] = {
-	controller: 'ConfQuestionPresentationController',
-	action: 'create'
+routes[ 'GET ' + apiPublicPrefix + '/user/list' ] = {
+    controller: 'ConfUserController',
+    action: 'list'
 };
 
-routes['POST ' + apiPublicPrefix + '/question/presentation/like'] = {
-	controller: 'ConfQuestionPresentationController',
-	action: 'like'
+routes[ 'POST ' + apiPublicPrefix + '/user/login' ] = {
+    controller: 'ConfUserController',
+    action: 'login'
 };
 
-/******************
-* Slide Question Controller
-******************/
-
-routes['POST ' + apiPublicPrefix + '/question/slide/question'] = {
-	controller: 'ConfQuestionSlideController',
-	action: 'question'
+routes[ 'POST ' + apiPublicPrefix + '/user/register' ] = {
+    controller: 'ConfUserController',
+    action: 'register'
 };
 
-routes['POST ' + apiPublicPrefix + '/question/slide/answer'] = {
-	controller: 'ConfQuestionSlideController',
-	action: 'answer'
+routes[ 'GET ' + apiPublicPrefix + '/user/logout' ] = {
+    controller: 'ConfUserController',
+    action: 'logout'
 };
 
 /******************
-* Quizz Question Controller
-******************/
+ * Presentation Question Controller
+ ******************/
 
-routes['GET ' + apiPublicPrefix + '/question/quizz/list'] = {
-	controller: 'ConfQuestionQuizzController',
-	action: 'list'
+routes[ 'POST ' + apiPublicPrefix + '/question/presentation/create' ] = {
+    controller: 'ConfQuestionPresentationController',
+    action: 'create'
 };
 
-routes['POST ' + apiPublicPrefix + '/question/quizz/questions'] = {
-	controller: 'ConfQuestionQuizzController',
-	action: 'questions'
-};
-
-routes['POST ' + apiPublicPrefix + '/question/quizz/answer'] = {
-	controller: 'ConfQuestionQuizzController',
-	action: 'answer'
+routes[ 'POST ' + apiPublicPrefix + '/question/presentation/like' ] = {
+    controller: 'ConfQuestionPresentationController',
+    action: 'like'
 };
 
 /******************
-* Note Controller
-******************/
+ * Slide Question Controller
+ ******************/
 
-routes['POST ' + apiPublicPrefix + '/note/create'] = {
-	controller: 'ConfNoteController',
-	action: 'create'
+routes[ 'POST ' + apiPublicPrefix + '/question/slide/question' ] = {
+    controller: 'ConfQuestionSlideController',
+    action: 'question'
 };
 
-routes['GET ' + apiPublicPrefix + '/note/list'] = {
-	controller: 'ConfNoteController',
-	action: 'list'
-};
-
-routes['POST ' + apiPublicPrefix + '/note/update'] = {
-	controller: 'ConfNoteController',
-	action: 'update'
-};
-
-routes['POST ' + apiPublicPrefix + '/note/delete'] = {
-	controller: 'ConfNoteController',
-	action: 'delete'
-};
-
-routes['POST ' + apiPublicPrefix + '/note/send'] = {
-	controller: 'ConfNoteController',
-	action: 'send'
+routes[ 'POST ' + apiPublicPrefix + '/question/slide/answer' ] = {
+    controller: 'ConfQuestionSlideController',
+    action: 'answer'
 };
 
 /******************
-* Resource Controller
-******************/
+ * Quizz Question Controller
+ ******************/
 
-routes['GET /assets/conference/color-scheme.css'] = {
-	controller: 'ConfResourceController',
-	action: 'colorScheme'
+routes[ 'GET ' + apiPublicPrefix + '/question/quizz/list' ] = {
+    controller: 'ConfQuestionQuizzController',
+    action: 'list'
 };
 
-routes['GET ' + apiPublicPrefix + '/resources/list'] = {
-	controller: 'ConfResourceController',
-	action: 'list'
+routes[ 'POST ' + apiPublicPrefix + '/question/quizz/questions' ] = {
+    controller: 'ConfQuestionQuizzController',
+    action: 'questions'
+};
+
+routes[ 'POST ' + apiPublicPrefix + '/question/quizz/answer' ] = {
+    controller: 'ConfQuestionQuizzController',
+    action: 'answer'
 };
 
 /******************
-* Track Controller
-******************/
+ * Note Controller
+ ******************/
 
-routes['POST ' + apiPublicPrefix + '/track/start'] = {
-	controller: 'ConfTrackController',
-	action: 'start'
+routes[ 'POST ' + apiPublicPrefix + '/note/create' ] = {
+    controller: 'ConfNoteController',
+    action: 'create'
 };
 
-routes['POST ' + apiPublicPrefix + '/trac/end'] = {
-	controller: 'ConfTrackController',
-	action: 'end'
+routes[ 'GET ' + apiPublicPrefix + '/note/list' ] = {
+    controller: 'ConfNoteController',
+    action: 'list'
+};
+
+routes[ 'POST ' + apiPublicPrefix + '/note/update' ] = {
+    controller: 'ConfNoteController',
+    action: 'update'
+};
+
+routes[ 'POST ' + apiPublicPrefix + '/note/delete' ] = {
+    controller: 'ConfNoteController',
+    action: 'delete'
+};
+
+routes[ 'POST ' + apiPublicPrefix + '/note/send' ] = {
+    controller: 'ConfNoteController',
+    action: 'send'
+};
+
+/******************
+ * Resource Controller
+ ******************/
+
+routes[ 'GET /assets/conference/color-scheme.css' ] = {
+    controller: 'ConfResourceController',
+    action: 'colorScheme'
+};
+
+routes[ 'GET ' + apiPublicPrefix + '/resources/list' ] = {
+    controller: 'ConfResourceController',
+    action: 'list'
+};
+
+/******************
+ * Track Controller
+ ******************/
+
+routes[ 'POST ' + apiPublicPrefix + '/track/start' ] = {
+    controller: 'ConfTrackController',
+    action: 'start'
+};
+
+routes[ 'POST ' + apiPublicPrefix + '/trac/end' ] = {
+    controller: 'ConfTrackController',
+    action: 'end'
 };
 
 

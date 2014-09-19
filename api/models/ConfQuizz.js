@@ -1,41 +1,40 @@
 /**
-* ConfQuizz.js
-*
-* @description :: TODO: You might write a short summary of how this model works and what it represents here.
-* @docs        :: http://sailsjs.org/#!documentation/models
-*/
+ * ConfQuizz.js
+ *
+ * @description :: TODO: You might write a short summary of how this model works and what it represents here.
+ * @docs        :: http://sailsjs.org/#!documentation/models
+ */
 
 module.exports = {
 
-  attributes: {
+    attributes: {
 
-    name : { 
-    	type: 'string',
-        required: true,
-        minLength: 1
-    },
+        name: {
+            type: 'string',
+            required: true,
+            minLength: 1
+        },
 
-    description : { 
-    	type: 'text'
-    },
+        description: {
+            type: 'text'
+        },
 
-    maxTime : { 
-    	type: 'integer',
-        defaultsTo: 0
-    },
+        maxTime: {
+            type: 'integer',
+            defaultsTo: 0
+        },
 
-    startTime : { 
-    	type: 'datetime' 
-    },
+        startTime: {
+            type: 'datetime'
+        },
 
-    endTime : { 
-    	type: 'datetime' 
-    },
+        endTime: {
+            type: 'datetime'
+        },
 
-    questions: {
-    	collection: 'ConfQuestionQuizz',
-    	via: 'quizz'
+        questions: {
+            collection: 'ConfQuestionQuizz',
+            via: 'quizz'
+        }
     }
-  }
 };
-

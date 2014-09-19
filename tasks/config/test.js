@@ -2,19 +2,19 @@
  *
  *
  */
-module.exports = function(grunt) {
+module.exports = function( grunt ) {
 
-	grunt.config.set('mochaTest', {
-		test: {
-			options:{
+    grunt.config.set( 'mochaTest', {
+        test: {
+            options: {
 
-				reporter: 'spec'
+                reporter: 'spec'
 
-			},
-			
-			src: ['test/**/*.test.js']
-		}
-	});
+            },
 
-	grunt.loadNpmTasks('grunt-mocha-test');
+            src: [ 'test/**/*.test.js' ]
+        }
+    } );
+
+    grunt.loadNpmTasks( 'grunt-mocha-test' );
 };
