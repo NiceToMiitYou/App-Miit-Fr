@@ -5,10 +5,9 @@ describe.only( 'ConfUser', function() {
         it( 'create empty user', function( done ) {
             ConfUser.create()
                 .exec( function( err, created ) {
-                    if ( err )
-                        done();
-                    else
-                        done( new Error( 'Should not be created' ) );
+                    if ( err ) return done();
+
+                    done( new Error( 'Should not be created' ) );
                 } );
         } );
 
@@ -17,10 +16,9 @@ describe.only( 'ConfUser', function() {
                 mail: 'test@test.fr'
             } )
                 .exec( function( err, created ) {
-                    if ( err )
-                        done();
-                    else
-                        done( new Error( 'Should not be created' ) );
+                    if ( err ) return done();
+
+                    done( new Error( 'Should not be created' ) );
                 } );
         } );
 
@@ -30,10 +28,9 @@ describe.only( 'ConfUser', function() {
                 password: 'password'
             } )
                 .exec( function( err, created ) {
-                    if ( err )
-                        done();
-                    else
-                        done( new Error( 'Should not be created' ) );
+                    if ( err ) return done();
+
+                    done( new Error( 'Should not be created' ) );
                 } );
         } );
 
@@ -42,37 +39,32 @@ describe.only( 'ConfUser', function() {
                 password: 'password'
             } )
                 .exec( function( err, created ) {
-                    if ( err )
-                        done();
-                    else
-                        done( new Error( 'Should not be created' ) );
+                    if ( err ) return done();
+
+                    done( new Error( 'Should not be created' ) );
                 } );
         } );
 
         it( 'create minimalist user', function( done ) {
             ConfUser.create( {
                 mail: 'test@test.fr',
-                password: 'password'
+                password: 'password',
+                roles: [ 'ROLE_VIEWER' ]
             } )
                 .exec( function( err, created ) {
-                    if ( err )
-                        done( err );
-                    else {
+                    if ( err ) return done( err );
 
-                        ( created )
-                            .should.be.an.instanceOf( Object );
-                        ( created )
-                            .should.have.properties( {
-                                'mail': 'test@test.fr',
-                                'password': 'password'
-                            } );
+                    ( created )
+                        .should.be.an.instanceOf( Object );
+                    ( created )
+                        .should.have.properties( {
+                            'mail': 'test@test.fr',
+                            'password': 'password'
+                        } );
 
-                        done();
-                    }
+                    done();
                 } );
         } );
-
-
     } );
 
 
@@ -81,7 +73,7 @@ describe.only( 'ConfUser', function() {
         it( 'find by mail test@test.fr', function( done ) {
             ConfUser.findOneByMail( 'test@test.fr' )
                 .exec( function( err, user ) {
-                    if ( err ) done( err );
+                    if ( err ) return done( err );
 
                     ( user )
                         .should.be.an.instanceOf( Object );
@@ -94,7 +86,19 @@ describe.only( 'ConfUser', function() {
                     done();
                 } );
         } );
+    } );
 
 
+    describe( '#destroy()', function() {
+
+        it( 'destroy test@test.fr id - 1', function( done ) {
+            ConfUser.destroy( 1 )
+                .exec( function( err, destroyed ) {
+
+                    if ( err ) done( err );
+
+                    done();
+                } );
+        } );
     } );
 } );

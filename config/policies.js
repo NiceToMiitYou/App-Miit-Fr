@@ -26,11 +26,12 @@ module.exports.policies = {
      *                                                                          *
      ***************************************************************************/
 
-    '*': 'sessionAuth',
+    '*': 'viewerAuth',
 
     ConfUserController: {
-        '*': 'sessionAuth',
+        '*': 'viewerAuth',
 
+        'register': 'anonymAuth',
         'login': 'anonymAuth'
     },
 

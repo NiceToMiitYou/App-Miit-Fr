@@ -67,8 +67,8 @@ module.exports = {
     register: function( req, res ) {
         ConfUser.create( {
             mail: req.param( 'mail' ),
-            password: req.param( 'param' ),
-            roles: [ 'ROLE_USER' ]
+            password: req.param( 'password' ),
+            roles: [ 'ROLE_VIEWER' ]
         } )
             .exec( function( err, user ) {
                 if ( err ) return res.json( {
