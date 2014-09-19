@@ -9,7 +9,7 @@ module.exports = {
     colorScheme: function( req, res ) {
         ConfConference.findOne( 1 )
             .exec( function( err, conference ) {
-                if ( err ) res.send( 500 );
+                if ( err || !conference ) return res.send( 500 );
 
                 var less = require( 'less' )
 
