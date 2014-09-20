@@ -154,6 +154,9 @@ describe( 'ConfUserController', function() {
                             'connected': true
                         } );
 
+                    ( res.body.user )
+                        .should.be.an.instanceOf( Object );
+
                     done();
                 } );
         } );
@@ -240,31 +243,6 @@ describe( 'ConfUserController', function() {
                 .get( '/api/public/user/logout' )
                 .expect( 403 )
                 .end( done );
-        } );
-
-        it( 're-login with test@test.fr for future tests', function( done ) {
-
-            agent
-                .post( '/api/public/user/login' )
-                .send( {
-                    mail: 'test@test.fr',
-                    password: 'password'
-                } )
-                .expect( 200 )
-                .end( function( err, res ) {
-                    if ( err ) return done( err );
-
-                    ( res.body )
-                        .should.be.an.instanceOf( Object );
-                    ( res.body )
-                        .should.have.properties( {
-                            'done': true,
-                            'exist': true,
-                            'connected': true
-                        } );
-
-                    done();
-                } );
         } );
     } );
 } );
