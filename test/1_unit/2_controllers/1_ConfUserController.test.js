@@ -11,7 +11,7 @@ describe( 'ConfUserController', function() {
 
     describe( '#register()', function() {
 
-        it( 'wrong register', function( done ) {
+        it( 'register invalid', function( done ) {
             agent
                 .post( '/api/public/user/register' )
                 .send( {
@@ -33,11 +33,33 @@ describe( 'ConfUserController', function() {
                 } );
         } );
 
-        it( 'right register test@test.fr', function( done ) {
+        it( 'register test@test.fr', function( done ) {
             agent
                 .post( '/api/public/user/register' )
                 .send( {
                     mail: 'test@test.fr',
+                    password: 'password'
+                } )
+                .expect( 200 )
+                .end( function( err, res ) {
+                    if ( err ) return done( err );
+
+                    ( res.body )
+                        .should.be.an.instanceOf( Object );
+                    ( res.body )
+                        .should.have.properties( {
+                            'done': true
+                        } );
+
+                    done();
+                } );
+        } );
+
+        it( 'register second@test.fr', function( done ) {
+            agent
+                .post( '/api/public/user/register' )
+                .send( {
+                    mail: 'second@test.fr',
                     password: 'password'
                 } )
                 .expect( 200 )
@@ -59,7 +81,7 @@ describe( 'ConfUserController', function() {
 
     describe( '#login()', function() {
 
-        it( 'wrong login', function( done ) {
+        it( 'login invalid', function( done ) {
             agent
                 .post( '/api/public/user/login' )
                 .send( {
@@ -140,23 +162,93 @@ describe( 'ConfUserController', function() {
                 .expect( 403 )
                 .end( done );
         } );
+
+        it( 'register third@test.fr -> 403', function( done ) {
+            agent
+                .post( '/api/public/user/register' )
+                .send( {
+                    mail: 'second@test.fr',
+                    password: 'password'
+                } )
+                .expect( 403 )
+                .end( done );
+        } );
     } );
 
 
-    describe( '#logout()', function() {
+    describe( '#list()', function() {
 
-        it( 'logout', function( done ) {
+        it( 'list of users', function( done ) {
             agent
-                .get( '/api/public/user/logout' )
+                .get( '/api/public/user/list' )
                 .expect( 200 )
                 .end( function( err, res ) {
-                    if ( err ) done( err );
+                    if ( err ) return done( err );
 
                     ( res.body )
                         .should.be.an.instanceOf( Object );
                     ( res.body )
                         .should.have.properties( {
                             'done': true
+                        } );
+
+                    ( res.body.users )
+                        .should.be.an.instanceOf( Array );
+
+                    ( _.size( res.body.users ) )
+                        .should.equal( 2 );
+
+                    done();
+                } );
+        } );
+    } );
+
+
+    describe( '#logout()', function() {
+
+        it( 'logout test@test.fr', function( done ) {
+            agent
+                .get( '/api/public/user/logout' )
+                .expect( 200 )
+                .end( function( err, res ) {
+                    if ( err ) return done( err );
+
+                    ( res.body )
+                        .should.be.an.instanceOf( Object );
+                    ( res.body )
+                        .should.have.properties( {
+                            'done': true
+                        } );
+
+                    done();
+                } );
+        } );
+
+        it( 'logout twice -> 403', function( done ) {
+            agent
+                .get( '/api/public/user/logout' )
+                .expect( 403 )
+                .end( done );
+        } );
+
+        it( 're-login with test@test.fr for future tests', function( done ) {
+            agent
+                .post( '/api/public/user/login' )
+                .send( {
+                    mail: 'test@test.fr',
+                    password: 'password'
+                } )
+                .expect( 200 )
+                .end( function( err, res ) {
+                    if ( err ) return done( err );
+
+                    ( res.body )
+                        .should.be.an.instanceOf( Object );
+                    ( res.body )
+                        .should.have.properties( {
+                            'done': true,
+                            'exist': true,
+                            'connected': true
                         } );
 
                     done();
