@@ -1,4 +1,4 @@
-describe.only( 'ConfUser', function() {
+describe( 'ConfUser', function() {
 
     describe( '#create()', function() {
 
@@ -59,6 +59,27 @@ describe.only( 'ConfUser', function() {
                     ( created )
                         .should.have.properties( {
                             'mail': 'test@test.fr',
+                            'password': 'password'
+                        } );
+
+                    done();
+                } );
+        } );
+
+        it( 'create a second minimalist user', function( done ) {
+            ConfUser.create( {
+                mail: 'working@test.fr',
+                password: 'password',
+                roles: [ 'ROLE_VIEWER' ]
+            } )
+                .exec( function( err, created ) {
+                    if ( err ) return done( err );
+
+                    ( created )
+                        .should.be.an.instanceOf( Object );
+                    ( created )
+                        .should.have.properties( {
+                            'mail': 'working@test.fr',
                             'password': 'password'
                         } );
 

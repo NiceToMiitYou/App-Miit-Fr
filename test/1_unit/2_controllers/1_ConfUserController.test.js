@@ -12,6 +12,7 @@ describe( 'ConfUserController', function() {
     describe( '#register()', function() {
 
         it( 'register invalid', function( done ) {
+
             agent
                 .post( '/api/public/user/register' )
                 .send( {
@@ -34,6 +35,7 @@ describe( 'ConfUserController', function() {
         } );
 
         it( 'register test@test.fr', function( done ) {
+
             agent
                 .post( '/api/public/user/register' )
                 .send( {
@@ -56,6 +58,7 @@ describe( 'ConfUserController', function() {
         } );
 
         it( 'register second@test.fr', function( done ) {
+
             agent
                 .post( '/api/public/user/register' )
                 .send( {
@@ -82,6 +85,7 @@ describe( 'ConfUserController', function() {
     describe( '#login()', function() {
 
         it( 'login invalid', function( done ) {
+
             agent
                 .post( '/api/public/user/login' )
                 .send( {
@@ -105,6 +109,7 @@ describe( 'ConfUserController', function() {
         } );
 
         it( 'login with test@test.fr and wrong password', function( done ) {
+
             agent
                 .post( '/api/public/user/login' )
                 .send( {
@@ -129,6 +134,7 @@ describe( 'ConfUserController', function() {
         } );
 
         it( 'login with test@test.fr and right password', function( done ) {
+
             agent
                 .post( '/api/public/user/login' )
                 .send( {
@@ -153,6 +159,7 @@ describe( 'ConfUserController', function() {
         } );
 
         it( 'login twice -> 403', function( done ) {
+
             agent
                 .post( '/api/public/user/login' )
                 .send( {
@@ -164,6 +171,7 @@ describe( 'ConfUserController', function() {
         } );
 
         it( 'register third@test.fr -> 403', function( done ) {
+
             agent
                 .post( '/api/public/user/register' )
                 .send( {
@@ -179,6 +187,7 @@ describe( 'ConfUserController', function() {
     describe( '#list()', function() {
 
         it( 'list of users', function( done ) {
+
             agent
                 .get( '/api/public/user/list' )
                 .expect( 200 )
@@ -196,7 +205,7 @@ describe( 'ConfUserController', function() {
                         .should.be.an.instanceOf( Array );
 
                     ( _.size( res.body.users ) )
-                        .should.equal( 2 );
+                        .should.equal( 3 );
 
                     done();
                 } );
@@ -207,6 +216,7 @@ describe( 'ConfUserController', function() {
     describe( '#logout()', function() {
 
         it( 'logout test@test.fr', function( done ) {
+
             agent
                 .get( '/api/public/user/logout' )
                 .expect( 200 )
@@ -225,6 +235,7 @@ describe( 'ConfUserController', function() {
         } );
 
         it( 'logout twice -> 403', function( done ) {
+
             agent
                 .get( '/api/public/user/logout' )
                 .expect( 403 )
@@ -232,6 +243,7 @@ describe( 'ConfUserController', function() {
         } );
 
         it( 're-login with test@test.fr for future tests', function( done ) {
+
             agent
                 .post( '/api/public/user/login' )
                 .send( {
