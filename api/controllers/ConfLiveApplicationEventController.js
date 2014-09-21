@@ -14,7 +14,7 @@ module.exports = {
         ConfLiveApplicationEvent.find( {
             where: {
                 id: {
-                    '>=': req.param( 'token' )
+                    '>': req.param( 'token' )
                 }
             },
             sort: 'id ASC'
