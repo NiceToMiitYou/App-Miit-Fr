@@ -83,7 +83,7 @@ describe( 'ConfChatRoom', function() {
         } );
     } );
 
-    describe( '#destroy()', function() {
+    describe( '#destroy()', function( done ) {
 
         it( 'destroy chatroom with id - 2', function( done ) {
 

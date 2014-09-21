@@ -19,6 +19,7 @@ describe( 'ConfNoteController', function() {
                     mail: 'test@test.fr',
                     password: 'password'
                 } )
+                .expect( 200 )
                 .end( done );
         } );
     } );
