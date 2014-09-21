@@ -1,4 +1,4 @@
-var should = require('should');
+var should = require( 'should' );
 
 describe( 'ConfChatRoom', function() {
 
@@ -8,7 +8,7 @@ describe( 'ConfChatRoom', function() {
 
             ConfChatRoom.create()
                 .exec( function( err, chatroom ) {
-                    should.exist(err);
+                    should.exist( err );
 
                     should.not.exist( chatroom );
 

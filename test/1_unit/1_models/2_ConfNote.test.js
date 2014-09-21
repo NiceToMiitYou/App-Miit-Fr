@@ -14,7 +14,7 @@ describe( 'ConfNote', function() {
                     should.exist( err );
 
                     should.not.exist( note );
-                    
+
                     done();
                 } );
         } );
@@ -30,7 +30,7 @@ describe( 'ConfNote', function() {
                     should.not.exist( err );
 
                     should.exist( note );
-                    
+
                     ( note )
                         .should.be.an.instanceOf( Object );
                     ( note )
