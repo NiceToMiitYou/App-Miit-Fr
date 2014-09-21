@@ -17,7 +17,7 @@ module.exports = {
             user: req.session.user
         } )
             .exec( function( err, track ) {
-                if ( err ) res.json( {
+                if ( err ) return res.json( {
                     done: false
                 } );
 
@@ -32,26 +32,25 @@ module.exports = {
      * `ConfTrackController.end()`
      */
     end: function( req, res ) {
-        ConfTrack.find( {
+        ConfTrack.findOne( {
             user: req.session.user,
             id: req.param( 'track' ),
         } )
             .exec( function( err, track ) {
-                if ( err ) res.json( {
+                if ( err || !track ) return res.json( {
                     done: false
                 } );
 
                 track.end = new Date();
 
                 track.save( function( err, saved ) {
-                    if ( err ) return res.json( {
+                    if ( err || !saved ) return res.json( {
                         done: false
                     } );
 
                     return res.json( {
                         done: true
                     } );
-
                 } );
             } );
     }

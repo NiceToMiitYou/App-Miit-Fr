@@ -152,7 +152,7 @@ routes[ 'POST ' + apiPublicPrefix + '/track/start' ] = {
     action: 'start'
 };
 
-routes[ 'POST ' + apiPublicPrefix + '/trac/end' ] = {
+routes[ 'POST ' + apiPublicPrefix + '/track/end' ] = {
     controller: 'ConfTrackController',
     action: 'end'
 };

@@ -13,6 +13,7 @@ describe( 'ConfChatController', function() {
     describe( 'ConfUser#login()', function() {
 
         it( 'login for test note', function( done ) {
+
             agent
                 .post( '/api/public/user/login' )
                 .send( {

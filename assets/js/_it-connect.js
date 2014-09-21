@@ -53,7 +53,7 @@ window.ITConnect = ( function() {
                     if ( typeof cb == 'function' )
                         cb( cache.data );
                 } else {
-                    
+
                     // Synchronise events
                     synchronize();
                 }
