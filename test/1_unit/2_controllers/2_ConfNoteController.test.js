@@ -36,7 +36,7 @@ describe( 'ConfNoteController', function() {
                 } )
                 .expect( 200 )
                 .end( function( err, res ) {
-                    if ( err ) return done( err );
+                    should.not.exist( err );
 
                     ( res.body )
                         .should.be.an.instanceOf( Object );
@@ -73,7 +73,7 @@ describe( 'ConfNoteController', function() {
                 } )
                 .expect( 200 )
                 .end( function( err, res ) {
-                    if ( err ) return done( err );
+                    should.not.exist( err );
 
                     ( res.body )
                         .should.be.an.instanceOf( Object );
@@ -97,7 +97,7 @@ describe( 'ConfNoteController', function() {
                 } )
                 .expect( 200 )
                 .end( function( err, res ) {
-                    if ( err ) return done( err );
+                    should.not.exist( err );
 
                     ( res.body )
                         .should.be.an.instanceOf( Object );
@@ -131,7 +131,7 @@ describe( 'ConfNoteController', function() {
                 } )
                 .expect( 200 )
                 .end( function( err, res ) {
-                    if ( err ) return done( err );
+                    should.not.exist( err );
 
                     ( res.body )
                         .should.be.an.instanceOf( Object );

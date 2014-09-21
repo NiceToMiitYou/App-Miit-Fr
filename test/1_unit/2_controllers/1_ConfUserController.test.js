@@ -21,7 +21,7 @@ describe( 'ConfUserController', function() {
                 } )
                 .expect( 200 )
                 .end( function( err, res ) {
-                    if ( err ) return done( err );
+                    should.not.exist( err );
 
                     ( res.body )
                         .should.be.an.instanceOf( Object );
@@ -44,7 +44,7 @@ describe( 'ConfUserController', function() {
                 } )
                 .expect( 200 )
                 .end( function( err, res ) {
-                    if ( err ) return done( err );
+                    should.not.exist( err );
 
                     ( res.body )
                         .should.be.an.instanceOf( Object );
@@ -67,7 +67,7 @@ describe( 'ConfUserController', function() {
                 } )
                 .expect( 200 )
                 .end( function( err, res ) {
-                    if ( err ) return done( err );
+                    should.not.exist( err );
 
                     ( res.body )
                         .should.be.an.instanceOf( Object );
@@ -94,7 +94,7 @@ describe( 'ConfUserController', function() {
                 } )
                 .expect( 200 )
                 .end( function( err, res ) {
-                    if ( err ) return done( err );
+                    should.not.exist( err );
 
                     ( res.body )
                         .should.be.an.instanceOf( Object );
@@ -118,7 +118,7 @@ describe( 'ConfUserController', function() {
                 } )
                 .expect( 200 )
                 .end( function( err, res ) {
-                    if ( err ) return done( err );
+                    should.not.exist( err );
 
                     ( res.body )
                         .should.be.an.instanceOf( Object );
@@ -143,7 +143,7 @@ describe( 'ConfUserController', function() {
                 } )
                 .expect( 200 )
                 .end( function( err, res ) {
-                    if ( err ) return done( err );
+                    should.not.exist( err );
 
                     ( res.body )
                         .should.be.an.instanceOf( Object );
@@ -195,7 +195,7 @@ describe( 'ConfUserController', function() {
                 .get( '/api/public/user/list' )
                 .expect( 200 )
                 .end( function( err, res ) {
-                    if ( err ) return done( err );
+                    should.not.exist( err );
 
                     ( res.body )
                         .should.be.an.instanceOf( Object );
@@ -224,7 +224,7 @@ describe( 'ConfUserController', function() {
                 .get( '/api/public/user/logout' )
                 .expect( 200 )
                 .end( function( err, res ) {
-                    if ( err ) return done( err );
+                    should.not.exist( err );
 
                     ( res.body )
                         .should.be.an.instanceOf( Object );

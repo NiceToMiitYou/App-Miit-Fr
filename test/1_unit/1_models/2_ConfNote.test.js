@@ -1,3 +1,5 @@
+var should = require( 'should' );
+
 describe( 'ConfNote', function() {
 
     describe( '#create()', function() {
@@ -9,8 +11,10 @@ describe( 'ConfNote', function() {
                 content: 'Note content'
             } )
                 .exec( function( err, note ) {
-                    if ( !err || note ) return done( 'Should not create the note.' );
+                    should.exist( err );
 
+                    should.not.exist( note );
+                    
                     done();
                 } );
         } );
@@ -23,10 +27,10 @@ describe( 'ConfNote', function() {
                 user: 2
             } )
                 .exec( function( err, note ) {
-                    if ( err ) return done( err );
+                    should.not.exist( err );
 
-                    if ( !note ) return done( 'Should create the note.' );
-
+                    should.exist( note );
+                    
                     ( note )
                         .should.be.an.instanceOf( Object );
                     ( note )
@@ -49,9 +53,9 @@ describe( 'ConfNote', function() {
                 user: 2
             } )
                 .exec( function( err, note ) {
-                    if ( err ) return done( err );
+                    should.not.exist( err );
 
-                    if ( !note ) return done( 'Should create the note.' );
+                    should.exist( note );
 
                     ( note )
                         .should.be.an.instanceOf( Object );
@@ -75,9 +79,9 @@ describe( 'ConfNote', function() {
 
             ConfNote.findOne( 2 )
                 .exec( function( err, note ) {
-                    if ( err ) return done( err );
+                    should.not.exist( err );
 
-                    if ( !note ) return done( 'Should find the note.' );
+                    should.exist( note );
 
                     ( note )
                         .should.be.an.instanceOf( Object );
@@ -97,9 +101,9 @@ describe( 'ConfNote', function() {
 
             ConfNote.find()
                 .exec( function( err, notes ) {
-                    if ( err ) return done( err );
+                    should.not.exist( err );
 
-                    if ( !notes ) return done( 'Should find the notes.' );
+                    should.exist( notes );
 
                     ( notes )
                         .should.be.an.instanceOf( Array );
@@ -119,16 +123,16 @@ describe( 'ConfNote', function() {
 
             ConfNote.findOne( 1 )
                 .exec( function( err, note ) {
-                    if ( err ) return done( err );
+                    should.not.exist( err );
 
-                    if ( !note ) return done( 'Should find the note.' );
+                    should.exist( note );
 
                     note.content = 'Updated note content';
 
                     note.save( function( err, note ) {
-                        if ( err ) return done( err );
+                        should.not.exist( err );
 
-                        if ( !note ) return done( 'Should find the note.' );
+                        should.exist( note );
 
                         ( note )
                             .should.be.an.instanceOf( Object );
@@ -153,8 +157,7 @@ describe( 'ConfNote', function() {
 
             ConfNote.destroy( 2 )
                 .exec( function( err, destroyed ) {
-
-                    if ( err ) done( err );
+                    should.not.exist( err );
 
                     done();
                 } );
