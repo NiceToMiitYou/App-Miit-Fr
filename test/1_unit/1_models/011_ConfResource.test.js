@@ -55,6 +55,32 @@ describe( 'ConResource', function() {
                     done();
                 } );
         } );
+
+        it( 'create a resource in category 2', function( done ) {
+
+            ConfResource.create( {
+                name: 'test resource 3',
+                path: 'nowheretoobad.png',
+                category: 2
+            } )
+                .exec( function( err, created ) {
+                    should.not.exist( err );
+
+                    should.exist( created );
+
+                    ( created )
+                        .should.be.an.instanceOf( Object );
+                    ( created )
+                        .should.have.properties( {
+                            id: 3,
+                            name: 'test resource 3',
+                            path: 'nowheretoobad.png',
+                            category: 2
+                        } );
+
+                    done();
+                } );
+        } );
     } );
 
 
@@ -71,7 +97,7 @@ describe( 'ConResource', function() {
                     ( resources )
                         .should.be.an.instanceOf( Array );
                     ( _.size( resources ) )
-                        .should.equal( 2 );
+                        .should.equal( 3 );
 
                     done();
                 } );
@@ -109,7 +135,7 @@ describe( 'ConResource', function() {
                     ( resources )
                         .should.be.an.instanceOf( Array );
                     ( _.size( resources ) )
-                        .should.equal( 1 );
+                        .should.equal( 2 );
 
                     done();
                 } );
