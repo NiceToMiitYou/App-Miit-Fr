@@ -43,7 +43,7 @@ describe( 'ConfChatController', function() {
                             .should.be.an.instanceOf( Object );
                         ( res.body )
                             .should.have.properties( {
-                                'done': true
+                                done: true
                             } );
 
                         ( res.body.events )
@@ -71,7 +71,7 @@ describe( 'ConfChatController', function() {
                             .should.be.an.instanceOf( Object );
                         ( res.body )
                             .should.have.properties( {
-                                'done': true
+                                done: true
                             } );
 
                         ( res.body.events )

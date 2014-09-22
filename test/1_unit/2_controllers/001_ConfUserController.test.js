@@ -27,7 +27,7 @@ describe( 'ConfUserController', function() {
                         .should.be.an.instanceOf( Object );
                     ( res.body )
                         .should.have.properties( {
-                            'done': false
+                            done: false
                         } );
 
                     done();
@@ -50,7 +50,7 @@ describe( 'ConfUserController', function() {
                         .should.be.an.instanceOf( Object );
                     ( res.body )
                         .should.have.properties( {
-                            'done': true
+                            done: true
                         } );
 
                     done();
@@ -73,7 +73,7 @@ describe( 'ConfUserController', function() {
                         .should.be.an.instanceOf( Object );
                     ( res.body )
                         .should.have.properties( {
-                            'done': true
+                            done: true
                         } );
 
                     done();
@@ -100,8 +100,8 @@ describe( 'ConfUserController', function() {
                         .should.be.an.instanceOf( Object );
                     ( res.body )
                         .should.have.properties( {
-                            'done': true,
-                            'exist': false
+                            done: true,
+                            exist: false
                         } );
 
                     done();
@@ -124,9 +124,9 @@ describe( 'ConfUserController', function() {
                         .should.be.an.instanceOf( Object );
                     ( res.body )
                         .should.have.properties( {
-                            'done': true,
-                            'exist': true,
-                            'connected': false
+                            done: true,
+                            exist: true,
+                            connected: false
                         } );
 
                     done();
@@ -149,9 +149,9 @@ describe( 'ConfUserController', function() {
                         .should.be.an.instanceOf( Object );
                     ( res.body )
                         .should.have.properties( {
-                            'done': true,
-                            'exist': true,
-                            'connected': true
+                            done: true,
+                            exist: true,
+                            connected: true
                         } );
 
                     ( res.body.user )
@@ -201,7 +201,7 @@ describe( 'ConfUserController', function() {
                         .should.be.an.instanceOf( Object );
                     ( res.body )
                         .should.have.properties( {
-                            'done': true
+                            done: true
                         } );
 
                     ( res.body.users )
@@ -230,7 +230,7 @@ describe( 'ConfUserController', function() {
                         .should.be.an.instanceOf( Object );
                     ( res.body )
                         .should.have.properties( {
-                            'done': true
+                            done: true
                         } );
 
                     done();

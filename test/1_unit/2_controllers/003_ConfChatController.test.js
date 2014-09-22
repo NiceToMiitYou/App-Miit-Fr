@@ -25,15 +25,12 @@ describe( 'ConfChatController', function() {
     } );
 
 
-    describe( '#start()', function() {
+    describe( '#list()', function() {
 
-        it( 'start tracking', function( done ) {
+        it( 'list all chatrooms', function( done ) {
 
             agent
-                .post( '/api/public/track/start' )
-                .send( {
-                    action: 'test'
-                } )
+                .get( '/api/public/chatroom/list' )
                 .expect( 200 )
                 .end( function( err, res ) {
                     should.not.exist( err );
@@ -42,8 +39,13 @@ describe( 'ConfChatController', function() {
                         .should.be.an.instanceOf( Object );
                     ( res.body )
                         .should.have.properties( {
-                            'done': true
+                            done: true
                         } );
+
+                    ( res.body.chatrooms )
+                        .should.be.an.instanceOf( Array );
+                    ( _.size( res.body.chatrooms ) )
+                        .should.equal( 1 );
 
                     done();
                 } );
@@ -51,14 +53,15 @@ describe( 'ConfChatController', function() {
     } );
 
 
-    describe( '#end()', function() {
+    describe( '#send()', function() {
 
-        it( 'end tracking undefined track', function( done ) {
+        it( 'send a message', function( done ) {
 
             agent
-                .post( '/api/public/track/end' )
+                .post( '/api/public/chatroom/send' )
                 .send( {
-                    track: 1
+                    chatroom: 1,
+                    message: 'Hello world!'
                 } )
                 .expect( 200 )
                 .end( function( err, res ) {
@@ -68,29 +71,15 @@ describe( 'ConfChatController', function() {
                         .should.be.an.instanceOf( Object );
                     ( res.body )
                         .should.have.properties( {
-                            'done': false
+                            done: true
                         } );
 
-                    done();
-                } );
-        } );
-
-        it( 'end tracking', function( done ) {
-
-            agent
-                .post( '/api/public/track/end' )
-                .send( {
-                    track: 2
-                } )
-                .expect( 200 )
-                .end( function( err, res ) {
-                    should.not.exist( err );
-
-                    ( res.body )
+                    ( res.body.message )
                         .should.be.an.instanceOf( Object );
-                    ( res.body )
+                    ( res.body.message )
                         .should.have.properties( {
-                            'done': true
+                            chatroom: 1,
+                            message: 'Hello world!'
                         } );
 
                     done();

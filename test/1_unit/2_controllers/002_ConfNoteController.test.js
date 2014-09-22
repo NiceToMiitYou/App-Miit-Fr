@@ -44,16 +44,16 @@ describe( 'ConfNoteController', function() {
                         .should.be.an.instanceOf( Object );
                     ( res.body )
                         .should.have.properties( {
-                            'done': true
+                            done: true
                         } );
 
                     ( res.body.note )
                         .should.be.an.instanceOf( Object );
                     ( res.body.note )
                         .should.have.properties( {
-                            'title': 'Title test',
-                            'content': 'Content of the note',
-                            'user': 3
+                            title: 'Title test',
+                            content: 'Content of the note',
+                            user: 3
                         } );
 
                     done();
@@ -81,7 +81,7 @@ describe( 'ConfNoteController', function() {
                         .should.be.an.instanceOf( Object );
                     ( res.body )
                         .should.have.properties( {
-                            'done': false
+                            done: false
                         } );
 
                     done();
@@ -105,15 +105,15 @@ describe( 'ConfNoteController', function() {
                         .should.be.an.instanceOf( Object );
                     ( res.body )
                         .should.have.properties( {
-                            'done': true
+                            done: true
                         } );
 
                     ( res.body.note )
                         .should.be.an.instanceOf( Object );
                     ( res.body.note )
                         .should.have.properties( {
-                            'title': 'Title test UP!',
-                            'content': 'Updated content of the note',
+                            title: 'Title test UP!',
+                            content: 'Updated content of the note',
                         } );
 
                     done();
@@ -139,7 +139,7 @@ describe( 'ConfNoteController', function() {
                         .should.be.an.instanceOf( Object );
                     ( res.body )
                         .should.have.properties( {
-                            'done': true
+                            done: true
                         } );
 
                     done();

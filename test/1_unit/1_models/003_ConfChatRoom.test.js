@@ -30,8 +30,8 @@ describe( 'ConfChatRoom', function() {
                         .should.be.an.instanceOf( Object );
                     ( chatroom )
                         .should.have.properties( {
-                            'name': 'Default type',
-                            'type': 1
+                            name: 'Default type',
+                            type: 1
                         } );
 
                     done();
@@ -53,8 +53,8 @@ describe( 'ConfChatRoom', function() {
                         .should.be.an.instanceOf( Object );
                     ( chatroom )
                         .should.have.properties( {
-                            'name': 'Defined type',
-                            'type': 2
+                            name: 'Defined type',
+                            type: 2
                         } );
 
                     done();
