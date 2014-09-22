@@ -26,7 +26,7 @@ module.exports = {
     list: function( req, res ) {
         ConfResourceCategory.find()
             .where( {
-                'isVisible': 1
+                'isVisible': true
             } )
             .populate( 'resources' )
             .exec( function( err, categories ) {
