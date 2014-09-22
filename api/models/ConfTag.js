@@ -10,7 +10,10 @@ module.exports = {
     attributes: {
 
         name: {
-            type: 'string'
+            type: 'string',
+            unique: true,
+            required: true,
+            minLength: 1
         },
 
         questions: {
