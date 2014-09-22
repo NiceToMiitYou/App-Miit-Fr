@@ -2,7 +2,7 @@ var request = require( 'supertest' );
 var should = require( 'should' );
 var agent;
 
-describe( 'ConfChatController', function() {
+describe( 'ConfLiveApplicationEventController', function() {
 
     before( function() {
 
@@ -12,7 +12,7 @@ describe( 'ConfChatController', function() {
 
     describe( 'ConfUser#login()', function() {
 
-        it( 'login for test note', function( done ) {
+        it( 'login for test live application event', function( done ) {
 
             agent
                 .post( '/api/public/user/login' )

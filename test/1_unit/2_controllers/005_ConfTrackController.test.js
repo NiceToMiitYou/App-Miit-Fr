@@ -2,7 +2,7 @@ var request = require( 'supertest' );
 var should = require( 'should' );
 var agent;
 
-describe( 'ConfChatController', function() {
+describe( 'ConfTrackController', function() {
 
     before( function() {
 
