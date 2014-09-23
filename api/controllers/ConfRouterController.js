@@ -20,6 +20,10 @@ module.exports = {
             res.view( 'master', {
                 layout: 'layouts/master-application'
             } );
+        } else if ( _.contains( req.session.roles, 'ROLES_LIVE' ) ) {
+            res.view( 'live', {
+                layout: 'layouts/live-application'
+            } );
         } else {
             res.send( 404 );
         }
