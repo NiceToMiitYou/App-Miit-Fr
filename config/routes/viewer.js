@@ -30,30 +30,6 @@ routes[ 'POST ' + apiPublicPrefix + '/synchronize' ] = {
 };
 
 /******************
- * User Controller
- ******************/
-
-routes[ 'GET ' + apiPublicPrefix + '/user/list' ] = {
-    controller: 'ConfUserController',
-    action: 'list'
-};
-
-routes[ 'POST ' + apiPublicPrefix + '/user/login' ] = {
-    controller: 'ConfUserController',
-    action: 'login'
-};
-
-routes[ 'POST ' + apiPublicPrefix + '/user/register' ] = {
-    controller: 'ConfUserController',
-    action: 'register'
-};
-
-routes[ 'GET ' + apiPublicPrefix + '/user/logout' ] = {
-    controller: 'ConfUserController',
-    action: 'logout'
-};
-
-/******************
  * Presentation Question Controller
  ******************/
 

@@ -15,7 +15,7 @@ describe( 'ConfLiveApplicationEventController', function() {
         it( 'login for test live application event', function( done ) {
 
             agent
-                .post( '/api/viewer/user/login' )
+                .post( '/api/user/login' )
                 .send( {
                     mail: 'test@test.fr',
                     password: 'password'

@@ -15,7 +15,7 @@ describe( 'ConfChatController', function() {
         it( 'login for test chat', function( done ) {
 
             agent
-                .post( '/api/viewer/user/login' )
+                .post( '/api/user/login' )
                 .send( {
                     mail: 'test@test.fr',
                     password: 'password'

@@ -31,6 +31,7 @@ function extend( target ) {
     return target;
 }
 
+var userAppRoutes = require( './routes/user.js' );
 var viewerAppRoutes = require( './routes/viewer.js' );
 var liveAppRoutes = require( './routes/live.js' );
 var masterAppRoutes = require( './routes/master.js' );
@@ -68,5 +69,6 @@ extend( routes, viewerAppRoutes );
 extend( routes, liveAppRoutes );
 extend( routes, masterAppRoutes );
 extend( routes, adminAppRoutes );
+extend( routes, userAppRoutes );
 
 module.exports.routes = routes;

@@ -15,7 +15,7 @@ describe( 'ConfTrackController', function() {
         it( 'login for test note', function( done ) {
 
             agent
-                .post( '/api/viewer/user/login' )
+                .post( '/api/user/login' )
                 .send( {
                     mail: 'test@test.fr',
                     password: 'password'
