@@ -2,7 +2,7 @@
  * Routes for the public app
  */
 
-var apiPublicPrefix = '/api/public';
+var apiPublicPrefix = '/api/viewer';
 
 var routes = {};
 

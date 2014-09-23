@@ -1,5 +1,5 @@
 window.ITConnect = ( function() {
-    var apiPublicPrefix = '/api/public';
+    var apiPublicPrefix = '/api/viewer';
 
     var lastestTrack = null;
 

@@ -26,10 +26,14 @@ module.exports.policies = {
      *                                                                          *
      ***************************************************************************/
 
-    '*': 'viewerAuth',
+    '*': 'loggedAuth',
+
+    ConfRouterController: {
+        'index': true
+    },
 
     ConfUserController: {
-        '*': 'viewerAuth',
+        '*': 'loggedAuth',
 
         'register': 'anonymAuth',
         'login': 'anonymAuth'

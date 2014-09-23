@@ -15,7 +15,7 @@ describe( 'ConfLiveApplicationEventController', function() {
         it( 'login for test live application event', function( done ) {
 
             agent
-                .post( '/api/public/user/login' )
+                .post( '/api/viewer/user/login' )
                 .send( {
                     mail: 'test@test.fr',
                     password: 'password'
@@ -31,7 +31,7 @@ describe( 'ConfLiveApplicationEventController', function() {
             'with chat and test, should be equal to 2', function( done ) {
 
                 agent
-                    .post( '/api/public/synchronize' )
+                    .post( '/api/viewer/synchronize' )
                     .send( {
                         token: 0
                     } )
@@ -59,7 +59,7 @@ describe( 'ConfLiveApplicationEventController', function() {
             'with chat and test, should be equal to 1', function( done ) {
 
                 agent
-                    .post( '/api/public/synchronize' )
+                    .post( '/api/viewer/synchronize' )
                     .send( {
                         token: 1
                     } )

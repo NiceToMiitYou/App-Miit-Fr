@@ -15,7 +15,7 @@ describe( 'ConfTrackController', function() {
         it( 'login for test note', function( done ) {
 
             agent
-                .post( '/api/public/user/login' )
+                .post( '/api/viewer/user/login' )
                 .send( {
                     mail: 'test@test.fr',
                     password: 'password'
@@ -30,7 +30,7 @@ describe( 'ConfTrackController', function() {
         it( 'start tracking', function( done ) {
 
             agent
-                .post( '/api/public/track/start' )
+                .post( '/api/viewer/track/start' )
                 .send( {
                     action: 'test'
                 } )
@@ -56,7 +56,7 @@ describe( 'ConfTrackController', function() {
         it( 'end tracking undefined track', function( done ) {
 
             agent
-                .post( '/api/public/track/end' )
+                .post( '/api/viewer/track/end' )
                 .send( {
                     track: 1
                 } )
@@ -78,7 +78,7 @@ describe( 'ConfTrackController', function() {
         it( 'end tracking', function( done ) {
 
             agent
-                .post( '/api/public/track/end' )
+                .post( '/api/viewer/track/end' )
                 .send( {
                     track: 2
                 } )

@@ -68,7 +68,7 @@ module.exports = {
         ConfUser.create( {
             mail: req.param( 'mail' ),
             password: req.param( 'password' ),
-            roles: [ 'ROLE_VIEWER' ]
+            roles: [ 'ROLE_LOGIN', 'ROLE_VIEWER' ]
         } )
             .exec( function( err, user ) {
                 if ( err ) return res.json( {

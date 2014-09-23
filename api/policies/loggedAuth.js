@@ -1,5 +1,5 @@
 /**
- * viewerAuth
+ * loggedAuth
  *
  * @module      :: Policy
  * @description :: Simple policy to allow any authenticated user
@@ -11,7 +11,7 @@ module.exports = function( req, res, next ) {
 
     // User is allowed, proceed to the next policy, 
     // or if this is the last policy, the controller
-    if ( _.contains( req.session.roles, 'ROLE_VIEWER' ) ) {
+    if ( _.contains( req.session.roles, 'ROLE_LOGIN' ) ) {
         return next();
     }
 

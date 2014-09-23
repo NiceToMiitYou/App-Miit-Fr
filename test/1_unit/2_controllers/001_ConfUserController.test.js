@@ -14,7 +14,7 @@ describe( 'ConfUserController', function() {
         it( 'register invalid', function( done ) {
 
             agent
-                .post( '/api/public/user/register' )
+                .post( '/api/viewer/user/register' )
                 .send( {
                     mail: 'test',
                     password: 'test'
@@ -37,7 +37,7 @@ describe( 'ConfUserController', function() {
         it( 'register test@test.fr', function( done ) {
 
             agent
-                .post( '/api/public/user/register' )
+                .post( '/api/viewer/user/register' )
                 .send( {
                     mail: 'test@test.fr',
                     password: 'password'
@@ -60,7 +60,7 @@ describe( 'ConfUserController', function() {
         it( 'register second@test.fr', function( done ) {
 
             agent
-                .post( '/api/public/user/register' )
+                .post( '/api/viewer/user/register' )
                 .send( {
                     mail: 'second@test.fr',
                     password: 'password'
@@ -87,7 +87,7 @@ describe( 'ConfUserController', function() {
         it( 'login invalid', function( done ) {
 
             agent
-                .post( '/api/public/user/login' )
+                .post( '/api/viewer/user/login' )
                 .send( {
                     mail: 'test',
                     password: 'test'
@@ -111,7 +111,7 @@ describe( 'ConfUserController', function() {
         it( 'login with test@test.fr and wrong password', function( done ) {
 
             agent
-                .post( '/api/public/user/login' )
+                .post( '/api/viewer/user/login' )
                 .send( {
                     mail: 'test@test.fr',
                     password: 'test'
@@ -136,7 +136,7 @@ describe( 'ConfUserController', function() {
         it( 'login with test@test.fr and right password', function( done ) {
 
             agent
-                .post( '/api/public/user/login' )
+                .post( '/api/viewer/user/login' )
                 .send( {
                     mail: 'test@test.fr',
                     password: 'password'
@@ -164,7 +164,7 @@ describe( 'ConfUserController', function() {
         it( 'login twice -> 403', function( done ) {
 
             agent
-                .post( '/api/public/user/login' )
+                .post( '/api/viewer/user/login' )
                 .send( {
                     mail: 'test@test.fr',
                     password: 'password'
@@ -176,7 +176,7 @@ describe( 'ConfUserController', function() {
         it( 'register third@test.fr -> 403', function( done ) {
 
             agent
-                .post( '/api/public/user/register' )
+                .post( '/api/viewer/user/register' )
                 .send( {
                     mail: 'second@test.fr',
                     password: 'password'
@@ -192,7 +192,7 @@ describe( 'ConfUserController', function() {
         it( 'list of users', function( done ) {
 
             agent
-                .get( '/api/public/user/list' )
+                .get( '/api/viewer/user/list' )
                 .expect( 200 )
                 .end( function( err, res ) {
                     should.not.exist( err );
@@ -221,7 +221,7 @@ describe( 'ConfUserController', function() {
         it( 'logout test@test.fr', function( done ) {
 
             agent
-                .get( '/api/public/user/logout' )
+                .get( '/api/viewer/user/logout' )
                 .expect( 200 )
                 .end( function( err, res ) {
                     should.not.exist( err );
@@ -240,7 +240,7 @@ describe( 'ConfUserController', function() {
         it( 'logout twice -> 403', function( done ) {
 
             agent
-                .get( '/api/public/user/logout' )
+                .get( '/api/viewer/user/logout' )
                 .expect( 403 )
                 .end( done );
         } );

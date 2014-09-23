@@ -15,7 +15,7 @@ describe( 'ConfresourceController', function() {
         it( 'login for test resource', function( done ) {
 
             agent
-                .post( '/api/public/user/login' )
+                .post( '/api/viewer/user/login' )
                 .send( {
                     mail: 'test@test.fr',
                     password: 'password'
@@ -51,7 +51,7 @@ describe( 'ConfresourceController', function() {
         it( 'list visible categories', function( done ) {
 
             agent
-                .get( '/api/public/resources/list' )
+                .get( '/api/viewer/resources/list' )
                 .expect( 200 )
                 .end( function( err, res ) {
                     should.not.exist( err );

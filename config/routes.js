@@ -31,7 +31,7 @@ function extend( target ) {
     return target;
 }
 
-var publicAppRoutes = require( './routes/public.js' );
+var viewerAppRoutes = require( './routes/viewer.js' );
 var liveAppRoutes = require( './routes/live.js' );
 var masterAppRoutes = require( './routes/master.js' );
 var adminAppRoutes = require( './routes/admin.js' );
@@ -49,10 +49,8 @@ var routes = {
      ***************************************************************************/
 
     '/': {
-        view: 'homepage',
-        locals: {
-            layout: 'layouts/public-application'
-        }
+        controller: 'ConfRouterController',
+        action: 'index'
     },
 
     /***************************************************************************
@@ -66,6 +64,9 @@ var routes = {
      ***************************************************************************/
 };
 
-extend( routes, publicAppRoutes );
+extend( routes, viewerAppRoutes );
+extend( routes, liveAppRoutes );
+extend( routes, masterAppRoutes );
+extend( routes, adminAppRoutes );
 
 module.exports.routes = routes;

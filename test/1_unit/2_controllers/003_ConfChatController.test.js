@@ -15,7 +15,7 @@ describe( 'ConfChatController', function() {
         it( 'login for test chat', function( done ) {
 
             agent
-                .post( '/api/public/user/login' )
+                .post( '/api/viewer/user/login' )
                 .send( {
                     mail: 'test@test.fr',
                     password: 'password'
@@ -30,7 +30,7 @@ describe( 'ConfChatController', function() {
         it( 'list all chatrooms', function( done ) {
 
             agent
-                .get( '/api/public/chatroom/list' )
+                .get( '/api/viewer/chatroom/list' )
                 .expect( 200 )
                 .end( function( err, res ) {
                     should.not.exist( err );
@@ -58,7 +58,7 @@ describe( 'ConfChatController', function() {
         it( 'send a message', function( done ) {
 
             agent
-                .post( '/api/public/chatroom/send' )
+                .post( '/api/viewer/chatroom/send' )
                 .send( {
                     chatroom: 1,
                     message: 'Hello world!'

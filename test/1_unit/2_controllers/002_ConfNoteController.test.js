@@ -15,7 +15,7 @@ describe( 'ConfNoteController', function() {
         it( 'login for test note', function( done ) {
 
             agent
-                .post( '/api/public/user/login' )
+                .post( '/api/viewer/user/login' )
                 .send( {
                     mail: 'test@test.fr',
                     password: 'password'
@@ -31,7 +31,7 @@ describe( 'ConfNoteController', function() {
         it( 'create a note', function( done ) {
 
             agent
-                .post( '/api/public/note/create' )
+                .post( '/api/viewer/note/create' )
                 .send( {
                     title: 'Title test',
                     content: 'Content of the note'
@@ -67,7 +67,7 @@ describe( 'ConfNoteController', function() {
         it( 'update a note of someone else -> fail', function( done ) {
 
             agent
-                .post( '/api/public/note/update' )
+                .post( '/api/viewer/note/update' )
                 .send( {
                     note: 1,
                     title: 'Title test UP!',
@@ -91,7 +91,7 @@ describe( 'ConfNoteController', function() {
         it( 'update a note', function( done ) {
 
             agent
-                .post( '/api/public/note/update' )
+                .post( '/api/viewer/note/update' )
                 .send( {
                     note: 3,
                     title: 'Title test UP!',
@@ -127,7 +127,7 @@ describe( 'ConfNoteController', function() {
         it( 'delete a note', function( done ) {
 
             agent
-                .post( '/api/public/note/delete' )
+                .post( '/api/viewer/note/delete' )
                 .send( {
                     note: 3
                 } )
