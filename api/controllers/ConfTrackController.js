@@ -17,12 +17,9 @@ module.exports = {
             user: req.session.user
         } )
             .exec( function( err, track ) {
-                if ( err ) return res.json( {
-                    done: false
-                } );
+                if ( err ) return res.notDone();
 
-                return res.json( {
-                    done: true,
+                return res.done( {
                     track: track
                 } );
             } );
@@ -37,20 +34,14 @@ module.exports = {
             id: req.param( 'track' ),
         } )
             .exec( function( err, track ) {
-                if ( err || !track ) return res.json( {
-                    done: false
-                } );
+                if ( err || !track ) return res.notDone();
 
                 track.end = new Date();
 
                 track.save( function( err, saved ) {
-                    if ( err || !saved ) return res.json( {
-                        done: false
-                    } );
+                    if ( err || !saved ) return res.notDone();
 
-                    return res.json( {
-                        done: true
-                    } );
+                    return res.done();
                 } );
             } );
     }

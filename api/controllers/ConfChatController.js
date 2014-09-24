@@ -14,8 +14,7 @@ module.exports = {
 
         ConfChatRoom.find()
             .exec( function( err, chatrooms ) {
-                return res.json( {
-                    done: true,
+                return res.done( {
                     chatrooms: chatrooms
                 } );
             } );
@@ -32,14 +31,11 @@ module.exports = {
             chatroom: req.param( 'chatroom' )
         } )
             .exec( function( err, created ) {
-                if ( err ) return res.json( {
-                    done: false
-                } );
+                if ( err ) return res.notDone();
 
                 SocketEventCachingService.sendToAll( 'chatroom-new', created );
 
-                return res.json( {
-                    done: true,
+                return res.done( {
                     message: created
                 } );
             } );

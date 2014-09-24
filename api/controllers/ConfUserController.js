@@ -14,12 +14,9 @@ module.exports = {
 
         ConfUser.find()
             .exec( function( err, users ) {
-                if ( err || !users ) return res.json( {
-                    done: false
-                } );
+                if ( err || !users ) return res.notDone();
 
-                return res.json( {
-                    done: true,
+                return res.done( {
                     users: users
                 } );
             } );
@@ -34,17 +31,13 @@ module.exports = {
             req.param( 'mail' )
         )
             .exec( function( err, user ) {
-                if ( err ) return res.json( {
-                    done: false
-                } );
+                if ( err ) return res.notDone();
 
-                if ( !user ) return res.json( {
-                    done: true,
+                if ( !user ) return res.done( {
                     exist: false
                 } );
 
-                if ( !user.isCorrectPassword( req.param( 'password' ) ) ) return res.json( {
-                    done: true,
+                if ( !user.isCorrectPassword( req.param( 'password' ) ) ) return res.done( {
                     exist: true,
                     connected: false
                 } );
@@ -52,8 +45,7 @@ module.exports = {
                 req.session.user = user.id;
                 req.session.roles = user.roles;
 
-                return res.json( {
-                    done: true,
+                return res.done( {
                     exist: true,
                     connected: true,
                     user: user
@@ -71,12 +63,9 @@ module.exports = {
             roles: [ 'ROLE_LOGIN', 'ROLE_VIEWER' ]
         } )
             .exec( function( err, user ) {
-                if ( err ) return res.json( {
-                    done: false
-                } );
+                if ( err ) return res.notDone();
 
-                return res.json( {
-                    done: true,
+                return res.done( {
                     user: user
                 } );
             } );
@@ -90,8 +79,6 @@ module.exports = {
         if ( req.session.user ) req.session.user = null;
         if ( req.session.roles ) req.session.roles = null;
 
-        return res.json( {
-            done: true
-        } );
+        return res.done();
     }
 };

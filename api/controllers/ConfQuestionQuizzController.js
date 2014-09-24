@@ -13,12 +13,9 @@ module.exports = {
     list: function( req, res ) {
         ConfQuizz.find()
             .exec( function( err, quizzes ) {
-                if ( err || !quizz ) return res.json( {
-                    done: false
-                } );
+                if ( err || !quizz ) return res.notDone();
 
-                return res.json( {
-                    done: true,
+                return res.done( {
                     quizzes: quizzes
                 } );
             } );
@@ -33,12 +30,9 @@ module.exports = {
         } )
             .populate( 'answers' )
             .exec( function( err, questions ) {
-                if ( err || !questions ) return res.json( {
-                    done: false
-                } );
+                if ( err || !questions ) return res.notDone();
 
-                return res.json( {
-                    done: true,
+                return res.done( {
                     questions: questions
                 } );
             } );
@@ -54,9 +48,7 @@ module.exports = {
                 if ( err || !question || !_.size(
                     _.intersection(
                         _.map( question.answers, 'id' ), req.param( 'answers' ) )
-                ) ) return res.json( {
-                    done: false
-                } );
+                ) ) return res.notDone();
 
                 // Single choice question
                 if ( _.size( req.param( 'answers' ) ) == 1 && question.type === 1 ||
@@ -67,9 +59,7 @@ module.exports = {
                             question: question.id
                         } )
                         .exec( function( err, user ) {
-                            if ( err || !user || 0 < _.size( user.quizzAnswers ) ) return res.json( {
-                                done: false
-                            } );
+                            if ( err || !user || 0 < _.size( user.quizzAnswers ) ) return res.notDone();
 
                             // Register answers
                             _( req.param( 'answers' ) )
@@ -80,23 +70,16 @@ module.exports = {
                             // Save result
                             user.save( function( err, result ) {
 
-                                if ( err ) return res.json( {
-                                    done: false
-                                } );
+                                if ( err ) return res.notDone();
 
-                                return res.json( {
-                                    done: true
-                                } );
+                                return res.done();
                             } );
 
                         } );
 
                     // Single choice but with many answers
                 } else {
-                    return res.json( {
-                        done: false
-                    } );
-
+                    return res.notDone();
                 }
             } );
     }

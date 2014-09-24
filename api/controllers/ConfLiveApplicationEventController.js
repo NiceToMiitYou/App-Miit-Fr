@@ -21,13 +21,10 @@ module.exports = {
         } )
             .exec( function( err, events ) {
                 if ( err ) {
-                    return res.json( {
-                        done: false
-                    } );
+                    return res.notDone();
                 }
 
-                return res.json( {
-                    done: true,
+                return res.done( {
                     events: events
                 } );
             } );

@@ -30,12 +30,9 @@ module.exports = {
             } )
             .populate( 'resources' )
             .exec( function( err, categories ) {
-                if ( err ) return res.json( {
-                    done: false
-                } );
+                if ( err ) return res.notDone();
 
-                return res.json( {
-                    done: true,
+                return res.done( {
                     categories: categories
                 } );
             } );

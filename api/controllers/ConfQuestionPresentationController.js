@@ -18,14 +18,11 @@ module.exports = {
                 tags: req.param( 'tags' )
             } )
                 .exec( function( err, created ) {
-                    if ( err ) return res.json( {
-                        done: false
-                    } );
+                    if ( err ) return res.notDone();
 
                     SocketEventCachingService.sendToAll( 'question-presentation-new', created );
 
-                    return res.json( {
-                        done: true,
+                    return res.done( {
                         question: created
                     } );
                 } );
@@ -38,9 +35,7 @@ module.exports = {
     like: function( req, res ) {
         ConfQuestionPresentation.findOne( req.param( 'question' ) )
             .exec( function( err, question ) {
-                if ( err || !question || question.isAnswered || question.user == req.session.user ) return res.json( {
-                    done: false
-                } );
+                if ( err || !question || question.isAnswered || question.user == req.session.user ) return res.notDone();
 
                 // When there is a question and is not the actual who posted her, try to find him a like
                 ConfQuestionPresentationLike.findOne( {
@@ -48,9 +43,7 @@ module.exports = {
                     user: req.session.user
                 } )
                     .exec( function( err, like ) {
-                        if ( err || like ) return res.json( {
-                            done: false
-                        } );
+                        if ( err || like ) return res.notDone();
 
                         // If no like before, let's like it
                         ConfQuestionPresentationLike.create( {
@@ -59,14 +52,11 @@ module.exports = {
                             isLiked: req.param( 'like' )
                         } )
                             .exec( function( err, created ) {
-                                if ( err ) return res.json( {
-                                    done: false
-                                } );
+                                if ( err ) return res.notDone();
 
                                 SocketEventCachingService.sendToAll( 'question-presentation-like', created );
 
-                                return res.json( {
-                                    done: true,
+                                return res.done( {
                                     like: created
                                 } );
 
