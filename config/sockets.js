@@ -23,8 +23,13 @@ module.exports.sockets = {
      ***************************************************************************/
     onConnect: function( session, socket ) {
 
-        sails.sockets.join( socket, 'AllConnectedToRT' );
-
+        if( session.user &&
+            session.roles && 
+            _.contains( session.roles, 'ROLE_LOGIN' ))
+        {
+            sails.sockets.join( socket, 'AllConnectedToRT' );
+        }
+        
     },
 
 
@@ -36,7 +41,8 @@ module.exports.sockets = {
      ***************************************************************************/
     onDisconnect: function( session, socket ) {
 
-        // By default: do nothing.
+        sails.sockets.leave( socket, 'AllConnectedToRT' );
+
     },
 
 
