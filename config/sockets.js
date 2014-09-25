@@ -23,13 +23,12 @@ module.exports.sockets = {
      ***************************************************************************/
     onConnect: function( session, socket ) {
 
-        if( session.user &&
-            session.roles && 
-            _.contains( session.roles, 'ROLE_LOGIN' ))
-        {
+        if ( session.user &&
+            session.roles &&
+            _.contains( session.roles, 'ROLE_LOGIN' ) ) {
             sails.sockets.join( socket, 'AllConnectedToRT' );
         }
-        
+
     },
 
 
