@@ -560,7 +560,7 @@
                     if ( u === i ) continue;
                     l && i && ( v.isPlainObject( i ) || ( s = v.isArray( i ) ) ) ? ( s ? ( s = !1, o = r && v.isArray( r ) ? r : [] ) : o = r && v.isPlainObject( r ) ? r : {}, u[ n ] = v.extend( l, o, i ) ) : i !== t && ( u[ n ] = i )
                 }
-            return u
+        return u
     }, v.extend( {
         noConflict: function( t ) {
             return e.$ === v && ( e.$ = a ), t && e.jQuery === v && ( e.jQuery = u ), v
@@ -1915,6 +1915,7 @@
                     return T.call( t, e ) > -1
                 }, u, !0 ),
                 h = [
+
                     function( e, n, r ) {
                         return !o && ( r || n !== c ) || ( ( t = n )
                             .nodeType ? f( e, n, r ) : l( e, n, r ) )
@@ -3472,6 +3473,7 @@
         Xn = [ Gn ],
         Vn = {
             "*": [
+
                 function( e, t ) {
                     var n, r, i = this.createTween( e, t ),
                         s = zn.exec( t ),

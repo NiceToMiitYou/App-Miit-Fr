@@ -866,7 +866,7 @@ ul.table-list li a span.title {
 }
 
 #map {
-	background: url(../img/back1.jpg) 0 0 / cover;
+	background: url(/images/back1.jpg) 0 0 / cover;
 	background-position: center center;
 	z-index: 0;
 	position: absolute;

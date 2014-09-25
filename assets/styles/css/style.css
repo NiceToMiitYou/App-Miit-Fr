@@ -967,7 +967,7 @@ body.bottom-header .page-content .content {
   line-height: 16px;
 }
 .scrollup {
-  background: url('../img/pullup.png') no-repeat;
+  background: url('../imgages/pullup.png') no-repeat;
   background-position: 0px 0px;
   width: 27px;
   height: 27px;
@@ -1546,7 +1546,7 @@ body.bottom-header .page-content .content {
 .notification-alert {
   width: 29px;
   height: 29px;
-  background-image: url("../img/notification-alert.png");
+  background-image: url("../images/notification-alert.png");
   position: absolute;
   float: right;
   right: -15px;

@@ -56,7 +56,7 @@ describe( 'ConfUser', function() {
             ConfUser.create( {
                 mail: 'test@test.fr',
                 password: 'password',
-                roles: [ 'ROLE_VIEWER' ]
+                roles: [ 'ROLE_LOGIN', 'ROLE_VIEWER' ]
             } )
                 .exec( function( err, created ) {
                     should.not.exist( err );
@@ -78,7 +78,7 @@ describe( 'ConfUser', function() {
             ConfUser.create( {
                 mail: 'working@test.fr',
                 password: 'password',
-                roles: [ 'ROLE_VIEWER' ]
+                roles: [ 'ROLE_LOGIN', 'ROLE_VIEWER' ]
             } )
                 .exec( function( err, created ) {
                     should.not.exist( err );
