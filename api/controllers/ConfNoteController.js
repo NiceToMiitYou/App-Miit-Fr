@@ -101,8 +101,21 @@ module.exports = {
      * `ConfNoteController.send()`
      */
     send: function( req, res ) {
-        return res.json( {
-            todo: 'send() is not implemented yet!'
-        } );
+        ConfNote.findOne( {
+            id: req.param( 'note' ),
+            user: req.session.user
+        } )
+            .populate( 'user' )
+            .exec( function( err, note ) {
+                if ( err || !note ) res.notDone();
+
+                MailingService.sendEmailNote(
+                    note.user.mail,
+                    note.title,
+                    note.content
+                );
+
+                return res.done();
+            } );
     }
 };
