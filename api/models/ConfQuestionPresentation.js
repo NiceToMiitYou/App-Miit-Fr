@@ -32,7 +32,8 @@ module.exports = {
 
         tags: {
             collection: 'ConfTag',
-            via: 'questions'
+            via: 'questions',
+            required: true
         }
     }
 };
