@@ -5,31 +5,56 @@ window.ITConnect = ( function() {
 
     var eventsCallbacks = {};
 
+    ITStorage.create( 'events', true );
+
     lastestToken = 0;
 
-    function synchronize() {
+    function eventCallback( eventTmp ) {
+        // Update token
+        lastestToken = eventTmp.id;
 
-        // Ask for synchronisation
-        io.socket.post( apiPublicPrefix + '/synchronize', {
-            token: lastestToken
-        }, function( res ) {
+        // Callback
+        if ( typeof eventsCallbacks[ eventTmp.name ] === 'function' ) {
+            eventsCallbacks[ eventTmp.name ]( eventTmp.data );
+        }
+    }
 
-            if ( !res.done ) return;
+    function synchronize( currentToken ) {
 
-            // Bind all events
-            for ( eventId in res.events ) {
-                // Copy the event
-                var eventTmp = res.events[ eventId ];
+        // Initialize variable
+        var eventTmp = null;
 
-                // Update token
-                lastestToken = eventTmp.id;
+        // Start by checking local database
+        while (
+            null != ( eventTmp = ITStorage.db.events.get( lastestToken + 1 ) )
+        ) {
 
-                // Callback
-                if ( typeof eventsCallbacks[ eventTmp.name ] === 'function' ) {
-                    eventsCallbacks[ eventTmp.name ]( eventTmp.data );
+            // Process event
+            eventCallback( eventTmp );
+        }
+
+        if ( currentToken > lastestToken ) {
+
+            // Ask for synchronisation
+            io.socket.post( apiPublicPrefix + '/synchronize', {
+                token: lastestToken
+            }, function( res ) {
+
+                if ( !res.done ) return;
+
+                // Bind all events
+                for ( eventId in res.events ) {
+                    // Copy the event
+                    eventTmp = res.events[ eventId ];
+
+                    // Store the events
+                    ITStorage.db.events.set( eventId, eventTmp );
+
+                    // Process event
+                    eventCallback( eventTmp );
                 }
-            }
-        } );
+            } );
+        }
     }
 
     return {
@@ -44,20 +69,25 @@ window.ITConnect = ( function() {
             // Bind the event
             io.socket.on( name, function( cache ) {
 
-                // Check integrity
-                if ( lastestToken + 1 === cache.token ) {
-                    // No event missing
-                    lastestToken += 1;
+                // Create the event object
+                var eventTmp = {
+                    id: cache.token,
+                    name: name,
+                    data: cache.data
+                };
 
-                    // Callback
-                    if ( typeof cb == 'function' )
-                        cb( cache.data );
+                // Store received event
+                ITStorage.db.events.set( cache.token, eventTmp );
+
+                // Check integrity
+                if ( lastestToken + 1 === eventTmp.id ) {
+
+                    eventCallback( eventTmp );
                 } else {
 
                     // Synchronise events
-                    synchronize();
+                    synchronize( eventTmp.id );
                 }
-
             } );
         },
 

@@ -8,8 +8,8 @@
                 password: ''
             };
 
-            $scope.execute = function(){
-                console.log('CLICK');
+            $scope.execute = function() {
+                console.log( 'CLICK' );
             }
 
         } );
