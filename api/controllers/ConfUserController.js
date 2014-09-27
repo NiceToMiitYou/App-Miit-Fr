@@ -37,18 +37,22 @@ module.exports = {
                     exist: false
                 } );
 
-                if ( !user.isCorrectPassword( req.param( 'password' ) ) ) return res.done( {
-                    exist: true,
-                    connected: false
-                } );
+                user.isCorrectPassword( req.param( 'password' ), function( result ) {
+                    if ( result ) {
+                        req.session.user = user.id;
+                        req.session.roles = user.roles;
 
-                req.session.user = user.id;
-                req.session.roles = user.roles;
-
-                return res.done( {
-                    exist: true,
-                    connected: true,
-                    user: user
+                        return res.done( {
+                            exist: true,
+                            connected: true,
+                            user: user
+                        } );
+                    } else {
+                        return res.done( {
+                            exist: true,
+                            connected: false
+                        } );
+                    }
                 } );
             } );
     },

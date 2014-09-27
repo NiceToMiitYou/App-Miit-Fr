@@ -4,7 +4,7 @@
  * @description :: ConfUser representation
  */
 
-var bcrypt = require('bcrypt');
+var bcrypt = require( 'bcrypt' );
 
 module.exports = {
 
@@ -77,10 +77,12 @@ module.exports = {
             type: 'array'
         },
 
-        isCorrectPassword: function( password ) {
-            bcrypt.compare(password, this.password, function(err, res) {
-                return res;
-           });
+        isCorrectPassword: function( password, cb ) {
+            bcrypt.compare( password, this.password, function( err, res ) {
+                if ( err ) cb( false );
+
+                cb( res );
+            } );
         },
 
         toJSON: function() {
@@ -92,17 +94,18 @@ module.exports = {
         }
     },
 
-    beforeCreate: function(user, cb) {
-        bcrypt.genSalt(10, function(err, salt) {
-            bcrypt.hash(user.password, salt, function(err, hash) {
+    beforeCreate: function( user, cb ) {
+        bcrypt.genSalt( 8, function( err, salt ) {
+            bcrypt.hash( user.password, salt, function( err, hash ) {
 
-                if (err) {
-                    cb(err);
+                if ( err ) {
+                    cb( err );
                 } else {
+
                     user.password = hash;
-                    cb(null, user);
+                    cb( null, user );
                 }
-            });
-        });
+            } );
+        } );
     }
 };

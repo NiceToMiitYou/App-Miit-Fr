@@ -65,8 +65,7 @@ describe( 'ConfUser', function() {
                         .should.be.an.instanceOf( Object );
                     ( created )
                         .should.have.properties( {
-                            mail: 'test@test.fr',
-                            password: 'password'
+                            mail: 'test@test.fr'
                         } );
 
                     done();
@@ -87,8 +86,7 @@ describe( 'ConfUser', function() {
                         .should.be.an.instanceOf( Object );
                     ( created )
                         .should.have.properties( {
-                            mail: 'working@test.fr',
-                            password: 'password'
+                            mail: 'working@test.fr'
                         } );
 
                     done();
@@ -109,8 +107,7 @@ describe( 'ConfUser', function() {
                         .should.be.an.instanceOf( Object );
                     ( user )
                         .should.have.properties( {
-                            mail: 'test@test.fr',
-                            password: 'password'
+                            mail: 'test@test.fr'
                         } );
 
                     done();
