@@ -26,6 +26,8 @@ module.exports = {
                         question: created
                     } );
                 } );
+        } else {
+            return res.notDone();
         }
     },
 
@@ -33,7 +35,10 @@ module.exports = {
      * `ConfQuestionPresentationController.like()`
      */
     like: function( req, res ) {
-        ConfQuestionPresentation.findOne( req.param( 'question' ) )
+        ConfQuestionPresentation.findOne( {
+            id: req.param( 'question' ),
+            isAnswered: false
+        } )
             .exec( function( err, question ) {
                 if ( err || !question || question.isAnswered || question.user == req.session.user ) return res.notDone();
 
