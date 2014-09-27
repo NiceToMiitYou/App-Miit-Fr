@@ -1,4 +1,5 @@
 ( function() {
+    window.ITEventApp = angular.module( 'ITEventApp', [] );
 
     // Create
     function init() {
@@ -15,7 +16,6 @@
     }
 
     init();
-
 
 
 } )();
