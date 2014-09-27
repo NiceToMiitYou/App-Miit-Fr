@@ -4,6 +4,8 @@
  * @description :: ConfUser representation
  */
 
+var bcrypt = require('bcrypt');
+
 module.exports = {
 
     attributes: {
@@ -76,10 +78,9 @@ module.exports = {
         },
 
         isCorrectPassword: function( password ) {
-            if ( this.password != password ) {
-                return false;
-            }
-            return true;
+            bcrypt.compare(password, this.password, function(err, res) {
+                return res;
+           });
         },
 
         toJSON: function() {
@@ -89,5 +90,19 @@ module.exports = {
             delete obj.roles;
             return obj;
         }
+    },
+
+    beforeCreate: function(user, cb) {
+        bcrypt.genSalt(10, function(err, salt) {
+            bcrypt.hash(user.password, salt, function(err, hash) {
+
+                if (err) {
+                    cb(err);
+                } else {
+                    user.password = hash;
+                    cb(null, user);
+                }
+            });
+        });
     }
 };
