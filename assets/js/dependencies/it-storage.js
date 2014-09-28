@@ -1,12 +1,14 @@
 window.ITStorage = ( function() {
-    var db = {};
-    var canPersist = false;
+
+    var db = {},
+        canPersist = false,
+        databasesPersisted = {};
 
     if ( typeof Storage !== "undefined" ) {
         canPersist = true;
     }
 
-    return {
+    var ithis = {
         // Create a storage area
         create: function( name, persist ) {
 
@@ -85,6 +87,16 @@ window.ITStorage = ( function() {
                     };
                 } )();
 
+                // Store database
+                if ( canPersist && persist ) {
+
+                    // add to the list
+                    databasesPersisted[ name ] = name;
+
+                    // store in localStorage
+                    localStorage.setItem( '_it-storage-databases', JSON.stringify( databasesPersisted ) );
+                }
+
                 return true;
             }
 
@@ -96,15 +108,20 @@ window.ITStorage = ( function() {
             // Check if the database exist
             if ( name in db ) {
 
+                // Clear database
                 db[ name ].clear();
 
+                // Delete indexes
+                delete databasesPersisted[ name ];
                 delete db[ name ];
             }
         },
 
         // Clear all databases
         clear: function() {
+
             if ( canPersist ) {
+
                 // Clear localstorage
                 localStorage.clear();
             }
@@ -115,4 +132,23 @@ window.ITStorage = ( function() {
         // Make an access to the database
         db: db
     };
+
+    // Check if there is database persisted
+    if ( canPersist && localStorage.getItem( '_it-storage-databases' ) ) {
+
+        try {
+            databasesPersisted = JSON.parse( localStorage.getItem( '_it-storage-databases' ) );
+        } catch ( e ) {
+            console.log( e );
+        }
+
+        // list them all
+        for ( database in databasesPersisted ) {
+
+            // Recreate the area
+            ithis.create( database, true );
+        }
+    }
+
+    return ithis;
 } )();

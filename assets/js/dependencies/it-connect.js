@@ -9,6 +9,7 @@ window.ITConnect = ( function() {
 
     lastestToken = 0;
 
+    // handle the callback
     function eventCallback( eventTmp ) {
         // Update token
         lastestToken = eventTmp.id;
@@ -19,6 +20,7 @@ window.ITConnect = ( function() {
         }
     }
 
+    // Ask for synchronisation
     function synchronize( currentToken ) {
 
         // Initialize variable
