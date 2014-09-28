@@ -115,6 +115,9 @@ window.ITStorage = ( function() {
                 // Delete indexes
                 delete databasesPersisted[ name ];
                 delete db[ name ];
+
+                // Update databases from
+                sessionStorage.setItem( '_it-storage-databases', JSON.stringify( databasesPersisted ) );
             }
         },
 
