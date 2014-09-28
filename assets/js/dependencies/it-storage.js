@@ -29,8 +29,8 @@ window.ITStorage = ( function() {
                         get: function( key ) {
                             if ( canPersist && persist ) {
                                 try {
-                                    // get from localStorage
-                                    return JSON.parse( localStorage.getItem( 'it-storage-' + name + '-' + key ) );
+                                    // get from sessionStorage
+                                    return JSON.parse( sessionStorage.getItem( 'it-storage-' + name + '-' + key ) );
                                 } catch ( e ) {}
                             } else {
 
@@ -44,7 +44,7 @@ window.ITStorage = ( function() {
                             if ( canPersist && persist ) {
 
                                 // Store in local storage
-                                localStorage.setItem( prefix + key, JSON.stringify( value ) );
+                                sessionStorage.setItem( prefix + key, JSON.stringify( value ) );
 
                             } else {
 
@@ -57,8 +57,8 @@ window.ITStorage = ( function() {
                         remove: function( key ) {
                             if ( canPersist && persist ) {
 
-                                // get from localStorage
-                                return localStorage.removeItem( prefix + key );
+                                // get from sessionStorage
+                                return sessionStorage.removeItem( prefix + key );
                             } else {
 
                                 // get from memory
@@ -71,11 +71,11 @@ window.ITStorage = ( function() {
                             if ( canPersist && persist ) {
 
                                 // clear this area
-                                for ( var key in localStorage ) {
+                                for ( var key in sessionStorage ) {
 
                                     // Check prefix
                                     if ( key.slice( 0, prefix.length ) === prefix ) {
-                                        localStorage.removeItem( key );
+                                        sessionStorage.removeItem( key );
                                     }
                                 }
 
@@ -94,8 +94,8 @@ window.ITStorage = ( function() {
                     // add to the list
                     databasesPersisted[ name ] = name;
 
-                    // store in localStorage
-                    localStorage.setItem( '_it-storage-databases', JSON.stringify( databasesPersisted ) );
+                    // store in sessionStorage
+                    sessionStorage.setItem( '_it-storage-databases', JSON.stringify( databasesPersisted ) );
                 }
 
                 return true;
@@ -123,8 +123,8 @@ window.ITStorage = ( function() {
 
             if ( canPersist ) {
 
-                // Clear localstorage
-                localStorage.clear();
+                // Clear sessionStorage
+                sessionStorage.clear();
             }
 
             db = {};
@@ -135,10 +135,10 @@ window.ITStorage = ( function() {
     };
 
     // Check if there is database persisted
-    if ( canPersist && localStorage.getItem( '_it-storage-databases' ) ) {
+    if ( canPersist && sessionStorage.getItem( '_it-storage-databases' ) ) {
 
         try {
-            databasesPersisted = JSON.parse( localStorage.getItem( '_it-storage-databases' ) );
+            databasesPersisted = JSON.parse( sessionStorage.getItem( '_it-storage-databases' ) );
         } catch ( e ) {}
 
         // list them all
