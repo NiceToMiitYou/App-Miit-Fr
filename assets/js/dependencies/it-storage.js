@@ -28,9 +28,10 @@ window.ITStorage = ( function() {
                         // Getter for this area
                         get: function( key ) {
                             if ( canPersist && persist ) {
-
-                                // get from localStorage
-                                return localStorage.getItem( 'it-storage-' + name + '-' + key );
+                                try {
+                                    // get from localStorage
+                                    return JSON.parse( localStorage.getItem( 'it-storage-' + name + '-' + key ) );
+                                } catch ( e ) {}
                             } else {
 
                                 // get from memory
@@ -43,7 +44,7 @@ window.ITStorage = ( function() {
                             if ( canPersist && persist ) {
 
                                 // Store in local storage
-                                localStorage.setItem( prefix + key, value );
+                                localStorage.setItem( prefix + key, JSON.stringify( value ) );
 
                             } else {
 
@@ -138,9 +139,7 @@ window.ITStorage = ( function() {
 
         try {
             databasesPersisted = JSON.parse( localStorage.getItem( '_it-storage-databases' ) );
-        } catch ( e ) {
-            console.log( e );
-        }
+        } catch ( e ) {}
 
         // list them all
         for ( database in databasesPersisted ) {
