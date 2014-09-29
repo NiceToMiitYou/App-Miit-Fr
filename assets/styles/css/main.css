@@ -909,11 +909,31 @@ ul.table-list li a span.title {
 }
 
 /* --------- ANIMATIONS ---------- */
+#frm_login label {
+	font-family: 'Open Sans';
+	font-weight: 300;
+}
+
+#frm_login h4 {
+	font-size: 15px;
+}
+
+#frm_login h4 i {
+	float: left;
+	margin-right: 13px;
+	margin-top: 9px;
+}
+
 #frm_login .login-steps {
 	width:100%;
 	overflow: hidden;
-	height: 100px;
+	height: 180px;
 	position: relative;
+	transition: height 200ms linear;
+}
+
+#frm_login.login-step2.newuser .login-steps {
+	height: 250px;
 }
 
 #frm_login .login-steps .login-steps-wrapper {
@@ -922,7 +942,7 @@ ul.table-list li a span.title {
 	height: 100%;
 	top: 0;
 	left: 0;
-	transition: left 300ms linear;
+	transition: left 200ms linear;
 }
 
 #frm_login.login-step1 .login-steps .login-steps-wrapper {
@@ -951,7 +971,7 @@ ul.table-list li a span.title {
 #frm_login .steps-controller .next-step {
 	width: 50%;
 	float: left;
-	transition: width 300ms linear;
+	transition: width 200ms linear;
 }
 
 #frm_login.login-step1 .steps-controller .next-step {
