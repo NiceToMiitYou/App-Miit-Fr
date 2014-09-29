@@ -3,6 +3,7 @@ textarea {
     resize: none;
     border-radius: 0;
 }
+.clear {clear: both;}
 
 .menu-preview {
 	position: absolute;
@@ -908,8 +909,63 @@ ul.table-list li a span.title {
 }
 
 /* --------- ANIMATIONS ---------- */
+#frm_login .login-steps {
+	width:100%;
+	overflow: hidden;
+	height: 100px;
+	position: relative;
+}
 
-.fadeIn {opacity: 1; transition: opacity 800ms; overflow: hidden;}
-.fadeOut {opacity: 0; transition: opacity 800ms; overflow: hidden;}
-.fadeOut > div {margin-top: -10%; transition: margin-top 250ms;}
-.fadeIn > div {margin-top: 0; transition: margin-top 250ms;}
+#frm_login .login-steps .login-steps-wrapper {
+	width: 300%;
+	position: absolute;
+	height: 100%;
+	top: 0;
+	left: 0;
+	transition: left 300ms linear;
+}
+
+#frm_login.login-step1 .login-steps .login-steps-wrapper {
+	left: 0%;
+}
+
+#frm_login.login-step2 .login-steps .login-steps-wrapper {
+	left: -100%;
+}
+
+#frm_login.login-step3 .login-steps .login-steps-wrapper {
+	left: -200%;
+}
+
+#frm_login .login-steps .login-steps-wrapper > div {
+	width: calc(100%/3);
+	display: inline-block;
+	float: left;
+}
+
+#frm_login .steps-controller {
+
+}
+
+#frm_login .steps-controller .previous-step, 
+#frm_login .steps-controller .next-step {
+	width: 50%;
+	float: left;
+	transition: width 300ms linear;
+}
+
+#frm_login.login-step1 .steps-controller .next-step {
+	width: 100%;
+}
+
+#frm_login.login-step1 .steps-controller .previous-step {
+	width: 0%;
+}
+
+#frm_login .steps-controller button {
+	border-radius: 0;
+	padding-top: 12px;
+	margin: 0;
+	padding-bottom: 14px;
+	outline:0;
+}

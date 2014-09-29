@@ -19,42 +19,45 @@
         <div ng-show="frm_login.login_pass.$dirty && frm_login.login_pass.$invalid">
             <span class="error" ng-show="frm_login.login_pass.$error.minlength">Votre mot de passe doit faire 6 characteres minimum</span>
         </div>
-        <div class="tiles grey p-t-20 p-b-20 text-black">
-            <form id="frm_login" name="frm_login">    
-                
-                <div id="step_email" class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
-                    <div class="col-md-12 col-sm-12">
-                         <input name="login_email" id="login_email" type="email" class="form-control" placeholder="john.smith@mail.com" ng-pattern="/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/" ng-model="user.mail" ng-model-options="{ updateOn: 'default' }" required>
-                    </div>
-                </div>
-                <div id="step_password" class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10" ng-class="frm_login.login_email.$valid?'fadeIn':'fadeOut'">
-                    <div class="col-sm-12">
-                         <input name="login_pass" id="login_pass" type="password" class="form-control" placeholder="********" ng-model="user.password" minlength=6 ng-model-options="{ updateOn: 'default' }" required>
-                    </div>
-                </div>
-                <div id="step_terms" class="row p-t-10 m-l-20 m-r-20 xs-m-l-10 xs-m-r-10 text-center" ng-class="frm_login.login_email.$valid && frm_login.login_pass.$valid?'fadeIn':'fadeOut'">
-                    <div class="control-group col-md-12">
-                        <div class="checkbox checkbox check-success">
-                            <input type="checkbox" id="login_terms" value="1">
-                            <label for="login_terms">
-                                Accepter les conditions générales d'utilisation
-                            </label>
+        <div class="tiles grey p-t-20 text-black ">
+            <form id="frm_login" novalidate name="frm_login" ng-class="{'login-step1' : s===1, 'login-step2':s===2, 'login-step3' : s===3}">    
+                <div class="login-steps" >
+                    <div class="login-steps-wrapper">
+                        <div id="step_email">
+                            <div class="col-md-12 col-sm-12">
+                                 <input name="login_email" id="login_email" type="email" class="form-control" placeholder="john.smith@mail.com" ng-pattern="/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/" ng-model="user.mail" ng-model-options="{ updateOn: 'blur' }" required>
+                            </div>
+                        </div>
+                        <div id="step_password">
+                            <div class="col-sm-12">
+                                 <input name="login_pass" id="login_pass" type="password" class="form-control" placeholder="********" ng-model="user.password" minlength=6 ng-model-options="{ updateOn: 'blur' }" required>
+                            </div>
+                        </div>
+                        <div id="step_terms">
+                            <div class="control-group col-md-12 text-center">
+                                <div class="checkbox checkbox check-success">
+                                    <input type="checkbox" id="login_terms" value="1">
+                                    <label for="login_terms">
+                                        Accepter les conditions générales d'utilisation
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="row form-row m-t-15 m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
-                    <div class="col-sm-6">
-                        <button type="button" class="btn btn-default btn-block btn-cons" ng-class="{'disabled':s==0}" id="login_prev" ng-click="previous()">
-                            Précédent
+                <div class="steps-controller">
+                    <div class="previous-step">
+                        <button type="button" class="btn btn-default btn-block btn-cons" ng-class="" id="login_prev" ng-click="previous()">
+                            <i class="fa fa-arrow-left m-r-10"></i> Précédent
                         </button>
                     </div>
-                    <div class="col-sm-6">
-                        <button type="button" class="btn btn-primary btn-block btn-cons" id="login_next" ng-click="next()">
-                            Suivant
+                    <div class="next-step">
+                        <button type="submit" class="btn btn-primary btn-block btn-cons" id="login_next" ng-click="next()">
+                            Suivant <i class="fa fa-arrow-right m-l-10"></i>
                         </button>
                     </div>
                 </div>
-
+                <div class="clear"></div>
             </form>
         </div>   
     </div>   
