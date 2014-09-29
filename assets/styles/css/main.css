@@ -850,7 +850,7 @@ ul.table-list li a span.title {
 .pace-done .login-container {
 	opacity: 1;
 	z-index: 9999;
-	margin-top: 15%;
+	margin-top: 10%;
 }
 
 .login-container {
@@ -906,3 +906,10 @@ ul.table-list li a span.title {
 		-webkit-animation: border-beat 800ms infinite; /* Chrome, Safari, Opera */
 	    animation: border-beat 800ms infinite;
 }
+
+/* --------- ANIMATIONS ---------- */
+
+.fadeIn {opacity: 1; transition: opacity 800ms; overflow: hidden;}
+.fadeOut {opacity: 0; transition: opacity 800ms; overflow: hidden;}
+.fadeOut > div {margin-top: -10%; transition: margin-top 250ms;}
+.fadeIn > div {margin-top: 0; transition: margin-top 250ms;}
