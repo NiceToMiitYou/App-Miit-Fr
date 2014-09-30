@@ -860,10 +860,10 @@ ul.table-list li a span.title {
 	width: 100%;
 	opacity: 0;
 	margin-top: 8%;
-	-moz-transition: all 1s ease;
-	-webkit-transition: all 1s ease;
-	-o-transition: all 1s ease;
-	transition: all 1s ease;
+	-moz-transition: all 600ms ease;
+	-webkit-transition: all 600ms ease;
+	-o-transition: all 600ms ease;
+	transition: all 600ms ease;
 }
 
 #map {
@@ -929,7 +929,7 @@ ul.table-list li a span.title {
 	overflow: hidden;
 	height: 180px;
 	position: relative;
-	transition: height 200ms linear;
+	transition: height 250ms linear;
 }
 
 #frm_login.login-step2.newuser .login-steps {
@@ -942,7 +942,7 @@ ul.table-list li a span.title {
 	height: 100%;
 	top: 0;
 	left: 0;
-	transition: left 200ms linear;
+	transition: left 250ms linear;
 }
 
 #frm_login.login-step1 .login-steps .login-steps-wrapper {
@@ -961,6 +961,7 @@ ul.table-list li a span.title {
 	width: calc(100%/3);
 	display: inline-block;
 	float: left;
+	padding: 0 5px;
 }
 
 #frm_login .steps-controller {
@@ -971,14 +972,16 @@ ul.table-list li a span.title {
 #frm_login .steps-controller .next-step {
 	width: 50%;
 	float: left;
-	transition: width 200ms linear;
+	transition: width 250ms linear;
 }
 
-#frm_login.login-step1 .steps-controller .next-step {
+#frm_login.login-step1 .steps-controller .next-step,
+#frm_login.login-step3 .steps-controller .next-step {
 	width: 100%;
 }
 
-#frm_login.login-step1 .steps-controller .previous-step {
+#frm_login.login-step1 .steps-controller .previous-step,
+#frm_login.login-step3 .steps-controller .previous-step {
 	width: 0%;
 }
 
@@ -988,4 +991,9 @@ ul.table-list li a span.title {
 	margin: 0;
 	padding-bottom: 14px;
 	outline:0;
+}
+
+#frm_login .error {
+	display: inline;
+	margin-left: 2px;
 }
