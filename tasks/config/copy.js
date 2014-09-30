@@ -27,10 +27,11 @@ module.exports = function( grunt ) {
         build: {
             files: [ {
                 expand: true,
-                cwd: '.tmp/public',
-                src: [ '**/*' ],
-                dest: 'www'
-   } ]
+                flatten: true,
+                cwd: './assets/plugins',
+                src: [ '**/fonts/*.*' ],
+                dest: '.tmp/public/fonts'
+            }  ]
         }
     } );
 
