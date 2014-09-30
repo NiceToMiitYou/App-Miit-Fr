@@ -79,22 +79,6 @@ describe( 'ConfQuestionPresentation', function() {
                     done();
                 } );
         } );
-
-
-        it( 'create an untag question', function( done ) {
-
-            ConfQuestionPresentation.create( {
-                question: 'Is it awesome or you think not?',
-                user: 2
-            } )
-                .exec( function( err, question ) {
-                    should.exist( err );
-
-                    should.not.exist( question );
-
-                    done();
-                } );
-        } );
     } );
 
     describe( '#find()', function() {
