@@ -79,6 +79,7 @@ describe( 'ConfQuestionPresentation', function () {
                     done();
                 } );
         } );
+<<<<<<< HEAD
 
 
         it( 'create an untag question', function ( done ) {
@@ -95,6 +96,8 @@ describe( 'ConfQuestionPresentation', function () {
                     done();
                 } );
         } );
+=======
+>>>>>>> 7955afeeedafc7a31238a82d8a44af2de11f80bb
     } );
 
     describe( '#find()', function () {
