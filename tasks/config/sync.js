@@ -11,7 +11,7 @@
  * 		https://github.com/tomusdrw/grunt-sync
  *
  */
-module.exports = function( grunt ) {
+module.exports = function ( grunt ) {
 
     grunt.config.set( 'sync', {
         dev: {

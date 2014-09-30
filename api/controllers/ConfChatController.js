@@ -10,10 +10,10 @@ module.exports = {
     /**
      * `ConfChatController.list()`
      */
-    list: function( req, res ) {
+    list: function ( req, res ) {
 
         ConfChatRoom.find()
-            .exec( function( err, chatrooms ) {
+            .exec( function ( err, chatrooms ) {
                 return res.done( {
                     chatrooms: chatrooms
                 } );
@@ -23,14 +23,14 @@ module.exports = {
     /**
      * `ConfChatController.send()`
      */
-    send: function( req, res ) {
+    send: function ( req, res ) {
 
         ConfChatMessage.create( {
-            message: req.param( 'message' ),
-            user: req.session.user,
-            chatroom: req.param( 'chatroom' )
-        } )
-            .exec( function( err, created ) {
+                message: req.param( 'message' ),
+                user: req.session.user,
+                chatroom: req.param( 'chatroom' )
+            } )
+            .exec( function ( err, created ) {
                 if ( err ) return res.notDone();
 
                 SocketEventCachingService.sendToAll( 'chatroom-new', created );

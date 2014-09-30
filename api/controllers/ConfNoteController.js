@@ -10,13 +10,13 @@ module.exports = {
     /**
      * `ConfNoteController.create()`
      */
-    create: function( req, res ) {
+    create: function ( req, res ) {
         ConfNote.create( {
-            title: req.param( 'title' ),
-            content: req.param( 'content' ),
-            user: req.session.user,
-        } )
-            .exec( function( err, created ) {
+                title: req.param( 'title' ),
+                content: req.param( 'content' ),
+                user: req.session.user,
+            } )
+            .exec( function ( err, created ) {
                 if ( err ) return res.notDone();
 
                 return res.done( {
@@ -28,11 +28,11 @@ module.exports = {
     /**
      * `ConfNoteController.list()`
      */
-    list: function( req, res ) {
+    list: function ( req, res ) {
         ConfNote.find( {
-            user: req.session.user
-        } )
-            .exec( function( err, notes ) {
+                user: req.session.user
+            } )
+            .exec( function ( err, notes ) {
                 if ( err || !notes ) return res.notDone();
 
                 return res.done( {
@@ -44,18 +44,18 @@ module.exports = {
     /**
      * `ConfNoteController.update()`
      */
-    update: function( req, res ) {
+    update: function ( req, res ) {
         ConfNote.findOne( {
-            id: req.param( 'note' ),
-            user: req.session.user
-        } )
-            .exec( function( err, note ) {
+                id: req.param( 'note' ),
+                user: req.session.user
+            } )
+            .exec( function ( err, note ) {
                 if ( err || !note ) return res.notDone();
 
                 if ( note.user == req.session.user ) {
                     note.title = req.param( 'title' );
                     note.content = req.param( 'content' );
-                    note.save( function( err, saved ) {
+                    note.save( function ( err, saved ) {
                         if ( err ) return res.notDone();
 
                         return res.done( {
@@ -75,14 +75,14 @@ module.exports = {
     /**
      * `ConfNoteController.delete()`
      */
-    delete: function( req, res ) {
+    delete: function ( req, res ) {
         ConfNote.findOne( req.param( 'note' ) )
-            .exec( function( err, note ) {
+            .exec( function ( err, note ) {
                 if ( err || !note ) return res.notDone();
 
                 if ( note.user == req.session.user ) {
                     ConfNote.destroy( req.param( 'note' ) )
-                        .exec( function( err, deleted ) {
+                        .exec( function ( err, deleted ) {
                             if ( err ) return res.notDone();
 
                             return res.done();
@@ -100,13 +100,13 @@ module.exports = {
     /**
      * `ConfNoteController.send()`
      */
-    send: function( req, res ) {
+    send: function ( req, res ) {
         ConfNote.findOne( {
-            id: req.param( 'note' ),
-            user: req.session.user
-        } )
+                id: req.param( 'note' ),
+                user: req.session.user
+            } )
             .populate( 'user' )
-            .exec( function( err, note ) {
+            .exec( function ( err, note ) {
                 if ( err || !note ) res.notDone();
 
                 MailingService.sendEmailNote(

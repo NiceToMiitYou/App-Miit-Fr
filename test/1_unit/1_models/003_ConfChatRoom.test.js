@@ -1,13 +1,13 @@
 var should = require( 'should' );
 
-describe( 'ConfChatRoom', function() {
+describe( 'ConfChatRoom', function () {
 
-    describe( '#create()', function() {
+    describe( '#create()', function () {
 
-        it( 'create a chatroom without name', function( done ) {
+        it( 'create a chatroom without name', function ( done ) {
 
             ConfChatRoom.create()
-                .exec( function( err, chatroom ) {
+                .exec( function ( err, chatroom ) {
                     should.exist( err );
 
                     should.not.exist( chatroom );
@@ -16,46 +16,46 @@ describe( 'ConfChatRoom', function() {
                 } );
         } );
 
-        it( 'create a chatroom without type', function( done ) {
+        it( 'create a chatroom without type', function ( done ) {
 
             ConfChatRoom.create( {
-                name: 'Default type'
-            } )
-                .exec( function( err, chatroom ) {
+                    name: 'Default type'
+                } )
+                .exec( function ( err, chatroom ) {
                     should.not.exist( err );
 
                     should.exist( chatroom );
 
                     ( chatroom )
-                        .should.be.an.instanceOf( Object );
+                    .should.be.an.instanceOf( Object );
                     ( chatroom )
-                        .should.have.properties( {
-                            name: 'Default type',
-                            type: 1
-                        } );
+                    .should.have.properties( {
+                        name: 'Default type',
+                        type: 1
+                    } );
 
                     done();
                 } );
         } );
 
-        it( 'create a chatroom with type', function( done ) {
+        it( 'create a chatroom with type', function ( done ) {
 
             ConfChatRoom.create( {
-                name: 'Defined type',
-                type: 2
-            } )
-                .exec( function( err, chatroom ) {
+                    name: 'Defined type',
+                    type: 2
+                } )
+                .exec( function ( err, chatroom ) {
                     should.not.exist( err );
 
                     should.exist( chatroom );
 
                     ( chatroom )
-                        .should.be.an.instanceOf( Object );
+                    .should.be.an.instanceOf( Object );
                     ( chatroom )
-                        .should.have.properties( {
-                            name: 'Defined type',
-                            type: 2
-                        } );
+                    .should.have.properties( {
+                        name: 'Defined type',
+                        type: 2
+                    } );
 
                     done();
                 } );
@@ -63,32 +63,32 @@ describe( 'ConfChatRoom', function() {
     } );
 
 
-    describe( '#find()', function() {
+    describe( '#find()', function () {
 
-        it( 'find chatrooms', function( done ) {
+        it( 'find chatrooms', function ( done ) {
 
             ConfChatRoom.find()
-                .exec( function( err, chatrooms ) {
+                .exec( function ( err, chatrooms ) {
                     should.not.exist( err );
 
                     should.exist( chatrooms );
 
                     ( chatrooms )
-                        .should.be.an.instanceOf( Array );
+                    .should.be.an.instanceOf( Array );
                     ( _.size( chatrooms ) )
-                        .should.equal( 2 );
+                    .should.equal( 2 );
 
                     done();
                 } );
         } );
     } );
 
-    describe( '#destroy()', function() {
+    describe( '#destroy()', function () {
 
-        it( 'destroy chatroom with id - 2', function( done ) {
+        it( 'destroy chatroom with id - 2', function ( done ) {
 
             ConfChatRoom.destroy( 2 )
-                .exec( function( err ) {
+                .exec( function ( err ) {
                     should.not.exist( err );
 
                     done();

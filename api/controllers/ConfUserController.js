@@ -10,10 +10,10 @@ module.exports = {
     /**
      * `ConfUserController.list()`
      */
-    list: function( req, res ) {
+    list: function ( req, res ) {
 
         ConfUser.find()
-            .exec( function( err, users ) {
+            .exec( function ( err, users ) {
                 if ( err || !users ) return res.notDone();
 
                 return res.done( {
@@ -25,19 +25,19 @@ module.exports = {
     /**
      * `ConfUserController.login()`
      */
-    login: function( req, res ) {
+    login: function ( req, res ) {
 
         ConfUser.findOneByMail(
-            req.param( 'mail' )
-        )
-            .exec( function( err, user ) {
+                req.param( 'mail' )
+            )
+            .exec( function ( err, user ) {
                 if ( err ) return res.notDone();
 
                 if ( !user ) return res.done( {
                     exist: false
                 } );
 
-                user.isCorrectPassword( req.param( 'password' ), function( result ) {
+                user.isCorrectPassword( req.param( 'password' ), function ( result ) {
                     if ( result ) {
                         req.session.user = user.id;
                         req.session.roles = user.roles;
@@ -60,13 +60,13 @@ module.exports = {
     /**
      * `ConfUserController.register()`
      */
-    register: function( req, res ) {
+    register: function ( req, res ) {
         ConfUser.create( {
-            mail: req.param( 'mail' ),
-            password: req.param( 'password' ),
-            roles: [ 'ROLE_LOGIN', 'ROLE_VIEWER' ]
-        } )
-            .exec( function( err, user ) {
+                mail: req.param( 'mail' ),
+                password: req.param( 'password' ),
+                roles: [ 'ROLE_LOGIN', 'ROLE_VIEWER' ]
+            } )
+            .exec( function ( err, user ) {
                 if ( err ) return res.notDone();
 
                 return res.done( {
@@ -78,7 +78,7 @@ module.exports = {
     /**
      * `ConfUserController.logout()`
      */
-    logout: function( req, res ) {
+    logout: function ( req, res ) {
 
         if ( req.session.user ) req.session.user = null;
         if ( req.session.roles ) req.session.roles = null;

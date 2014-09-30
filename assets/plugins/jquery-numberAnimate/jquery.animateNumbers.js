@@ -14,29 +14,29 @@
 	Inserts and accounts for commas during animation by default
 ***********/
 
-( function( $ ) {
-    $.fn.animateNumbers = function( stop, commas, duration, ease ) {
-        return this.each( function() {
+( function ( $ ) {
+    $.fn.animateNumbers = function ( stop, commas, duration, ease ) {
+        return this.each( function () {
             var $this = $( this );
             var start = parseInt( $this.text()
                 .replace( /,/g, "" ) );
             commas = ( commas === undefined ) ? true : commas;
             $( {
-                value: start
-            } )
+                    value: start
+                } )
                 .animate( {
                     value: stop
                 }, {
                     duration: duration == undefined ? 1000 : duration,
                     easing: ease == undefined ? "swing" : ease,
-                    step: function() {
+                    step: function () {
                         $this.text( Math.floor( this.value ) );
                         if ( commas ) {
                             $this.text( $this.text()
                                 .replace( /(\d)(?=(\d\d\d)+(?!\d))/g, "$1," ) );
                         }
                     },
-                    complete: function() {
+                    complete: function () {
                         if ( parseInt( $this.text() ) !== stop ) {
                             $this.text( stop );
                             if ( commas ) {

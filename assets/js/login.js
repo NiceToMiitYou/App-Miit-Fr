@@ -1,6 +1,6 @@
 ITEventApp.controller(
     'loginController', [ '$scope',
-        function( $scope ) {
+        function ( $scope ) {
 
             // User model
             $scope.user = {
@@ -13,8 +13,9 @@ ITEventApp.controller(
 
             // Default step
             $scope.s = 1;
+            $scope.wrpass = false;
 
-            $scope.next = function() {
+            $scope.next = function () {
                 // First Step, check email
                 if (
                     $scope.user.mail &&
@@ -23,7 +24,7 @@ ITEventApp.controller(
 
                     ITConnect.user.login( $scope.user.mail, '',
 
-                        function( data ) {
+                        function ( data ) {
 
                             $scope.user.newuser = !data.exist;
                             $scope.s = 2;
@@ -44,7 +45,7 @@ ITEventApp.controller(
                     if ( $scope.user.newuser ) {
 
                         ITConnect.user.register( $scope.user.mail, $scope.user.password,
-                            function( data ) {
+                            function ( data ) {
                                 console.log( data );
                                 if ( data.done ) {
                                     $scope.s = 3;
@@ -52,22 +53,21 @@ ITEventApp.controller(
                                 }
                             } );
 
-                        // If the user exist and terms not accepted
-                    } else if ( !$scope.user.cgu ) {
-
-                        $scope.s = 3;
-
-                        // If the user exist and terms accepted
+                        // If the user exist 
                     } else {
 
                         ITConnect.user.login( $scope.user.mail, $scope.user.password,
-                            function( data ) {
+                            function ( data ) {
                                 console.log( data );
 
                                 if ( data.connected ) {
-                                    window.reload();
+                                    $scope.s = 3;
+                                    $scope.$apply();
                                 } else {
 
+                                    $scope.wrpass = true;
+                                    console.log($scope.wrpass);
+                                    $scope.$apply();
                                 }
                             } );
                     }
@@ -79,36 +79,30 @@ ITEventApp.controller(
                     $scope.s == 3 &&
                     $scope.user.cgu
                 ) {
-
-                    ITConnect.user.login( $scope.user.mail, $scope.user.password,
-                        function( data ) {
-                            console.log( data );
-
-                            if ( data.connected ) {
-                                window.reload();
-
-                            } else {
-
-                                $scope.s = 2;
-                                $scope.apply();
-                            }
-                        } );
+                   window.location.reload();
                 }
 
             }
 
-            $scope.previous = function() {
+            $scope.previous = function () {
                 if ( $scope.s > 1 ) {
                     $scope.s--;
                 }
             }
 
+
     } ] );
 
 // Handle TAB from form
 document.getElementById( 'login_email' )
-    .onkeydown = function( e ) {
+    .onkeydown = function ( e ) {
         if ( e.keyCode == 9 ) {
             return false;
         }
-}
+    }
+
+    window.onbeforeunload = function(e) {
+      if(!document.getElementById("login_terms").checked) {
+        ITConnect.user.logout();
+      } 
+    };

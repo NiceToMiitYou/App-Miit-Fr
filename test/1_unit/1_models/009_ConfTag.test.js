@@ -1,13 +1,13 @@
 var should = require( 'should' );
 
-describe( 'ConfTag', function() {
+describe( 'ConfTag', function () {
 
-    describe( '#create()', function() {
+    describe( '#create()', function () {
 
-        it( 'create a tag without a name', function( done ) {
+        it( 'create a tag without a name', function ( done ) {
 
             ConfTag.create()
-                .exec( function( err, created ) {
+                .exec( function ( err, created ) {
                     should.exist( err );
 
                     should.not.exist( created );
@@ -16,56 +16,56 @@ describe( 'ConfTag', function() {
                 } );
         } );
 
-        it( 'create a tag - awesome', function( done ) {
+        it( 'create a tag - awesome', function ( done ) {
 
             ConfTag.create( {
-                name: 'awesome'
-            } )
-                .exec( function( err, created ) {
+                    name: 'awesome'
+                } )
+                .exec( function ( err, created ) {
                     should.not.exist( err );
 
                     should.exist( created );
 
                     ( created )
-                        .should.be.an.instanceOf( Object );
+                    .should.be.an.instanceOf( Object );
                     ( created )
-                        .should.have.properties( {
-                            id: 1,
-                            name: 'awesome'
-                        } );
+                    .should.have.properties( {
+                        id: 1,
+                        name: 'awesome'
+                    } );
 
                     done();
                 } );
         } );
 
-        it( 'create a tag - test', function( done ) {
+        it( 'create a tag - test', function ( done ) {
 
             ConfTag.create( {
-                name: 'test'
-            } )
-                .exec( function( err, created ) {
+                    name: 'test'
+                } )
+                .exec( function ( err, created ) {
                     should.not.exist( err );
 
                     should.exist( created );
 
                     ( created )
-                        .should.be.an.instanceOf( Object );
+                    .should.be.an.instanceOf( Object );
                     ( created )
-                        .should.have.properties( {
-                            id: 2,
-                            name: 'test'
-                        } );
+                    .should.have.properties( {
+                        id: 2,
+                        name: 'test'
+                    } );
 
                     done();
                 } );
         } );
 
-        it( 'create a second tag - test', function( done ) {
+        it( 'create a second tag - test', function ( done ) {
 
             ConfTag.create( {
-                name: 'test'
-            } )
-                .exec( function( err, created ) {
+                    name: 'test'
+                } )
+                .exec( function ( err, created ) {
                     should.exist( err );
 
                     should.not.exist( created );
@@ -76,20 +76,20 @@ describe( 'ConfTag', function() {
     } );
 
 
-    describe( '#find()', function() {
+    describe( '#find()', function () {
 
-        it( 'find all', function( done ) {
+        it( 'find all', function ( done ) {
 
             ConfTag.find()
-                .exec( function( err, tags ) {
+                .exec( function ( err, tags ) {
                     should.not.exist( err );
 
                     should.exist( tags );
 
                     ( tags )
-                        .should.be.an.instanceOf( Object );
+                    .should.be.an.instanceOf( Object );
                     ( _.size( tags ) )
-                        .should.equal( 2 );
+                    .should.equal( 2 );
 
                     done();
                 } );

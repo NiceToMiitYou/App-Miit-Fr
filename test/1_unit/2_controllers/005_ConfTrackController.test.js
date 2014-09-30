@@ -2,17 +2,17 @@ var request = require( 'supertest' );
 var should = require( 'should' );
 var agent;
 
-describe( 'ConfTrackController', function() {
+describe( 'ConfTrackController', function () {
 
-    before( function() {
+    before( function () {
 
         agent = request.agent( sails.hooks.http.app );
     } );
 
 
-    describe( 'ConfUser#login()', function() {
+    describe( 'ConfUser#login()', function () {
 
-        it( 'login for test note', function( done ) {
+        it( 'login for test note', function ( done ) {
 
             agent
                 .post( '/api/user/login' )
@@ -25,9 +25,9 @@ describe( 'ConfTrackController', function() {
     } );
 
 
-    describe( '#start()', function() {
+    describe( '#start()', function () {
 
-        it( 'start tracking', function( done ) {
+        it( 'start tracking', function ( done ) {
 
             agent
                 .post( '/api/viewer/track/start' )
@@ -35,15 +35,15 @@ describe( 'ConfTrackController', function() {
                     action: 'test'
                 } )
                 .expect( 200 )
-                .end( function( err, res ) {
+                .end( function ( err, res ) {
                     should.not.exist( err );
 
                     ( res.body )
-                        .should.be.an.instanceOf( Object );
+                    .should.be.an.instanceOf( Object );
                     ( res.body )
-                        .should.have.properties( {
-                            done: true
-                        } );
+                    .should.have.properties( {
+                        done: true
+                    } );
 
                     done();
                 } );
@@ -51,9 +51,9 @@ describe( 'ConfTrackController', function() {
     } );
 
 
-    describe( '#end()', function() {
+    describe( '#end()', function () {
 
-        it( 'end tracking undefined track', function( done ) {
+        it( 'end tracking undefined track', function ( done ) {
 
             agent
                 .post( '/api/viewer/track/end' )
@@ -61,21 +61,21 @@ describe( 'ConfTrackController', function() {
                     track: 1
                 } )
                 .expect( 200 )
-                .end( function( err, res ) {
+                .end( function ( err, res ) {
                     should.not.exist( err );
 
                     ( res.body )
-                        .should.be.an.instanceOf( Object );
+                    .should.be.an.instanceOf( Object );
                     ( res.body )
-                        .should.have.properties( {
-                            done: false
-                        } );
+                    .should.have.properties( {
+                        done: false
+                    } );
 
                     done();
                 } );
         } );
 
-        it( 'end tracking', function( done ) {
+        it( 'end tracking', function ( done ) {
 
             agent
                 .post( '/api/viewer/track/end' )
@@ -83,15 +83,15 @@ describe( 'ConfTrackController', function() {
                     track: 2
                 } )
                 .expect( 200 )
-                .end( function( err, res ) {
+                .end( function ( err, res ) {
                     should.not.exist( err );
 
                     ( res.body )
-                        .should.be.an.instanceOf( Object );
+                    .should.be.an.instanceOf( Object );
                     ( res.body )
-                        .should.have.properties( {
-                            done: true
-                        } );
+                    .should.have.properties( {
+                        done: true
+                    } );
 
                     done();
                 } );

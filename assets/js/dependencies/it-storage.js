@@ -1,4 +1,4 @@
-window.ITStorage = ( function() {
+window.ITStorage = ( function () {
 
     var db = {},
         canPersist = false,
@@ -10,13 +10,13 @@ window.ITStorage = ( function() {
 
     var ithis = {
         // Create a storage area
-        create: function( name, persist ) {
+        create: function ( name, persist ) {
 
             // If name is not defined
             if ( !( name in db ) ) {
 
                 // Add a new area in the database
-                db[ name ] = ( function() {
+                db[ name ] = ( function () {
 
                     // define prefix of area for local storage
                     var prefix = 'it-storage-' + name + '-';
@@ -26,7 +26,7 @@ window.ITStorage = ( function() {
 
                     return {
                         // Getter for this area
-                        get: function( key ) {
+                        get: function ( key ) {
                             if ( canPersist && persist ) {
                                 try {
                                     // get from sessionStorage
@@ -40,7 +40,7 @@ window.ITStorage = ( function() {
                         },
 
                         // Setter for this area
-                        set: function( key, value ) {
+                        set: function ( key, value ) {
                             if ( canPersist && persist ) {
 
                                 // Store in local storage
@@ -54,7 +54,7 @@ window.ITStorage = ( function() {
                         },
 
                         // Remove for this area
-                        remove: function( key ) {
+                        remove: function ( key ) {
                             if ( canPersist && persist ) {
 
                                 // get from sessionStorage
@@ -67,7 +67,7 @@ window.ITStorage = ( function() {
                         },
 
                         // Clear this area
-                        clear: function() {
+                        clear: function () {
                             if ( canPersist && persist ) {
 
                                 // clear this area
@@ -105,7 +105,7 @@ window.ITStorage = ( function() {
         },
 
         // Remove a database
-        remove: function( name ) {
+        remove: function ( name ) {
             // Check if the database exist
             if ( name in db ) {
 
@@ -122,7 +122,7 @@ window.ITStorage = ( function() {
         },
 
         // Clear all databases
-        clear: function() {
+        clear: function () {
 
             if ( canPersist ) {
 

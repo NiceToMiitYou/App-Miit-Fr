@@ -21,7 +21,7 @@ module.exports.sockets = {
      * automatically.                                                           *
      *                                                                          *
      ***************************************************************************/
-    onConnect: function( session, socket ) {
+    onConnect: function ( session, socket ) {
 
         if ( session.user &&
             session.roles &&
@@ -38,7 +38,7 @@ module.exports.sockets = {
      * disconnects                                                              *
      *                                                                          *
      ***************************************************************************/
-    onDisconnect: function( session, socket ) {
+    onDisconnect: function ( session, socket ) {
 
         sails.sockets.leave( socket, 'AllConnectedToRT' );
 

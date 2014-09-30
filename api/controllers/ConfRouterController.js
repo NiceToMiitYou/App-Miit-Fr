@@ -8,7 +8,7 @@
 function login( req, res ) {
 
     ConfConference.findOne( 1 )
-        .exec( function( err, conference ) {
+        .exec( function ( err, conference ) {
             if ( err || !conference ) conference = {
                 logo: '/images/logodark.png',
                 name: 'ITEvents',
@@ -42,7 +42,7 @@ function live( req, res ) {
 }
 
 module.exports = {
-    index: function( req, res ) {
+    index: function ( req, res ) {
 
         if ( !req.session.user || !req.session.roles ) {
 

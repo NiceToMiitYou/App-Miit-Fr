@@ -4,10 +4,10 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  */
 
-( function( $ ) {
+( function ( $ ) {
     "use strict";
 
-    var replaceCheckboxElement = function( checkbox, element ) {
+    var replaceCheckboxElement = function ( checkbox, element ) {
         var value = element.val(),
             id = element.attr( 'id' ),
             className = element.attr( 'class' ),
@@ -36,7 +36,7 @@
         checkbox.element = welNew;
     };
 
-    var changeCheckView = function( element, checked ) {
+    var changeCheckView = function ( element, checked ) {
         element.removeClass( 'ambiguous' );
         element.removeClass( 'checked' );
 
@@ -51,8 +51,8 @@
         }
     };
 
-    var attachEvent = function( checkbox, element ) {
-        element.on( 'click', function( e ) {
+    var attachEvent = function ( checkbox, element ) {
+        element.on( 'click', function ( e ) {
             var checked;
             if ( checkbox.checked ) {
                 checked = false;
@@ -74,7 +74,7 @@
         } );
     };
 
-    var Checkbox = function( element, options ) {
+    var Checkbox = function ( element, options ) {
         replaceCheckboxElement( this, element );
         attachEvent( this, this.element );
         if ( options && options.label ) {
@@ -83,8 +83,8 @@
     };
 
     $.fn.extend( {
-        checkbox: function( options ) {
-            var aReplaced = $( this.map( function() {
+        checkbox: function ( options ) {
+            var aReplaced = $( this.map( function () {
                 var $this = $( this ),
                     checkbox = $this.data( 'checkbox' );
 
@@ -100,7 +100,7 @@
             return aReplaced;
         },
 
-        chbxVal: function( value ) {
+        chbxVal: function ( value ) {
             var $this = $( this[ 0 ] );
             var checkbox = $this.data( 'checkbox' );
 
@@ -115,7 +115,7 @@
             }
         },
 
-        chbxChecked: function( checked ) {
+        chbxChecked: function ( checked ) {
             var $this = $( this[ 0 ] );
             var checkbox = $this.data( 'checkbox' );
 

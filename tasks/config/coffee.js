@@ -9,7 +9,7 @@
  * For usage docs see:
  * 		https://github.com/gruntjs/grunt-contrib-coffee
  */
-module.exports = function( grunt ) {
+module.exports = function ( grunt ) {
 
     grunt.config.set( 'coffee', {
         dev: {

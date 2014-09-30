@@ -4,10 +4,10 @@
  * Contributing Author: Tyler Smith
  */
 ;
-( function( $ ) {
+( function ( $ ) {
 
     //FlexSlider: Object Instance
-    $.flexslider = function( el, options ) {
+    $.flexslider = function ( el, options ) {
         var slider = $( el );
 
         // making variables public
@@ -34,7 +34,7 @@
 
         // Private slider methods
         methods = {
-            init: function() {
+            init: function () {
                 slider.animating = false;
                 // Get current slide and make sure it is a number
                 slider.currentSlide = parseInt( ( slider.vars.startAt ? slider.vars.startAt : 0 ), 10 );
@@ -59,7 +59,7 @@
                 slider.started = false;
                 slider.startTimeout = null;
                 // TOUCH/USECSS:
-                slider.transitions = !slider.vars.video && !fade && slider.vars.useCSS && ( function() {
+                slider.transitions = !slider.vars.video && !fade && slider.vars.useCSS && ( function () {
                     var obj = document.createElement( 'div' ),
                         props = [ 'perspectiveProperty', 'WebkitPerspective', 'MozPerspective', 'OPerspective', 'msPerspective' ];
                     for ( var i in props ) {
@@ -81,7 +81,7 @@
 
                 // RANDOMIZE:
                 if ( slider.vars.randomize ) {
-                    slider.slides.sort( function() {
+                    slider.slides.sort( function () {
                         return ( Math.round( Math.random() ) - 0.5 );
                     } );
                     slider.container.empty()
@@ -103,7 +103,7 @@
                 if ( slider.vars.keyboard && ( $( slider.containerSelector )
                     .length === 1 || slider.vars.multipleKeyboard ) ) {
                     $( document )
-                        .bind( 'keyup', function( event ) {
+                        .bind( 'keyup', function ( event ) {
                             var keycode = event.keyCode;
                             if ( !slider.animating && ( keycode === 39 || keycode === 37 ) ) {
                                 var target = ( keycode === 39 ) ? slider.getTarget( 'next' ) :
@@ -114,7 +114,7 @@
                 }
                 // MOUSEWHEEL:
                 if ( slider.vars.mousewheel ) {
-                    slider.bind( 'mousewheel', function( event, delta, deltaX, deltaY ) {
+                    slider.bind( 'mousewheel', function ( event, delta, deltaX, deltaY ) {
                         event.preventDefault();
                         var target = ( delta < 0 ) ? slider.getTarget( 'next' ) : slider.getTarget( 'prev' );
                         slider.flexAnimate( target, slider.vars.pauseOnAction );
@@ -130,16 +130,16 @@
                 // SLIDSESHOW
                 if ( slider.vars.slideshow ) {
                     if ( slider.vars.pauseOnHover ) {
-                        slider.hover( function() {
+                        slider.hover( function () {
                             if ( !slider.manualPlay && !slider.manualPause ) slider.pause();
-                        }, function() {
+                        }, function () {
                             if ( !slider.manualPause && !slider.manualPlay && !slider.stopped ) slider.play();
                         } );
                     }
                     // initialize animation
                     //If we're visible, or we don't use PageVisibility API
                     if ( !slider.vars.pauseInvisible || !methods.pauseInvisible.isHidden() ) {
-                        ( slider.vars.initDelay > 0 ) ? slider.startTimeout = setTimeout( slider.play, slider.vars.initDelay ) : slider.play();
+                        ( slider.vars.initDelay > 0 ) ? slider.startTimeout = setTimeout( slider.play, slider.vars.initDelay ): slider.play();
                     }
                 }
 
@@ -157,12 +157,12 @@
                     .attr( "draggable", "false" );
 
                 // API: start() Callback
-                setTimeout( function() {
+                setTimeout( function () {
                     slider.vars.start( slider );
                 }, 200 );
             },
             asNav: {
-                setup: function() {
+                setup: function () {
                     slider.asNav = true;
                     slider.animatingTo = Math.floor( slider.currentSlide / slider.move );
                     slider.currentItem = slider.currentSlide;
@@ -170,7 +170,7 @@
                         .eq( slider.currentItem )
                         .addClass( namespace + "active-slide" );
                     if ( !msGesture ) {
-                        slider.slides.on( eventType, function( e ) {
+                        slider.slides.on( eventType, function ( e ) {
                             e.preventDefault();
                             var $slide = $( this ),
                                 target = $slide.index();
@@ -188,16 +188,16 @@
                         } );
                     } else {
                         el._slider = slider;
-                        slider.slides.each( function() {
+                        slider.slides.each( function () {
                             var that = this;
                             that._gesture = new MSGesture();
                             that._gesture.target = that;
-                            that.addEventListener( "MSPointerDown", function( e ) {
+                            that.addEventListener( "MSPointerDown", function ( e ) {
                                 e.preventDefault();
                                 if ( e.currentTarget._gesture )
                                     e.currentTarget._gesture.addPointer( e.pointerId );
                             }, false );
-                            that.addEventListener( "MSGestureTap", function( e ) {
+                            that.addEventListener( "MSGestureTap", function ( e ) {
                                 e.preventDefault();
                                 var $slide = $( this ),
                                     target = $slide.index();
@@ -213,14 +213,14 @@
                 }
             },
             controlNav: {
-                setup: function() {
+                setup: function () {
                     if ( !slider.manualControls ) {
                         methods.controlNav.setupPaging();
                     } else { // MANUALCONTROLS:
                         methods.controlNav.setupManual();
                     }
                 },
-                setupPaging: function() {
+                setupPaging: function () {
                     var type = ( slider.vars.controlNav === "thumbnails" ) ? 'control-thumbs' : 'control-paging',
                         j = 1,
                         item,
@@ -243,12 +243,12 @@
 
                     // CONTROLSCONTAINER:
                     ( slider.controlsContainer ) ? $( slider.controlsContainer )
-                        .append( slider.controlNavScaffold ) : slider.append( slider.controlNavScaffold );
+                        .append( slider.controlNavScaffold ): slider.append( slider.controlNavScaffold );
                     methods.controlNav.set();
 
                     methods.controlNav.active();
 
-                    slider.controlNavScaffold.delegate( 'a, img', eventType, function( event ) {
+                    slider.controlNavScaffold.delegate( 'a, img', eventType, function ( event ) {
                         event.preventDefault();
 
                         if ( watchedEvent === "" || watchedEvent === event.type ) {
@@ -269,11 +269,11 @@
 
                     } );
                 },
-                setupManual: function() {
+                setupManual: function () {
                     slider.controlNav = slider.manualControls;
                     methods.controlNav.active();
 
-                    slider.controlNav.bind( eventType, function( event ) {
+                    slider.controlNav.bind( eventType, function ( event ) {
                         event.preventDefault();
 
                         if ( watchedEvent === "" || watchedEvent === event.type ) {
@@ -281,7 +281,7 @@
                                 target = slider.controlNav.index( $this );
 
                             if ( !$this.hasClass( namespace + 'active' ) ) {
-                                ( target > slider.currentSlide ) ? slider.direction = "next" : slider.direction = "prev";
+                                ( target > slider.currentSlide ) ? slider.direction = "next": slider.direction = "prev";
                                 slider.flexAnimate( target, slider.vars.pauseOnAction );
                             }
                         }
@@ -293,16 +293,16 @@
                         methods.setToClearWatchedEvent();
                     } );
                 },
-                set: function() {
+                set: function () {
                     var selector = ( slider.vars.controlNav === "thumbnails" ) ? 'img' : 'a';
                     slider.controlNav = $( '.' + namespace + 'control-nav li ' + selector, ( slider.controlsContainer ) ? slider.controlsContainer : slider );
                 },
-                active: function() {
+                active: function () {
                     slider.controlNav.removeClass( namespace + "active" )
                         .eq( slider.animatingTo )
                         .addClass( namespace + "active" );
                 },
-                update: function( action, pos ) {
+                update: function ( action, pos ) {
                     if ( slider.pagingCount > 1 && action === "add" ) {
                         slider.controlNavScaffold.append( $( '<li><a>' + slider.count + '</a></li>' ) );
                     } else if ( slider.pagingCount === 1 ) {
@@ -314,11 +314,11 @@
                             .remove();
                     }
                     methods.controlNav.set();
-                    ( slider.pagingCount > 1 && slider.pagingCount !== slider.controlNav.length ) ? slider.update( pos, action ) : methods.controlNav.active();
+                    ( slider.pagingCount > 1 && slider.pagingCount !== slider.controlNav.length ) ? slider.update( pos, action ): methods.controlNav.active();
                 }
             },
             directionNav: {
-                setup: function() {
+                setup: function () {
                     var directionNavScaffold = $( '<ul class="' + namespace + 'direction-nav"><li><a class="' + namespace + 'prev" href="#">' + slider.vars.prevText + '</a></li><li><a class="' + namespace + 'next" href="#">' + slider.vars.nextText + '</a></li></ul>' );
 
                     // CONTROLSCONTAINER:
@@ -333,7 +333,7 @@
 
                     methods.directionNav.update();
 
-                    slider.directionNav.bind( eventType, function( event ) {
+                    slider.directionNav.bind( eventType, function ( event ) {
                         event.preventDefault();
                         var target;
 
@@ -350,7 +350,7 @@
                         methods.setToClearWatchedEvent();
                     } );
                 },
-                update: function() {
+                update: function () {
                     var disabledClass = namespace + 'disabled';
                     if ( slider.pagingCount === 1 ) {
                         slider.directionNav.addClass( disabledClass )
@@ -377,7 +377,7 @@
                 }
             },
             pausePlay: {
-                setup: function() {
+                setup: function () {
                     var pausePlayScaffold = $( '<div class="' + namespace + 'pauseplay"><a></a></div>' );
 
                     // CONTROLSCONTAINER:
@@ -391,7 +391,7 @@
 
                     methods.pausePlay.update( ( slider.vars.slideshow ) ? namespace + 'pause' : namespace + 'play' );
 
-                    slider.pausePlay.bind( eventType, function( event ) {
+                    slider.pausePlay.bind( eventType, function ( event ) {
                         event.preventDefault();
 
                         if ( watchedEvent === "" || watchedEvent === event.type ) {
@@ -414,15 +414,15 @@
                         methods.setToClearWatchedEvent();
                     } );
                 },
-                update: function( state ) {
+                update: function ( state ) {
                     ( state === "play" ) ? slider.pausePlay.removeClass( namespace + 'pause' )
                         .addClass( namespace + 'play' )
-                        .html( slider.vars.playText ) : slider.pausePlay.removeClass( namespace + 'play' )
+                        .html( slider.vars.playText ): slider.pausePlay.removeClass( namespace + 'play' )
                         .addClass( namespace + 'pause' )
                         .html( slider.vars.pauseText );
                 }
             },
-            touch: function() {
+            touch: function () {
                 var startX,
                     startY,
                     offset,
@@ -557,7 +557,7 @@
                         scrolling = ( vertical ) ? ( Math.abs( accDx ) < Math.abs( -transX ) ) : ( Math.abs( accDx ) < Math.abs( -transY ) );
 
                         if ( e.detail === e.MSGESTURE_FLAG_INERTIA ) {
-                            setImmediate( function() {
+                            setImmediate( function () {
                                 el._gesture.stop();
                             } );
 
@@ -600,7 +600,7 @@
                     }
                 }
             },
-            resize: function() {
+            resize: function () {
                 if ( !slider.animating && slider.is( ':visible' ) ) {
                     if ( !carousel ) slider.doMath();
 
@@ -622,17 +622,17 @@
                     }
                 }
             },
-            smoothHeight: function( dur ) {
+            smoothHeight: function ( dur ) {
                 if ( !vertical || fade ) {
                     var $obj = ( fade ) ? slider : slider.viewport;
                     ( dur ) ? $obj.animate( {
                         "height": slider.slides.eq( slider.animatingTo )
                             .height()
-                    }, dur ) : $obj.height( slider.slides.eq( slider.animatingTo )
+                    }, dur ): $obj.height( slider.slides.eq( slider.animatingTo )
                         .height() );
                 }
             },
-            sync: function( action ) {
+            sync: function ( action ) {
                 var $obj = $( slider.vars.sync )
                     .data( "flexslider" ),
                     target = slider.animatingTo;
@@ -651,9 +651,9 @@
                         break;
                 }
             },
-            uniqueID: function( $clone ) {
+            uniqueID: function ( $clone ) {
                 $clone.find( '[id]' )
-                    .each( function() {
+                    .each( function () {
                         var $this = $( this );
                         $this.attr( 'id', $this.attr( 'id' ) + '_clone' );
                     } );
@@ -661,7 +661,7 @@
             },
             pauseInvisible: {
                 visProp: null,
-                init: function() {
+                init: function () {
                     var prefixes = [ 'webkit', 'moz', 'ms', 'o' ];
 
                     if ( 'hidden' in document ) return 'hidden';
@@ -671,7 +671,7 @@
                     }
                     if ( methods.pauseInvisible.visProp ) {
                         var evtname = methods.pauseInvisible.visProp.replace( /[H|h]idden/, '' ) + 'visibilitychange';
-                        document.addEventListener( evtname, function() {
+                        document.addEventListener( evtname, function () {
                             if ( methods.pauseInvisible.isHidden() ) {
                                 if ( slider.startTimeout ) clearTimeout( slider.startTimeout ); //If clock is ticking, stop timer and prevent from starting while invisible
                                 else slider.pause(); //Or just pause
@@ -682,20 +682,20 @@
                         } );
                     }
                 },
-                isHidden: function() {
+                isHidden: function () {
                     return document[ methods.pauseInvisible.visProp ] || false;
                 }
             },
-            setToClearWatchedEvent: function() {
+            setToClearWatchedEvent: function () {
                 clearTimeout( watchedEventClearTimer );
-                watchedEventClearTimer = setTimeout( function() {
+                watchedEventClearTimer = setTimeout( function () {
                     watchedEvent = "";
                 }, 3000 );
             }
         };
 
         // public methods
-        slider.flexAnimate = function( target, pause, override, withSync, fromNav ) {
+        slider.flexAnimate = function ( target, pause, override, withSync, fromNav ) {
             if ( !slider.vars.animationLoop && target !== slider.currentSlide ) {
                 slider.direction = ( target > slider.currentSlide ) ? "next" : "prev";
             }
@@ -787,11 +787,11 @@
                             slider.currentSlide = slider.animatingTo;
                         }
                         slider.container.unbind( "webkitTransitionEnd transitionend" );
-                        slider.container.bind( "webkitTransitionEnd transitionend", function() {
+                        slider.container.bind( "webkitTransitionEnd transitionend", function () {
                             slider.wrapup( dimension );
                         } );
                     } else {
-                        slider.container.animate( slider.args, slider.vars.animationSpeed, slider.vars.easing, function() {
+                        slider.container.animate( slider.args, slider.vars.animationSpeed, slider.vars.easing, function () {
                             slider.wrapup( dimension );
                         } );
                     }
@@ -833,7 +833,7 @@
                 if ( slider.vars.smoothHeight ) methods.smoothHeight( slider.vars.animationSpeed );
             }
         };
-        slider.wrapup = function( dimension ) {
+        slider.wrapup = function ( dimension ) {
             // SLIDE:
             if ( !fade && !carousel ) {
                 if ( slider.currentSlide === 0 && slider.animatingTo === slider.last && slider.vars.animationLoop ) {
@@ -849,11 +849,11 @@
         };
 
         // SLIDESHOW:
-        slider.animateSlides = function() {
+        slider.animateSlides = function () {
             if ( !slider.animating && focused ) slider.flexAnimate( slider.getTarget( "next" ) );
         };
         // SLIDESHOW:
-        slider.pause = function() {
+        slider.pause = function () {
             clearInterval( slider.animatedSlides );
             slider.animatedSlides = null;
             slider.playing = false;
@@ -863,7 +863,7 @@
             if ( slider.syncExists ) methods.sync( "pause" );
         };
         // SLIDESHOW:
-        slider.play = function() {
+        slider.play = function () {
             if ( slider.playing ) clearInterval( slider.animatedSlides );
             slider.animatedSlides = slider.animatedSlides || setInterval( slider.animateSlides, slider.vars.slideshowSpeed );
             slider.started = slider.playing = true;
@@ -873,11 +873,11 @@
             if ( slider.syncExists ) methods.sync( "play" );
         };
         // STOP:
-        slider.stop = function() {
+        slider.stop = function () {
             slider.pause();
             slider.stopped = true;
         };
-        slider.canAdvance = function( target, fromNav ) {
+        slider.canAdvance = function ( target, fromNav ) {
             // ASNAV:
             var last = ( asNav ) ? slider.pagingCount - 1 : slider.last;
             return ( fromNav ) ? true :
@@ -889,7 +889,7 @@
                 ( slider.atEnd && slider.currentSlide === last && target === 0 && slider.direction === "next" ) ? false :
                 true;
         };
-        slider.getTarget = function( dir ) {
+        slider.getTarget = function ( dir ) {
             slider.direction = dir;
             if ( dir === "next" ) {
                 return ( slider.currentSlide === slider.last ) ? 0 : slider.currentSlide + 1;
@@ -899,10 +899,10 @@
         };
 
         // SLIDE:
-        slider.setProps = function( pos, special, dur ) {
-            var target = ( function() {
+        slider.setProps = function ( pos, special, dur ) {
+            var target = ( function () {
                 var posCheck = ( pos ) ? pos : ( ( slider.itemW + slider.vars.itemMargin ) * slider.move ) * slider.animatingTo,
-                    posCalc = ( function() {
+                    posCalc = ( function () {
                         if ( carousel ) {
                             return ( special === "setTouch" ) ? pos :
                                 ( reverse && slider.animatingTo === slider.last ) ? 0 :
@@ -940,7 +940,7 @@
             slider.container.css( 'transform', target );
         };
 
-        slider.setup = function( type ) {
+        slider.setup = function ( type ) {
             // SLIDE:
             if ( !fade ) {
                 var sliderOffset, arr;
@@ -973,20 +973,20 @@
                     if ( type !== "init" ) slider.container.find( '.clone' )
                         .remove();
                     slider.container.append( slider.slides.first()
-                        .clone()
-                        .addClass( 'clone' )
-                        .attr( 'aria-hidden', 'true' ) )
+                            .clone()
+                            .addClass( 'clone' )
+                            .attr( 'aria-hidden', 'true' ) )
                         .prepend( slider.slides.last()
                             .clone()
                             .addClass( 'clone' )
                             .attr( 'aria-hidden', 'true' ) );
                     methods.uniqueID( slider.slides.first()
-                        .clone()
-                        .addClass( 'clone' ) )
+                            .clone()
+                            .addClass( 'clone' ) )
                         .appendTo( slider.container );
                     methods.uniqueID( slider.slides.last()
-                        .clone()
-                        .addClass( 'clone' ) )
+                            .clone()
+                            .addClass( 'clone' ) )
                         .prependTo( slider.container );
                 }
                 slider.newSlides = $( slider.vars.selector, slider );
@@ -997,7 +997,7 @@
                     slider.container.height( ( slider.count + slider.cloneCount ) * 200 + "%" )
                         .css( "position", "absolute" )
                         .width( "100%" );
-                    setTimeout( function() {
+                    setTimeout( function () {
                         slider.newSlides.css( {
                             "display": "block"
                         } );
@@ -1008,7 +1008,7 @@
                 } else {
                     slider.container.width( ( slider.count + slider.cloneCount ) * 200 + "%" );
                     slider.setProps( sliderOffset * slider.computedW, "init" );
-                    setTimeout( function() {
+                    setTimeout( function () {
                         slider.doMath();
                         slider.newSlides.css( {
                             "width": slider.computedW,
@@ -1030,10 +1030,10 @@
                     if ( !touch ) {
                         //slider.slides.eq(slider.currentSlide).fadeIn(slider.vars.animationSpeed, slider.vars.easing);
                         slider.slides.css( {
-                            "opacity": 0,
-                            "display": "block",
-                            "zIndex": 1
-                        } )
+                                "opacity": 0,
+                                "display": "block",
+                                "zIndex": 1
+                            } )
                             .eq( slider.currentSlide )
                             .css( {
                                 "zIndex": 2
@@ -1043,11 +1043,11 @@
                             }, slider.vars.animationSpeed, slider.vars.easing );
                     } else {
                         slider.slides.css( {
-                            "opacity": 0,
-                            "display": "block",
-                            "webkitTransition": "opacity " + slider.vars.animationSpeed / 1000 + "s ease",
-                            "zIndex": 1
-                        } )
+                                "opacity": 0,
+                                "display": "block",
+                                "webkitTransition": "opacity " + slider.vars.animationSpeed / 1000 + "s ease",
+                                "zIndex": 1
+                            } )
                             .eq( slider.currentSlide )
                             .css( {
                                 "opacity": 1,
@@ -1068,7 +1068,7 @@
             slider.vars.init( slider );
         };
 
-        slider.doMath = function() {
+        slider.doMath = function () {
             var slide = slider.slides.first(),
                 slideMargin = slider.vars.itemMargin,
                 minItems = slider.vars.minItems,
@@ -1101,7 +1101,7 @@
             slider.computedW = slider.itemW - slider.boxPadding;
         };
 
-        slider.update = function( pos, action ) {
+        slider.update = function ( pos, action ) {
             slider.doMath();
 
             // update currentSlide and slider.animatingTo if necessary
@@ -1131,7 +1131,7 @@
 
         };
 
-        slider.addSlide = function( obj, pos ) {
+        slider.addSlide = function ( obj, pos ) {
             var $obj = $( obj );
 
             slider.count += 1;
@@ -1140,10 +1140,10 @@
             // append new slide
             if ( vertical && reverse ) {
                 ( pos !== undefined ) ? slider.slides.eq( slider.count - pos )
-                    .after( $obj ) : slider.container.prepend( $obj );
+                    .after( $obj ): slider.container.prepend( $obj );
             } else {
                 ( pos !== undefined ) ? slider.slides.eq( pos )
-                    .before( $obj ) : slider.container.append( $obj );
+                    .before( $obj ): slider.container.append( $obj );
             }
 
             // update currentSlide, animatingTo, controlNav, and directionNav
@@ -1157,7 +1157,7 @@
             //FlexSlider: added() Callback
             slider.vars.added( slider );
         };
-        slider.removeSlide = function( obj ) {
+        slider.removeSlide = function ( obj ) {
             var pos = ( isNaN( obj ) ) ? slider.slides.index( $( obj ) ) : obj;
 
             // update count
@@ -1170,7 +1170,7 @@
                     .remove();
             } else {
                 ( vertical && reverse ) ? slider.slides.eq( slider.last )
-                    .remove() : slider.slides.eq( obj )
+                    .remove(): slider.slides.eq( obj )
                     .remove();
             }
 
@@ -1193,10 +1193,10 @@
 
     // Ensure the slider isn't focussed if the window loses focus.
     $( window )
-        .blur( function( e ) {
+        .blur( function ( e ) {
             focused = false;
         } )
-        .focus( function( e ) {
+        .focus( function ( e ) {
             focused = true;
         } );
 
@@ -1255,21 +1255,21 @@
         allowOneSlide: true, //{NEW} Boolean: Whether or not to allow a slider comprised of a single slide
 
         // Callback API
-        start: function() {}, //Callback: function(slider) - Fires when the slider loads the first slide
-        before: function() {}, //Callback: function(slider) - Fires asynchronously with each slider animation
-        after: function() {}, //Callback: function(slider) - Fires after each slider animation completes
-        end: function() {}, //Callback: function(slider) - Fires when the slider reaches the last slide (asynchronous)
-        added: function() {}, //{NEW} Callback: function(slider) - Fires after a slide is added
-        removed: function() {}, //{NEW} Callback: function(slider) - Fires after a slide is removed
-        init: function() {} //{NEW} Callback: function(slider) - Fires after the slider is initially setup
+        start: function () {}, //Callback: function(slider) - Fires when the slider loads the first slide
+        before: function () {}, //Callback: function(slider) - Fires asynchronously with each slider animation
+        after: function () {}, //Callback: function(slider) - Fires after each slider animation completes
+        end: function () {}, //Callback: function(slider) - Fires when the slider reaches the last slide (asynchronous)
+        added: function () {}, //{NEW} Callback: function(slider) - Fires after a slide is added
+        removed: function () {}, //{NEW} Callback: function(slider) - Fires after a slide is removed
+        init: function () {} //{NEW} Callback: function(slider) - Fires after the slider is initially setup
     };
 
     //FlexSlider: Plugin Function
-    $.fn.flexslider = function( options ) {
+    $.fn.flexslider = function ( options ) {
         if ( options === undefined ) options = {};
 
         if ( typeof options === "object" ) {
-            return this.each( function() {
+            return this.each( function () {
                 var $this = $( this ),
                     selector = ( options.selector ) ? options.selector : ".slides > li",
                     $slides = $this.find( selector );
