@@ -13,40 +13,38 @@
             </p>
         <% } %>
         </div>
-        <div ng-show="frm_login.login_email.$dirty && frm_login.login_email.$invalid">
-            <span class="error" ng-show="frm_login.login_email.$error.pattern">Entrez une adresse mail valide</span>
-        </div>
-        <div ng-show="frm_login.login_pass.$dirty && frm_login.login_pass.$invalid">
-            <span class="error" ng-show="frm_login.login_pass.$error.minlength">Votre mot de passe doit faire 6 characteres minimum</span>
-        </div>
+        
         <div class="tiles grey text-black ">
-            <form id="frm_login" novalidate name="frm_login" ng-class="{'login-step1' : s===1, 'login-step2':s===2, 'newuser' : user.newuser,  'login-step3' : s===3}">    
+            <form id="frm_login" novalidate name="frm_login" ng-class="{'login-step1' : s===1, 'login-step2':s===2, 'newuser' : user.newuser,  'login-step3' : s===3}" ng-keypress="$event.keyCode == 13 || $event.keyCode == 9 ? next() : null">    
                 <div class="login-steps" >
                     <div class="login-steps-wrapper">
                         <div id="step_email">
                             <h4 class="p-l-20 p-r-20 m-b-25 m-t-20"><i class="fa fa-info-circle fa-2x"></i> Votre adresse e-mail vous servira d'identifiant de connexion, elle vous servira egalement si vous souhaitez vous envoyer des notes.</h4>
                             <div class="col-md-12 col-sm-12">
-                                <label>Entre votre adresse e-mail :</label>
-                                 <input name="login_email" id="login_email" type="email" class="form-control" placeholder="john.smith@mail.com" ng-pattern="/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/" ng-model="user.mail" ng-model-options="{ updateOn: 'blur' }" required>
+                                <label>Entre votre adresse e-mail : <span class="error" ng-show="frm_login.login_email.$error.pattern">Entrez une adresse mail valide</span></label>
+                                 <input name="login_email" id="login_email" type="email" class="form-control" placeholder="john.smith@mail.com" ng-pattern="/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/" ng-model="user.mail" ng-model-options="{ updateOn: none }" required>
+                            
                             </div>
                         </div>
                         <div id="step_password">
                             <h4 class="p-l-20 p-r-20 m-b-25 m-t-20" ng-show="user.newuser"><i class="fa fa-users fa-2x"></i> Nous ne connaissons pas votre adresse e-mail, choisissez un mot de passe pour rejoindre la conférence et protéger votre compte.</h4>
                             <h4 class="p-l-20 p-r-20 m-b-25 m-t-20" ng-show="!user.newuser"><i class="fa fa-users fa-2x"></i> Bienvenue à cette conférence. Nous sommes très heureux de vous retrouver</h4>
                             <div class="col-md-12">
-                                <label ng-show="user.newuser">Choisissez un mot de passe :</label>
+                                <label ng-show="user.newuser">Choisissez un mot de passe : <span class="error" ng-show="frm_login.login_pass.$error.minlength">Votre mot de passe doit faire 6 characteres minimum</span></label>
                                 <label ng-show="!user.newuser">Entrez votre mot de passe :</label>
-                                 <input name="login_pass" id="login_pass" type="password" class="form-control" placeholder="********" ng-model="user.password" minlength=6 ng-model-options="{ updateOn: 'blur' }" required>
+                                 <input name="login_pass" id="login_pass" type="password" class="form-control" placeholder="********" ng-model="user.password" minlength=6 required>
                             </div>
                             <div class="col-md-12 m-t-10" ng-show="user.newuser">
-                                <label>Confirmez votre mot de passe :</label>
-                                 <input name="login_pass_c" id="login_pass_c" type="password" class="form-control col-md-12" placeholder="********" ng-model="user.password_c" minlength=6 ng-model-options="{ updateOn: 'blur' }" required>
+                                <label>Confirmez votre mot de passe : <span class="error" ng-show="frm_login.login_pass_c.$dirty && user.password != user.password_c">Votre mot de passe ne correspond pas à la confirmation</span></label>
+                                 <input name="login_pass_c" id="login_pass_c" type="password" class="form-control col-md-12" placeholder="********" ng-model="user.password_c"  minlength=6 required>
                             </div>
                         </div>
                         <div id="step_terms">
-                            <div class="control-group col-md-12 text-center">
+                            <h4 class="p-l-20 p-r-20 m-b-25 m-t-20" ng-show="user.newuser"><i class="fa fa-thumbs-o-up fa-2x p-r-5 text-succes"></i> Félicitation, votre compte a été créé avec succès. Acceptez les conditions générales d'utilisation pour entrer dans la conférence.</h4>
+                            <h4 class="p-l-20 p-r-20 m-b-25 m-t-20" ng-show="!user.newuser"><i class="fa fa-thumbs-o-up fa-2x p-r-5"></i> Félicitation, vous vous êtes connecté avec succès. Acceptez les conditions générales d'utilisation pour entrer dans la conférence.</h4>
+                            <div class="control-group col-md-12 m-t-20 text-center">
                                 <div class="checkbox checkbox check-success">
-                                    <input type="checkbox" id="login_terms" value="1">
+                                    <input type="checkbox" id="login_terms" value="1" ng-model="user.cgu">
                                     <label for="login_terms">
                                         Accepter les conditions générales d'utilisation
                                     </label>
