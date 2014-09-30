@@ -32,13 +32,13 @@
                             $scope.$apply();
                         } );
 
-                // Second Step, Check password, if user exist or user confirm his password
-                } else if ( 
-                    $scope.user.password && 
-                    $scope.s == 2 && 
-                    ( 
+                    // Second Step, Check password, if user exist or user confirm his password
+                } else if (
+                    $scope.user.password &&
+                    $scope.s == 2 &&
+                    (
                         $scope.user.newuser === false ||
-                        $scope.user.password === $scope.user.password_c 
+                        $scope.user.password === $scope.user.password_c
                     )
                 ) {
 
@@ -54,12 +54,12 @@
                                 }
                             } );
 
-                    // If the user exist and terms not accepted
-                    } else if( !$scope.user.cgu ) {
+                        // If the user exist and terms not accepted
+                    } else if ( !$scope.user.cgu ) {
 
                         $scope.s = 3;
 
-                    // If the user exist and terms accepted
+                        // If the user exist and terms accepted
                     } else {
 
                         ITConnect.user.login( $scope.user.mail, $scope.user.password,
@@ -71,10 +71,10 @@
                                 } else {
 
                                 }
-                            });
+                            } );
                     }
 
-                // Check if user accept terms
+                    // Check if user accept terms
                 } else if (
                     $scope.user.mail &&
                     $scope.user.password &&

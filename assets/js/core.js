@@ -943,7 +943,7 @@ function unblockUI( el ) {
 Pace.on( 'hide', function() {
     $( ".pace" )
         .remove();
-    window.lineexemple.redraw();
+    //window.lineexemple.redraw();
     $( '#text-editor' )
         .wysihtml5( {
             "image": false

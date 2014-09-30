@@ -41,7 +41,7 @@ module.exports = {
     },
 
     webservice: {
-        host: 'developpement.ws.itevents.fr',
+        host: 'developement.ws.itevents.fr',
         port: 443
     }
 

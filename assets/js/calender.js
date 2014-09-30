@@ -52,10 +52,11 @@ $( document )
         var currentDate = $( '#calendar' )
             .fullCalendar( 'getDate' );
 
-        $( '#calender-current-day' )
-            .html( $.fullCalendar.formatDate( currentDate, "dddd" ) );
-        $( '#calender-current-date' )
-            .html( $.fullCalendar.formatDate( currentDate, "MMM yyyy" ) );
+
+        //    $( '#calender-current-day' )
+        //        .html( $.fullCalendar.formatDate( currentDate, "dddd" ) );
+        //    $( '#calender-current-date' )
+        //        .html( $.fullCalendar.formatDate( currentDate, "MMM yyyy" ) );
 
 
         $( '#calender-prev' )

@@ -123,8 +123,8 @@ $( function() {
                         .resize();
                 } );
         } );
-    $slides.data( "flexslider" )
-        .resize();
+    //$slides.data( "flexslider" )
+    //    .resize();
     var counter = 0;
     var interval = setInterval( function() {
         counter++;

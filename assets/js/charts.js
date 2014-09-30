@@ -7,7 +7,7 @@ $( window )
 
         // Moris Charts - Line Charts
 
-        window.lineexemple = Morris.Line( {
+        /* window.lineexemple = Morris.Line( {
             element: 'line-example',
             data: [
                 {
@@ -53,6 +53,7 @@ $( window )
             resize: true,
             redraw: true,
         } );
+*/
 
 
 
