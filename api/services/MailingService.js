@@ -1,18 +1,30 @@
 var nodemailer = require( 'nodemailer' );
-var transporter = nodemailer.createTransport();
+var smtpTransport = require( 'nodemailer-smtp-transport' );
+var transporter = nodemailer.createTransport(
+    smtpTransport(
+        sails.config.mailer.smtp
+    )
+);
 
 
 function sendEmail( email, title, contentText, contentHtml ) {
-    transporter.sendMail( {
-        from: {
-            name: 'ITEvents',
-            address: 'no-reply@itevents.fr'
-        },
-        to: email,
-        subject: title,
-        text: contentText,
-        html: contentHtml
-    } );
+    if ( sails.config.mailer.bypass ) {
+
+        sails.log.info( 'EMAIL : TO -> ', email );
+        sails.log.info( 'EMAIL : TITLE -> ', title );
+        sails.log.info( 'EMAIL : CONTENT -> ', contentText );
+        sails.log.info( 'EMAIL : HTML -> ', contentHtml );
+
+    } else {
+
+        transporter.sendMail( {
+            from: sails.config.mailer.from,
+            to: email,
+            subject: title,
+            text: contentText,
+            html: contentHtml
+        } );
+    }
 }
 
 

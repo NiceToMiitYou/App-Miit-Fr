@@ -35,6 +35,22 @@ module.exports = {
     //   level: "silent"
     // }
 
+    mailer: {
+        from: {
+            name: 'ITEvents',
+            mail: 'no-reply@itevents.fr'
+        },
+
+        smtp: {
+            host: 'smtp.itevents.fr',
+            port: 587,
+            auth: {
+                user: 'no-reply@itevents.fr',
+                pass: 'nopeReply'
+            }
+        }
+    },
+
     webservice: {
         host: 'ws.itevents.fr',
         port: 443

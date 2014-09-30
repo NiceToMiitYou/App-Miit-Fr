@@ -17,7 +17,7 @@ module.exports = {
      * environment (see config/connections.js and config/models.js )           *
      ***************************************************************************/
 
-    port: 8080,
+    port: 18080,
 
     connections: {
 
@@ -28,6 +28,24 @@ module.exports = {
         ConferenceDatabase: {
             adapter: 'sails-memory'
         }
+    },
+
+    mailer: {
+        from: {
+            name: 'ITEvents',
+            mail: 'no-reply@itevents.fr'
+        },
+
+        smtp: {
+            host: 'smtp.itevents.fr',
+            port: 587,
+            auth: {
+                user: 'no-reply@itevents.fr',
+                pass: 'nopeReply'
+            }
+        },
+
+        bypass: true
     },
 
     webservice: {

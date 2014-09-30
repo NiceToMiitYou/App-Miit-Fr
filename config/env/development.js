@@ -22,6 +22,24 @@ module.exports = {
     // }
     port: 8080,
 
+    mailer: {
+        from: {
+            name: 'ITEvents',
+            address: 'no-reply@itevents.fr'
+        },
+
+        smtp: {
+            host: 'smtp.itevents.fr',
+            port: 587,
+            auth: {
+                user: 'no-reply@itevents.fr',
+                pass: 'nopeReply'
+            }
+        },
+
+        bypass: true
+    },
+
     webservice: {
         host: 'developpement.ws.itevents.fr',
         port: 443
