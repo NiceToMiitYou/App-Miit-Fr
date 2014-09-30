@@ -20,7 +20,7 @@ module.exports.models = {
 
     connection: 'ConferenceDatabase',
 
-    migrate: 'alter',
+    migrate: 'safe',
 
     schema: true
 };
