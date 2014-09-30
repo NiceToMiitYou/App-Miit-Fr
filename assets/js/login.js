@@ -54,10 +54,24 @@
                                 }
                             } );
 
-                    // If the user exist
-                    } else {
+                    // If the user exist and terms not accepted
+                    } else if( !$scope.user.cgu ) {
 
                         $scope.s = 3;
+
+                    // If the user exist and terms accepted
+                    } else {
+
+                        ITConnect.user.login( $scope.user.mail, $scope.user.password,
+                            function( data ) {
+                                console.log( data );
+
+                                if ( data.connected ) {
+                                    window.reload();
+                                } else {
+
+                                }
+                            });
                     }
 
                 // Check if user accept terms
@@ -74,6 +88,11 @@
 
                             if ( data.connected ) {
                                 window.reload();
+
+                            } else {
+
+                                $scope.s = 2;
+                                $scope.apply();
                             }
                         } );
                 }
