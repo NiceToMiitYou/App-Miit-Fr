@@ -52,11 +52,11 @@ module.exports = {
 
             viewer( req, res );
 
-        } else if ( _.contains( req.session.roles, 'ROLES_MASTER' ) ) {
+        } else if ( _.contains( req.session.roles, 'ROLE_MASTER' ) ) {
 
             master( req, res );
 
-        } else if ( _.contains( req.session.roles, 'ROLES_LIVE' ) ) {
+        } else if ( _.contains( req.session.roles, 'ROLE_LIVE' ) ) {
 
             live( req, res );
 
