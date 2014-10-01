@@ -13,7 +13,7 @@
  * For usage docs see:
  * 		https://github.com/gruntjs/grunt-contrib-copy
  */
-module.exports = function ( grunt ) {
+module.exports = function( grunt ) {
 
     grunt.config.set( 'copy', {
         dev: {
@@ -31,7 +31,7 @@ module.exports = function ( grunt ) {
                 cwd: './assets/plugins',
                 src: [ '**/fonts/*.*' ],
                 dest: '.tmp/public/fonts'
-            }  ]
+            } ]
         }
     } );
 

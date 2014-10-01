@@ -13,19 +13,19 @@ function init() {
     ITStorage.create( 'questions' );
     ITStorage.create( 'presentations' );
 
-    if ( ! ITStorage.db.options.get('conference.initialized') ) {
+    if ( !ITStorage.db.options.get( 'conference.initialized' ) ) {
 
-        ITConnect.config.conference(function(data) {
-            
-            if( data.done ) {
+        ITConnect.config.conference( function( data ) {
 
-                ITStorage.db.options.set('conference.logo', data.conference.logo);
-                ITStorage.db.options.set('conference.name', data.conference.name);
-                ITStorage.db.options.set('conference.description', data.conference.description);
+            if ( data.done ) {
 
-                ITStorage.db.options.set('conference.initialized', true);
+                ITStorage.db.options.set( 'conference.logo', data.conference.logo );
+                ITStorage.db.options.set( 'conference.name', data.conference.name );
+                ITStorage.db.options.set( 'conference.description', data.conference.description );
+
+                ITStorage.db.options.set( 'conference.initialized', true );
             }
-        });
+        } );
     }
 }
 

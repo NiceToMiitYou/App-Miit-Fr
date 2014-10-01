@@ -2,17 +2,17 @@ var request = require( 'supertest' );
 var should = require( 'should' );
 var agent;
 
-describe( 'ConfChatController', function () {
+describe( 'ConfChatController', function() {
 
-    before( function () {
+    before( function() {
 
         agent = request.agent( sails.hooks.http.app );
     } );
 
 
-    describe( 'ConfUser#login()', function () {
+    describe( 'ConfUser#login()', function() {
 
-        it( 'login for test chat', function ( done ) {
+        it( 'login for test chat', function( done ) {
 
             agent
                 .post( '/api/user/login' )
@@ -25,27 +25,27 @@ describe( 'ConfChatController', function () {
     } );
 
 
-    describe( '#list()', function () {
+    describe( '#list()', function() {
 
-        it( 'list all chatrooms', function ( done ) {
+        it( 'list all chatrooms', function( done ) {
 
             agent
                 .get( '/api/viewer/chatroom/list' )
                 .expect( 200 )
-                .end( function ( err, res ) {
+                .end( function( err, res ) {
                     should.not.exist( err );
 
                     ( res.body )
-                    .should.be.an.instanceOf( Object );
+                        .should.be.an.instanceOf( Object );
                     ( res.body )
-                    .should.have.properties( {
-                        done: true
-                    } );
+                        .should.have.properties( {
+                            done: true
+                        } );
 
                     ( res.body.chatrooms )
-                    .should.be.an.instanceOf( Array );
+                        .should.be.an.instanceOf( Array );
                     ( _.size( res.body.chatrooms ) )
-                    .should.equal( 1 );
+                        .should.equal( 1 );
 
                     done();
                 } );
@@ -53,9 +53,9 @@ describe( 'ConfChatController', function () {
     } );
 
 
-    describe( '#send()', function () {
+    describe( '#send()', function() {
 
-        it( 'send a message', function ( done ) {
+        it( 'send a message', function( done ) {
 
             agent
                 .post( '/api/viewer/chatroom/send' )
@@ -64,23 +64,23 @@ describe( 'ConfChatController', function () {
                     message: 'Hello world!'
                 } )
                 .expect( 200 )
-                .end( function ( err, res ) {
+                .end( function( err, res ) {
                     should.not.exist( err );
 
                     ( res.body )
-                    .should.be.an.instanceOf( Object );
+                        .should.be.an.instanceOf( Object );
                     ( res.body )
-                    .should.have.properties( {
-                        done: true
-                    } );
+                        .should.have.properties( {
+                            done: true
+                        } );
 
                     ( res.body.message )
-                    .should.be.an.instanceOf( Object );
+                        .should.be.an.instanceOf( Object );
                     ( res.body.message )
-                    .should.have.properties( {
-                        chatroom: 1,
-                        message: 'Hello world!'
-                    } );
+                        .should.have.properties( {
+                            chatroom: 1,
+                            message: 'Hello world!'
+                        } );
 
                     done();
                 } );

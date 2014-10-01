@@ -2,17 +2,17 @@ var request = require( 'supertest' );
 var should = require( 'should' );
 var agent;
 
-describe( 'ConfNoteController', function () {
+describe( 'ConfNoteController', function() {
 
-    before( function () {
+    before( function() {
 
         agent = request.agent( sails.hooks.http.app );
     } );
 
 
-    describe( 'ConfUser#login()', function () {
+    describe( 'ConfUser#login()', function() {
 
-        it( 'login for test note', function ( done ) {
+        it( 'login for test note', function( done ) {
 
             agent
                 .post( '/api/user/login' )
@@ -26,9 +26,9 @@ describe( 'ConfNoteController', function () {
     } );
 
 
-    describe( '#create()', function () {
+    describe( '#create()', function() {
 
-        it( 'create a note', function ( done ) {
+        it( 'create a note', function( done ) {
 
             agent
                 .post( '/api/viewer/note/create' )
@@ -37,24 +37,24 @@ describe( 'ConfNoteController', function () {
                     content: 'Content of the note'
                 } )
                 .expect( 200 )
-                .end( function ( err, res ) {
+                .end( function( err, res ) {
                     should.not.exist( err );
 
                     ( res.body )
-                    .should.be.an.instanceOf( Object );
+                        .should.be.an.instanceOf( Object );
                     ( res.body )
-                    .should.have.properties( {
-                        done: true
-                    } );
+                        .should.have.properties( {
+                            done: true
+                        } );
 
                     ( res.body.note )
-                    .should.be.an.instanceOf( Object );
+                        .should.be.an.instanceOf( Object );
                     ( res.body.note )
-                    .should.have.properties( {
-                        title: 'Title test',
-                        content: 'Content of the note',
-                        user: 3
-                    } );
+                        .should.have.properties( {
+                            title: 'Title test',
+                            content: 'Content of the note',
+                            user: 3
+                        } );
 
                     done();
                 } );
@@ -62,9 +62,9 @@ describe( 'ConfNoteController', function () {
     } );
 
 
-    describe( '#update()', function () {
+    describe( '#update()', function() {
 
-        it( 'update a note of someone else -> fail', function ( done ) {
+        it( 'update a note of someone else -> fail', function( done ) {
 
             agent
                 .post( '/api/viewer/note/update' )
@@ -74,21 +74,21 @@ describe( 'ConfNoteController', function () {
                     content: 'Updated content of the note'
                 } )
                 .expect( 200 )
-                .end( function ( err, res ) {
+                .end( function( err, res ) {
                     should.not.exist( err );
 
                     ( res.body )
-                    .should.be.an.instanceOf( Object );
+                        .should.be.an.instanceOf( Object );
                     ( res.body )
-                    .should.have.properties( {
-                        done: false
-                    } );
+                        .should.have.properties( {
+                            done: false
+                        } );
 
                     done();
                 } );
         } );
 
-        it( 'update a note', function ( done ) {
+        it( 'update a note', function( done ) {
 
             agent
                 .post( '/api/viewer/note/update' )
@@ -98,23 +98,23 @@ describe( 'ConfNoteController', function () {
                     content: 'Updated content of the note'
                 } )
                 .expect( 200 )
-                .end( function ( err, res ) {
+                .end( function( err, res ) {
                     should.not.exist( err );
 
                     ( res.body )
-                    .should.be.an.instanceOf( Object );
+                        .should.be.an.instanceOf( Object );
                     ( res.body )
-                    .should.have.properties( {
-                        done: true
-                    } );
+                        .should.have.properties( {
+                            done: true
+                        } );
 
                     ( res.body.note )
-                    .should.be.an.instanceOf( Object );
+                        .should.be.an.instanceOf( Object );
                     ( res.body.note )
-                    .should.have.properties( {
-                        title: 'Title test UP!',
-                        content: 'Updated content of the note',
-                    } );
+                        .should.have.properties( {
+                            title: 'Title test UP!',
+                            content: 'Updated content of the note',
+                        } );
 
                     done();
                 } );
@@ -122,9 +122,9 @@ describe( 'ConfNoteController', function () {
     } );
 
 
-    describe( '#delete()', function () {
+    describe( '#delete()', function() {
 
-        it( 'delete a note', function ( done ) {
+        it( 'delete a note', function( done ) {
 
             agent
                 .post( '/api/viewer/note/delete' )
@@ -132,15 +132,15 @@ describe( 'ConfNoteController', function () {
                     note: 3
                 } )
                 .expect( 200 )
-                .end( function ( err, res ) {
+                .end( function( err, res ) {
                     should.not.exist( err );
 
                     ( res.body )
-                    .should.be.an.instanceOf( Object );
+                        .should.be.an.instanceOf( Object );
                     ( res.body )
-                    .should.have.properties( {
-                        done: true
-                    } );
+                        .should.have.properties( {
+                            done: true
+                        } );
 
                     done();
                 } );

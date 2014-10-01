@@ -10,12 +10,12 @@ module.exports = {
     /**
      * `ConfQuestionSlideController.question()`
      */
-    question: function ( req, res ) {
+    question: function( req, res ) {
         ConfQuestionSlide.findOne( {
-                slide: req.param( 'slide' )
-            } )
+            slide: req.param( 'slide' )
+        } )
             .populate( 'answers' )
-            .exec( function ( err, question ) {
+            .exec( function( err, question ) {
                 if ( err || !question ) return res.notDone();
 
                 return res.done( {
@@ -28,10 +28,10 @@ module.exports = {
     /**
      * `ConfQuestionSlideController.answer()`
      */
-    answer: function ( req, res ) {
+    answer: function( req, res ) {
         ConfQuestionSlide.findOne( req.param( 'question' ) )
             .populate( 'answers' )
-            .exec( function ( err, question ) {
+            .exec( function( err, question ) {
                 if ( err || !question || question.isClosed || !_.size(
                     _.intersection(
                         _.map( question.answers, 'id' ), req.param( 'answers' ) )
@@ -45,17 +45,17 @@ module.exports = {
                         .populate( 'slideAnswers', {
                             question: question.id
                         } )
-                        .exec( function ( err, user ) {
+                        .exec( function( err, user ) {
                             if ( err || !user || 0 < _.size( user.slideAnswers ) ) return res.notDone();
 
                             // Register answers
                             _( req.param( 'answers' ) )
-                                .forEach( function ( answer ) {
+                                .forEach( function( answer ) {
                                     user.slideAnswers.add( answer );
                                 } );
 
                             // Save result
-                            user.save( function ( err, result ) {
+                            user.save( function( err, result ) {
 
                                 if ( err ) return res.notDone();
 

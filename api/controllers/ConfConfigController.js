@@ -6,24 +6,23 @@
  */
 
 module.exports = {
-	
+
     /**
      * `ConfConfigController.conference()`
      */
-    conference: function(req, res) {
+    conference: function( req, res ) {
 
         ConfConference.findOne( 1 )
-            .exec( function ( err, conference ) {
+            .exec( function( err, conference ) {
                 if ( err || !conference ) conference = {
                     logo: '/images/logodark.png',
                     name: 'ITEvents',
                     description: 'ITEvents ne trouve pas de conférence active.'
                 };
 
-                return res.done({
+                return res.done( {
                     conference: conference
-                });
-            });
+                } );
+            } );
     }
 };
-

@@ -1,4 +1,4 @@
-window.ITStorage = ( function () {
+window.ITStorage = ( function() {
 
     var db = {},
         canPersist = false,
@@ -11,24 +11,24 @@ window.ITStorage = ( function () {
     function asyncBinding( cb, value ) {
 
         // Asynchronous callback
-        setTimeout(function(){
+        setTimeout( function() {
             if ( cb ) {
 
                 // Call the binding
-                cb(value);
+                cb( value );
             }
-        }, 10);
+        }, 10 );
     };
 
     var ithis = {
         // Create a storage area
-        create: function ( name, persist ) {
+        create: function( name, persist ) {
 
             // If name is not defined
             if ( !( name in db ) ) {
 
                 // Add a new area in the database
-                db[ name ] = ( function () {
+                db[ name ] = ( function() {
 
                     // define prefix of area for local storage
                     var prefix = 'it-storage-' + name + '-';
@@ -41,9 +41,9 @@ window.ITStorage = ( function () {
 
                     return {
                         // Bind value
-                        bind: function ( key, direct, cb ) {
+                        bind: function( key, direct, cb ) {
 
-                            if (typeof direct === 'function') {
+                            if ( typeof direct === 'function' ) {
                                 // swap function
                                 cb = direct;
 
@@ -51,7 +51,7 @@ window.ITStorage = ( function () {
                                 direct = false;
                             }
 
-                            if (typeof cb === 'function') {
+                            if ( typeof cb === 'function' ) {
                                 // set the binding
                                 bindings[ key ] = cb;
                             }
@@ -62,15 +62,15 @@ window.ITStorage = ( function () {
                         },
 
                         // Unbind value
-                        unbind: function ( key ) {
+                        unbind: function( key ) {
 
                             // unset the binding
                             delete bindings[ key ];
-                            
+
                         },
 
                         // Getter for this area
-                        get: function ( key ) {
+                        get: function( key ) {
                             if ( canPersist && persist ) {
                                 try {
                                     // get from sessionStorage
@@ -84,7 +84,7 @@ window.ITStorage = ( function () {
                         },
 
                         // Setter for this area
-                        set: function ( key, value ) {
+                        set: function( key, value ) {
                             if ( canPersist && persist ) {
 
                                 // Store in local storage
@@ -101,7 +101,7 @@ window.ITStorage = ( function () {
                         },
 
                         // Remove for this area
-                        remove: function ( key ) {
+                        remove: function( key ) {
                             if ( canPersist && persist ) {
 
                                 // get from sessionStorage
@@ -114,7 +114,7 @@ window.ITStorage = ( function () {
                         },
 
                         // Clear this area
-                        clear: function () {
+                        clear: function() {
                             if ( canPersist && persist ) {
 
                                 // clear this area
@@ -152,7 +152,7 @@ window.ITStorage = ( function () {
         },
 
         // Remove a database
-        remove: function ( name ) {
+        remove: function( name ) {
             // Check if the database exist
             if ( name in db ) {
 
@@ -169,7 +169,7 @@ window.ITStorage = ( function () {
         },
 
         // Clear all databases
-        clear: function () {
+        clear: function() {
 
             if ( canPersist ) {
 

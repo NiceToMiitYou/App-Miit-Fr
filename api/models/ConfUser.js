@@ -18,7 +18,7 @@ module.exports = {
             type: 'string'
         },
 
-        fullName: function () {
+        fullName: function() {
             return this.firstName + ' ' + this.lastName;
         },
 
@@ -77,15 +77,15 @@ module.exports = {
             type: 'array'
         },
 
-        isCorrectPassword: function ( password, cb ) {
-            bcrypt.compare( password, this.password, function ( err, res ) {
+        isCorrectPassword: function( password, cb ) {
+            bcrypt.compare( password, this.password, function( err, res ) {
                 if ( err ) cb( false );
 
                 cb( res );
             } );
         },
 
-        toJSON: function () {
+        toJSON: function() {
             var obj = this.toObject();
             delete obj.password;
             delete obj.mail;
@@ -94,9 +94,9 @@ module.exports = {
         }
     },
 
-    beforeCreate: function ( user, cb ) {
-        bcrypt.genSalt( 8, function ( err, salt ) {
-            bcrypt.hash( user.password, salt, function ( err, hash ) {
+    beforeCreate: function( user, cb ) {
+        bcrypt.genSalt( 8, function( err, salt ) {
+            bcrypt.hash( user.password, salt, function( err, hash ) {
 
                 if ( err ) {
                     cb( err );

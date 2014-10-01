@@ -34,7 +34,7 @@ module.exports = {
     /**
      * `ConfRouterController.index()`
      */
-    index: function ( req, res ) {
+    index: function( req, res ) {
 
         if ( !req.session.user || !req.session.roles ) {
 
