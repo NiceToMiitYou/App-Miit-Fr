@@ -54,6 +54,15 @@ var routes = {
         action: 'index'
     },
 
+    /******************
+     * Config Controller
+     ******************/
+
+    'GET /api/config/conference': {
+        controller: 'ConfConfigController',
+        action: 'conference'
+    }
+    
     /***************************************************************************
      *                                                                          *
      * Custom routes here...                                                    *

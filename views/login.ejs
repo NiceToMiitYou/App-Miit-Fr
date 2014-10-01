@@ -1,17 +1,15 @@
 <div ng-controller="loginController" class="row login-container">  
     <div class="col-md-6 col-lg-4 col-lg-offset-4 col-md-offset-3 tiles white no-padding">
-        <% if(conference.logo) { %>
-        <img class="client_logo p-t-30" src="<%= conference.logo %>" width="200"/>
-        <% } %>
+        
+        <img class="client_logo p-t-30" ng-src="{{conference.logo}}" ng-show="conference.logo" width="200"/>
+        
         <div class=" p-l-40 p-b-20 xs-p-t-10 xs-p-l-10 xs-p-b-10"> 
             <h3 class="normal">
                 Connectez-vous pour commencer
             </h3>
-        <% if(conference.description) { %>
             <p class="p-b-20">
-                <%= conference.description %>
+                {{conference.description}}
             </p>
-        <% } %>
         </div>
         
         <div class="tiles grey text-black ">

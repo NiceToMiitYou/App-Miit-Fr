@@ -8,6 +8,18 @@ window.ITStorage = ( function () {
         canPersist = true;
     }
 
+    function asyncBinding( cb, value ) {
+
+        // Asynchronous callback
+        setTimeout(function(){
+            if ( cb ) {
+
+                // Call the binding
+                cb(value);
+            }
+        }, 10);
+    };
+
     var ithis = {
         // Create a storage area
         create: function ( name, persist ) {
@@ -24,7 +36,39 @@ window.ITStorage = ( function () {
                     // Datas of this area
                     var datas = {};
 
+                    // Bindings
+                    var bindings = {};
+
                     return {
+                        // Bind value
+                        bind: function ( key, direct, cb ) {
+
+                            if (typeof direct === 'function') {
+                                // swap function
+                                cb = direct;
+
+                                // set default
+                                direct = false;
+                            }
+
+                            if (typeof cb === 'function') {
+                                // set the binding
+                                bindings[ key ] = cb;
+                            }
+
+                            if ( direct === true ) {
+                                asyncBinding( cb, this.get( key ) );
+                            }
+                        },
+
+                        // Unbind value
+                        unbind: function ( key ) {
+
+                            // unset the binding
+                            delete bindings[ key ];
+                            
+                        },
+
                         // Getter for this area
                         get: function ( key ) {
                             if ( canPersist && persist ) {
@@ -51,6 +95,9 @@ window.ITStorage = ( function () {
                                 // Store in-memory
                                 datas[ key ] = value;
                             }
+
+                            // Call callback
+                            asyncBinding( bindings[ key ], value );
                         },
 
                         // Remove for this area

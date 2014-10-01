@@ -2,6 +2,13 @@ ITEventApp.controller(
     'loginController', [ '$scope',
         function ( $scope ) {
 
+            // Conference model
+            $scope.conference = {
+                logo: '',
+                name: '',
+                description: ''
+            };
+
             // User model
             $scope.user = {
                 mail: '',
@@ -10,6 +17,17 @@ ITEventApp.controller(
                 cgu: false,
                 newuser: true
             };
+
+            function getConference(isInit) {
+                if ( isInit ) {
+                    $scope.conference.logo = ITStorage.db.options.get('conference.logo');
+                    $scope.conference.name = ITStorage.db.options.get('conference.name');
+                    $scope.conference.description = ITStorage.db.options.get('conference.description');
+                    $scope.$apply();
+                }
+            }
+
+            ITStorage.db.options.bind('conference.initialized', true, getConference);
 
             // Default step
             $scope.s = 1;

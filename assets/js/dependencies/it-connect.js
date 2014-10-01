@@ -93,6 +93,14 @@ window.ITConnect = ( function () {
             } );
         },
 
+        // Get configuration
+        config: {
+            // Get conference settings
+            conference: function ( cb ) {
+                io.socket.get( '/api/config/conference', {}, cb );
+            },
+        },
+
         // Chat actions
         chatroom: {
             // List all chatrooms
