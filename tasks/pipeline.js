@@ -18,6 +18,7 @@ var cssFilesToInject = [
   'plugins/**/*.css',
 
   'styles/**/*.css'
+  'styles/css/main.css'
  ];
 
 

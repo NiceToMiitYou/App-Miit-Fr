@@ -90,19 +90,19 @@ ITEventApp.controller(
                 }
             }
 
+            // Handle TAB from form
+            document.getElementById( 'login_email' )
+                .onkeydown = function ( e ) {
+                    if ( e.keyCode == 9 ) {
+                        return false;
+                    }
+                }
+
+                window.onbeforeunload = function(e) {
+                  if(!document.getElementById("login_terms").checked) {
+                    ITConnect.user.logout();
+                  } 
+                };
 
     } ] );
 
-// Handle TAB from form
-document.getElementById( 'login_email' )
-    .onkeydown = function ( e ) {
-        if ( e.keyCode == 9 ) {
-            return false;
-        }
-    }
-
-    window.onbeforeunload = function(e) {
-      if(!document.getElementById("login_terms").checked) {
-        ITConnect.user.logout();
-      } 
-    };
