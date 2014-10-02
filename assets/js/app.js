@@ -13,6 +13,12 @@ function init() {
     ITStorage.create( 'questions' );
     ITStorage.create( 'presentations' );
 
+    initData();
+}
+
+// Request data
+function initData() {
+
     if ( !ITStorage.db.options.get( 'conference.initialized' ) ) {
 
         ITConnect.config.conference( function( data ) {
