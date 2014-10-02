@@ -27,6 +27,7 @@ ITEventApp.controller(
                             // Check connected
                             if ( data.connected ) {
                                 // Go to step 3
+                                $scope.user.connected = true;
                                 $scope.s = 3;
 
                             } else {
@@ -62,7 +63,8 @@ ITEventApp.controller(
                 password: '',
                 password_c: '',
                 cgu: false,
-                newuser: true
+                newuser: true,
+                connected: false
             };
 
             ITStorage.db.options.bind( 'conference.initialized', true, getConference );
@@ -140,7 +142,7 @@ ITEventApp.controller(
 
             // Log it out
             window.onbeforeunload = function( e ) {
-                if ( !$scope.user.cgu ) {
+                if ( $scope.user.connected && !$scope.user.cgu ) {
                     ITConnect.user.logout();
                 }
             };
