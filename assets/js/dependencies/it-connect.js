@@ -1,4 +1,4 @@
-window.ITConnect = ( function () {
+window.ITConnect = ( function() {
     var apiPublicPrefix = '/api/viewer';
 
     var lastestTrack = null;
@@ -40,7 +40,7 @@ window.ITConnect = ( function () {
             // Ask for synchronisation
             io.socket.post( apiPublicPrefix + '/synchronize', {
                 token: lastestToken
-            }, function ( res ) {
+            }, function( res ) {
 
                 if ( !res.done ) return;
 
@@ -61,7 +61,7 @@ window.ITConnect = ( function () {
 
     return {
         // Bind an event
-        bind: function ( name, cb ) {
+        bind: function( name, cb ) {
             // Add callbacks in list
             eventsCallbacks[ name ] = cb;
 
@@ -69,7 +69,7 @@ window.ITConnect = ( function () {
             io.socket.removeAllListeners( name );
 
             // Bind the event
-            io.socket.on( name, function ( cache ) {
+            io.socket.on( name, function( cache ) {
 
                 // Create the event object
                 var eventTmp = {
@@ -93,15 +93,23 @@ window.ITConnect = ( function () {
             } );
         },
 
+        // Get configuration
+        config: {
+            // Get conference settings
+            conference: function( cb ) {
+                io.socket.get( '/api/config/conference', {}, cb );
+            },
+        },
+
         // Chat actions
         chatroom: {
             // List all chatrooms
-            list: function ( cb ) {
+            list: function( cb ) {
                 io.socket.get( apiPublicPrefix + '/chatroom/list', {}, cb );
             },
 
             // Send a message to the chatroom
-            send: function ( chatroom, message, cb ) {
+            send: function( chatroom, message, cb ) {
                 io.socket.post( apiPublicPrefix + '/chatroom/send', {
                     message: message,
                     chatroom: chatroom
@@ -112,25 +120,25 @@ window.ITConnect = ( function () {
         // User actions
         user: {
             // List action
-            list: function ( cb ) {
+            list: function( cb ) {
                 io.socket.get( '/api/user/list', {}, cb );
             },
             // Login action
-            login: function ( mail, password, cb ) {
+            login: function( mail, password, cb ) {
                 io.socket.post( '/api/user/login', {
                     mail: mail,
                     password: password
                 }, cb );
             },
             // Login action
-            register: function ( mail, password, cb ) {
+            register: function( mail, password, cb ) {
                 io.socket.post( '/api/user/register', {
                     mail: mail,
                     password: password
                 }, cb );
             },
             // Logout action
-            logout: function ( cb ) {
+            logout: function( cb ) {
                 io.socket.get( '/api/user/logout', {}, cb );
             }
         },
@@ -141,19 +149,19 @@ window.ITConnect = ( function () {
             quizz: {
 
                 // List all quizz
-                list: function ( cb ) {
+                list: function( cb ) {
                     io.socket.get( apiPublicPrefix + '/question/quizz/list', {}, cb );
                 },
 
                 // List all questions and answers of a quizz
-                questions: function ( quizz, cb ) {
+                questions: function( quizz, cb ) {
                     io.socket.post( apiPublicPrefix + '/question/quizz/questions', {
                         quizz: quizz
                     }, cb );
                 },
 
                 // Answer to a question
-                answer: function ( question, answers, cb ) {
+                answer: function( question, answers, cb ) {
                     io.socket.post( apiPublicPrefix + '/question/quizz/answer', {
                         question: question,
                         answers: answers
@@ -164,7 +172,7 @@ window.ITConnect = ( function () {
             // Questions about presentation
             presentation: {
                 // Create a new question
-                create: function ( question, tags, cb ) {
+                create: function( question, tags, cb ) {
                     io.socket.post( apiPublicPrefix + '/question/presentation/create', {
                         question: question,
                         tags: tags
@@ -172,7 +180,7 @@ window.ITConnect = ( function () {
                 },
 
                 // Like a question
-                like: function ( question, cb ) {
+                like: function( question, cb ) {
                     io.socket.post( apiPublicPrefix + '/question/presentation/like', {
                         question: question,
                         like: true
@@ -180,7 +188,7 @@ window.ITConnect = ( function () {
                 },
 
                 // Dislike a question
-                dislike: function ( question, cb ) {
+                dislike: function( question, cb ) {
                     io.socket.post( apiPublicPrefix + '/question/presentation/like', {
                         question: question,
                         like: false
@@ -192,14 +200,14 @@ window.ITConnect = ( function () {
             slide: {
 
                 // Get question of a slide
-                question: function ( slide, cb ) {
+                question: function( slide, cb ) {
                     io.socket.get( apiPublicPrefix + '/question/slide/question', {
                         slide: slide
                     }, cb );
                 },
 
                 // Answer to a question
-                answer: function ( question, answers, cb ) {
+                answer: function( question, answers, cb ) {
                     io.socket.post( apiPublicPrefix + '/question/slide/answer', {
                         question: question,
                         answers: answers
@@ -211,7 +219,7 @@ window.ITConnect = ( function () {
         // Notes Actions
         note: {
             // Create a new note
-            create: function ( title, content, cb ) {
+            create: function( title, content, cb ) {
                 io.socket.post( apiPublicPrefix + '/note/create', {
                     title: title,
                     content: content
@@ -219,12 +227,12 @@ window.ITConnect = ( function () {
             },
 
             // List all user's note
-            list: function ( cb ) {
+            list: function( cb ) {
                 io.socket.get( apiPublicPrefix + '/note/list', {}, cb );
             },
 
             // Update a note
-            update: function ( note, title, content, cb ) {
+            update: function( note, title, content, cb ) {
                 io.socket.post( apiPublicPrefix + '/note/update', {
                     note: note,
                     title: title,
@@ -233,14 +241,14 @@ window.ITConnect = ( function () {
             },
 
             // delete a note
-            delete: function ( note, cb ) {
+            delete: function( note, cb ) {
                 io.socket.post( apiPublicPrefix + '/note/delete', {
                     note: note
                 }, cb );
             },
 
             // send me a note
-            send: function ( note, cb ) {
+            send: function( note, cb ) {
                 io.socket.post( apiPublicPrefix + '/note/send', {
                     note: note
                 }, cb );
@@ -249,13 +257,13 @@ window.ITConnect = ( function () {
 
         // Resources Actions
         resources: {
-            list: function ( cb ) {
+            list: function( cb ) {
                 io.socket.get( apiPublicPrefix + '/resources/list', {}, cb );
             }
         },
 
         track: {
-            create: function ( action, cb ) {
+            create: function( action, cb ) {
                 if ( lastestTrack ) {
                     io.socket.post( apiPublicPrefix + '/track/end', {
                         track: lastestTrack
@@ -264,7 +272,7 @@ window.ITConnect = ( function () {
 
                 io.socket.post( apiPublicPrefix + '/track/start', {
                     action: action
-                }, function ( data ) {
+                }, function( data ) {
                     lastestTrack = data.track.id;
 
                     if ( typeof cb == 'function' ) {

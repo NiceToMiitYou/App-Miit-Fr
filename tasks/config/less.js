@@ -10,7 +10,7 @@
  * For usage docs see:
  * 		https://github.com/gruntjs/grunt-contrib-less
  */
-module.exports = function ( grunt ) {
+module.exports = function( grunt ) {
 
     grunt.config.set( 'less', {
         dev: {

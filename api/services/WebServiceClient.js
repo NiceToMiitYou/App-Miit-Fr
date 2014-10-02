@@ -2,7 +2,7 @@ var https = require( 'https' );
 
 module.exports = {
 
-    sendData: function ( method, path, data, cb ) {
+    sendData: function( method, path, data, cb ) {
         var jsonData = JSON.stringify( data );
 
         var options = {
@@ -18,16 +18,16 @@ module.exports = {
             }
         };
 
-        https.request( options, function ( res ) {
+        https.request( options, function( res ) {
             var msg = '';
 
             res.setEncoding( 'utf8' );
 
-            res.on( 'data', function ( chunk ) {
+            res.on( 'data', function( chunk ) {
                 msg += chunk;
             } );
 
-            res.on( 'end', function () {
+            res.on( 'end', function() {
                 if ( typeof cb == 'function' ) {
                     cb( JSON.parse( msg ) );
                 }

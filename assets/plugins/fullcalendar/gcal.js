@@ -4,7 +4,7 @@
  * (c) 2013 Adam Shaw
  */
 
-( function ( $ ) {
+( function( $ ) {
 
 
     var fc = $.fullCalendar;
@@ -14,7 +14,7 @@
     var applyAll = fc.applyAll;
 
 
-    fc.sourceNormalizers.push( function ( sourceOptions ) {
+    fc.sourceNormalizers.push( function( sourceOptions ) {
         if ( sourceOptions.dataType == 'gcal' ||
             sourceOptions.dataType === undefined &&
             ( sourceOptions.url || '' )
@@ -27,7 +27,7 @@
     } );
 
 
-    fc.sourceFetchers.push( function ( sourceOptions, start, end ) {
+    fc.sourceFetchers.push( function( sourceOptions, start, end ) {
         if ( sourceOptions.dataType == 'gcal' ) {
             return transformOptions( sourceOptions, start, end );
         }
@@ -55,16 +55,16 @@
             data: data,
             startParam: false,
             endParam: false,
-            success: function ( data ) {
+            success: function( data ) {
                 var events = [];
                 if ( data.feed.entry ) {
-                    $.each( data.feed.entry, function ( i, entry ) {
+                    $.each( data.feed.entry, function( i, entry ) {
                         var startStr = entry[ 'gd$when' ][ 0 ][ 'startTime' ];
                         var start = parseISO8601( startStr, true );
                         var end = parseISO8601( entry[ 'gd$when' ][ 0 ][ 'endTime' ], true );
                         var allDay = startStr.indexOf( 'T' ) == -1;
                         var url;
-                        $.each( entry.link, function ( i, link ) {
+                        $.each( entry.link, function( i, link ) {
                             if ( link.type == 'text/html' ) {
                                 url = link.href;
                                 if ( ctz ) {
@@ -100,7 +100,7 @@
 
 
     // legacy
-    fc.gcalFeed = function ( url, sourceOptions ) {
+    fc.gcalFeed = function( url, sourceOptions ) {
         return $.extend( {}, sourceOptions, {
             url: url,
             dataType: 'gcal'

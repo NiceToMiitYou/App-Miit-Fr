@@ -6,21 +6,9 @@
  */
 
 function login( req, res ) {
-
-    ConfConference.findOne( 1 )
-        .exec( function ( err, conference ) {
-            if ( err || !conference ) conference = {
-                logo: '/images/logodark.png',
-                name: 'ITEvents',
-                description: 'ITEvents ne trouve pas de conférence active.'
-            };
-
-            res.view( 'login', {
-                conference: conference,
-                layout: 'layouts/login'
-            } );
-        } );
-
+    res.view( 'login', {
+        layout: 'layouts/login'
+    } );
 }
 
 function viewer( req, res ) {
@@ -42,7 +30,11 @@ function live( req, res ) {
 }
 
 module.exports = {
-    index: function ( req, res ) {
+
+    /**
+     * `ConfRouterController.index()`
+     */
+    index: function( req, res ) {
 
         if ( !req.session.user || !req.session.roles ) {
 

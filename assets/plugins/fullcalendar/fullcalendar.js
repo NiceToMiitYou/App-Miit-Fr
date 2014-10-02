@@ -10,7 +10,7 @@
  * For event resizing, requires jQuery UI resizable.
  */
 
-( function ( $, undefined ) {
+( function( $, undefined ) {
 
 
     ;;
@@ -121,14 +121,14 @@
     var fcViews = fc.views = {};
 
 
-    $.fn.fullCalendar = function ( options ) {
+    $.fn.fullCalendar = function( options ) {
 
 
         // method calling
         if ( typeof options == 'string' ) {
             var args = Array.prototype.slice.call( arguments, 1 );
             var res;
-            this.each( function () {
+            this.each( function() {
                 var calendar = $.data( this, 'fullCalendar' );
                 if ( calendar && $.isFunction( calendar[ options ] ) ) {
                     var r = calendar[ options ].apply( calendar, args );
@@ -163,7 +163,7 @@
         );
 
 
-        this.each( function ( i, _element ) {
+        this.each( function( i, _element ) {
             var element = $( _element );
             var calendar = new Calendar( element, options, eventSources );
             element.data( 'fullCalendar', calendar ); // TODO: look into memory leak implications
@@ -208,10 +208,10 @@
         t.today = today;
         t.gotoDate = gotoDate;
         t.incrementDate = incrementDate;
-        t.formatDate = function ( format, date ) {
+        t.formatDate = function( format, date ) {
             return formatDate( format, date, options )
         };
-        t.formatDates = function ( format, date1, date2 ) {
+        t.formatDates = function( format, date1, date2 ) {
             return formatDates( format, date1, date2, options )
         };
         t.getDate = getDate;
@@ -299,7 +299,7 @@
         // called when we know the calendar couldn't be rendered when it was initialized,
         // but we think it's ready now
         function lateRender() {
-            setTimeout( function () { // IE7 needs this so dimensions are calculated correctly
+            setTimeout( function() { // IE7 needs this so dimensions are calculated correctly
                 if ( !currentView.start && bodyVisible() ) { // !currentView.start makes sure this never happens more than once
                     renderView();
                 }
@@ -459,7 +459,7 @@
             if ( !ignoreWindowResize ) {
                 if ( currentView.start ) { // view has already been rendered
                     var uid = ++resizeUID;
-                    setTimeout( function () { // add a delay
+                    setTimeout( function() { // add a delay
                         if ( uid == resizeUID && !ignoreWindowResize && elementVisible() ) {
                             if ( elementOuterWidth != ( elementOuterWidth = element.outerWidth() ) ) {
                                 ignoreWindowResize++; // in case the windowResize callback changes the height
@@ -699,7 +699,7 @@
 
         if ( options.droppable ) {
             $( document )
-                .bind( 'dragstart', function ( ev, ui ) {
+                .bind( 'dragstart', function( ev, ui ) {
                     var _e = ev.target;
                     var e = $( _e );
                     if ( !e.parents( '.fc' )
@@ -711,7 +711,7 @@
                         }
                     }
                 } )
-                .bind( 'dragstop', function ( ev, ui ) {
+                .bind( 'dragstop', function( ev, ui ) {
                     if ( _dragElement ) {
                         currentView.dragStop( _dragElement, ev, ui );
                         _dragElement = null;
@@ -754,7 +754,7 @@
                         .append( renderSection( 'left' ) )
                         .append( renderSection( 'center' ) )
                         .append( renderSection( 'right' ) )
-                    );
+                );
                 return element;
             }
         }
@@ -769,12 +769,12 @@
             var e = $( "<td class='fc-header-" + position + "'/>" );
             var buttonStr = options.header[ position ];
             if ( buttonStr ) {
-                $.each( buttonStr.split( ' ' ), function ( i ) {
+                $.each( buttonStr.split( ' ' ), function( i ) {
                     if ( i > 0 ) {
                         e.append( "<span class='fc-header-space'/>" );
                     }
                     var prevButton;
-                    $.each( this.split( ',' ), function ( j, buttonName ) {
+                    $.each( this.split( ',' ), function( j, buttonName ) {
                         if ( buttonName == 'title' ) {
                             e.append( "<span class='fc-header-title'><h2>&nbsp;</h2></span>" );
                             if ( prevButton ) {
@@ -786,7 +786,7 @@
                             if ( calendar[ buttonName ] ) {
                                 buttonClick = calendar[ buttonName ]; // calendar method
                             } else if ( fcViews[ buttonName ] ) {
-                                buttonClick = function () {
+                                buttonClick = function() {
                                     button.removeClass( tm + '-state-hover' ); // forget why
                                     calendar.changeView( buttonName );
                                 };
@@ -804,28 +804,28 @@
                                         ) +
                                         "</span>"
                                     )
-                                    .click( function () {
+                                    .click( function() {
                                         if ( !button.hasClass( tm + '-state-disabled' ) ) {
                                             buttonClick();
                                         }
                                     } )
-                                    .mousedown( function () {
+                                    .mousedown( function() {
                                         button
                                             .not( '.' + tm + '-state-active' )
                                             .not( '.' + tm + '-state-disabled' )
                                             .addClass( tm + '-state-down' );
                                     } )
-                                    .mouseup( function () {
+                                    .mouseup( function() {
                                         button.removeClass( tm + '-state-down' );
                                     } )
                                     .hover(
-                                        function () {
+                                        function() {
                                             button
                                                 .not( '.' + tm + '-state-active' )
                                                 .not( '.' + tm + '-state-disabled' )
                                                 .addClass( tm + '-state-hover' );
                                         },
-                                        function () {
+                                        function() {
                                             button
                                                 .removeClass( tm + '-state-hover' )
                                                 .removeClass( tm + '-state-down' );
@@ -957,7 +957,7 @@
 
 
         function fetchEventSource( source, fetchID ) {
-            _fetchEventSource( source, function ( events ) {
+            _fetchEventSource( source, function( events ) {
                 if ( fetchID == currentFetchID ) {
                     if ( events ) {
 
@@ -1004,7 +1004,7 @@
             if ( events ) {
                 if ( $.isFunction( events ) ) {
                     pushLoading();
-                    events( cloneDate( rangeStart ), cloneDate( rangeEnd ), function ( events ) {
+                    events( cloneDate( rangeStart ), cloneDate( rangeEnd ), function( events ) {
                         callback( events );
                         popLoading();
                     } );
@@ -1046,7 +1046,7 @@
                     pushLoading();
                     $.ajax( $.extend( {}, ajaxDefaults, source, {
                         data: data,
-                        success: function ( events ) {
+                        success: function( events ) {
                             events = events || [];
                             var res = applyAll( success, this, arguments );
                             if ( $.isArray( res ) ) {
@@ -1054,11 +1054,11 @@
                             }
                             callback( events );
                         },
-                        error: function () {
+                        error: function() {
                             applyAll( error, this, arguments );
                             callback();
                         },
-                        complete: function () {
+                        complete: function() {
                             applyAll( complete, this, arguments );
                             popLoading();
                         }
@@ -1103,11 +1103,11 @@
 
 
         function removeEventSource( source ) {
-            sources = $.grep( sources, function ( src ) {
+            sources = $.grep( sources, function( src ) {
                 return !isSourcesEqual( src, source );
             } );
             // remove all client events from that source
-            cache = $.grep( cache, function ( e ) {
+            cache = $.grep( cache, function( e ) {
                 return !isSourcesEqual( e.source, source );
             } );
             reportEvents( cache );
@@ -1183,7 +1183,7 @@
             } else {
                 if ( !$.isFunction( filter ) ) { // an event ID
                     var id = filter + '';
-                    filter = function ( e ) {
+                    filter = function( e ) {
                         return e._id == id;
                     };
                 }
@@ -1204,7 +1204,7 @@
                 return $.grep( cache, filter );
             } else if ( filter ) { // an event ID
                 filter += '';
-                return $.grep( cache, function ( e ) {
+                return $.grep( cache, function( e ) {
                     return e._id == filter;
                 } );
             }
@@ -1615,87 +1615,87 @@
 
 
     var dateFormatters = {
-        s: function ( d ) {
+        s: function( d ) {
             return d.getSeconds()
         },
-        ss: function ( d ) {
+        ss: function( d ) {
             return zeroPad( d.getSeconds() )
         },
-        m: function ( d ) {
+        m: function( d ) {
             return d.getMinutes()
         },
-        mm: function ( d ) {
+        mm: function( d ) {
             return zeroPad( d.getMinutes() )
         },
-        h: function ( d ) {
+        h: function( d ) {
             return d.getHours() % 12 || 12
         },
-        hh: function ( d ) {
+        hh: function( d ) {
             return zeroPad( d.getHours() % 12 || 12 )
         },
-        H: function ( d ) {
+        H: function( d ) {
             return d.getHours()
         },
-        HH: function ( d ) {
+        HH: function( d ) {
             return zeroPad( d.getHours() )
         },
-        d: function ( d ) {
+        d: function( d ) {
             return d.getDate()
         },
-        dd: function ( d ) {
+        dd: function( d ) {
             return zeroPad( d.getDate() )
         },
-        ddd: function ( d, o ) {
+        ddd: function( d, o ) {
             return o.dayNamesShort[ d.getDay() ]
         },
-        dddd: function ( d, o ) {
+        dddd: function( d, o ) {
             return o.dayNames[ d.getDay() ]
         },
-        M: function ( d ) {
+        M: function( d ) {
             return d.getMonth() + 1
         },
-        MM: function ( d ) {
+        MM: function( d ) {
             return zeroPad( d.getMonth() + 1 )
         },
-        MMM: function ( d, o ) {
+        MMM: function( d, o ) {
             return o.monthNamesShort[ d.getMonth() ]
         },
-        MMMM: function ( d, o ) {
+        MMMM: function( d, o ) {
             return o.monthNames[ d.getMonth() ]
         },
-        yy: function ( d ) {
+        yy: function( d ) {
             return ( d.getFullYear() + '' )
                 .substring( 2 )
         },
-        yyyy: function ( d ) {
+        yyyy: function( d ) {
             return d.getFullYear()
         },
-        t: function ( d ) {
+        t: function( d ) {
             return d.getHours() < 12 ? 'a' : 'p'
         },
-        tt: function ( d ) {
+        tt: function( d ) {
             return d.getHours() < 12 ? 'am' : 'pm'
         },
-        T: function ( d ) {
+        T: function( d ) {
             return d.getHours() < 12 ? 'A' : 'P'
         },
-        TT: function ( d ) {
+        TT: function( d ) {
             return d.getHours() < 12 ? 'AM' : 'PM'
         },
-        u: function ( d ) {
+        u: function( d ) {
             return formatDate( d, "yyyy-MM-dd'T'HH:mm:ss'Z'" )
         },
-        S: function ( d ) {
+        S: function( d ) {
             var date = d.getDate();
             if ( date > 10 && date < 20 ) {
                 return 'th';
             }
             return [ 'st', 'nd', 'rd' ][ date % 10 - 1 ] || 'th';
         },
-        w: function ( d, o ) { // local
+        w: function( d, o ) { // local
             return o.weekNumberCalculation( d );
         },
-        W: function ( d ) { // ISO
+        W: function( d ) { // ISO
             return iso8601Week( d );
         }
     };
@@ -1754,7 +1754,7 @@
 
     function lazySegBind( container, segs, bindHandlers ) {
         container.unbind( 'mouseover' )
-            .mouseover( function ( ev ) {
+            .mouseover( function( ev ) {
                 var parent = ev.target,
                     e,
                     i, seg;
@@ -1899,7 +1899,7 @@
         element
             .attr( 'unselectable', 'on' )
             .css( 'MozUserSelect', 'none' )
-            .bind( 'selectstart.ui', function () {
+            .bind( 'selectstart.ui', function() {
                 return false;
             } );
     }
@@ -1927,7 +1927,7 @@ function enableTextSelection(element) {
 
 
     function setDayID( cell, date ) {
-        cell.each( function ( i, _cell ) {
+        cell.each( function( i, _cell ) {
             _cell.className = _cell.className.replace( /^fc-\w*/, 'fc-' + dayIDs[ date.getDay() ] );
             // TODO: make a way that doesn't rely on order of classes
         } );
@@ -2179,27 +2179,27 @@ function enableTextSelection(element) {
         t.dragStart = dragStart;
         t.dragStop = dragStop;
         t.defaultEventEnd = defaultEventEnd;
-        t.getHoverListener = function () {
+        t.getHoverListener = function() {
             return hoverListener
         };
         t.colLeft = colLeft;
         t.colRight = colRight;
         t.colContentLeft = colContentLeft;
         t.colContentRight = colContentRight;
-        t.getIsCellAllDay = function () {
+        t.getIsCellAllDay = function() {
             return true
         };
         t.allDayRow = allDayRow;
-        t.getRowCnt = function () {
+        t.getRowCnt = function() {
             return rowCnt
         };
-        t.getColCnt = function () {
+        t.getColCnt = function() {
             return colCnt
         };
-        t.getColWidth = function () {
+        t.getColWidth = function() {
             return colWidth
         };
-        t.getDaySegmentContainer = function () {
+        t.getDaySegmentContainer = function() {
             return daySegmentContainer
         };
 
@@ -2324,7 +2324,7 @@ function enableTextSelection(element) {
             bodyRows.filter( ':last' )
                 .addClass( 'fc-last' );
 
-            bodyCells.each( function ( i, _cell ) {
+            bodyCells.each( function( i, _cell ) {
                 var date = cellToDate(
                     Math.floor( i / colCnt ),
                     i % colCnt
@@ -2485,13 +2485,13 @@ function enableTextSelection(element) {
                 rowHeightLast = bodyHeight - rowHeight * ( rowCnt - 1 );
             }
 
-            bodyFirstCells.each( function ( i, _cell ) {
+            bodyFirstCells.each( function( i, _cell ) {
                 if ( i < rowCnt ) {
                     cell = $( _cell );
                     cell.find( '> div' )
                         .css(
                             'min-height', ( i == rowCnt - 1 ? rowHeightLast : rowHeight ) - vsides( cell )
-                        );
+                    );
                 }
             } );
 
@@ -2601,7 +2601,7 @@ function enableTextSelection(element) {
 
 
         function dragStart( _dragElement, ev, ui ) {
-            hoverListener.start( function ( cell ) {
+            hoverListener.start( function( cell ) {
                 clearOverlays();
                 if ( cell ) {
                     renderCellOverlay( cell.row, cell.col, cell.row, cell.col );
@@ -2630,9 +2630,9 @@ function enableTextSelection(element) {
         }
 
 
-        coordinateGrid = new CoordinateGrid( function ( rows, cols ) {
+        coordinateGrid = new CoordinateGrid( function( rows, cols ) {
             var e, n, p;
-            headCells.each( function ( i, _e ) {
+            headCells.each( function( i, _e ) {
                 e = $( _e );
                 n = e.offset()
                     .left;
@@ -2643,7 +2643,7 @@ function enableTextSelection(element) {
                 cols[ i ] = p;
             } );
             p[ 1 ] = n + e.outerWidth();
-            bodyRows.each( function ( i, _e ) {
+            bodyRows.each( function( i, _e ) {
                 if ( i < rowCnt ) {
                     e = $( _e );
                     n = e.offset()
@@ -2661,11 +2661,11 @@ function enableTextSelection(element) {
 
         hoverListener = new HoverListener( coordinateGrid );
 
-        colPositions = new HorizontalPositionCache( function ( col ) {
+        colPositions = new HorizontalPositionCache( function( col ) {
             return firstRowCellInners.eq( col );
         } );
 
-        colContentPositions = new HorizontalPositionCache( function ( col ) {
+        colContentPositions = new HorizontalPositionCache( function( col ) {
             return firstRowCellContentInners.eq( col );
         } );
 
@@ -2860,44 +2860,44 @@ function enableTextSelection(element) {
         t.timePosition = timePosition;
         t.getIsCellAllDay = getIsCellAllDay;
         t.allDayRow = getAllDayRow;
-        t.getCoordinateGrid = function () {
+        t.getCoordinateGrid = function() {
             return coordinateGrid
         }; // specifically for AgendaEventRenderer
-        t.getHoverListener = function () {
+        t.getHoverListener = function() {
             return hoverListener
         };
         t.colLeft = colLeft;
         t.colRight = colRight;
         t.colContentLeft = colContentLeft;
         t.colContentRight = colContentRight;
-        t.getDaySegmentContainer = function () {
+        t.getDaySegmentContainer = function() {
             return daySegmentContainer
         };
-        t.getSlotSegmentContainer = function () {
+        t.getSlotSegmentContainer = function() {
             return slotSegmentContainer
         };
-        t.getMinMinute = function () {
+        t.getMinMinute = function() {
             return minMinute
         };
-        t.getMaxMinute = function () {
+        t.getMaxMinute = function() {
             return maxMinute
         };
-        t.getSlotContainer = function () {
+        t.getSlotContainer = function() {
             return slotContainer
         };
-        t.getRowCnt = function () {
+        t.getRowCnt = function() {
             return 1
         };
-        t.getColCnt = function () {
+        t.getColCnt = function() {
             return colCnt
         };
-        t.getColWidth = function () {
+        t.getColWidth = function() {
             return colWidth
         };
-        t.getSnapHeight = function () {
+        t.getSnapHeight = function() {
             return snapHeight
         };
-        t.getSnapMinutes = function () {
+        t.getSnapMinutes = function() {
             return snapMinutes
         };
         t.defaultSelectionEnd = defaultSelectionEnd;
@@ -3320,7 +3320,7 @@ function enableTextSelection(element) {
             setOuterWidth(
                 axisFirstCells
                 .width( '' )
-                .each( function ( i, _cell ) {
+                .each( function( i, _cell ) {
                     axisWidth = Math.max( axisWidth, $( _cell )
                         .outerWidth() );
                 } ),
@@ -3471,9 +3471,9 @@ function enableTextSelection(element) {
 	-----------------------------------------------------------------------------*/
 
 
-        coordinateGrid = new CoordinateGrid( function ( rows, cols ) {
+        coordinateGrid = new CoordinateGrid( function( rows, cols ) {
             var e, n, p;
-            dayHeadCells.each( function ( i, _e ) {
+            dayHeadCells.each( function( i, _e ) {
                 e = $( _e );
                 n = e.offset()
                     .left;
@@ -3510,11 +3510,11 @@ function enableTextSelection(element) {
 
         hoverListener = new HoverListener( coordinateGrid );
 
-        colPositions = new HorizontalPositionCache( function ( col ) {
+        colPositions = new HorizontalPositionCache( function( col ) {
             return dayBodyCellInners.eq( col );
         } );
 
-        colContentPositions = new HorizontalPositionCache( function ( col ) {
+        colContentPositions = new HorizontalPositionCache( function( col ) {
             return dayBodyCellContentInners.eq( col );
         } );
 
@@ -3687,7 +3687,7 @@ function enableTextSelection(element) {
             if ( ev.which == 1 && opt( 'selectable' ) ) { // ev.which==1 means left mouse button
                 unselect( ev );
                 var dates;
-                hoverListener.start( function ( cell, origCell ) {
+                hoverListener.start( function( cell, origCell ) {
                     clearSelection();
                     if ( cell && cell.col == origCell.col && !getIsCellAllDay( cell ) ) {
                         var d1 = realCellToDate( origCell );
@@ -3704,7 +3704,7 @@ function enableTextSelection(element) {
                     }
                 }, ev );
                 $( document )
-                    .one( 'mouseup', function ( ev ) {
+                    .one( 'mouseup', function( ev ) {
                         hoverListener.stop();
                         if ( dates ) {
                             if ( +dates[ 0 ] == +dates[ 1 ] ) {
@@ -3729,7 +3729,7 @@ function enableTextSelection(element) {
 
 
         function dragStart( _dragElement, ev, ui ) {
-            hoverListener.start( function ( cell ) {
+            hoverListener.start( function( cell ) {
                 clearOverlays();
                 if ( cell ) {
                     if ( getIsCellAllDay( cell ) ) {
@@ -4155,11 +4155,11 @@ function enableTextSelection(element) {
             eventElement.draggable( {
                 opacity: opt( 'dragOpacity', 'month' ), // use whatever the month view was using
                 revertDuration: opt( 'dragRevertDuration' ),
-                start: function ( ev, ui ) {
+                start: function( ev, ui ) {
                     trigger( 'eventDragStart', eventElement, event, ev, ui );
                     hideEvents( event, eventElement );
                     origWidth = eventElement.width();
-                    hoverListener.start( function ( cell, origCell ) {
+                    hoverListener.start( function( cell, origCell ) {
                         clearOverlays();
                         if ( cell ) {
                             revert = false;
@@ -4201,7 +4201,7 @@ function enableTextSelection(element) {
                         eventElement.draggable( 'option', 'revert', revert );
                     }, ev, 'drag' );
                 },
-                stop: function ( ev, ui ) {
+                stop: function( ev, ui ) {
                     hoverListener.stop();
                     clearOverlays();
                     trigger( 'eventDragStop', eventElement, event, ev, ui );
@@ -4260,7 +4260,7 @@ function enableTextSelection(element) {
                 axis: colCnt == 1 ? 'y' : false,
                 opacity: opt( 'dragOpacity' ),
                 revertDuration: opt( 'dragRevertDuration' ),
-                start: function ( ev, ui ) {
+                start: function( ev, ui ) {
 
                     trigger( 'eventDragStart', eventElement, event, ev, ui );
                     hideEvents( event, eventElement );
@@ -4277,7 +4277,7 @@ function enableTextSelection(element) {
                     minuteDelta = prevMinuteDelta = 0;
 
                 },
-                drag: function ( ev, ui ) {
+                drag: function( ev, ui ) {
 
                     // NOTE: this `cell` value is only useful for determining in-bounds and all-day.
                     // Bad for anything else due to the discrepancy between the mouse position and the
@@ -4331,7 +4331,7 @@ function enableTextSelection(element) {
                     eventElement.draggable( 'option', 'revert', !isInBounds );
 
                 },
-                stop: function ( ev, ui ) {
+                stop: function( ev, ui ) {
 
                     clearOverlays();
                     trigger( 'eventDragStop', eventElement, event, ev, ui );
@@ -4404,12 +4404,12 @@ function enableTextSelection(element) {
                     s: '.ui-resizable-handle'
                 },
                 grid: snapHeight,
-                start: function ( ev, ui ) {
+                start: function( ev, ui ) {
                     snapDelta = prevSnapDelta = 0;
                     hideEvents( event, eventElement );
                     trigger( 'eventResizeStart', this, event, ev, ui );
                 },
-                resize: function ( ev, ui ) {
+                resize: function( ev, ui ) {
                     // don't rely on ui.size.height, doesn't take grid into account
                     snapDelta = Math.round( ( Math.max( snapHeight, eventElement.height() ) - ui.originalSize.height ) / snapHeight );
                     if ( snapDelta != prevSnapDelta ) {
@@ -4423,7 +4423,7 @@ function enableTextSelection(element) {
                         prevSnapDelta = snapDelta;
                     }
                 },
-                stop: function ( ev, ui ) {
+                stop: function( ev, ui ) {
                     trigger( 'eventResizeStop', this, event, ev, ui );
                     if ( snapDelta ) {
                         eventResize( this, event, 0, snapMinutes * snapDelta, ev, ui );
@@ -4487,7 +4487,7 @@ function enableTextSelection(element) {
             }
 
             ( levels[ j ] || ( levels[ j ] = [] ) )
-            .push( seg );
+                .push( seg );
         }
 
         return levels;
@@ -4576,7 +4576,7 @@ function enableTextSelection(element) {
             // calculate the backwardCoord from the forwardCoord. consider the series
             seg.backwardCoord = seg.forwardCoord -
                 ( seg.forwardCoord - seriesBackwardCoord ) / // available width for series
-                ( seriesBackwardPressure + 1 ); // # of segments in the series
+            ( seriesBackwardPressure + 1 ); // # of segments in the series
 
             // use this segment's coordinates to computed the coordinates of the less-pressurized
             // forward segments
@@ -4791,7 +4791,7 @@ function enableTextSelection(element) {
 
 
         function triggerEventDestroy() {
-            $.each( eventElementCouples, function ( i, couple ) {
+            $.each( eventElementCouples, function( i, couple ) {
                 t.trigger( 'eventDestroy', couple.event, couple.event, couple.element );
             } );
         }
@@ -4800,20 +4800,20 @@ function enableTextSelection(element) {
         // attaches eventClick, eventMouseover, eventMouseout
         function eventElementHandlers( event, eventElement ) {
             eventElement
-                .click( function ( ev ) {
+                .click( function( ev ) {
                     if ( !eventElement.hasClass( 'ui-draggable-dragging' ) &&
                         !eventElement.hasClass( 'ui-resizable-resizing' ) ) {
                         return trigger( 'eventClick', this, event, ev );
                     }
                 } )
                 .hover(
-                    function ( ev ) {
+                    function( ev ) {
                         trigger( 'eventMouseover', this, event, ev );
                     },
-                    function ( ev ) {
+                    function( ev ) {
                         trigger( 'eventMouseout', this, event, ev );
                     }
-                );
+            );
             // TODO: don't fire eventMouseover/eventMouseout *while* dragging is occuring (on subject element)
             // TODO: same for resizing
         }
@@ -4858,7 +4858,7 @@ function enableTextSelection(element) {
                 dayDelta,
                 minuteDelta,
                 allDay,
-                function () {
+                function() {
                     // TODO: investigate cases where this inverse technique might not work
                     moveEvents( eventsByID[ eventId ], -dayDelta, -minuteDelta, oldAllDay );
                     reportEventChange( eventId );
@@ -4879,7 +4879,7 @@ function enableTextSelection(element) {
                 event,
                 dayDelta,
                 minuteDelta,
-                function () {
+                function() {
                     // TODO: investigate cases where this inverse technique might not work
                     elongateEvents( eventsByID[ eventId ], -dayDelta, -minuteDelta );
                     reportEventChange( eventId );
@@ -4970,7 +4970,7 @@ function enableTextSelection(element) {
 
 
         // initialize important internal variables
-        ( function () {
+        ( function() {
 
             if ( opt( 'weekends' ) === false ) {
                 hiddenDays.push( 0, 6 ); // 0=sunday, 6=saturday
@@ -5248,7 +5248,7 @@ function enableTextSelection(element) {
             );
 
             // report the elements to the View, for general drag/resize utilities
-            segmentElementEach( segments, function ( segment, element ) {
+            segmentElementEach( segments, function( segment, element ) {
                 reportEventElement( segment.event, element );
             } );
 
@@ -5256,7 +5256,7 @@ function enableTextSelection(element) {
             attachHandlers( segments, modifiedEventId );
 
             // call `eventAfterRender` callback for each event
-            segmentElementEach( segments, function ( segment, element ) {
+            segmentElementEach( segments, function( segment, element ) {
                 trigger( 'eventAfterRender', segment.event, segment.event, element );
             } );
         }
@@ -5280,7 +5280,7 @@ function enableTextSelection(element) {
             var elements = [];
 
             // Adjust certain elements' top coordinates
-            segmentElementEach( segments, function ( segment, element ) {
+            segmentElementEach( segments, function( segment, element ) {
                 if ( segment.row === adjustRow ) {
                     element.css( 'top', adjustTop );
                 }
@@ -5333,12 +5333,12 @@ function enableTextSelection(element) {
             // We need this for setting each element's desired outer width, because of the W3C box model.
             // It's important we do this in a separate pass from acually setting the width on the DOM elements
             // because alternating reading/writing dimensions causes reflow for every iteration.
-            segmentElementEach( segments, function ( segment, element ) {
+            segmentElementEach( segments, function( segment, element ) {
                 segment.hsides = hsides( element, true ); // include margins = `true`
             } );
 
             // Set the width of each element
-            segmentElementEach( segments, function ( segment, element ) {
+            segmentElementEach( segments, function( segment, element ) {
                 element.width(
                     Math.max( 0, segment.outerWidth - segment.hsides )
                 );
@@ -5346,7 +5346,7 @@ function enableTextSelection(element) {
 
             // Grab each element's outerHeight (setVerticals uses this).
             // To get an accurate reading, it's important to have each element's width explicitly set already.
-            segmentElementEach( segments, function ( segment, element ) {
+            segmentElementEach( segments, function( segment, element ) {
                 segment.outerHeight = element.outerHeight( true ); // include margins = `true`
             } );
 
@@ -5468,7 +5468,7 @@ function enableTextSelection(element) {
                     "<span class='fc-event-time'>" +
                     htmlEscape(
                         formatDates( event.start, event.end, opt( 'timeFormat' ) )
-                    ) +
+                ) +
                     "</span>";
             }
             html +=
@@ -5480,7 +5480,7 @@ function enableTextSelection(element) {
                 html +=
                     "<div class='ui-resizable-handle ui-resizable-" + ( isRTL ? 'w' : 'e' ) + "'>" +
                     "&nbsp;&nbsp;&nbsp;" + // makes hit area a lot better for IE6/7
-                    "</div>";
+                "</div>";
             }
             html += "</" + ( url ? "a" : "div" ) + ">";
 
@@ -5561,7 +5561,7 @@ function enableTextSelection(element) {
 
             // Set each segment element's CSS "top" property.
             // Each segment object has a "top" property, which is relative to the row's top, but...
-            segmentElementEach( segments, function ( segment, element ) {
+            segmentElementEach( segments, function( segment, element ) {
                 element.css(
                     'top',
                     rowContentTops[ segment.row ] + segment.top // ...now, relative to views's origin
@@ -5723,7 +5723,7 @@ function enableTextSelection(element) {
         function attachHandlers( segments, modifiedEventId ) {
             var segmentContainer = getDaySegmentContainer();
 
-            segmentElementEach( segments, function ( segment, element, i ) {
+            segmentElementEach( segments, function( segment, element, i ) {
                 var event = segment.event;
                 if ( event._id === modifiedEventId ) {
                     bindDaySeg( event, element, segment );
@@ -5762,10 +5762,10 @@ function enableTextSelection(element) {
                 delay: 50,
                 opacity: opt( 'dragOpacity' ),
                 revertDuration: opt( 'dragRevertDuration' ),
-                start: function ( ev, ui ) {
+                start: function( ev, ui ) {
                     trigger( 'eventDragStart', eventElement, event, ev, ui );
                     hideEvents( event, eventElement );
-                    hoverListener.start( function ( cell, origCell, rowDelta, colDelta ) {
+                    hoverListener.start( function( cell, origCell, rowDelta, colDelta ) {
                         eventElement.draggable( 'option', 'revert', !cell || !rowDelta && !colDelta );
                         clearOverlays();
                         if ( cell ) {
@@ -5781,7 +5781,7 @@ function enableTextSelection(element) {
                         }
                     }, ev, 'drag' );
                 },
-                stop: function ( ev, ui ) {
+                stop: function( ev, ui ) {
                     hoverListener.stop();
                     clearOverlays();
                     trigger( 'eventDragStop', eventElement, event, ev, ui );
@@ -5805,10 +5805,10 @@ function enableTextSelection(element) {
             // TODO: look into using jquery-ui mouse widget for this stuff
             disableTextSelection( element ); // prevent native <a> selection for IE
             element
-                .mousedown( function ( ev ) { // prevent native <a> selection for others
+                .mousedown( function( ev ) { // prevent native <a> selection for others
                     ev.preventDefault();
                 } )
-                .click( function ( ev ) {
+                .click( function( ev ) {
                     if ( isResizing ) {
                         ev.preventDefault(); // prevent link from being visited (only method that worked in IE6)
                         ev.stopImmediatePropagation(); // prevent fullcalendar eventClick handler from being called
@@ -5816,7 +5816,7 @@ function enableTextSelection(element) {
                     }
                 } );
 
-            handle.mousedown( function ( ev ) {
+            handle.mousedown( function( ev ) {
                 if ( ev.which != 1 ) {
                     return; // needs to be left mouse button
                 }
@@ -5834,7 +5834,7 @@ function enableTextSelection(element) {
                     .css( 'cursor', direction + '-resize' )
                     .one( 'mouseup', mouseup );
                 trigger( 'eventResizeStart', this, event, ev );
-                hoverListener.start( function ( cell, origCell ) {
+                hoverListener.start( function( cell, origCell ) {
                     if ( cell ) {
 
                         var origCellOffset = cellToCellOffset( origCell );
@@ -5890,7 +5890,7 @@ function enableTextSelection(element) {
                     }
                     // otherwise, the drag handler already restored the old events
 
-                    setTimeout( function () { // make this happen after the element's click event
+                    setTimeout( function() { // make this happen after the element's click event
                         isResizing = false;
                     }, 0 );
                 }
@@ -5972,7 +5972,7 @@ function enableTextSelection(element) {
         // unselectAuto
         if ( opt( 'selectable' ) && opt( 'unselectAuto' ) ) {
             $( document )
-                .mousedown( function ( ev ) {
+                .mousedown( function( ev ) {
                     var ignore = opt( 'unselectCancel' );
                     if ( ignore ) {
                         if ( $( ev.target )
@@ -6020,7 +6020,7 @@ function enableTextSelection(element) {
                 unselect( ev );
                 var _mousedownElement = this;
                 var dates;
-                hoverListener.start( function ( cell, origCell ) { // TODO: maybe put cellToDate/getIsCellAllDay info in cell
+                hoverListener.start( function( cell, origCell ) { // TODO: maybe put cellToDate/getIsCellAllDay info in cell
                     clearSelection();
                     if ( cell && getIsCellAllDay( cell ) ) {
                         dates = [ cellToDate( origCell ), cellToDate( cell ) ].sort( dateCompare );
@@ -6030,7 +6030,7 @@ function enableTextSelection(element) {
                     }
                 }, ev );
                 $( document )
-                    .one( 'mouseup', function ( ev ) {
+                    .one( 'mouseup', function( ev ) {
                         hoverListener.stop();
                         if ( dates ) {
                             if ( +dates[ 0 ] == +dates[ 1 ] ) {
@@ -6095,14 +6095,14 @@ function enableTextSelection(element) {
         var cols;
 
 
-        t.build = function () {
+        t.build = function() {
             rows = [];
             cols = [];
             buildFunc( rows, cols );
         };
 
 
-        t.cell = function ( x, y ) {
+        t.cell = function( x, y ) {
             var rowCnt = rows.length;
             var colCnt = cols.length;
             var i, r = -1,
@@ -6126,7 +6126,7 @@ function enableTextSelection(element) {
         };
 
 
-        t.rect = function ( row0, col0, row1, col1, originElement ) { // row1,col1 is inclusive
+        t.rect = function( row0, col0, row1, col1, originElement ) { // row1,col1 is inclusive
             var origin = originElement.offset();
             return {
                 top: rows[ row0 ][ 0 ] - origin.top,
@@ -6150,7 +6150,7 @@ function enableTextSelection(element) {
         var cell;
 
 
-        t.start = function ( _change, ev, _bindType ) {
+        t.start = function( _change, ev, _bindType ) {
             change = _change;
             firstCell = cell = null;
             coordinateGrid.build();
@@ -6178,7 +6178,7 @@ function enableTextSelection(element) {
         }
 
 
-        t.stop = function () {
+        t.stop = function() {
             $( document )
                 .unbind( bindType, mouse );
             return cell;
@@ -6212,18 +6212,18 @@ function enableTextSelection(element) {
             return elements[ i ] = elements[ i ] || getElement( i );
         }
 
-        t.left = function ( i ) {
+        t.left = function( i ) {
             return lefts[ i ] = lefts[ i ] === undefined ? e( i )
                 .position()
                 .left : lefts[ i ];
         };
 
-        t.right = function ( i ) {
+        t.right = function( i ) {
             return rights[ i ] = rights[ i ] === undefined ? t.left( i ) + e( i )
                 .width() : rights[ i ];
         };
 
-        t.clear = function () {
+        t.clear = function() {
             elements = {};
             lefts = {};
             rights = {};

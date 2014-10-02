@@ -28,10 +28,6 @@ module.exports.policies = {
 
     '*': 'loggedAuth',
 
-    ConfRouterController: {
-        'index': true
-    },
-
     ConfUserController: {
         '*': 'loggedAuth',
 
@@ -43,8 +39,16 @@ module.exports.policies = {
         '*': 'masterAuth'
     },
 
+    ConfConfigController: {
+        'conference': true
+    },
+
     ConfResourceController: {
         'colorScheme': true
+    },
+
+    ConfRouterController: {
+        'index': true
     },
 
     /***************************************************************************

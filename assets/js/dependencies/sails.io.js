@@ -1,9 +1,9 @@
 /*! Socket.IO.min.js build:0.9.16, production. Copyright(c) 2011 LearnBoost <dev@learnboost.com> MIT Licensed */
 var io = "undefined" == typeof module ? {} : module.exports;
-( function () {
-    ( function ( a, b ) {
+( function() {
+    ( function( a, b ) {
         var c = a;
-        c.version = "0.9.16", c.protocol = 1, c.transports = [], c.j = [], c.sockets = {}, c.connect = function ( a, d ) {
+        c.version = "0.9.16", c.protocol = 1, c.transports = [], c.j = [], c.sockets = {}, c.connect = function( a, d ) {
             var e = c.util.parseUri( a ),
                 f, g;
             b && b.location && ( e.protocol = e.protocol || b.location.protocol.slice( 0, -1 ), e.host = e.host || ( b.document ? b.document.domain : b.location.hostname ), e.port = e.port || b.location.port ), f = c.util.uniqueUri( e );
@@ -18,28 +18,28 @@ var io = "undefined" == typeof module ? {} : module.exports;
             return !h[ "force new connection" ] && g && ( c.sockets[ f ] = g ), g = g || c.sockets[ f ], g.of( e.path.length > 1 ? e.path : "" )
         }
     } )( "object" == typeof module ? module.exports : this.io = {}, this ),
-    function ( a, b ) {
+    function( a, b ) {
         var c = a.util = {},
             d = /^(?:(?![^:@]+:[^:@\/]*@)([^:\/?#.]+):)?(?:\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?([^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/,
             e = [ "source", "protocol", "authority", "userInfo", "user", "password", "host", "port", "relative", "path", "directory", "file", "query", "anchor" ];
-        c.parseUri = function ( a ) {
+        c.parseUri = function( a ) {
             var b = d.exec( a || "" ),
                 c = {},
                 f = 14;
             while ( f-- ) c[ e[ f ] ] = b[ f ] || "";
             return c
-        }, c.uniqueUri = function ( a ) {
+        }, c.uniqueUri = function( a ) {
             var c = a.protocol,
                 d = a.host,
                 e = a.port;
             return "document" in b ? ( d = d || document.domain, e = e || ( c == "https" && document.location.protocol !== "https:" ? 443 : document.location.port ) ) : ( d = d || "localhost", !e && c == "https" && ( e = 443 ) ), ( c || "http" ) + "://" + d + ":" + ( e || 80 )
-        }, c.query = function ( a, b ) {
+        }, c.query = function( a, b ) {
             var d = c.chunkQuery( a || "" ),
                 e = [];
             c.merge( d, c.chunkQuery( b || "" ) );
             for ( var f in d ) d.hasOwnProperty( f ) && e.push( f + "=" + d[ f ] );
             return e.length ? "?" + e.join( "&" ) : ""
-        }, c.chunkQuery = function ( a ) {
+        }, c.chunkQuery = function( a ) {
             var b = {},
                 c = a.split( "&" ),
                 d = 0,
@@ -49,12 +49,12 @@ var io = "undefined" == typeof module ? {} : module.exports;
             return b
         };
         var f = !1;
-        c.load = function ( a ) {
+        c.load = function( a ) {
             if ( "document" in b && document.readyState === "complete" || f ) return a();
             c.on( b, "load", a, !1 )
-        }, c.on = function ( a, b, c, d ) {
+        }, c.on = function( a, b, c, d ) {
             a.attachEvent ? a.attachEvent( "on" + b, c ) : a.addEventListener && a.addEventListener( b, c, d )
-        }, c.request = function ( a ) {
+        }, c.request = function( a ) {
             if ( a && "undefined" != typeof XDomainRequest && !c.ua.hasCORS ) return new XDomainRequest;
             if ( "undefined" != typeof XMLHttpRequest && ( !a || c.ua.hasCORS ) ) return new XMLHttpRequest;
             if ( !a ) try {
@@ -62,40 +62,40 @@ var io = "undefined" == typeof module ? {} : module.exports;
                     .join( "X" ) ] )( "Microsoft.XMLHTTP" )
             } catch ( b ) {}
             return null
-        }, "undefined" != typeof window && c.load( function () {
+        }, "undefined" != typeof window && c.load( function() {
             f = !0
-        } ), c.defer = function ( a ) {
+        } ), c.defer = function( a ) {
             if ( !c.ua.webkit || "undefined" != typeof importScripts ) return a();
-            c.load( function () {
+            c.load( function() {
                 setTimeout( a, 100 )
             } )
-        }, c.merge = function ( b, d, e, f ) {
+        }, c.merge = function( b, d, e, f ) {
             var g = f || [],
                 h = typeof e == "undefined" ? 2 : e,
                 i;
             for ( i in d ) d.hasOwnProperty( i ) && c.indexOf( g, i ) < 0 && ( typeof b[ i ] != "object" || !h ? ( b[ i ] = d[ i ], g.push( d[ i ] ) ) : c.merge( b[ i ], d[ i ], h - 1, g ) );
             return b
-        }, c.mixin = function ( a, b ) {
+        }, c.mixin = function( a, b ) {
             c.merge( a.prototype, b.prototype )
-        }, c.inherit = function ( a, b ) {
+        }, c.inherit = function( a, b ) {
             function c() {}
             c.prototype = b.prototype, a.prototype = new c
-        }, c.isArray = Array.isArray || function ( a ) {
+        }, c.isArray = Array.isArray || function( a ) {
             return Object.prototype.toString.call( a ) === "[object Array]"
-        }, c.intersect = function ( a, b ) {
+        }, c.intersect = function( a, b ) {
             var d = [],
                 e = a.length > b.length ? a : b,
                 f = a.length > b.length ? b : a;
-            for ( var g = 0, h = f.length; g < h; g++ ) ~c.indexOf( e, f[ g ] ) && d.push( f[ g ] );
+            for ( var g = 0, h = f.length; g < h; g++ )~ c.indexOf( e, f[ g ] ) && d.push( f[ g ] );
             return d
-        }, c.indexOf = function ( a, b, c ) {
+        }, c.indexOf = function( a, b, c ) {
             for ( var d = a.length, c = c < 0 ? c + d < 0 ? 0 : c + d : c || 0; c < d && a[ c ] !== b; c++ );
             return d <= c ? -1 : c
-        }, c.toArray = function ( a ) {
+        }, c.toArray = function( a ) {
             var b = [];
             for ( var c = 0, d = a.length; c < d; c++ ) b.push( a[ c ] );
             return b
-        }, c.ua = {}, c.ua.hasCORS = "undefined" != typeof XMLHttpRequest && function () {
+        }, c.ua = {}, c.ua.hasCORS = "undefined" != typeof XMLHttpRequest && function() {
             try {
                 var a = new XMLHttpRequest
             } catch ( b ) {
@@ -104,17 +104,17 @@ var io = "undefined" == typeof module ? {} : module.exports;
             return a.withCredentials != undefined
         }(), c.ua.webkit = "undefined" != typeof navigator && /webkit/i.test( navigator.userAgent ), c.ua.iDevice = "undefined" != typeof navigator && /iPad|iPhone|iPod/i.test( navigator.userAgent )
     }( "undefined" != typeof io ? io : module.exports, this ),
-    function ( a, b ) {
+    function( a, b ) {
         function c() {}
-        a.EventEmitter = c, c.prototype.on = function ( a, c ) {
+        a.EventEmitter = c, c.prototype.on = function( a, c ) {
             return this.$events || ( this.$events = {} ), this.$events[ a ] ? b.util.isArray( this.$events[ a ] ) ? this.$events[ a ].push( c ) : this.$events[ a ] = [ this.$events[ a ], c ] : this.$events[ a ] = c, this
-        }, c.prototype.addListener = c.prototype.on, c.prototype.once = function ( a, b ) {
+        }, c.prototype.addListener = c.prototype.on, c.prototype.once = function( a, b ) {
             function d() {
                 c.removeListener( a, d ), b.apply( this, arguments )
             }
             var c = this;
             return d.listener = b, this.on( a, d ), this
-        }, c.prototype.removeListener = function ( a, c ) {
+        }, c.prototype.removeListener = function( a, c ) {
             if ( this.$events && this.$events[ a ] ) {
                 var d = this.$events[ a ];
                 if ( b.util.isArray( d ) ) {
@@ -129,11 +129,11 @@ var io = "undefined" == typeof module ? {} : module.exports;
                 } else( d === c || d.listener && d.listener === c ) && delete this.$events[ a ]
             }
             return this
-        }, c.prototype.removeAllListeners = function ( a ) {
+        }, c.prototype.removeAllListeners = function( a ) {
             return a === undefined ? ( this.$events = {}, this ) : ( this.$events && this.$events[ a ] && ( this.$events[ a ] = null ), this )
-        }, c.prototype.listeners = function ( a ) {
+        }, c.prototype.listeners = function( a ) {
             return this.$events || ( this.$events = {} ), this.$events[ a ] || ( this.$events[ a ] = [] ), b.util.isArray( this.$events[ a ] ) || ( this.$events[ a ] = [ this.$events[ a ] ] ), this.$events[ a ]
-        }, c.prototype.emit = function ( a ) {
+        }, c.prototype.emit = function( a ) {
             if ( !this.$events ) return !1;
             var c = this.$events[ a ];
             if ( !c ) return !1;
@@ -147,7 +147,7 @@ var io = "undefined" == typeof module ? {} : module.exports;
             return !0
         }
     }( "undefined" != typeof io ? io : module.exports, "undefined" != typeof io ? io : module.parent.exports ),
-    function ( exports, nativeJSON ) {
+    function( exports, nativeJSON ) {
         function f( a ) {
             return a < 10 ? "0" + a : a
         }
@@ -157,7 +157,7 @@ var io = "undefined" == typeof module ? {} : module.exports;
         }
 
         function quote( a ) {
-            return escapable.lastIndex = 0, escapable.test( a ) ? '"' + a.replace( escapable, function ( a ) {
+            return escapable.lastIndex = 0, escapable.test( a ) ? '"' + a.replace( escapable, function( a ) {
                 var b = meta[ a ];
                 return typeof b == "string" ? b : "\\u" + ( "0000" + a.charCodeAt( 0 )
                         .toString( 16 ) )
@@ -211,7 +211,7 @@ var io = "undefined" == typeof module ? {} : module.exports;
                 "\\": "\\\\"
             },
             rep;
-        JSON.stringify = function ( a, b, c ) {
+        JSON.stringify = function( a, b, c ) {
             var d;
             gap = "", indent = "";
             if ( typeof c == "number" )
@@ -222,7 +222,7 @@ var io = "undefined" == typeof module ? {} : module.exports;
                 "": a
             } );
             throw new Error( "JSON.stringify" )
-        }, JSON.parse = function ( text, reviver ) {
+        }, JSON.parse = function( text, reviver ) {
             function walk( a, b ) {
                 var c, d, e = a[ b ];
                 if ( e && typeof e == "object" )
@@ -230,7 +230,7 @@ var io = "undefined" == typeof module ? {} : module.exports;
                 return reviver.call( a, b, e )
             }
             var j;
-            text = String( text ), cx.lastIndex = 0, cx.test( text ) && ( text = text.replace( cx, function ( a ) {
+            text = String( text ), cx.lastIndex = 0, cx.test( text ) && ( text = text.replace( cx, function( a ) {
                 return "\\u" + ( "0000" + a.charCodeAt( 0 )
                         .toString( 16 ) )
                     .slice( -4 )
@@ -243,14 +243,14 @@ var io = "undefined" == typeof module ? {} : module.exports;
             throw new SyntaxError( "JSON.parse" )
         }
     }( "undefined" != typeof io ? io : module.exports, typeof JSON != "undefined" ? JSON : undefined ),
-    function ( a, b ) {
+    function( a, b ) {
         var c = a.parser = {},
             d = c.packets = [ "disconnect", "connect", "heartbeat", "message", "json", "event", "ack", "error", "noop" ],
             e = c.reasons = [ "transport not supported", "client not handshaken", "unauthorized" ],
             f = c.advice = [ "reconnect" ],
             g = b.JSON,
             h = b.util.indexOf;
-        c.encodePacket = function ( a ) {
+        c.encodePacket = function( a ) {
             var b = h( d, a.type ),
                 c = a.id || "",
                 i = a.endpoint || "",
@@ -282,7 +282,7 @@ var io = "undefined" == typeof module ? {} : module.exports;
             }
             var o = [ b, c + ( j == "data" ? "+" : "" ), i ];
             return k !== null && k !== undefined && o.push( k ), o.join( ":" )
-        }, c.encodePayload = function ( a ) {
+        }, c.encodePayload = function( a ) {
             var b = "";
             if ( a.length == 1 ) return a[ 0 ];
             for ( var c = 0, d = a.length; c < d; c++ ) {
@@ -292,7 +292,7 @@ var io = "undefined" == typeof module ? {} : module.exports;
             return b
         };
         var i = /([^:]+):([0-9]+)?(\+)?:([^:]+)?:?([\s\S]*)?/;
-        c.decodePacket = function ( a ) {
+        c.decodePacket = function( a ) {
             var b = a.match( i );
             if ( !b ) return {};
             var c = b[ 2 ] || "",
@@ -338,7 +338,7 @@ var io = "undefined" == typeof module ? {} : module.exports;
                 case "heartbeat":
             }
             return h
-        }, c.decodePayload = function ( a ) {
+        }, c.decodePayload = function( a ) {
             if ( a.charAt( 0 ) == "\ufffd" ) {
                 var b = [];
                 for ( var d = 1, e = ""; d < a.length; d++ ) a.charAt( d ) == "\ufffd" ? ( b.push( c.decodePacket( a.substr( d + 1 )
@@ -348,13 +348,13 @@ var io = "undefined" == typeof module ? {} : module.exports;
             return [ c.decodePacket( a ) ]
         }
     }( "undefined" != typeof io ? io : module.exports, "undefined" != typeof io ? io : module.parent.exports ),
-    function ( a, b ) {
+    function( a, b ) {
         function c( a, b ) {
             this.socket = a, this.sessid = b
         }
-        a.Transport = c, b.util.mixin( c, b.EventEmitter ), c.prototype.heartbeats = function () {
+        a.Transport = c, b.util.mixin( c, b.EventEmitter ), c.prototype.heartbeats = function() {
             return !0
-        }, c.prototype.onData = function ( a ) {
+        }, c.prototype.onData = function( a ) {
             this.clearCloseTimeout(), ( this.socket.connected || this.socket.connecting || this.socket.reconnecting ) && this.setCloseTimeout();
             if ( a !== "" ) {
                 var c = b.parser.decodePayload( a );
@@ -362,42 +362,42 @@ var io = "undefined" == typeof module ? {} : module.exports;
                     for ( var d = 0, e = c.length; d < e; d++ ) this.onPacket( c[ d ] )
             }
             return this
-        }, c.prototype.onPacket = function ( a ) {
+        }, c.prototype.onPacket = function( a ) {
             return this.socket.setHeartbeatTimeout(), a.type == "heartbeat" ? this.onHeartbeat() : ( a.type == "connect" && a.endpoint == "" && this.onConnect(), a.type == "error" && a.advice == "reconnect" && ( this.isOpen = !1 ), this.socket.onPacket( a ), this )
-        }, c.prototype.setCloseTimeout = function () {
+        }, c.prototype.setCloseTimeout = function() {
             if ( !this.closeTimeout ) {
                 var a = this;
-                this.closeTimeout = setTimeout( function () {
+                this.closeTimeout = setTimeout( function() {
                     a.onDisconnect()
                 }, this.socket.closeTimeout )
             }
-        }, c.prototype.onDisconnect = function () {
+        }, c.prototype.onDisconnect = function() {
             return this.isOpen && this.close(), this.clearTimeouts(), this.socket.onDisconnect(), this
-        }, c.prototype.onConnect = function () {
+        }, c.prototype.onConnect = function() {
             return this.socket.onConnect(), this
-        }, c.prototype.clearCloseTimeout = function () {
+        }, c.prototype.clearCloseTimeout = function() {
             this.closeTimeout && ( clearTimeout( this.closeTimeout ), this.closeTimeout = null )
-        }, c.prototype.clearTimeouts = function () {
+        }, c.prototype.clearTimeouts = function() {
             this.clearCloseTimeout(), this.reopenTimeout && clearTimeout( this.reopenTimeout )
-        }, c.prototype.packet = function ( a ) {
+        }, c.prototype.packet = function( a ) {
             this.send( b.parser.encodePacket( a ) )
-        }, c.prototype.onHeartbeat = function ( a ) {
+        }, c.prototype.onHeartbeat = function( a ) {
             this.packet( {
                 type: "heartbeat"
             } )
-        }, c.prototype.onOpen = function () {
+        }, c.prototype.onOpen = function() {
             this.isOpen = !0, this.clearCloseTimeout(), this.socket.onOpen()
-        }, c.prototype.onClose = function () {
+        }, c.prototype.onClose = function() {
             var a = this;
             this.isOpen = !1, this.socket.onClose(), this.onDisconnect()
-        }, c.prototype.prepareUrl = function () {
+        }, c.prototype.prepareUrl = function() {
             var a = this.socket.options;
             return this.scheme() + "://" + a.host + ":" + a.port + "/" + a.resource + "/" + b.protocol + "/" + this.name + "/" + this.sessid
-        }, c.prototype.ready = function ( a, b ) {
+        }, c.prototype.ready = function( a, b ) {
             b.call( this )
         }
     }( "undefined" != typeof io ? io : module.exports, "undefined" != typeof io ? io : module.parent.exports ),
-    function ( a, b, c ) {
+    function( a, b, c ) {
         function d( a ) {
             this.options = {
                 port: 80,
@@ -419,7 +419,7 @@ var io = "undefined" == typeof module ? {} : module.exports;
             }, b.util.merge( this.options, a ), this.connected = !1, this.open = !1, this.connecting = !1, this.reconnecting = !1, this.namespaces = {}, this.buffer = [], this.doBuffer = !1;
             if ( this.options[ "sync disconnect on unload" ] && ( !this.isXDomain() || b.util.ua.hasCORS ) ) {
                 var d = this;
-                b.util.on( c, "beforeunload", function () {
+                b.util.on( c, "beforeunload", function() {
                     d.disconnectSync()
                 }, !1 )
             }
@@ -427,15 +427,15 @@ var io = "undefined" == typeof module ? {} : module.exports;
         }
 
         function e() {}
-        a.Socket = d, b.util.mixin( d, b.EventEmitter ), d.prototype.of = function ( a ) {
+        a.Socket = d, b.util.mixin( d, b.EventEmitter ), d.prototype.of = function( a ) {
             return this.namespaces[ a ] || ( this.namespaces[ a ] = new b.SocketNamespace( this, a ), a !== "" && this.namespaces[ a ].packet( {
                 type: "connect"
             } ) ), this.namespaces[ a ]
-        }, d.prototype.publish = function () {
+        }, d.prototype.publish = function() {
             this.emit.apply( this, arguments );
             var a;
             for ( var b in this.namespaces ) this.namespaces.hasOwnProperty( b ) && ( a = this.of( b ), a.$emit.apply( a, arguments ) )
-        }, d.prototype.handshake = function ( a ) {
+        }, d.prototype.handshake = function( a ) {
             function f( b ) {
                 b instanceof Error ? ( c.connecting = !1, c.onError( b.message ) ) : a.apply( null, b.split( ":" ) )
             }
@@ -445,30 +445,30 @@ var io = "undefined" == typeof module ? {} : module.exports;
             if ( this.isXDomain() && !b.util.ua.hasCORS ) {
                 var h = document.getElementsByTagName( "script" )[ 0 ],
                     i = document.createElement( "script" );
-                i.src = g + "&jsonp=" + b.j.length, h.parentNode.insertBefore( i, h ), b.j.push( function ( a ) {
+                i.src = g + "&jsonp=" + b.j.length, h.parentNode.insertBefore( i, h ), b.j.push( function( a ) {
                     f( a ), i.parentNode.removeChild( i )
                 } )
             } else {
                 var j = b.util.request();
-                j.open( "GET", g, !0 ), this.isXDomain() && ( j.withCredentials = !0 ), j.onreadystatechange = function () {
+                j.open( "GET", g, !0 ), this.isXDomain() && ( j.withCredentials = !0 ), j.onreadystatechange = function() {
                     j.readyState == 4 && ( j.onreadystatechange = e, j.status == 200 ? f( j.responseText ) : j.status == 403 ? c.onError( j.responseText ) : ( c.connecting = !1, !c.reconnecting && c.onError( j.responseText ) ) )
                 }, j.send( null )
             }
-        }, d.prototype.getTransport = function ( a ) {
+        }, d.prototype.getTransport = function( a ) {
             var c = a || this.transports,
                 d;
             for ( var e = 0, f; f = c[ e ]; e++ )
                 if ( b.Transport[ f ] && b.Transport[ f ].check( this ) && ( !this.isXDomain() || b.Transport[ f ].xdomainCheck( this ) ) ) return new b.Transport[ f ]( this, this.sessionid );
             return null
-        }, d.prototype.connect = function ( a ) {
+        }, d.prototype.connect = function( a ) {
             if ( this.connecting ) return this;
             var c = this;
-            return c.connecting = !0, this.handshake( function ( d, e, f, g ) {
+            return c.connecting = !0, this.handshake( function( d, e, f, g ) {
                 function h( a ) {
                     c.transport && c.transport.clearTimeouts(), c.transport = c.getTransport( a );
                     if ( !c.transport ) return c.publish( "connect_failed" );
-                    c.transport.ready( c, function () {
-                        c.connecting = !0, c.publish( "connecting", c.transport.name ), c.transport.open(), c.options[ "connect timeout" ] && ( c.connectTimeoutTimer = setTimeout( function () {
+                    c.transport.ready( c, function() {
+                        c.connecting = !0, c.publish( "connecting", c.transport.name ), c.transport.open(), c.options[ "connect timeout" ] && ( c.connectTimeoutTimer = setTimeout( function() {
                             if ( !c.connected ) {
                                 c.connecting = !1;
                                 if ( c.options[ "try multiple transports" ] ) {
@@ -480,53 +480,53 @@ var io = "undefined" == typeof module ? {} : module.exports;
                         }, c.options[ "connect timeout" ] ) )
                     } )
                 }
-                c.sessionid = d, c.closeTimeout = f * 1e3, c.heartbeatTimeout = e * 1e3, c.transports || ( c.transports = c.origTransports = g ? b.util.intersect( g.split( "," ), c.options.transports ) : c.options.transports ), c.setHeartbeatTimeout(), h( c.transports ), c.once( "connect", function () {
+                c.sessionid = d, c.closeTimeout = f * 1e3, c.heartbeatTimeout = e * 1e3, c.transports || ( c.transports = c.origTransports = g ? b.util.intersect( g.split( "," ), c.options.transports ) : c.options.transports ), c.setHeartbeatTimeout(), h( c.transports ), c.once( "connect", function() {
                     clearTimeout( c.connectTimeoutTimer ), a && typeof a == "function" && a()
                 } )
             } ), this
-        }, d.prototype.setHeartbeatTimeout = function () {
+        }, d.prototype.setHeartbeatTimeout = function() {
             clearTimeout( this.heartbeatTimeoutTimer );
             if ( this.transport && !this.transport.heartbeats() ) return;
             var a = this;
-            this.heartbeatTimeoutTimer = setTimeout( function () {
+            this.heartbeatTimeoutTimer = setTimeout( function() {
                 a.transport.onClose()
             }, this.heartbeatTimeout )
-        }, d.prototype.packet = function ( a ) {
+        }, d.prototype.packet = function( a ) {
             return this.connected && !this.doBuffer ? this.transport.packet( a ) : this.buffer.push( a ), this
-        }, d.prototype.setBuffer = function ( a ) {
+        }, d.prototype.setBuffer = function( a ) {
             this.doBuffer = a, !a && this.connected && this.buffer.length && ( this.options.manualFlush || this.flushBuffer() )
-        }, d.prototype.flushBuffer = function () {
+        }, d.prototype.flushBuffer = function() {
             this.transport.payload( this.buffer ), this.buffer = []
-        }, d.prototype.disconnect = function () {
+        }, d.prototype.disconnect = function() {
             if ( this.connected || this.connecting ) this.open && this.of( "" )
                 .packet( {
                     type: "disconnect"
                 } ), this.onDisconnect( "booted" );
             return this
-        }, d.prototype.disconnectSync = function () {
+        }, d.prototype.disconnectSync = function() {
             var a = b.util.request(),
                 c = [ "http" + ( this.options.secure ? "s" : "" ) + ":/", this.options.host + ":" + this.options.port, this.options.resource, b.protocol, "", this.sessionid ].join( "/" ) + "/?disconnect=1";
             a.open( "GET", c, !1 ), a.send( null ), this.onDisconnect( "booted" )
-        }, d.prototype.isXDomain = function () {
+        }, d.prototype.isXDomain = function() {
             var a = c.location.port || ( "https:" == c.location.protocol ? 443 : 80 );
             return this.options.host !== c.location.hostname || this.options.port != a
-        }, d.prototype.onConnect = function () {
+        }, d.prototype.onConnect = function() {
             this.connected || ( this.connected = !0, this.connecting = !1, this.doBuffer || this.setBuffer( !1 ), this.emit( "connect" ) )
-        }, d.prototype.onOpen = function () {
+        }, d.prototype.onOpen = function() {
             this.open = !0
-        }, d.prototype.onClose = function () {
+        }, d.prototype.onClose = function() {
             this.open = !1, clearTimeout( this.heartbeatTimeoutTimer )
-        }, d.prototype.onPacket = function ( a ) {
+        }, d.prototype.onPacket = function( a ) {
             this.of( a.endpoint )
                 .onPacket( a )
-        }, d.prototype.onError = function ( a ) {
+        }, d.prototype.onError = function( a ) {
             a && a.advice && a.advice === "reconnect" && ( this.connected || this.connecting ) && ( this.disconnect(), this.options.reconnect && this.reconnect() ), this.publish( "error", a && a.reason ? a.reason : a )
-        }, d.prototype.onDisconnect = function ( a ) {
+        }, d.prototype.onDisconnect = function( a ) {
             var b = this.connected,
                 c = this.connecting;
             this.connected = !1, this.connecting = !1, this.open = !1;
             if ( b || c ) this.transport.close(), this.transport.clearTimeouts(), b && ( this.publish( "disconnect", a ), "booted" != a && this.options.reconnect && !this.reconnecting && this.reconnect() )
-        }, d.prototype.reconnect = function () {
+        }, d.prototype.reconnect = function() {
             function e() {
                 if ( a.connected ) {
                     for ( var b in a.namespaces ) a.namespaces.hasOwnProperty( b ) && "" !== b && a.namespaces[ b ].packet( {
@@ -551,7 +551,7 @@ var io = "undefined" == typeof module ? {} : module.exports;
             this.options[ "try multiple transports" ] = !1, this.reconnectionTimer = setTimeout( f, this.reconnectionDelay ), this.on( "connect", f )
         }
     }( "undefined" != typeof io ? io : module.exports, "undefined" != typeof io ? io : module.parent.exports, this ),
-    function ( a, b ) {
+    function( a, b ) {
         function c( a, b ) {
             this.socket = a, this.name = b || "", this.flags = {}, this.json = new d( this, "json" ), this.ackPackets = 0, this.acks = {}
         }
@@ -559,17 +559,17 @@ var io = "undefined" == typeof module ? {} : module.exports;
         function d( a, b ) {
             this.namespace = a, this.name = b
         }
-        a.SocketNamespace = c, b.util.mixin( c, b.EventEmitter ), c.prototype.$emit = b.EventEmitter.prototype.emit, c.prototype.of = function () {
+        a.SocketNamespace = c, b.util.mixin( c, b.EventEmitter ), c.prototype.$emit = b.EventEmitter.prototype.emit, c.prototype.of = function() {
             return this.socket.of.apply( this.socket, arguments )
-        }, c.prototype.packet = function ( a ) {
+        }, c.prototype.packet = function( a ) {
             return a.endpoint = this.name, this.socket.packet( a ), this.flags = {}, this
-        }, c.prototype.send = function ( a, b ) {
+        }, c.prototype.send = function( a, b ) {
             var c = {
                 type: this.flags.json ? "json" : "message",
                 data: a
             };
             return "function" == typeof b && ( c.id = ++this.ackPackets, c.ack = !0, this.acks[ c.id ] = b ), this.packet( c )
-        }, c.prototype.emit = function ( a ) {
+        }, c.prototype.emit = function( a ) {
             var b = Array.prototype.slice.call( arguments, 1 ),
                 c = b[ b.length - 1 ],
                 d = {
@@ -577,11 +577,11 @@ var io = "undefined" == typeof module ? {} : module.exports;
                     name: a
                 };
             return "function" == typeof c && ( d.id = ++this.ackPackets, d.ack = "data", this.acks[ d.id ] = c, b = b.slice( 0, b.length - 1 ) ), d.args = b, this.packet( d )
-        }, c.prototype.disconnect = function () {
+        }, c.prototype.disconnect = function() {
             return this.name === "" ? this.socket.disconnect() : ( this.packet( {
                 type: "disconnect"
             } ), this.$emit( "disconnect" ) ), this
-        }, c.prototype.onPacket = function ( a ) {
+        }, c.prototype.onPacket = function( a ) {
             function d() {
                 c.packet( {
                     type: "ack",
@@ -615,70 +615,70 @@ var io = "undefined" == typeof module ? {} : module.exports;
                 case "error":
                     a.advice ? this.socket.onError( a ) : a.reason == "unauthorized" ? this.$emit( "connect_failed", a.reason ) : this.$emit( "error", a.reason )
             }
-        }, d.prototype.send = function () {
+        }, d.prototype.send = function() {
             this.namespace.flags[ this.name ] = !0, this.namespace.send.apply( this.namespace, arguments )
-        }, d.prototype.emit = function () {
+        }, d.prototype.emit = function() {
             this.namespace.flags[ this.name ] = !0, this.namespace.emit.apply( this.namespace, arguments )
         }
     }( "undefined" != typeof io ? io : module.exports, "undefined" != typeof io ? io : module.parent.exports ),
-    function ( a, b, c ) {
+    function( a, b, c ) {
         function d( a ) {
             b.Transport.apply( this, arguments )
         }
-        a.websocket = d, b.util.inherit( d, b.Transport ), d.prototype.name = "websocket", d.prototype.open = function () {
+        a.websocket = d, b.util.inherit( d, b.Transport ), d.prototype.name = "websocket", d.prototype.open = function() {
             var a = b.util.query( this.socket.options.query ),
                 d = this,
                 e;
-            return e || ( e = c.MozWebSocket || c.WebSocket ), this.websocket = new e( this.prepareUrl() + a ), this.websocket.onopen = function () {
+            return e || ( e = c.MozWebSocket || c.WebSocket ), this.websocket = new e( this.prepareUrl() + a ), this.websocket.onopen = function() {
                 d.onOpen(), d.socket.setBuffer( !1 )
-            }, this.websocket.onmessage = function ( a ) {
+            }, this.websocket.onmessage = function( a ) {
                 d.onData( a.data )
-            }, this.websocket.onclose = function () {
+            }, this.websocket.onclose = function() {
                 d.onClose(), d.socket.setBuffer( !0 )
-            }, this.websocket.onerror = function ( a ) {
+            }, this.websocket.onerror = function( a ) {
                 d.onError( a )
             }, this
-        }, b.util.ua.iDevice ? d.prototype.send = function ( a ) {
+        }, b.util.ua.iDevice ? d.prototype.send = function( a ) {
             var b = this;
-            return setTimeout( function () {
+            return setTimeout( function() {
                 b.websocket.send( a )
             }, 0 ), this
-        } : d.prototype.send = function ( a ) {
+        } : d.prototype.send = function( a ) {
             return this.websocket.send( a ), this
-        }, d.prototype.payload = function ( a ) {
+        }, d.prototype.payload = function( a ) {
             for ( var b = 0, c = a.length; b < c; b++ ) this.packet( a[ b ] );
             return this
-        }, d.prototype.close = function () {
+        }, d.prototype.close = function() {
             return this.websocket.close(), this
-        }, d.prototype.onError = function ( a ) {
+        }, d.prototype.onError = function( a ) {
             this.socket.onError( a )
-        }, d.prototype.scheme = function () {
+        }, d.prototype.scheme = function() {
             return this.socket.options.secure ? "wss" : "ws"
-        }, d.check = function () {
+        }, d.check = function() {
             return "WebSocket" in c && !( "__addTask" in WebSocket ) || "MozWebSocket" in c
-        }, d.xdomainCheck = function () {
+        }, d.xdomainCheck = function() {
             return !0
         }, b.transports.push( "websocket" )
     }( "undefined" != typeof io ? io.Transport : module.exports, "undefined" != typeof io ? io : module.parent.exports, this ),
-    function ( a, b ) {
+    function( a, b ) {
         function c() {
             b.Transport.websocket.apply( this, arguments )
         }
-        a.flashsocket = c, b.util.inherit( c, b.Transport.websocket ), c.prototype.name = "flashsocket", c.prototype.open = function () {
+        a.flashsocket = c, b.util.inherit( c, b.Transport.websocket ), c.prototype.name = "flashsocket", c.prototype.open = function() {
             var a = this,
                 c = arguments;
-            return WebSocket.__addTask( function () {
+            return WebSocket.__addTask( function() {
                 b.Transport.websocket.prototype.open.apply( a, c )
             } ), this
-        }, c.prototype.send = function () {
+        }, c.prototype.send = function() {
             var a = this,
                 c = arguments;
-            return WebSocket.__addTask( function () {
+            return WebSocket.__addTask( function() {
                 b.Transport.websocket.prototype.send.apply( a, c )
             } ), this
-        }, c.prototype.close = function () {
+        }, c.prototype.close = function() {
             return WebSocket.__tasks.length = 0, b.Transport.websocket.prototype.close.call( this ), this
-        }, c.prototype.ready = function ( a, d ) {
+        }, c.prototype.ready = function( a, d ) {
             function e() {
                 var b = a.options,
                     e = b[ "flash policy port" ],
@@ -688,14 +688,14 @@ var io = "undefined" == typeof module ? {} : module.exports;
             var f = this;
             if ( document.body ) return e();
             b.util.load( e )
-        }, c.check = function () {
+        }, c.check = function() {
             return typeof WebSocket != "undefined" && "__initialize" in WebSocket && !!swfobject ? swfobject.getFlashPlayerVersion()
                 .major >= 10 : !1
-        }, c.xdomainCheck = function () {
+        }, c.xdomainCheck = function() {
             return !0
         }, typeof window != "undefined" && ( WEB_SOCKET_DISABLE_AUTO_INITIALIZATION = !0 ), b.transports.push( "flashsocket" )
     }( "undefined" != typeof io ? io.Transport : module.exports, "undefined" != typeof io ? io : module.parent.exports );
-    if ( "undefined" != typeof window ) var swfobject = function () {
+    if ( "undefined" != typeof window ) var swfobject = function() {
         function A() {
             if ( t ) return;
             try {
@@ -719,7 +719,7 @@ var io = "undefined" == typeof module ? {} : module.exports;
             else if ( typeof h.attachEvent != a ) R( h, "onload", b );
             else if ( typeof h.onload == "function" ) {
                 var c = h.onload;
-                h.onload = function () {
+                h.onload = function() {
                     c(), b()
                 }
             } else h.onload = b
@@ -736,7 +736,7 @@ var io = "undefined" == typeof module ? {} : module.exports;
             var f = c.appendChild( d );
             if ( f ) {
                 var g = 0;
-                ( function () {
+                ( function() {
                     if ( typeof f.GetVariable != a ) {
                         var b = f.GetVariable( "$version" );
                         b && ( b = b.split( " " )[ 1 ].split( "," ), y.pv = [ parseInt( b[ 0 ], 10 ), parseInt( b[ 1 ], 10 ), parseInt( b[ 2 ], 10 ) ] )
@@ -818,9 +818,9 @@ var io = "undefined" == typeof module ? {} : module.exports;
                 if ( y.ie && y.win && g.readyState != 4 ) {
                     var l = Q( "div" );
                     d += "SWFObjectNew", l.setAttribute( "id", d ), g.parentNode.insertBefore( l, g ), g.style.display = "none",
-                        function () {
-                            g.readyState == 4 ? g.parentNode.removeChild( g ) : setTimeout( arguments.callee, 10 )
-                        }()
+                    function() {
+                        g.readyState == 4 ? g.parentNode.removeChild( g ) : setTimeout( arguments.callee, 10 )
+                    }()
                 }
                 L( b, c, d )
             }
@@ -830,9 +830,9 @@ var io = "undefined" == typeof module ? {} : module.exports;
             if ( y.ie && y.win && a.readyState != 4 ) {
                 var b = Q( "div" );
                 a.parentNode.insertBefore( b, a ), b.parentNode.replaceChild( K( a ), b ), a.style.display = "none",
-                    function () {
-                        a.readyState == 4 ? a.parentNode.removeChild( a ) : setTimeout( arguments.callee, 10 )
-                    }()
+                function() {
+                    a.readyState == 4 ? a.parentNode.removeChild( a ) : setTimeout( arguments.callee, 10 )
+                }()
             } else a.parentNode.replaceChild( K( a ), a )
         }
 
@@ -881,7 +881,7 @@ var io = "undefined" == typeof module ? {} : module.exports;
 
         function N( a ) {
             var b = P( a );
-            b && b.nodeName == "OBJECT" && ( y.ie && y.win ? ( b.style.display = "none", function () {
+            b && b.nodeName == "OBJECT" && ( y.ie && y.win ? ( b.style.display = "none", function() {
                 b.readyState == 4 ? O( a ) : setTimeout( arguments.callee, 10 )
             }() ) : b.parentNode.removeChild( b ) )
         }
@@ -959,7 +959,7 @@ var io = "undefined" == typeof module ? {} : module.exports;
             p, q, r, s, t = !1,
             u = !1,
             v, w, x = !0,
-            y = function () {
+            y = function() {
                 var f = typeof i.getElementById != a && typeof i.getElementsByTagName != a && typeof i.createElement != a,
                     g = j.userAgent.toLowerCase(),
                     l = j.platform.toLowerCase(),
@@ -985,11 +985,11 @@ var io = "undefined" == typeof module ? {} : module.exports;
                     mac: n
                 }
             }(),
-            z = function () {
+            z = function() {
                 if ( !y.w3 ) return;
-                ( typeof i.readyState != a && i.readyState == "complete" || typeof i.readyState == a && ( i.getElementsByTagName( "body" )[ 0 ] || i.body ) ) && A(), t || ( typeof i.addEventListener != a && i.addEventListener( "DOMContentLoaded", A, !1 ), y.ie && y.win && ( i.attachEvent( g, function () {
+                ( typeof i.readyState != a && i.readyState == "complete" || typeof i.readyState == a && ( i.getElementsByTagName( "body" )[ 0 ] || i.body ) ) && A(), t || ( typeof i.addEventListener != a && i.addEventListener( "DOMContentLoaded", A, !1 ), y.ie && y.win && ( i.attachEvent( g, function() {
                     i.readyState == "complete" && ( i.detachEvent( g, arguments.callee ), A() )
-                } ), h == top && function () {
+                } ), h == top && function() {
                     if ( t ) return;
                     try {
                         i.documentElement.doScroll( "left" )
@@ -998,7 +998,7 @@ var io = "undefined" == typeof module ? {} : module.exports;
                         return
                     }
                     A()
-                }() ), y.wk && function () {
+                }() ), y.wk && function() {
                     if ( t ) return;
                     if ( !/loaded|complete/.test( i.readyState ) ) {
                         setTimeout( arguments.callee, 0 );
@@ -1007,8 +1007,8 @@ var io = "undefined" == typeof module ? {} : module.exports;
                     A()
                 }(), C( A ) )
             }(),
-            W = function () {
-                y.ie && y.win && window.attachEvent( "onunload", function () {
+            W = function() {
+                y.ie && y.win && window.attachEvent( "onunload", function() {
                     var a = o.length;
                     for ( var b = 0; b < a; b++ ) o[ b ][ 0 ].detachEvent( o[ b ][ 1 ], o[ b ][ 2 ] );
                     var c = n.length;
@@ -1020,7 +1020,7 @@ var io = "undefined" == typeof module ? {} : module.exports;
                 } )
             }();
         return {
-            registerObject: function ( a, b, c, d ) {
+            registerObject: function( a, b, c, d ) {
                 if ( y.w3 && a && b ) {
                     var e = {};
                     e.id = a, e.swfVersion = b, e.expressInstall = c, e.callbackFn = d, m[ m.length ] = e, U( a, !1 )
@@ -1029,15 +1029,15 @@ var io = "undefined" == typeof module ? {} : module.exports;
                     id: a
                 } )
             },
-            getObjectById: function ( a ) {
+            getObjectById: function( a ) {
                 if ( y.w3 ) return G( a )
             },
-            embedSWF: function ( c, d, e, f, g, h, i, j, k, l ) {
+            embedSWF: function( c, d, e, f, g, h, i, j, k, l ) {
                 var m = {
                     success: !1,
                     id: d
                 };
-                y.w3 && !( y.wk && y.wk < 312 ) && c && d && e && f && g ? ( U( d, !1 ), B( function () {
+                y.w3 && !( y.wk && y.wk < 312 ) && c && d && e && f && g ? ( U( d, !1 ), B( function() {
                     e += "", f += "";
                     var n = {};
                     if ( k && typeof k === b )
@@ -1061,11 +1061,11 @@ var io = "undefined" == typeof module ? {} : module.exports;
                     l && l( m )
                 } ) ) : l && l( m )
             },
-            switchOffAutoHideShow: function () {
+            switchOffAutoHideShow: function() {
                 x = !1
             },
             ua: y,
-            getFlashPlayerVersion: function () {
+            getFlashPlayerVersion: function() {
                 return {
                     major: y.pv[ 0 ],
                     minor: y.pv[ 1 ],
@@ -1073,21 +1073,21 @@ var io = "undefined" == typeof module ? {} : module.exports;
                 }
             },
             hasFlashPlayerVersion: S,
-            createSWF: function ( a, b, c ) {
+            createSWF: function( a, b, c ) {
                 return y.w3 ? L( a, b, c ) : undefined
             },
-            showExpressInstall: function ( a, b, c, d ) {
+            showExpressInstall: function( a, b, c, d ) {
                 y.w3 && H() && I( a, b, c, d )
             },
-            removeSWF: function ( a ) {
+            removeSWF: function( a ) {
                 y.w3 && N( a )
             },
-            createCSS: function ( a, b, c, d ) {
+            createCSS: function( a, b, c, d ) {
                 y.w3 && T( a, b, c, d )
             },
             addDomLoadEvent: B,
             addLoadEvent: C,
-            getQueryParamValue: function ( a ) {
+            getQueryParamValue: function( a ) {
                 var b = i.location.search || i.location.hash;
                 if ( b ) {
                     /\?/.test( b ) && ( b = b.split( "?" )[ 1 ] );
@@ -1098,7 +1098,7 @@ var io = "undefined" == typeof module ? {} : module.exports;
                 }
                 return ""
             },
-            expressInstallCallback: function () {
+            expressInstallCallback: function() {
                 if ( u ) {
                     var a = P( f );
                     a && p && ( a.parentNode.replaceChild( p, a ), q && ( U( q, !0 ), y.ie && y.win && ( p.style.display = "block" ) ), r && r( s ) ), u = !1
@@ -1106,34 +1106,34 @@ var io = "undefined" == typeof module ? {} : module.exports;
             }
         }
     }();
-    ( function () {
+    ( function() {
         if ( "undefined" == typeof window || window.WebSocket ) return;
         var a = window.console;
         if ( !a || !a.log || !a.error ) a = {
-            log: function () {},
-            error: function () {}
+            log: function() {},
+            error: function() {}
         };
         if ( !swfobject.hasFlashPlayerVersion( "10.0.0" ) ) {
             a.error( "Flash Player >= 10.0.0 is required." );
             return
         }
-        location.protocol == "file:" && a.error( "WARNING: web-socket-js doesn't work in file:///... URL unless you set Flash Security Settings properly. Open the page via Web server i.e. http://..." ), WebSocket = function ( a, b, c, d, e ) {
+        location.protocol == "file:" && a.error( "WARNING: web-socket-js doesn't work in file:///... URL unless you set Flash Security Settings properly. Open the page via Web server i.e. http://..." ), WebSocket = function( a, b, c, d, e ) {
             var f = this;
-            f.__id = WebSocket.__nextId++, WebSocket.__instances[ f.__id ] = f, f.readyState = WebSocket.CONNECTING, f.bufferedAmount = 0, f.__events = {}, b ? typeof b == "string" && ( b = [ b ] ) : b = [], setTimeout( function () {
-                WebSocket.__addTask( function () {
+            f.__id = WebSocket.__nextId++, WebSocket.__instances[ f.__id ] = f, f.readyState = WebSocket.CONNECTING, f.bufferedAmount = 0, f.__events = {}, b ? typeof b == "string" && ( b = [ b ] ) : b = [], setTimeout( function() {
+                WebSocket.__addTask( function() {
                     WebSocket.__flash.create( f.__id, a, b, c || null, d || 0, e || null )
                 } )
             }, 0 )
-        }, WebSocket.prototype.send = function ( a ) {
+        }, WebSocket.prototype.send = function( a ) {
             if ( this.readyState == WebSocket.CONNECTING ) throw "INVALID_STATE_ERR: Web Socket connection has not been established";
             var b = WebSocket.__flash.send( this.__id, encodeURIComponent( a ) );
             return b < 0 ? !0 : ( this.bufferedAmount += b, !1 )
-        }, WebSocket.prototype.close = function () {
+        }, WebSocket.prototype.close = function() {
             if ( this.readyState == WebSocket.CLOSED || this.readyState == WebSocket.CLOSING ) return;
             this.readyState = WebSocket.CLOSING, WebSocket.__flash.close( this.__id )
-        }, WebSocket.prototype.addEventListener = function ( a, b, c ) {
+        }, WebSocket.prototype.addEventListener = function( a, b, c ) {
             a in this.__events || ( this.__events[ a ] = [] ), this.__events[ a ].push( b )
-        }, WebSocket.prototype.removeEventListener = function ( a, b, c ) {
+        }, WebSocket.prototype.removeEventListener = function( a, b, c ) {
             if ( !( a in this.__events ) ) return;
             var d = this.__events[ a ];
             for ( var e = d.length - 1; e >= 0; --e )
@@ -1141,12 +1141,12 @@ var io = "undefined" == typeof module ? {} : module.exports;
                     d.splice( e, 1 );
                     break
                 }
-        }, WebSocket.prototype.dispatchEvent = function ( a ) {
+        }, WebSocket.prototype.dispatchEvent = function( a ) {
             var b = this.__events[ a.type ] || [];
             for ( var c = 0; c < b.length; ++c ) b[ c ]( a );
             var d = this[ "on" + a.type ];
             d && d( a )
-        }, WebSocket.prototype.__handleEvent = function ( a ) {
+        }, WebSocket.prototype.__handleEvent = function( a ) {
             "readyState" in a && ( this.readyState = a.readyState ), "protocol" in a && ( this.protocol = a.protocol );
             var b;
             if ( a.type == "open" || a.type == "error" ) b = this.__createSimpleEvent( a.type );
@@ -1157,7 +1157,7 @@ var io = "undefined" == typeof module ? {} : module.exports;
                 b = this.__createMessageEvent( "message", c )
             }
             this.dispatchEvent( b )
-        }, WebSocket.prototype.__createSimpleEvent = function ( a ) {
+        }, WebSocket.prototype.__createSimpleEvent = function( a ) {
             if ( document.createEvent && window.Event ) {
                 var b = document.createEvent( "Event" );
                 return b.initEvent( a, !1, !1 ), b
@@ -1167,7 +1167,7 @@ var io = "undefined" == typeof module ? {} : module.exports;
                 bubbles: !1,
                 cancelable: !1
             }
-        }, WebSocket.prototype.__createMessageEvent = function ( a, b ) {
+        }, WebSocket.prototype.__createMessageEvent = function( a, b ) {
             if ( document.createEvent && window.MessageEvent && !window.opera ) {
                 var c = document.createEvent( "MessageEvent" );
                 return c.initMessageEvent( "message", !1, !1, b, null, null, window, null ), c
@@ -1178,11 +1178,11 @@ var io = "undefined" == typeof module ? {} : module.exports;
                 bubbles: !1,
                 cancelable: !1
             }
-        }, WebSocket.CONNECTING = 0, WebSocket.OPEN = 1, WebSocket.CLOSING = 2, WebSocket.CLOSED = 3, WebSocket.__flash = null, WebSocket.__instances = {}, WebSocket.__tasks = [], WebSocket.__nextId = 0, WebSocket.loadFlashPolicyFile = function ( a ) {
-            WebSocket.__addTask( function () {
+        }, WebSocket.CONNECTING = 0, WebSocket.OPEN = 1, WebSocket.CLOSING = 2, WebSocket.CLOSED = 3, WebSocket.__flash = null, WebSocket.__instances = {}, WebSocket.__tasks = [], WebSocket.__nextId = 0, WebSocket.loadFlashPolicyFile = function( a ) {
+            WebSocket.__addTask( function() {
                 WebSocket.__flash.loadManualPolicyFile( a )
             } )
-        }, WebSocket.__initialize = function () {
+        }, WebSocket.__initialize = function() {
             if ( WebSocket.__flash ) return;
             WebSocket.__swfLocation && ( window.WEB_SOCKET_SWF_LOCATION = WebSocket.__swfLocation );
             if ( !window.WEB_SOCKET_SWF_LOCATION ) {
@@ -1196,17 +1196,17 @@ var io = "undefined" == typeof module ? {} : module.exports;
                 hasPriority: !0,
                 swliveconnect: !0,
                 allowScriptAccess: "always"
-            }, null, function ( b ) {
+            }, null, function( b ) {
                 b.success || a.error( "[WebSocket] swfobject.embedSWF failed" )
             } )
-        }, WebSocket.__onFlashInitialized = function () {
-            setTimeout( function () {
+        }, WebSocket.__onFlashInitialized = function() {
+            setTimeout( function() {
                 WebSocket.__flash = document.getElementById( "webSocketFlash" ), WebSocket.__flash.setCallerUrl( location.href ), WebSocket.__flash.setDebug( !!window.WEB_SOCKET_DEBUG );
                 for ( var a = 0; a < WebSocket.__tasks.length; ++a ) WebSocket.__tasks[ a ]();
                 WebSocket.__tasks = []
             }, 0 )
-        }, WebSocket.__onFlashEvent = function () {
-            return setTimeout( function () {
+        }, WebSocket.__onFlashEvent = function() {
+            return setTimeout( function() {
                 try {
                     var b = WebSocket.__flash.receiveEvents();
                     for ( var c = 0; c < b.length; ++c ) WebSocket.__instances[ b[ c ].webSocketId ].__handleEvent( b[ c ] )
@@ -1214,38 +1214,38 @@ var io = "undefined" == typeof module ? {} : module.exports;
                     a.error( d )
                 }
             }, 0 ), !0
-        }, WebSocket.__log = function ( b ) {
+        }, WebSocket.__log = function( b ) {
             a.log( decodeURIComponent( b ) )
-        }, WebSocket.__error = function ( b ) {
+        }, WebSocket.__error = function( b ) {
             a.error( decodeURIComponent( b ) )
-        }, WebSocket.__addTask = function ( a ) {
+        }, WebSocket.__addTask = function( a ) {
             WebSocket.__flash ? a() : WebSocket.__tasks.push( a )
-        }, WebSocket.__isFlashLite = function () {
+        }, WebSocket.__isFlashLite = function() {
             if ( !window.navigator || !window.navigator.mimeTypes ) return !1;
             var a = window.navigator.mimeTypes[ "application/x-shockwave-flash" ];
             return !a || !a.enabledPlugin || !a.enabledPlugin.filename ? !1 : a.enabledPlugin.filename.match( /flashlite/i ) ? !0 : !1
-        }, window.WEB_SOCKET_DISABLE_AUTO_INITIALIZATION || ( window.addEventListener ? window.addEventListener( "load", function () {
+        }, window.WEB_SOCKET_DISABLE_AUTO_INITIALIZATION || ( window.addEventListener ? window.addEventListener( "load", function() {
             WebSocket.__initialize()
-        }, !1 ) : window.attachEvent( "onload", function () {
+        }, !1 ) : window.attachEvent( "onload", function() {
             WebSocket.__initialize()
         } ) )
     } )(),
-    function ( a, b, c ) {
+    function( a, b, c ) {
         function d( a ) {
             if ( !a ) return;
             b.Transport.apply( this, arguments ), this.sendBuffer = []
         }
 
         function e() {}
-        a.XHR = d, b.util.inherit( d, b.Transport ), d.prototype.open = function () {
+        a.XHR = d, b.util.inherit( d, b.Transport ), d.prototype.open = function() {
             return this.socket.setBuffer( !1 ), this.onOpen(), this.get(), this.setCloseTimeout(), this
-        }, d.prototype.payload = function ( a ) {
+        }, d.prototype.payload = function( a ) {
             var c = [];
             for ( var d = 0, e = a.length; d < e; d++ ) c.push( b.parser.encodePacket( a[ d ] ) );
             this.send( b.parser.encodePayload( c ) )
-        }, d.prototype.send = function ( a ) {
+        }, d.prototype.send = function( a ) {
             return this.post( a ), this
-        }, d.prototype.post = function ( a ) {
+        }, d.prototype.post = function( a ) {
             function d() {
                 this.readyState == 4 && ( this.onreadystatechange = e, b.posting = !1, this.status == 200 ? b.socket.setBuffer( !1 ) : b.onClose() )
             }
@@ -1255,9 +1255,9 @@ var io = "undefined" == typeof module ? {} : module.exports;
             }
             var b = this;
             this.socket.setBuffer( !0 ), this.sendXHR = this.request( "POST" ), c.XDomainRequest && this.sendXHR instanceof XDomainRequest ? this.sendXHR.onload = this.sendXHR.onerror = f : this.sendXHR.onreadystatechange = d, this.sendXHR.send( a )
-        }, d.prototype.close = function () {
+        }, d.prototype.close = function() {
             return this.onClose(), this
-        }, d.prototype.request = function ( a ) {
+        }, d.prototype.request = function( a ) {
             var c = b.util.request( this.socket.isXDomain() ),
                 d = b.util.query( this.socket.options.query, "t=" + +( new Date ) );
             c.open( a || "GET", this.prepareUrl() + d, !0 );
@@ -1265,9 +1265,9 @@ var io = "undefined" == typeof module ? {} : module.exports;
                 c.setRequestHeader ? c.setRequestHeader( "Content-type", "text/plain;charset=UTF-8" ) : c.contentType = "text/plain"
             } catch ( e ) {}
             return c
-        }, d.prototype.scheme = function () {
+        }, d.prototype.scheme = function() {
             return this.socket.options.secure ? "https" : "http"
-        }, d.check = function ( a, d ) {
+        }, d.check = function( a, d ) {
             try {
                 var e = b.util.request( d ),
                     f = c.XDomainRequest && e instanceof XDomainRequest,
@@ -1276,40 +1276,40 @@ var io = "undefined" == typeof module ? {} : module.exports;
                 if ( e && ( !f || !h ) ) return !0
             } catch ( i ) {}
             return !1
-        }, d.xdomainCheck = function ( a ) {
+        }, d.xdomainCheck = function( a ) {
             return d.check( a, !0 )
         }
     }( "undefined" != typeof io ? io.Transport : module.exports, "undefined" != typeof io ? io : module.parent.exports, this ),
-    function ( a, b ) {
+    function( a, b ) {
         function c( a ) {
             b.Transport.XHR.apply( this, arguments )
         }
-        a.htmlfile = c, b.util.inherit( c, b.Transport.XHR ), c.prototype.name = "htmlfile", c.prototype.get = function () {
+        a.htmlfile = c, b.util.inherit( c, b.Transport.XHR ), c.prototype.name = "htmlfile", c.prototype.get = function() {
             this.doc = new( window[ [ "Active" ].concat( "Object" )
                 .join( "X" ) ] )( "htmlfile" ), this.doc.open(), this.doc.write( "<html></html>" ), this.doc.close(), this.doc.parentWindow.s = this;
             var a = this.doc.createElement( "div" );
             a.className = "socketio", this.doc.body.appendChild( a ), this.iframe = this.doc.createElement( "iframe" ), a.appendChild( this.iframe );
             var c = this,
                 d = b.util.query( this.socket.options.query, "t=" + +( new Date ) );
-            this.iframe.src = this.prepareUrl() + d, b.util.on( window, "unload", function () {
+            this.iframe.src = this.prepareUrl() + d, b.util.on( window, "unload", function() {
                 c.destroy()
             } )
-        }, c.prototype._ = function ( a, b ) {
+        }, c.prototype._ = function( a, b ) {
             a = a.replace( /\\\//g, "/" ), this.onData( a );
             try {
                 var c = b.getElementsByTagName( "script" )[ 0 ];
                 c.parentNode.removeChild( c )
             } catch ( d ) {}
-        }, c.prototype.destroy = function () {
+        }, c.prototype.destroy = function() {
             if ( this.iframe ) {
                 try {
                     this.iframe.src = "about:blank"
                 } catch ( a ) {}
                 this.doc = null, this.iframe.parentNode.removeChild( this.iframe ), this.iframe = null, CollectGarbage()
             }
-        }, c.prototype.close = function () {
+        }, c.prototype.close = function() {
             return this.destroy(), b.Transport.XHR.prototype.close.call( this )
-        }, c.check = function ( a ) {
+        }, c.check = function( a ) {
             if ( typeof window != "undefined" && [ "Active" ].concat( "Object" )
                 .join( "X" ) in window ) try {
                 var c = new( window[ [ "Active" ].concat( "Object" )
@@ -1317,22 +1317,22 @@ var io = "undefined" == typeof module ? {} : module.exports;
                 return c && b.Transport.XHR.check( a )
             } catch ( d ) {}
             return !1
-        }, c.xdomainCheck = function () {
+        }, c.xdomainCheck = function() {
             return !1
         }, b.transports.push( "htmlfile" )
     }( "undefined" != typeof io ? io.Transport : module.exports, "undefined" != typeof io ? io : module.parent.exports ),
-    function ( a, b, c ) {
+    function( a, b, c ) {
         function d() {
             b.Transport.XHR.apply( this, arguments )
         }
 
         function e() {}
-        a[ "xhr-polling" ] = d, b.util.inherit( d, b.Transport.XHR ), b.util.merge( d, b.Transport.XHR ), d.prototype.name = "xhr-polling", d.prototype.heartbeats = function () {
+        a[ "xhr-polling" ] = d, b.util.inherit( d, b.Transport.XHR ), b.util.merge( d, b.Transport.XHR ), d.prototype.name = "xhr-polling", d.prototype.heartbeats = function() {
             return !1
-        }, d.prototype.open = function () {
+        }, d.prototype.open = function() {
             var a = this;
             return b.Transport.XHR.prototype.open.call( a ), !1
-        }, d.prototype.get = function () {
+        }, d.prototype.get = function() {
             function b() {
                 this.readyState == 4 && ( this.onreadystatechange = e, this.status == 200 ? ( a.onData( this.responseText ), a.get() ) : a.onClose() )
             }
@@ -1347,7 +1347,7 @@ var io = "undefined" == typeof module ? {} : module.exports;
             if ( !this.isOpen ) return;
             var a = this;
             this.xhr = this.request(), c.XDomainRequest && this.xhr instanceof XDomainRequest ? ( this.xhr.onload = d, this.xhr.onerror = f ) : this.xhr.onreadystatechange = b, this.xhr.send( null )
-        }, d.prototype.onClose = function () {
+        }, d.prototype.onClose = function() {
             b.Transport.XHR.prototype.onClose.call( this );
             if ( this.xhr ) {
                 this.xhr.onreadystatechange = this.xhr.onload = this.xhr.onerror = e;
@@ -1356,23 +1356,23 @@ var io = "undefined" == typeof module ? {} : module.exports;
                 } catch ( a ) {}
                 this.xhr = null
             }
-        }, d.prototype.ready = function ( a, c ) {
+        }, d.prototype.ready = function( a, c ) {
             var d = this;
-            b.util.defer( function () {
+            b.util.defer( function() {
                 c.call( d )
             } )
         }, b.transports.push( "xhr-polling" )
     }( "undefined" != typeof io ? io.Transport : module.exports, "undefined" != typeof io ? io : module.parent.exports, this ),
-    function ( a, b, c ) {
+    function( a, b, c ) {
         function e( a ) {
             b.Transport[ "xhr-polling" ].apply( this, arguments ), this.index = b.j.length;
             var c = this;
-            b.j.push( function ( a ) {
+            b.j.push( function( a ) {
                 c._( a )
             } )
         }
         var d = c.document && "MozAppearance" in c.document.documentElement.style;
-        a[ "jsonp-polling" ] = e, b.util.inherit( e, b.Transport[ "xhr-polling" ] ), e.prototype.name = "jsonp-polling", e.prototype.post = function ( a ) {
+        a[ "jsonp-polling" ] = e, b.util.inherit( e, b.Transport[ "xhr-polling" ] ), e.prototype.name = "jsonp-polling", e.prototype.post = function( a ) {
             function i() {
                 j(), c.socket.setBuffer( !1 )
             }
@@ -1399,35 +1399,35 @@ var io = "undefined" == typeof module ? {} : module.exports;
             try {
                 this.form.submit()
             } catch ( k ) {}
-            this.iframe.attachEvent ? h.onreadystatechange = function () {
+            this.iframe.attachEvent ? h.onreadystatechange = function() {
                 c.iframe.readyState == "complete" && i()
             } : this.iframe.onload = i, this.socket.setBuffer( !0 )
-        }, e.prototype.get = function () {
+        }, e.prototype.get = function() {
             var a = this,
                 c = document.createElement( "script" ),
                 e = b.util.query( this.socket.options.query, "t=" + +( new Date ) + "&i=" + this.index );
-            this.script && ( this.script.parentNode.removeChild( this.script ), this.script = null ), c.async = !0, c.src = this.prepareUrl() + e, c.onerror = function () {
+            this.script && ( this.script.parentNode.removeChild( this.script ), this.script = null ), c.async = !0, c.src = this.prepareUrl() + e, c.onerror = function() {
                 a.onClose()
             };
             var f = document.getElementsByTagName( "script" )[ 0 ];
-            f.parentNode.insertBefore( c, f ), this.script = c, d && setTimeout( function () {
+            f.parentNode.insertBefore( c, f ), this.script = c, d && setTimeout( function() {
                 var a = document.createElement( "iframe" );
                 document.body.appendChild( a ), document.body.removeChild( a )
             }, 100 )
-        }, e.prototype._ = function ( a ) {
+        }, e.prototype._ = function( a ) {
             return this.onData( a ), this.isOpen && this.get(), this
-        }, e.prototype.ready = function ( a, c ) {
+        }, e.prototype.ready = function( a, c ) {
             var e = this;
             if ( !d ) return c.call( this );
-            b.util.load( function () {
+            b.util.load( function() {
                 c.call( e )
             } )
-        }, e.check = function () {
+        }, e.check = function() {
             return "document" in c
-        }, e.xdomainCheck = function () {
+        }, e.xdomainCheck = function() {
             return !0
         }, b.transports.push( "jsonp-polling" )
-    }( "undefined" != typeof io ? io.Transport : module.exports, "undefined" != typeof io ? io : module.parent.exports, this ), typeof define == "function" && define.amd && define( [], function () {
+    }( "undefined" != typeof io ? io.Transport : module.exports, "undefined" != typeof io ? io : module.parent.exports, this ), typeof define == "function" && define.amd && define( [], function() {
         return io
     } )
 } )();
@@ -1456,11 +1456,11 @@ var io = "undefined" == typeof module ? {} : module.exports;
  */
 
 
-( function () {
+( function() {
 
     // Save the URL that this script was fetched from for use below.
     // (skip this if this SDK is being used outside of the DOM, i.e. in a Node process)
-    var urlThisScriptWasFetchedFrom = ( function () {
+    var urlThisScriptWasFetchedFrom = ( function() {
         if (
             typeof window !== 'object' ||
             typeof window.document !== 'object' ||
@@ -1541,12 +1541,12 @@ var io = "undefined" == typeof module ? {} : module.exports;
 
         function TmpSocket() {
             var boundEvents = {};
-            this.on = function ( evName, fn ) {
+            this.on = function( evName, fn ) {
                 if ( !boundEvents[ evName ] ) boundEvents[ evName ] = [ fn ];
                 else boundEvents[ evName ].push( fn );
                 return this;
             };
-            this.become = function ( actualSocket ) {
+            this.become = function( actualSocket ) {
 
                 // Pass events and a reference to the request queue
                 // off to the actualSocket for consumption
@@ -1712,7 +1712,7 @@ var io = "undefined" == typeof module ? {} : module.exports;
                 xmlhttp = new ActiveXObject( "Microsoft.XMLHTTP" );
             }
 
-            xmlhttp.onreadystatechange = function () {
+            xmlhttp.onreadystatechange = function() {
                 if ( xmlhttp.readyState == 4 && xmlhttp.status == 200 ) {
                     cb( xmlhttp.responseText );
                 }
@@ -1741,20 +1741,20 @@ var io = "undefined" == typeof module ? {} : module.exports;
             this.headers = responseCtx.headers || {};
             this.statusCode = responseCtx.statusCode || 200;
         }
-        JWR.prototype.toString = function () {
+        JWR.prototype.toString = function() {
             return '[ResponseFromSails]' + '  -- ' +
                 'Status: ' + this.statusCode + '  -- ' +
                 'Headers: ' + this.headers + '  -- ' +
                 'Body: ' + this.body;
         };
-        JWR.prototype.toPOJO = function () {
+        JWR.prototype.toPOJO = function() {
             return {
                 body: this.body,
                 headers: this.headers,
                 statusCode: this.statusCode
             };
         };
-        JWR.prototype.pipe = function () {
+        JWR.prototype.pipe = function() {
             // TODO: look at substack's stuff
             return new Error( 'Not implemented yet.' );
         };
@@ -1819,7 +1819,7 @@ var io = "undefined" == typeof module ? {} : module.exports;
          * @param {Function} cb   ::    callback function to call when finished [optional]
          */
 
-        Socket.prototype.get = function ( url, data, cb ) {
+        Socket.prototype.get = function( url, data, cb ) {
 
             // `data` is optional
             if ( typeof data === 'function' ) {
@@ -1847,7 +1847,7 @@ var io = "undefined" == typeof module ? {} : module.exports;
          * @param {Function} cb   ::    callback function to call when finished [optional]
          */
 
-        Socket.prototype.post = function ( url, data, cb ) {
+        Socket.prototype.post = function( url, data, cb ) {
 
             // `data` is optional
             if ( typeof data === 'function' ) {
@@ -1875,7 +1875,7 @@ var io = "undefined" == typeof module ? {} : module.exports;
          * @param {Function} cb   ::    callback function to call when finished [optional]
          */
 
-        Socket.prototype.put = function ( url, data, cb ) {
+        Socket.prototype.put = function( url, data, cb ) {
 
             // `data` is optional
             if ( typeof data === 'function' ) {
@@ -1903,7 +1903,7 @@ var io = "undefined" == typeof module ? {} : module.exports;
          * @param {Function} cb   ::    callback function to call when finished [optional]
          */
 
-        Socket.prototype[ 'delete' ] = function ( url, data, cb ) {
+        Socket.prototype[ 'delete' ] = function( url, data, cb ) {
 
             // `data` is optional
             if ( typeof data === 'function' ) {
@@ -1932,7 +1932,7 @@ var io = "undefined" == typeof module ? {} : module.exports;
          * @param {String} method ::    HTTP request method [optional]
          */
 
-        Socket.prototype.request = function ( url, data, cb, method ) {
+        Socket.prototype.request = function( url, data, cb, method ) {
 
             // `cb` is optional
             if ( typeof cb === 'string' ) {
@@ -1964,7 +1964,7 @@ var io = "undefined" == typeof module ? {} : module.exports;
          * @param  {[type]}   options [description]
          * @param  {Function} cb      [description]
          */
-        Socket.prototype._request = function ( options, cb ) {
+        Socket.prototype._request = function( options, cb ) {
 
             // Sanitize options (also data & headers)
             var usage = 'Usage:\n socket.' +
@@ -2040,7 +2040,7 @@ var io = "undefined" == typeof module ? {} : module.exports;
          * @return {Socket}
          */
         io.sails._origConnectFn = io.connect;
-        io.connect = function ( url, opts ) {
+        io.connect = function( url, opts ) {
             opts = opts || {};
 
             // If explicit connection url is specified, use it
@@ -2074,7 +2074,7 @@ var io = "undefined" == typeof module ? {} : module.exports;
         // loop (using `.on()`) can be rebound on the true socket.
         io.socket = new TmpSocket();
 
-        setTimeout( function () {
+        setTimeout( function() {
 
             // If autoConnect is disabled, delete the TmpSocket and bail out.
             if ( !io.sails.autoConnect ) {
@@ -2117,7 +2117,7 @@ var io = "undefined" == typeof module ? {} : module.exports;
                 // way.
                 else {
                     var mikealsReq = require( 'request' );
-                    mikealsReq.get( io.sails.url + xOriginCookieRoute, function ( err, httpResponse, body ) {
+                    mikealsReq.get( io.sails.url + xOriginCookieRoute, function( err, httpResponse, body ) {
                         if ( err ) {
                             consolog(
                                 'Failed to connect socket (failed to get cookie)',
@@ -2163,7 +2163,7 @@ var io = "undefined" == typeof module ? {} : module.exports;
 
 
                     if ( !io.socket.$events.disconnect ) {
-                        io.socket.on( 'disconnect', function () {
+                        io.socket.on( 'disconnect', function() {
                             consolog( '====================================' );
                             consolog( 'io.socket was disconnected from Sails.' );
                             consolog( 'Usually, this is due to one of the following reasons:' + '\n' +
@@ -2174,7 +2174,7 @@ var io = "undefined" == typeof module ? {} : module.exports;
                     }
 
                     if ( !io.socket.$events.reconnect ) {
-                        io.socket.on( 'reconnect', function ( transport, numAttempts ) {
+                        io.socket.on( 'reconnect', function( transport, numAttempts ) {
                             var numSecsOffline = io.socket.msSinceConnectionLost / 1000;
                             consolog(
                                 'io.socket reconnected successfully after being offline ' +
@@ -2183,7 +2183,7 @@ var io = "undefined" == typeof module ? {} : module.exports;
                     }
 
                     if ( !io.socket.$events.reconnecting ) {
-                        io.socket.on( 'reconnecting', function ( msSinceConnectionLost, numAttempts ) {
+                        io.socket.on( 'reconnecting', function( msSinceConnectionLost, numAttempts ) {
                             io.socket.msSinceConnectionLost = msSinceConnectionLost;
                             consolog(
                                 'io.socket is trying to reconnect to Sails...' +

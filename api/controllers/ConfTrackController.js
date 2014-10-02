@@ -10,13 +10,13 @@ module.exports = {
     /**
      * `ConfTrackController.start()`
      */
-    start: function ( req, res ) {
+    start: function( req, res ) {
         ConfTrack.create( {
-                action: req.param( 'action' ),
-                start: new Date(),
-                user: req.session.user
-            } )
-            .exec( function ( err, track ) {
+            action: req.param( 'action' ),
+            start: new Date(),
+            user: req.session.user
+        } )
+            .exec( function( err, track ) {
                 if ( err ) return res.notDone();
 
                 return res.done( {
@@ -28,17 +28,17 @@ module.exports = {
     /**
      * `ConfTrackController.end()`
      */
-    end: function ( req, res ) {
+    end: function( req, res ) {
         ConfTrack.findOne( {
-                user: req.session.user,
-                id: req.param( 'track' ),
-            } )
-            .exec( function ( err, track ) {
+            user: req.session.user,
+            id: req.param( 'track' ),
+        } )
+            .exec( function( err, track ) {
                 if ( err || !track ) return res.notDone();
 
                 track.end = new Date();
 
-                track.save( function ( err, saved ) {
+                track.save( function( err, saved ) {
                     if ( err || !saved ) return res.notDone();
 
                     return res.done();

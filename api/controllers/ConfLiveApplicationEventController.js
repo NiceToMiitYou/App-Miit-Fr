@@ -10,16 +10,16 @@ module.exports = {
     /**
      * `ConfLiveApplicationEventController.list()`
      */
-    list: function ( req, res ) {
+    list: function( req, res ) {
         ConfLiveApplicationEvent.find( {
-                where: {
-                    id: {
-                        '>': req.param( 'token' )
-                    }
-                },
-                sort: 'id ASC'
-            } )
-            .exec( function ( err, events ) {
+            where: {
+                id: {
+                    '>': req.param( 'token' )
+                }
+            },
+            sort: 'id ASC'
+        } )
+            .exec( function( err, events ) {
                 if ( err ) {
                     return res.notDone();
                 }

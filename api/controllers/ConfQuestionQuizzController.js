@@ -10,9 +10,9 @@ module.exports = {
     /**
      * `ConfQuestionQuizzController.list()`
      */
-    list: function ( req, res ) {
+    list: function( req, res ) {
         ConfQuizz.find()
-            .exec( function ( err, quizzes ) {
+            .exec( function( err, quizzes ) {
                 if ( err || !quizz ) return res.notDone();
 
                 return res.done( {
@@ -24,12 +24,12 @@ module.exports = {
     /**
      * `ConfQuestionQuizzController.questions()`
      */
-    questions: function ( req, res ) {
+    questions: function( req, res ) {
         ConfQuestionQuizz.find( {
-                quizz: req.param( 'quizz' )
-            } )
+            quizz: req.param( 'quizz' )
+        } )
             .populate( 'answers' )
-            .exec( function ( err, questions ) {
+            .exec( function( err, questions ) {
                 if ( err || !questions ) return res.notDone();
 
                 return res.done( {
@@ -41,10 +41,10 @@ module.exports = {
     /**
      * `ConfQuestionQuizzController.answer()`
      */
-    answer: function ( req, res ) {
+    answer: function( req, res ) {
         ConfQuestionQuizz.findOne( req.param( 'question' ) )
             .populate( 'answers' )
-            .exec( function ( err, question ) {
+            .exec( function( err, question ) {
                 if ( err || !question || !_.size(
                     _.intersection(
                         _.map( question.answers, 'id' ), req.param( 'answers' ) )
@@ -58,17 +58,17 @@ module.exports = {
                         .populate( 'quizzAnswers', {
                             question: question.id
                         } )
-                        .exec( function ( err, user ) {
+                        .exec( function( err, user ) {
                             if ( err || !user || 0 < _.size( user.quizzAnswers ) ) return res.notDone();
 
                             // Register answers
                             _( req.param( 'answers' ) )
-                                .forEach( function ( answer ) {
+                                .forEach( function( answer ) {
                                     user.quizzAnswers.add( answer );
                                 } );
 
                             // Save result
-                            user.save( function ( err, result ) {
+                            user.save( function( err, result ) {
 
                                 if ( err ) return res.notDone();
 

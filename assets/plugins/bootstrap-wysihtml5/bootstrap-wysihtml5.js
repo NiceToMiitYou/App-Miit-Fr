@@ -1,8 +1,8 @@
-! function ( $, wysi ) {
+! function( $, wysi ) {
     "use strict";
 
     var tpl = {
-        "font-styles": function ( locale, options ) {
+        "font-styles": function( locale, options ) {
             var size = ( options && options.size ) ? ' btn-' + options.size : '';
             return "<li class='dropdown'>" +
                 "<a class='btn dropdown-toggle btn-white" + size + "' data-toggle='dropdown' href='#'>" +
@@ -20,7 +20,7 @@
                 "</li>";
         },
 
-        "emphasis": function ( locale, options ) {
+        "emphasis": function( locale, options ) {
             var size = ( options && options.size ) ? ' btn-' + options.size : '';
             return "<li>" +
                 "<div class='btn-group '>" +
@@ -31,7 +31,7 @@
                 "</li>";
         },
 
-        "lists": function ( locale, options ) {
+        "lists": function( locale, options ) {
             var size = ( options && options.size ) ? ' btn-' + options.size : '';
             return "<li>" +
                 "<div class='btn-group'>" +
@@ -43,7 +43,7 @@
                 "</li>";
         },
 
-        "link": function ( locale, options ) {
+        "link": function( locale, options ) {
             var size = ( options && options.size ) ? ' btn-' + options.size : '';
             return "<li>" +
                 "<div class='bootstrap-wysihtml5-insert-link-modal modal fade' id='linkmodal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>" +
@@ -63,7 +63,7 @@
                 "</li>";
         },
 
-        "image": function ( locale, options ) {
+        "image": function( locale, options ) {
             var size = ( options && options.size ) ? ' btn-' + options.size : '';
             return "<li>" +
                 "<div class='bootstrap-wysihtml5-insert-image-modal modal fade' id='imgmodal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>" +
@@ -83,7 +83,7 @@
                 "</li>";
         },
 
-        "html": function ( locale, options ) {
+        "html": function( locale, options ) {
             var size = ( options && options.size ) ? ' btn-' + options.size : '';
             return "<li>" +
                 "<div class='btn-group'>" +
@@ -92,7 +92,7 @@
                 "</li>";
         },
 
-        "color": function ( locale, options ) {
+        "color": function( locale, options ) {
             var size = ( options && options.size ) ? ' btn-' + options.size : '';
             return "<li class='dropdown'>" +
                 "<a class='btn dropdown-toggle btn-white" + size + "' data-toggle='dropdown' href='#'>" +
@@ -115,12 +115,12 @@
         }
     };
 
-    var templates = function ( key, locale, options ) {
+    var templates = function( key, locale, options ) {
         return tpl[ key ]( locale, options );
     };
 
 
-    var Wysihtml5 = function ( el, options ) {
+    var Wysihtml5 = function( el, options ) {
         this.el = el;
         var toolbarOpts = options || defaultOptions;
         for ( var t in toolbarOpts.customTemplates ) {
@@ -131,11 +131,11 @@
         window.editor = this.editor;
 
         $( 'iframe.wysihtml5-sandbox' )
-            .each( function ( i, el ) {
+            .each( function( i, el ) {
                 $( el.contentWindow )
                     .off( 'focus.wysihtml5' )
                     .on( {
-                        'focus.wysihtml5': function () {
+                        'focus.wysihtml5': function() {
                             $( 'li.dropdown' )
                                 .removeClass( 'open' );
                         }
@@ -147,7 +147,7 @@
 
         constructor: Wysihtml5,
 
-        createEditor: function ( options ) {
+        createEditor: function( options ) {
             options = options || {};
             options.toolbar = this.toolbar[ 0 ];
 
@@ -161,7 +161,7 @@
             return editor;
         },
 
-        createToolbar: function ( el, options ) {
+        createToolbar: function( el, options ) {
             var self = this;
             var toolbar = $( "<ul/>", {
                 'class': "wysihtml5-toolbar",
@@ -203,7 +203,7 @@
             }
 
             toolbar.find( "a[data-wysihtml5-command='formatBlock']" )
-                .click( function ( e ) {
+                .click( function( e ) {
                     var target = e.target || e.srcElement;
                     var el = $( target );
                     self.toolbar.find( '.current-font' )
@@ -211,7 +211,7 @@
                 } );
 
             toolbar.find( "a[data-wysihtml5-command='foreColor']" )
-                .click( function ( e ) {
+                .click( function( e ) {
                     var target = e.target || e.srcElement;
                     var el = $( target );
                     self.toolbar.find( '.current-color' )
@@ -223,31 +223,31 @@
             return toolbar;
         },
 
-        initHtml: function ( toolbar ) {
+        initHtml: function( toolbar ) {
             var changeViewSelector = "a[data-wysihtml5-action='change_view']";
             toolbar.find( changeViewSelector )
-                .click( function ( e ) {
+                .click( function( e ) {
                     toolbar.find( 'a.btn' )
                         .not( changeViewSelector )
                         .toggleClass( 'disabled' );
                 } );
         },
 
-        initInsertImage: function ( toolbar ) {
+        initInsertImage: function( toolbar ) {
             var self = this;
             var insertImageModal = toolbar.find( '.bootstrap-wysihtml5-insert-image-modal' );
             var urlInput = insertImageModal.find( '.bootstrap-wysihtml5-insert-image-url' );
             var insertButton = insertImageModal.find( 'a.btn-primary' );
             var initialValue = urlInput.val();
 
-            var insertImage = function () {
+            var insertImage = function() {
                 var url = urlInput.val();
                 urlInput.val( initialValue );
                 self.editor.currentView.element.focus();
                 self.editor.composer.commands.exec( "insertImage", url );
             };
 
-            urlInput.keypress( function ( e ) {
+            urlInput.keypress( function( e ) {
                 if ( e.which == 13 ) {
                     insertImage();
                     insertImageModal.modal( 'hide' );
@@ -256,22 +256,22 @@
 
             insertButton.click( insertImage );
 
-            insertImageModal.on( 'shown', function () {
+            insertImageModal.on( 'shown', function() {
                 urlInput.focus();
             } );
 
-            insertImageModal.on( 'hide', function () {
+            insertImageModal.on( 'hide', function() {
                 self.editor.currentView.element.focus();
             } );
 
             toolbar.find( 'a[data-wysihtml5-command=insertImage]' )
-                .click( function () {
+                .click( function() {
                     var activeButton = $( this )
                         .hasClass( "wysihtml5-command-active" );
 
                     if ( !activeButton ) {
                         insertImageModal.modal( 'show' );
-                        insertImageModal.on( 'click.dismiss.modal', '[data-dismiss="modal"]', function ( e ) {
+                        insertImageModal.on( 'click.dismiss.modal', '[data-dismiss="modal"]', function( e ) {
                             e.stopPropagation();
                         } );
                         return false;
@@ -281,14 +281,14 @@
                 } );
         },
 
-        initInsertLink: function ( toolbar ) {
+        initInsertLink: function( toolbar ) {
             var self = this;
             var insertLinkModal = toolbar.find( '.bootstrap-wysihtml5-insert-link-modal' );
             var urlInput = insertLinkModal.find( '.bootstrap-wysihtml5-insert-link-url' );
             var insertButton = insertLinkModal.find( 'a.btn-primary' );
             var initialValue = urlInput.val();
 
-            var insertLink = function () {
+            var insertLink = function() {
                 var url = urlInput.val();
                 urlInput.val( initialValue );
                 self.editor.currentView.element.focus();
@@ -300,7 +300,7 @@
             };
             var pressedEnter = false;
 
-            urlInput.keypress( function ( e ) {
+            urlInput.keypress( function( e ) {
                 if ( e.which == 13 ) {
                     insertLink();
                     insertLinkModal.modal( 'hide' );
@@ -309,23 +309,23 @@
 
             insertButton.click( insertLink );
 
-            insertLinkModal.on( 'shown', function () {
+            insertLinkModal.on( 'shown', function() {
                 urlInput.focus();
             } );
 
-            insertLinkModal.on( 'hide', function () {
+            insertLinkModal.on( 'hide', function() {
                 self.editor.currentView.element.focus();
             } );
 
             toolbar.find( 'a[data-wysihtml5-command=createLink]' )
-                .click( function () {
+                .click( function() {
                     var activeButton = $( this )
                         .hasClass( "wysihtml5-command-active" );
 
                     if ( !activeButton ) {
                         insertLinkModal.appendTo( 'body' )
                             .modal( 'show' );
-                        insertLinkModal.on( 'click.dismiss.modal', '[data-dismiss="modal"]', function ( e ) {
+                        insertLinkModal.on( 'click.dismiss.modal', '[data-dismiss="modal"]', function( e ) {
                             e.stopPropagation();
                         } );
                         return false;
@@ -338,32 +338,32 @@
 
     // these define our public api
     var methods = {
-        resetDefaults: function () {
+        resetDefaults: function() {
             $.fn.wysihtml5.defaultOptions = $.extend( true, {}, $.fn.wysihtml5.defaultOptionsCache );
         },
-        bypassDefaults: function ( options ) {
-            return this.each( function () {
+        bypassDefaults: function( options ) {
+            return this.each( function() {
                 var $this = $( this );
                 $this.data( 'wysihtml5', new Wysihtml5( $this, options ) );
             } );
         },
-        shallowExtend: function ( options ) {
+        shallowExtend: function( options ) {
             var settings = $.extend( {}, $.fn.wysihtml5.defaultOptions, options || {} );
             var that = this;
             return methods.bypassDefaults.apply( that, [ settings ] );
         },
-        deepExtend: function ( options ) {
+        deepExtend: function( options ) {
             var settings = $.extend( true, {}, $.fn.wysihtml5.defaultOptions, options || {} );
             var that = this;
             return methods.bypassDefaults.apply( that, [ settings ] );
         },
-        init: function ( options ) {
+        init: function( options ) {
             var that = this;
             return methods.shallowExtend.apply( that, [ options ] );
         }
     };
 
-    $.fn.wysihtml5 = function ( method ) {
+    $.fn.wysihtml5 = function( method ) {
         if ( methods[ method ] ) {
             return methods[ method ].apply( this, Array.prototype.slice.call( arguments, 1 ) );
         } else if ( typeof method === 'object' || !method ) {

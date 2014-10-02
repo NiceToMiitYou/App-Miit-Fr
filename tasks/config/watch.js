@@ -12,7 +12,7 @@
  * 		https://github.com/gruntjs/grunt-contrib-watch
  *
  */
-module.exports = function ( grunt ) {
+module.exports = function( grunt ) {
 
     grunt.config.set( 'watch', {
         api: {
