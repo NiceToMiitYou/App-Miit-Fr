@@ -1,0 +1,151 @@
+<div class="content current live-content">  
+    <!-- BEGIN PAGE TITLE -->
+    <div class="page-title">
+        <h3>Présentation de ITEvents</h3>
+        <button type="button" class="fullscreen btn"><i class="fa fa-arrows-alt"></i>  Plein écran</button>
+    </div>
+    <div id="slides" class="presentation-slide flexslider">
+        <ul class="slides">
+            <li class="slide">
+                <div class="slide-content">
+                    <p class="text-center" style="padding-top:20%;">
+                        <img src="/images/logodark.png"/>
+                    </p>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <canvas id="myCanvas"></canvas>
+                </div>
+            </li>
+            <li class="slide noswipe">
+                <div class="slide-content">
+                    <div class="interactive-panel text-right">
+                        <h2 class="text-success">Des slides plus interactifs que jamais !</h2>
+                        <h3>Grace aux technologies HTML5 et CSS3 dynamisez<br/>votre présentation comme aucune autre.</h3>
+                    </div>
+                    <canvas id="world" width="743" height="506" style="width:100%;"><p class="noCanvas">You need a <a href="http://www.google.com/chrome">modern browser</a> to view this.</p></canvas>
+                </div>
+            </li>
+            <li class="slide">
+                <div class="slide-content">
+                    <iframe src="assets/slides/three.html" style="width: 100%; border:0; height:100%;"></iframe>
+                </div>
+            </li>
+            <li class="slide"><div class="slide-content">
+                <div id="line-example" style="width:100%; height:100%;"> </div>
+                <div class="interactive-panel" style="top:58%; margin-right: 20px;">
+                    <h1 class="text-success text-right">Permettez à vos graphiques d'en dire plus</h1><br/>
+                </div>
+            </div></li>
+            <li class="slide"><div class="slide-content"><iframe src="//player.vimeo.com/video/65475425" style="width:100%; height:100%; border:0;" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div></li>
+            <!-- <li class="slide"><div class="slide-content"><img src="assets/img/slides/large5.png"></div></li> -->
+            <li class="slide"><div class="slide-content">
+                <h2 class="text-center"><br><br><br>Vous vous sentez prêt ?</h2>
+                <br><br>
+                <div class="text-center">
+                    <button class="btn btn-large btn-primary"> Oui au max ! </button>&nbsp;&nbsp;
+                    <button class="btn btn-large btn-danger"> Non pas vraiment </button>
+                </div>
+            </li>
+        </ul>
+        <div class="slides-nav">
+            <a class="btn btn-large sn-previous sn-prev" href="prev"><i class="fa fa-arrow-left"></i>&nbsp; Précedent</a>
+            <a class="btn btn-large btn-primary sn-next" href="next">Suivant &nbsp;<i class="fa fa-arrow-right"></i></a>
+        </div>
+    </div>  
+    <div class="info-slides">
+        <br/><br/><br/><br/><br/>
+        <div class="form-wizard-steps">
+            <ul class="wizard-steps">
+                <li data-target="#step1" style="min-width: 20%;" class="active dot-item" data-number='0'> <a href="#tab1" data-toggle="tab"> <span class="step">1</span> <span class="title">Présentation</span> </a> </li>
+                <li data-target="#step2" class="dot-item" data-number='[1,2]' style="min-width: 20%;"> <a href="#tab2" data-toggle="tab"> <span class="step">2</span> <span class="title">Expérience</span> </a> </li>
+                <li style="min-width: 20%;" data-target="#step3"  class="dot-item" data-number='[3,4]'> <a href="#tab3" data-toggle="tab"> <span class="step">3</span> <span class="title">Taux de<br/> transformation</span> </a> </li>
+                <li data-target="#step4" style="min-width: 20%;" class="dot-item" data-number='5'> <a href="#tab4" data-toggle="tab"> <span class="step">4</span> <span class="title">Conclusion <br></span> </a> </li>
+                <li data-target="#step5" style="min-width: 19%;"  class="dot-item" data-number='6'> <a href="#tab6" data-toggle="tab"> <span class="step">5</span> <span class="title">Questions <br></span> </a> </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="row slider-extra">
+        <div class="col-md-12 no-padding">
+            <ul class="nav nav-tabs" id="tab-01">
+                <li class="active grow"><a href="#tabChat"><i class="fa fa-weixin"></i> &nbsp;Chat</a></li>
+                <li class="grow"><a href="#tabNotes"><i class="fa fa-pencil"></i> &nbsp;Notes</a></li>
+            </ul>
+            <a class="minimizer grow"><i class="fa fa-2x fa-angle-down"></i></a>
+            <div class="tools"> <a href="javascript:;" class="collapse"></a> <a href="#grid-config" data-toggle="modal" class="config"></a> <a href="javascript:;" class="reload"></a> <a href="javascript:;" class="remove"></a> </div>
+            <div class="tab-content" style="height:0;">
+                <div class="tab-pane active" id="tabChat">
+                    <div class="row">
+                        <div>
+
+                            <div class="chat-window-wrapper" id="messages-wrapper" style="height: 162px;">
+
+                                <div class="chat-messages">
+
+                                    <div class="user-details-wrapper ">
+                                        <div class="user-profile">
+                                            <img src="/images/profiles/d.jpg"  alt="" data-src="/images/profiles/d.jpg" data-src-retina="/images/profiles/d2x.jpg" width="35" height="35">
+                                        </div>
+                                        <div class="user-details">
+                                            <div class="bubble">    
+                                                Comment pensez-vous faire ça ?
+                                            </div>
+                                        </div>                  
+                                        <div class="clearfix"></div>
+                                        <div class="sent_time off">Yesterday 11:25pm</div>
+                                    </div>      
+                                    <div class="user-details-wrapper ">
+                                        <div class="user-profile">
+                                            <img src="/images/profiles/c.jpg"  alt="" data-src="/images/profiles/c.jpg" data-src-retina="/images/profiles/c2x.jpg" width="35" height="35">
+                                        </div>
+                                        <div class="user-details">
+                                            <div class="bubble">    
+                                                Ca peut faire économiser des heures de boulot !
+                                            </div>
+                                        </div>                  
+                                        <div class="clearfix"></div>
+                                        <div class="sent_time off">Yesterday 11:25pm</div>
+                                    </div>
+                                    <div class="user-details-wrapper pull-right">
+                                        <div class="user-details">
+                                            <div class="bubble sender"> 
+                                                C'est plutôt une bonne idée !
+                                            </div>
+                                        </div>                  
+                                        <div class="clearfix"></div>
+                                        <div class="sent_time off">Sent On Tue, 2:45pm</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chat-input-wrapper">
+                                <input id="chat-message-input" type="text" placeholder="Tapez votre message"></input>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="tabNotes">
+                    <div class="row">
+                        <textarea class="quick-note">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tristique, arcu sed elementum luctus, justo mauris consequat mauris, ut dictum dui nunc luctus urna. Aliquam eros sem, blandit in nulla eget, varius accumsan ipsum. Mauris sapien augue, lacinia quis aliquet eu, interdum eu mi.</textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sider right">
+        <!-- BEGIN FAVORITES WIDGET -->
+        <!-- <button class="btn btn-warning btn-cons">Question wall</button> -->
+        <div class="side-widget">
+            <div class="side-widget-title">Slides</div>
+            <div class="side-widget-content">
+                <div class="active dot-item" data-number='0'>
+                    <img src="/images/slides/1.png"/>
+                </div>
+            </div>
+            <div class="footer-widget counter"> 
+                <span>00:00</span> <i class="fa fa-clock-o"></i>
+            </div>
+        </div>
+    </div>
+</div>
