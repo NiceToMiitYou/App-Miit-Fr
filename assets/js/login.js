@@ -132,10 +132,10 @@ ITEventApp.controller(
             if ( document.getElementById( 'login_email' ) ) {
                 // Handle TAB from form
                 document.getElementById( 'login_email' )
-                    .onkeydown = function ( e ) {
-                    if ( e.keyCode == 9 ) {
-                        return false;
-                    }
+                    .onkeydown = function( e ) {
+                        if ( e.keyCode == 9 ) {
+                            return false;
+                        }
                 }
 
                 // Handle TAB from form

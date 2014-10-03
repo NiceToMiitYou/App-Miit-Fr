@@ -1,26 +1,28 @@
-paper.install(window)          
+paper.install( window )
 
 // Get a reference to the canvas object
-var canvas = document.getElementById('myCanvas');
+var canvas = document.getElementById( 'myCanvas' );
 
 // Create an empty project and a view for the canvas:
-paper.setup(canvas);
+paper.setup( canvas );
 
 var width = 225;
 var height = 120;
 
 // set canvas size, doubled for retina
-view.setViewSize(width*2, height*2);
+view.setViewSize( width * 2, height * 2 );
 
 // set canvas size in css
-$('#myCanvas').css("width", width+"%").css("height", height+"px");
+$( '#myCanvas' )
+    .css( "width", width + "%" )
+    .css( "height", height + "px" );
 
 var waves = 2;
-var amount = waves*50;
-var halfAmount = amount/2;
-var speed = 1*waves;
+var amount = waves * 50;
+var halfAmount = amount / 2;
+var speed = 1 * waves;
 var strokeWidth = 5;
-var halfStroke = strokeWidth/2;
+var halfStroke = strokeWidth / 2;
 
 /*
 w 2400 / amount (50) = 48 // width between points
@@ -31,73 +33,73 @@ percent of 25/25 = 1
 */
 
 // The maximum height of the wave:
-var height = canvas.height*0.6;
+var height = canvas.height * 0.6;
 var width = canvas.width;
 
-var halfHeight = height/2;
+var halfHeight = height / 2;
 
 // Create a new path and style it:
-var path = new Path({
-	// 80% black:
-	strokeColor: "#0aa699",
-	strokeWidth: strokeWidth,
-	strokeCap: 'square'
-});
+var path = new Path( {
+    // 80% black:
+    strokeColor: "#0aa699",
+    strokeWidth: strokeWidth,
+    strokeCap: 'square'
+} );
 
 // Add segment points to the path spread out
 // over the width of the view:
-for (var i = 0; i <= amount; i++) {
-	path.add(new Point((((width+strokeWidth) / amount)*i)-(halfStroke), 0));
+for ( var i = 0; i <= amount; i++ ) {
+    path.add( new Point( ( ( ( width + strokeWidth ) / amount ) * i ) - ( halfStroke ), 0 ) );
 }
 // Select the path, so we can see how it is constructed:
 // path.selected = true;
 
-view.onFrame = function(event) {
-	// Loop through the segments of the path:
-	for (var i = 0; i <= amount; i++) {
-		var segment = path.segments[i];
-		
-    // A cylic value between -1 and 1
-		var sinus = Math.sin(event.time * speed + (i/(amount/10))*waves);
+view.onFrame = function( event ) {
+    // Loop through the segments of the path:
+    for ( var i = 0; i <= amount; i++ ) {
+        var segment = path.segments[ i ];
 
-		// Change the y position of the segment point:
-		segment.point.y = 
-      (
-        (
-          sinus // cyclic value
-          *
-          (
-            halfHeight // wave height fills canvas
-            -
-            halfStroke // account for stroke
-          )
-        ) * (i / amount) // reduce wave intensity closer to index start
-        + halfHeight
-      ); // position in center
-  }
-	// Uncomment the following line and run the script again
-	// to smooth the path:
-	//path.smooth();
+        // A cylic value between -1 and 1
+        var sinus = Math.sin( event.time * speed + ( i / ( amount / 10 ) ) * waves );
+
+        // Change the y position of the segment point:
+        segment.point.y =
+            (
+            (
+                sinus // cyclic value
+                *
+                (
+                    halfHeight // wave height fills canvas
+                    -
+                    halfStroke // account for stroke
+                )
+            ) * ( i / amount ) // reduce wave intensity closer to index start
+            + halfHeight
+        ); // position in center
+    }
+    // Uncomment the following line and run the script again
+    // to smooth the path:
+    //path.smooth();
 }
 
 
-var BlobWorld = new(function() {
-    function b(f, h) {
+var BlobWorld = new( function() {
+    function b( f, h ) {
         var d = new Blob;
         d.position.x = f.x;
         d.position.y = f.y;
         d.velocity.x = h.x;
         d.velocity.y = h.y;
         d.generateNodes();
-        j.push(d)
+        j.push( d )
     }
 
-    function e(f) {
-        u = f.clientX - (window.innerWidth - g.width) * 0.5;
-        v = f.clientY - (window.innerHeight - g.height) * 0.5
+    function e( f ) {
+        u = f.clientX - ( window.innerWidth - g.width ) * 0.5;
+        v = f.clientY - ( window.innerHeight - g.height ) * 0.5
     }
 
-    function i(f) {
+    function i( f ) {
         f.preventDefault();
         y = true;
         E()
@@ -105,35 +107,37 @@ var BlobWorld = new(function() {
 
     function k() {
         y = false;
-        if (q) {
+        if ( q ) {
             q.dragNodeIndex = -1;
             q = null
         }
     }
 
-    function s(f) {
-        if (f.touches.length == 1) {
+    function s( f ) {
+        if ( f.touches.length == 1 ) {
             f.preventDefault();
             y = true;
-            u = f.touches[0].pageX - (window.innerWidth - g.width) * 0.5;
-            v = f.touches[0].pageY - (window.innerHeight -
-                g.height) * 0.5;
-            (new Date).getTime() - F < 300 ? G() : E();
-            F = (new Date).getTime()
+            u = f.touches[ 0 ].pageX - ( window.innerWidth - g.width ) * 0.5;
+            v = f.touches[ 0 ].pageY - ( window.innerHeight -
+                g.height ) * 0.5;
+            ( new Date )
+                .getTime() - F < 300 ? G() : E();
+            F = ( new Date )
+                .getTime()
         }
     }
 
-    function z(f) {
-        if (f.touches.length == 1) {
+    function z( f ) {
+        if ( f.touches.length == 1 ) {
             f.preventDefault();
-            u = f.touches[0].pageX - (window.innerWidth - g.width) * 0.5;
-            v = f.touches[0].pageY - (window.innerHeight - g.height) * 0.5
+            u = f.touches[ 0 ].pageX - ( window.innerWidth - g.width ) * 0.5;
+            v = f.touches[ 0 ].pageY - ( window.innerHeight - g.height ) * 0.5
         }
     }
 
     function L() {
         y = false;
-        if (q) {
+        if ( q ) {
             q.dragNodeIndex = -1;
             q = null
         }
@@ -144,14 +148,14 @@ var BlobWorld = new(function() {
     }
 
     function E() {
-        q = j[D(j, {
+        q = j[ D( j, {
             x: u,
             y: v
-        })];
-        q.dragNodeIndex = D(q.nodes, {
+        } ) ];
+        q.dragNodeIndex = D( q.nodes, {
             x: u,
             y: v
-        })
+        } )
     }
 
     function G() {
@@ -159,8 +163,8 @@ var BlobWorld = new(function() {
                 x: u,
                 y: v
             },
-            h = j[D(j, f)];
-        distanceBetween(h.position, f) < h.radius + 30 && h.quality > 8 && j.push(h.split())
+            h = j[ D( j, f ) ];
+        distanceBetween( h.position, f ) < h.radius + 30 && h.quality > 8 && j.push( h.split() )
     }
 
     // function N(f) {
@@ -185,45 +189,45 @@ var BlobWorld = new(function() {
     // }
 
     function O() {
-        A(20)
+        A( 20 )
     }
 
     function P() {
-        A(-20)
+        A( -20 )
     }
 
     function Q() {
-        B(-1)
+        B( -1 )
     }
 
     function R() {
-        B(1)
+        B( 1 )
     }
 
-    function B(f) {
+    function B( f ) {
         w += f;
         w = w < 0 ? C.length - 1 : w;
         w = w > C.length - 1 ? 0 : w;
-        document.body.style.backgroundColor = C[w].backgroundColor
+        document.body.style.backgroundColor = C[ w ].backgroundColor
     }
 
-    function A(f) {
-        for (var h = 0, d = j.length; h < d; h++) {
-            blob = j[h];
+    function A( f ) {
+        for ( var h = 0, d = j.length; h < d; h++ ) {
+            blob = j[ h ];
             var n = blob.radius;
             blob.radius += f;
-            blob.radius = Math.max(40, Math.min(blob.radius, 280));
+            blob.radius = Math.max( 40, Math.min( blob.radius, 280 ) );
             blob.radius != n && blob.updateNormals()
         }
     }
 
-    function D(f, h) {
-        for (var d = 9999, n = 9999, a = -1, o = 0, r = f.length; o < r; o++) {
-            n = distanceBetween(f[o].position, {
+    function D( f, h ) {
+        for ( var d = 9999, n = 9999, a = -1, o = 0, r = f.length; o < r; o++ ) {
+            n = distanceBetween( f[ o ].position, {
                 x: h.x,
                 y: h.y
-            });
-            if (n < d) {
+            } );
+            if ( n < d ) {
                 d = n;
                 a = o
             }
@@ -243,68 +247,68 @@ var BlobWorld = new(function() {
     }
 
     function S() {
-        var f = C[w],
+        var f = C[ w ],
             h, d, n, a;
         h = 0;
-        for (n = j.length; h < n; h++) {
-            a = j[h];
-            l.clearRect(a.dirtyRegion.left - 80, a.dirtyRegion.top - 80, a.dirtyRegion.right - a.dirtyRegion.left + 160, a.dirtyRegion.bottom - a.dirtyRegion.top + 160);
+        for ( n = j.length; h < n; h++ ) {
+            a = j[ h ];
+            l.clearRect( a.dirtyRegion.left - 80, a.dirtyRegion.top - 80, a.dirtyRegion.right - a.dirtyRegion.left + 160, a.dirtyRegion.bottom - a.dirtyRegion.top + 160 );
             a.dirtyRegion.reset()
         }
-        if (x.blobA !=
-            -1 && x.blobB != -1) {
+        if ( x.blobA !=
+            -1 && x.blobB != -1 ) {
             h = x.blobA;
             n = x.blobB;
             a = getTime();
-            if (j[h] && j[n])
-                if (a - j[h].lastSplitTime > 500 && a - j[n].lastSplitTime > 500) {
-                    j[h].merge(j[n]);
-                    if (q == j[n] && y) q = j[h];
-                    j.splice(n, 1)
+            if ( j[ h ] && j[ n ] )
+                if ( a - j[ h ].lastSplitTime > 500 && a - j[ n ].lastSplitTime > 500 ) {
+                    j[ h ].merge( j[ n ] );
+                    if ( q == j[ n ] && y ) q = j[ h ];
+                    j.splice( n, 1 )
                 }
             x.blobA = -1;
             x.blobB = -1
         }
-        if (q) {
-            q.velocity.x += (u - q.position.x) * 0.01;
-            q.velocity.y += (v + 100 - q.position.y) * 0.01
+        if ( q ) {
+            q.velocity.x += ( u - q.position.x ) * 0.01;
+            q.velocity.y += ( v + 100 - q.position.y ) * 0.01
         }
         h = 0;
-        for (n = j.length; h < n; h++) {
-            a = j[h];
-            for (d = 0; d < n; d++) {
-                var o = j[d];
-                if (o != a)
-                    if (distanceBetween({
+        for ( n = j.length; h < n; h++ ) {
+            a = j[ h ];
+            for ( d = 0; d < n; d++ ) {
+                var o = j[ d ];
+                if ( o != a )
+                    if ( distanceBetween( {
                         x: a.position.x,
                         y: a.position.y
                     }, {
                         x: o.position.x,
                         y: o.position.y
-                    }) < a.radius + o.radius) {
+                    } ) < a.radius + o.radius ) {
                         x.blobA = a.position.x > o.position.x ? h : d;
                         x.blobB = a.position.x >
                             o.position.x ? d : h
                     }
             }
-            a.velocity.x += (window.screenX - I) * (0.04 + Math.random() * 0.1);
-            a.velocity.y += (window.screenY - J) * (0.04 + Math.random() * 0.1);
+            a.velocity.x += ( window.screenX - I ) * ( 0.04 + Math.random() * 0.1 );
+            a.velocity.y += ( window.screenY - J ) * ( 0.04 + Math.random() * 0.1 );
             d = {
                 x: 1.035,
                 y: 1.035
             };
-            if (a.position.x > g.x + g.width) {
-                a.velocity.x -= (a.position.x - g.width) * 0.04;
+            if ( a.position.x > g.x + g.width ) {
+                a.velocity.x -= ( a.position.x - g.width ) * 0.04;
                 d.y += 0.035
-            } else if (a.position.x < g.x) {
-                a.velocity.x += Math.abs(g.x - a.position.x) * 0.04;
+            } else if ( a.position.x < g.x ) {
+                a.velocity.x += Math.abs( g.x - a.position.x ) * 0.04;
                 d.y += 0.035
             }
-            if (a.position.y + a.radius * 0.25 > g.y + g.height) {
-                a.velocity.y -= (a.position.y + a.radius * 0.25 - g.height) * 0.04;
+            if ( a.position.y + a.radius * 0.25 > g.y + g.height ) {
+                a.velocity.y -= ( a.position.y + a.radius * 0.25 - g.height ) * 0.04;
                 d.x += 0.015
-            } else if (a.position.y < g.y) {
-                a.velocity.y += Math.abs(g.y - a.position.y) * 0.04;
+            } else if ( a.position.y < g.y ) {
+                a.velocity.y += Math.abs( g.y - a.position.y ) * 0.04;
                 d.x += 0.015
             }
             a.velocity.x += K.x;
@@ -315,80 +319,80 @@ var BlobWorld = new(function() {
             a.position.y += a.velocity.y;
             var r, c, m, p;
             d = 0;
-            for (o = a.nodes.length; d < o; d++) {
-                c = a.nodes[d];
+            for ( o = a.nodes.length; d < o; d++ ) {
+                c = a.nodes[ d ];
                 c.ghost.x = c.position.x;
                 c.ghost.y = c.position.y
             }
-            if (a.nodes[a.dragNodeIndex]) {
-                a.rotation.target = Math.atan2(v - a.position.y - a.radius * 4, u - a.position.x);
-                a.rotation.current += (a.rotation.target - a.rotation.current) * 0.2;
+            if ( a.nodes[ a.dragNodeIndex ] ) {
+                a.rotation.target = Math.atan2( v - a.position.y - a.radius * 4, u - a.position.x );
+                a.rotation.current += ( a.rotation.target - a.rotation.current ) * 0.2;
                 a.updateNormals()
             }
             d = 0;
-            for (o = a.nodes.length; d < o; d++) {
-                c = a.nodes[d];
-                c.normal.x += (c.normalTarget.x - c.normal.x) *
+            for ( o = a.nodes.length; d < o; d++ ) {
+                c = a.nodes[ d ];
+                c.normal.x += ( c.normalTarget.x - c.normal.x ) *
                     0.05;
-                c.normal.y += (c.normalTarget.y - c.normal.y) * 0.05;
+                c.normal.y += ( c.normalTarget.y - c.normal.y ) * 0.05;
                 p = {
                     x: a.position.x,
                     y: a.position.y
                 };
-                for (r = 0; r < c.joints.length; r++) {
-                    m = c.joints[r];
-                    var T = m.node.ghost.y - c.ghost.y - (m.node.normal.y - c.normal.y);
-                    m.strain.x += (m.node.ghost.x - c.ghost.x - (m.node.normal.x - c.normal.x) - m.strain.x) * 0.3;
-                    m.strain.y += (T - m.strain.y) * 0.3;
+                for ( r = 0; r < c.joints.length; r++ ) {
+                    m = c.joints[ r ];
+                    var T = m.node.ghost.y - c.ghost.y - ( m.node.normal.y - c.normal.y );
+                    m.strain.x += ( m.node.ghost.x - c.ghost.x - ( m.node.normal.x - c.normal.x ) - m.strain.x ) * 0.3;
+                    m.strain.y += ( T - m.strain.y ) * 0.3;
                     p.x += m.strain.x * m.strength;
                     p.y += m.strain.y * m.strength
                 }
                 p.x += c.normal.x;
                 p.y += c.normal.y;
-                r = getArrayIndexByOffset(a.nodes, a.dragNodeIndex, -1);
-                m = getArrayIndexByOffset(a.nodes, a.dragNodeIndex, 1);
-                if (a.dragNodeIndex !=
-                    -1 && (d == a.dragNodeIndex || a.nodes.length > 8 && (d == r || d == m))) {
+                r = getArrayIndexByOffset( a.nodes, a.dragNodeIndex, -1 );
+                m = getArrayIndexByOffset( a.nodes, a.dragNodeIndex, 1 );
+                if ( a.dragNodeIndex !=
+                    -1 && ( d == a.dragNodeIndex || a.nodes.length > 8 && ( d == r || d == m ) ) ) {
                     r = d == a.dragNodeIndex ? 0.7 : 0.5;
-                    p.x += (u - p.x) * r;
-                    p.y += (v - p.y) * r
+                    p.x += ( u - p.x ) * r;
+                    p.y += ( v - p.y ) * r
                 }
-                c.position.x += (p.x - c.position.x) * 0.1;
-                c.position.y += (p.y - c.position.y) * 0.1;
-                c.position.x = Math.max(Math.min(c.position.x, g.x + g.width), g.x);
-                c.position.y = Math.max(Math.min(c.position.y, g.y + g.height), g.y);
-                a.dirtyRegion.inflate(c.position.x, c.position.y)
+                c.position.x += ( p.x - c.position.x ) * 0.1;
+                c.position.y += ( p.y - c.position.y ) * 0.1;
+                c.position.x = Math.max( Math.min( c.position.x, g.x + g.width ), g.x );
+                c.position.y = Math.max( Math.min( c.position.y, g.y + g.height ), g.y );
+                a.dirtyRegion.inflate( c.position.x, c.position.y )
             }
-            if (!f.debug) {
+            if ( !f.debug ) {
                 l.beginPath();
                 l.fillStyle = f.fillStyle;
                 l.strokeStyle = f.strokeStyle;
                 l.lineWidth = f.lineWidth
             }
-            c = getArrayElementByOffset(a.nodes,
-                0, -1);
-            p = getArrayElementByOffset(a.nodes, 0, 0);
-            l.moveTo(c.position.x + (p.position.x - c.position.x) / 2, c.position.y + (p.position.y - c.position.y) / 2);
+            c = getArrayElementByOffset( a.nodes,
+                0, -1 );
+            p = getArrayElementByOffset( a.nodes, 0, 0 );
+            l.moveTo( c.position.x + ( p.position.x - c.position.x ) / 2, c.position.y + ( p.position.y - c.position.y ) / 2 );
             d = 0;
-            for (o = a.nodes.length; d < o; d++) {
-                c = getArrayElementByOffset(a.nodes, d, 0);
-                p = getArrayElementByOffset(a.nodes, d, 1);
-                if (f.debug) {
+            for ( o = a.nodes.length; d < o; d++ ) {
+                c = getArrayElementByOffset( a.nodes, d, 0 );
+                p = getArrayElementByOffset( a.nodes, d, 1 );
+                if ( f.debug ) {
                     l.beginPath();
                     l.lineWidth = 1;
                     l.strokeStyle = "#ababab";
-                    for (r = 0; r < c.joints.length; r++) {
-                        m = c.joints[r];
-                        l.moveTo(c.position.x, c.position.y);
-                        l.lineTo(m.node.position.x, m.node.position.y)
+                    for ( r = 0; r < c.joints.length; r++ ) {
+                        m = c.joints[ r ];
+                        l.moveTo( c.position.x, c.position.y );
+                        l.lineTo( m.node.position.x, m.node.position.y )
                     }
                     l.stroke();
                     l.beginPath();
                     l.fillStyle = d == 0 ? "#00ff00" : d == a.dragNodeIndex ?
                         "ff0000" : "#dddddd";
-                    l.arc(c.position.x, c.position.y, 5, 0, Math.PI * 2, true);
+                    l.arc( c.position.x, c.position.y, 5, 0, Math.PI * 2, true );
                     l.fill()
-                } else l.quadraticCurveTo(c.position.x, c.position.y, c.position.x + (p.position.x - c.position.x) / 2, c.position.y + (p.position.y - c.position.y) / 2)
+                } else l.quadraticCurveTo( c.position.x, c.position.y, c.position.x + ( p.position.x - c.position.x ) / 2, c.position.y + ( p.position.y - c.position.y ) / 2 )
             }
             l.stroke();
             l.fill()
@@ -418,44 +422,44 @@ var BlobWorld = new(function() {
             blobB: -1
         },
         w = 0,
-        C = [{
+        C = [ {
             fillStyle: "#0aa699",
             strokeStyle: "#0aa699",
             lineWidth: 40,
             backgroundColor: "#222222",
             debug: false
-        }];
+        } ];
     this.init = function() {
-        if ((t = document.getElementById("world")) && t.getContext) {
-            l = t.getContext("2d");
-            document.addEventListener("mousemove", e, false);
-            t.addEventListener("mousedown", i, false);
-            t.addEventListener("dblclick", M, false);
-            document.addEventListener("mouseup", k, false);
-            t.addEventListener("touchstart", s, false);
-            t.addEventListener("touchmove", z, false);
-            t.addEventListener("touchend", L, false);
-            window.addEventListener("resize", H, false);
+        if ( ( t = document.getElementById( "world" ) ) && t.getContext ) {
+            l = t.getContext( "2d" );
+            document.addEventListener( "mousemove", e, false );
+            t.addEventListener( "mousedown", i, false );
+            t.addEventListener( "dblclick", M, false );
+            document.addEventListener( "mouseup", k, false );
+            t.addEventListener( "touchstart", s, false );
+            t.addEventListener( "touchmove", z, false );
+            t.addEventListener( "touchend", L, false );
+            window.addEventListener( "resize", H, false );
 
-            b({
+            b( {
                 x: g.width * 0.15,
                 y: g.height * 0.6
             }, {
                 x: 0,
                 y: 0
-            });
-            b({
+            } );
+            b( {
                 x: g.width * 0.5,
                 y: g.height * 0.6
             }, {
                 x: 0,
                 y: 0
-            });
+            } );
             H();
-            setInterval(S, 1E3 / 60)
+            setInterval( S, 1E3 / 60 )
         }
     }
-});
+} );
 
 function Region() {
     this.top = this.left = 999999;
@@ -465,11 +469,11 @@ Region.prototype.reset = function() {
     this.top = this.left = 999999;
     this.bottom = this.right = 0
 };
-Region.prototype.inflate = function(b, e) {
-    this.left = Math.min(this.left, b);
-    this.top = Math.min(this.top, e);
-    this.right = Math.max(this.right, b);
-    this.bottom = Math.max(this.bottom, e)
+Region.prototype.inflate = function( b, e ) {
+    this.left = Math.min( this.left, b );
+    this.top = Math.min( this.top, e );
+    this.right = Math.max( this.right, b );
+    this.bottom = Math.max( this.bottom, e )
 };
 
 function Blob() {
@@ -495,7 +499,7 @@ function Blob() {
 Blob.prototype.generateNodes = function() {
     this.nodes = [];
     var b, e;
-    for (b = 0; b < this.quality; b++) {
+    for ( b = 0; b < this.quality; b++ ) {
         e = {
             normal: {
                 x: 0,
@@ -515,40 +519,40 @@ Blob.prototype.generateNodes = function() {
             },
             angle: 0
         };
-        this.nodes.push(e)
+        this.nodes.push( e )
     }
     this.updateJoints();
     this.updateNormals()
 };
 Blob.prototype.updateJoints = function() {
-    for (var b = 0; b < this.quality; b++) {
-        var e = this.nodes[b];
+    for ( var b = 0; b < this.quality; b++ ) {
+        var e = this.nodes[ b ];
         e.joints = [];
-        e.joints.push(new Joint(getArrayElementByOffset(this.nodes, b, -1), 0.4));
-        e.joints.push(new Joint(getArrayElementByOffset(this.nodes, b, 1), 0.4));
-        if (this.quality > 4) {
-            e.joints.push(new Joint(getArrayElementByOffset(this.nodes, b, -2), 0.4));
-            e.joints.push(new Joint(getArrayElementByOffset(this.nodes, b, 2), 0.4))
+        e.joints.push( new Joint( getArrayElementByOffset( this.nodes, b, -1 ), 0.4 ) );
+        e.joints.push( new Joint( getArrayElementByOffset( this.nodes, b, 1 ), 0.4 ) );
+        if ( this.quality > 4 ) {
+            e.joints.push( new Joint( getArrayElementByOffset( this.nodes, b, -2 ), 0.4 ) );
+            e.joints.push( new Joint( getArrayElementByOffset( this.nodes, b, 2 ), 0.4 ) )
         }
-        if (this.quality > 8) {
-            e.joints.push(new Joint(getArrayElementByOffset(this.nodes, b, -3), 0.4));
-            e.joints.push(new Joint(getArrayElementByOffset(this.nodes,
-                b, 3), 0.4))
+        if ( this.quality > 8 ) {
+            e.joints.push( new Joint( getArrayElementByOffset( this.nodes, b, -3 ), 0.4 ) );
+            e.joints.push( new Joint( getArrayElementByOffset( this.nodes,
+                b, 3 ), 0.4 ) )
         }
     }
 };
 Blob.prototype.updateNormals = function() {
     var b, e, i;
-    for (b = 0; b < this.quality; b++) {
-        i = this.nodes[b];
-        if (this.dragNodeIndex != -1) {
-            e = b - Math.round(this.dragNodeIndex);
+    for ( b = 0; b < this.quality; b++ ) {
+        i = this.nodes[ b ];
+        if ( this.dragNodeIndex != -1 ) {
+            e = b - Math.round( this.dragNodeIndex );
             e = e < 0 ? this.quality + e : e
         } else e = b;
         i.angle = e / this.quality * Math.PI * 2 + this.rotation.target;
-        i.normalTarget.x = Math.cos(i.angle) * this.radius;
-        i.normalTarget.y = Math.sin(i.angle) * this.radius;
-        if (i.normal.x == 0 && i.normal.y == 0) {
+        i.normalTarget.x = Math.cos( i.angle ) * this.radius;
+        i.normalTarget.y = Math.sin( i.angle ) * this.radius;
+        if ( i.normal.x == 0 && i.normal.y == 0 ) {
             i.normal.x = i.normalTarget.x;
             i.normal.y = i.normalTarget.y
         }
@@ -556,16 +560,16 @@ Blob.prototype.updateNormals = function() {
 };
 Blob.prototype.split = function() {
     var b = this.radius / 10,
-        e = Math.round(this.nodes.length * 0.5),
+        e = Math.round( this.nodes.length * 0.5 ),
         i = this.radius * 0.5,
         k = new Blob;
     k.position.x = this.position.x;
     k.position.y = this.position.y;
     k.nodes = [];
-    for (var s = 0; s++ < e;) k.nodes.push(this.nodes.shift());
+    for ( var s = 0; s++ < e; ) k.nodes.push( this.nodes.shift() );
     var z = e = 0;
-    for (s = 0; s < this.nodes.length; s++) e += this.nodes[s].position.x;
-    for (s = 0; s < k.nodes.length; s++) z += k.nodes[s].position.x;
+    for ( s = 0; s < this.nodes.length; s++ ) e += this.nodes[ s ].position.x;
+    for ( s = 0; s < k.nodes.length; s++ ) z += k.nodes[ s ].position.x;
     k.velocity.x = z > e ? b : -b;
     k.velocity.y = this.velocity.y;
     k.radius = i;
@@ -584,11 +588,11 @@ Blob.prototype.split = function() {
     this.lastSplitTime = getTime();
     return k
 };
-Blob.prototype.merge = function(b) {
+Blob.prototype.merge = function( b ) {
     this.velocity.x *= 0.5;
     this.velocity.y *= 0.5;
     this.velocity.x += b.velocity.x * 0.5;
-    for (this.velocity.y += b.velocity.y * 0.5; b.nodes.length;) this.nodes.push(b.nodes.shift());
+    for ( this.velocity.y += b.velocity.y * 0.5; b.nodes.length; ) this.nodes.push( b.nodes.shift() );
     this.quality = this.nodes.length;
     this.radius += b.radius;
     this.dragNodeIndex = b.dragNodeIndex != -1 ? b.dragNodeIndex : this.dragNodeIndex;
@@ -596,7 +600,7 @@ Blob.prototype.merge = function(b) {
     this.updateJoints()
 };
 
-function Joint(b, e) {
+function Joint( b, e ) {
     this.node = b;
     this.strength = e;
     this.strain = {
@@ -605,51 +609,66 @@ function Joint(b, e) {
     }
 }
 
-function getArrayIndexByOffset(b, e, i) {
-    if (b[e + i]) return e + i;
-    if (e + i > b.length - 1) return e - b.length + i;
-    if (e + i < 0) return b.length + (e + i)
+function getArrayIndexByOffset( b, e, i ) {
+    if ( b[ e + i ] ) return e + i;
+    if ( e + i > b.length - 1 ) return e - b.length + i;
+    if ( e + i < 0 ) return b.length + ( e + i )
 }
 
-function getArrayElementByOffset(b, e, i) {
-    return b[getArrayIndexByOffset(b, e, i)]
+function getArrayElementByOffset( b, e, i ) {
+    return b[ getArrayIndexByOffset( b, e, i ) ]
 }
 
 function getTime() {
-    return (new Date).getTime()
+    return ( new Date )
+        .getTime()
 }
 
-function distanceBetween(b, e) {
+function distanceBetween( b, e ) {
     var i = e.x - b.x,
         k = e.y - b.y;
-    return Math.sqrt(i * i + k * k)
+    return Math.sqrt( i * i + k * k )
 }
 BlobWorld.init();
 
 
 // initial animation
 
-if (Modernizr.touch) {   
-    $('#touchslide').on('touchstart',function(e) {
-      var left = e.originalEvent.touches[0].pageX - $('#touchslide').offset().left;
-      var top = e.originalEvent.touches[0].pageY - $('#touchslide').offset().top;
+if ( Modernizr.touch ) {
+    $( '#touchslide' )
+        .on( 'touchstart', function( e ) {
+            var left = e.originalEvent.touches[ 0 ].pageX - $( '#touchslide' )
+                .offset()
+                .left;
+            var top = e.originalEvent.touches[ 0 ].pageY - $( '#touchslide' )
+                .offset()
+                .top;
 
-      $(this).append('<div class="dot" style="top:'+top+'px;left:'+left+'px;"></div>')
-      setTimeout(function(){
-        $('#touchslide .dot:first-of-type').remove();
-      },3000);
-    });
-    document.body.addEventListener('touchmove',function(e){
+            $( this )
+                .append( '<div class="dot" style="top:' + top + 'px;left:' + left + 'px;"></div>' )
+            setTimeout( function() {
+                $( '#touchslide .dot:first-of-type' )
+                    .remove();
+            }, 3000 );
+        } );
+    document.body.addEventListener( 'touchmove', function( e ) {
         e.preventDefault();
-    });
-} else {   
-    $('#touchslide').on('mousedown',function(e) {
-      var left = e.pageX - $('#touchslide').offset().left;
-      var top = e.pageY - $('#touchslide').offset().top;
+    } );
+} else {
+    $( '#touchslide' )
+        .on( 'mousedown', function( e ) {
+            var left = e.pageX - $( '#touchslide' )
+                .offset()
+                .left;
+            var top = e.pageY - $( '#touchslide' )
+                .offset()
+                .top;
 
-      $(this).append('<div class="dot" style="top:'+top+'px;left:'+left+'px;"></div>')
-      setTimeout(function(){
-        $('#touchslide .dot:first-of-type').remove();
-      },3000);
-    }); 
+            $( this )
+                .append( '<div class="dot" style="top:' + top + 'px;left:' + left + 'px;"></div>' )
+            setTimeout( function() {
+                $( '#touchslide .dot:first-of-type' )
+                    .remove();
+            }, 3000 );
+        } );
 }
