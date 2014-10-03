@@ -661,7 +661,7 @@ function unblockUI(el) {
 }
 
 Pace.on('hide', function() {
-  $(".pace").remove();
+  $(".pace, body:not(.login) > #map").remove();
   window.lineexemple.redraw();
   $('#text-editor').wysihtml5({
     "image": false

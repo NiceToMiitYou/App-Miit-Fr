@@ -17,8 +17,9 @@
 var cssFilesToInject = [
   'plugins/**/*.css',
 
-  'styles/**/*.css'
-  'styles/css/main.css'
+  'styles/css/style.css',
+  'styles/**/*.css',
+  'slides/**/*.css',
  ];
 
 
@@ -41,7 +42,8 @@ var jsFilesToInject = [
 
   // All of the rest of your client-side js files
   // will be injected here in no particular order.
-  'js/**/*.js'
+  'js/**/*.js',
+  'slides/**/*.js'
  ];
 
 
