@@ -1,0 +1,109 @@
+
+<!-- BEGIN CONTENT -->
+<div class="page-container row-fluid">
+
+    <!-- BEGIN SIDEBAR -->
+    <div class="page-sidebar" id="main-menu"> 
+        <div class="page-sidebar-wrapper" id="main-menu-wrapper">
+            <!-- BEGIN MINI-PROFILE -->
+            <div class="user-info-wrapper"> 
+                <img style="padding-top:14px;" src="/images/logo.png" alt="" data-src="/images/logo.png" width="140" />
+            </div>
+            <!-- END MINI-PROFILE -->
+            <!-- BEGIN SIDEBAR MENU --> 
+            <ul>    
+                <!-- BEGIN SELECTED LINK -->
+                <li class="">
+                    <a href="#live">
+                        <i class="fa fa-eye"></i>
+                        <span class="title">Présentation</span>
+                        <span class="arrow open"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class=""><a href="#live"><i class="fa fa-paper-plane" style="margin-right: 4px;"></i> <span class="title">Live</span></a></li>
+                        <li><a href="#wall"><i class="fa fa-users" style="margin-right: 4px;"></i> <span class="title">Mur</span></a></li>
+                        <li><a href="#ressources"><i class="fa fa-folder-open" style="margin-right: 4px;"></i> <span class="title">Ressources</span></a></li>
+                    </ul>
+                </li>
+
+                <!-- END SELECTED LINK -->
+                <!-- BEGIN BADGE LINK -->
+                <li class="">
+                    <a href="#chat">
+                        <i class="fa fa-weixin"></i>
+                        <span class="title">Discussions</span>
+                    </a>
+                </li>
+                <!-- END BADGE LINK -->     
+                <!-- BEGIN SINGLE LINK -->
+                <li class="">
+                    <a href="#notes">
+                        <i class="fa fa-pencil"></i>
+                        <span class="title">Bloc-note</span>
+                    </a>
+                </li>
+                <!-- END SINGLE LINK -->    
+                <!-- BEGIN ONE LEVEL MENU -->
+                <li class="">
+                    <a href="#quizz">
+                        <i class="fa fa-question"></i>
+                        <span class="title">Questionnaires</span>
+                    </a>
+                </li>
+                <!-- END ONE LEVEL MENU -->
+                <!-- BEGIN TWO LEVEL MENU -->
+                <li class="">
+                    <a href="#planning">
+                        <i class="fa fa-calendar"></i>
+                        <span class="title">Planning</span>
+                    </a>
+                </li>
+                <!-- END TWO LEVEL MENU -->         
+            </ul>
+            <!-- END SIDEBAR MENU -->
+
+            <div class="clearfix"></div>
+            <!-- END SIDEBAR WIDGETS --> 
+        </div>
+        <div class="menu-preview">
+            <img src="/images/slides/6.jpg" />
+        </div>
+        <div class="footer-widget"> 
+
+            <div class="progress transparent progress-small no-radius no-margin">
+                <div data-percentage="79%" class="progress-bar progress-bar-success animate-progress-bar"></div>        
+            </div>
+            <div class="pull-right">
+                <div class="details-status">
+                    <span data-animation-duration="560" data-value="86" class="animate-number"></span>%
+                </div>  
+            </div>
+        </div>
+    </div>
+    <!-- END SIDEBAR --> 
+
+    <!-- BEGIN PAGE CONTAINER-->
+    <div class="page-content"> 
+
+
+    <% include viewer/live %>
+
+    <% include viewer/resources %>
+
+    <% include viewer/wall-questions %>
+
+    <% include viewer/discussions %>
+
+    <% include viewer/notes %>
+
+    <% include viewer/quizz %>
+
+    <% include viewer/quizz-inner %>
+
+    <% include viewer/planning %>
+
+
+    </div>
+    <!-- END PAGE CONTAINER-->
+</div>
+<!-- END CONTENT --> 
