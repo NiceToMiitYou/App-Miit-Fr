@@ -31,6 +31,9 @@ describe( 'ConfQuizz', function() {
                     should.exist( quizz );
 
                     ( quizz )
+                        .should.be.an.instanceof( Object );
+
+                    ( quizz )
                         .should.have.properties( {
                             id: 1,
                             name: 'test',
@@ -83,6 +86,9 @@ describe( 'ConfQuizz', function() {
                     should.not.exist( err );
 
                     should.exist( quizz );
+
+                    ( quizz )
+                        .should.be.an.instanceof( Object );
 
                     ( quizz )
                         .should.have.properties( {
