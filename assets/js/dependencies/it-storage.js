@@ -113,6 +113,30 @@ window.ITStorage = ( function() {
                             }
                         },
 
+                        // For each
+                        each: function( cb ) {
+                            if ( typeof cb !== 'function' )
+                                return;
+
+                            if ( canPersist && persist ) {
+                                // Get all keys
+                                for ( var key in sessionStorage ) {
+
+                                    // Check prefix
+                                    if ( key.slice( 0, prefix.length ) === prefix ) {
+                                        cb( key, this.get( key ) );
+                                    }
+                                }
+
+                            } else {
+                                // Normal value
+                                for ( var key in datas ) {
+                                    // Handle
+                                    cb( key, this.get( key ) );
+                                }
+                            }
+                        },
+
                         // Clear this area
                         clear: function() {
                             if ( canPersist && persist ) {
