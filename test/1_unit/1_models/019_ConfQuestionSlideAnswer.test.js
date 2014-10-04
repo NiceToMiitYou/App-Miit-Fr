@@ -61,6 +61,7 @@ describe( 'ConfQuestionSlideAnswer', function() {
                 } );
         } );
 
+
         it( 'create another answer', function( done ) {
 
             ConfQuestionSlideAnswer.create( {
@@ -85,6 +86,58 @@ describe( 'ConfQuestionSlideAnswer', function() {
                     done();
                 } );
         } );
+
+
+        it( 'create an answer to question 2', function( done ) {
+
+            ConfQuestionSlideAnswer.create( {
+                answer: 'I am free!',
+                question: 2
+            } )
+                .exec( function( err, answer ) {
+                    should.not.exist( err );
+
+                    should.exist( answer );
+
+                    ( answer )
+                        .should.be.an.instanceof( Object );
+
+                    ( answer )
+                        .should.have.properties( {
+                            id: 3,
+                            answer: 'I am free!',
+                            question: 2
+                        } );
+
+                    done();
+                } );
+        } );
+
+
+        it( 'create another answer to question 2', function( done ) {
+
+            ConfQuestionSlideAnswer.create( {
+                answer: 'I am not free!',
+                question: 2
+            } )
+                .exec( function( err, answer ) {
+                    should.not.exist( err );
+
+                    should.exist( answer );
+
+                    ( answer )
+                        .should.be.an.instanceof( Object );
+
+                    ( answer )
+                        .should.have.properties( {
+                            id: 4,
+                            answer: 'I am not free!',
+                            question: 2
+                        } );
+
+                    done();
+                } );
+        } );
     } );
 
 
@@ -93,6 +146,26 @@ describe( 'ConfQuestionSlideAnswer', function() {
         it( 'find all', function( done ) {
 
             ConfQuestionSlideAnswer.find()
+                .exec( function( err, answers ) {
+                    should.not.exist( err );
+
+                    should.exist( answers );
+
+                    ( answers )
+                        .should.be.an.instanceOf( Array );
+
+                    ( _.size( answers ) )
+                        .should.equal( 4 );
+
+                    done();
+                } );
+        } );
+
+        it( 'find all by question', function( done ) {
+
+            ConfQuestionSlideAnswer.find( {
+                question: 1
+            } )
                 .exec( function( err, answers ) {
                     should.not.exist( err );
 

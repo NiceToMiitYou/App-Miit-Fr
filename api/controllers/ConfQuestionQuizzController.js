@@ -48,7 +48,7 @@ module.exports = {
                 if ( err || !question || _.size(
                     _.intersection(
                         _.map( question.answers, 'id' ), req.param( 'answers' ) )
-                ) === 0) return res.notDone();
+                ) === 0 ) return res.notDone();
 
                 // Single choice question
                 if ( _.size( req.param( 'answers' ) ) == 1 && question.type === 1 ||
