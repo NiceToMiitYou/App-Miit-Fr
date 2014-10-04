@@ -4,9 +4,8 @@ ITEventApp.controller(
 
             function getConference( isInit ) {
                 if ( isInit ) {
-                    $scope.conference.logo = ITStorage.db.options.get( 'conference.logo' );
-                    $scope.conference.name = ITStorage.db.options.get( 'conference.name' );
-                    $scope.conference.description = ITStorage.db.options.get( 'conference.description' );
+                    $scope.conference = ITStorage.db.options.get( 'conference' );
+
                     $scope.$apply();
                 }
             }
@@ -29,6 +28,9 @@ ITEventApp.controller(
                                 // Go to step 3
                                 $scope.user.connected = true;
                                 $scope.s = 3;
+
+                                ITStorage.db.options.set( 'user.isConnected', true );
+                                ITStorage.db.options.set( 'user', data.user );
 
                             } else {
                                 // Wrong password then
@@ -150,6 +152,10 @@ ITEventApp.controller(
             // Log it out
             window.onbeforeunload = function( e ) {
                 if ( $scope.user.connected && !$scope.user.cgu ) {
+                    // Disconnect the user from data initialization
+                    ITStorage.db.options.set( 'user.isConnected', false );
+                    ITStorage.db.options.set( 'user', null );
+
                     ITConnect.user.logout();
                 }
             };

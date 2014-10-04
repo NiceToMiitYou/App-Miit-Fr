@@ -25,13 +25,20 @@ function initData() {
 
             if ( data.done ) {
 
-                ITStorage.db.options.set( 'conference.logo', data.conference.logo );
-                ITStorage.db.options.set( 'conference.name', data.conference.name );
-                ITStorage.db.options.set( 'conference.description', data.conference.description );
+                ITStorage.db.options.set( 'conference', data.conference );
 
                 ITStorage.db.options.set( 'conference.initialized', true );
             }
         } );
+    }
+
+    if ( ITStorage.db.options.get( 'user.isConnected' ) &&
+        !ITStorage.db.options.get( 'user.isLoad' ) ) {
+
+
+
+
+        ITStorage.db.options.set( 'user.isLoad', true );
     }
 }
 
