@@ -112,7 +112,7 @@ describe( 'ConfQuestionQuizzController', function() {
                     done();
                 } );
         } );
-        
+
 
         it( 'answer to the second question with 2 answers', function( done ) {
 
