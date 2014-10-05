@@ -40,7 +40,7 @@ module.exports.connections = {
      * Run: npm install sails-mysql                                             *
      *                                                                          *
      ***************************************************************************/
-    LiveEventApplicationDatabase: {
+    LiveApplicationDatabase: {
         adapter: 'sails-mysql',
         host: 'localhost',
         user: 'itevents',
