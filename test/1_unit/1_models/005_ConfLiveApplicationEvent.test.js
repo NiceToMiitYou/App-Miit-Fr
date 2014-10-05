@@ -10,7 +10,10 @@ describe( 'ConfLiveApplicationEvent', function() {
                 name: 'test',
                 data: {
                     message: 'hello'
-                }
+                },
+                expire: new Date(
+                    (new Date()).getTime() + 60 * 1000
+                )
             } )
                 .exec( function( err, created ) {
                     should.not.exist( err );
@@ -41,6 +44,9 @@ describe( 'ConfLiveApplicationEvent', function() {
                 where: {
                     id: {
                         '>': 0
+                    },
+                    expire: {
+                        '>=': new Date()
                     }
                 },
                 sort: 'id ASC'
