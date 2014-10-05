@@ -125,8 +125,8 @@ window.ITConnect = ( function() {
             },
 
             // Get action
-            get: function( cb ) {
-                io.socket.post( '/api/user/get', {}, cb );
+            get: function( user, cb ) {
+                io.socket.post( '/api/user/get', { user: user }, cb );
             },
 
             // Login action
