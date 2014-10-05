@@ -17,7 +17,11 @@ module.exports = {
 
         data: {
             type: 'json'
-        }
+        },
 
+        expire: {
+            type: 'datetime',
+            index: true
+        }
     }
 };

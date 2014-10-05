@@ -15,6 +15,9 @@ module.exports = {
             where: {
                 id: {
                     '>': req.param( 'token' )
+                },
+                expire: {
+                    '>=': new Date()
                 }
             },
             sort: 'id ASC'
