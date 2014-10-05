@@ -28,7 +28,7 @@ module.exports = {
     get: function( req, res ) {
 
         ConfUser.findOne(
-            req.param('user')
+            req.param( 'user' )
         )
             .exec( function( err, user ) {
                 if ( err || !user ) return res.notDone();

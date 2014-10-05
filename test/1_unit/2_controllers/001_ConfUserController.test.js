@@ -223,9 +223,9 @@ describe( 'ConfUserController', function() {
             agent
                 .post( '/api/user/get' )
                 .expect( 200 )
-                .send({
+                .send( {
                     user: 3
-                })
+                } )
                 .end( function( err, res ) {
                     should.not.exist( err );
 
@@ -240,9 +240,9 @@ describe( 'ConfUserController', function() {
                         .should.be.an.instanceOf( Object );
 
                     ( res.body.user )
-                        .should.have.properties({
+                        .should.have.properties( {
                             id: 3
-                        });
+                        } );
 
                     done();
                 } );
