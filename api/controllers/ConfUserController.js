@@ -23,6 +23,23 @@ module.exports = {
     },
 
     /**
+     * `ConfUserController.get()`
+     */
+    get: function( req, res ) {
+
+        ConfUser.findOne(
+            req.param('user')
+        )
+            .exec( function( err, user ) {
+                if ( err || !user ) return res.notDone();
+
+                return res.done( {
+                    user: user
+                } );
+            } );
+    },
+
+    /**
      * `ConfUserController.login()`
      */
     login: function( req, res ) {

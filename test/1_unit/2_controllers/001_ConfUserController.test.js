@@ -216,6 +216,40 @@ describe( 'ConfUserController', function() {
     } );
 
 
+    describe( '#get()', function() {
+
+        it( 'get one user', function( done ) {
+
+            agent
+                .post( '/api/user/get' )
+                .expect( 200 )
+                .send({
+                    user: 3
+                })
+                .end( function( err, res ) {
+                    should.not.exist( err );
+
+                    ( res.body )
+                        .should.be.an.instanceOf( Object );
+                    ( res.body )
+                        .should.have.properties( {
+                            done: true
+                        } );
+
+                    ( res.body.user )
+                        .should.be.an.instanceOf( Object );
+
+                    ( res.body.user )
+                        .should.have.properties({
+                            id: 3
+                        });
+
+                    done();
+                } );
+        } );
+    } );
+
+
     describe( '#logout()', function() {
 
         it( 'logout test@test.fr', function( done ) {
