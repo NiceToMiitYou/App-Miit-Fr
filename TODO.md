@@ -10,12 +10,12 @@ Use mm/dd/yy format for dates.
 
 What?                                                        | When?  | Who?
 -------------------------------------------------------------|--------|------
-Create all unit tests                                        |21/07/14|Boris Tacyniak
 
 ## Already done
 
 What?                                                        | When?  | Done   | Who?
 -------------------------------------------------------------|--------|--------|------
+Create all unit tests                                        |21/07/14|10/03/14|Boris Tacyniak
 Create the synchronization system                            |09/07/14|09/07/14|Boris Tacyniak
 Reorganizing routes and create storage system on client      |09/06/14|09/06/14|Boris Tacyniak
 Create the api for resources                                 |09/05/14|09/05/14|Boris Tacyniak
