@@ -3,67 +3,103 @@ ITEventApp.controller(
         function( $scope ) {
 
             // Conference model
-            $scope.text = "";
-            $scope.posts = [
-                {
-                    user: {
-                        mail: "johnsmith@mail.fr"
-                    },
-                    text: "Here's his Girl with Roses. Painter Lucian Freud was also born on December 8th a few years later - in 1922.",
-                    time: Date.now(),
-                    tags: [ "Categorie 1" ],
-                    likes: 1,
-                    liked: false
-                },
-                {
-                    user: {
-                        mail: "jaredsmooth@mail.fr"
-                    },
-                    text: "Here's his Girl with Roses. Painter Lucian Freud was also born on December 8th a few years later - in 1922.",
-                    time: Date.now(),
-                    tags: [ "Categorie 2" ],
-                    likes: 1,
-                    liked: false
-                },
-                {
-                    user: {
-                        mail: "janeparker@mail.fr"
-                    },
-                    text: "Here's his Girl with Roses. Painter Lucian Freud was also born on December 8th a few years later - in 1922.",
-                    time: Date.now(),
-                    tags: [ "Categorie 2", "Categorie 1" ],
-                    likes: 1,
-                    liked: false
-                }
-            ];
+            $scope.text = '';
 
-            $scope.like = function( post ) {
-                if ( !post.liked ) {
-                    post.liked = true;
-                    post.likes++;
+            $scope.tags = {};
+
+            $scope.questions = {};
+
+            function loadTags( isLoaded ) {
+                if(isLoaded) {
+
+                    ITStorage.db.tags.each(function( id, tag ) {
+                        $scope.tags[id] = tag;
+                    });
+
+                    $scope.$apply();
                 }
             }
+
+            function likeQuestion( question ) {
+
+                if ( ! isLike(question) ) {
+
+                    ITConnect.question.presentation.like(question.id, function(data){
+                        if( data.done ) {
+                            ITStorage.db.likes.set( question.id, data.like.id );
+                        }
+                    });
+                }
+            }
+
+            function isLike( question ) {
+
+                if ( ! ITStorage.db.likes.get(question.id) ) {
+                    return false;
+                }
+
+                return true;
+            }
+
+            function getTagName( tag ) {
+
+                if ( ! ITStorage.db.tags.get( tag ) ) {
+                    return '';
+                }
+
+                return ITStorage.db.tags.get( tag ).name;
+            }
+
+            $scope.like = likeQuestion;
+
+            $scope.isLike = isLike;
 
             $scope.post = function() {
                 if ( $scope.text ) {
-                    var post = {
-                        user: {
-                            mail: "jaredsmooth@mail.fr"
-                        },
-                        text: $scope.text,
-                        time: Date.now(),
-                        categories: $( '#multi' )
-                            .val(),
-                        likes: 1,
-                        liked: true
-                    }
 
-                    $scope.posts.push( post );
-                    $scope.text = "";
+                    ITConnect.question.presentation.create( $scope.text, $( '#multi' ).val(), function(data) {
+                        if( data.done ) {
+
+                            likeQuestion( data.question );
+
+                            $scope.text = '';
+                            $scope.$apply();
+                        }
+                    });
                 }
             }
 
-            $scope.log = function( l ) {
-                console.log( l );
-            }
+            ITStorage.db.options.bind( 'data.isLoaded', true, loadTags );
+
+            // Retrieve likes
+            ITConnect.bind('question-presentation-like', function( like ) {
+                console.log(like);
+                $scope.questions[like.question].likes++;
+                $scope.$apply();
+            });
+
+            // Retrieve new questions
+            ITConnect.bind('question-presentation-new', function( question ) {
+
+                var userId = question.user;
+
+                $scope.questions[question.id] = question;
+                $scope.questions[question.id].likes = 0;
+                $scope.questions[question.id].user = ITStorage.db.users.get(userId);
+
+                // If user not registered request him
+                if( !$scope.questions[question.id].user ) {
+                    ITConnect.user.get(userId, function( data ){
+                        if( data.done ) {
+                            ITStorage.db.users.set(data.user.id, data.user);
+
+                            $scope.questions[question.id].user = data.user;
+
+                            $scope.$apply();
+                        }
+                    });
+                }
+
+                $scope.$apply();
+            });
     } ] );

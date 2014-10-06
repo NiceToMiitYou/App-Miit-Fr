@@ -682,4 +682,4 @@ $("#login_toggle").on("click", function() {
     $('body').addClass('log');
 });
 
-$("#multi, #multi-search").val(["Categorie1","Categorie2"]).select2();
+$("#multi, #multi-search").select2();

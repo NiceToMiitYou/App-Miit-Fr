@@ -11,47 +11,51 @@
         </div>
     </div>
     <div class="col-md-12 timeline">
-        
 
         <ul class="cbp_tmtimeline">
-            <li class="animate-repeat" ng-repeat="post in posts | orderBy:'-time' | filter:q as results">
-                <div class="cbp_tmicon primary animated bounceIn"> <i class="fa fa-comments"></i> </div>
+            <li class="animate-repeat" ng-repeat="question in questions | toArray | orderBy:'-likes' | filter:q as results">
+                <div class="cbp_tmicon primary animated bounceIn">
+                    <i class="fa fa-comments"></i>
+                </div>
                 <div class="cbp_tmlabel">
                     <div class="p-t-10 p-l-30 p-r-20 p-b-20 xs-p-r-10 xs-p-l-10 xs-p-t-5">
-                        <h4 class="inline m-b-5"><span class="text-success semi-bold m-r-10">{{post.user.email}}</span> </h4>
-                        <span class="muted semi-bold m-b-5 label m-l-5" ng-repeat="categorie in post.categories">{{categorie}}</span>
-                        <div class="muted">{{post.time | date:'mediumTime'}}</div>
-                        <p class="m-t-5 dark-text"> {{post.text}} </p>
-                        </div>
-                        <div class="clearfix"></div>
-                        <div class="tiles p-t-10 p-b-10 p-l-20" style="background-color:#2d3139;">
-                            <ul class="action-links">
-                                <li class="text-white" ng-show="post.likes > 1">{{post.likes}} Likes</li>
-                                <li class="text-white" ng-show="post.likes <= 1">{{post.likes}} Like</li>
-                            </ul>
-                            <a class="btn btn-primary btn-small m-r-10 fright" ng-class="{disabled : post.liked}" ng-click="like(post)"><i class="fa fa-thumbs-o-up"></i> Like</a>
-                            <div class="clearfix"></div>
-                        </div>
+                        <h4 class="inline m-b-5">
+                            <span class="text-success semi-bold m-r-10" ng-show="question.user.lastName || question.user.firstName">
+                                {{question.user.lastName}} {{question.user.firstName}}
+                            </span>
+                            <span class="text-success semi-bold m-r-10" ng-show="!question.user.lastName && !question.user.firstName">
+                                Anonyme
+                            </span>
+                        </h4>
+                        <span class="muted semi-bold m-b-5 label m-l-5" ng-repeat="tag in questions.tags">
+                            {{getTagName(tag)}}
+                        </span>
+                        <div class="muted">{{question.createdAt | date:'mediumTime'}}</div>
+                        <p class="m-t-5 dark-text"> {{question.question}} </p>
                     </div>
-                </li>
-               
-                    </ul>
+                    <div class="clearfix"></div>
+                    <div class="tiles p-t-10 p-b-10 p-l-20" style="background-color:#2d3139;">
+                        <ul class="action-links">
+                            <li class="text-white" ng-show="question.likes > 1">{{question.likes}} Likes</li>
+                            <li class="text-white" ng-show="question.likes <= 1">{{question.likes}} Like</li>
+                        </ul>
+                        <a class="btn btn-primary btn-small m-r-10 fright" ng-class="{disabled : isLike(question) }" ng-click="like(question)">
+                            <i class="fa fa-thumbs-o-up"></i> Like
+                        </a>
+                        <div class="clearfix"></div>
+                    </div>
                 </div>
-                <div class="timeline-post">
-                    <div class="col-md-12 no-padding">
-                      <select id="multi" style="width:100%" multiple>
-                        <option value="Categorie1">Categorie 1</option>
-                        <option value="Categorie2">Categorie 2</option>
-                        <option value="Categorie3">Categorie 3</option>
-                        <option value="Categorie4">Categorie 1</option>
-                        <option value="Categorie5">Categorie 2</option>
-                        <option value="Categorie6">Categorie 3</option>
-                        <option value="Categorie7">Categorie 1</option>
-                        <option value="Categorie8">Categorie 2</option>
-                        <option value="Categorie9">Categorie 3</option>
-                    </select>
-                </div>
-                    <textarea ng-model="text" placeholder="Posez votre question" ></textarea>
-                    <button class="send-wall-question btn btn-primary" id="click" ng-click="post()">Envoyer</button>
-            </div>
+            </li>
+        </ul>
+
+    </div>
+    <div class="timeline-post">
+        <div class="col-md-12 no-padding">
+            <select id="multi" style="width:100%" multiple>
+                <option ng-repeat="tag in tags" value="{{tag.id}}">{{tag.name}}</option>
+            </select>
         </div>
+        <textarea ng-model="text" placeholder="Posez votre question" ></textarea>
+        <button class="send-wall-question btn btn-primary" id="click" ng-click="post()">Envoyer</button>
+    </div>
+</div>
