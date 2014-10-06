@@ -20,11 +20,29 @@ module.exports = {
                 .exec( function( err, created ) {
                     if ( err ) return res.notDone();
 
+                    created.tags = req.param( 'tags' );
+
                     SocketEventCachingService.sendToAll(
                         'question-presentation-new',
                         created,
                         4 * 60 * 60
                     );
+
+                    // If no like before, let's like it
+                    ConfQuestionPresentationLike.create( {
+                        question: created.id,
+                        user: req.session.user,
+                        isLiked: true
+                    } )
+                        .exec( function( err, createdLike ) {
+                            if ( err ) return res.notDone();
+
+                            SocketEventCachingService.sendToAll(
+                                'question-presentation-like',
+                                createdLike,
+                                4 * 60 * 60
+                            );
+                        } );
 
                     return res.done( {
                         question: created
@@ -65,7 +83,10 @@ module.exports = {
                     user: req.session.user
                 } )
                     .exec( function( err, like ) {
-                        if ( err || like ) return res.notDone();
+                        if ( err ) return res.notDone();
+                        if ( like ) return res.notDone({
+                            like: like
+                        });
 
                         // If no like before, let's like it
                         ConfQuestionPresentationLike.create( {

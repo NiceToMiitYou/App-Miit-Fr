@@ -25,7 +25,7 @@ ITEventApp.controller(
                 if ( ! isLike(question) ) {
 
                     ITConnect.question.presentation.like(question.id, function(data){
-                        if( data.done ) {
+                        if( data.done || data.like ) {
                             ITStorage.db.likes.set( question.id, data.like.id );
                         }
                     });
@@ -59,8 +59,6 @@ ITEventApp.controller(
 
                     ITConnect.question.presentation.create( $scope.text, $( '#multi' ).val(), function(data) {
                         if( data.done ) {
-
-                            likeQuestion( data.question );
 
                             $scope.text = '';
                             $scope.$apply();
