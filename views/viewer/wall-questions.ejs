@@ -24,7 +24,7 @@
                         <p class="m-t-5 dark-text"> {{post.text}} </p>
                         </div>
                         <div class="clearfix"></div>
-                        <div class="tiles p-t-10 p-b-10 p-l-20">
+                        <div class="tiles p-t-10 p-b-10 p-l-20" style="background-color:#2d3139;">
                             <ul class="action-links">
                                 <li class="text-white" ng-show="post.likes > 1">{{post.likes}} Likes</li>
                                 <li class="text-white" ng-show="post.likes <= 1">{{post.likes}} Like</li>
@@ -51,7 +51,7 @@
                         <option value="Categorie9">Categorie 3</option>
                     </select>
                 </div>
-                    <textarea ng-model="text" placeholer="Posez votre question" ></textarea>
+                    <textarea ng-model="text" placeholder="Posez votre question" ></textarea>
                     <button class="send-wall-question btn btn-primary" id="click" ng-click="post()">Envoyer</button>
             </div>
         </div>

@@ -40,15 +40,19 @@ ITEventApp.controller(
             }
 
             $scope.post = function() {
-                var post = {
-                    user: {email:"jaredsmooth@mail.fr"},
-                    text: $scope.text,
-                    time:Date.now(),
-                    categories : $('#multi').val(),
-                    likes: 1,
-                    liked: true
+                if($scope.text) {
+                    var post = {
+                        user: {email:"jaredsmooth@mail.fr"},
+                        text: $scope.text,
+                        time:Date.now(),
+                        categories : $('#multi').val(),
+                        likes: 1,
+                        liked: true
+                    }
+                    
+                    $scope.posts.push(post);
+                    $scope.text = "";
                 }
-                $scope.posts.push(post);
             }
 
             $scope.log = function(l) {

@@ -1,4 +1,3 @@
-
 var color_green="#27cebc";
 var color_blue="#00acec";
 var color_yellow="#FDD01C";
@@ -14,8 +13,6 @@ var color_info="#3b4751";
 
 $(document).ready(function () {
     calculateHeight();
-
-
 
     $(".remove-widget").click(function () {
         $(this).parent().parent().parent().addClass('animated fadeOut');
@@ -665,13 +662,16 @@ function unblockUI(el) {
 Pace.on('hide', function() {
   $(".pace, body:not(.login) > #map").remove();
   // window.lineexemple.redraw();
-  // $('#text-editor').wysihtml5({
-  //   "image": false
-  // });
+  $('#text-editor').wysihtml5({
+    "image": false
+  });
 
 });
 
 $(window).load(function() {
+    $('#text-editor').wysihtml5({
+      "image": false
+    });
     if(window.location.hash) {
       $("#main-menu-wrapper ul li > a[href="+window.location.hash+"]").trigger("click");
     } else {

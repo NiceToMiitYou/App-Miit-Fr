@@ -935,6 +935,7 @@ ul.table-list li a span.title {
 .cbp_tmtimeline:before {
 	width: 6px;
 	left: 47px;
+	bottom: 130px;
 }
 
 .cbp_tmtimeline .action-links li:after {

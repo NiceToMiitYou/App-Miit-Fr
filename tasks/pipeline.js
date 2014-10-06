@@ -40,6 +40,7 @@ var jsFilesToInject = [
   'js/dependencies/**/*.js',
 
   // Plugins are brought in here
+  'plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js',
   'plugins/**/*.js',
 
   // All of the rest of your client-side js files
