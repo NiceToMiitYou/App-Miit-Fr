@@ -15,8 +15,6 @@ var color_info="#3b4751";
 $(document).ready(function () {
     calculateHeight();
 
-
-
     $(".remove-widget").click(function () {
         $(this).parent().parent().parent().addClass('animated fadeOut');
         $(this).parent().parent().parent().attr('id', 'id_a');
