@@ -73,7 +73,6 @@ ITEventApp.controller(
 
             // Retrieve likes
             ITConnect.bind('question-presentation-like', function( like ) {
-                console.log(like);
                 $scope.questions[like.question].likes++;
                 $scope.$apply();
             });

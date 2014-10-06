@@ -30,7 +30,6 @@ window.ITConnect = ( function() {
         while (
             null != ( eventTmp = ITStorage.db.events.get( lastestToken + 1 ) )
         ) {
-
             // Process event
             eventCallback( eventTmp );
         }
@@ -88,6 +87,14 @@ window.ITConnect = ( function() {
                     synchronize( eventTmp.id );
                 }
             } );
+        },
+
+        // synchronize from cache
+        synchronize: function() {
+            // Force first synchronization from cache
+            if ( lastestToken === 0 ) {
+                synchronize( 1 );
+            }
         },
 
         // Get configuration

@@ -147,6 +147,11 @@ function initData() {
             } );
 
     }
+
+    // If connected, synchronize
+    if ( ITStorage.db.options.get( 'user.isConnected' ) ) {
+        window.onload = ITConnect.synchronize;
+    }
 }
 
 init();
