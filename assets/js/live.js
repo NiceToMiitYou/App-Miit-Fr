@@ -88,16 +88,6 @@ $( function() {
                 .addClass( "minimize" );
         } );
 
-    // $(".fullscreen").on("click", function() {
-    // 	$slides.css({"position":"fixed", "padding-bottom": "0", "top": -768, "z-index": 9999}).animate({"top":10, "bottom":0, "left":0, "right": 0});
-    // 	$slides.data("flexslider").resize();
-    // 	$(".fullscreen-layer, .close-fs").fadeIn();
-    // 	$(".close-fs").css({"z-index": 99999});
-    // 	$(".page-content").animate({"margin-left": 0, "margin-right": 0}, function() {
-    // 		$(".page-content").css({"overflow": "hidden"});
-    // 	});
-    // });
-
     $( ".close-fs" )
         .on( "click", function() {
             $slides.animate( {

@@ -4,7 +4,7 @@ textarea {
     border-radius: 0;
 }
 .clear {clear: both;}
-
+.fright {float:right;}
 .menu-preview {
 	position: absolute;
 	bottom: 55px;
@@ -44,6 +44,7 @@ textarea {
 	margin-right: 170px;
 	margin-left: 200px;
 	overflow: visible;
+	min-height: 0;
 	height: 100%;
 	transition: margin-right 200ms;
 }
@@ -888,12 +889,12 @@ ul.table-list li a span.title {
 }
 
 .timeline {
-	height: 73%;
+	height: calc(100% - 273px);
 	overflow-y: auto;
 }
 
 .timeline-post {
-	height: 20%;
+	height: 154px;
 	position: absolute;
 	bottom: 0;
 	width: 100%;
@@ -915,7 +916,66 @@ ul.table-list li a span.title {
 		color: #FFF;
 		-webkit-animation: border-beat 800ms infinite; /* Chrome, Safari, Opera */
 	    animation: border-beat 800ms infinite;
+	    margin-right: 120px!important;
 }
+
+.timeline-search {
+	padding: 10px;
+	background-color: #D5D6D6;
+}
+
+.cbp_tmtimeline > li .cbp_tmicon {
+	left:45px;
+}
+
+.cbp_tmtimeline > li .cbp_tmlabel {
+	margin-left: 90px
+}
+
+.cbp_tmtimeline:before {
+	width: 6px;
+	left: 47px;
+}
+
+.cbp_tmtimeline .action-links li:after {
+	content: "";
+}
+
+.transparent .input-group-addon {
+	padding: 8px 11px 10px 11px;
+}
+
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter,
+.animate-repeat.ng-leave {
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+}
+
+.animate-repeat.ng-leave.ng-leave-active,
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter {
+  opacity:0;
+  max-height:0px;
+}
+
+.animate-repeat.ng-leave,
+.animate-repeat.ng-move.ng-move-active,
+.animate-repeat.ng-enter.ng-enter-active {
+  opacity:1;
+  max-height:800px;}
+
+  .wall-content .page-title {
+  	margin-bottom: 0;
+  }
+
+  .wall-content .send-wall-question {
+  	position: absolute;
+  	right: 5px;
+  	bottom: 5px;
+  	height: 105px;
+  	width: 105px;
+  }
 
 /* --------- ANIMATIONS ---------- */
 #frm_login label {
@@ -1186,3 +1246,6 @@ ul.table-list li a span.title {
 	width: 100%;
 	max-width: none;
 }
+
+
+
