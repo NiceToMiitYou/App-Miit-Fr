@@ -124,6 +124,9 @@ window.ITStorage = ( function() {
 
                                     // Check prefix
                                     if ( key.slice( 0, prefix.length ) === prefix ) {
+
+                                        key = key.replace( prefix , '');
+
                                         cb( key, this.get( key ) );
                                     }
                                 }
