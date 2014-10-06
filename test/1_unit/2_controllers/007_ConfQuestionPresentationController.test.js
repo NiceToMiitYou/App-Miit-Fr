@@ -211,29 +211,5 @@ describe( 'ConfQuestionPresentationController', function() {
                     done();
                 } );
         } );
-
-        it( 'dislike a question that the user created', function( done ) {
-
-            agent
-                .post( '/api/viewer/question/presentation/like' )
-                .send( {
-                    question: 3,
-                    like: false
-                } )
-                .expect( 200 )
-                .end( function( err, res ) {
-                    should.not.exist( err );
-
-                    ( res.body )
-                        .should.be.an.instanceOf( Object );
-
-                    ( res.body )
-                        .should.have.properties( {
-                            done: false
-                        } );
-
-                    done();
-                } );
-        } );
     } );
 } );
