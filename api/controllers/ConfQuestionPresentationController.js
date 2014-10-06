@@ -65,7 +65,10 @@ module.exports = {
                     user: req.session.user
                 } )
                     .exec( function( err, like ) {
-                        if ( err || like ) return res.notDone();
+                        if ( err ) return res.notDone();
+                        if ( like ) return res.notDone({
+                            like: like
+                        });
 
                         // If no like before, let's like it
                         ConfQuestionPresentationLike.create( {
