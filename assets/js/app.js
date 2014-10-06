@@ -4,13 +4,14 @@ window.ITEventApp = angular.module( 'ITEventApp', ['ngAnimate'] );
 function init() {
     ITStorage.create( 'options', true );
 
-    ITStorage.create( 'chatrooms' );
-    ITStorage.create( 'users' );
-    ITStorage.create( 'notes' );
-    ITStorage.create( 'resources' );
+    ITStorage.create( 'chatrooms', true );
+    ITStorage.create( 'users', true );
+    ITStorage.create( 'notes', true );
+    ITStorage.create( 'resources', true );
 
-    ITStorage.create( 'quizzes' );
-    ITStorage.create( 'presentations' );
+    ITStorage.create( 'quizzes', true );
+    ITStorage.create( 'tags', true );
+    ITStorage.create( 'presentations', true );
 
     initData();
 }
@@ -47,9 +48,9 @@ function initData() {
                         if ( !data.done ) return;
 
                         // Add each chatroom in the area
-                        for ( chatroom in data.chatrooms ) {
+                        for ( index in data.chatrooms ) {
 
-                            ITStorage.db.chatrooms.set( chatroom.id, chatroom );
+                            ITStorage.db.chatrooms.set( data.chatrooms[index].id, data.chatrooms[index] );
                         }
 
                         callback( null );
@@ -62,9 +63,9 @@ function initData() {
                         if ( !data.done ) return;
 
                         // Add each note in the area
-                        for ( note in data.notes ) {
+                        for ( index in data.notes ) {
 
-                            ITStorage.db.notes.set( note.id, note );
+                            ITStorage.db.notes.set( data.notes[index].id, data.notes[index] );
                         }
 
                         callback( null );
@@ -77,9 +78,24 @@ function initData() {
                         if ( !data.done ) return;
 
                         // Add each resource in the area
-                        for ( resource in data.resources ) {
+                        for ( index in data.resources ) {
 
-                            ITStorage.db.resources.set( resource.id, resource );
+                            ITStorage.db.resources.set( data.resources[index].id, data.resources[index] );
+                        }
+
+                        callback( null );
+                    } );
+                },
+
+                function( callback ) {
+                    // Load tags
+                    ITConnect.question.presentation.tags( function( data ) {
+                        if ( !data.done ) return;
+
+                        // Add each tag in the area
+                        for ( index in data.tags ) {
+
+                            ITStorage.db.tags.set( data.tags[index].id, data.tags[index] );
                         }
 
                         callback( null );
@@ -88,25 +104,25 @@ function initData() {
 
                 function( callback ) {
                     // Load quizzes
-                    ITConnect.questions.quizz.list( function( data ) {
+                    ITConnect.question.quizz.list( function( data ) {
                         if ( !data.done ) return;
 
                         var max = 0;
                         var end = 0;
 
                         // Add each resource in the area
-                        for ( quizz in data.quizzes ) {
+                        for ( index in data.quizzes ) {
 
                             max++;
 
                             // Get all questions of the quizz
-                            ITConnect.questions.quizz.questions(
-                                quizz.id,
+                            ITConnect.question.quizz.questions(
+                                data.quizzes[index].id,
                                 function( data ) {
                                     if ( data.done ) {
 
                                         // Add them to the current object
-                                        quizz.questions = data.questions;
+                                        data.quizzes[index].questions = data.questions;
 
                                         // Store the quizz
                                         ITStorage.db.quizzes.set( quizz.id, quizz );
@@ -117,6 +133,8 @@ function initData() {
                                     if ( max === end ) callback( null );
                                 } );
                         }
+
+                        if( max === 0 ) callback( null ); 
                     } );
                 }
             ],
