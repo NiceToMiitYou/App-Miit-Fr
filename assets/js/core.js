@@ -15,6 +15,8 @@ var color_info="#3b4751";
 $(document).ready(function () {
     calculateHeight();
 
+
+
     $(".remove-widget").click(function () {
         $(this).parent().parent().parent().addClass('animated fadeOut');
         $(this).parent().parent().parent().attr('id', 'id_a');
@@ -662,16 +664,24 @@ function unblockUI(el) {
 
 Pace.on('hide', function() {
   $(".pace, body:not(.login) > #map").remove();
-  window.lineexemple.redraw();
-  $('#text-editor').wysihtml5({
-    "image": false
-  });
-  $("#main-menu-wrapper ul li:first > a").trigger("click");
+  // window.lineexemple.redraw();
+  // $('#text-editor').wysihtml5({
+  //   "image": false
+  // });
+
 });
+
+$(window).load(function() {
+    if(window.location.hash) {
+      $("#main-menu-wrapper ul li > a[href="+window.location.hash+"]").trigger("click");
+    } else {
+      $("#main-menu-wrapper ul li:first > a").trigger("click");    
+    }
+})
 
 $("#login_toggle").on("click", function() {
     $('.login-container, #map').remove();
     $('body').addClass('log');
 });
 
-$("#multi").val(["Categorie1","Categorie2"]).select2();
+$("#multi, #multi-search").val(["Categorie1","Categorie2"]).select2();

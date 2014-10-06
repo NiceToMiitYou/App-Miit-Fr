@@ -1,4 +1,4 @@
-window.ITEventApp = angular.module( 'ITEventApp', [] );
+window.ITEventApp = angular.module( 'ITEventApp', ['ngAnimate'] );
 
 // Create
 function init() {

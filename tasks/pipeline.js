@@ -17,6 +17,7 @@
 var cssFilesToInject = [
   'plugins/**/*.css',
 
+  'styles/css/responsive.css',
   'styles/css/style.css',
   'styles/**/*.css',
   'slides/**/*.css',
@@ -33,6 +34,7 @@ var jsFilesToInject = [
   // Load ITStorage before ITConnect
   'js/dependencies/it-storage.js',
 
+  'js/dependencies/angular.js',
 
   // Dependencies like jQuery, or Angular are brought in here
   'js/dependencies/**/*.js',
