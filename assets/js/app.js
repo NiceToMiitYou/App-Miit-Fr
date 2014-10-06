@@ -11,6 +11,7 @@ function init() {
 
     ITStorage.create( 'quizzes', true );
     ITStorage.create( 'tags', true );
+    ITStorage.create( 'likes', true );
     ITStorage.create( 'presentations', true );
 
     initData();
@@ -149,3 +150,13 @@ function initData() {
 }
 
 init();
+
+ITEventApp.filter('toArray', function() {
+    return function(input) {
+        var out = []; 
+        for(i in input){
+            out.push(input[i]);
+        }
+        return out;
+    }
+});
