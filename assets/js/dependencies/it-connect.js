@@ -65,9 +65,6 @@ window.ITConnect = ( function() {
             // Add callbacks in list
             eventsCallbacks[ name ] = cb;
 
-            // Unbind all event with same name
-            io.socket.removeAllListeners( name );
-
             // Bind the event
             io.socket.on( name, function( cache ) {
 
