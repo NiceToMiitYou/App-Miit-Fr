@@ -60,8 +60,6 @@ ITEventApp.controller(
                     ITConnect.question.presentation.create( $scope.text, $( '#multi' ).val(), function(data) {
                         if( data.done ) {
 
-                            likeQuestion( data.question );
-
                             $scope.text = '';
                             $scope.$apply();
                         }
