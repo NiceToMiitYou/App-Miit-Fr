@@ -20,8 +20,6 @@ module.exports = {
                 .exec( function( err, created ) {
                     if ( err ) return res.notDone();
 
-                    created.tags = req.param( 'tags' );
-
                     SocketEventCachingService.sendToAll(
                         'question-presentation-new',
                         created,
