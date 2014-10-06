@@ -58,9 +58,8 @@ module.exports = {
             isAnswered: false
         } )
             .exec( function( err, question ) {
-                if ( err || !question || question.user == req.session.user ) return res.notDone();
+                if ( err || !question ) return res.notDone();
 
-                // When there is a question and is not the actual who posted her, try to find him a like
                 ConfQuestionPresentationLike.findOne( {
                     question: question.id,
                     user: req.session.user
