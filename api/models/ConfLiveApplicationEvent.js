@@ -20,8 +20,7 @@ module.exports = {
         },
 
         expire: {
-            type: 'datetime',
-            index: true
+            type: 'datetime'
         }
     }
 };
