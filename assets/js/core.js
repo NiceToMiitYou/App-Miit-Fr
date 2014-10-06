@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 var color_green="#27cebc";
 var color_blue="#00acec";
 var color_yellow="#FDD01C";
@@ -916,26 +915,30 @@ function unblockUI( el ) {
         .unblock();
 }
 
-Pace.on( 'hide', function() {
-    $( ".pace, body:not(.login) > #map" )
-        .remove();
-    window.lineexemple.redraw();
-    $( '#text-editor' )
-        .wysihtml5( {
-            "image": false
-        } );
-    $( "#main-menu-wrapper ul li:first > a" )
-        .trigger( "click" );
-} );
+Pace.on('hide', function() {
+  $(".pace, body:not(.login) > #map").remove();
+  // window.lineexemple.redraw();
+  $('#text-editor').wysihtml5({
+    "image": false
+  });
 
-$( "#login_toggle" )
-    .on( "click", function() {
-        $( '.login-container, #map' )
-            .remove();
-        $( 'body' )
-            .addClass( 'log' );
-    } );
+});
 
-$( "#multi" )
-    .val( [ "Categorie1", "Categorie2" ] )
-    .select2();
+$(window).load(function() {
+    $('#text-editor').wysihtml5({
+      "image": false
+    });
+    if(window.location.hash) {
+      $("#main-menu-wrapper ul li > a[href="+window.location.hash+"]").trigger("click");
+    } else {
+      $("#main-menu-wrapper ul li:first > a").trigger("click");    
+    }
+})
+
+$("#login_toggle").on("click", function() {
+    $('.login-container, #map').remove();
+    $('body').addClass('log');
+});
+
+$("#multi, #multi-search").val(["Categorie1","Categorie2"]).select2();
+
