@@ -9,20 +9,22 @@
  * http://sailsjs.org/#/documentation/reference/sails.config/sails.config.bootstrap.html
  */
 
-var fs = require('fs');
+var fs = require( 'fs' );
 var filename = 'logo.txt';
 
 module.exports.bootstrap = function( cb ) {
 
     sails.log.ship = function() {
 
-        var logo = fs.readFileSync(filename, 'utf8').toString().split('\n');
+        var logo = fs.readFileSync( filename, 'utf8' )
+            .toString()
+            .split( '\n' );
 
-        for( line in logo ) {
-            sails.log.info( logo [ line ] );
+        for ( line in logo ) {
+            sails.log.info( logo[ line ] );
         }
     };
-    
+
     // It's very important to trigger this callback method when you are finished
     // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
     cb();

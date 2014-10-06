@@ -1,3 +1,4 @@
-    $('#wall-list').nestable({
-        group: 1
-    })
+    $( '#wall-list' )
+        .nestable( {
+            group: 1
+        } )

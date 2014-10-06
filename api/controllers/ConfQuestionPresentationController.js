@@ -20,7 +20,11 @@ module.exports = {
                 .exec( function( err, created ) {
                     if ( err ) return res.notDone();
 
-                    SocketEventCachingService.sendToAll( 'question-presentation-new', created );
+                    SocketEventCachingService.sendToAll(
+                        'question-presentation-new',
+                        created,
+                        4 * 60 * 60
+                    );
 
                     return res.done( {
                         question: created
@@ -59,16 +63,17 @@ module.exports = {
                             .exec( function( err, created ) {
                                 if ( err ) return res.notDone();
 
-                                SocketEventCachingService.sendToAll( 'question-presentation-like', created );
+                                SocketEventCachingService.sendToAll( 
+                                    'question-presentation-like',
+                                    created,
+                                    4 * 60 * 60
+                                );
 
                                 return res.done( {
                                     like: created
                                 } );
-
                             } );
-
                     } );
-
             } );
     }
 };

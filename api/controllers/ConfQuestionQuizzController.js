@@ -13,7 +13,7 @@ module.exports = {
     list: function( req, res ) {
         ConfQuizz.find()
             .exec( function( err, quizzes ) {
-                if ( err || !quizz ) return res.notDone();
+                if ( err || !quizzes ) return res.notDone();
 
                 return res.done( {
                     quizzes: quizzes
@@ -45,10 +45,10 @@ module.exports = {
         ConfQuestionQuizz.findOne( req.param( 'question' ) )
             .populate( 'answers' )
             .exec( function( err, question ) {
-                if ( err || !question || !_.size(
+                if ( err || !question || _.size(
                     _.intersection(
                         _.map( question.answers, 'id' ), req.param( 'answers' ) )
-                ) ) return res.notDone();
+                ) === 0 ) return res.notDone();
 
                 // Single choice question
                 if ( _.size( req.param( 'answers' ) ) == 1 && question.type === 1 ||

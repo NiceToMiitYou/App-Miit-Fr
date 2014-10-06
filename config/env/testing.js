@@ -21,7 +21,7 @@ module.exports = {
 
     connections: {
 
-        LiveEventApplicationDatabase: {
+        LiveApplicationDatabase: {
             adapter: 'sails-memory'
         },
 

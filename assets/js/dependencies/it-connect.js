@@ -123,6 +123,14 @@ window.ITConnect = ( function() {
             list: function( cb ) {
                 io.socket.get( '/api/user/list', {}, cb );
             },
+
+            // Get action
+            get: function( user, cb ) {
+                io.socket.post( '/api/user/get', {
+                    user: user
+                }, cb );
+            },
+
             // Login action
             login: function( mail, password, cb ) {
                 io.socket.post( '/api/user/login', {
@@ -130,6 +138,7 @@ window.ITConnect = ( function() {
                     password: password
                 }, cb );
             },
+
             // Login action
             register: function( mail, password, cb ) {
                 io.socket.post( '/api/user/register', {
@@ -137,6 +146,7 @@ window.ITConnect = ( function() {
                     password: password
                 }, cb );
             },
+
             // Logout action
             logout: function( cb ) {
                 io.socket.get( '/api/user/logout', {}, cb );

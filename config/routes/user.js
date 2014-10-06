@@ -11,6 +11,11 @@ routes[ 'GET ' + apiUserPrefix + '/list' ] = {
     action: 'list'
 };
 
+routes[ 'POST ' + apiUserPrefix + '/get' ] = {
+    controller: 'ConfUserController',
+    action: 'get'
+};
+
 routes[ 'POST ' + apiUserPrefix + '/login' ] = {
     controller: 'ConfUserController',
     action: 'login'

@@ -32,10 +32,10 @@ module.exports = {
         ConfQuestionSlide.findOne( req.param( 'question' ) )
             .populate( 'answers' )
             .exec( function( err, question ) {
-                if ( err || !question || question.isClosed || !_.size(
+                if ( err || !question || question.isClosed || _.size(
                     _.intersection(
                         _.map( question.answers, 'id' ), req.param( 'answers' ) )
-                ) ) return res.notDone();
+                ) === 0 ) return res.notDone();
 
                 // Single choice question
                 if ( _.size( req.param( 'answers' ) ) == 1 && question.type === 1 ||

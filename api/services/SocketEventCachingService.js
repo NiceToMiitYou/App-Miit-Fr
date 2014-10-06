@@ -1,9 +1,24 @@
 module.exports = {
 
-    sendToAll: function( event, data ) {
+    sendToAll: function( event, data, stayAlive ) {
+
+        if ( !stayAlive ) {
+            // By default, 24 hours
+            stayAlive = 24 * 60 * 60;
+        }
+
+        // Add milliseconds for time
+        stayAlive *= 1000;
+
+        var expire = new Date(
+            ( new Date() )
+            .getTime() + stayAlive
+        );
+
         ConfLiveApplicationEvent.create( {
             name: event,
-            data: JSON.stringify( data.toJSON() )
+            data: JSON.stringify( data.toJSON() ),
+            expire: expire
         } )
             .exec( function( err, model ) {
                 if ( err ) return sails.log.debug( err );
