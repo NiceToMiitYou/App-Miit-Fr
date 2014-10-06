@@ -38,6 +38,11 @@ routes[ 'POST ' + apiPublicPrefix + '/question/presentation/create' ] = {
     action: 'create'
 };
 
+routes[ 'GET ' + apiPublicPrefix + '/question/presentation/tags' ] = {
+    controller: 'ConfQuestionPresentationController',
+    action: 'tags'
+};
+
 routes[ 'POST ' + apiPublicPrefix + '/question/presentation/like' ] = {
     controller: 'ConfQuestionPresentationController',
     action: 'like'

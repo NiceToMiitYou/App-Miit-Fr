@@ -189,6 +189,11 @@ window.ITConnect = ( function() {
                     }, cb );
                 },
 
+                // Get all tags
+                tags: function( cb ) {
+                    io.socket.get( apiPublicPrefix + '/question/presentation/tags', {}, cb );
+                },
+
                 // Like a question
                 like: function( question, cb ) {
                     io.socket.post( apiPublicPrefix + '/question/presentation/like', {

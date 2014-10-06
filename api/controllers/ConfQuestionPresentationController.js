@@ -36,6 +36,20 @@ module.exports = {
     },
 
     /**
+     * `ConfQuestionPresentationController.tags()`
+     */
+    tags: function( req, res ) {
+        ConfTag.find()
+            .exec( function( err, tags ) {
+                if ( err || !tags ) return res.notDone();
+
+                return res.done( {
+                    tags: tags
+                } );
+            } );
+    },
+
+    /**
      * `ConfQuestionPresentationController.like()`
      */
     like: function( req, res ) {
@@ -63,7 +77,7 @@ module.exports = {
                             .exec( function( err, created ) {
                                 if ( err ) return res.notDone();
 
-                                SocketEventCachingService.sendToAll( 
+                                SocketEventCachingService.sendToAll(
                                     'question-presentation-like',
                                     created,
                                     4 * 60 * 60

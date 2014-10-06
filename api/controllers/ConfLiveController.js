@@ -13,8 +13,7 @@ module.exports = {
     next: function( req, res ) {
         if ( req.param( 'presentation' ) && req.param( 'presentation' ) > 0 ) {
             SocketEventCachingService.sendToAll(
-                'live-presentation-next',
-                {
+                'live-presentation-next', {
                     presentation: req.param( 'presentation' )
                 },
                 4 * 60 * 60
@@ -28,8 +27,7 @@ module.exports = {
     previous: function( req, res ) {
         if ( req.param( 'presentation' ) && req.param( 'presentation' ) > 0 ) {
             SocketEventCachingService.sendToAll(
-                'live-presentation-previous',
-                {
+                'live-presentation-previous', {
                     presentation: req.param( 'presentation' )
                 },
                 4 * 60 * 60

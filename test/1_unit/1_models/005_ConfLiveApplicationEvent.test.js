@@ -12,7 +12,8 @@ describe( 'ConfLiveApplicationEvent', function() {
                     message: 'hello'
                 },
                 expire: new Date(
-                    (new Date()).getTime() + 60 * 1000
+                    ( new Date() )
+                    .getTime() + 60 * 1000
                 )
             } )
                 .exec( function( err, created ) {

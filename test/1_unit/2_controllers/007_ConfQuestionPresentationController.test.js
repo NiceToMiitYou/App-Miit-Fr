@@ -108,6 +108,36 @@ describe( 'ConfQuestionPresentationController', function() {
         } );
     } );
 
+
+    describe( '#tags()', function() {
+
+        it( 'get all tags', function( done ) {
+
+            agent
+                .get( '/api/viewer/question/presentation/tags' )
+                .expect( 200 )
+                .end( function( err, res ) {
+                    should.not.exist( err );
+
+                    ( res.body )
+                        .should.be.an.instanceOf( Object );
+
+                    ( res.body )
+                        .should.have.properties( {
+                            done: true
+                        } );
+
+                    ( res.body.tags )
+                        .should.be.an.instanceOf( Array );
+
+                    ( _.size( res.body.tags ) )
+                        .should.equal( 2 );
+
+                    done();
+                } );
+        } );
+    } );
+
     describe( '#like()', function() {
 
         it( 'like a question', function( done ) {
