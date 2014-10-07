@@ -22,7 +22,10 @@ module.exports = {
 
                     SocketEventCachingService.sendToAll(
                         'question-presentation-new',
-                        created,
+                        { 
+                            question: created,
+                            tags: req.param( 'tags' )
+                        },
                         4 * 60 * 60
                     );
 

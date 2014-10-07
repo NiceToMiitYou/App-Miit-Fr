@@ -27,7 +27,7 @@
                                 Anonyme
                             </span>
                         </h4>
-                        <span class="muted semi-bold m-b-5 label m-l-5" ng-repeat="tag in questions.tags">
+                        <span class="muted semi-bold m-b-5 label m-l-5" ng-repeat="tag in question.tags">
                             {{getTagName(tag)}}
                         </span>
                         <div class="muted">{{question.createdAt | date:'mediumTime'}}</div>
