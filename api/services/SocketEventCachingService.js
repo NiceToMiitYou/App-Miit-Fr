@@ -15,9 +15,19 @@ module.exports = {
             .getTime() + stayAlive
         );
 
+        if( typeof data.toJSON === 'function') {
+            data = data.toJSON();
+        }
+
+        for( index in data ) {
+            if( typeof data[index].toJSON === 'function') {
+                data[index] = data[index].toJSON();
+            }
+        }
+
         ConfLiveApplicationEvent.create( {
             name: event,
-            data: JSON.stringify( data.toJSON() ),
+            data: JSON.stringify( data ),
             expire: expire
         } )
             .exec( function( err, model ) {

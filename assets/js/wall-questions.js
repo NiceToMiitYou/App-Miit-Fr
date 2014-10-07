@@ -55,6 +55,8 @@ ITEventApp.controller(
 
             $scope.isLike = isLike;
 
+            $scope.getTagName = getTagName;
+
             $scope.post = function() {
                 if ( $scope.text ) {
 
@@ -76,21 +78,23 @@ ITEventApp.controller(
             });
 
             // Retrieve new questions
-            ITConnect.bind('question-presentation-new', function( question ) {
+            ITConnect.bind('question-presentation-new', function( data ) {
 
-                var userId = question.user;
+                var userId = data.question.user;
+                var questionId = data.question.id;
 
-                $scope.questions[question.id] = question;
-                $scope.questions[question.id].likes = 0;
-                $scope.questions[question.id].user = ITStorage.db.users.get(userId);
+                $scope.questions[questionId] = data.question;
+                $scope.questions[questionId].likes = 0;
+                $scope.questions[questionId].tags = data.tags;
+                $scope.questions[questionId].user = ITStorage.db.users.get(userId);
 
                 // If user not registered request him
-                if( !$scope.questions[question.id].user ) {
+                if( !$scope.questions[questionId].user ) {
                     ITConnect.user.get(userId, function( data ){
                         if( data.done ) {
                             ITStorage.db.users.set(data.user.id, data.user);
 
-                            $scope.questions[question.id].user = data.user;
+                            $scope.questions[questionId].user = data.user;
 
                             $scope.$apply();
                         }
