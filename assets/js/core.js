@@ -671,7 +671,11 @@ Pace.on('hide', function() {
 
 $(window).load(function() {
     if(window.location.hash) {
-      $("#main-menu-wrapper ul li > a[href="+window.location.hash+"]").trigger("click");
+        var $link = $("#main-menu-wrapper ul li > a[href="+window.location.hash+"]");
+      $link.trigger("click");
+      if($link.closest("ul").hasClass("sub-menu")) {
+            $link.closest("ul").parent().addClass("active open");
+      }
     } else {
       $("#main-menu-wrapper ul li:first > a").trigger("click");    
     }
