@@ -40,6 +40,32 @@ module.exports = {
     },
 
     /**
+     * `ConfUserController.update()`
+     */
+    update: function (req, res) {
+
+        ConfUser.findOne(
+            req.session.user
+        ).exec( function( err, user ){
+            if ( err || !user ) return res.notDone();
+
+            user.firstname = req.param('firstname');
+            user.lastname = req.param('lastname');
+            user.username = req.param('username');
+            user.society = req.param('society');
+            user.avatar = req.param('avatar');
+
+            user.save(function(err, user) {
+                if ( err || !user ) return res.notDone();
+
+                return res.done({
+                    user: user 
+                });
+            });
+        });
+    },
+
+    /**
      * `ConfUserController.login()`
      */
     login: function( req, res ) {

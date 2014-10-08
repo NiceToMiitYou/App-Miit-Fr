@@ -10,20 +10,28 @@ module.exports = {
 
     attributes: {
 
-        lastName: {
+        lastname: {
             type: 'string'
         },
 
-        firstName: {
+        firstname: {
             type: 'string'
         },
 
-        fullName: function() {
-            return this.firstName + ' ' + this.lastName;
+        fullname: function() {
+            return this.firstname + ' ' + this.lastname;
+        },
+
+        username: {
+            type: 'string'
         },
 
         society: {
             type: 'string'
+        },
+
+        avatar: {
+            type: 'json'
         },
 
         password: {

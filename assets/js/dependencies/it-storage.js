@@ -8,16 +8,35 @@ window.ITStorage = ( function() {
         canPersist = true;
     }
 
-    function asyncBinding( cb, value ) {
+    function asyncBinding( cbs, value ) {
 
-        // Asynchronous callback
-        setTimeout( function() {
-            if ( cb ) {
+        if( typeof cbs === 'function') {
 
-                // Call the binding
-                cb( value );
+            // Asynchronous callback
+            setTimeout( function() {
+                if ( cbs ) {
+
+                    // Call the binding
+                    cbs( value );
+                }
+            }, 10 );
+
+        } else if ( cbs ) {
+            for ( var i = 0; i < cbs.length; i++ ) {
+
+                var cb = cbs[ i ];
+
+                // Asynchronous callback
+                setTimeout( function() {
+                    if ( cb ) {
+
+                        // Call the binding
+                        cb( value );
+                    }
+                }, 10 );
+
             }
-        }, 10 );
+        }
     };
 
     var ithis = {
@@ -53,7 +72,11 @@ window.ITStorage = ( function() {
 
                             if ( typeof cb === 'function' ) {
                                 // set the binding
-                                bindings[ key ] = cb;
+                                if ( Object.prototype.toString.call( bindings[ key ] ) !== '[object Array]' ) {
+                                    bindings[ key ] = [];
+                                }
+
+                                bindings[ key ].push( cb );
                             }
 
                             if ( direct === true ) {
