@@ -135,6 +135,17 @@ window.ITConnect = ( function() {
                 }, cb );
             },
 
+            // Update action
+            update: function( firstname, lastname, society, username, avatar, cb ) {
+                io.socket.post( '/api/user/update', {
+                    firstname: firstname,
+                    lastname: lastname,
+                    society: society,
+                    username: username,
+                    avatar: avatar
+                }, cb );
+            },
+
             // Login action
             login: function( mail, password, cb ) {
                 io.socket.post( '/api/user/login', {

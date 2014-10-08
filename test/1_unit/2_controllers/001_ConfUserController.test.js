@@ -250,6 +250,54 @@ describe( 'ConfUserController', function() {
     } );
 
 
+    describe( '#update()', function() {
+
+        it( 'update one user', function( done ) {
+
+            agent
+                .post( '/api/user/update' )
+                .expect( 200 )
+                .send( {
+                    firstname: 'Test',
+                    lastname: 'It',
+                    username: 'Test me',
+                    society: 'ITEvents',
+                    avatar: {
+                        id: 1,
+                        color: '#666'
+                    }
+                } )
+                .end( function( err, res ) {
+                    should.not.exist( err );
+
+                    ( res.body )
+                        .should.be.an.instanceOf( Object );
+                    ( res.body )
+                        .should.have.properties( {
+                            done: true
+                        } );
+
+                    ( res.body.user )
+                        .should.be.an.instanceOf( Object );
+
+                    ( res.body.user )
+                        .should.have.properties( {
+                            firstname: 'Test',
+                            lastname: 'It',
+                            username: 'Test me',
+                            society: 'ITEvents',
+                            avatar: {
+                                id: 1,
+                                color: '#666'
+                            }
+                        } );
+
+                    done();
+                } );
+        } );
+    } );
+
+
     describe( '#logout()', function() {
 
         it( 'logout test@test.fr', function( done ) {

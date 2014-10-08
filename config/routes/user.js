@@ -16,6 +16,11 @@ routes[ 'POST ' + apiUserPrefix + '/get' ] = {
     action: 'get'
 };
 
+routes[ 'POST ' + apiUserPrefix + '/update' ] = {
+    controller: 'ConfUserController',
+    action: 'update'
+};
+
 routes[ 'POST ' + apiUserPrefix + '/login' ] = {
     controller: 'ConfUserController',
     action: 'login'

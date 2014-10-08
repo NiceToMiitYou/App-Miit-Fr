@@ -20,10 +20,13 @@
                 <div class="cbp_tmlabel">
                     <div class="p-t-10 p-l-30 p-r-20 p-b-20 xs-p-r-10 xs-p-l-10 xs-p-t-5">
                         <h4 class="inline m-b-5">
-                            <span class="text-success semi-bold m-r-10" ng-show="question.user.lastName || question.user.firstName">
-                                {{question.user.lastName}} {{question.user.firstName}}
+                            <span class="text-success semi-bold m-r-10" ng-show="question.user.username">
+                                {{question.user.username}}
                             </span>
-                            <span class="text-success semi-bold m-r-10" ng-show="!question.user.lastName && !question.user.firstName">
+                            <span class="text-success semi-bold m-r-10" ng-show="!question.user.username && (question.user.lastname || question.user.firstname)">
+                                {{question.user.firstname}} {{question.user.lastname}}
+                            </span>
+                            <span class="text-success semi-bold m-r-10" ng-show="!question.user.username && !question.user.lastname && !question.user.firstname">
                                 Anonyme
                             </span>
                         </h4>
