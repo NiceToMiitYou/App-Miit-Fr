@@ -16,7 +16,8 @@ textarea {
 
 .modal-dialog {
 	width: 600px;
-	margin: 30px 0 0 225px;
+	margin: 30px auto;
+	z-index: 9999999;
 }
 
 .modal-dialog .checkbox label:before {
@@ -1249,4 +1250,15 @@ ul.table-list li a span.title {
 }
 
 
+#userinfo-modal .panel.selected .panel-heading{
+	background: #099a8c;
+}
 
+#userinfo-modal .panel.selected h4 a, #userinfo-modal .panel.selected h4 a:after, 
+#userinfo-modal .panel.selected .panel-title > a:hover, #userinfo-modal .panel.selected .panel-title > a:hover:after {
+	color: #FFF!important;
+}
+
+#userinfo-modal .panel-heading .panel-title > a.collapsed {
+	color: #505458;
+}
