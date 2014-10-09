@@ -10,11 +10,21 @@
                 <img style="padding-top:14px;" src="/images/logo.png" alt="" data-src="/images/logo.png" width="140" />
             </div>
 
-            <div class="user-info-wrapper"> 
-                
+            <div class="user-info-wrapper user-show"> 
+                <a class="avatar" ng-class="color + ' avatar-'+avatar" ng-init="avatar='m1'; color='purple'" ng-click="changeAvatar=true"></a>
+                <div class="user-info m-l-5">
+                    <div class="username">John <span class="semi-bold">Smith</span></div>
+                    <div class="status">Status<a href="#">
+                        <div class="status-icon green"></div>
+                        Online</a>
+                    </div>
+                </div>
             </div>
+
             <!-- END MINI-PROFILE -->
-            <p class="menu-title">MENU </p>
+
+            <p class="menu-title p-t-15">NAVIGATION </p>
+
             <!-- BEGIN SIDEBAR MENU --> 
             <ul> 
                 <!-- BEGIN SELECTED LINK -->
@@ -57,12 +67,12 @@
                 </li>
                 <!-- END ONE LEVEL MENU -->
                 <!-- BEGIN TWO LEVEL MENU -->
-                <li class="">
+               <!--  <li class="">
                     <a href="#planning">
                         <i class="fa fa-calendar"></i>
                         <span class="title">Planning</span>
                     </a>
-                </li>
+                </li> -->
                 <!-- END TWO LEVEL MENU -->         
             </ul>
             <!-- END SIDEBAR MENU -->

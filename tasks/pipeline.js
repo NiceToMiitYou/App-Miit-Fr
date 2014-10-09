@@ -40,6 +40,8 @@ var jsFilesToInject = [
   'js/dependencies/**/*.js',
 
   // Plugins are brought in here
+  
+  'plugins/boostrapv3/js/bootstrap.js',
   'plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js',
   'plugins/**/*.js',
 

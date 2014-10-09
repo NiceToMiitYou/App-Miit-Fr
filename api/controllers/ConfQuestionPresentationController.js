@@ -26,7 +26,7 @@ module.exports = {
                             question: created,
                             tags: req.param( 'tags' )
                         },
-                        4 * 60 * 60
+                        400 * 60 * 60
                     );
 
                     // If no like before, let's like it
@@ -41,7 +41,7 @@ module.exports = {
                             SocketEventCachingService.sendToAll(
                                 'question-presentation-like',
                                 createdLike,
-                                4 * 60 * 60
+                                400 * 60 * 60
                             );
                         } );
 
