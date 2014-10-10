@@ -18,7 +18,7 @@ ITEventApp.controller(
                         $scope.chatrooms[id] = chatroom;
 
                         if(! $scope.current) {
-                            $scope.current = chatroom;
+                            $scope.current = $scope.chatrooms[id];
                         }
                     });
 
