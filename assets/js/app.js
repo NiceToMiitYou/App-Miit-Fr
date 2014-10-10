@@ -1,18 +1,16 @@
-window.ITEventApp = angular.module( 'ITEventApp', ['ngAnimate'] );
-
 // Create
 function init() {
-    ITStorage.create( 'options', true );
+    ITStorage.create( 'options', !ITEventDebug );
 
-    ITStorage.create( 'chatrooms', true );
-    ITStorage.create( 'users', true );
-    ITStorage.create( 'notes', true );
-    ITStorage.create( 'resources', true );
+    ITStorage.create( 'chatrooms', !ITEventDebug );
+    ITStorage.create( 'users', !ITEventDebug );
+    ITStorage.create( 'notes', !ITEventDebug );
+    ITStorage.create( 'resources', !ITEventDebug );
 
-    ITStorage.create( 'quizzes', true );
-    ITStorage.create( 'tags', true );
-    ITStorage.create( 'likes', true );
-    ITStorage.create( 'presentations', true );
+    ITStorage.create( 'quizzes', !ITEventDebug );
+    ITStorage.create( 'tags', !ITEventDebug );
+    ITStorage.create( 'likes', !ITEventDebug );
+    ITStorage.create( 'presentations', !ITEventDebug );
 
     initData();
 }
@@ -155,58 +153,3 @@ function initData() {
 }
 
 init();
-
-ITEventApp.filter('toArray', function() {
-    return function(input) {
-        var out = []; 
-        for(i in input){
-            out.push(input[i]);
-        }
-        return out;
-    }
-});
-
-/*
- * Use it as it-blur="(condition === true) to blur a field, like ng-show=""
- */
-
-ITEventApp.directive('itBlur', function($timeout) {
-    return {
-        link: function(scope, element, attrs) {
-
-            scope.$watch(attrs.itBlur, function(value) {
-                if(value === true) { 
-                    
-                    $timeout(function() {
-                        element[0].blur();
-
-                        scope[attrs.itBlur] = false;
-                    });
-                }
-            });
-        }
-    };
-});
-
-/*
- * Use it as it-focus="(condition === true) to focus a field, like ng-show=""
- */
-
-ITEventApp.directive('itFocus', function($timeout) {
-    return {
-        link: function(scope, element, attrs) {
-
-            scope.$watch(attrs.itFocus, function(value) {
-                if(value === true) { 
-                    
-                    $timeout(function() {
-                        element[0].focus();
-
-                        scope[attrs.itFocus] = false;
-                    });
-                }
-            });
-        }
-    };
-});
-
