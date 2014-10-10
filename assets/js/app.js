@@ -1,6 +1,6 @@
 // Create
 function init() {
-    ITStorage.create( 'options', !ITEventDebug );
+    ITStorage.create( 'options', true );
 
     ITStorage.create( 'chatrooms', !ITEventDebug );
     ITStorage.create( 'users', !ITEventDebug );
