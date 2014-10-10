@@ -10,12 +10,12 @@
                      ng-class="{'pull-right':message.user==user.id}"
                      class="user-details-wrapper" >
 
-                    <div ng-show="message.user!==user.id" class="user-profile">
+                    <div ng-show="message.user !== user.id" class="user-profile">
                         <img src="/images/profiles/d.jpg"  alt="" data-src="/images/profiles/d.jpg" data-src-retina="/images/profiles/d2x.jpg" width="35" height="35">
                     </div>
 
                     <div class="user-details">
-                        <div ng-class="{sender:message.user==user.id}" class="bubble">    
+                        <div ng-class="{sender:message.user == user.id}" class="bubble">    
                             {{ message.message }}
                         </div>
                     </div>                  
@@ -37,7 +37,7 @@
         <ul class="chatrooms-list">
             <li ng-repeat="chatroom in chatrooms">
                 <a href="#" ng-click="changeChatroom(chatroom)">
-                    <i class="fa fa-users"></i>
+                    <i ng-class="{'fa-users' : chatroom.type == 1, 'fa-user-md' : chatroom.type == 2}" class="fa"></i>
                     <span>{{ chatroom.name }}</span>
                 </a>
             </li>
