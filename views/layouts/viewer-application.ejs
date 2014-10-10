@@ -11,9 +11,9 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 
-    <link rel="apple-touch-icon" sizes="57x57" href="assets/icons/apple-touch-icon-57x57.png" />
-    <link rel="apple-touch-icon" sizes="72x72" href="assets/icons/apple-touch-icon-72x72.png" />
-    <link rel="apple-touch-icon" sizes="114x114" href="assets/icons/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/icons/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/icons/apple-touch-icon-114x114.png" />
 
     <link rel="apple-touch-startup-image" href="assets/starts/ipad-landscape.jpg" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)" />
     <link rel="apple-touch-startup-image" href="assets/starts/ipad-landscape.jpg" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)" />
@@ -151,35 +151,99 @@
                             </div>
                             <div id="collapseOne" class="panel-collapse collapse" style="height: 0px;">
                                 <div class="panel-body">
-                                    <input type="text"/ placeholder="Nom"><input type="text"/ placeholder="Prenom">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h4 class="semi-bold">Informations :</h4>
+                                            <div class="col-md-6">
+                                                <label>Nom :</label>
+                                                <input type="text"/ placeholder="Smith">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>Prénom :</label>
+                                                <input type="text" placeholder="John" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="col-md-12 m-t-5">
+                                                <label>Société :</label>
+                                            <input type="text" placeholder="Société" />
+                                        </div>
+                                        </div>
+                                    </div>
+                                 <!--    <div class="row m-t-10">
+                                        <div class="col-md-12">
+                                            <div class="checkbox check-primary" ng-init="usePseudo=false">
+                                                <input id="checkbox-pseudo" type="checkbox" value="1">
+                                                <label for="checkbox-pseudo" ng-show="!usePseudo">Utiliser un pseudonyme lors de mes publications</label>
+                                                 <input type="text" placeholder="Pseudonyme" ng-show="usePseudo"/> 
+                                            </div>
+                                        </div>
+                                        
+                                    </div> -->
+                                    <div class="row m-t-10">
+                                        <div class="col-md-12">
+                                            <h4 class="semi-bold">Choisissez un Avatar :</h4>
+                                            <div class="avatar-choice">
+                                                <a class="avatar" ng-class="color + ' avatar-'+avatar" ng-init="avatar='m1'; color='purple'" ng-click="changeAvatar=true"></a>
+                                                <ul class="avatar-choice-list" ng-show="changeAvatar" ng-click="changeAvatar=false">
+                                                    <li><a ng-click="avatar='m1'" class="avatar avatar-m1"></a></li>
+                                                    <li><a ng-click="avatar='m2'" class="avatar avatar-m2"></a></li>
+                                                    <li><a ng-click="avatar='m3'" class="avatar avatar-m3"></a></li>
+                                                    <li><a ng-click="avatar='m4'" class="avatar avatar-m4"></a></li>
+                                                    <li><a ng-click="avatar='m5'" class="avatar avatar-m5"></a></li>
+                                                    <li><a ng-click="avatar='m6'" class="avatar avatar-m6"></a></li>
+                                                    <li><a ng-click="avatar='m7'" class="avatar avatar-m7"></a></li>
+                                                    <li><a ng-click="avatar='m8'" class="avatar avatar-m8"></a></li>
+                                                    <li><a ng-click="avatar='m9'" class="avatar avatar-m9"></a></li>
+                                                    <li><a ng-click="avatar='f1'" class="avatar avatar-f1"></a></li>
+                                                    <li><a ng-click="avatar='f2'" class="avatar avatar-f2"></a></li>
+                                                    <li><a ng-click="avatar='f3'" class="avatar avatar-f3"></a></li>
+                                                    <li><a ng-click="avatar='f4'" class="avatar avatar-f4"></a></li>
+                                                    <li><a ng-click="avatar='f5'" class="avatar avatar-f5"></a></li>
+                                                    <li><a ng-click="avatar='f6'" class="avatar avatar-f6"></a></li>
+                                                    <li><a ng-click="avatar='f7'" class="avatar avatar-f7"></a></li>
+                                                    <li><a ng-click="avatar='f8'" class="avatar avatar-f8"></a></li>
+                                                    <li><a ng-click="avatar='f9'" class="avatar avatar-f9"></a></li>
+                                                </ul>
+                                            </div>
+                                            <ul class="color-choice">
+                                                <li ng-class="{selected:color=='red'}" ng-click="color='red'" class="tiles red"></li>
+                                                <li ng-class="{selected:color=='purple'}" ng-click="color='purple'" class="tiles purple"></li>
+                                                <li ng-class="{selected:color=='blue'}" ng-click="color='blue'" class="tiles blue"></li>
+                                                <li ng-class="{selected:color=='green'}" ng-click="color='green'" class="tiles green"></li>
+                                                <li ng-class="{selected:color=='black'}" ng-click="color='black'" class="tiles black"></li>
+                                                <li ng-class="{selected:color=='dark-blue'}" ng-click="color='dark-blue'" class="tiles dark-blue"></li>
+                                                <li ng-class="{selected:color=='light-blue'}" ng-click="color='light-blue'" class="tiles light-blue"></li>
+                                                <li ng-class="{selected:color=='light-red'}" ng-click="color='light-red'" class="tiles light-red"></li>
+                                                <li ng-class="{selected:color=='grey'}" ng-click="color='grey'" class="tiles grey"></li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="panel panel-default" ng-class="{selected : accountType == 1}">
                             <div class="panel-heading collapsed">
                                 <h4 class="panel-title">
-                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" ng-click="accountType = 1">
-                                        Utiliser un pseudonyme
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="collapseTwo" class="panel-collapse collapse" style="height: 0px;">
-                                <div class="panel-body">
-                                    <input type="text"/ placeholder="Pseudonyme">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel panel-default" ng-class="{selected : accountType == 2}">
-                            <div class="panel-heading collapsed">
-                                <h4 class="panel-title">
-                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" ng-click="accountType = 2">
+                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" ng-click="accountType = 1">
                                         Anonyme
                                     </a>
                                 </h4>
                             </div>
                             <div id="collapseThree" class="panel-collapse collapse" style="height: 0px;">
                                 <div class="panel-body">
-                                    
+                                    <div class="row m-t-10">
+                                        <div class="col-md-3"><label style="line-height: 34px;">Pseudonyme : </label></div>
+                                        <div class="col-md-9"><input type="text" value="Anonyme-153" /></div>
+                                    </div>
+                                    <div class="col-md-12 text-center m-t-20">
+                                        <div class="checkbox check-primary">
+                                            <input id="checkbox-anonyme" type="checkbox" value="1">
+                                            <label for="checkbox-anonyme">En utilisant la navigation anonyme vous vous engagez à respecter les règles de politesse et de respect élémentaires</label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -208,9 +272,9 @@
     <script src="/js/dependencies/async.js"></script>
     <script src="/js/dependencies/it-connect.js"></script>
     <script src="/js/dependencies/jquery-1.8.3.js"></script>
+    <script src="/plugins/boostrapv3/js/bootstrap.js"></script>
     <script src="/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js"></script>
     <script src="/plugins/boostrap-checkbox/js/bootstrap-checkbox.js"></script>
-    <script src="/plugins/boostrapv3/js/bootstrap.js"></script>
     <script src="/plugins/bootstrap-select2/select2.js"></script>
     <script src="/plugins/bootstrap-select2/select2_locale_bg.js"></script>
     <script src="/plugins/bootstrap-select2/select2_locale_de.min.js"></script>

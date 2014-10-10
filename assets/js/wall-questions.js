@@ -10,6 +10,7 @@ ITEventApp.controller(
             $scope.questions = {};
 
             function loadTags( isLoaded ) {
+                console.log(isLoaded);
                 if(isLoaded) {
 
                     ITStorage.db.tags.each(function( id, tag ) {
