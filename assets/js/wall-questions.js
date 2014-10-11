@@ -16,9 +16,10 @@ ITEventApp.controller(
                     $timeout(function() {
 
                         ITStorage.db.tags.each(function( id, tag ) {
+                            
                             $scope.tags[id] = tag;
-                        });
-                    });
+                        } );
+                    } );
                 }
             }
 
@@ -26,12 +27,13 @@ ITEventApp.controller(
 
                 if ( ! isLike(question) ) {
 
-                    ITConnect.question.presentation.like(question.id, function(data){
+                    ITConnect.question.presentation.like(question.id, function(data) {
+
                         if( data.done || data.like ) {
+
                             ITStorage.db.likes.set( question.id, data.like.id );
-                            $scope.$apply();
                         }
-                    });
+                    } );
                 }
             }
 
