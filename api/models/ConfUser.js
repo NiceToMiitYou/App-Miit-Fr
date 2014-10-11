@@ -97,6 +97,7 @@ module.exports = {
             var obj = this.toObject();
             delete obj.password;
             delete obj.mail;
+            delete obj.realId;
             delete obj.roles;
             return obj;
         }
