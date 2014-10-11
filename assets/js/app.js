@@ -118,16 +118,19 @@ function initData() {
 
                             max++;
 
-                            var quizz = data.quizzes[index];
-
+                            ITStorage.db.quizzes.set( data.quizzes[index].id, data.quizzes[index] );
+                            
                             // Get all questions of the quizz
                             ITConnect.question.quizz.questions(
-                                quizz.id,
-                                function( data ) {
-                                    if ( data.done ) {
+                                data.quizzes[index].id,
+                                function( dataQuestion ) {
+                                    if ( dataQuestion.done && dataQuestion.questions.length > 0 ) {
+
+                                        // Get quizz
+                                        var quizz = ITStorage.db.quizzes.get( dataQuestion.questions[0].quizz );
 
                                         // Add them to the current object
-                                        quizz.questions = data.questions;
+                                        quizz.questions = dataQuestion.questions;
 
                                         // Store the quizz
                                         ITStorage.db.quizzes.set( quizz.id, quizz );

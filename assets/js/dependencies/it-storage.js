@@ -12,29 +12,12 @@ window.ITStorage = ( function() {
 
         if( typeof cbs === 'function') {
 
-            // Asynchronous callback
-            setTimeout( function() {
-                if ( cbs ) {
-
-                    // Call the binding
-                    cbs( value );
-                }
-            }, 10 );
+            cbs( value );
 
         } else if ( cbs ) {
             for ( var i = 0; i < cbs.length; i++ ) {
 
-                var cb = cbs[ i ];
-
-                // Asynchronous callback
-                setTimeout( function() {
-                    if ( cb ) {
-
-                        // Call the binding
-                        cb( value );
-                    }
-                }, 10 );
-
+                cbs[ i ]( value );
             }
         }
     };
