@@ -1,12 +1,14 @@
 ITEventApp.controller(
-    'loginController', [ '$scope',
-        function( $scope ) {
+    'loginController', [ '$scope', '$timeout',
+        function( $scope, $timeout ) {
 
             function getConference( isInit ) {
                 if ( isInit ) {
-                    $scope.conference = ITStorage.db.options.get( 'conference' );
 
-                    $scope.$apply();
+                    $timeout(function() {
+
+                        $scope.conference = ITStorage.db.options.get( 'conference' );
+                    });
                 }
             }
 
@@ -14,31 +16,35 @@ ITEventApp.controller(
                 ITConnect.user.login( $scope.user.mail, $scope.user.password,
                     function( data ) {
 
-                        // Step one just for check
-                        if ( $scope.s == 1 ) {
+                        if(data.done) {
+                        
+                            $timeout(function() {
+                                
+                                // Step one just for check
+                                if ( $scope.s == 1 ) {
 
-                            $scope.user.newuser = !data.exist;
-                            $scope.s = 2;
+                                    $scope.user.newuser = !data.exist;
+                                    $scope.s = 2;
 
-                            // Step two
-                        } else if ( $scope.s == 2 ) {
+                                    // Step two
+                                } else if ( $scope.s == 2 ) {
 
-                            // Check connected
-                            if ( data.connected ) {
-                                // Go to step 3
-                                $scope.user.connected = true;
-                                $scope.s = 3;
+                                    // Check connected
+                                    if ( data.connected ) {
+                                        // Go to step 3
+                                        $scope.user.connected = true;
+                                        $scope.s = 3;
 
-                                ITStorage.db.options.set( 'user.isConnected', true );
-                                ITStorage.db.options.set( 'user', data.user );
+                                        ITStorage.db.options.set( 'user.isConnected', true );
+                                        ITStorage.db.options.set( 'user', data.user );
 
-                            } else {
-                                // Wrong password then
-                                $scope.wrpass = true;
-                            }
+                                    } else {
+                                        // Wrong password then
+                                        $scope.wrpass = true;
+                                    }
+                                }
+                            } );    
                         }
-
-                        $scope.$apply();
                     } );
             }
 

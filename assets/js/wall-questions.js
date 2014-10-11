@@ -1,6 +1,6 @@
 ITEventApp.controller(
-    'wallController', [ '$scope',
-        function( $scope ) {
+    'wallController', [ '$scope', '$timeout',
+        function( $scope, $timeout ) {
 
             // Conference model
             $scope.text = '';
@@ -13,11 +13,12 @@ ITEventApp.controller(
                 
                 if(isLoaded) {
 
-                    ITStorage.db.tags.each(function( id, tag ) {
-                        $scope.tags[id] = tag;
-                    });
+                    $timeout(function() {
 
-                    $scope.$apply();
+                        ITStorage.db.tags.each(function( id, tag ) {
+                            $scope.tags[id] = tag;
+                        });
+                    });
                 }
             }
 

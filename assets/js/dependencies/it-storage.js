@@ -12,13 +12,11 @@ window.ITStorage = ( function() {
 
         if( typeof cbs === 'function') {
 
-            cbs( value );
+            async.applyEach( [ cbs ], value );
 
         } else if ( cbs ) {
-            for ( var i = 0; i < cbs.length; i++ ) {
 
-                cbs[ i ]( value );
-            }
+            async.applyEach(cbs, value);
         }
     };
 

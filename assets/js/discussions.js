@@ -1,6 +1,6 @@
 ITEventApp.controller(
-    'chatController', [ '$scope',
-        function( $scope ) {
+    'chatController', [ '$scope', '$timeout',
+        function( $scope, $timeout ) {
 
             $scope.chatrooms = {};
 
@@ -11,25 +11,25 @@ ITEventApp.controller(
             function loadChatrooms( isLoaded ) {
                 if(isLoaded) {
 
-                    ITStorage.db.chatrooms.each(function( id, chatroom ) {
+                    $timeout(function(){
+                        ITStorage.db.chatrooms.each(function( id, chatroom ) {
 
-                        if( $scope.chatrooms[id] ) {
+                            if( $scope.chatrooms[id] ) {
 
-                            var messages = $scope.chatrooms[id].messages;
-                            chatroom.messages = messages;
-                        } else {
+                                var messages = $scope.chatrooms[id].messages;
+                                chatroom.messages = messages;
+                            } else {
 
-                            chatroom.messages = {};
-                        }
+                                chatroom.messages = {};
+                            }
 
-                        $scope.chatrooms[id] = chatroom;
+                            $scope.chatrooms[id] = chatroom;
 
-                        if(! $scope.current) {
-                            $scope.current = $scope.chatrooms[id];
-                        }
+                            if(! $scope.current) {
+                                $scope.current = $scope.chatrooms[id];
+                            }
+                        });
                     });
-
-                    $scope.$apply();
                 }
             }
 
