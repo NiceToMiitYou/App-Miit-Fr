@@ -93,7 +93,7 @@ window.ITConnect = ( function() {
         synchronize: function() {
             // Force first synchronization from cache
             if ( lastestToken === 0 ) {
-                synchronize( 1 );
+                synchronize( 2147483647 );
             }
         },
 

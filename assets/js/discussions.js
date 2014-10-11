@@ -8,13 +8,20 @@ ITEventApp.controller(
 
             $scope.current = false;
 
-            $scope.user = ITStorage.db.options.get('user');
-
             function loadChatrooms( isLoaded ) {
                 if(isLoaded) {
 
                     ITStorage.db.chatrooms.each(function( id, chatroom ) {
-                        chatroom.messages = {};
+
+                        if( $scope.chatrooms[id] ) {
+
+                            var messages = $scope.chatrooms[id].messages;
+                            chatroom.messages = messages;
+                        } else {
+
+                            chatroom.messages = {};
+                        }
+
                         $scope.chatrooms[id] = chatroom;
 
                         if(! $scope.current) {
@@ -52,6 +59,11 @@ ITEventApp.controller(
             ITConnect.bind('chatroom-new', function( data ) {
                 if( data.chatroom ) {
                     
+                    // If no chatroom registered, create a temporary chatrrom
+                    if( ! $scope.chatrooms[data.chatroom] ) {
+                        $scope.chatrooms[data.chatroom] = { messages: {} };
+                    }
+
                     $scope.chatrooms[data.chatroom].messages[data.id] = data;
                     $scope.$apply();
 
