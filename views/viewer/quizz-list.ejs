@@ -1,0 +1,23 @@
+<div ng-controller="quizzListController" class="content quizz-content" style="opacity: 0;">
+
+    <div class="page-title">
+        <h3>
+            <i class="fa fa-pencil"></i> Questionnaires
+        </h3>
+    </div>
+
+    <ul class="table-list quizz">
+
+        <li ng-repeat="quizz in quizzes"
+            style="background-color: #EEE">
+
+            <a href="#quizz-inner">
+                <i class="fa fa-question"></i> <span class="title">{{ quizz.name }}</span>
+                <p class="desc">
+                    {{ quizz.description }}
+                </p>
+            </a>
+        </li>
+
+    </ul>
+</div>
