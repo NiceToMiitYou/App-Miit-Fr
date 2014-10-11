@@ -12,6 +12,10 @@ function init() {
     ITStorage.create( 'likes', !ITEventDebug );
     ITStorage.create( 'presentations', !ITEventDebug );
 
+    if ( ITEventDebug ) {
+        ITStorage.db.options.set( 'data.isLoaded', false );
+    }
+
     initData();
 }
 
