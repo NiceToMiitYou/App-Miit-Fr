@@ -45,6 +45,13 @@ module.exports = {
         categories: {
             collection: 'ConfResourceCategory',
             via: 'conference'
+        },
+
+        toJSON: function() {
+            var obj = this.toObject();
+            delete obj.realId;
+            delete obj.colorScheme;
+            return obj;
         }
     }
 };

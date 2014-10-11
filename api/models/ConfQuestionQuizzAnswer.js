@@ -27,6 +27,12 @@ module.exports = {
         users: {
             collection: 'ConfUser',
             via: 'quizzAnswers'
+        },
+
+        toJSON: function() {
+            var obj = this.toObject();
+            delete obj.realId;
+            return obj;
         }
     }
 };

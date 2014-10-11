@@ -27,6 +27,12 @@ module.exports = {
         users: {
             collection: 'ConfUser',
             via: 'slideAnswers'
+        },
+
+        toJSON: function() {
+            var obj = this.toObject();
+            delete obj.realId;
+            return obj;
         }
     }
 };
