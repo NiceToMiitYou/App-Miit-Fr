@@ -84,6 +84,7 @@
                                 </label>
 
                                  <input ng-model="user.password"
+                                        ng-keypress="!user.newuser && ($event.keyCode === 13 || $event.keyCode === 9) ? next() : null"
                                         it-blur="s !== 2"
                                         id="login_pass"
                                         name="login_pass"
@@ -101,6 +102,7 @@
                                     </span>
                                 </label>
                                  <input ng-model="user.password_c"
+                                        ng-keypress="$event.keyCode === 13 || $event.keyCode === 9 ? next() : null"
                                         it-blur="s !== 2"
                                         id="login_pass_c" 
                                         name="login_pass_c"
