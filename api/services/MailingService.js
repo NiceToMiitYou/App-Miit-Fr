@@ -30,8 +30,8 @@ function sendEmail( email, title, contentText, contentHtml ) {
 
 module.exports = {
 
-    sendNoteEmail: function( email, title, note ) {
-        sendMail(
+    sendEmailNote: function( email, title, note ) {
+        sendEmail(
             email,
             'ITEvents - Your note: ' + title,
             note,
