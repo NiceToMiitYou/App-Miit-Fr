@@ -53,6 +53,10 @@ var jsFilesToInject = [
 
   'js/utils/**/*.js',
 
+  'js/app.js',
+
+  'js/controllers/**/*.js',
+
   'js/**/*.js',
 
   'slides/**/*.js'
