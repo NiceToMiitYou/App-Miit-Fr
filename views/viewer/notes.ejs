@@ -1,9 +1,19 @@
 <div ng-controller="notesController" class="content notes-content" style="opacity: 0;">  
+    
     <div class="page-title">
-        <h3><i class="fa fa-pencil"></i> Notes</h3> <small ng-show="saving">sauvegarde...</small>
+
+        <h3><i class="fa fa-pencil"></i> Notes</h3>
+
+        <small ng-show="saving">sauvegarde...</small>
     </div>
 
-    <textarea ng-model="current.content" ng-blur="save()" id="text-editor" placeholder="Tapez vos notes ici" class="form-control" rows="10"></textarea>
+    <textarea ng-model="current.content"
+              ng-change="hasChange = true"
+              ng-blur="save()" 
+              id="text-editor"
+              placeholder="Tapez vos notes ici"
+              class="form-control"
+              rows="10"></textarea>
 
     <div class="sider right">
         <!-- BEGIN FAVORITES WIDGET -->
@@ -25,9 +35,16 @@
             </li>
         </ul>
 
-        <button ng-click="send()" class="btn btn-primary send-notes" data-toggle="modal" data-target="#send-modal"><i class="fa fa-envelope"></i> Envoyer</button>
+        <button ng-click="send()" class="btn btn-primary send-notes">
+            <i class="fa fa-envelope"></i> Envoyer
+        </button>
     </div>
 
-    <div class="note-title"><span>Titre : </span><input ng-model="current.title" ng-blur="save()" type="text"></div>
+    <div class="note-title">
+        <span>Titre : </span><input ng-model="current.title"
+                                    ng-change="hasChange = true"
+                                    ng-blur="save()"
+                                    type="text">
+    </div>
 
 </div>

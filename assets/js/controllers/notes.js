@@ -14,6 +14,8 @@ ITEventApp.controller(
 
             };
 
+            $scope.hasChange = false;
+
             $scope.saving = false;
 
             function loadNotes( isLoaded ) {
@@ -27,6 +29,11 @@ ITEventApp.controller(
 
                             $scope.notes[note.id] = note;
 
+                            if ( $scope.current.new ) {
+
+                                $scope.current = $scope.notes[note.id];
+                            }
+
                         } );
                     } ); 
                 }
@@ -36,51 +43,68 @@ ITEventApp.controller(
 
                 if ( !$scope.saving && $scope.current.title && $scope.current.content ) {
                     
-                    $scope.saving = true;
-                    
                     if ($scope.current.new) {
 
+                        $scope.saving = true;
+                    
                         ITConnect.note.create($scope.current.title, $scope.current.content, function( data ) {
 
-                            $scope.saving = false;
+                            $timeout(function() {
+                                $scope.saving = false;
 
-                            if(data.done) {
+                                if(data.done) {
 
-                                $scope.notes[data.note.id] = data.note;
+                                    $scope.notes[data.note.id] = data.note;
 
-                                $scope.current = $scope.notes[data.note.id];
+                                    $scope.current = $scope.notes[data.note.id];
 
-                                $scope.current.new = false;
+                                    $scope.current.new = false;
 
-                                if ( typeof cb === 'function' ) {
-                                    cb($scope.notes[data.note.id]);
-                                }                             
-                            }
+                                    if ( typeof cb === 'function' ) {
+                                        cb($scope.notes[data.note.id]);
+                                    }                             
+                                }
+                            });
 
                         });
                         
-                    } else {
+                    } else if ( $scope.hasChange ) {
 
+                        $scope.saving = true;
+                    
                         ITConnect.note.update($scope.current.id, $scope.current.title, $scope.current.content, function( data ) {
 
-                            $scope.saving = false;
-
-                            if(data.done) {
-
-                                $scope.notes[data.note.id] = data.note;
+                            $timeout(function() {
                                 
-                                $scope.current = $scope.notes[data.note.id];
+                                $scope.saving = false;
 
-                                if ( typeof cb === 'function' ) {
-                                    cb($scope.notes[data.note.id]);
+                                if(data.done) {
+
+                                    $scope.notes[data.note.id] = data.note;
+                                    
+                                    $scope.current = $scope.notes[data.note.id];
+
+                                    $scope.hasChange = false;
+
+                                    if ( typeof cb === 'function' ) {
+                                        cb($scope.notes[data.note.id]);
+                                    }
                                 }
-                            }
+                            });
 
                         });
+
+                    } else {
+
+                        if ( typeof cb === 'function' ) {
+
+                            cb();
+                        }
                     }
                 } else if ( !$scope.saving ) {
 
                     if ( typeof cb === 'function' ) {
+
                         cb();
                     }
                 }
