@@ -73,6 +73,7 @@ module.exports = {
         ConfUser.findOneByMail(
             req.param( 'mail' )
         )
+            .populate( 'quizzAnswers' )
             .exec( function( err, user ) {
                 if ( err ) return res.notDone();
 
