@@ -113,6 +113,8 @@ function initData() {
                         var max = 0;
                         var end = 0;
 
+                        var user = ITStorage.db.options.get( 'user' );
+
                         // Add each resource in the area
                         for ( index in data.quizzes ) {
 
@@ -128,6 +130,33 @@ function initData() {
 
                                         // Get quizz
                                         var quizz = ITStorage.db.quizzes.get( dataQuestion.questions[0].quizz );
+
+                                        // Set not answered
+                                        quizz.answered = false;
+
+                                        // Foreach questions
+                                        for( index in dataQuestion.questions ) {
+
+                                            // Foreach answers
+                                            for( indexAnswer in dataQuestion.questions[index] ) {
+
+                                                // Default not selected
+                                                var selected = false;
+
+                                                // Check if answered
+                                                if ( user.quizzAnswers.indexOf( dataQuestion.questions[index][indexAnswer].id ) !== -1 ) {
+                                                    
+                                                    // Set answered
+                                                    quizz.answered = true;
+
+                                                    // Set selected
+                                                    selected = true;
+                                                }
+
+                                                // Set selected if she is
+                                                dataQuestion.questions[index][indexAnswer].selected = selected;
+                                            }
+                                        }
 
                                         // Add them to the current object
                                         quizz.questions = dataQuestion.questions;
