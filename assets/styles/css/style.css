@@ -7348,8 +7348,8 @@ input[type="checkbox"] {
   top: 10px;
 }
 .cbp_tmtimeline > li .cbp_tmicon {
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -7359,12 +7359,12 @@ input[type="checkbox"] {
   -webkit-font-smoothing: antialiased;
   position: absolute;
   color: #7c8694;
-  background: #ffffff;
-  border-radius: 50%;
-  box-shadow: 0 0 0 8px #ffffff;
+  /*background: #ffffff;*/
+  /*border-radius: 50%;*/
+  /*box-shadow: 0 0 0 8px #ffffff;*/
   text-align: center;
-  left: 20%;
-  top: 0;
+  left: 35px;
+  top: -11px;
   margin: 0 0 0 -25px;
   font-size: 1.3em;
 }

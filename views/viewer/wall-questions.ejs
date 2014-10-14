@@ -13,10 +13,8 @@
     <div class="col-md-12 timeline">
 
         <ul class="cbp_tmtimeline">
-            <li class="animate-repeat" ng-repeat="question in questions | toArray | orderBy:'-likes' | filter:q as results">
-                <div class="cbp_tmicon primary animated bounceIn">
-                    <i class="fa fa-comments"></i>
-                </div>
+            <li class="animate-repeat" ng-repeat="question in questions | toArray | orderBy:'-createdAt' | filter:q as results">
+                <div class="cbp_tmicon animated bounceIn avatar" ng-class="question.user.avatar.c + ' avatar-'+question.user.avatar.a"></div>
                 <div class="cbp_tmlabel">
                     <div class="p-t-10 p-l-30 p-r-20 p-b-20 xs-p-r-10 xs-p-l-10 xs-p-t-5">
                         <h4 class="inline m-b-5">

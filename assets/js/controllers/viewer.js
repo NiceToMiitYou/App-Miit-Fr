@@ -7,7 +7,6 @@ ITEventApp.controller(
             $scope.conference = ITStorage.db.options.get('conference');
             
             $scope.saveuser = function() {
-            	console.log("update");
             	ITConnect.user.update(
             		$scope.user.firstname, 
             		$scope.user.lastname, 
@@ -15,7 +14,7 @@ ITEventApp.controller(
             		"",
             		$scope.user.avatar,
             		function (data) {
-            			console.log(data);
+            			ITStorage.db.options.set( 'user', data.user );
             		}
             	);
             }
