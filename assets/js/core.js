@@ -173,9 +173,8 @@ $(document).ready(function () {
         }
     });
 
-    $(".quizz a").on("click", function() {
+    $(".quizz").on("click", "a" ,function() {
         var href = $(this).attr("href").replace("#", "");
-
         $(".content.current").css("opacity", 0);
         $(".nosider").removeClass("nosider");
         $(".page-content").addClass("nosider");
