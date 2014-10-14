@@ -84,7 +84,10 @@ ITEventApp.controller(
                                         
                                         ITStorage.db.users.set(data.user.id, data.user);
 
-                                        $scope.chatrooms[chatroomId].messages[messageId].user = data.user;    
+                                        if( $scope.chatrooms[chatroomId].messages[messageId] ) {
+
+                                            $scope.chatrooms[chatroomId].messages[messageId].user = data.user;
+                                        }
                                     }
                                 });
                             });
@@ -92,12 +95,16 @@ ITEventApp.controller(
 
                         var i = 0;
 
-                        while( i >= 50 ) {
-                            var min = 0; i = 0;
+                        for(index in $scope.chatrooms[chatroomId].messages) {
+                            i++;
+                        }
+
+                        while( i > 40 ) {
+                            var min = 0; i = -1;
 
                             for(index in $scope.chatrooms[chatroomId].messages) {
                                 i++;
-                                if( min > index && min !== 0) min = index;
+                                if( min > index || min === 0) min = index;
                             }
 
                             delete $scope.chatrooms[chatroomId].messages[min];
