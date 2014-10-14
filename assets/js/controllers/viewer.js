@@ -2,6 +2,13 @@ ITEventApp.controller(
     'viewerController', [ '$scope', '$timeout',
         function( $scope, $timeout ) {
 
+            if ( ! ITStorage.db.options.get('user.isConnected') ) {
+                ITConnect.user.logout(function( data ) {
+                    if( data.done )
+                        window.location.reload();
+                } );
+            }
+
             $scope.conference = ITStorage.db.options.get('conference');
 
             $scope.user = ITStorage.db.options.get('user');
