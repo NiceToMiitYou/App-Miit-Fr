@@ -30,6 +30,8 @@ ITEventApp.controller(
                                 ITStorage.db.options.set( 'user', data.user );
 
                                 $scope.user = ITStorage.db.options.get('user');
+
+                                $scope.firstInit = false;
                             }
                         }
                     );
