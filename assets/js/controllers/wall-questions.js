@@ -77,8 +77,17 @@ ITEventApp.controller(
 
             // Retrieve likes
             ITConnect.bind('question-presentation-like', function( like ) {
-                $scope.questions[like.question].likes++;
-                $scope.$apply();
+                var time = 0;
+
+                if( ! $scope.questions[like.question] ) {
+                    time = 250;
+                }
+
+                $timeout(function(){
+                    if( $scope.questions[like.question] ) {
+                        $scope.questions[like.question].likes++;
+                    }
+                }, time);
             });
 
             // Retrieve new questions
