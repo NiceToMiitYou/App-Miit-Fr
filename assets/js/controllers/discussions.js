@@ -62,17 +62,19 @@ ITEventApp.controller(
                     if( data.chatroom ) {
 
                         var userId = data.user;
+                        var chatroomId = data.chatroom;
+                        var messageId = data.id;
                         
                         // If no chatroom registered, create a temporary chatrrom
-                        if( ! $scope.chatrooms[data.chatroom] ) {
-                            $scope.chatrooms[data.chatroom] = { messages: {} };
+                        if( ! $scope.chatrooms[chatroomId] ) {
+                            $scope.chatrooms[chatroomId] = { messages: {} };
                         }
 
-                        $scope.chatrooms[data.chatroom].messages[data.id] = data;
-                        $scope.chatrooms[data.chatroom].messages[data.id].user = ITStorage.db.users.get(userId);
+                        $scope.chatrooms[chatroomId].messages[messageId] = data;
+                        $scope.chatrooms[chatroomId].messages[messageId].user = ITStorage.db.users.get(userId);
                         
                         // If user not registered request him
-                        if( !$scope.chatrooms[data.chatroom].messages[data.id].user ) {
+                        if( !$scope.chatrooms[chatroomId].messages[messageId].user ) {
 
                             ITConnect.user.get(userId, function( data ){
                                 
@@ -82,7 +84,7 @@ ITEventApp.controller(
                                         
                                         ITStorage.db.users.set(data.user.id, data.user);
 
-                                        $scope.chatrooms[data.chatroom].messages[data.id].user = data.user;
+                                        $scope.chatrooms[chatroomId].messages[messageId].user = data.user;    
                                     }
                                 });
                             });
@@ -93,12 +95,12 @@ ITEventApp.controller(
                         while( i >= 50 ) {
                             var min = 0; i = 0;
 
-                            for(index in $scope.chatrooms[data.chatroom].messages) {
+                            for(index in $scope.chatrooms[chatroomId].messages) {
                                 i++;
                                 if( min > index && min !== 0) min = index;
                             }
 
-                            delete $scope.chatrooms[data.chatroom].messages[min];
+                            delete $scope.chatrooms[chatroomId].messages[min];
                         }
                     }
                 });
