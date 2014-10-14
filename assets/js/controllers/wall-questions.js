@@ -83,28 +83,32 @@ ITEventApp.controller(
 
             // Retrieve new questions
             ITConnect.bind('question-presentation-new', function( data ) {
+                
+                $timeout(function(){
+                    var userId = data.question.user;
+                    var questionId = data.question.id;
 
-                var userId = data.question.user;
-                var questionId = data.question.id;
+                    $scope.questions[questionId] = data.question;
+                    $scope.questions[questionId].likes = 0;
+                    $scope.questions[questionId].tags = data.tags;
+                    $scope.questions[questionId].user = ITStorage.db.users.get(userId);
 
-                $scope.questions[questionId] = data.question;
-                $scope.questions[questionId].likes = 0;
-                $scope.questions[questionId].tags = data.tags;
-                $scope.questions[questionId].user = ITStorage.db.users.get(userId);
+                    // If user not registered request him
+                    if( !$scope.questions[questionId].user ) {
+                        
+                        ITConnect.user.get(userId, function( data ){
+                            
+                            $timeout(function() {
 
-                // If user not registered request him
-                if( !$scope.questions[questionId].user ) {
-                    ITConnect.user.get(userId, function( data ){
-                        if( data.done ) {
-                            ITStorage.db.users.set(data.user.id, data.user);
+                                if( data.done ) {
 
-                            $scope.questions[questionId].user = data.user;
+                                    ITStorage.db.users.set(data.user.id, data.user);
 
-                            $scope.$apply();
-                        }
-                    });
-                }
-
-                $scope.$apply();
+                                    $scope.questions[questionId].user = data.user;
+                                }
+                            });
+                        });
+                    }
+                });
             });
     } ] );

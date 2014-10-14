@@ -57,28 +57,50 @@ ITEventApp.controller(
 
             // Retrieve new message
             ITConnect.bind('chatroom-new', function( data ) {
-                if( data.chatroom ) {
-                    
-                    // If no chatroom registered, create a temporary chatrrom
-                    if( ! $scope.chatrooms[data.chatroom] ) {
-                        $scope.chatrooms[data.chatroom] = { messages: {} };
-                    }
 
-                    $scope.chatrooms[data.chatroom].messages[data.id] = data;
-                    $scope.$apply();
+                $timeout(function(){
+                    if( data.chatroom ) {
 
-                    var i = 0;
-
-                    while( i >= 50 ) {
-                        var min = 0; i = 0;
-
-                        for(index in $scope.chatrooms[data.chatroom].messages) {
-                            i++;
-                            if( min > index && min !== 0) min = index;
+                        var userId = data.user;
+                        
+                        // If no chatroom registered, create a temporary chatrrom
+                        if( ! $scope.chatrooms[data.chatroom] ) {
+                            $scope.chatrooms[data.chatroom] = { messages: {} };
                         }
 
-                        delete $scope.chatrooms[data.chatroom].messages[min];
+                        $scope.chatrooms[data.chatroom].messages[data.id] = data;
+                        $scope.chatrooms[data.chatroom].messages[data.id].user = ITStorage.db.users.get(userId);
+                        
+                        // If user not registered request him
+                        if( !$scope.chatrooms[data.chatroom].messages[data.id].user ) {
+
+                            ITConnect.user.get(userId, function( data ){
+                                
+                                $timeout(function() {
+
+                                    if( data.done ) {
+                                        
+                                        ITStorage.db.users.set(data.user.id, data.user);
+
+                                        $scope.chatrooms[data.chatroom].messages[data.id].user = data.user;
+                                    }
+                                });
+                            });
+                        }
+
+                        var i = 0;
+
+                        while( i >= 50 ) {
+                            var min = 0; i = 0;
+
+                            for(index in $scope.chatrooms[data.chatroom].messages) {
+                                i++;
+                                if( min > index && min !== 0) min = index;
+                            }
+
+                            delete $scope.chatrooms[data.chatroom].messages[min];
+                        }
                     }
-                }
+                });
             });
     } ] );

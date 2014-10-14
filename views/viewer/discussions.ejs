@@ -20,15 +20,15 @@
                     <div class="sent_time off"></div>
                 </div>  
                 <div ng-repeat="message in current.messages | toArray | orderBy:'+createdAt'"
-                     ng-class="{'pull-right':message.user==user.id}"
+                     ng-class="{'pull-right':message.user.id === user.id}"
                      class="user-details-wrapper" >
 
-                    <div ng-show="message.user !== user.id" class="user-profile">
+                    <div ng-show="message.user.id !== user.id" class="user-profile">
                         <img src="/images/profiles/d.jpg"  alt="" data-src="/images/profiles/d.jpg" data-src-retina="/images/profiles/d2x.jpg" width="35" height="35">
                     </div>
 
                     <div class="user-details">
-                        <div ng-class="{sender:message.user == user.id}" class="bubble">    
+                        <div ng-class="{sender:message.user.id === user.id}" class="bubble">    
                             {{ message.message }}
                         </div>
                     </div>                  
