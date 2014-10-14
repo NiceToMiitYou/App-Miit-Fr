@@ -1,18 +1,22 @@
-<div class="modal show" id="userinfo-modal" ng-show="userinfo" ng-init="userinfo=true">
+<div class="modal show" id="userinfo-modal" ng-show="firstInit">
+<form role="form">
     <div class="modal-dialog">
         <div class="modal-content">
+
             <div class="modal-header">
-                <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="userinfo=false">×</button> -->
-                <br>
+
                 <i class="fa fa-user fa-6x"></i>
-                <h4 id="myModalLabel" class="semi-bold" ng-show="newuser" ng-init="newuser=true">Bienvenue pour votre premiere experience ITEvents</h4>
-                <h4 id="myModalLabel" class="semi-bold" ng-show="!newuser" ng-init="newuser=true">Editez les informations de votre compte</h4>
-                <p class="no-margin">Lorem ipsum</p>
-                <br>
+
+                <h4 id="myModalLabel" class="semi-bold">
+                    Bienvenue pour votre premiere experience ITEvents
+                </h4>
             </div>
+
             <div class="modal-body" style="padding:10px;">
+
                 <div class="panel-group" id="accordion" data-toggle="collapse" style="margin-bottom:0;">
-                    <div class="panel panel-default" ng-class="{selected : accountType == 0}">
+
+                    <div class="panel panel-default" ng-class="{selected : accountType === 0}">
                         <div class="panel-heading collapsed">
                             <h4 class="panel-title">
                                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" ng-click="accountType = 0">
@@ -20,6 +24,7 @@
                                 </a>
                             </h4>
                         </div>
+
                         <div id="collapseOne" class="panel-collapse collapse" style="height: 0px;">
                             <div class="panel-body">
                                 <div class="row">
@@ -43,21 +48,24 @@
                                     </div>
                                     </div>
                                 </div>
-                             <!--    <div class="row m-t-10">
+                                <div class="row m-t-10">
                                     <div class="col-md-12">
-                                        <div class="checkbox check-primary" ng-init="usePseudo=false">
-                                            <input id="checkbox-pseudo" type="checkbox" value="1">
-                                            <label for="checkbox-pseudo" ng-show="!usePseudo">Utiliser un pseudonyme lors de mes publications</label>
-                                             <input type="text" placeholder="Pseudonyme" ng-show="usePseudo"/> 
+                                        <div class="checkbox check-primary">
+                                            <input ng-model="useUsername" id="checkbox-pseudo" type="checkbox" value="1">
+                                            <label for="checkbox-pseudo" ng-show="!useUsername">
+                                                Utiliser un pseudonyme lors de mes publications
+                                            </label>
+                                            
+                                            <input type="text" placeholder="Pseudonyme" ng-show="useUsername"/> 
                                         </div>
                                     </div>
                                     
-                                </div> -->
+                                </div>
                                 <div class="row m-t-10">
                                     <div class="col-md-12">
                                         <h4 class="semi-bold">Choisissez un Avatar :</h4>
                                         <div class="avatar-choice">
-                                            <a class="avatar" ng-class="user.avatar.c + ' avatar-'+user.avatar.a" ng-click="changeAvatar=true"></a>
+                                            <a class="avatar" ng-class="user.avatar.c + ' avatar-' + user.avatar.a" ng-click="changeAvatar=true"></a>
                                             <ul class="avatar-choice-list" ng-show="changeAvatar" ng-click="changeAvatar=false">
                                                 <li><a ng-click="user.avatar.a='m1'" class="avatar avatar-m1"></a></li>
                                                 <li><a ng-click="user.avatar.a='m2'" class="avatar avatar-m2"></a></li>
@@ -95,10 +103,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="panel panel-default" ng-class="{selected : accountType == 1}">
+                    <div class="panel panel-default" ng-class="{selected : accountType === 1}">
                         <div class="panel-heading collapsed">
                             <h4 class="panel-title">
-                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" ng-click="accountType = 1">
+                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" ng-click="generateAnonym()">
                                     Anonyme
                                 </a>
                             </h4>
@@ -107,12 +115,14 @@
                             <div class="panel-body">
                                 <div class="row m-t-10">
                                     <div class="col-md-3"><label style="line-height: 34px;">Pseudonyme : </label></div>
-                                    <div class="col-md-9"><input type="text" value="Anonyme-153" /></div>
+                                    <div class="col-md-9"><input type="text" ng-model="user.username" /></div>
                                 </div>
                                 <div class="col-md-12 text-center m-t-20">
                                     <div class="checkbox check-primary">
-                                        <input id="checkbox-anonyme" type="checkbox" value="1" ng-model="user.firstname">
-                                        <label for="checkbox-anonyme">En utilisant la navigation anonyme vous vous engagez à respecter les règles de politesse et de respect élémentaires</label>
+                                        <input id="checkbox-anonyme" type="checkbox" ng-model="agreeAnonyme" value="1">
+                                        <label for="checkbox-anonyme">
+                                            En utilisant la navigation anonyme vous vous engagez à respecter les règles de politesse et de respect élémentaires
+                                        </label>
                                     </div>
                                 </div>
                             </div>
@@ -121,11 +131,12 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" ng-click="saveuser(); userinfo=false;" class="btn btn-primary">Sauvegarder</button>
+                <button type="button" ng-click="saveUser();" class="btn btn-primary">Sauvegarder</button>
             </div>
         </div>
         <!-- /.modal-content -->
     </div>
     <!-- /.modal-dialog -->
     <div class="modal-backdrop fade in"></div>
+    </form>
 </div>

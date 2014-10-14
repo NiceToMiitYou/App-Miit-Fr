@@ -10,11 +10,7 @@ window.ITStorage = ( function() {
 
     function asyncBinding( cbs, value ) {
 
-        if( typeof cbs === 'function') {
-
-            async.applyEach( [ cbs ], value );
-
-        } else if ( cbs ) {
+        if ( cbs ) {
 
             async.applyEach(cbs, value);
         }
@@ -61,7 +57,7 @@ window.ITStorage = ( function() {
                             }
 
                             if ( direct === true ) {
-                                asyncBinding( cb, this.get( key ) );
+                                asyncBinding( [ cb ], this.get( key ) );
                             }
                         },
 
@@ -78,7 +74,7 @@ window.ITStorage = ( function() {
                             if ( canPersist && persist ) {
                                 try {
                                     // get from sessionStorage
-                                    return JSON.parse( sessionStorage.getItem( 'it-storage-' + name + '-' + key ) );
+                                    return JSON.parse( sessionStorage.getItem( prefix + key ) );
                                 } catch ( e ) {}
                             } else {
 
