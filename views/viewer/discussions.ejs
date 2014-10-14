@@ -21,10 +21,19 @@
                 </div>  
                 <div ng-repeat="message in current.messages | toArray | orderBy:'+createdAt'"
                      ng-class="{'pull-right':message.user.id === user.id}"
-                     class="user-details-wrapper" >
-
-                    <div ng-show="message.user.id !== user.id" class="user-profile">
-                        <img src="/images/profiles/d.jpg"  alt="" data-src="/images/profiles/d.jpg" data-src-retina="/images/profiles/d2x.jpg" width="35" height="35">
+                     class="user-details-wrapper">
+                    <div ng-class="{'text-right text-success' : message.user.id == user.id, 'text-info' : message.user.id !== user.id}" class="m-b-5">
+                        <span class=" semi-bold" ng-show="message.user.username">
+                                {{message.user.username}}
+                            </span>
+                            <span class=" semi-bold " ng-show="!message.user.username && (message.user.lastname || message.user.firstname)">
+                                {{message.user.firstname}} {{message.user.lastname}}
+                            </span>
+                            <span class=" semi-bold" ng-show="!message.user.username && !message.user.lastname && !message.user.firstname">
+                                Anonyme
+                            </span>
+                    </div>
+                    <div class="user-profile avatar {{message.user.avatar.c + ' avatar-'+message.user.avatar.a}}" ng-class="{ownm : message.user.id == user.id}" >
                     </div>
 
                     <div class="user-details">

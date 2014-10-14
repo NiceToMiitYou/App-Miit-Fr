@@ -332,6 +332,12 @@ a {
 	padding: 0;
 	margin: 12px;
 	clear: both;
+	margin-bottom: 0px;
+}
+
+.chat-window-wrapper .user-details-wrapper > .user-profile.ownm {
+	float: right;
+	margin: 3px 0px 0 15px;
 }
 
 .chat-window-wrapper .chat-messages .user-details-wrapper:hover {
