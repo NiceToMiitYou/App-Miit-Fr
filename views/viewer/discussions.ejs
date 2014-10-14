@@ -5,7 +5,20 @@
     <div class="chat-area">
         <div class="chat-window-wrapper" id="messages-wrapper">
             <div class="chat-messages">
+                <div class="user-details-wrapper" >
 
+                    <div class="user-profile">
+                        <img src="/images/profiles/icon.png"  alt="" data-src="/images/profiles/icon.png" width="35" height="35">
+                    </div>
+
+                    <div class="user-details">
+                        <div class="bubble">    
+                            Bienvenue sur la chat {{ current.name }}. Vous pouvez dès à présent poster vos messages.
+                        </div>
+                    </div>                  
+                    <div class="clearfix"></div>
+                    <div class="sent_time off"></div>
+                </div>  
                 <div ng-repeat="message in current.messages | toArray | orderBy:'+createdAt'"
                      ng-class="{'pull-right':message.user==user.id}"
                      class="user-details-wrapper" >

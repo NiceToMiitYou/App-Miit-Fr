@@ -323,11 +323,19 @@ a {
 .page-sidebar .page-sidebar-wrapper > ul > li {
 	border-top: 1px solid #22262e;
 }
+.chat-area {
+	height: calc(100% - 120px);
+	overflow-y: auto;
+}
 
 .chat-window-wrapper .user-details-wrapper {
 	padding: 0;
 	margin: 12px;
 	clear: both;
+}
+
+.chat-window-wrapper .chat-messages .user-details-wrapper:hover {
+	background-color: initial;
 }
 
 .sider .dot-item {
