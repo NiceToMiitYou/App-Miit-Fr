@@ -344,6 +344,35 @@ a {
 	background-color: initial;
 }
 
+.sub-menu.user-sub {
+	position: absolute;
+	left: 200px;
+	z-index: 99999;
+	top: 60px;
+	background: #1b1e24;
+	padding: 0;
+	border-left: 2px solid rgba(11, 161, 149, 0.4);
+	-webkit-animation: border-beat 800ms infinite; /* Chrome, Safari, Opera */
+    animation: border-beat 800ms infinite;
+}
+
+.sub-menu.user-sub li {
+	list-style: none;
+	padding: 0;
+}
+
+.sub-menu.user-sub li a {
+	color: #FFF;
+	padding: 15px 25px 15px 30px;
+	display: block;
+	min-width: 150px;
+	cursor: pointer;
+}
+
+.sub-menu.user-sub li a:hover {
+	background:#22262e;
+}
+
 .sider .dot-item {
 	position: relative;
 }

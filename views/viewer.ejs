@@ -2,15 +2,20 @@
 <!-- BEGIN CONTENT -->
 <div ng-controller="viewerController" class="page-container row-fluid" style="opacity:1">
 
+    <ul class="sub-menu user-sub" ng-show="openStats">
+        <li class="active" ng-click="openStats=false"><a><div class="status-icon green"></div> <span class="title">Online</span></a></li>
+        <li><a ng-click="logout()"><div class="status-icon red"></div> <span class="title">Déconnexion</span></a></li>
+    </ul>
+
     <!-- BEGIN SIDEBAR -->
-    <div class="page-sidebar" id="main-menu"> 
+    <div class="page-sidebar" id="main-menu">
         <div class="page-sidebar-wrapper" id="main-menu-wrapper">
             <!-- BEGIN MINI-PROFILE -->
-            <div class="user-info-wrapper"> 
+            <div class="user-info-wrapper">
                 <img style="padding-top:14px;" src="/images/logo.png" alt="" data-src="/images/logo.png" width="140" />
             </div>
 
-            <div class="user-info-wrapper user-show"> 
+            <div class="user-info-wrapper user-show" ng-click="openStats=true">
                 <a class="avatar" ng-class="user.avatar.c + ' avatar-'+user.avatar.a" ng-click="changeAvatar=true"></a>
                 <div class="user-info m-l-5">
                     <div class="username">{{ user.firstname }} <span class="semi-bold">{{ user.lastname }}</span></div>

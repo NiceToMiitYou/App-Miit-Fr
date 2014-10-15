@@ -54,6 +54,12 @@ ITEventApp.controller(
                 }
             }
 
+            function logout() {
+            	ITConnect.user.logout();
+            	window.location.reload();
+            }
+
+            $scope.logout = logout;
             $scope.generateAnonym = generateAnonym;
 
             $scope.saveUser = saveUser;
