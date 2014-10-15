@@ -18,6 +18,13 @@ ITEventApp.controller(
                 }
             }
 
+            function openInner( quizz ) {
+
+                ITStorage.db.options.set('quizz.current', quizz);
+            }
+
+            $scope.openInner = openInner;
+
             ITStorage.db.options.bind( 'data.isLoaded', true, loadQuizzes );
 
         } ] );

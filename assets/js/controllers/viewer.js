@@ -21,6 +21,12 @@ ITEventApp.controller(
 
             $scope.firstInit = ! ( $scope.user.firstname || $scope.user.lastname || $scope.user.username);
 
+            function refreshUser( user ) {
+                $timeout( function() {
+                    $scope.user = user;
+                } );
+            }
+
             function saveUser() {
 
                 if( $scope.user.firstname || $scope.user.lastname || $scope.user.username) {
@@ -35,8 +41,6 @@ ITEventApp.controller(
                         function (data) {
                             if ( data.done ) {
                                 ITStorage.db.options.set( 'user', data.user );
-
-                                $scope.user = ITStorage.db.options.get('user');
 
                                 $scope.firstInit = false;
                             }
@@ -64,4 +68,5 @@ ITEventApp.controller(
 
             $scope.saveUser = saveUser;
 
+            ITStorage.db.options.bind('user', refreshUser);
         } ] );

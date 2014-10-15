@@ -12,7 +12,7 @@ window.ITStorage = ( function() {
 
         if ( cbs ) {
 
-            async.applyEach(cbs, value);
+            async.applyEach(cbs, value, function() {});
         }
     };
 
