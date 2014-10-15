@@ -50,13 +50,15 @@
                                 </div>
                                 <div class="row m-t-10">
                                     <div class="col-md-12">
-                                        <div class="checkbox check-primary">
+                                        <div class="checkbox check-primary" ng-class="{'col-md-1':useUsername}">
                                             <input ng-model="useUsername" id="checkbox-pseudo" type="checkbox" value="1">
-                                            <label for="checkbox-pseudo" ng-show="!useUsername">
-                                                Utiliser un pseudonyme lors de mes publications
+                                            <label for="checkbox-pseudo">
+                                                <span ng-show="!useUsername">Utiliser un pseudonyme lors de mes publications</span>
                                             </label>
-                                            
-                                            <input type="text" placeholder="Pseudonyme" ng-show="useUsername"/> 
+                                        </div>
+
+                                        <div class="col-md-11" ng-show="useUsername">
+                                            <input type="text" placeholder="Pseudonyme" ng-model="user.username"/> 
                                         </div>
                                     </div>
                                     
