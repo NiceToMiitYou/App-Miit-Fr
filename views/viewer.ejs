@@ -2,8 +2,8 @@
 <!-- BEGIN CONTENT -->
 <div ng-controller="viewerController" class="page-container row-fluid" style="opacity:1">
 
-    <ul class="sub-menu user-sub" ng-show="openStats">
-        <li class="active" ng-click="openStats=false"><a><div class="status-icon green"></div> <span class="title">Online</span></a></li>
+    <ul class="user-sub" ng-show="openStats">
+        <li class="active"><a href="#" ng-click="openStats=false"><span class="status-icon green"></span> <span class="title">Online</span></a></li>
         <li><a ng-click="logout()"><div class="status-icon red"></div> <span class="title">Déconnexion</span></a></li>
     </ul>
 
