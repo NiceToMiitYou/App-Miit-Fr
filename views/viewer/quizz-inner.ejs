@@ -24,8 +24,9 @@
                     <input id="radio-{{ question.id }}-{{ answer.id }}"
                            name="radio-{{ question.id }}"
                            type="radio"
-                           value="1"
-                           ng-model="answer.selected">
+                           ng-checked="answer.selected"
+                           ng-disabled="current.answered"
+                           ng-click="checkRight(question, answer)">
 
                     <label for="radio-{{ question.id }}-{{ answer.id }}">
                         {{ answer.answer }}
@@ -38,7 +39,9 @@
                     <input id="checkbox-{{ question.id }}-{{ answer.id }}"
                            name="checkbox-{{ question.id }}"
                            type="checkbox"
-                           value="1"
+                           ng-checked="answer.selected"
+                           ng-disabled="current.answered"
+                           ng-true-value="true" ng-false-value="false"
                            ng-model="answer.selected">
 
                     <label for="checkbox-{{ question.id }}-{{ answer.id }}">
@@ -46,6 +49,15 @@
                     </label>
                 </div>
             </div>
+        </div>
+
+        <div class="col-md-12">
+            <button ng-click="saveQuizz();"
+                    ng-disabled="current.answered || !isAnswered"
+                    type="button"
+                    class="btn btn-primary">
+                Valider les réponses
+            </button>
         </div>
     </div>
 </div>
