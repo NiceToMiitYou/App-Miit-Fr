@@ -46,6 +46,7 @@ a {
 .page-sidebar {
 	margin-top:0;
 	padding-bottom: 200px;
+	position: absolute;
 }
 
 .page-sidebar .page-sidebar-wrapper {
