@@ -6,18 +6,21 @@
     </div>
     <div id="slides" class="presentation-slide flexslider">
         <ul class="slides">
-            <li class="slide">
-                <div class="slide-content">
-                    <p class="text-center" style="padding-top:20%;">
+            <li class="slide" ng-repeat="slide in presentation.slides">
+                <div class="slide-content" ng-bind-html-unsafe="slide.content">
+
+                    <!-- <p class="text-center" style="padding-top:20%;">
                         <img src="/images/logodark.png"/>
                     </p>
                     <br/>
                     <br/>
                     <br/>
-                    <canvas id="myCanvas"></canvas>
+                    <canvas id="myCanvas"></canvas> -->
                 </div>
             </li>
-            <li class="slide noswipe">
+
+
+            <!-- <li class="slide noswipe">
                 <div class="slide-content">
                     <div class="interactive-panel text-right">
                         <h2 class="text-success">Des slides plus interactifs que jamais !</h2>
@@ -28,7 +31,7 @@
             </li>
             <li class="slide">
                 <div class="slide-content">
-                    <!-- <iframe src="assets/slides/three.html" style="width: 100%; border:0; height:100%;"></iframe> -->
+                    <iframe src="assets/slides/three.html" style="width: 100%; border:0; height:100%;"></iframe>
                 </div>
             </li>
             <li class="slide"><div class="slide-content">
@@ -37,8 +40,10 @@
                     <h1 class="text-success text-right">Permettez à vos graphiques d'en dire plus</h1><br/>
                 </div>
             </div></li>
-            <!-- <li class="slide"><div class="slide-content"><iframe src="//player.vimeo.com/video/65475425" style="width:100%; height:100%; border:0;" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div></li> -->
-            <!-- <li class="slide"><div class="slide-content"><img src="assets/img/slides/large5.png"></div></li> -->
+            <li class="slide"><div class="slide-content"><iframe src="//player.vimeo.com/video/65475425" style="width:100%; height:100%; border:0;" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div></li>
+            <li class="slide"><div class="slide-content"><img src="assets/img/slides/large5.png"></div></li>
+
+
             <li class="slide"><div class="slide-content">
                 <h2 class="text-center"><br><br><br>Vous vous sentez prêt ?</h2>
                 <br><br>
@@ -46,7 +51,7 @@
                     <button class="btn btn-large btn-primary"> Oui au max ! </button>&nbsp;&nbsp;
                     <button class="btn btn-large btn-danger"> Non pas vraiment </button>
                 </div>
-            </li>
+            </li> -->
         </ul>
         <div class="slides-nav">
             <a class="btn btn-large sn-previous sn-prev" data="prev" href="#"><i class="fa fa-arrow-left"></i>&nbsp; Précedent</a>
