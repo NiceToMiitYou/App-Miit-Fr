@@ -24,5 +24,31 @@ module.exports = {
                     conference: conference
                 } );
             } );
+    },
+
+    /**
+     * `ConfConfigController.actual()`
+     */
+    actual: function( req, res ) {
+        
+        return res.done( {
+            presentation: 1
+        } );
+    },
+
+    /**
+     * `ConfConfigController.presentations()`
+     */
+    presentations: function( req, res ) {
+
+        ConfPresentation.find()
+            .populate( 'slides' )
+            .exec( function( err, presentations ) {
+                if ( err || ! presentations ) res.notDone();
+
+                return res.done( {
+                    presentations: presentations
+                } );
+            } );
     }
 };

@@ -103,6 +103,19 @@ window.ITConnect = ( function() {
             conference: function( cb ) {
                 io.socket.get( '/api/config/conference', {}, cb );
             },
+
+            // Get presentation config
+            presentation: {
+                // Get the list of all presentations
+                list: function( cb ) {
+                    io.socket.get( '/api/config/presentation/list', {}, cb );
+                },
+
+                // Get actual presentation ID
+                actual: function( cb ) {
+                    io.socket.get( '/api/config/presentation/actual', {}, cb );
+                }
+            }
         },
 
         // Chat actions

@@ -46,6 +46,34 @@ function initData() {
             [
 
                 function( callback ) {
+                    // Load presentations
+                    ITConnect.config.presentation.list( function( data ) {
+                        if ( !data.done ) return;
+
+                        // Add each chatroom in the area
+                        for ( index in data.presentations ) {
+
+                            ITStorage.db.presentations.set( data.presentations[index].id, data.presentations[index] );
+                        }
+
+                        callback( null );
+                    } );
+                },
+
+                function( callback ) {
+                    // Get actual presentation
+                    ITConnect.config.presentation.actual( function( data ) {
+                        if ( !data.done ) return;
+
+                        ITStorage.db.options.set('presentation.actual', 
+                            ITStorage.db.presentations.get( data.presentation )
+                        );
+
+                        callback( null );
+                    } );
+                },
+
+                function( callback ) {
                     // Load chatrooms
                     ITConnect.chatroom.list( function( data ) {
                         if ( !data.done ) return;

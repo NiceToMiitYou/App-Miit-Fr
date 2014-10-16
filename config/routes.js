@@ -61,7 +61,20 @@ var routes = {
     'GET /api/config/conference': {
         controller: 'ConfConfigController',
         action: 'conference'
+    },
+
+
+    'GET /api/config/presentation/list': {
+        controller: 'ConfConfigController',
+        action: 'presentations'
+    },
+
+
+    'GET /api/config/presentation/actual': {
+        controller: 'ConfConfigController',
+        action: 'actual'
     }
+
 
     /***************************************************************************
      *                                                                          *
