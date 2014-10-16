@@ -138,23 +138,30 @@ function initData() {
                                         for( index in dataQuestion.questions ) {
 
                                             // Foreach answers
-                                            for( indexAnswer in dataQuestion.questions[index] ) {
+                                            for( indexAnswer in dataQuestion.questions[index].answers ) {
 
                                                 // Default not selected
                                                 var selected = false;
 
                                                 // Check if answered
-                                                if ( user.quizzAnswers.indexOf( dataQuestion.questions[index][indexAnswer].id ) !== -1 ) {
-                                                    
-                                                    // Set answered
-                                                    quizz.answered = true;
+                                                for ( indexUserAnswer in user.quizzAnswers ) {
 
-                                                    // Set selected
-                                                    selected = true;
+                                                    // Check if same id
+                                                    if ( user.quizzAnswers[indexUserAnswer].id === dataQuestion.questions[index].answers[indexAnswer].id) {
+                                                        
+                                                        // Set answered
+                                                        quizz.answered = true;
+
+                                                        // Set selected
+                                                        selected = true;
+
+                                                        // Stop the loop
+                                                        break;
+                                                    }
                                                 }
 
                                                 // Set selected if she is
-                                                dataQuestion.questions[index][indexAnswer].selected = selected;
+                                                dataQuestion.questions[index].answers[indexAnswer].selected = selected;
                                             }
                                         }
 
