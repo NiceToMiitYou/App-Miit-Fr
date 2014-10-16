@@ -40,7 +40,10 @@
                             <li class="text-white" ng-show="question.likes > 1">{{question.likes}} Likes</li>
                             <li class="text-white" ng-show="question.likes <= 1">{{question.likes}} Like</li>
                         </ul>
-                        <a class="btn btn-primary btn-small m-r-10 fright" ng-class="{disabled : isLike(question)}" ng-click="like(question)">
+                        <a ng-show="question.user.id != user.id"
+                           ng-class="{disabled : isLike(question)}"
+                           ng-click="like(question)"
+                           class="btn btn-primary btn-small m-r-10 fright">
                             <i class="fa fa-thumbs-o-up"></i> Like
                         </a>
                         <div class="clearfix"></div>
