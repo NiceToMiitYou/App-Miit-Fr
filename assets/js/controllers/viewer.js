@@ -105,6 +105,7 @@ ITEventApp.controller(
             }
 
             $scope.logout = logout;
+            
             $scope.generateAnonym = generateAnonym;
 
             $scope.saveUser = saveUser;
