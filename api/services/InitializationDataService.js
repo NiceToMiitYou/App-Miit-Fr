@@ -64,27 +64,27 @@ function createSlides( cb ) {
 
     ConfSlide
         .create( [ {
-            note: 'Note 1 but no Lorem Ipsum :P',
+            notes: 'Note 1 but no Lorem Ipsum :P',
             title: 'Slide 1',
             content: '<img src="/images/slides/large1.png">',
             presentation: 1
         }, {
-            note: 'Note 2 but no Note',
+            notes: 'Note 2 but no Note',
             title: 'Slide 2',
             content: '<img src="/images/slides/large2.png">',
             presentation: 1
         }, {
-            note: 'Note 3 enjoy your life',
+            notes: 'Note 3 enjoy your life',
             title: 'Slide 3',
             content: '<img src="/images/slides/large3.png">',
             presentation: 1
         }, {
-            note: 'Note 4  for the win',
+            notes: 'Note 4  for the win',
             title: 'Slide 4',
             content: '<img src="/images/slides/large4.png">',
             presentation: 1
         }, {
-            note: 'Note 5 ...',
+            notes: 'Note 5 ...',
             title: 'Slide 5',
             content: '<img src="/images/slides/large5.png">',
             presentation: 1
