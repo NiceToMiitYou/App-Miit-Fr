@@ -13,6 +13,8 @@ ITEventApp.controller(
             $scope.user = ITStorage.db.options.get('user');
 
             $scope.presentation = ITStorage.db.options.get('presentation.actual');
+
+            $scope.messenger = Messenger();
             
             $scope.agreeAnonyme = false;
 

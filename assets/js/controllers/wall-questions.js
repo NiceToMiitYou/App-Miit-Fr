@@ -32,8 +32,21 @@ ITEventApp.controller(
                         if( data.done || data.like ) {
 
                             ITStorage.db.likes.set( question.id, data.like.id );
+                        } else {
+
+                            $scope.messenger.post({
+                                message: 'Une erreur s\'est produite lors du like de la question.',
+                                type: 'error'
+                            });
                         }
                     } );
+
+                } else {
+
+                    $scope.messenger.post({
+                        message: 'Vous aimez déjà cette question.',
+                        type: 'error'
+                    });
                 }
             }
 
@@ -62,14 +75,36 @@ ITEventApp.controller(
             $scope.getTagName = getTagName;
 
             $scope.post = function() {
-                if ( $scope.text ) {
+                if ( $scope.text && $( '#multi' ).val() ) {
 
                     ITConnect.question.presentation.create( $scope.text, $( '#multi' ).val(), function(data) {
                         if( data.done ) {
-                            $scope.text = '';
-                            $scope.$apply();
+
+                            $timeout(function() {
+
+                                $scope.text = '';
+
+                                $scope.messenger.post({
+                                    message: 'Votre question vient d\'être postée.',
+                                    type: 'info'
+                                });
+                            });
+
+                        } else {
+
+                            $scope.messenger.post({
+                                message: 'Une erreur s\'est produite lors de la création de la question.',
+                                type: 'error'
+                            });
                         }
                     });
+                } else {
+
+                    $scope.messenger.post({
+                        message: 'Veuillez renseigner tout les champs afin de pouvoir poster une question.',
+                        type: 'error'
+                    });
+
                 }
             }
 
@@ -84,7 +119,9 @@ ITEventApp.controller(
                 }
 
                 $timeout(function(){
+
                     if( $scope.questions[like.question] ) {
+
                         $scope.questions[like.question].likes++;
                     }
                 }, time);
