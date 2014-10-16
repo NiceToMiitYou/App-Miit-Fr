@@ -50,6 +50,7 @@ ITEventApp.controller(
                         ITConnect.note.create($scope.current.title, $scope.current.content, function( data ) {
 
                             $timeout(function() {
+
                                 $scope.saving = false;
 
                                 if(data.done) {
@@ -61,6 +62,7 @@ ITEventApp.controller(
                                     $scope.current.new = false;
 
                                     if ( typeof cb === 'function' ) {
+
                                         cb($scope.notes[data.note.id]);
                                     }
 
@@ -97,6 +99,7 @@ ITEventApp.controller(
                                     $scope.hasChange = false;
 
                                     if ( typeof cb === 'function' ) {
+
                                         cb($scope.notes[data.note.id]);
                                     }
 
@@ -119,14 +122,14 @@ ITEventApp.controller(
 
                         if ( typeof cb === 'function' ) {
 
-                            cb();
+                            cb( $scope.current );
                         }
                     }
                 } else if ( !$scope.saving ) {
 
                     if ( typeof cb === 'function' ) {
 
-                        cb();
+                        cb( $scope.current );
                     }
                 }
             }
