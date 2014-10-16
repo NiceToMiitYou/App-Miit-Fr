@@ -7,7 +7,7 @@
     <div id="slides" class="presentation-slide flexslider">
         <ul class="slides">
             <li class="slide" ng-repeat="slide in presentation.slides">
-                <div class="slide-content" ng-bind-html-unsafe="slide.content">
+                <div class="slide-content" ng-bind-html="safeHTML(slide.content)">
 
                     <!-- <p class="text-center" style="padding-top:20%;">
                         <img src="/images/logodark.png"/>

@@ -22,6 +22,12 @@ ITEventApp.controller(
 
             $scope.firstInit = ! ( $scope.user.firstname || $scope.user.lastname || $scope.user.username);
 
+            $scope.safeHTML = safeHTML;
+
+            function safeHTML(html) {
+                return $sce.trustAsHtml(html);
+            }
+
             function refreshUser( user ) {
                 $timeout( function() {
                     $scope.user = user;
