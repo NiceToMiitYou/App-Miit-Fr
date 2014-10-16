@@ -19,6 +19,7 @@ ITEventApp.controller(
             $scope.saving = false;
 
             function loadNotes( isLoaded ) {
+
                 if(isLoaded) {
 
                     $timeout(function() {
@@ -33,7 +34,6 @@ ITEventApp.controller(
 
                                 $scope.current = $scope.notes[note.id];
                             }
-
                         } );
                     } ); 
                 }
@@ -62,10 +62,20 @@ ITEventApp.controller(
 
                                     if ( typeof cb === 'function' ) {
                                         cb($scope.notes[data.note.id]);
-                                    }                             
+                                    }
+
+                                    $scope.messenger.post({
+                                        message: 'Votre note a bien été créée.',
+                                        type: 'info'
+                                    });        
+                                } else {
+
+                                    $scope.messenger.post({
+                                        message: 'Une erreur s\'est produite lors de la création de la note.',
+                                        type: 'error'
+                                    });
                                 }
                             });
-
                         });
                         
                     } else if ( $scope.hasChange ) {
@@ -89,6 +99,17 @@ ITEventApp.controller(
                                     if ( typeof cb === 'function' ) {
                                         cb($scope.notes[data.note.id]);
                                     }
+
+                                    $scope.messenger.post({
+                                        message: 'Votre note a bien été enregistrée.',
+                                        type: 'info'
+                                    });
+                                } else {
+
+                                    $scope.messenger.post({
+                                        message: 'Une erreur s\'est produite lors de la sauvegarde de la note.',
+                                        type: 'error'
+                                    });
                                 }
                             });
 
@@ -154,6 +175,16 @@ ITEventApp.controller(
                         $timeout(function() {
                             if( data.done ) {
 
+                                $scope.messenger.post({
+                                    message: 'Votre note a bien été envoyée dans votre boite mail.',
+                                    type: 'info'
+                                });
+                            } else {
+
+                                $scope.messenger.post({
+                                    message: 'Une erreur c\'est produite lors de l\'envoi par notre service.',
+                                    type: 'error'
+                                });
                             }
                         } );
                     } )
