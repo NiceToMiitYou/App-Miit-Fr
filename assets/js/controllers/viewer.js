@@ -111,5 +111,5 @@ ITEventApp.controller(
 
             ITStorage.db.options.bind('user', refreshUser);
 
-            ITStorage.db.options.bind('presentation.actual', refreshPresentation);
+            ITStorage.db.options.bind('presentation.actual', true, refreshPresentation);
         } ] );
