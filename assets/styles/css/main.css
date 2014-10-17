@@ -73,7 +73,7 @@ a {
 	overflow: visible;
 	min-height: 0;
 	height: 100%;
-	transition: margin-right 200ms;
+	transition: margin 200ms;
 }
 
 
@@ -215,7 +215,7 @@ a {
 }
 
 .fullscreen-layer {
-	position: absolute;
+	position: fixed;
 	top: 0;
 	bottom: 0;
 	left: 0;
@@ -240,7 +240,6 @@ a {
 
 
 .flexslider {
-	margin: 0 0 0px;
 	background: transparent;
 	border: 0;
 	position: relative;
@@ -254,9 +253,12 @@ a {
 	box-shadow: none;
 	zoom: 1;
 	z-index: 9;
-	max-width: 850px;
-	margin: auto;
-	padding-bottom: 50px;
+	margin: 2px auto;
+	padding-bottom: 50px;/*
+	width: 100%;
+	height: calc(100% - 275px);*/
+	width: 1024px;
+	height: 768px;
 }
 
 .flexslider .slides {
@@ -266,16 +268,18 @@ a {
 .flexslider .slides > li {
 	padding: 0;
 	height: 100%;
+	display: inline-block;
+	max-width: 100%;
 }
 
 .flexslider .slides img {
 	max-width: 100%;
-	width: auto;
+	width: 100%;
 	display: inline-block;
 }
 
 .flexslider .slides > li > .slide-content {
-	margin: 0 10px;
+	/*margin: 0 10px;*/
 	position: relative;
 	height: 100%
 }
@@ -302,23 +306,23 @@ a {
     margin-left: -20px;
 }
 
-.flexslider .slides-nav {
-	position: absolute;
-	bottom: 0;
-	margin: 0 1%;
+.live-content .slides-nav {
+/*	position: absolute;
+	bottom: 0;*/
+	margin: 1%;
 	width: 98%;
 }
 
-.flexslider .slides-nav a.btn {
+.live-content .slides-nav a.btn {
 	width: 50%;
 	border-radius: 0;
 }
 
-.flexslider .slides-nav a i {
+.live-content .slides-nav a i {
 	vertical-align: 1px;
 }
 
-.flexslider .slides-nav .sn-next {
+.live-content .slides-nav .sn-next {
 	float: right;
 }
 
@@ -964,7 +968,7 @@ ul.table-list li a span.title {
 }
 
 .login-container .tiles {
-	width: 550px;
+	width: 560px;
 	margin-left: auto;
 	margin-right: auto;
 }
