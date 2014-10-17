@@ -1501,3 +1501,8 @@ ul.table-list li a span.title {
 .avatar.avatar-f7 {background-position: -500% 0px;}
 .avatar.avatar-f8 {background-position: -500% calc(100%/2);}
 .avatar.avatar-f9 {background-position: -500% 100%;}
+
+ul.messenger.messenger-fixed.messenger-on-top, ul.messenger.messenger-fixed.messenger-on-bottom {
+	width: 53%;
+	margin-left: -25%;
+}
