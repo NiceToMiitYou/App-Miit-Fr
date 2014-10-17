@@ -6,9 +6,11 @@ ITEventApp.controller(
 
             $scope.current = {
 
-                title: '',
+                title: 'Bienvenue!',
 
-                content: '',
+                content: 'Bienvenue sur dans votre bloc-note!\n' + 
+                         'Vous pouvez dès à présent modifier ou créer des notes.\n' + 
+                         'Si vous souhaitez les recevoir dans votre boîte mail, Appuyer sur le bouton "Envoyer".',
 
                 new: true
 
