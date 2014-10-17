@@ -107,7 +107,7 @@ module.exports = {
         } )
             .populate( 'user' )
             .exec( function( err, note ) {
-                if ( err || !note ) res.notDone();
+                if ( err || !note ) return res.notDone();
 
                 MailingService.sendEmailNote(
                     note.user.mail,
