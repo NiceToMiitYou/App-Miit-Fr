@@ -62,6 +62,9 @@ ITEventApp.controller(
                                     message: 'Bienvenue parmis nous!',
                                     type: 'infos'
                                 });
+
+                                
+
                             } else {
 
                                 $scope.messenger.post({
@@ -89,6 +92,22 @@ ITEventApp.controller(
                 }
             }
 
+            function getUsername() {
+                var username = "Anonyme";
+
+                if($scope.user.username) {
+                    username = $scope.user.username;
+                } else if (!$scope.user.username && ($scope.user.lastname || $scope.user.firstname)) {
+                    username = ($scope.user.firstname ? $scope.user.firstname : "") + " " + ($scope.user.lastname ? $scope.user.lastname : "");
+                }
+
+                if(username.length > 16) {
+                    username = username.substr(0, 14) + "\u2026";
+                }
+
+                return username;
+            }
+
             function logout() {
             	
                 ITConnect.user.logout(function() {
@@ -109,6 +128,8 @@ ITEventApp.controller(
             $scope.generateAnonym = generateAnonym;
 
             $scope.saveUser = saveUser;
+
+            $scope.getUsername = getUsername;
 
             ITStorage.db.options.bind('user', refreshUser);
 

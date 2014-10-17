@@ -18,9 +18,13 @@
             <div class="user-info-wrapper user-show" ng-click="openStats=true">
                 <a class="avatar" ng-class="user.avatar.c + ' avatar-'+user.avatar.a" ng-click="changeAvatar=true"></a>
                 <div class="user-info m-l-5">
-                    <div class="username">
+                    <div class="username" ng-class="{small : getUsername().length > 12}">
                         
-                        <span ng-show="user.username">
+                        <span>
+                            {{getUsername()}}
+                        </span>
+
+                        <!-- <span ng-show="user.username">
                             {{user.username}}
                         </span>
                         <span ng-show="!user.username && (user.lastname || user.firstname)">
@@ -28,7 +32,7 @@
                         </span>
                         <span ng-show="!user.username && !user.lastname && !user.firstname">
                             Anonyme
-                        </span>
+                        </span> -->
                     </div>
                     <div class="status">Status<a href="#">
                         <div class="status-icon green"></div>

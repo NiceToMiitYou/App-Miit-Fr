@@ -1,3 +1,4 @@
+var fullscreen;
 $( function() {
 
     var $slides = $( "#slides" );
@@ -108,14 +109,16 @@ $( function() {
                     $slides.data( "flexslider" )
                         .resize();
                 } );
+                fullscreen = false;
         } );
 
         $(".fullscreen").on("click", function() {
             $(".fullscreen-layer, .close-fs").fadeIn("fast", function() {
                 $(".page-content").css({"margin-left": 0, "margin-right": 0, "overflow": "hidden"});
                 $slides.css({"position":"fixed", "padding-bottom": "0", "top": -768, "z-index": 9999}).animate({"top":0, "bottom":0, "left":0, "right": 0});
-                scaleSlider(true);
+                scaleSlider();
                 $(".close-fs").css({"z-index": 99999});
+                fullscreen = true;
             });
             
             
@@ -132,13 +135,13 @@ $(window).resize(function() {
     scaleSlider();
 })
 
-function scaleSlider(fullscreen) {
+function scaleSlider() {
     var slideW = $("#slides").width();
     var slideH = $("#slides").height()
 
     if(fullscreen) {
         var maxH = ($(".page-content").height() - 50) / slideH;
-        var maxW = $(window).width() / slideW ;
+        var maxW = $("body").width() / slideW ;
 
     } else {
         var maxH = ($(".page-content").height() - 350) / slideH;

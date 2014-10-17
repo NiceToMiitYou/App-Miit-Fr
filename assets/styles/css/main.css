@@ -124,6 +124,12 @@ a {
 .user-info-wrapper .user-info .username {
 	font-size: 16px;
 }
+
+.user-info-wrapper .user-info .username.small {
+	font-size: 13px;
+	margin-bottom: 7px;
+}
+
 .user-show {
 	background-color: #22262e;
 	text-align: left;
