@@ -9,15 +9,18 @@ ITEventApp.controller(
             $scope.current = false;
 
             function loadChatrooms( isLoaded ) {
+
                 if(isLoaded) {
 
                     $timeout(function(){
+                        
                         ITStorage.db.chatrooms.each(function( id, chatroom ) {
 
                             if( $scope.chatrooms[id] ) {
 
                                 var messages = $scope.chatrooms[id].messages;
                                 chatroom.messages = messages;
+
                             } else {
 
                                 chatroom.messages = {};
@@ -26,6 +29,7 @@ ITEventApp.controller(
                             $scope.chatrooms[id] = chatroom;
 
                             if(! $scope.current) {
+
                                 $scope.current = $scope.chatrooms[id];
                             }
                         });
@@ -34,18 +38,37 @@ ITEventApp.controller(
             }
 
             function post() {
+
                 if( $scope.text ) {
+
                     ITConnect.chatroom.send($scope.current.id, $scope.text, function(data) {
+
                         if(data.done) {
 
-                            $scope.text = '';
-                            $scope.$apply();
+                            $timeout(function() {
+
+                                $scope.text = '';
+                            });
+
+                        } else {
+
+                            $scope.messenger.post({
+                                message: 'Une erreur s\'est produite lors de l\'envoi de votre message.',
+                                type: 'error'
+                            });
                         }
+                    });
+                } else {
+
+                    $scope.messenger.post({
+                        message: 'Il n\'y a aucun message à envoyer.',
+                        type: 'error'
                     });
                 }
             }
 
             function changeChatroom( chatroom ) {
+
                 $scope.current = chatroom;
             }
 
@@ -58,7 +81,8 @@ ITEventApp.controller(
             // Retrieve new message
             ITConnect.bind('chatroom-new', function( data ) {
 
-                $timeout(function(){
+                $timeout(function() {
+
                     if( data.chatroom ) {
 
                         var userId = data.user;
@@ -96,10 +120,12 @@ ITEventApp.controller(
                         var i = 0;
 
                         for(index in $scope.chatrooms[chatroomId].messages) {
+
                             i++;
                         }
 
                         while( i > 40 ) {
+
                             var min = 0; i = -1;
 
                             for(index in $scope.chatrooms[chatroomId].messages) {

@@ -73,6 +73,18 @@ ITEventApp.controller(
                     ITStorage.db.options.set( 'user', $scope.user );
 
                     ITStorage.db.quizzes.set( $scope.current.id, $scope.current );
+
+                    $scope.messenger.post({
+                        message: 'Merci d\'avoir répondu à ce questionnaire!',
+                        type: 'info'
+                    });
+
+                } else {
+
+                    $scope.messenger.post({
+                        message: 'Vous devez répondre à toute les questions.',
+                        type: 'error'
+                    });
                 }
             }
 
