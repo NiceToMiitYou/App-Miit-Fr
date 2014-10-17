@@ -12,46 +12,64 @@ ITEventApp.controller(
 
             function saveUser() {
 
-                if( $scope.user.firstname || $scope.user.lastname || $scope.user.username) {
+                if( $scope.agreeAnonyme && $scope.accountType === 1 || $scope.accountType === 0 ) {
 
-                    ITConnect.user.update(
-                        ( $scope.accountType === 0 ) ? $scope.user.firstname : '', 
-                        ( $scope.accountType === 0 ) ? $scope.user.lastname : '', 
-                        ( $scope.accountType === 0 ) ? $scope.user.society : '',
-                        ( $scope.accountType === 1 || $scope.useUsername ) ? $scope.user.username : '',
-                        ( $scope.accountType === 0 ) ? $scope.user.avatar : {} ,
+                    if( $scope.accountType === 0 && ( $scope.user.firstname || $scope.user.lastname ) || $scope.user.username ) {
 
-                        function (data) {
+                        ITConnect.user.update(
+                            ( $scope.accountType === 0 ) ? $scope.user.firstname : '', 
+                            ( $scope.accountType === 0 ) ? $scope.user.lastname : '', 
+                            ( $scope.accountType === 0 ) ? $scope.user.society : '',
+                            ( $scope.accountType === 1 || $scope.useUsername ) ? $scope.user.username : '',
+                            ( $scope.accountType === 0 ) ? $scope.user.avatar : {} ,
 
-                            if ( data.done ) {
-                            
-                                ITStorage.db.options.set( 'user', data.user );
+                            function (data) {
 
-                                $scope.firstInit = false;
+                                if ( data.done ) {
+                                
+                                    ITStorage.db.options.set( 'user', data.user );
 
-                                $scope.messenger.post({
-                                    message: 'Bienvenue parmis nous!',
-                                    type: 'infos'
-                                });
-                            } else {
+                                    $scope.firstInit = false;
 
-                                $scope.messenger.post({
-                                    message: 'Une erreur c\'est produite lors de la modification de vos informations.',
-                                    type: 'error'
-                                });
+                                    $scope.messenger.post({
+                                        message: 'Bienvenue parmis nous!',
+                                        type: 'infos'
+                                    });
+                                } else {
+
+                                    $scope.messenger.post({
+                                        message: 'Une erreur c\'est produite lors de la modification de vos informations.',
+                                        type: 'error'
+                                    });
+                                }
                             }
-                        }
-                    );
+                        );
+                    } else {
+
+                        $scope.messenger.post({
+                            message: 'Merci de renseigner un des champs obligatoire (pseudonyme, nom ou prénom).',
+                            type: 'error'
+                        });
+                    }
                 } else {
 
                     $scope.messenger.post({
-                        message: 'Merci de renseigner un des champs obligatoire (pseudonyme, nom ou prénom).',
+                        message: 'Merci de renseigner les champs obligatoire.',
                         type: 'error'
                     });
                 }
             }
 
+            function useUsernameChanged() {
+
+                if( !$scope.useUsername ) {
+
+                    $scope.user.username = '';
+                }
+            }
+
             function resetToClassic() {
+
                 if( $scope.accountType !== 0 ) {
 
                     $scope.accountType = 0;
@@ -68,6 +86,8 @@ ITEventApp.controller(
                     $scope.user.username = 'Ano-' + Math.floor( Math.random() * 10000000 );
                 }
             }
+
+            $scope.useUsernameChanged = useUsernameChanged;
 
             $scope.resetToClassic = resetToClassic;
 

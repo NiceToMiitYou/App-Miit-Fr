@@ -44,16 +44,21 @@
                                         <div class="col-md-12">
                                             <div class="col-md-12 m-t-5">
                                                 <label>Société :</label>
-                                            <input type="text" placeholder="Société" ng-model="user.society" />
-                                        </div>
+                                                <input type="text" placeholder="Société" ng-model="user.society" />
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row m-t-10">
                                         <div class="col-md-12">
                                             <div class="checkbox check-primary" ng-class="{'col-md-1':useUsername}">
-                                                <input ng-model="useUsername" id="checkbox-pseudo" type="checkbox" value="1">
+                                                <input ng-model="useUsername"
+                                                       ng-change="useUsernameChanged()"
+                                                       id="checkbox-pseudo" type="checkbox" value="1">
+
                                                 <label for="checkbox-pseudo">
-                                                    <span ng-show="!useUsername">Utiliser un pseudonyme lors de mes publications</span>
+                                                    <span ng-show="!useUsername">
+                                                        Utiliser un pseudonyme lors de mes publications
+                                                    </span>
                                                 </label>
                                             </div>
 
