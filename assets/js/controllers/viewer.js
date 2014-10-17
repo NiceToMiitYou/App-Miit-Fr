@@ -20,7 +20,7 @@ ITEventApp.controller(
 
             $scope.useUsername = false;
 
-            $scope.accountType = 0;
+            $scope.accountType = null;
 
             $scope.firstInit = ! ( $scope.user.firstname || $scope.user.lastname || $scope.user.username);
 

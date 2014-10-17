@@ -4,7 +4,6 @@ $( function() {
 
     $( ".flexslider" )
         .flexslider( {
-            // itemWidth: $(window).width() - 390,
             // itemMargin: 10,
             animation: "slide",
             //startAt: 6,
@@ -22,8 +21,8 @@ $( function() {
                     "padding-bottom": $( window )
                         .height() - $slides.height() - 1000
                 } );
-                $( ".slide" )
-                    .height( $slides.height() );
+                // $( ".slide" )
+                //     .height( $slides.height() );
                 //$slides.css({"padding-top": 48});
                 //"padding-bottom": ($(window).height()/2) - ($slides.height()/2) - 40
             },
@@ -44,9 +43,6 @@ $( function() {
             }
         } );
 
-    $( ".slides" )
-        .height( $( window )
-            .height() - 330 );
     $( '.sn-prev, .sn-next' )
         .on( 'click', function() {
             var data = $( this )
@@ -113,18 +109,44 @@ $( function() {
                         .resize();
                 } );
         } );
+
+        $(".fullscreen").on("click", function() {
+            $(".fullscreen-layer, .close-fs").fadeIn("fast", function() {
+                $(".page-content").css({"margin-left": 0, "margin-right": 0, "overflow": "hidden"});
+                $slides.css({"position":"fixed", "padding-bottom": "0", "top": -768, "z-index": 9999}).animate({"top":0, "bottom":0, "left":0, "right": 0});
+                scaleSlider(true);
+                $(".close-fs").css({"z-index": 99999});
+            });
+            
+            
+        });
+
     $slides.data( "flexslider" )
         .resize();
-    var counter = 0;
-    var interval = setInterval( function() {
-        counter++;
-        //var hours = parseInt( counter / 3600 ) % 24;
-        var minutes = parseInt( counter / 60 ) % 60;
-        var seconds = counter % 60;
 
-        var result = ( minutes < 10 ? "0" + minutes : minutes ) + ":" + ( seconds < 10 ? "0" + seconds : seconds );
-        $( ".counter span" )
-            .text( result )
+        scaleSlider();
 
-    }, 1000 );
 } );
+
+$(window).resize(function() {
+    scaleSlider();
+})
+
+function scaleSlider(fullscreen) {
+    var slideW = $("#slides").width();
+    var slideH = $("#slides").height()
+
+    if(fullscreen) {
+        var maxH = ($(".page-content").height() - 50) / slideH;
+        var maxW = $(window).width() / slideW ;
+
+    } else {
+        var maxH = ($(".page-content").height() - 350) / slideH;
+        var maxW = $(".page-content").width() / slideW ;
+    }
+
+
+    
+    $("#slides").css("zoom", Math.min(maxH, maxW));
+
+}
