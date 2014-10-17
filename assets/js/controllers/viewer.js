@@ -13,7 +13,15 @@ ITEventApp.controller(
 
             $scope.presentation = ITStorage.db.options.get('presentation.actual');
 
-            $scope.messenger = Messenger();
+            $scope.messenger = Messenger( {
+                maxMessages: 4,
+                extraClasses: 'messenger-on-top messenger-fixed',
+                theme: 'flat',
+                messageDefaults: {
+                    showCloseButton: true,
+                    hideAfter: 2
+                }
+            } );
             
             $scope.agreeAnonyme = false;
 

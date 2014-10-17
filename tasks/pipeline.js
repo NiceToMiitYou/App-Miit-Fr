@@ -15,6 +15,15 @@
 // (if you're using LESS with the built-in default config, you'll want
 //  to change `assets/styles/importer.less` instead.)
 var cssFilesToInject = [
+
+  'plugins/bootstrap*/**/*.js',
+
+  'plugins/jquery-notifications/css/messenger.css',
+  
+  'plugins/jquery-notifications/css/messenger-*.css',
+
+  'plugins/jquery-*/**/*.css',
+
   'plugins/**/*.css',
 
   'styles/css/responsive.css',
@@ -45,7 +54,17 @@ var jsFilesToInject = [
   // Plugins are brought in here
   
   'plugins/boostrapv3/js/bootstrap.js',
+
   'plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js',
+
+  'plugins/bootstrap*/**/*.js',
+
+  'plugins/jquery-notifications/js/messenger.js',
+  
+  'plugins/jquery-notifications/js/messenger-*.js',
+
+  'plugins/jquery-*/**/*.js',
+
   'plugins/**/*.js',
 
   // All of the rest of your client-side js files
