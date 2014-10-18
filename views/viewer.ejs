@@ -21,18 +21,9 @@
                     <div class="username" ng-class="{small : getUsername().length > 12}">
                         
                         <span>
-                            {{getUsername()}}
+                            {{ getUsername() }}
                         </span>
 
-                        <!-- <span ng-show="user.username">
-                            {{user.username}}
-                        </span>
-                        <span ng-show="!user.username && (user.lastname || user.firstname)">
-                            {{ user.firstname }} <span class="semi-bold">{{ user.lastname }}</span>
-                        </span>
-                        <span ng-show="!user.username && !user.lastname && !user.firstname">
-                            Anonyme
-                        </span> -->
                     </div>
                     <div class="status">Status<a href="#">
                         <div class="status-icon green"></div>

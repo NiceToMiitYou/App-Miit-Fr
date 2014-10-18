@@ -23,15 +23,9 @@
                      ng-class="{'pull-right':message.user.id === user.id}"
                      class="user-details-wrapper">
                     <div ng-class="{'text-right text-success' : message.user.id == user.id, 'text-info' : message.user.id !== user.id}" class="m-b-5">
-                        <span class=" semi-bold" ng-show="message.user.username">
-                                {{message.user.username}}
-                            </span>
-                            <span class=" semi-bold " ng-show="!message.user.username && (message.user.lastname || message.user.firstname)">
-                                {{message.user.firstname}} {{message.user.lastname}}
-                            </span>
-                            <span class=" semi-bold" ng-show="!message.user.username && !message.user.lastname && !message.user.firstname">
-                                Anonyme
-                            </span>
+                        <span class=" semi-bold">
+                            {{ getUsername() }}
+                        </span>
                     </div>
                     <div class="user-profile avatar {{message.user.avatar.c + ' avatar-'+message.user.avatar.a}}" ng-class="{ownm : message.user.id == user.id}" >
                     </div>
