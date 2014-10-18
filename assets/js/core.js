@@ -167,7 +167,7 @@ $(document).ready(function () {
 
         // e.preventDefault();
 
-        if(!$(this).closest("li").hasClass("active")) {
+        if(!$(this).closest("li").hasClass("active") || window.location.hash == "#quizz-inner") {
             var href = $(this).attr("href").replace("#", "");
 
             $(".page-sidebar .page-sidebar-wrapper ul li.active").removeClass("active")
@@ -185,7 +185,14 @@ $(document).ready(function () {
     });
 
     $(".quizz").on("click", "a" ,function() {
-        var href = $(this).attr("href").replace("#", "");
+        goToPage($(this).attr("href").replace("#", ""));
+    });
+
+    $(".previous-quizz").on("click" ,function() {
+        goToPage($(this).attr("href").replace("#", ""));
+    });
+
+    function goToPage(href) {
         $(".content.current").css("opacity", 0);
         $(".nosider").removeClass("nosider");
         $(".page-content").addClass("nosider");
@@ -193,7 +200,7 @@ $(document).ready(function () {
             $(".content.current").removeClass("current");
             $("."+href+"-content").addClass("current").css("opacity", 1);
         }, 300);
-    });
+    }
 
     //Auto close open menus in Condensed menu
     if ($('.page-sidebar').hasClass('mini')) {

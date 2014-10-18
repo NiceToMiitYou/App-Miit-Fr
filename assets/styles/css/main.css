@@ -719,8 +719,9 @@ top: 9px;
 /* ---- NOTES ---- */
 
 #text-editor {
-	margin: 64px auto 0 auto;
+	margin: 8px auto 0 auto;
 	width: 98.5%;
+	height: calc(100% - 128px);
 }
 
 .wysihtml5-sandbox {
@@ -893,7 +894,7 @@ ul.table-list {
 	list-style: none;
 	padding: 0;
 	margin: 0;
-	margin-top: -10px;
+	margin-top: -6px;
 }
 
 ul.table-list li {
@@ -906,7 +907,7 @@ ul.table-list li a {
 	color: #222;
 	display: block;
 	height: 100px;
-	padding-top: 1px;
+	padding-top: 0px;
 }
 ul.table-list li a:hover {
 	background-color: #777;
@@ -926,7 +927,7 @@ ul.table-list li a i {
 
 ul.table-list li a span.title {
 	display: block;
-	margin: 10px 0;
+	padding: 10px 0;
 	font-size: 1.2em;
 }
 
@@ -1348,6 +1349,10 @@ ul.table-list li a span.title {
 	max-width: none;
 }
 
+.modal-backdrop.in {
+	filter: alpha(opacity=50);
+	opacity: .9;
+}
 
 #userinfo-modal .panel.selected .panel-heading{
 	background: #099a8c;
@@ -1505,4 +1510,13 @@ ul.table-list li a span.title {
 ul.messenger.messenger-fixed.messenger-on-top, ul.messenger.messenger-fixed.messenger-on-bottom {
 	width: 53%;
 	margin-left: -25%;
+}
+
+.previous-quizz {
+	float: left;
+	line-height: 60px;
+	padding:0;
+	width: 60px;
+	border-radius: 0;
+	margin-right: 15px;
 }
