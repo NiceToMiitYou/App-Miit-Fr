@@ -148,8 +148,7 @@ function scaleSlider() {
         var maxW = $(".page-content").width() / slideW ;
     }
 
-
-    
+    $(".live-content .slides-nav").width(slideW*Math.min(maxH, maxW));
     $("#slides").css("zoom", Math.min(maxH, maxW));
 
 }

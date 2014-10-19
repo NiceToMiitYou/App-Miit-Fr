@@ -260,7 +260,7 @@ a {
 	zoom: 1;
 	z-index: 9;
 	margin: 2px auto;
-	padding-bottom: 50px;/*
+/*	padding-bottom: 50px;
 	width: 100%;
 	height: calc(100% - 275px);*/
 	width: 1024px;
@@ -313,10 +313,11 @@ a {
 }
 
 .live-content .slides-nav {
-/*	position: absolute;
-	bottom: 0;*/
-	margin: 1%;
+	position: relative;
+/*	bottom: 0;*/
+	margin: 1% auto;
 	width: 98%;
+	z-index: 9999;
 }
 
 .live-content .slides-nav a.btn {
