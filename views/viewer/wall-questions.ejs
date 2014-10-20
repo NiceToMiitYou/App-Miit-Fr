@@ -7,12 +7,30 @@
             <span class="input-group-addon ">
                 <i class="fa fa-search"></i>
             </span>
-            <input type="search" class="form-control" placeholder="Rechercher une question ou une catégorie" ng-model="q"/>
+            <input type="search" class="form-control" placeholder="Rechercher une question" ng-model="q"/>
         </div>
     </div>
     <div class="col-md-12 timeline">
 
         <ul class="cbp_tmtimeline">
+            <li class="animate-repeat" ng-show="!hideFirst">
+                <div class="cbp_tmicon user-profile">
+                        <img src="/images/profiles/icon.png"  alt="" data-src="/images/profiles/icon.png" width="60" height="60">
+                    </div>
+                <div class="cbp_tmlabel">
+                    <div class="p-t-10 p-l-30 p-r-20 p-b-20 xs-p-r-10 xs-p-l-10 xs-p-t-5">
+                        <h4 class="inline m-b-5">
+                            <span class="text-success semi-bold m-r-10">
+                                ITEvents
+                            </span>
+                        </h4>
+                        <p class="m-t-5 dark-text"> Bienvenue sur le mur de questions ITEvents.<br/><br/> Vous pouvez à tout moment réagir à la présentation et poser vos questions. Nous vous prions de bien vouloir réspecter les règles élémentaires de la politesse et de respect. Ce mur est votre lieux d'expression, alors gardez le propre <i class="fa fa-smile-o"></i>. <br/><br/> ITEvents vous souhaite une très bonne présentation. </p>
+                    </div>
+
+                    <a class="close" ng-click="hideFirst=true"><i class="fa fa-times"></i></a>
+                    <div class="clearfix"></div>
+                </div>
+            </li>
             <li class="animate-repeat" ng-repeat="question in questions | toArray | orderBy:'-createdAt' | filter:q as results">
                 <div class="cbp_tmicon animated bounceIn avatar" ng-class="question.user.avatar.c + ' avatar-'+question.user.avatar.a"></div>
                 <div class="cbp_tmlabel">
@@ -55,7 +73,7 @@
     </div>
     <div class="timeline-post">
         <div class="col-md-12 no-padding">
-            <select id="multi" style="width:100%" multiple>
+            <select id="multi" style="width:100%" placeholder="Sélectionnez un catégorie" multiple>
                 <option ng-repeat="tag in tags" value="{{tag.id}}">{{tag.name}}</option>
             </select>
         </div>

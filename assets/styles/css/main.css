@@ -443,7 +443,7 @@ a {
 	margin-top: -23px;
 }
 .info-slides {
-	height: 260px;
+	height: 155px;
 	position: absolute;
 	width: 100%;
 	bottom: 0;
@@ -1046,6 +1046,16 @@ ul.table-list li a span.title {
 
 .cbp_tmtimeline > li .cbp_tmlabel {
 	margin-left: 90px
+}
+
+.cbp_tmtimeline > li .cbp_tmlabel .close {
+	position: absolute;
+	top: 0;
+	right: 3px;
+}
+
+.cbp_tmtimeline > li .cbp_tmlabel .close i {
+	font-size: 19px;
 }
 
 .cbp_tmtimeline:before {
