@@ -44,15 +44,6 @@ $( function() {
             }
         } );
 
-    $( '.sn-prev, .sn-next' )
-        .on( 'click', function() {
-            var data = $( this )
-                .attr( 'data' );
-            $( ".flexslider" )
-                .flexslider( data );
-            return false;
-        } )
-
     $( ".dot-item" )
         .on( "click", function() {
             $( ".flexslider" )

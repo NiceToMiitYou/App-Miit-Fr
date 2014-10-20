@@ -53,6 +53,9 @@ function initData() {
                         // Add each chatroom in the area
                         for ( index in data.presentations ) {
 
+                            // Set current to 0 by default
+                            data.presentations[index].current = 0;
+
                             ITStorage.db.presentations.set( data.presentations[index].id, data.presentations[index] );
                         }
 
@@ -211,17 +214,16 @@ function initData() {
                 }
             ],
             function( err ) {
+
+                // If connected, synchronize
+                ITConnect.synchronize();
+
                 // If all right, then set isLoaded
                 if ( !err ) {
                     ITStorage.db.options.set( 'data.isLoaded', true );
                 }
             } );
 
-    }
-
-    // If connected, synchronize
-    if ( ITStorage.db.options.get( 'user.isConnected' ) ) {
-        window.onload = ITConnect.synchronize;
     }
 }
 
