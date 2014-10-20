@@ -63,7 +63,7 @@ ITEventApp.controller(
 
             function logout() {
             	
-                ITConnect.user.logout(function() {
+                ITConnect.user.logout(function(data) {
 
                     if( data.done ) {
                     
