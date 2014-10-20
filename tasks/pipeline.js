@@ -16,7 +16,7 @@
 //  to change `assets/styles/importer.less` instead.)
 var cssFilesToInject = [
 
-  'plugins/bootstrap*/**/*.js',
+  'plugins/bootstrap*/**/*.css',
 
   'plugins/jquery-notifications/css/messenger.css',
   
