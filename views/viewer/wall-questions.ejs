@@ -24,7 +24,7 @@
                                 ITEvents
                             </span>
                         </h4>
-                        <p class="m-t-5 dark-text"> Bienvenue sur le mur de questions ITEvents.<br/><br/> Vous pouvez à tout moment réagir à la présentation et poser vos questions. Nous vous prions de bien vouloir réspecter les règles élémentaires de la politesse et de respect. Ce mur est votre lieux d'expression, alors gardez le propre <i class="fa fa-smile-o"></i>. <br/><br/> ITEvents vous souhaite une très bonne présentation. </p>
+                        <p class="m-t-5 dark-text"> Bienvenue sur le mur de questions ITEvents.<br/><br/> Vous pouvez à tout moment réagir à la présentation et poser vos questions.<br/> Nous vous prions de bien vouloir réspecter les règles élémentaires de la politesse et de respect. Ce mur est votre lieux d'expression, alors gardez le propre <i class="fa fa-smile-o"></i>. <br/><br/> ITEvents vous souhaite une très bonne présentation. </p>
                     </div>
 
                     <a class="close" ng-click="hideFirst=true"><i class="fa fa-times"></i></a>
@@ -32,7 +32,8 @@
                 </div>
             </li>
             <li class="animate-repeat" ng-repeat="question in questions | toArray | orderBy:'-createdAt' | filter:q as results">
-                <div class="cbp_tmicon animated bounceIn avatar" ng-class="question.user.avatar.c + ' avatar-'+question.user.avatar.a"></div>
+                <div ng-show="question.user.avatar.c && question.user.avatar.a" class="cbp_tmicon avatar" ng-class="question.user.avatar.c + ' avatar-'+question.user.avatar.a"></div>
+                <div ng-show="!question.user.avatar.c || !question.user.avatar.a" class="cbp_tmicon avatar black anonymous"></div>
                 <div class="cbp_tmlabel">
                     <div class="p-t-10 p-l-30 p-r-20 p-b-20 xs-p-r-10 xs-p-l-10 xs-p-t-5">
                         <h4 class="inline m-b-5">

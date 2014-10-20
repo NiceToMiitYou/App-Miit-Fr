@@ -115,12 +115,13 @@ a {
 	text-align: center;
 }
 
-.user-info-wrapper a.avatar{
+.user-info-wrapper a.avatar {
 	width: 45px;
 	height: 45px;
 	float: left;
 	margin: 8px 10px;
 }
+
 .user-info-wrapper .user-info .username {
 	font-size: 16px;
 }
@@ -1050,8 +1051,8 @@ ul.table-list li a span.title {
 
 .cbp_tmtimeline > li .cbp_tmlabel .close {
 	position: absolute;
-	top: 0;
-	right: 3px;
+	top: 3px;
+	right: 6px;
 }
 
 .cbp_tmtimeline > li .cbp_tmlabel .close i {
@@ -1465,6 +1466,20 @@ ul.table-list li a span.title {
 	background-size: 600% 300%;
 	    border-radius: 50%;
 
+}
+
+.avatar.anonymous {
+	background: url("/images/profiles/anonyme.png") no-repeat center;
+	background-size: 84%;
+}
+
+.avatar.anonymous i{
+	font-size: 2.8em;
+	color: #FFF;
+	line-height: 45px;
+	width: 45px;
+	text-align: center;
+	}
 }
 
 .avatar.red {

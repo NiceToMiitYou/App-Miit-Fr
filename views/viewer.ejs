@@ -16,7 +16,8 @@
             </div>
 
             <div class="user-info-wrapper user-show" ng-click="openStats=true">
-                <a class="avatar" ng-class="user.avatar.c + ' avatar-'+user.avatar.a" ng-click="changeAvatar=true"></a>
+                <a ng-show="user.avatar.c && user.avatar.a" class="avatar" ng-class="user.avatar.c + ' avatar-'+user.avatar.a"></a>
+                <a ng-show="!user.avatar.c || !user.avatar.a" class="avatar black anonymous"></a>
                 <div class="user-info m-l-5">
                     <div class="username" ng-class="{small : getUsername().length > 12}">
                         
