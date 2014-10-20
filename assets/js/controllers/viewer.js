@@ -65,14 +65,17 @@ ITEventApp.controller(
             	
                 ITConnect.user.logout(function() {
 
-                    $scope.messenger.post({
-                        message: 'Vous venez d\'être déconnecté.',
-                        type: 'info'
-                    });
+                    if( data.done ) {
+                    
+                        $scope.messenger.post({
+                            message: 'Vous venez d\'être déconnecté.',
+                            type: 'info'
+                        });
 
-                    $timeout(function() {
-                        window.location.reload();
-                    }, 1000);
+                        $timeout(function() {
+                            window.location.reload();
+                        }, 1000);
+                    }
                 });
             }
 
