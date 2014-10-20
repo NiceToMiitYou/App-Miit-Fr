@@ -240,7 +240,7 @@ a {
 
 .close-fs i {
 	font-size: 3em;
-	color: #FFF;
+	/*color: #FFF;*/
 	line-height: 30px;
 }
 
@@ -317,7 +317,7 @@ a {
 /*	bottom: 0;*/
 	margin: 1% auto;
 	width: 98%;
-	z-index: 9999;
+	/*z-index: 9;*/
 }
 
 .live-content .slides-nav a.btn {
@@ -331,6 +331,20 @@ a {
 
 .live-content .slides-nav .sn-next {
 	float: right;
+}
+
+.live-content .slides-nav-fullscreen .sn-next {
+	position: fixed;
+	z-index: 9999999;
+	right: 1%;
+	top: 45%;
+}
+
+.live-content .slides-nav-fullscreen .sn-prev {
+	position: fixed;
+	z-index: 9999999;
+	left: 1%;
+	top: 45%;
 }
 
 .page-sidebar .page-sidebar-wrapper > ul > li > a {
