@@ -1,5 +1,5 @@
 ITEventApp.controller(
-    'viewerController', [ '$scope', '$timeout', '$sce',
+    'masterController', [ '$scope', '$timeout', '$sce',
         function( $scope, $timeout, $sce ) {
 
             if ( ! ITStorage.db.options.get('user.isConnected') ) {
@@ -40,7 +40,7 @@ ITEventApp.controller(
             }
 
             function getUsername() {
-
+                
                 var username = 'Anonyme';
 
                 if($scope.user.username) {
@@ -62,7 +62,7 @@ ITEventApp.controller(
             }
 
             function logout() {
-            	
+                
                 ITConnect.user.logout(function() {
 
                     $scope.messenger.post({

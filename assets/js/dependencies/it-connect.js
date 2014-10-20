@@ -1,5 +1,6 @@
 window.ITConnect = ( function() {
     var apiPublicPrefix = '/api/viewer';
+    var apiMasterPrefix = '/api/master';
 
     var lastestTrack = null;
 
@@ -297,6 +298,25 @@ window.ITConnect = ( function() {
                 }, cb );
             }
         },
+
+        // Live actions
+        live: {
+
+            // Next slide
+            next: function(presentation, cb) {
+                io.socket.post( apiMasterPrefix + '/live/next', {
+                    presentation: presentation
+                }, cb);
+            },
+
+            // Previous slide
+            previous: function(presentation, cb) {
+                io.socket.post( apiMasterPrefix + '/live/previous', {
+                    presentation: presentation
+                }, cb);
+            }
+        },
+
 
         // Resources Actions
         resources: {

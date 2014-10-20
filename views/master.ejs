@@ -1,124 +1,124 @@
-
-		<!-- BEGIN CONTENT -->
-		<div class="page-container master row-fluid" ng-init="live=true">
-			<!-- BEGIN PAGE CONTAINER-->
-			<div class="page-content"> 
-				<div class="content">  
-					<!-- BEGIN PAGE TITLE -->
-					<div class="page-title">
-						<a class="listner listner-up btn btn-primary"><i class="fa fa-angle-double-up"  style="margin-right: 0px;"></i></a>
-						<h3><i class="fa fa-user"></i> 432</h3>
-						<span class="speaker-time">07:18</span>
-					</div>
-					<div class="progress transparent progress-small no-radius no-margin">
-						      <div class="progress-bar progress-bar-info animate-progress-bar" data-percentage="79%" style="width: 79%;"></div>
-						 </div>
-					<div class="liveorask">
-						<div class="livetab" ng-class="{active:live}" ng-click="live=true"><i class="fa fa-paper-plane" style="margin-right: 4px;"></i> Live</div>
-						<div class="asktab" ng-class="{active:!live}" ng-click="live=false"><i class="fa fa-users" style="margin-right: 4px;"></i> Mur</div>
-					</div>
-					<div id="slides" class="presentation-slide flexslider" ng-show="live">
-						<ul class="slides">
-												<li class="slide">
-													<div class="slide-content">
-														<p class="text-center" style="padding-top:20%;">
-															<img src="images/logodark.png"/>
-														</p>
-														<br/>
-														<br/>
-														<br/>
-														<canvas id="myCanvas"></canvas>
-													</div>
-												</li>
-
-												<li class="slide noswipe">
-													<div class="slide-content">
-														<div class="interactive-panel text-right">
-															<h2 class="text-success">Des slides plus interactifs que jamais !</h2>
-															<h3>Grace aux technologies HTML5 et CSS3 dynamisez<br/>votre présentation comme aucune autre.</h3>
-														</div>
-														<canvas id="world" width="743" height="506" style="width:100%;"><p class="noCanvas">You need a <a href="http://www.google.com/chrome">modern browser</a> to view this.</p></canvas>
-													</div>
-												</li>
-												
-											</ul>
-					</div>
-					<div class="wall" ng-show="!live">
-							<div class="dd" id="wall-list">
-								<ol class="dd-list">
-									<li class="dd-item" data-id="1">
-										<div class="dd-handle">Item 1</div>
-									</li>
-									<li class="dd-item" data-id="2">
-										<div class="dd-handle">Item 2</div>
-										<ol class="dd-list">
-											<li class="dd-item" data-id="3"><div class="dd-handle">Item 3</div></li>
-											<li class="dd-item" data-id="1"><div class="dd-handle">Item 4</div></li>
-										</ol>
-									</li>
-
-									<li class="dd-item" data-id="1">
-										<div class="dd-handle">Item 5</div>
-									</li>
-
-									<li class="dd-item" data-id="1">
-										<div class="dd-handle">Item 6</div>
-									</li>
-
-									<li class="dd-item" data-id="1">
-										<div class="dd-handle">Item 7</div>
-									</li>
-
-									<li class="dd-item" data-id="1">
-										<div class="dd-handle">Item 8</div>
-									</li>
-
-									<li class="dd-item" data-id="1">
-										<div class="dd-handle">Item 9</div>
-									</li>
-
-									<li class="dd-item" data-id="1">
-										<div class="dd-handle">Item 10</div>
-									</li>
-									<li class="dd-item" data-id="11">
-										<div class="dd-handle">Item 11</div>
-									</li>
-									<li class="dd-item" data-id="12">
-										<div class="dd-handle">Item 12</div>
-									</li>
-								</ol>
-							</div>
-
-					</div>
-					<div class="slides-nav-container">
-						<div class="slides-nav">
-							<div class="slides-nav-wrapper" ng-style="{width: (6*175)+55+'px', left: sl+'px'}">
- 								<div class="active dot-item" data-number='0'>
-									<img src="images/slides/1.png"/>
-								</div>
-								<div class="dot-item" data-number='1'>
-									<img src="images/slides/2.png"/>
-								</div>
-								<div class="dot-item" data-number='2'>
-									<img src="images/slides/3.png"/>
-								</div>
-								<div class="dot-item" data-number='3'>
-									<img src="images/slides/4.png"/>
-								</div>
-								<div class="dot-item dot-item-video" style="background: #000; padding: 8px 0px;" data-number='4'>
-									<img src="https://i.ytimg.com/vi/MvIiGGzVIwc/mqdefault.jpg"/>
-								</div>
-								<div class="dot-item" data-number='5'>
-									<img src="images/slides/5.png"/>
-								</div>
-							</div>
-						</div>
-							<a class="slides-nav-prev btn btn-primary" ng-click="sl=sl+175"><i class="fa fa-chevron-left"></i></a>
-							<a class="slides-nav-next btn btn-primary"><i class="fa fa-chevron-right"></i></a>
-					</div>
+<!-- BEGIN CONTENT -->
+<div ng-controller="masterController" class="page-container master row-fluid" ng-init="live=true">
+	<!-- BEGIN PAGE CONTAINER-->
+	<div class="page-content"> 
+		<div class="content">  
+			<!-- BEGIN PAGE TITLE -->
+			<div class="page-title">
+				<a class="listner listner-up btn btn-primary"><i class="fa fa-angle-double-up"  style="margin-right: 0px;"></i></a>
+				<h3><i class="fa fa-user"></i> 432</h3>
+				<span class="speaker-time">07:18</span>
 			</div>
-			<!-- END CONTENT --> 
+			<div class="progress transparent progress-small no-radius no-margin">
+			    <div class="progress-bar progress-bar-info animate-progress-bar" data-percentage="79%" style="width: 79%;"></div>
+			</div>
+			<div class="liveorask">
+				<div class="livetab" ng-class="{active:live}" ng-click="live=true"><i class="fa fa-paper-plane" style="margin-right: 4px;"></i> Live</div>
+				<div class="asktab" ng-class="{active:!live}" ng-click="live=false"><i class="fa fa-users" style="margin-right: 4px;"></i> Mur</div>
+			</div>
+			<div id="slides" class="presentation-slide flexslider" ng-show="live">
+				<ul class="slides">
+					<li class="slide">
+						<div class="slide-content">
+							<p class="text-center" style="padding-top:20%;">
+								<img src="images/logodark.png"/>
+							</p>
+							<br/>
+							<br/>
+							<br/>
+							<canvas id="myCanvas"></canvas>
+						</div>
+					</li>
+
+					<li class="slide noswipe">
+						<div class="slide-content">
+							<div class="interactive-panel text-right">
+								<h2 class="text-success">Des slides plus interactifs que jamais !</h2>
+								<h3>Grace aux technologies HTML5 et CSS3 dynamisez<br/>votre présentation comme aucune autre.</h3>
+							</div>
+							<canvas id="world" width="743" height="506" style="width:100%;"><p class="noCanvas">You need a <a href="http://www.google.com/chrome">modern browser</a> to view this.</p></canvas>
+						</div>
+					</li>
+					
+				</ul>
+			</div>
+			<div class="wall" ng-show="!live">
+				<div class="dd" id="wall-list">
+					<ol class="dd-list">
+						<li class="dd-item" data-id="1">
+							<div class="dd-handle">Item 1</div>
+						</li>
+						<li class="dd-item" data-id="2">
+							<div class="dd-handle">Item 2</div>
+							<ol class="dd-list">
+								<li class="dd-item" data-id="3"><div class="dd-handle">Item 3</div></li>
+								<li class="dd-item" data-id="1"><div class="dd-handle">Item 4</div></li>
+							</ol>
+						</li>
+
+						<li class="dd-item" data-id="1">
+							<div class="dd-handle">Item 5</div>
+						</li>
+
+						<li class="dd-item" data-id="1">
+							<div class="dd-handle">Item 6</div>
+						</li>
+
+						<li class="dd-item" data-id="1">
+							<div class="dd-handle">Item 7</div>
+						</li>
+
+						<li class="dd-item" data-id="1">
+							<div class="dd-handle">Item 8</div>
+						</li>
+
+						<li class="dd-item" data-id="1">
+							<div class="dd-handle">Item 9</div>
+						</li>
+
+						<li class="dd-item" data-id="1">
+							<div class="dd-handle">Item 10</div>
+						</li>
+						<li class="dd-item" data-id="11">
+							<div class="dd-handle">Item 11</div>
+						</li>
+						<li class="dd-item" data-id="12">
+							<div class="dd-handle">Item 12</div>
+						</li>
+					</ol>
+				</div>
+
+			</div>
+			<div class="slides-nav-container">
+				<div class="slides-nav">
+					<div class="slides-nav-wrapper" ng-style="{width: (6*175)+55+'px', left: sl+'px'}">
+						<div class="active dot-item" data-number='0'>
+							<img src="images/slides/1.png"/>
+						</div>
+						<div class="dot-item" data-number='1'>
+							<img src="images/slides/2.png"/>
+						</div>
+						<div class="dot-item" data-number='2'>
+							<img src="images/slides/3.png"/>
+						</div>
+						<div class="dot-item" data-number='3'>
+							<img src="images/slides/4.png"/>
+						</div>
+						<div class="dot-item dot-item-video" style="background: #000; padding: 8px 0px;" data-number='4'>
+							<img src="https://i.ytimg.com/vi/MvIiGGzVIwc/mqdefault.jpg"/>
+						</div>
+						<div class="dot-item" data-number='5'>
+							<img src="images/slides/5.png"/>
+						</div>
+					</div>
+				</div>
+
+				<a class="slides-nav-prev btn btn-primary" ng-click="sl=sl+175"><i class="fa fa-chevron-left"></i></a>
+				<a class="slides-nav-next btn btn-primary"><i class="fa fa-chevron-right"></i></a>
+			</div>
 		</div>
-			<div class="next-slide sn-next" data="next"><i class="fa fa-arrow-right fa-3x"></i></div>
-			<div class="previous-slide sn-prev" data="prev"><i class="fa fa-arrow-left fa-3x"></i></div>
-		</div>
+		<!-- END CONTENT --> 
+	</div>
+	<div class="next-slide sn-next" data="next"><i class="fa fa-arrow-right fa-3x"></i></div>
+	<div class="previous-slide sn-prev" data="prev"><i class="fa fa-arrow-left fa-3x"></i></div>
+</div>

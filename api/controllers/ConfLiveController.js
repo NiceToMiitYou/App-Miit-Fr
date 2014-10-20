@@ -31,7 +31,7 @@ module.exports = {
                     presentation: req.param( 'presentation' )
                 },
                 4 * 60 * 60
-            ); // Store the 4 hours
+            ); // Store them 4 hours
         }
     }
 
