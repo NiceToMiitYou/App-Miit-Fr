@@ -83,6 +83,7 @@ ITEventApp.controller(
                 if( $scope.accountType !== 1 ) {
 
                     $scope.accountType = 1;
+                    $scope.user.avatar = {};
                     $scope.user.username = 'Anonyme-' + Math.floor( Math.random() * 10000000 );
                 }
             }
