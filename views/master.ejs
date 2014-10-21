@@ -18,72 +18,47 @@
 			</div>
 			<div id="slides" class="presentation-slide flexslider" ng-show="live">
 				<ul class="slides">
-					<li class="slide">
-						<div class="slide-content">
-							<p class="text-center" style="padding-top:20%;">
-								<img src="images/logodark.png"/>
-							</p>
-							<br/>
-							<br/>
-							<br/>
-							<canvas id="myCanvas"></canvas>
-						</div>
-					</li>
-
-					<li class="slide noswipe">
-						<div class="slide-content">
-							<div class="interactive-panel text-right">
-								<h2 class="text-success">Des slides plus interactifs que jamais !</h2>
-								<h3>Grace aux technologies HTML5 et CSS3 dynamisez<br/>votre présentation comme aucune autre.</h3>
-							</div>
-							<canvas id="world" width="743" height="506" style="width:100%;"><p class="noCanvas">You need a <a href="http://www.google.com/chrome">modern browser</a> to view this.</p></canvas>
-						</div>
+					
+					<li class="slide" ng-repeat="slide in presentation.slides">
+					    <div class="slide-content" ng-bind-html="safeHTML(slide.content)"></div>
 					</li>
 					
 				</ul>
 			</div>
-			<div class="wall" ng-show="!live">
+			<div class="wall" ng-show="!live" >
 				<div class="dd" id="wall-list">
 					<ol class="dd-list">
-						<li class="dd-item" data-id="1">
-							<div class="dd-handle">Item 1</div>
-						</li>
-						<li class="dd-item" data-id="2">
-							<div class="dd-handle">Item 2</div>
-							<ol class="dd-list">
-								<li class="dd-item" data-id="3"><div class="dd-handle">Item 3</div></li>
-								<li class="dd-item" data-id="1"><div class="dd-handle">Item 4</div></li>
-							</ol>
-						</li>
-
-						<li class="dd-item" data-id="1">
-							<div class="dd-handle">Item 5</div>
-						</li>
-
-						<li class="dd-item" data-id="1">
-							<div class="dd-handle">Item 6</div>
-						</li>
-
-						<li class="dd-item" data-id="1">
-							<div class="dd-handle">Item 7</div>
-						</li>
-
-						<li class="dd-item" data-id="1">
-							<div class="dd-handle">Item 8</div>
-						</li>
-
-						<li class="dd-item" data-id="1">
-							<div class="dd-handle">Item 9</div>
-						</li>
-
-						<li class="dd-item" data-id="1">
-							<div class="dd-handle">Item 10</div>
-						</li>
-						<li class="dd-item" data-id="11">
-							<div class="dd-handle">Item 11</div>
-						</li>
-						<li class="dd-item" data-id="12">
-							<div class="dd-handle">Item 12</div>
+						<li class="animate-repeat dd-item dd-handle" data-id="{{ question.id }}" ng-repeat="question in questions | toArray | orderBy:'-createdAt' | filter:q as results">
+						    <div ng-show="question.user.avatar.c && question.user.avatar.a" class="cbp_tmicon avatar" ng-class="question.user.avatar.c + ' avatar-'+question.user.avatar.a"></div>
+						    <div ng-show="!question.user.avatar.c || !question.user.avatar.a" class="cbp_tmicon avatar black anonymous"></div>
+						    <div class="cbp_tmlabel">
+						        <div class="p-t-15">
+						            <h4 class="inline m-b-5">
+						                <span class="text-success semi-bold m-r-10" ng-show="question.user.username">
+						                    {{question.user.username}}
+						                </span>
+						                <span class="text-success semi-bold m-r-10" ng-show="!question.user.username && (question.user.lastname || question.user.firstname)">
+						                    {{question.user.firstname}} {{question.user.lastname}}
+						                </span>
+						                <span class="text-success semi-bold m-r-10" ng-show="!question.user.username && !question.user.lastname && !question.user.firstname">
+						                    Anonyme
+						                </span>
+						            </h4>
+						            <span class="muted semi-bold m-b-5 label m-l-5" ng-repeat="tag in question.tags">
+						                {{getTagName(tag)}}
+						            </span>
+						            <div class="muted">{{question.createdAt | date:'mediumTime'}}</div>
+						            <p class="m-t-10 m-l-20 dark-text"> {{question.question}} </p>
+						        </div>
+						        <div class="clearfix"></div>
+						        <div class="tiles p-t-10 p-b-10 p-l-20" style="background-color:#2d3139;">
+						            <ul class="action-links">
+						                <li class="text-white" ng-show="question.likes > 1">{{question.likes}} Likes</li>
+						                <li class="text-white" ng-show="question.likes <= 1">{{question.likes}} Like</li>
+						            </ul>
+						            <div class="clearfix"></div>
+						        </div>
+						    </div>
 						</li>
 					</ol>
 				</div>
@@ -119,6 +94,6 @@
 		</div>
 		<!-- END CONTENT --> 
 	</div>
-	<div class="next-slide sn-next" data="next"><i class="fa fa-arrow-right fa-3x"></i></div>
-	<div class="previous-slide sn-prev" data="prev"><i class="fa fa-arrow-left fa-3x"></i></div>
+	<div class="next-slide sn-next" data="next" ng-click="next()"><i class="fa fa-arrow-right fa-3x"></i></div>
+	<div class="previous-slide sn-prev" data="prev" ng-click="previous()"><i class="fa fa-arrow-left fa-3x"></i></div>
 </div>
