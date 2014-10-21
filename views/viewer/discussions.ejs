@@ -8,7 +8,7 @@
                 <div class="user-details-wrapper" >
 
                     <div class="user-profile">
-                        <img src="/images/profiles/icon.png"  alt="" data-src="/images/profiles/icon.png" width="35" height="35">
+                        <img src="/images/profiles/icon.png" alt="" data-src="/images/profiles/icon.png" width="35" height="35">
                     </div>
 
                     <div class="user-details">
@@ -24,7 +24,7 @@
                      class="user-details-wrapper">
                     <div ng-class="{'text-right text-success' : message.user.id == user.id, 'text-info' : message.user.id !== user.id}" class="m-b-5">
                         <span class=" semi-bold">
-                            {{ getUsername() }}
+                            {{ getUsername(message.user) }}
                         </span>
                     </div>
                     <div class="user-profile avatar {{message.user.avatar.c + ' avatar-'+message.user.avatar.a}}" ng-class="{ownm : message.user.id == user.id}" >

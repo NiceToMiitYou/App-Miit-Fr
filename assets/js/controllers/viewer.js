@@ -39,18 +39,22 @@ ITEventApp.controller(
                 } );
             }
 
-            function getUsername() {
+            function getUsername( user ) {
+
+                if( !user ) {
+                    var user = $scope.user;
+                }
 
                 var username = 'Anonyme';
 
-                if($scope.user.username) {
+                if(user.username) {
 
-                    username = $scope.user.username;
+                    username = user.username;
 
-                } else if ($scope.user.lastname || $scope.user.firstname) {
+                } else if (user.lastname || user.firstname) {
                     
-                    username = ($scope.user.firstname ? $scope.user.firstname + ' ' : '') +
-                               ($scope.user.lastname ? $scope.user.lastname : '');
+                    username = (user.firstname ? user.firstname + ' ' : '') +
+                               (user.lastname ? user.lastname : '');
                 }
 
                 if(username.length > 16) {
