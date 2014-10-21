@@ -28,7 +28,7 @@
 			<div class="wall" ng-show="!live" >
 				<div class="dd" id="wall-list">
 					<ol class="dd-list">
-						<li class="animate-repeat dd-item dd-handle" data-id="{{ question.id }}" ng-repeat="question in questions | toArray | orderBy:'-createdAt' | filter:q as results">
+						<li class="animate-repeat dd-item dd-handle" ng-hide="question.remove" data-id="{{ question.id }}" ng-repeat="question in questions | toArray | orderBy:['-favorite','-likes'] | filter:q as results" ng-init="question.favorite=false">
 						    <div ng-show="question.user.avatar.c && question.user.avatar.a" class="cbp_tmicon avatar" ng-class="question.user.avatar.c + ' avatar-'+question.user.avatar.a"></div>
 						    <div ng-show="!question.user.avatar.c || !question.user.avatar.a" class="cbp_tmicon avatar black anonymous"></div>
 						    <div class="cbp_tmlabel">
@@ -51,11 +51,17 @@
 						            <p class="m-t-10 m-l-20 dark-text"> {{question.question}} </p>
 						        </div>
 						        <div class="clearfix"></div>
-						        <div class="tiles p-t-10 p-b-10 p-l-20" style="background-color:#2d3139;">
-						            <ul class="action-links">
-						                <li class="text-white" ng-show="question.likes > 1">{{question.likes}} Likes</li>
-						                <li class="text-white" ng-show="question.likes <= 1">{{question.likes}} Like</li>
-						            </ul>
+						        <div class="tiles" ng-class="{favorite: question.favorite}">
+						            <div class="action-links">
+						            	<span ng-hide="question.favorite"><button class="btn btn-primary" ng-click="question.favorite=true"> <i class="fa fa-star"></i> </button></span>
+						            	<span ng-show="question.favorite"><button class="btn btn-warning" ng-click="question.favorite=false"> <i class="fa fa-star-o"></i> </button></span>
+						                <span class="text-white" ng-show="question.likes > 1">{{question.likes}} Likes</span>
+						                <span class="text-white" ng-show="question.likes <= 1">{{question.likes}} Like</span>
+
+						                <div class="pull-right">
+						                	<button class="btn btn-danger" ng-click="question.remove = true"> <i class="fa fa-times"></i> </button>
+						                </div>
+						            </div>
 						            <div class="clearfix"></div>
 						        </div>
 						    </div>

@@ -1319,6 +1319,7 @@ ul.table-list li a span.title {
 	background-color: #d1dade;
 	font-size: 16px;
 	text-align: center;
+	cursor: pointer;
 }
 
 .page-container.master .liveorask > div.active {
@@ -1390,12 +1391,28 @@ ul.table-list li a span.title {
 }
 
 .page-container.master .wall .dd .dd-item .tiles {
-	padding: 8px 15px;
+	padding: 0;
+	background-color:#2d3139;
+}
+
+.page-container.master .wall .dd .dd-item .tiles.favorite {
+	background-color: #099a8c;
 }
 
 .page-container.master .wall .dd .dd-item .action-links {
 	list-style: none;
 	padding: 0;
+}
+
+.page-container.master .wall .dd .dd-item .action-links span {
+	padding-left: 10px;
+	line-height: 35px
+}
+
+.page-container.master .wall .dd .dd-item .action-links button {
+	border-radius: 0;
+	margin: 0;
+	float: left;
 }
 
 .page-container.master .wall .dd .dd-item h4 {
