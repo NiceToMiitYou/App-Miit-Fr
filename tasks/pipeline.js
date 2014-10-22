@@ -48,6 +48,8 @@ var jsFilesToInject = [
 
   'js/dependencies/angular.js',
 
+  'js/dependencies/angular-*.js',
+
   // Dependencies like jQuery, or Angular are brought in here
   'js/dependencies/**/*.js',
 
