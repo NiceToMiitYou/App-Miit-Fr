@@ -46,15 +46,7 @@ var jsFilesToInject = [
   // Load ITStorage before ITConnect
   'js/dependencies/it-storage.js',
 
-  'js/dependencies/angular.js',
-
-  'js/dependencies/angular-*.js',
-
-  // Dependencies like jQuery, or Angular are brought in here
-  'js/dependencies/**/*.js',
-
   // Plugins are brought in here
-  
   'plugins/boostrapv3/js/bootstrap.js',
 
   'plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js',
@@ -67,6 +59,15 @@ var jsFilesToInject = [
 
   'plugins/jquery-*/**/*.js',
 
+  // Angular there
+  'js/dependencies/angular.js',
+
+  'js/dependencies/angular-*.js',
+
+  // Dependencies like jQuery, or Angular are brought in here
+  'js/dependencies/**/*.js',
+
+  // Other plugins here
   'plugins/**/*.js',
 
   // All of the rest of your client-side js files
