@@ -1,7 +1,8 @@
 ITEventApp.controller(
-    'masterController', [ '$scope', '$timeout', '$sce',
-        function( $scope, $timeout, $sce ) {
+    'masterController', [ '$scope', '$timeout',
+        function( $scope, $timeout ) {
 
+<<<<<<< HEAD
             if ( ! ITStorage.db.options.get('user.isConnected') ) {
 
                 logout();
@@ -183,4 +184,6 @@ ITEventApp.controller(
                     }
                 });
             });
+=======
+>>>>>>> 0354c2472b7537b894bc8da19f99b6ffd70d6442
         } ] );

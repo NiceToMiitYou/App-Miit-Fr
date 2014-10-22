@@ -1,5 +1,5 @@
 ITEventApp.controller(
-    'viewerLiveController', [ '$scope', '$timeout',
+    'liveController', [ '$scope', '$timeout',
         function( $scope, $timeout ) {
 
             $scope.current = 0;
