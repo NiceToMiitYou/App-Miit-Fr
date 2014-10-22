@@ -1,5 +1,5 @@
 ITEventApp.controller(
-    'viewerController', [ '$scope', '$timeout', '$sce',
+    'commonController', [ '$scope', '$timeout', '$sce',
         function( $scope, $timeout, $sce ) {
 
             if ( ! ITStorage.db.options.get('user.isConnected') ) {

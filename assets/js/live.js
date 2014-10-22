@@ -118,9 +118,6 @@ $( function() {
             
         });
 
-    $slides.data( "flexslider" )
-        .resize();
-
 } );
 
 $(window).resize(function() {
