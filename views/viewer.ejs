@@ -98,11 +98,11 @@
         <div class="footer-widget"> 
 
             <div class="progress transparent progress-small no-radius no-margin">
-                <div data-percentage="79%" class="progress-bar progress-bar-success animate-progress-bar"></div>        
+                <div data-percentage="{{(presentation.current*100)/presentation.slides.length}}%" style="width: {{(presentation.current*100)/presentation.slides.length}}%;" class="progress-bar progress-bar-success animate-progress-bar"></div>        
             </div>
             <div class="pull-right">
                 <div class="details-status">
-                    <span data-animation-duration="560" data-value="86" class="animate-number"></span>%
+                    <span>{{(presentation.current*100)/presentation.slides.length}}</span>%
                 </div>  
             </div>
         </div>

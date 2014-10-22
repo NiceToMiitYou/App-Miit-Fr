@@ -79,13 +79,17 @@ ITEventApp.controller(
 
             function next() {
                 jQuery( '.flexslider' ).flexslider( 'next' );
-                ITConnect.live.next($scope.presentation.id, function(data) {});
+                $scope.presentation.current++;
+                ITConnect.live.next($scope.presentation.id, function(data) {
+                });
 
             }
 
             function previous() {
                 jQuery( '.flexslider' ).flexslider( 'previous' );
-                ITConnect.live.previous($scope.presentation.id, function(data) {});
+                $scope.presentation.current--;
+                ITConnect.live.previous($scope.presentation.id, function(data) {
+                });
             }
 
             function getTagName( tag ) {
@@ -113,7 +117,7 @@ ITEventApp.controller(
             $scope.questions = {};
 
             $scope.getTagName = getTagName;
-            
+
             function loadTags( isLoaded ) {
                 
                 if(isLoaded) {

@@ -10,7 +10,7 @@
 				<span class="speaker-time">07:18</span>
 			</div>
 			<div class="progress transparent progress-small no-radius no-margin">
-			    <div class="progress-bar progress-bar-info animate-progress-bar" data-percentage="79%" style="width: 79%;"></div>
+			    <div class="progress-bar progress-bar-info animate-progress-bar" data-percentage="{{(presentation.current*100)/presentation.slides.length}}%" style="width: {{(presentation.current*100)/presentation.slides.length}}%;"></div>
 			</div>
 			<div class="liveorask">
 				<div class="livetab" ng-class="{active:live}" ng-click="live=true"><i class="fa fa-paper-plane" style="margin-right: 4px;"></i> Live</div>
