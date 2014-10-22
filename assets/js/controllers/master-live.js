@@ -3,23 +3,13 @@ ITEventApp.controller(
         function( $scope, $timeout ) {
 
             function next() {
-                
-                ITConnect.live.next($scope.presentation.id, function(data) {
 
-                    if( data.done ) {
-                        jQuery( '.flexslider' ).flexslider( 'next' );
-                    }
-                });
+                ITConnect.live.next($scope.presentation.id, function(data) {});
             }
 
             function previous() {
                 
-                ITConnect.live.previous($scope.presentation.id, function(data) {
-
-                    if( data.done ) {
-                        jQuery( '.flexslider' ).flexslider( 'previous' );
-                    }
-                });
+                ITConnect.live.previous($scope.presentation.id, function(data) {});
             }
 
             $scope.next = next;
