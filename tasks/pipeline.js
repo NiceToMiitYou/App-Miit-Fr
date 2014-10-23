@@ -46,14 +46,14 @@ var jsFilesToInject = [
   // Load ITStorage before ITConnect
   'js/dependencies/it-storage.js',
 
+  'js/dependencies/jquery-1.8.3.js',
+
   'js/dependencies/angular.js',
+
+  'js/dependencies/angular-*.js',
 
   // Dependencies like jQuery, or Angular are brought in here
   'js/dependencies/**/*.js',
-
-  // Plugins are brought in here
-  
-  'plugins/boostrapv3/js/bootstrap.js',
 
   'plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js',
 

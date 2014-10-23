@@ -35,6 +35,8 @@ ITEventApp.controller(
 
                         $scope.presentation.current++;
 
+                        reloadThumbnail();
+
                         if( $scope.current + 1 === $scope.presentation.current ) {
 
                             next();
@@ -42,7 +44,6 @@ ITEventApp.controller(
                     }
                 });
             }
-
             function livePrevious( data ) {
 
                 $timeout(function() {
@@ -52,10 +53,39 @@ ITEventApp.controller(
 
                         $scope.presentation.current--;
 
+                        reloadThumbnail();
+
                         if( $scope.current - 1 === $scope.presentation.current ) {
 
                             previous();
                         }
+                    }
+                });
+            }
+
+            var idReloadThumbnail;
+
+            function reloadThumbnail() {
+
+                clearTimeout(idReloadThumbnail);
+                
+                idReloadThumbnail = setTimeout(function() {
+
+                    slideToThumbnail()
+
+                }, 500);
+            }
+
+            window.onload = reloadThumbnail;
+
+            function slideToThumbnail() {
+                
+                html2canvas(
+                    jQuery(".slide-content").get( $scope.presentation.current ), {
+                    onrendered: function(canvas) {
+                        $timeout(function(){
+                            $scope.presentation.thumbnail = canvas.toDataURL();
+                        });
                     }
                 });
             }

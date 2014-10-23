@@ -56,6 +56,9 @@ function initData() {
                             // Set current to 0 by default
                             data.presentations[index].current = 0;
 
+                            // Set default thubnail
+                            data.presentations[index].thumbnail = null;
+
                             ITStorage.db.presentations.set( data.presentations[index].id, data.presentations[index] );
                         }
 
