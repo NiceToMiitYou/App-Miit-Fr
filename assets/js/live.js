@@ -137,7 +137,11 @@ function scaleSlider() {
         var maxW = $(".page-content").width() / slideW ;
     }
 
-    $(".live-content .slides-nav").width(slideW*Math.min(maxH, maxW));
-    $("#slides").css("zoom", Math.min(maxH, maxW));
+    var zoom = Math.min(maxH, maxW);
+    $(".live-content .slides-nav").width(slideW*zoom);
+
+    var style = 'zoom: '+zoom+'; -ms-zoom: '+zoom+'; -webkit-zoom: '+zoom+'; -moz-transform:  scale('+zoom+','+zoom+'); -moz-transform-origin: '+ ($(".page-content").width() - (slideW * zoom))*2 +'px top';
+    console.log(style);
+    $("#slides").attr("style",style);
 
 }
