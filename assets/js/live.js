@@ -13,11 +13,11 @@ $(window).load(function() {
             animationLoop: false,
             slideshow: false,
             start: function( slider ) {
-                if ( slider.currentSlide == $( ".dot-item" )
-                    .length - 1 ) {
-                    $( '.flexslider .slides' )
-                        .addClass( 'end' );
-                }
+                // if ( slider.currentSlide == $( ".dot-item" )
+                //     .length - 1 ) {
+                //     $( '.flexslider .slides' )
+                //         .addClass( 'end' );
+                // }
                 $slides.css( {
                     "padding-bottom": $( window )
                         .height() - $slides.height() - 1000
