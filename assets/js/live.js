@@ -1,5 +1,5 @@
 var fullscreen;
-$(window).load(function() {
+$( function() {
 
     var $slides = $( "#slides" );
 

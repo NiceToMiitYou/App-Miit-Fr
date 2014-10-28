@@ -678,48 +678,6 @@ function unblockUI(el) {
 
 Pace.on('hide', function() {
   $(".pace, body:not(.login) > #map").remove();
-
-  $( ".flexslider" )
-      .flexslider( {
-          // itemMargin: 10,
-          animation: "slide",
-          //startAt: 6,
-          controlNav: false,
-          directionNav: false,
-          animationLoop: false,
-          slideshow: false,
-          start: function( slider ) {
-              if ( slider.currentSlide == $( ".dot-item" )
-                  .length - 1 ) {
-                  $( '.flexslider .slides' )
-                      .addClass( 'end' );
-              }
-              $slides.css( {
-                  "padding-bottom": $( window )
-                      .height() - $slides.height() - 1000
-              } );
-              // $( ".slide" )
-              //     .height( $slides.height() );
-              //$slides.css({"padding-top": 48});
-              //"padding-bottom": ($(window).height()/2) - ($slides.height()/2) - 40
-          },
-          before: function( slider ) {
-              $( ".form-wizard-steps .dot-item.active:not([data-number*=" + slider.animatingTo + "])" )
-                  .removeClass( "active" )
-              $( ".form-wizard-steps .dot-item[data-number*=" + slider.animatingTo + "]" )
-                  .addClass( "active" );
-          },
-          after: function( slider ) {
-              $( ".dot-item.active" )
-                  .removeClass( "active" )
-              $( ".dot-item[data-number*=" + slider.currentSlide + "]" )
-                  .addClass( "active" );
-          },
-          end: function() {
-              // $('.flexslider .slides').addClass('end');
-          }
-      } );
-
   scaleSlider();
   // window.lineexemple.redraw();
   // $('#text-editor').wysihtml5({
