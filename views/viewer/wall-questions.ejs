@@ -31,7 +31,7 @@
                     <div class="clearfix"></div>
                 </div>
             </li>
-            <li class="animate-repeat" ng-repeat="question in questions | toArray | orderBy:'-like' | filter:q as results">
+            <li class="animate-repeat" ng-repeat="question in questions | toArray | orderBy:'-createdAt' | filter:q as results">
                 <div ng-show="question.user.avatar.c && question.user.avatar.a" class="cbp_tmicon avatar" ng-class="question.user.avatar.c + ' avatar-'+question.user.avatar.a"></div>
                 <div ng-show="!question.user.avatar.c || !question.user.avatar.a" class="cbp_tmicon avatar black anonymous"></div>
                 <div class="cbp_tmlabel">
