@@ -745,5 +745,4 @@ $("#login_toggle").on("click", function() {
     $('body').addClass('log');
 });
 
-$("#multi").val(["ITEvents"]);
 $("#multi, #multi-search").select2();
