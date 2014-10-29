@@ -73,7 +73,7 @@ ITEventApp.controller(
 
                     slideToThumbnail()
 
-                }, 500);
+                }, 600);
             }
 
             window.onload = reloadThumbnail;
