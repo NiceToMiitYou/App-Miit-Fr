@@ -15,6 +15,11 @@ module.exports = {
             minLength: 3
         },
 
+        required: {
+            type: 'boolean',
+            defaultsTo: false
+        },
+
         type: {
             type: 'integer',
             required: true
