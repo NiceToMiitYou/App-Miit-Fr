@@ -2,18 +2,21 @@ ITEventApp.controller(
     'loginController', [ '$scope', '$timeout',
         function( $scope, $timeout ) {
 
-            function getConference( isInit ) {
-                if ( isInit ) {
+            function refreshConference( conference ) {
+
+                if ( conference ) {
 
                     $timeout(function() {
 
-                        $scope.conference = ITStorage.db.options.get( 'conference' );
+                        $scope.conference = conference;
                     });
                 }
             }
 
             function login() {
+
                 ITConnect.user.login( $scope.user.mail, $scope.user.password,
+                    
                     function( data ) {
 
                         if(data.done) {
@@ -49,7 +52,9 @@ ITEventApp.controller(
             }
 
             function register() {
+
                 ITConnect.user.register( $scope.user.mail, $scope.user.password,
+                
                     function( data ) {
 
                         if ( data.done ) {
@@ -75,7 +80,7 @@ ITEventApp.controller(
                 connected: false
             };
 
-            ITStorage.db.options.bind( 'conference.initialized', true, getConference );
+            ITStorage.db.options.bind( 'conference', true, refreshConference );
 
             // Default step
             $scope.s = 1;
