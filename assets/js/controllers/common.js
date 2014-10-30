@@ -89,6 +89,28 @@ ITEventApp.controller(
                 return ! _.contains( $scope.conference.restrictions, restrictionId );
             }
 
+            function askForUserIfNotExist( object, userField, userId ) {
+
+                object[userField] = ITStorage.db.users.get(userId);
+
+                // If user not registered request him
+                if( !object[userField] ) {
+                    
+                    ITConnect.user.get(userId, function( data ){
+                        
+                        $timeout(function() {
+
+                            if( data.done ) {
+
+                                ITStorage.db.users.set(data.user.id, data.user);
+
+                                object[userField] = data.user;
+                            }
+                        });
+                    });
+                }
+            }
+
             $scope.logout = logout;
             
             $scope.safeHTML = safeHTML;
@@ -96,6 +118,8 @@ ITEventApp.controller(
             $scope.isAllowed = isAllowed;
 
             $scope.getUsername = getUsername;
+
+            $scope.askForUserIfNotExist = askForUserIfNotExist;
 
             ITStorage.db.options.bind('user', refreshUser);
 

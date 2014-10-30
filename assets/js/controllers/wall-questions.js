@@ -136,24 +136,8 @@ ITEventApp.controller(
                     $scope.questions[questionId] = data.question;
                     $scope.questions[questionId].likes = 0;
                     $scope.questions[questionId].tags = data.tags;
-                    $scope.questions[questionId].user = ITStorage.db.users.get(userId);
 
-                    // If user not registered request him
-                    if( !$scope.questions[questionId].user ) {
-                        
-                        ITConnect.user.get(userId, function( data ){
-                            
-                            $timeout(function() {
-
-                                if( data.done ) {
-
-                                    ITStorage.db.users.set(data.user.id, data.user);
-
-                                    $scope.questions[questionId].user = data.user;
-                                }
-                            });
-                        });
-                    }
+                    $scope.askForUserIfNotExist($scope.questions[questionId], 'user', userId );
                 });
             });
     } ] );
