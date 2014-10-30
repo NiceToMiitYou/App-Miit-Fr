@@ -106,7 +106,14 @@ ITEventApp.controller(
 
                     // If one question not answered, not answered quizz
                     if ( !isQuestionAnswered && question.required ) {
+
                         $scope.isAnswered = false;
+                    }
+
+                    // Remove empty data
+                    if( _.isEmpty(selected[question.id]) ) {
+
+                        delete selected[question.id];
                     }
                 } );
 
