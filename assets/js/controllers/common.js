@@ -83,9 +83,17 @@ ITEventApp.controller(
                 });
             }
 
+            function isAllowed( restrictionId ) {
+
+                // if not restrict, it's allowed
+                return ! _.contains( $scope.conference.restrictions, restrictionId );
+            }
+
             $scope.logout = logout;
             
             $scope.safeHTML = safeHTML;
+
+            $scope.isAllowed = isAllowed;
 
             $scope.getUsername = getUsername;
 
