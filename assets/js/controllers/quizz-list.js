@@ -23,7 +23,12 @@ ITEventApp.controller(
                 ITStorage.db.options.set('quizz.current', quizz);
             }
 
-            $scope.openInner = openInner;
+            $scope.openInner = function( quizz ) {
+                if( $scope.isAllowed('QUIZZ_INTERACTIONS') ) {
+
+                    openInner( quizz );
+                }
+            };
 
             ITStorage.db.options.bind( 'data.isLoaded', true, loadQuizzes );
 

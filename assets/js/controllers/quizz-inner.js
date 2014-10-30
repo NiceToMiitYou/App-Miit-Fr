@@ -121,7 +121,12 @@ ITEventApp.controller(
 
             $scope.checkRight = checkRight;
 
-            $scope.saveQuizz = saveQuizz;
+            $scope.saveQuizz = function() {
+                if( $scope.isAllowed('QUIZZ_INTERACTIONS') ) {
+
+                    saveQuizz();
+                }
+            };
 
             ITStorage.db.options.bind('quizz.current', loadQuizz);
         } ] );

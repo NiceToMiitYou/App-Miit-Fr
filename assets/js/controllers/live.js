@@ -90,9 +90,19 @@ ITEventApp.controller(
                 });
             }
 
-            $scope.next = next;
+            $scope.next = function() {
+                if( $scope.isAllowed('LIVE_SLIDER_INTERACTIONS') ) {
 
-            $scope.previous = previous;
+                    next();
+                }
+            };
+
+            $scope.previous = function() {
+                if( $scope.isAllowed('LIVE_SLIDER_INTERACTIONS') ) {
+                    
+                    previous();
+                }
+            };
 
             ITConnect.bind('live-presentation-next', liveNext);
 

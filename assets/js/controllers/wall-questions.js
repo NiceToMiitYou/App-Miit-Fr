@@ -69,7 +69,7 @@ ITEventApp.controller(
             }
 
             function post() {
-                
+
                 if ( $scope.text && $( '#multi' ).val() ) {
 
                     ITConnect.question.presentation.create( $scope.text, $( '#multi' ).val(), function(data) {
@@ -103,13 +103,23 @@ ITEventApp.controller(
                 }
             }
 
-            $scope.like = likeQuestion;
+            $scope.like = function( question ) {
+                if( $scope.isAllowed('WALL_INTERACTIONS') ) {
+
+                    likeQuestion( question );
+                }
+            };
 
             $scope.isLike = isLike;
 
             $scope.getTagName = getTagName;
             
-            $scope.post = post;
+            $scope.post = function() {
+                if( $scope.isAllowed('WALL_INTERACTIONS') ) {
+
+                    post();
+                }
+            };
 
             ITStorage.db.options.bind( 'data.isLoaded', true, loadTags );
 

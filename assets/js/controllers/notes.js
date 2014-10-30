@@ -199,12 +199,32 @@ ITEventApp.controller(
 
             ITStorage.db.options.bind( 'data.isLoaded', true, loadNotes );
 
-            $scope.addNote = addNote;
+            $scope.addNote = function() {
+                if( $scope.isAllowed('NOTE_MULTIPLE') ) {
 
-            $scope.changeNote = changeNote;
+                    addNote();
+                }
+            };
 
-            $scope.save = save;
+            $scope.changeNote =  function( note ) {
+                if( $scope.isAllowed('NOTE_MULTIPLE') ) {
 
-            $scope.send = send;
+                    changeNote( note );
+                }
+            };
+
+            $scope.save = function( cb ) {
+                if( $scope.isAllowed('NOTE_INTERACTIONS') ) {
+
+                    save( cb );
+                }
+            };
+
+            $scope.send = function() {
+                if( $scope.isAllowed('NOTE_SEND') ) {
+
+                    send();
+                }
+            };
 
         } ] );

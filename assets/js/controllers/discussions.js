@@ -72,9 +72,19 @@ ITEventApp.controller(
                 $scope.current = chatroom;
             }
 
-            $scope.post = post;
+            $scope.post = function() {
+                if( $scope.isAllowed('CHAT_INTERACTIONS') ) {
 
-            $scope.changeChatroom = changeChatroom;
+                    post();
+                }
+            };
+
+            $scope.changeChatroom = function( chatroom ) {
+                if( $scope.isAllowed('CHAT_MULTIPLE_CHATROOMS') ) {
+                 
+                    changeChatroom( chatroom );
+                }
+            }
 
             ITStorage.db.options.bind( 'data.isLoaded', true, loadChatrooms );
 
