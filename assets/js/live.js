@@ -141,7 +141,6 @@ function scaleSlider() {
     $(".live-content .slides-nav").width(slideW*zoom);
 
     var style = 'zoom: '+zoom+'; -ms-zoom: '+zoom+'; -webkit-zoom: '+zoom+'; -moz-transform:  scale('+zoom+','+zoom+'); -moz-transform-origin: '+ ($(".page-content").width() - (slideW * zoom))*2 +'px top';
-    console.log(style);
     $("#slides").attr("style",style);
 
 }
