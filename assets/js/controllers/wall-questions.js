@@ -137,7 +137,10 @@ ITEventApp.controller(
                     $scope.questions[questionId].likes = 0;
                     $scope.questions[questionId].tags = data.tags;
 
-                    $scope.askForUserIfNotExist($scope.questions[questionId], 'user', userId );
+                    $scope.askForUserIfNotExist(
+                        $scope.questions[questionId],
+                        'user', userId
+                    );
                 });
             });
     } ] );
