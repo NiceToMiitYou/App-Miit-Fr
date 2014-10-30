@@ -68,13 +68,8 @@ ITEventApp.controller(
                 return ITStorage.db.tags.get( tag ).name;
             }
 
-            $scope.like = likeQuestion;
-
-            $scope.isLike = isLike;
-
-            $scope.getTagName = getTagName;
-
-            $scope.post = function() {
+            function post() {
+                
                 if ( $scope.text && $( '#multi' ).val() ) {
 
                     ITConnect.question.presentation.create( $scope.text, $( '#multi' ).val(), function(data) {
@@ -107,6 +102,14 @@ ITEventApp.controller(
 
                 }
             }
+
+            $scope.like = likeQuestion;
+
+            $scope.isLike = isLike;
+
+            $scope.getTagName = getTagName;
+            
+            $scope.post = post;
 
             ITStorage.db.options.bind( 'data.isLoaded', true, loadTags );
 
