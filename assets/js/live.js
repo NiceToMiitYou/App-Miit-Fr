@@ -133,7 +133,7 @@ function scaleSlider() {
         var maxW = $("body").width() / slideW ;
 
     } else {
-        var maxH = ($(".page-content").height() - 300) / slideH;
+        var maxH = ($(".page-content").height()/2) / slideH;
         var maxW = $(".page-content").width() / slideW ;
     }
 

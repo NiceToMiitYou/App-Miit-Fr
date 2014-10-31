@@ -1,7 +1,4 @@
-<div ng-controller="chatController" class="content chat-content" style="opacity: 0;">  
-    <div class="page-title">
-        <h3><i class="fa fa-weixin"></i> Chat - {{ current.name }}</h3>
-    </div>
+<div ng-controller="chatController" class="content chat-content" ng-class="{active : activetool === 'chat'}">  
     <div class="chat-area">
         <div class="chat-window-wrapper" id="messages-wrapper">
             <div class="chat-messages">

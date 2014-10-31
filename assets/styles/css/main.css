@@ -68,8 +68,9 @@ a {
 }
 
 .page-content {
-	margin-right: 170px;
-	margin-left: 200px;
+	width: 50%;
+	margin-right: 0;
+	margin-left: 0;
 	overflow: visible;
 	min-height: 0;
 	height: 100%;
@@ -82,13 +83,23 @@ a {
 	
 }
 
-.page-content .content {
+.page-content .content, .tools-content .content {
 	padding: 0;
 	position: absolute;
 	height: 100%;
 	transition: opacity 350ms;
 	width: 100%;
-	z-index: 0;
+}
+
+.tools-content .content {
+	height: calc(100% - 70px);
+	z-index: -1;
+	opacity: 0;
+}
+
+.tools-content .content.active {
+	z-index: 1;
+	opacity: 1;
 }
 
 .page-content .content.current {
@@ -110,9 +121,10 @@ a {
 .user-info-wrapper {
 	margin: 0;
 	padding: 0;
-	height: 60px;
-	width: 200px;
+	height: 70px;
+	width: 75px;
 	text-align: center;
+	float: right;
 }
 
 .user-info-wrapper a.avatar {
@@ -132,10 +144,9 @@ a {
 }
 
 .user-show {
-	background-color: #22262e;
 	text-align: left;
-	height: 75px;
-	padding-top: 7px;
+	height: 70px;
+	padding-top: 0px;
 }
 
 .user-show .user-info {
@@ -189,7 +200,8 @@ a {
 }
 
 .footer-widget, .page-sidebar, .page-sidebar ul {
-	width: 200px;
+	width: 100%;
+	position: absolute;
 }
 
 .footer-widget .details-status {
@@ -409,11 +421,22 @@ a {
 	background:#22262e;
 }
 
-.sider .dot-item {
+.live-thumb {
+	background-color: #D5D6D6;
+	padding: 10px;
+}
+.live-thumb .dot-item {
 	position: relative;
+	width: 125px;
+	float: left;
+	margin-right: 10px;
 }
 
-.sider  .dot-item:after {
+.live-thumb .dot-item img {
+	width: 100%;
+}
+
+.live-thumb  .dot-item:after {
 	content: "";
 	display: block;
 	position: absolute;
@@ -425,11 +448,11 @@ a {
 	transition: background-color 400ms;
 }
 
-.sider  .dot-item.active:after {
+.live-thumb  .dot-item.active:after {
 	background: none;
 }
 
-.sider  .dot-item-video:before {
+.live-thumb  .dot-item-video:before {
 	content: "\f04b";
 	font-family: FontAwesome;
 	font-style: normal;
@@ -738,6 +761,10 @@ top: 9px;
 	margin: 8px auto 0 auto;
 	width: 98.5%;
 	height: calc(100% - 128px);
+	background: transparent;
+	border: none;
+	color: #FFF;
+	border-radius: 0;
 }
 
 .wysihtml5-sandbox {
@@ -910,7 +937,6 @@ ul.table-list {
 	list-style: none;
 	padding: 0;
 	margin: 0;
-	margin-top: -6px;
 }
 
 ul.table-list li {
@@ -1038,6 +1064,8 @@ ul.table-list li a span.title {
 		-webkit-animation: border-beat 800ms infinite; /* Chrome, Safari, Opera */
 	    animation: border-beat 800ms infinite;
 	    margin-right: 120px!important;
+	    position: absolute;
+	    bottom: 0;
 }
 
 .timeline-search {
@@ -1607,4 +1635,105 @@ ul.messenger.messenger-fixed.messenger-on-top, ul.messenger.messenger-fixed.mess
 	width: 60px;
 	border-radius: 0;
 	margin-right: 15px;
+}
+
+
+/**************** V2 *****************/
+
+.tools-content {
+	width: 50%;
+	position: absolute;
+	right: 0;
+	top: 0;
+	bottom: 0;
+}
+
+#main-menu {
+	height: 70px;
+}
+
+#main-menu ul {
+	padding: 0;
+	float: left;
+	margin: 0;
+	width: calc(100% - 75px);
+}
+
+#main-menu ul > li {
+	list-style: none;
+	float: left;
+	padding: 0;
+	text-align: center;
+	width: 20%;
+	background-color: #22262e;
+	border-top: 2px solid #0aa699;
+	margin-top: -2px;
+	transition: margin-top 50ms linear;
+}
+
+#main-menu ul > li.active, #main-menu ul > li:hover {
+	margin-top: 0px;
+	background-color: transparent;
+}
+
+#main-menu ul > li.active {
+	cursor: default;
+}
+
+
+
+#main-menu ul > li > a {
+	font-size: 12px;
+	color: #FFF;
+	/*width: 20%;*/
+	display: block;
+	padding: 10px 0 5px 0;
+}
+
+#main-menu ul > li > a > i {
+	display: block;
+	font-size: 24px;
+	line-height: 32px;
+
+}
+
+
+.fullscreen-btn {
+	position: absolute;
+	border-radius: 50%;
+	top: 50%;
+	right: 0;
+	margin-top: -24px;
+	z-index: 999;
+	margin-right: -24px;
+	padding: 10px;
+	-moz-transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.fullscreen-btn i:before {
+		-webkit-animation: listner-beat 800ms infinite; /* Chrome, Safari, Opera */
+	    animation: listner-beat 800ms infinite;
+	}
+
+	@-webkit-keyframes listner-beat {
+	    0% {margin-right: -4px;}
+	    50% {margin-right: -2px;}
+	    100% {margin-right: -4px;}
+	}
+
+	/* Standard syntax */
+	@keyframes listner-beat {
+	     0% {margin-right: -4px;}
+	    50% {margin-right: -2px;}
+	    100% {margin-right: -4px;}
+	}
+.fullscreen-btn i {
+	width: 28px;
+}
+
+.footer-widget .progress {
+	width: calc(100% - 60px);
 }

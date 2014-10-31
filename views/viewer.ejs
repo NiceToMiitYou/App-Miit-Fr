@@ -7,127 +7,124 @@
         <li><a ng-click="logout()"><div class="status-icon red"></div> <span class="title">Déconnexion</span></a></li>
     </ul>
 
-    <!-- BEGIN SIDEBAR -->
-    <div class="page-sidebar" id="main-menu">
-        <div class="page-sidebar-wrapper" id="main-menu-wrapper">
-            <!-- BEGIN MINI-PROFILE -->
-            <div class="user-info-wrapper">
-                <img style="padding-top:14px;" src="/images/logo.png" alt="" data-src="/images/logo.png" width="140" />
-            </div>
-
-            <div class="user-info-wrapper user-show" ng-click="openStats=true">
-                <a ng-show="user.avatar.c && user.avatar.a" class="avatar" ng-class="user.avatar.c + ' avatar-'+user.avatar.a"></a>
-                <a ng-show="!user.avatar.c || !user.avatar.a" class="avatar black anonymous"></a>
-                <div class="user-info m-l-5">
-                    <div class="username" ng-class="{small : getUsername().length > 12}">
-                        
-                        <span>
-                            {{ getUsername() }}
-                        </span>
-
-                    </div>
-                    <div class="status">Status<a href="#">
-                        <div class="status-icon green"></div>
-                        Online</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- END MINI-PROFILE -->
-
-            <p class="menu-title p-t-15">NAVIGATION </p>
-
-            <!-- BEGIN SIDEBAR MENU --> 
-            <ul> 
-                <!-- BEGIN SELECTED LINK -->
-                <li class="">
-                    <a href="#live">
-                        <i class="fa fa-eye"></i>
-                        <span class="title">Présentation</span>
-                        <span class="arrow open"></span>
-                    </a>
-                    <ul class="sub-menu">
-                        <li class=""><a href="#live"><i class="fa fa-paper-plane" style="margin-right: 4px;"></i> <span class="title">Live</span></a></li>
-                        <li><a href="#wall"><i class="fa fa-users" style="margin-right: 4px;"></i> <span class="title">Mur</span></a></li>
-                        <li><a href="#ressources"><i class="fa fa-folder-open" style="margin-right: 4px;"></i> <span class="title">Ressources</span></a></li>
-                    </ul>
-                </li>
-
-                <!-- END SELECTED LINK -->
-                <!-- BEGIN BADGE LINK -->
-                <li class="">
-                    <a href="#chat">
-                        <i class="fa fa-weixin"></i>
-                        <span class="title">Discussions</span>
-                    </a>
-                </li>
-                <!-- END BADGE LINK -->     
-                <!-- BEGIN SINGLE LINK -->
-                <li class="">
-                    <a href="#notes">
-                        <i class="fa fa-pencil"></i>
-                        <span class="title">Bloc-note</span>
-                    </a>
-                </li>
-                <!-- END SINGLE LINK -->    
-                <!-- BEGIN ONE LEVEL MENU -->
-                <li class="">
-                    <a href="#quizz">
-                        <i class="fa fa-question"></i>
-                        <span class="title">Questionnaires</span>
-                    </a>
-                </li>
-                <!-- END ONE LEVEL MENU -->
-                <!-- BEGIN TWO LEVEL MENU -->
-               <!--  <li class="">
-                    <a href="#planning">
-                        <i class="fa fa-calendar"></i>
-                        <span class="title">Planning</span>
-                    </a>
-                </li> -->
-                <!-- END TWO LEVEL MENU -->         
-            </ul>
-            <!-- END SIDEBAR MENU -->
-
-            <div class="clearfix"></div>
-            <!-- END SIDEBAR WIDGETS --> 
-        </div>
-        <div class="menu-preview">
-            <img width="100%" ng-src="{{presentation.thumbnail}}" ng-show="presentation.thumbnail" />
-        </div>
-        <div class="footer-widget"> 
-
-            <div class="progress transparent progress-small no-radius no-margin">
-                <div data-percentage="{{(presentation.current*100)/presentation.slides.length}}%" style="width: {{(presentation.current*100)/presentation.slides.length}}%;" class="progress-bar progress-bar-success animate-progress-bar"></div>        
-            </div>
-            <div class="pull-right">
-                <div class="details-status">
-                    <span>{{(presentation.current*100)/presentation.slides.length}}</span>%
-                </div>  
-            </div>
-        </div>
-    </div>
-    <!-- END SIDEBAR --> 
-
     <!-- BEGIN PAGE CONTAINER-->
     <div class="page-content"> 
 
-    <% include viewer/live %>
+        <% include viewer/live %>
 
-    <% include viewer/resources %>
+    </div>
 
-    <% include viewer/wall-questions %>
+    <div class="tools-content" ng-init="activetool = 'chat'">
 
-    <% include viewer/discussions %>
+        <!-- BEGIN SIDEBAR -->
+        <div id="main-menu">
+            <div id="main-menu-wrapper">
+                <!-- BEGIN MINI-PROFILE -->
+<!--                 <div class="user-info-wrapper">
+                    <img style="padding-top:14px;" src="/images/logo.png" alt="" data-src="/images/logo.png" width="140" />
+                </div>
 
-    <% include viewer/notes %>
+ -->
 
-    <% include viewer/quizz-list %>
+                <!-- END MINI-PROFILE -->
 
-    <% include viewer/quizz-inner %>
+                <!-- BEGIN SIDEBAR MENU --> 
+                <ul> 
 
-    <% include viewer/planning %>
+                    <!-- END SELECTED LINK -->
 
+                    <li ng-class="{active : activetool === 'ressource'}">
+                        <a href="#ressources" ng-click="activetool='ressource'">
+                            <i class="fa fa-folder-open"></i> 
+                            <span class="title">Ressources</span>
+                        </a>
+                    </li>
+
+                    <!-- BEGIN SINGLE LINK -->
+                    <li ng-class="{active : activetool === 'wall'}">
+                        <a href="#wall" ng-click="activetool='wall'">
+                            <i class="fa fa-users"></i><span class="title">Mur</span>
+                        </a>
+                    </li>
+                    <!-- END SINGLE LINK --> 
+
+                    <!-- BEGIN BADGE LINK -->
+                    <li ng-class="{active : activetool === 'chat'}">
+                        <a href="#chat" ng-click="activetool='chat'">
+                            <i class="fa fa-weixin"></i>
+                            <span class="title">Discussions</span>
+                        </a>
+                    </li>
+                    <!-- END BADGE LINK -->     
+                    <!-- BEGIN SINGLE LINK -->
+                    <li ng-class="{active : activetool === 'note'}">
+                        <a href="#notes" ng-click="activetool='note'">
+                            <i class="fa fa-pencil"></i>
+                            <span class="title">Bloc-note</span>
+                        </a>
+                    </li ng-class="{active : activetool === 'wall'}">
+                    <!-- END SINGLE LINK -->    
+                    <!-- BEGIN ONE LEVEL MENU -->
+                    <li ng-class="{active : activetool === 'quizz'}">
+                        <a href="#quizz" ng-click="activetool='quizz'">
+                            <i class="fa fa-question"></i>
+                            <span class="title">Questionnaires</span>
+                        </a>
+                    </li>
+                    <!-- END ONE LEVEL MENU -->
+                    <!-- BEGIN TWO LEVEL MENU -->
+                   <!--  <li class="">
+                        <a href="#planning">
+                            <i class="fa fa-calendar"></i>
+                            <span class="title">Planning</span>
+                        </a>
+                    </li> -->
+                    <!-- END TWO LEVEL MENU -->         
+                </ul>
+                <!-- END SIDEBAR MENU -->
+                <!-- END SIDEBAR WIDGETS --> 
+
+                <div class="user-info-wrapper user-show" ng-click="openStats=true">
+                    <a ng-show="user.avatar.c && user.avatar.a" class="avatar" ng-class="user.avatar.c + ' avatar-'+user.avatar.a"></a>
+                    <a ng-show="!user.avatar.c || !user.avatar.a" class="avatar black anonymous"></a>
+                   <!--  <div class="user-info m-l-5">
+                        <div class="username" ng-class="{small : getUsername().length > 12}">
+
+                            <span>
+                                {{ getUsername() }}
+                            </span>
+
+                        </div>
+                        <div class="status">Status<a href="#">
+                            <div class="status-icon green"></div>
+                            Online</a>
+                        </div>
+                    </div> -->
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+
+
+
+        </div>
+        <!-- END SIDEBAR --> 
+
+        <div class="tools-wrapper">
+            <% include viewer/resources %>
+
+            <% include viewer/wall-questions %>
+
+            <% include viewer/discussions %>
+
+            <% include viewer/notes %>
+
+            <% include viewer/quizz-list %>
+
+            <% include viewer/quizz-inner %>
+
+            <% include viewer/planning %>
+        </div>
     </div>
     <!-- END PAGE CONTAINER-->
     <% include viewer/user-modal %>

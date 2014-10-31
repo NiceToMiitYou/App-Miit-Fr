@@ -1,11 +1,11 @@
-<div ng-controller="notesController" class="content notes-content" style="opacity: 0;">  
+<div ng-controller="notesController" class="content notes-content" ng-class="{active : activetool === 'note'}">  
     
-    <div class="page-title">
+<!--     <div class="page-title">
 
         <h3><i class="fa fa-pencil"></i> Notes</h3>
 
         <small ng-show="saving">sauvegarde...</small>
-    </div>
+    </div> -->
 
     <textarea ng-model="current.content"
               ng-change="hasChange = true"
