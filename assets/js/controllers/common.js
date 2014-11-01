@@ -78,7 +78,7 @@ ITEventApp.controller(
 
                         $timeout(function() {
                             window.location.reload();
-                        }, 1000);
+                        }, 1750);
                     }
                 });
             }
