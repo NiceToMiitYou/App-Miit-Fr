@@ -300,72 +300,26 @@ a {
 	line-height: 30px;
 }
 
-
-.flexslider {
-	background: transparent;
-	border: 0;
+#slides {
+	margin: 0 auto;
+    width: 2048px;
+    height: 1536px;
+    z-index: 9;
 	position: relative;
-	-webkit-border-radius: 0;
-	-moz-border-radius: 0;
-	-o-border-radius: 0;
-	border-radius: 0;
-	-webkit-box-shadow: none;
-	-moz-box-shadow: none;
-	-o-box-shadow: none;
-	box-shadow: none;
-	zoom: 1;
-	z-index: 9;
-	margin: 2px auto;
-/*	padding-bottom: 50px;
-	width: 100%;
-	height: calc(100% - 275px);*/
-	width: 1024px;
-	height: 768px;
+    overflow: hidden;
 }
 
-.flexslider .slides {
-	background-color: #FFF;
-}
-
-.flexslider .slides > li {
-	padding: 0;
+#slides .slide {
+    position: absolute;
 	height: 100%;
-	display: inline-block;
-	max-width: 100%;
-}
-
-.flexslider .slides img {
-	max-width: 100%;
 	width: 100%;
-	display: inline-block;
+    top: 0;
+    left: 0;
 }
 
-.flexslider .slides > li > .slide-content {
-	/*margin: 0 10px;*/
-	position: relative;
-	height: 100%
-}
-
-/*.flexslider .slides > li.noswipe > .slide-content:after {
-	content: "\f023";
-	font-size: 15px;
-	position: absolute;
-	bottom: 10px;
-	right: 5px;
-	font-family: FontAwesome;
-	font-style: normal;
-	font-weight: normal;
-}
-
-.flexslider .slides > li.noswipe > .slide-content:before {
-	content: "Ceci est un slide interactif il ne peut etre glisser avec le doigt";
-	position: absolute;
-	bottom: 0;
-	font-size: 10px;
-}*/
-
-.flexslider .end {
-    margin-left: -20px;
+#slides .slide img {
+	height: 100%;
+	width: 100%;
 }
 
 .live-content .slides-nav {

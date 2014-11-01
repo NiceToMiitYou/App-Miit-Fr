@@ -5,12 +5,12 @@
         <button type="button" class="fullscreen btn"><i class="fa fa-arrows-alt"></i>  Plein écran</button>
     </div> -->
 
-    <div id="slides" class="presentation-slide flexslider">
-        <ul class="slides">
-            <li class="slide" ng-repeat="slide in presentation.slides">
-                <div class="slide-content" ng-bind-html="safeHTML(slide.content)"></div>
-            </li>
-        </ul>
+    <div id="slides" class="presentation-slide">
+        <div ng-repeat="slide in presentation.slides" class="slide slide-animation"
+            ng-hide="!isCurrentSlide($index)"
+            ng-swipe-right="previous()"
+            ng-swipe-left="next()"
+            ng-bind-html="safeHTML(slide.content)"></div>
     </div>
 <!-- 
     <div class="slides-nav">
