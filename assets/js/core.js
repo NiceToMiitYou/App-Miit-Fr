@@ -132,65 +132,65 @@ $(document).ready(function () {
     //*********************************** END CHAT POPUP*****************************	
 
     //**********************************BEGIN MAIN MENU********************************
-    jQuery('.page-sidebar li > a').on('click', function (e) {
-        // if ($(this).next().hasClass('sub-menu') === false) {
-        //     return;
-        // }
+    // jQuery('.page-sidebar li > a').on('click', function (e) {
+    //     // if ($(this).next().hasClass('sub-menu') === false) {
+    //     //     return;
+    //     // }
 
-        var parent = $(this).parent().parent();
+    //     var parent = $(this).parent().parent();
 
-        parent.children('li.open').children('a').children('.arrow').removeClass('open');
-        parent.children('li.open').children('a').children('.arrow').removeClass('active');
-        parent.children('li.open').children('.sub-menu').slideUp(200);
-        parent.children('li').removeClass('open');
+    //     parent.children('li.open').children('a').children('.arrow').removeClass('open');
+    //     parent.children('li.open').children('a').children('.arrow').removeClass('active');
+    //     parent.children('li.open').children('.sub-menu').slideUp(200);
+    //     parent.children('li').removeClass('open');
 
-        var $self = $(this);
-        setTimeout(function() {
-            parent.children('li').removeClass('active');
-            $self.parent().addClass("active");
-        }, 200);
+    //     var $self = $(this);
+    //     setTimeout(function() {
+    //         parent.children('li').removeClass('active');
+    //         $self.parent().addClass("active");
+    //     }, 200);
 
-        var sub = jQuery(this).next();
-        if (sub.is(":visible")) {
-            jQuery('.arrow', jQuery(this)).removeClass("open");
-            //jQuery(this).parent().removeClass("active");
-            sub.slideUp(200, function () {
-                handleSidenarAndContentHeight();
-            });
-        } else {
-            jQuery('.arrow', jQuery(this)).addClass("open");
-            jQuery(this).parent().addClass("open");
-            sub.slideDown(200, function () {
-                handleSidenarAndContentHeight();
-            });
-        }
+    //     var sub = jQuery(this).next();
+    //     if (sub.is(":visible")) {
+    //         jQuery('.arrow', jQuery(this)).removeClass("open");
+    //         //jQuery(this).parent().removeClass("active");
+    //         sub.slideUp(200, function () {
+    //             handleSidenarAndContentHeight();
+    //         });
+    //     } else {
+    //         jQuery('.arrow', jQuery(this)).addClass("open");
+    //         jQuery(this).parent().addClass("open");
+    //         sub.slideDown(200, function () {
+    //             handleSidenarAndContentHeight();
+    //         });
+    //     }
 
-        // e.preventDefault();
+    //     // e.preventDefault();
 
-        if(!$(this).closest("li").hasClass("active") || window.location.hash == "#quizz-inner") {
-            var href = $(this).attr("href").replace("#", "");
+    //     if(!$(this).closest("li").hasClass("active") || window.location.hash == "#quizz-inner") {
+    //         var href = $(this).attr("href").replace("#", "");
 
-            $(".page-sidebar .page-sidebar-wrapper ul li.active").removeClass("active")
-            $(this).closest("li").addClass("active")
+    //         $(".page-sidebar .page-sidebar-wrapper ul li.active").removeClass("active")
+    //         $(this).closest("li").addClass("active")
 
-            $(".content.current").css("opacity", 0);
-            $(".nosider").removeClass("nosider");
-            if (href=="planning" || href=="quizz" || href=="ressources" || href=="wall") {$(".page-content").addClass("nosider");}
-            setTimeout(function() {
-                $(".content.current").removeClass("current");
-                $("."+href+"-content").addClass("current").css("opacity", 1);
-                if(href="planning") {$('#calendar').fullCalendar("render");}
-            }, 300);
-        }
-    });
+    //         $(".content.current").css("opacity", 0);
+    //         $(".nosider").removeClass("nosider");
+    //         if (href=="planning" || href=="quizz" || href=="ressources" || href=="wall") {$(".page-content").addClass("nosider");}
+    //         setTimeout(function() {
+    //             $(".content.current").removeClass("current");
+    //             $("."+href+"-content").addClass("current").css("opacity", 1);
+    //             if(href="planning") {$('#calendar').fullCalendar("render");}
+    //         }, 300);
+    //     }
+    // });
 
-    $(".quizz").on("click", "a" ,function() {
-        goToPage($(this).attr("href").replace("#", ""));
-    });
+    // $(".quizz").on("click", "a" ,function() {
+    //     goToPage($(this).attr("href").replace("#", ""));
+    // });
 
-    $(".previous-quizz").on("click" ,function() {
-        goToPage($(this).attr("href").replace("#", ""));
-    });
+    // $(".previous-quizz").on("click" ,function() {
+    //     goToPage($(this).attr("href").replace("#", ""));
+    // });
 
     function goToPage(href) {
         $(".content.current").css("opacity", 0);
@@ -250,7 +250,7 @@ $(document).ready(function () {
             equalHeight($(this).children());
         });
         if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
-        $('#main-menu-wrapper').slimScroll({resize: true});
+        // $('#main-menu-wrapper').slimScroll({resize: true});
          $('#inner-menu').slimScroll({resize: true});
         }
     });
@@ -259,12 +259,12 @@ $(document).ready(function () {
     function initMainMenu() {
         var eleHeight = window.innerHeight-105;
         if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
-            $('#main-menu-wrapper').slimScroll({
-                color: '#a1b2bd',
-                size: '4px',
-                height: eleHeight,
-                alwaysVisible: false
-            });
+            // $('#main-menu-wrapper').slimScroll({
+            //     color: '#a1b2bd',
+            //     size: '4px',
+            //     height: eleHeight,
+            //     alwaysVisible: false
+            // });
         }
         
     }
@@ -603,9 +603,9 @@ $(document).ready(function () {
 
 function calculateHeight() {
     var contentHeight = parseInt($('.page-content').height(), 10);
-    if (911 > contentHeight) {
-        console.log("Small");
-    }
+    // if (911 > contentHeight) {
+    //     console.log("Small");
+    // }
 }
 //******************************* Bind Functions Jquery- LAYOUT OPTIONS API ***************
 
@@ -678,47 +678,6 @@ function unblockUI(el) {
 
 Pace.on('hide', function() {
   $(".pace, body:not(.login) > #map").remove();
-
-  $( ".flexslider" )
-      .flexslider( {
-          // itemMargin: 10,
-          animation: "slide",
-          //startAt: 6,
-          controlNav: false,
-          directionNav: false,
-          animationLoop: false,
-          slideshow: false,
-          start: function( slider ) {
-              if ( slider.currentSlide == $( ".dot-item" )
-                  .length - 1 ) {
-                  $( '.flexslider .slides' )
-                      .addClass( 'end' );
-              }
-              $slides.css( {
-                  "padding-bottom": $( window )
-                      .height() - $slides.height() - 1000
-              } );
-              // $( ".slide" )
-              //     .height( $slides.height() );
-              //$slides.css({"padding-top": 48});
-              //"padding-bottom": ($(window).height()/2) - ($slides.height()/2) - 40
-          },
-          before: function( slider ) {
-              $( ".form-wizard-steps .dot-item.active:not([data-number*=" + slider.animatingTo + "])" )
-                  .removeClass( "active" )
-              $( ".form-wizard-steps .dot-item[data-number*=" + slider.animatingTo + "]" )
-                  .addClass( "active" );
-          },
-          after: function( slider ) {
-              $( ".dot-item.active" )
-                  .removeClass( "active" )
-              $( ".dot-item[data-number*=" + slider.currentSlide + "]" )
-                  .addClass( "active" );
-          },
-          end: function() {
-              // $('.flexslider .slides').addClass('end');
-          }
-      } );
 
   scaleSlider();
   // window.lineexemple.redraw();
