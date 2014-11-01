@@ -17,7 +17,8 @@ describe( 'ConfQuestionQuizzController', function() {
                 .post( '/api/user/login' )
                 .send( {
                     mail: 'test@test.fr',
-                    password: 'password'
+                    password: 'password',
+                    connect: true
                 } )
                 .end( done );
         } );

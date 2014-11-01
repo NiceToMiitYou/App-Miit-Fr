@@ -90,7 +90,8 @@ describe( 'ConfUserController', function() {
                 .post( '/api/user/login' )
                 .send( {
                     mail: 'test',
-                    password: 'test'
+                    password: 'test',
+                    connect: true
                 } )
                 .expect( 200 )
                 .end( function( err, res ) {
@@ -114,7 +115,8 @@ describe( 'ConfUserController', function() {
                 .post( '/api/user/login' )
                 .send( {
                     mail: 'test@test.fr',
-                    password: 'test'
+                    password: 'test',
+                    connect: true
                 } )
                 .expect( 200 )
                 .end( function( err, res ) {
@@ -139,7 +141,8 @@ describe( 'ConfUserController', function() {
                 .post( '/api/user/login' )
                 .send( {
                     mail: 'test@test.fr',
-                    password: 'password'
+                    password: 'password',
+                    connect: true
                 } )
                 .expect( 200 )
                 .end( function( err, res ) {
