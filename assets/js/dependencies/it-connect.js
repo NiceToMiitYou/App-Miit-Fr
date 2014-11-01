@@ -10,14 +10,41 @@ window.ITConnect = ( function() {
 
     lastestToken = 0;
 
+    function cleanerEventsStorage() {
+
+        var removed = 0;
+
+        ITStorage.db.events.each(function(key, eventTmp) {
+            
+            // Check if expire
+            if ( eventTmp.expire &&
+                 ( new Date(eventTmp.expire) ).getTime() < ( new Date() ).getTime() ) {
+
+                removed++;
+
+                ITStorage.db.events.remove( eventTmp.id );
+            }
+        });
+
+        return removed;
+    }
+
+    // Add cleaner to Garbage
+    ITGarbage.add( cleanerEventsStorage );
+
     // handle the callback
     function eventCallback( eventTmp ) {
         // Update token
         lastestToken = eventTmp.id;
 
-        // Callback
-        if ( typeof eventsCallbacks[ eventTmp.name ] === 'function' ) {
-            eventsCallbacks[ eventTmp.name ]( eventTmp.data );
+        // Execute callback if not expire
+        if ( !eventTmp.expire ||
+             ( new Date(eventTmp.expire) ).getTime() > ( new Date() ).getTime() ) {
+            
+            // handle if Callback exist
+            if ( typeof eventsCallbacks[ eventTmp.name ] === 'function' ) {
+                eventsCallbacks[ eventTmp.name ]( eventTmp.data );
+            }
         }
     }
 
@@ -50,7 +77,7 @@ window.ITConnect = ( function() {
                     eventTmp = res.events[ eventId ];
 
                     // Store the events
-                    ITStorage.db.events.set( eventId, eventTmp );
+                    ITStorage.db.events.set( eventTmp.id, eventTmp );
 
                     // Process event
                     eventCallback( eventTmp );
@@ -68,24 +95,17 @@ window.ITConnect = ( function() {
             // Bind the event
             io.socket.on( name, function( cache ) {
 
-                // Create the event object
-                var eventTmp = {
-                    id: cache.token,
-                    name: name,
-                    data: cache.data
-                };
-
                 // Store received event
-                ITStorage.db.events.set( cache.token, eventTmp );
+                ITStorage.db.events.set( cache.id, cache );
 
                 // Check integrity
-                if ( lastestToken + 1 === eventTmp.id ) {
+                if ( lastestToken + 1 === cache.id ) {
 
-                    eventCallback( eventTmp );
+                    eventCallback( cache );
                 } else {
 
                     // Synchronise events
-                    synchronize( eventTmp.id );
+                    synchronize( cache.id );
                 }
             } );
         },

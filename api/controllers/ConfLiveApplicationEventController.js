@@ -17,7 +17,7 @@ module.exports = {
                     '>': req.param( 'token' )
                 },
                 expire: {
-                    '>=': new Date()
+                    '>': new Date()
                 }
             },
             sort: 'id ASC'
