@@ -2,6 +2,8 @@ ITEventApp.controller(
     'loginController', [ '$scope', '$timeout',
         function( $scope, $timeout ) {
 
+            var requestSend = false;
+
             function refreshConference( conference ) {
 
                 if ( conference ) {
@@ -13,42 +15,56 @@ ITEventApp.controller(
                 }
             }
 
-            function login() {
+            function login( connect ) {
 
-                ITConnect.user.login( $scope.user.mail, $scope.user.password,
-                    
-                    function( data ) {
+                if( !requestSend ) {
 
-                        if(data.done) {
+                    requestSend = true;
+
+                    ITConnect.user.login( $scope.user.mail, $scope.user.password, connect,
                         
-                            $timeout(function() {
-                                
-                                // Step one just for check
-                                if ( $scope.s == 1 ) {
+                        function( data ) {
 
-                                    $scope.user.newuser = !data.exist;
-                                    $scope.s = 2;
+                            if(data.done) {
+                            
+                                $timeout(function() {
+                                    
+                                    // Step one just for check
+                                    if ( $scope.s == 1 ) {
 
-                                    // Step two
-                                } else if ( $scope.s == 2 ) {
+                                        $scope.user.newuser = !data.exist;
+                                        $scope.s = 2;
 
-                                    // Check connected
-                                    if ( data.connected ) {
-                                        // Go to step 3
-                                        $scope.user.connected = true;
-                                        $scope.s = 3;
+                                        // Step two
+                                    } else if ( $scope.s == 2 ) {
 
-                                        ITStorage.db.options.set( 'user.isConnected', true );
-                                        ITStorage.db.options.set( 'user', data.user );
+                                        // Check connected
+                                        if ( data.connected ) {
+                                            // Go to step 3
+                                            $scope.user.connected = true;
+                                            $scope.s = 3;
 
-                                    } else {
-                                        // Wrong password then
-                                        $scope.wrpass = true;
+                                            ITStorage.db.options.set( 'user.isConnected', true );
+                                            ITStorage.db.options.set( 'user', data.user );
+
+                                        } else {
+                                            // Wrong password then
+                                            $scope.wrpass = true;
+                                        }
+                                    } else if ( $scope.s == 3 ) {
+
+                                        // If last step, connect
+                                        window.location.reload();
                                     }
-                                }
-                            } );    
-                        }
-                    } );
+
+                                    requestSend = false;
+                                } );    
+                            } else {
+
+                                requestSend = false;
+                            }
+                        } );
+                }
             }
 
             function register() {
@@ -58,7 +74,13 @@ ITEventApp.controller(
                     function( data ) {
 
                         if ( data.done ) {
-                            login();
+                            
+                            $timeout(function(){
+                            
+                                $scope.user.newuser = false;
+
+                                $scope.next();
+                            });
                         }
                     } );
             }
@@ -95,7 +117,7 @@ ITEventApp.controller(
                 ) {
                     // First Step, check email
 
-                    login();
+                    login( false );
 
                 } else if (
                     $scope.s == 2 &&
@@ -116,7 +138,7 @@ ITEventApp.controller(
                     } else {
                         // If the user exist 
 
-                        login();
+                        login( false );
                     }
 
                 } else if (
@@ -127,7 +149,7 @@ ITEventApp.controller(
                 ) {
                     // Check if user accept terms
 
-                    window.location.reload();
+                    login( true );
                 }
 
             }
@@ -143,13 +165,6 @@ ITEventApp.controller(
             }
 
             if ( document.getElementById( 'login_email' ) ) {
-                // Handle TAB from form
-                document.getElementById( 'login_email' )
-                    .onkeydown = function( e ) {
-                        if ( e.keyCode == 9 ) {
-                            return false;
-                        }
-                }
 
                 // Handle TAB from form
                 document.getElementById( 'login_email' )
@@ -163,11 +178,13 @@ ITEventApp.controller(
             // Log it out
             window.onbeforeunload = function( e ) {
                 if ( $scope.user.connected && !$scope.user.cgu ) {
+
+                    // Send request first
+                    ITConnect.user.logout();
+
                     // Disconnect the user from data initialization
                     ITStorage.db.options.set( 'user.isConnected', false );
                     ITStorage.db.options.set( 'user', null );
-
-                    ITConnect.user.logout();
                 }
             };
     } ] );

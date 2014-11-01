@@ -181,10 +181,11 @@ window.ITConnect = ( function() {
             },
 
             // Login action
-            login: function( mail, password, cb ) {
+            login: function( mail, password, connect, cb ) {
                 io.socket.post( '/api/user/login', {
                     mail: mail,
-                    password: password
+                    password: password,
+                    connect: connect
                 }, cb );
             },
 
