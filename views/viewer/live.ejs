@@ -1,4 +1,4 @@
-<div ng-controller="liveController" class="content current live-content">  
+<div ng-controller="liveController" class="content live-content">  
     <!-- BEGIN PAGE TITLE -->
 <!--     <div class="page-title">
         <h3>Présentation de ITEvents</h3>
@@ -45,10 +45,6 @@
                 <div class="active dot-item" data-number='0'>
                     <img src="/images/slides/3.png"/>
                 </div>
-
-                <div class="active dot-item" data-number='0'>
-                    <img src="/images/slides/4.png"/>
-                </div>
                 <div class="clearfix"></div>
             </div>
         </div>
@@ -71,8 +67,8 @@
              class="p-5-10"
              width="130" style="float: right; margin-right: 30px;"/></div>
         <h3>{{ presentation.name }}</h3>
-        <p>Description : {{ presentation.description }}</p>
-        <p>Auteurs : {{ presentation.authors }}</p>
+        <p class="text-center">{{ presentation.description }}</p>
+        <p><i>Par {{ presentation.authors }}</i></p>
         <div class="counter"> 
             <span>00:00</span> <i class="fa fa-clock-o"></i>
         </div>
@@ -98,5 +94,33 @@
         <a class="sn-next" data="next" href="#"><i class="fa fa-chevron-right fa-4x"></i></a>
     </div>
 
-    <button class="btn btn-primary fullscreen-btn"><i class="fa fa-angle-double-right fa-2x"></i></button>
+<!--     <button class="btn btn-primary menu-btn cn-button" id="cn-button"></button>
+    <div class="cn-wrapper" id="cn-wrapper">
+        <ul>
+            <li><a href="#"><span>About</span></a></li>
+            <li><a href="#"><span>Tutorials</span></a></li>
+            <li><a href="#"><span>Articles</span></a></li>
+            <li><a href="#"><span>Snippets</span></a></li>
+            <li><a href="#"><span>Plugins</span></a></li>
+            <li><a href="#"><span>Contact</span></a></li>
+            <li><a href="#"><span>Follow</span></a></li>
+         </ul>
+    </div>
+    <div id="cn-overlay" class="cn-overlay"></div> -->
+
+    <div class="menu-component">
+        <button class="btn btn-primary menu-btn cn-button" id="cn-button"></button>
+        <div class="cn-wrapper" id="cn-wrapper">
+            <ul>
+                <li><a href="#"><span>Live</span></a></li>
+                <li><a href="#"><span>Mur</span></a></li>
+                <li><a href="#"><span>Notes</span></a></li>
+                <li><a href="#"><span>Chat</span></a></li>
+                <li><a href="#"><span>Ressource</span></a></li>
+                <li><a href="#"><span>Questionnaires</span></a></li>
+                <li><a href="#"><span>User</span></a></li>
+             </ul>
+        </div>
+        <!-- End of Nav Structure -->
+    </div>
 </div>

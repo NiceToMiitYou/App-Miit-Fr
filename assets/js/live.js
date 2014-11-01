@@ -144,3 +144,32 @@ function scaleSlider() {
     $("#slides").attr("style",style);
 
 }
+
+//CIRCULAR MENU
+
+(function(){
+ 
+  var button = document.getElementById('cn-button'),
+    wrapper = document.getElementById('cn-wrapper');
+ 
+    //open and close menu when the button is clicked
+  var open = false;
+  button.addEventListener('click', handler, false);
+  button.addEventListener('focus', handler, false);
+ 
+  function handler(){
+    if(!open){
+        $(wrapper).addClass('opened-nav');
+        $(button).addClass('open');
+    }
+    else{
+        $(wrapper).removeClass('opened-nav');
+        $(button).removeClass('open');
+    }
+    open = !open;
+  }
+  function closeWrapper(){
+    $(wrapper).removeClass('opened-nav');
+  }
+ 
+})();
