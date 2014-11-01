@@ -80,7 +80,8 @@ ITEventApp.controller(
             };
 
             $scope.changeChatroom = function( chatroom ) {
-                if( $scope.isAllowed('CHAT_MULTIPLE_CHATROOMS') ) {
+                if( $scope.isAllowed('CHAT_INTERACTIONS') &&
+                    $scope.isAllowed('CHAT_MULTIPLE_CHATROOMS') ) {
                  
                     changeChatroom( chatroom );
                 }

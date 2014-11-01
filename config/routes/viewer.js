@@ -12,12 +12,14 @@ var routes = {};
 
 routes[ 'GET ' + apiPublicPrefix + '/chatroom/list' ] = {
     controller: 'ConfChatController',
-    action: 'list'
+    action: 'list',
+    restriction: 'CHAT_INTERACTIONS'
 };
 
 routes[ 'POST ' + apiPublicPrefix + '/chatroom/send' ] = {
     controller: 'ConfChatController',
-    action: 'send'
+    action: 'send',
+    restriction: 'CHAT_INTERACTIONS'
 };
 
 /******************
@@ -35,17 +37,20 @@ routes[ 'POST ' + apiPublicPrefix + '/synchronize' ] = {
 
 routes[ 'POST ' + apiPublicPrefix + '/question/presentation/create' ] = {
     controller: 'ConfQuestionPresentationController',
-    action: 'create'
+    action: 'create',
+    restriction: 'WALL_INTERACTIONS'
 };
 
 routes[ 'GET ' + apiPublicPrefix + '/question/presentation/tags' ] = {
     controller: 'ConfQuestionPresentationController',
-    action: 'tags'
+    action: 'tags',
+    restriction: 'WALL_INTERACTIONS'
 };
 
 routes[ 'POST ' + apiPublicPrefix + '/question/presentation/like' ] = {
     controller: 'ConfQuestionPresentationController',
-    action: 'like'
+    action: 'like',
+    restriction: 'WALL_INTERACTIONS'
 };
 
 /******************
@@ -68,17 +73,20 @@ routes[ 'POST ' + apiPublicPrefix + '/question/slide/answer' ] = {
 
 routes[ 'GET ' + apiPublicPrefix + '/question/quizz/list' ] = {
     controller: 'ConfQuestionQuizzController',
-    action: 'list'
+    action: 'list',
+    restriction: 'QUIZZ_INTERACTIONS'
 };
 
 routes[ 'POST ' + apiPublicPrefix + '/question/quizz/questions' ] = {
     controller: 'ConfQuestionQuizzController',
-    action: 'questions'
+    action: 'questions',
+    restriction: 'QUIZZ_INTERACTIONS'
 };
 
 routes[ 'POST ' + apiPublicPrefix + '/question/quizz/answer' ] = {
     controller: 'ConfQuestionQuizzController',
-    action: 'answer'
+    action: 'answer',
+    restriction: 'QUIZZ_INTERACTIONS'
 };
 
 /******************
@@ -87,27 +95,32 @@ routes[ 'POST ' + apiPublicPrefix + '/question/quizz/answer' ] = {
 
 routes[ 'POST ' + apiPublicPrefix + '/note/create' ] = {
     controller: 'ConfNoteController',
-    action: 'create'
+    action: 'create',
+    restrictions: [ 'NOTE_INTERACTIONS', 'NOTE_MULTIPLE' ]
 };
 
 routes[ 'GET ' + apiPublicPrefix + '/note/list' ] = {
     controller: 'ConfNoteController',
-    action: 'list'
+    action: 'list',
+    restriction: 'NOTE_INTERACTIONS'
 };
 
 routes[ 'POST ' + apiPublicPrefix + '/note/update' ] = {
     controller: 'ConfNoteController',
-    action: 'update'
+    action: 'update',
+    restriction: 'NOTE_INTERACTIONS'
 };
 
 routes[ 'POST ' + apiPublicPrefix + '/note/delete' ] = {
     controller: 'ConfNoteController',
-    action: 'delete'
+    action: 'delete',
+    restrictions: [ 'NOTE_INTERACTIONS', 'NOTE_MULTIPLE' ]
 };
 
 routes[ 'POST ' + apiPublicPrefix + '/note/send' ] = {
     controller: 'ConfNoteController',
-    action: 'send'
+    action: 'send',
+    restrictions: [ 'NOTE_INTERACTIONS', 'NOTE_SEND' ]
 };
 
 /******************

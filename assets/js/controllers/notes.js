@@ -192,22 +192,23 @@ ITEventApp.controller(
                                 });
                             }
                         } );
-                    } )
-
+                    } );
                 } );
             }
 
             ITStorage.db.options.bind( 'data.isLoaded', true, loadNotes );
 
             $scope.addNote = function() {
-                if( $scope.isAllowed('NOTE_MULTIPLE') ) {
+                if( $scope.isAllowed('NOTE_INTERACTIONS') && 
+                    $scope.isAllowed('NOTE_MULTIPLE') ) {
 
                     addNote();
                 }
             };
 
             $scope.changeNote =  function( note ) {
-                if( $scope.isAllowed('NOTE_MULTIPLE') ) {
+                if( $scope.isAllowed('NOTE_INTERACTIONS') && 
+                    $scope.isAllowed('NOTE_MULTIPLE') ) {
 
                     changeNote( note );
                 }
@@ -221,7 +222,8 @@ ITEventApp.controller(
             };
 
             $scope.send = function() {
-                if( $scope.isAllowed('NOTE_SEND') ) {
+                if( $scope.isAllowed('NOTE_INTERACTIONS') && 
+                    $scope.isAllowed('NOTE_SEND') ) {
 
                     send();
                 }

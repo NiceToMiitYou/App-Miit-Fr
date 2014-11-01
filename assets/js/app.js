@@ -48,18 +48,19 @@ function initData() {
                 function( callback ) {
                     // Load presentations
                     ITConnect.config.presentation.list( function( data ) {
-                        if ( !data.done ) return;
+                        if ( data.done ) {
 
-                        // Add each chatroom in the area
-                        for ( index in data.presentations ) {
+                            // Add each chatroom in the area
+                            _.forEach(data.presentations, function( presentation ) {
 
-                            // Set current to 0 by default
-                            data.presentations[index].current = 0;
+                                // Set current to 0 by default
+                                presentation.current = 0;
 
-                            // Set default thubnail
-                            data.presentations[index].thumbnail = null;
+                                // Set default thubnail
+                                presentation.thumbnail = null;
 
-                            ITStorage.db.presentations.set( data.presentations[index].id, data.presentations[index] );
+                                ITStorage.db.presentations.set( presentation.id, presentation );
+                            });
                         }
 
                         callback( null );
@@ -69,11 +70,12 @@ function initData() {
                 function( callback ) {
                     // Get actual presentation
                     ITConnect.config.presentation.actual( function( data ) {
-                        if ( !data.done ) return;
+                        if ( data.done ) {
 
-                        ITStorage.db.options.set('presentation.actual', 
-                            ITStorage.db.presentations.get( data.presentation )
-                        );
+                            ITStorage.db.options.set('presentation.actual', 
+                                ITStorage.db.presentations.get( data.presentation )
+                            );
+                        }
 
                         callback( null );
                     } );
@@ -82,12 +84,13 @@ function initData() {
                 function( callback ) {
                     // Load chatrooms
                     ITConnect.chatroom.list( function( data ) {
-                        if ( !data.done ) return;
+                        if ( data.done ) {
 
-                        // Add each chatroom in the area
-                        for ( index in data.chatrooms ) {
+                            // Add each chatroom in the area
+                            _.forEach(data.chatrooms, function( chatroom ) {
 
-                            ITStorage.db.chatrooms.set( data.chatrooms[index].id, data.chatrooms[index] );
+                                ITStorage.db.chatrooms.set( chatroom.id, chatroom );
+                            });
                         }
 
                         callback( null );
@@ -97,12 +100,13 @@ function initData() {
                 function( callback ) {
                     // Load notes
                     ITConnect.note.list( function( data ) {
-                        if ( !data.done ) return;
+                        if ( data.done ) {
 
-                        // Add each note in the area
-                        for ( index in data.notes ) {
+                            // Add each note in the area
+                            for ( index in data.notes ) {
 
-                            ITStorage.db.notes.set( data.notes[index].id, data.notes[index] );
+                                ITStorage.db.notes.set( data.notes[index].id, data.notes[index] );
+                            }
                         }
 
                         callback( null );
@@ -112,12 +116,13 @@ function initData() {
                 function( callback ) {
                     // Load resources
                     ITConnect.resources.list( function( data ) {
-                        if ( !data.done ) return;
+                        if ( data.done ) {
 
-                        // Add each resource in the area
-                        for ( index in data.resources ) {
+                            // Add each resource in the area
+                            for ( index in data.resources ) {
 
-                            ITStorage.db.resources.set( data.resources[index].id, data.resources[index] );
+                                ITStorage.db.resources.set( data.resources[index].id, data.resources[index] );
+                            }
                         }
 
                         callback( null );
@@ -127,12 +132,13 @@ function initData() {
                 function( callback ) {
                     // Load tags
                     ITConnect.question.presentation.tags( function( data ) {
-                        if ( !data.done ) return;
+                        if ( data.done ) {
 
-                        // Add each tag in the area
-                        for ( index in data.tags ) {
+                            // Add each tag in the area
+                            for ( index in data.tags ) {
 
-                            ITStorage.db.tags.set( data.tags[index].id, data.tags[index] );
+                                ITStorage.db.tags.set( data.tags[index].id, data.tags[index] );
+                            }
                         }
 
                         callback( null );
@@ -142,74 +148,76 @@ function initData() {
                 function( callback ) {
                     // Load quizzes
                     ITConnect.question.quizz.list( function( data ) {
-                        if ( !data.done ) return;
 
                         var max = 0;
                         var end = 0;
 
-                        var user = ITStorage.db.options.get( 'user' );
+                        if ( data.done ) {
 
-                        // Add each resource in the area
-                        for ( index in data.quizzes ) {
+                            var user = ITStorage.db.options.get( 'user' );
 
-                            max++;
+                            // Add each resource in the area
+                            for ( index in data.quizzes ) {
 
-                            ITStorage.db.quizzes.set( data.quizzes[index].id, data.quizzes[index] );
-                            
-                            // Get all questions of the quizz
-                            ITConnect.question.quizz.questions(
-                                data.quizzes[index].id,
-                                function( dataQuestion ) {
-                                    if ( dataQuestion.done && dataQuestion.questions.length > 0 ) {
+                                max++;
 
-                                        // Get quizz
-                                        var quizz = ITStorage.db.quizzes.get( dataQuestion.questions[0].quizz );
+                                ITStorage.db.quizzes.set( data.quizzes[index].id, data.quizzes[index] );
+                                
+                                // Get all questions of the quizz
+                                ITConnect.question.quizz.questions(
+                                    data.quizzes[index].id,
+                                    function( dataQuestion ) {
+                                        if ( dataQuestion.done && dataQuestion.questions.length > 0 ) {
 
-                                        // Set not answered
-                                        quizz.answered = false;
+                                            // Get quizz
+                                            var quizz = ITStorage.db.quizzes.get( dataQuestion.questions[0].quizz );
 
-                                        // Foreach questions
-                                        for( index in dataQuestion.questions ) {
+                                            // Set not answered
+                                            quizz.answered = false;
 
-                                            // Foreach answers
-                                            for( indexAnswer in dataQuestion.questions[index].answers ) {
+                                            // Foreach questions
+                                            for( index in dataQuestion.questions ) {
 
-                                                // Default not selected
-                                                var selected = false;
+                                                // Foreach answers
+                                                for( indexAnswer in dataQuestion.questions[index].answers ) {
 
-                                                // Check if answered
-                                                for ( indexUserAnswer in user.quizzAnswers ) {
+                                                    // Default not selected
+                                                    var selected = false;
 
-                                                    // Check if same id
-                                                    if ( user.quizzAnswers[indexUserAnswer].id === dataQuestion.questions[index].answers[indexAnswer].id) {
-                                                        
-                                                        // Set answered
-                                                        quizz.answered = true;
+                                                    // Check if answered
+                                                    for ( indexUserAnswer in user.quizzAnswers ) {
 
-                                                        // Set selected
-                                                        selected = true;
+                                                        // Check if same id
+                                                        if ( user.quizzAnswers[indexUserAnswer].id === dataQuestion.questions[index].answers[indexAnswer].id) {
+                                                            
+                                                            // Set answered
+                                                            quizz.answered = true;
 
-                                                        // Stop the loop
-                                                        break;
+                                                            // Set selected
+                                                            selected = true;
+
+                                                            // Stop the loop
+                                                            break;
+                                                        }
                                                     }
-                                                }
 
-                                                // Set selected if she is
-                                                dataQuestion.questions[index].answers[indexAnswer].selected = selected;
+                                                    // Set selected if she is
+                                                    dataQuestion.questions[index].answers[indexAnswer].selected = selected;
+                                                }
                                             }
+
+                                            // Add them to the current object
+                                            quizz.questions = dataQuestion.questions;
+
+                                            // Store the quizz
+                                            ITStorage.db.quizzes.set( quizz.id, quizz );
                                         }
 
-                                        // Add them to the current object
-                                        quizz.questions = dataQuestion.questions;
+                                        end++;
 
-                                        // Store the quizz
-                                        ITStorage.db.quizzes.set( quizz.id, quizz );
-                                    }
-
-                                    end++;
-
-                                    if ( max === end ) callback( null );
-                                } );
+                                        if ( max === end ) callback( null );
+                                    } );
+                            }
                         }
 
                         if( max === 0 ) callback( null ); 
