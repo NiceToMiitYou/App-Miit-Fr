@@ -25,7 +25,7 @@ ITEventApp.controller(
                 }
             }
 
-            function isCurrentSlide( index ) {$scope.presentation.current = 2;
+            function isCurrentSlide( index ) {
                 return ( index === $scope.current );
             }
 
