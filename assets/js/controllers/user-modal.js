@@ -7,7 +7,7 @@ ITEventApp.controller(
             $scope.useUsername = false;
 
             $scope.accountType = null;
-            console.log($scope);
+            
             $scope.firstInit = ! ( $scope.user.firstname || $scope.user.lastname || $scope.user.username);
 
             function saveUser() {
