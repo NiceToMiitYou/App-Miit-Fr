@@ -7,22 +7,20 @@ ITEventApp.controller(
             $scope.isAnswered = false;
 
             function loadQuizz( quizz ) {
+
                 $timeout(function() {
 
                     $scope.current = quizz;
-
                 });
             }
 
             function checkRight( question, answer ) {
 
-                for ( indexAnswer in question.answers ) {
-                    
-                    if ( question.answers[indexAnswer].id !== answer.id ) {
+                _(question.answers)
+                    .forEach( function( questionAnswer ) {
 
-                        question.answers[indexAnswer].selected = false;
-                    } 
-                }
+                    questionAnswer.selected = false;
+                } );
                 
                 answer.selected = true;
             }
@@ -33,42 +31,29 @@ ITEventApp.controller(
 
                     $scope.current.answered = true;
 
-                    for( idQuestion in selected ) {
+                    _.forEach(selected, function( listIdAnswer, idQuestion ) {
 
                         ITConnect.question.quizz.answer(
                             idQuestion,
-                            selected[idQuestion],
+                            listIdAnswer,
                             function( data ) { } );
 
-                        for ( indexAnswer in selected[idQuestion] ) {
+                        _.forEach(listIdAnswer, function( idAnswer ) {
 
                             var answer = {};
 
-                            // find the question
-                            for ( indexQuestion in $scope.current.questions ) {
+                            // Find the answer by Id
+                            _.chain( $scope.current.questions )
+                                .flatten( 'answers' )
+                                .where( { 'id' : idAnswer } )
+                                .forEach( function( finalAnswer ) {
 
-                                // if found
-                                if ( $scope.current.questions[indexQuestion].id == idQuestion ) {
-
-                                    // find the answer
-                                    for ( indexAnswerQuestion in $scope.current.questions[indexQuestion].answers ) {
-
-                                        // if found
-                                        if ( $scope.current.questions[indexQuestion].answers[indexAnswerQuestion].id == selected[idQuestion][indexAnswer] ) {
-
-                                            answer = $scope.current.questions[indexQuestion].answers[indexAnswerQuestion];
-
-                                            break;
-                                        }
-                                    }
-
-                                    break;
-                                }
-                            }
-
+                                    answer = finalAnswer;
+                                } );
+                            
                             $scope.user.quizzAnswers.push( answer );
-                        }
-                    }
+                        });
+                    });
 
                     ITStorage.db.options.set( 'user', $scope.user );
 
@@ -98,42 +83,50 @@ ITEventApp.controller(
                 // Is quizz answered
                 $scope.isAnswered = true;
 
-                // For each question
-                for( indexQuestion in quizz.questions) {
+                // Check all answers
+                _.forEach( quizz.questions, function( question ) {
 
                     // She is not answered
                     var isQuestionAnswered = false;
 
                     // Define an array of id
-                    selected[quizz.questions[indexQuestion].id] = [];
+                    selected[question.id] = [];
 
-                    // For each answer
-                    for ( indexAnswer in quizz.questions[indexQuestion].answers ) {
-
-                        // If selected
-                        if(quizz.questions[indexQuestion].answers[indexAnswer].selected) {
+                    // Find all selected
+                    _.chain( question.answers )
+                        .where( { 'selected' : true } )
+                        .forEach( function( answer ) {
 
                             // Question answered
                             isQuestionAnswered = true;
 
                             // Add to selected
-                            selected[quizz.questions[indexQuestion].id].push(
-                                quizz.questions[indexQuestion].answers[indexAnswer].id
-                            );
-                        }
-                    }
+                            selected[question.id].push( answer.id );
+                        } );
 
                     // If one question not answered, not answered quizz
-                    if ( !isQuestionAnswered ) {
+                    if ( !isQuestionAnswered && question.required ) {
+
                         $scope.isAnswered = false;
                     }
-                }
+
+                    // Remove empty data
+                    if( _.isEmpty(selected[question.id]) ) {
+
+                        delete selected[question.id];
+                    }
+                } );
 
             }, true);
 
             $scope.checkRight = checkRight;
 
-            $scope.saveQuizz = saveQuizz;
+            $scope.saveQuizz = function() {
+                if( $scope.isAllowed('QUIZZ_INTERACTIONS') ) {
+
+                    saveQuizz();
+                }
+            };
 
             ITStorage.db.options.bind('quizz.current', loadQuizz);
         } ] );

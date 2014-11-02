@@ -103,12 +103,12 @@ window.ITStorage = ( function() {
                         // Remove for this area
                         remove: function( key ) {
                             if ( canPersist && persist ) {
-
-                                // get from sessionStorage
-                                return sessionStorage.removeItem( prefix + key );
+                                
+                                // remove from sessionStorage
+                                sessionStorage.removeItem( prefix + key );
                             } else {
 
-                                // get from memory
+                                // remove from memory
                                 delete datas[ key ];
                             }
                         },

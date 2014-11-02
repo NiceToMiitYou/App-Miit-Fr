@@ -72,9 +72,20 @@ ITEventApp.controller(
                 $scope.current = chatroom;
             }
 
-            $scope.post = post;
+            $scope.post = function() {
+                if( $scope.isAllowed('CHAT_INTERACTIONS') ) {
 
-            $scope.changeChatroom = changeChatroom;
+                    post();
+                }
+            };
+
+            $scope.changeChatroom = function( chatroom ) {
+                if( $scope.isAllowed('CHAT_INTERACTIONS') &&
+                    $scope.isAllowed('CHAT_MULTIPLE_CHATROOMS') ) {
+                 
+                    changeChatroom( chatroom );
+                }
+            }
 
             ITStorage.db.options.bind( 'data.isLoaded', true, loadChatrooms );
 
@@ -95,27 +106,11 @@ ITEventApp.controller(
                         }
 
                         $scope.chatrooms[chatroomId].messages[messageId] = data;
-                        $scope.chatrooms[chatroomId].messages[messageId].user = ITStorage.db.users.get(userId);
                         
-                        // If user not registered request him
-                        if( !$scope.chatrooms[chatroomId].messages[messageId].user ) {
-
-                            ITConnect.user.get(userId, function( data ){
-                                
-                                $timeout(function() {
-
-                                    if( data.done ) {
-                                        
-                                        ITStorage.db.users.set(data.user.id, data.user);
-
-                                        if( $scope.chatrooms[chatroomId].messages[messageId] ) {
-
-                                            $scope.chatrooms[chatroomId].messages[messageId].user = data.user;
-                                        }
-                                    }
-                                });
-                            });
-                        }
+                        $scope.askForUserIfNotExist(
+                            $scope.chatrooms[chatroomId].messages[messageId],
+                            'user', userId
+                        );
 
                         var i = 0;
 

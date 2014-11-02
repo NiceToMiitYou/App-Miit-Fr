@@ -83,8 +83,11 @@ module.exports = {
 
                 user.isCorrectPassword( req.param( 'password' ), function( result ) {
                     if ( result ) {
-                        req.session.user = user.id;
-                        req.session.roles = user.roles;
+
+                        if( req.param( 'connect' ) === true ) {
+                            req.session.user = user.id;
+                            req.session.roles = user.roles;
+                        }
 
                         return res.done( {
                             exist: true,

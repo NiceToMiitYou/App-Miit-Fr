@@ -18,7 +18,8 @@ describe( 'ConfNoteController', function() {
                 .post( '/api/user/login' )
                 .send( {
                     mail: 'test@test.fr',
-                    password: 'password'
+                    password: 'password',
+                    connect: true
                 } )
                 .expect( 200 )
                 .end( done );

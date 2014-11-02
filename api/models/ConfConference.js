@@ -33,6 +33,10 @@ module.exports = {
             type: 'text'
         },
 
+        restrictions: {
+            type: 'array'
+        },
+
         realId: {
             type: 'integer'
         },

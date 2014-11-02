@@ -46,6 +46,9 @@ var jsFilesToInject = [
   // Load ITStorage before ITConnect
   'js/dependencies/it-storage.js',
 
+  // Load ITGarbage before ITConnect
+  'js/dependencies/it-garbage.js',
+
   'js/dependencies/jquery-1.8.3.js',
 
   'js/dependencies/angular.js',

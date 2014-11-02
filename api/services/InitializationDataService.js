@@ -197,14 +197,17 @@ function createQuizzQuestions( cb ) {
         .create([ {
             question: 'Est-ce que ce formulaire vous convient?',
             quizz: 1,
+            required: true,
             type: 1
         }, {
             question: 'Est-ce que vous voulez répondre à plusieurs réponses?',
             quizz: 1,
+            required: true,
             type: 2
         }, {
             question: 'Est-ce que ce vous aimez cette conférence?',
             quizz: 2,
+            required: true,
             type: 1
         }, {
             question: 'Qu\'est-ce qui pourrait vous aidez?',
@@ -281,9 +284,8 @@ module.exports = {
 
     initialize: function( cb ) {
 
-        if( sails.config.environment === 'development') {
+        if( sails.config.environment === 'development' ) {
             
-
             ConfConference.findOne( 1 ).exec(function(err, conference) {
                 if ( err || conference ) return cb();
 

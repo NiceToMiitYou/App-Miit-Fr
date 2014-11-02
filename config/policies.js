@@ -26,10 +26,9 @@ module.exports.policies = {
      *                                                                          *
      ***************************************************************************/
 
-    '*': 'loggedAuth',
+    '*': [ 'loggedAuth', 'restrictionAuth', 'floodAuth' ],
 
     ConfUserController: {
-        '*': 'loggedAuth',
 
         'register': 'anonymAuth',
         'login': 'anonymAuth'

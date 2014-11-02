@@ -1,50 +1,72 @@
-<div ng-controller="notesController" class="content notes-content" style="opacity: 0;">  
-    
-    <div class="page-title">
+<div ng-controller="notesController" class="content notes-content" ng-class="{active : activetool === 'note'}">  
+
+<!--     <div class="page-title">
 
         <h3><i class="fa fa-pencil"></i> Notes</h3>
 
         <small ng-show="saving">sauvegarde...</small>
+
+        <a href="#" class="pull-right tools-menu">
+            <div class="iconset top-menu-toggle-dark"></div>
+        </a>
+    </div> -->
+
+    <div class="header navbar navbar-inverse ">
+
+        <div class="navbar-inner">
+                <div class="header-quick-nav">
+                    <div class="pull-left">
+                        <h3><i class="fa fa-pencil"></i> Notes</h3>
+
+                        <small ng-show="saving">sauvegarde...</small>
+                    </div>
+                    <div class="pull-right">
+                        <ul class="nav quick-section">
+                            <li class="quicklinks"> <a href="#" class="">
+                                <div class="iconset top-menu-toggle-dark"></div>
+                            </a> </li>
+                        </ul>
+                    </div>
+
     </div>
 
-    <textarea ng-model="current.content"
-              ng-change="hasChange = true"
-              ng-blur="save()" 
-              id="text-editor"
-              placeholder="Tapez vos notes ici"
-              class="form-control"
-              rows="10"></textarea>
 
-    <div class="sider right">
-        <!-- BEGIN FAVORITES WIDGET -->
-        <ul class="notes-list">
+</div>
 
-            <li ng-repeat="note in notes">
-                <a ng-click="changeNote(note)"
-                   href="#">
-                    <i class="fa fa-paperclip"></i>
-                    <span>{{ note.title }}</span>
-                </a>
-            </li>
+</div>
 
-            <li ng-click="addNote()" class="add-note">
-                <a href="#">
-                    <!-- <i class="fa fa-plus"></i> -->
-                    <img src="/images/plussign.png">
-                </a>
-            </li>
-        </ul>
+<!-- BEGIN FAVORITES WIDGET 
+<ul class="notes-list">
 
-        <button ng-click="send()" class="btn btn-primary send-notes">
-            <i class="fa fa-envelope"></i> Envoyer
-        </button>
-    </div>
+    <li ng-repeat="note in notes">
+        <a ng-click="changeNote(note)"
+        href="#">
+        <i class="fa fa-paperclip"></i>
+        <span>{{ note.title }}</span>
+    </a>
+</li>
 
-    <div class="note-title">
-        <span>Titre : </span><input ng-model="current.title"
-                                    ng-change="hasChange = true"
-                                    ng-blur="save()"
-                                    type="text">
-    </div>
+<li ng-click="addNote()" class="add-note">
+    <a href="#">
+        <img src="/images/plussign.png">
+    </a>
+</li>
+</ul>-->
+
+<textarea ng-model="current.content"
+ng-change="hasChange = true"
+ng-blur="save()" 
+id="text-editor"
+placeholder="Tapez vos notes ici"
+class="form-control"
+rows="10"></textarea>
+
+
+<div class="note-title">
+    <span>Titre : </span><input ng-model="current.title"
+    ng-change="hasChange = true"
+    ng-blur="save()"
+    type="text">
+</div>
 
 </div>

@@ -966,7 +966,7 @@ body.bottom-header .page-content .content {
   line-height: 16px;
 }
 .scrollup {
-  background: url('../imgages/pullup.png') no-repeat;
+  background: url('../images/pullup.png') no-repeat;
   background-position: 0px 0px;
   width: 27px;
   height: 27px;
@@ -1480,7 +1480,7 @@ body.bottom-header .page-content .content {
   text-decoration: none;
 }
 .status-icon {
-  background: url('../img/icon/status.png') no-repeat;
+  background: url('/image/icon/status.png') no-repeat;
   position: relative;
   display: inline-block;
   margin-right: 10px;
@@ -1916,7 +1916,7 @@ span.iconset {
   display: block;
 }
 .iconset {
-  background: url("../img/icon/top-tray.png") no-repeat;
+  background: url("/images/icon/top-tray.png") no-repeat;
   position: relative;
   top: 1px;
 }

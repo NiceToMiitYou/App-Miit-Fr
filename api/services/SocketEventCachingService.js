@@ -33,10 +33,7 @@ module.exports = {
             .exec( function( err, model ) {
                 if ( err ) return sails.log.debug( err );
 
-                sails.sockets.broadcast( 'AllConnectedToRT', model.name, {
-                    token: model.id,
-                    data: model.data
-                } );
+                sails.sockets.broadcast( 'AllConnectedToRT', model.name, model );
             } );
     }
 

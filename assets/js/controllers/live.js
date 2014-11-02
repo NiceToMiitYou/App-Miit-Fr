@@ -3,15 +3,16 @@ ITEventApp.controller(
         function( $scope, $timeout ) {
 
             $scope.current = 0;
+            $scope.direction = 'left';
+
+            $scope.presentation.current = 0;
 
             function next() {
 
                 if( $scope.current < $scope.presentation.current) {
                     
+                    $scope.direction = 'left';
                     $scope.current++;
-
-                    jQuery( '.flexslider' )
-                        .flexslider( 'next' );
                 }
             }
 
@@ -19,11 +20,13 @@ ITEventApp.controller(
 
                 if( 0 < $scope.current) {
                     
+                    $scope.direction = 'right';
                     $scope.current--;
-
-                    jQuery( '.flexslider' )
-                        .flexslider( 'prev' );
                 }
+            }
+
+            function isCurrentSlide( index ) {$scope.presentation.current = 2;
+                return ( index === $scope.current );
             }
 
             function liveNext( data ) {
@@ -90,9 +93,46 @@ ITEventApp.controller(
                 });
             }
 
-            $scope.next = next;
+            $scope.isCurrentSlide = isCurrentSlide;
 
-            $scope.previous = previous;
+            $scope.next = function() {
+                if( $scope.isAllowed('LIVE_SLIDER_INTERACTIONS') ) {
+
+                    next();
+                }
+            };
+
+            $scope.previous = function() {
+                if( $scope.isAllowed('LIVE_SLIDER_INTERACTIONS') ) {
+                    
+                    previous();
+                }
+            };
+
+            var pressed = false;
+
+            function onKeyPress(e) {
+
+                var keyCode = e.keyCode;
+
+                if( !pressed && 
+                    ( keyCode == 37 || keyCode == 39 )
+                ) { 
+
+                    pressed = true;
+
+                    $timeout(function() {
+                        if( keyCode == 37 ) $scope.previous();
+                        else if( keyCode == 39 ) $scope.next();
+
+                        setTimeout(function() { // Only one key by 500ms to avoid animation problem
+                            pressed = false;
+                        }, 500);
+                    });
+                }
+            };
+
+            document.addEventListener('keydown', onKeyPress, false);
 
             ITConnect.bind('live-presentation-next', liveNext);
 
