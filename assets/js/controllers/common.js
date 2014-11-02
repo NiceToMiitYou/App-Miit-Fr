@@ -7,6 +7,8 @@ ITEventApp.controller(
                 logout();
             }
 
+            $scope.shared = {};
+
             $scope.conference = ITStorage.db.options.get('conference');
 
             $scope.presentation = ITStorage.db.options.get('presentation.actual');
