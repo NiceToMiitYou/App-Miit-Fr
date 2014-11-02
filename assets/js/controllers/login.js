@@ -24,7 +24,6 @@ ITEventApp.controller(
                     ITConnect.user.login( $scope.user.mail, $scope.user.password, connect,
                         
                         function( data ) {
-
                             if(data.done) {
                             
                                 $timeout(function() {
