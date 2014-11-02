@@ -7,6 +7,8 @@ ITEventApp.controller(
 
             $scope.presentation.current = 0;
 
+            refreshShared();
+
             function next() {
 
                 if( $scope.current < $scope.presentation.current) {
@@ -29,6 +31,15 @@ ITEventApp.controller(
                 return ( index === $scope.current );
             }
 
+            function refreshShared() {
+
+                $scope.shared.isLastSlide = 
+                    ( $scope.presentation.current === $scope.presentation.slides.length - 1 );
+
+                $scope.shared.isFirstSlide = 
+                    ( $scope.presentation.current === 0 );
+            }
+
             function liveNext( data ) {
 
                 $timeout(function() {
@@ -45,6 +56,8 @@ ITEventApp.controller(
                             next();
                         }
                     }
+
+                    refreshShared();
                 });
             }
             function livePrevious( data ) {
@@ -63,6 +76,8 @@ ITEventApp.controller(
                             previous();
                         }
                     }
+
+                    refreshShared();
                 });
             }
 
@@ -84,7 +99,7 @@ ITEventApp.controller(
             function slideToThumbnail() {
                 
                 html2canvas(
-                    jQuery(".slide-content").get( $scope.presentation.current ), {
+                    jQuery(".slide").get( $scope.presentation.current ), {
                     onrendered: function(canvas) {
                         $timeout(function(){
                             $scope.presentation.thumbnail = canvas.toDataURL();
