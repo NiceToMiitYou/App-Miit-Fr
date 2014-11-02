@@ -4,12 +4,18 @@ ITEventApp.controller(
 
             function next() {
 
-                ITConnect.live.next($scope.presentation.id, function(data) {});
+                if ( ! $scope.shared.isLastSlide ) {
+                    
+                    ITConnect.live.next($scope.presentation.id, function(data) {});
+                }
             }
 
             function previous() {
                 
-                ITConnect.live.previous($scope.presentation.id, function(data) {});
+                if ( ! $scope.shared.isFirstSlide ) {
+
+                    ITConnect.live.previous($scope.presentation.id, function(data) {});
+                }
             }
 
             $scope.next = next;

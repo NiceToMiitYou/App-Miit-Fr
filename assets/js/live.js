@@ -5,11 +5,14 @@ $(window).resize(function() {
 })
 
 function scaleSlider() {
+
     var slideW = $("#slides").width();
     var slideH = $("#slides").height()
 
+    fullscreen = $("#slides").hasClass('fullscreen-slide');
+
     if(fullscreen) {
-        var maxH = ($(".page-content").height() - 50) / slideH;
+        var maxH = $(".page-content").height() / slideH;
         var maxW = $("body").width() / slideW ;
 
     } else {
