@@ -300,6 +300,20 @@ a {
 	line-height: 30px;
 }
 
+#live-content {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.black-bg {
+	background-color: #000;
+}
+
+.black-bg .page-content {
+	background-color: #000;
+}
+
 #slides {
 	margin: 0 auto;
     width: 2048px;
