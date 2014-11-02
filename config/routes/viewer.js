@@ -19,7 +19,11 @@ routes[ 'GET ' + apiPublicPrefix + '/chatroom/list' ] = {
 routes[ 'POST ' + apiPublicPrefix + '/chatroom/send' ] = {
     controller: 'ConfChatController',
     action: 'send',
-    restriction: 'CHAT_INTERACTIONS'
+    restriction: 'CHAT_INTERACTIONS',
+    flood: {
+        id: 'ChatSendAction',
+        time: 250
+    }
 };
 
 /******************
@@ -38,7 +42,11 @@ routes[ 'POST ' + apiPublicPrefix + '/synchronize' ] = {
 routes[ 'POST ' + apiPublicPrefix + '/question/presentation/create' ] = {
     controller: 'ConfQuestionPresentationController',
     action: 'create',
-    restriction: 'WALL_INTERACTIONS'
+    restriction: 'WALL_INTERACTIONS',
+    flood: {
+        id: 'QuestionSendAction',
+        time: 1000
+    }
 };
 
 routes[ 'GET ' + apiPublicPrefix + '/question/presentation/tags' ] = {
@@ -50,7 +58,11 @@ routes[ 'GET ' + apiPublicPrefix + '/question/presentation/tags' ] = {
 routes[ 'POST ' + apiPublicPrefix + '/question/presentation/like' ] = {
     controller: 'ConfQuestionPresentationController',
     action: 'like',
-    restriction: 'WALL_INTERACTIONS'
+    restriction: 'WALL_INTERACTIONS',
+    flood: {
+        id: 'WallLikeAction',
+        time: 250
+    }
 };
 
 /******************

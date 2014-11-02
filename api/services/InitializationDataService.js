@@ -284,7 +284,7 @@ module.exports = {
 
     initialize: function( cb ) {
 
-        if( sails.config.environment === 'development') {
+        if( sails.config.environment === 'development' ) {
             
             ConfConference.findOne( 1 ).exec(function(err, conference) {
                 if ( err || conference ) return cb();
