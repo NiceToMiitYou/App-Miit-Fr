@@ -84,33 +84,6 @@ ITEventApp.controller(
                 });
             }
 
-            var idReloadThumbnail;
-
-            function reloadThumbnail() {
-
-                clearTimeout(idReloadThumbnail);
-                
-                idReloadThumbnail = setTimeout(function() {
-
-                    slideToThumbnail()
-
-                }, 600);
-            }
-
-            window.onload = reloadThumbnail;
-
-            function slideToThumbnail() {
-                
-                html2canvas(
-                    jQuery(".slide").get( $scope.presentation.current ), {
-                    onrendered: function(canvas) {
-                        $timeout(function(){
-                            $scope.presentation.thumbnail = canvas.toDataURL();
-                        });
-                    }
-                });
-            }
-
             $scope.isCurrentSlide = isCurrentSlide;
 
             $scope.next = function() {

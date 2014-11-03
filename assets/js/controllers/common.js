@@ -37,7 +37,9 @@ ITEventApp.controller(
 
             function refreshPresentation( presentation ) {
                 $timeout( function() {
-                    $scope.presentation = presentation;
+                    if( presentation ) {
+                        $scope.presentation = presentation;
+                    }
                 } );
             }
 
