@@ -63,6 +63,8 @@ ITEventApp.controller(
 
                                     $scope.current.new = false;
 
+                                    $scope.hasChange = false;
+
                                     if ( typeof cb === 'function' ) {
 
                                         cb($scope.notes[data.note.id]);
