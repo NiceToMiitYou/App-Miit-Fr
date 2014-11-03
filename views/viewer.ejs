@@ -20,46 +20,49 @@
         <div class="menu-component">
             <button class="btn btn-primary menu-btn cn-button" id="cn-button"></button>
                 <ul class="cn-wrapper" id="cn-wrapper">
-                    <li><a href="#"><span>Live</span></a></li>
+                    <li>
+                        <a href="#">
+                            <span><i class="fa fa-4x fa-angle-double-down"></i></span>
+                        </a>
+                    </li>
                     <li ng-class="{active : activetool === 'ressource'}">
-                        <a href="#ressources" ng-click="activetool='ressource'">
-                            <i class="fa fa-folder-open"></i> 
-                            <span class="title">Ressources</span>
+                        <a class="light" href="#ressources" ng-click="activetool='ressource'">
+                            <span class="title"><i class="fa fa-3x fa-folder-open"></i><!-- Ressources --></span>
                         </a>
                     </li>
 
                     <!-- BEGIN SINGLE LINK -->
                     <li ng-class="{active : activetool === 'wall'}">
                         <a href="#wall" ng-click="activetool='wall'">
-                            <i class="fa fa-users"></i><span class="title">Mur</span>
+                            <span class="title"><i class="fa fa-3x fa-users"></i><!-- Mur --></span>
                         </a>
                     </li>
                     <!-- END SINGLE LINK --> 
 
                     <!-- BEGIN BADGE LINK -->
                     <li ng-class="{active : activetool === 'chat'}">
-                        <a href="#chat" ng-click="activetool='chat'">
-                            <i class="fa fa-weixin"></i>
-                            <span class="title">Discussions</span>
+                        <a class="light" href="#chat" ng-click="activetool='chat'">
+                            <span class="title"><i class="fa fa-3x fa-weixin"></i><!-- Discussions --></span>
                         </a>
                     </li>
                     <!-- END BADGE LINK -->     
                     <!-- BEGIN SINGLE LINK -->
                     <li ng-class="{active : activetool === 'note'}">
                         <a href="#notes" ng-click="activetool='note'">
-                            <i class="fa fa-pencil"></i>
-                            <span class="title">Bloc-note</span>
+                            <span class="title"><i class="fa fa-3x fa-pencil"></i><!-- Bloc-note --></span>
                         </a>
                     </li ng-class="{active : activetool === 'wall'}">
                     <!-- END SINGLE LINK -->    
                     <!-- BEGIN ONE LEVEL MENU -->
                     <li ng-class="{active : activetool === 'quizz'}">
-                        <a href="#quizz" ng-click="activetool='quizz'">
-                            <i class="fa fa-question"></i>
-                            <span class="title">Questionnaires</span>
+                        <a class="light" href="#quizz" ng-click="activetool='quizz'">
+                            <span class="title"><i class="fa fa-3x fa-question"></i><!-- Questionnaires --></span>
                         </a>
                     </li>
-                    <li><a href="#"><span>User</span></a></li>
+                    <li><a href="#"><span>
+                        <span ng-show="user.avatar.c && user.avatar.a" class="avatar" ng-class="user.avatar.c + ' avatar-'+user.avatar.a"></span>
+                        <span ng-show="!user.avatar.c || !user.avatar.a" class="avatar black anonymous"></span>
+                    </span></a></li>
                  </ul>
             <!-- End of Nav Structure -->
         </div>

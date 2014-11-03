@@ -1583,7 +1583,7 @@ ul.table-list li a span.title {
   background-color: #0aa699;
 }
 .avatar.black {
-  background-color: #22262e;
+  background-color: #1b1e24;
 }
 .avatar.dark-blue {
   background-color: #365d98;
@@ -1749,10 +1749,10 @@ ul.messenger.messenger-fixed.messenger-on-top, ul.messenger.messenger-fixed.mess
 }
 
 .menu-btn.open:after {
-	-moz-transform: rotate(270deg);
-	-webkit-transform: rotate(270deg);
-	-o-transform: rotate(270deg);
-	transform: rotate(270deg);
+	-moz-transform: rotate(90deg);
+	-webkit-transform: rotate(90deg);
+	-o-transform: rotate(90deg);
+	transform: rotate(90deg);
 }
 
 .menu-btn.open:before {
@@ -1803,9 +1803,9 @@ ul.messenger.messenger-fixed.messenger-on-top, ul.messenger.messenger-fixed.mess
 	list-style: none;
 	right: 100%;
 	z-index: 999;
-	-webkit-transition: all .4s ease .2s;
-	-moz-transition: all .4s ease .2s;
-	transition: all .4s ease .2s;
+	-webkit-transition: all .4s linear .2s;
+	-moz-transition: all .4s linear .2s;
+	transition: all .4s linear .2s;
 	opacity: 0;
 }
 
@@ -1890,15 +1890,26 @@ ul.messenger.messenger-fixed.messenger-on-top, ul.messenger.messenger-fixed.mess
 	-webkit-transition: all .4s ease .1s;
 	-moz-transition: all .4s ease .1s;
 	transition: all .4s ease .1s;
-	transform: skewY(44deg) rotate(22deg);
-	border: 4px solid transparent;
+	transform: skewY(44deg) rotate(25deg);
+	border: 2px solid #0aa699;
 }
 
-.csstransforms .cn-wrapper li a span {
+.csstransforms .cn-wrapper li a.light {
+	background: #1b1e24;
+}
+
+.csstransforms .cn-wrapper li a > span {
+	color: #FFF;
 	opacity: 0;
+	display: block;
+	line-height: 130px;
 	-webkit-transition: all .3s ease;
 	-moz-transition: all .3s ease;
 	transition: all .3s ease;
+}
+
+.csstransforms .cn-wrapper li a > span .avatar {
+	margin-left: 180px;
 }
 
 .csstransforms .cn-wrapper.opened-nav li a span {
@@ -1914,10 +1925,9 @@ ul.messenger.messenger-fixed.messenger-on-top, ul.messenger.messenger-fixed.mess
 	text-transform: uppercase;
 }*/
 
-.csstransforms .cn-wrapper li:hover a,
-.csstransforms .cn-wrapper li a:active,
-.csstransforms .cn-wrapper li a:focus {
-	border: 4px solid #0aa699;
+.csstransforms .cn-wrapper.opened-nav li:hover a,
+.csstransforms .cn-wrapper.opened-nav li.active a {
+	background-color: #186761;
 }
 
 .csstransforms .opened-nav li:first-child {
@@ -1926,32 +1936,56 @@ ul.messenger.messenger-fixed.messenger-on-top, ul.messenger.messenger-fixed.mess
 
 .csstransforms .opened-nav li:first-child a {
 	transform: skewY(0deg) rotate(45deg); 
-	background: rgba(34, 38, 46, 0.6);
+	background: rgba(34, 38, 46, 0.25);
 }
 
 .csstransforms .opened-nav li:nth-child(2) {
 	transform: rotate(0deg) skewY(-44deg);
 }
 
+.csstransforms .opened-nav li:nth-child(2) a > span{
+	transform: rotate(-25deg);
+}
+
 .csstransforms .opened-nav  li:nth-child(3) {
 	transform: rotate(45deg) skewY(-44deg);
+}
+
+.csstransforms .opened-nav li:nth-child(3) a > span{
+	transform: rotate(-70deg);
 }
 
 .csstransforms .opened-nav li:nth-child(4) {
 	transform: rotate(90deg) skewY(-44deg);
 }
 
+.csstransforms .opened-nav li:nth-child(4) a > span{
+	transform: rotate(-115deg);
+}
+
 .csstransforms .opened-nav li:nth-child(5) {
 	transform: rotate(135deg) skewY(-44deg);
+}
+
+.csstransforms .opened-nav li:nth-child(5) a > span{
+	transform: rotate(-160deg);
 }
 
 .csstransforms .opened-nav li:nth-child(6) {
 	transform: rotate(180deg) skewY(-44deg);
 }
 
+.csstransforms .opened-nav li:nth-child(6) a > span{
+	transform: rotate(-205deg);
+}
+
 
 .csstransforms .opened-nav li:nth-child(7) {
 	transform: rotate(224deg) skewY(-44deg);
+}
+
+.csstransforms .opened-nav li:nth-child(7) a > span{
+	transform: rotate(-249deg);
 }
 
 
