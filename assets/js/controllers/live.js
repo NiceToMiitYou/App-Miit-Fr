@@ -47,8 +47,6 @@ ITEventApp.controller(
 
                         $scope.presentation.current++;
 
-                        reloadThumbnail();
-
                         if( $scope.current + 1 === $scope.presentation.current ) {
 
                             next();
@@ -66,8 +64,6 @@ ITEventApp.controller(
                         0 < $scope.presentation.current) {
 
                         $scope.presentation.current--;
-
-                        reloadThumbnail();
 
                         if( $scope.current - 1 === $scope.presentation.current ) {
 
