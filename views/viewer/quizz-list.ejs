@@ -1,5 +1,22 @@
 <div ng-controller="quizzListController" class="content quizz-content" ng-class="{active : activetool === 'quizz'}">
+    
+    <div class="header navbar navbar-inverse ">
+        <div class="navbar-inner">
+            <div class="header-quick-nav">
+                <div class="pull-left">
+                    <h3><i class="fa fa-pencil"></i> Questionnaire</h3>
+                </div>
+                <div class="pull-right">
+                    <ul class="nav quick-section">
+                        <li class="quicklinks"> <a href="#" class="">
+                            <div class="iconset top-menu-toggle-dark"></div>
+                        </a> </li>
+                    </ul>
+                </div>
 
+            </div>
+        </div>
+    </div>
     <ul class="table-list quizz">
 
         <li ng-repeat="quizz in quizzes"
