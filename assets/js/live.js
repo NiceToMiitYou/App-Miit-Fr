@@ -37,9 +37,12 @@ function scaleSlider() {
  
     //open and close menu when the button is clicked
   var open = false;
-  button.addEventListener('click', handler, false);
-  button.addEventListener('focus', handler, false);
- 
+  
+  if(button) {
+    button.addEventListener('click', handler, false);
+    button.addEventListener('focus', handler, false); 
+  }
+
   function handler(){
     if(!open){
         $(wrapper).addClass('opened-nav');

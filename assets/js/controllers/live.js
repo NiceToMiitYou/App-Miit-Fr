@@ -5,11 +5,6 @@ ITEventApp.controller(
             $scope.current = 0;
             $scope.direction = 'left';
 
-            if ( ! $scope.presentation ) {
-
-                $scope.presentation = { current: 0, slides: [] };
-            }
-
             refreshShared();
 
             function next() {
@@ -37,10 +32,10 @@ ITEventApp.controller(
             function refreshShared() {
 
                 $scope.shared.isLastSlide = 
-                    ( $scope.presentation.current === $scope.presentation.slides.length - 1 );
+                    ( $scope.presentation && $scope.presentation.current === $scope.presentation.slides.length - 1 );
 
                 $scope.shared.isFirstSlide = 
-                    ( $scope.presentation.current === 0 );
+                    ( $scope.presentation && $scope.presentation.current === 0 );
             }
 
             function liveNext( data ) {
@@ -87,14 +82,16 @@ ITEventApp.controller(
             $scope.isCurrentSlide = isCurrentSlide;
 
             $scope.next = function() {
-                if( $scope.isAllowed('LIVE_SLIDER_INTERACTIONS') ) {
+                if( $scope.presentation && 
+                    $scope.isAllowed('LIVE_SLIDER_INTERACTIONS') ) {
 
                     next();
                 }
             };
 
             $scope.previous = function() {
-                if( $scope.isAllowed('LIVE_SLIDER_INTERACTIONS') ) {
+                if( $scope.presentation && 
+                    $scope.isAllowed('LIVE_SLIDER_INTERACTIONS') ) {
                     
                     previous();
                 }
