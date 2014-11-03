@@ -1713,7 +1713,7 @@ ul.messenger.messenger-fixed.messenger-on-top, ul.messenger.messenger-fixed.mess
 	position: absolute;
 	border-radius: 50%;
 	top: 50%;
-	right: 0;
+	right: 100%;
 	margin-top: -30px;
 	z-index: 999;
 	margin-right: -30px;
@@ -1787,30 +1787,38 @@ ul.messenger.messenger-fixed.messenger-on-top, ul.messenger.messenger-fixed.mess
 /* CIRCLE MENU */
 
 .cn-button {
-
+	z-index: 9999;
 }
 
 .csstransforms .cn-wrapper {
 	position: absolute;
-	top: 100%;
-	left: 50%;
-	z-index: 10;
-	margin-top: -13em;
-	margin-left: -13.5em;
-	width: 27em;
-	height: 27em;
+	margin: 1em auto;
+	padding: 0;
+	width: 40px;
+	margin-top: -20px;
+	height: 40px;
 	border-radius: 50%;
-	background: transparent;
+	top: 50%;
+	margin-right: -20px;
+	list-style: none;
+	right: 100%;
+	z-index: 999;
+	-webkit-transition: all .4s ease .2s;
+	-moz-transition: all .4s ease .2s;
+	transition: all .4s ease .2s;
 	opacity: 0;
-	-webkit-transition: all .3s ease 0.3s;
-	-moz-transition: all .3s ease 0.3s;
-	transition: all .3s ease 0.3s;
-	-webkit-transform: scale(0.1);
-	-ms-transform: scale(0.1);
-	-moz-transform: scale(0.1);
-	transform: scale(0.1);
-	pointer-events: none;
-	overflow: hidden;
+}
+
+.csstransforms .cn-wrapper.opened-nav {
+	width: 400px;
+	margin-top: -200px;
+	height: 400px;
+	margin-right: -200px;
+	opacity: 1;
+
+	-webkit-transition: all .5s ease;
+	-moz-transition: all .5s ease;
+	transition: all .5s ease;
 }
 
 /*cover to prevent extra space of anchors from being clickable*/
@@ -1830,7 +1838,7 @@ ul.messenger.messenger-fixed.messenger-on-top, ul.messenger.messenger-fixed.mess
   color: transparent;
 }*/
 
-.csstransforms .opened-nav {
+/*.csstransforms .opened-nav {
 	border-radius: 50%;
 	opacity: 1;
 	-webkit-transition: all .3s ease;
@@ -1841,181 +1849,116 @@ ul.messenger.messenger-fixed.messenger-on-top, ul.messenger.messenger-fixed.mess
 	-ms-transform: scale(1);
 	transform: scale(1);
 	pointer-events: auto;
-}
+}*/
 
 .csstransforms .cn-wrapper li {
+	/* remove slash at the end of this line to see full slice contents */
+	overflow: hidden; /**/
 	position: absolute;
-	top: 0;
-	left: 50%;
-	overflow: hidden;
-	margin-top: -1.3em;
-	margin-left: -10em;
-	width: 10em;
-	height: 10em;
-	font-size: 1.5em;
-	-webkit-transition: all .3s ease;
-	-moz-transition: all .3s ease;
-	transition: all .3s ease;
-	-webkit-transform: rotate(76deg) skew(45deg);
-	-moz-transform: rotate(76deg) skew(45deg);
-	-ms-transform: rotate(76deg) skew(45deg);
-	transform: rotate(76deg) skew(45deg);
-	-webkit-transform-origin: 100% 100%;
-	-moz-transform-origin: 100% 100%;
-	transform-origin: 100% 100%;
-	pointer-events: none;
+	top: 0; right: 0;
+	/* add slash at end of this line to show the red outline of the slice *
+	outline: solid 1px red; /**/
+	width: 50%; height: 50%;
+	transform-origin: 0% 100%; 
+	transform: rotate(-45deg) skewY(-45deg);
+	-webkit-transition: all .4s linear;
+	-moz-transition: all .4s linear;
+	transition: all .4s linear;
+}
+
+.csstransforms .cn-wrapper.opened-nav li {
+	-webkit-transition: all .4s ease .1s;
+	-moz-transition: all .4s ease .1s;
+	transition: all .4s ease .1s;
+}
+
+.csstransforms .cn-wrapper li:first-child {
+	transform: rotate(-45deg) skewY(0deg);
+}
+
+.csstransforms .cn-wrapper li:first-child a {
+	transform: skewY(0deg) rotate(45deg); 
 }
 
 .csstransforms .cn-wrapper li a {
 	position: absolute;
-	position: fixed; /* fix the displacement bug in webkit browsers when using tab key */
-	right: -7.25em;
-	bottom: -7.25em;
-	display: block;
-	width: 14.5em;
-	height: 14.5em;
+	left: -100%;
+	width: 200%; height: 200%;
 	border-radius: 50%;
 	background: #22262e;
-	color: #fff;
 	text-align: center;
-	text-decoration: none;
-	font-size: 1.2em;
-	line-height: 2;
-	-webkit-transform: skew(-45deg) rotate(-75deg) scale(1);
-	-moz-transform: skew(-45deg) rotate(-75deg) scale(1);
-	-ms-transform: skew(-45deg) rotate(-75deg) scale(1);
-	transform: skew(-45deg) rotate(-75deg) scale(1);
-	-webkit-backface-visibility: hidden;
-	backface-visibility: hidden;
-	pointer-events: auto;
+	-webkit-transition: all .4s ease .1s;
+	-moz-transition: all .4s ease .1s;
+	transition: all .4s ease .1s;
+	transform: skewY(44deg) rotate(22deg);
+	border: 4px solid transparent;
 }
 
 .csstransforms .cn-wrapper li a span {
+	opacity: 0;
+	-webkit-transition: all .3s ease;
+	-moz-transition: all .3s ease;
+	transition: all .3s ease;
+}
+
+.csstransforms .cn-wrapper.opened-nav li a span {
+	opacity: 1;
+}
+
+/*.csstransforms .cn-wrapper li a span {
 	position: relative;
 	top: 1.8em;
 	display: block;
 	font-size: .5em;
 	font-weight: 700;
 	text-transform: uppercase;
-}
+}*/
 
 .csstransforms .cn-wrapper li:hover a,
 .csstransforms .cn-wrapper li a:active,
 .csstransforms .cn-wrapper li a:focus {
-	background-color: #0aa699;
-}
-
-.csstransforms .opened-nav li {
-	-webkit-transition: all .3s ease .3s;
-	-moz-transition: all .3s ease .3s;
-	transition: all .3s ease .3s;
+	border: 4px solid #0aa699;
 }
 
 .csstransforms .opened-nav li:first-child {
-	-webkit-transform: rotate(0deg) skew(0deg);
-	-moz-transform: rotate(0deg) skew(0deg);
-	-ms-transform: rotate(0deg) skew(0deg);
-	transform: rotate(0deg) skew(0deg);
+	transform: rotate(270deg) skewY(0deg);
 }
 
-.csstransforms .cn-wrapper li:first-child a {
-	-webkit-transform: skew(0deg);
-	-moz-transform: skew(0deg);
-	-ms-transform: skew(0deg);
-	transform: skew(0deg);
+.csstransforms .opened-nav li:first-child a {
+	transform: skewY(0deg) rotate(45deg); 
+	background: rgba(34, 38, 46, 0.6);
 }
 
 .csstransforms .opened-nav li:nth-child(2) {
-	-webkit-transform: rotate(90deg) skew(45deg);
-	-moz-transform: rotate(90deg) skew(45deg);
-	-ms-transform: rotate(90deg) skew(45deg);
-	transform: rotate(90deg) skew(45deg);
+	transform: rotate(0deg) skewY(-44deg);
 }
 
 .csstransforms .opened-nav  li:nth-child(3) {
-	-webkit-transform: rotate(135deg) skew(45deg);
-	-moz-transform: rotate(135deg) skew(45deg);
-	-ms-transform: rotate(135deg) skew(45deg);
-	transform: rotate(135deg) skew(45deg);
+	transform: rotate(45deg) skewY(-44deg);
 }
 
 .csstransforms .opened-nav li:nth-child(4) {
-	-webkit-transform: rotate(180deg) skew(45deg);
-	-moz-transform: rotate(180deg) skew(45deg);
-	-ms-transform: rotate(180deg) skew(45deg);
-	transform: rotate(180deg) skew(45deg);
+	transform: rotate(90deg) skewY(-44deg);
 }
 
 .csstransforms .opened-nav li:nth-child(5) {
-	-webkit-transform: rotate(225deg) skew(45deg);
-	-moz-transform: rotate(225deg) skew(45deg);
-	-ms-transform: rotate(225deg) skew(45deg);
-	transform: rotate(225deg) skew(45deg);
+	transform: rotate(135deg) skewY(-44deg);
 }
 
 .csstransforms .opened-nav li:nth-child(6) {
-	-webkit-transform: rotate(270deg) skew(45deg);
-	-moz-transform: rotate(270deg) skew(45deg);
-	-ms-transform: rotate(270deg) skew(45deg);
-	transform: rotate(270deg) skew(45deg);
+	transform: rotate(180deg) skewY(-44deg);
 }
+
 
 .csstransforms .opened-nav li:nth-child(7) {
-	-webkit-transform: rotate(315deg) skew(45deg);
-	-moz-transform: rotate(315deg) skew(45deg);
-	-ms-transform: rotate(315deg) skew(45deg);
-	transform: rotate(315deg) skew(45deg);
-}
-
-.no-csstransforms .cn-wrapper {
-	overflow: hidden;
-	margin: 10em auto;
-	padding: .5em;
-	text-align: center;
-}
-
-.no-csstransforms .cn-wrapper ul {
-	display: inline-block;
-}
-
-.no-csstransforms .cn-wrapper li {
-	float: left;
-	width: 5em;
-	height: 5em;
-	background-color: #fff;
-	text-align: center;
-	font-size: 1em;
-	line-height: 5em;
-}
-
-.no-csstransforms .cn-wrapper li a {
-	display: block;
-	width: 100%;
-	height: 100%;
-	color: inherit;
-	text-decoration: none;
-}
-
-.no-csstransforms .cn-wrapper li a:hover,
-.no-csstransforms .cn-wrapper li a:active,
-.no-csstransforms .cn-wrapper li a:focus {
-	background-color: #f8f8f8;
-}
-
-.no-csstransforms .cn-wrapper li.active a{
-	background-color: #6F325C;
-	color: #fff;
-}
-
-.no-csstransforms .cn-button {
-	display: none;
+	transform: rotate(224deg) skewY(-44deg);
 }
 
 
 .menu-component {
-	position: absolute;
+/*	position: absolute;
 	left: 100%;
 	top: 50%;
 	width: 1px;
-	display: block;
+	display: block;*/
 }

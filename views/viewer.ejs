@@ -16,23 +16,11 @@
 
     <div class="tools-content" ng-init="activetool = 'note'">
 
-        <!-- BEGIN SIDEBAR -->
-        <div id="main-menu" class="hide">
-            <div id="main-menu-wrapper">
-                <!-- BEGIN MINI-PROFILE -->
-<!--                 <div class="user-info-wrapper">
-                    <img style="padding-top:14px;" src="/images/logo.png" alt="" data-src="/images/logo.png" width="140" />
-                </div>
 
- -->
-
-                <!-- END MINI-PROFILE -->
-
-                <!-- BEGIN SIDEBAR MENU --> 
-                <ul> 
-
-                    <!-- END SELECTED LINK -->
-
+        <div class="menu-component">
+            <button class="btn btn-primary menu-btn cn-button" id="cn-button"></button>
+                <ul class="cn-wrapper" id="cn-wrapper">
+                    <li><a href="#"><span>Live</span></a></li>
                     <li ng-class="{active : activetool === 'ressource'}">
                         <a href="#ressources" ng-click="activetool='ressource'">
                             <i class="fa fa-folder-open"></i> 
@@ -71,6 +59,29 @@
                             <span class="title">Questionnaires</span>
                         </a>
                     </li>
+                    <li><a href="#"><span>User</span></a></li>
+                 </ul>
+            <!-- End of Nav Structure -->
+        </div>
+
+        <!-- BEGIN SIDEBAR -->
+        <div id="main-menu" class="hide">
+            <div id="main-menu-wrapper">
+                <!-- BEGIN MINI-PROFILE -->
+<!--                 <div class="user-info-wrapper">
+                    <img style="padding-top:14px;" src="/images/logo.png" alt="" data-src="/images/logo.png" width="140" />
+                </div>
+
+ -->
+
+                <!-- END MINI-PROFILE -->
+
+                <!-- BEGIN SIDEBAR MENU --> 
+                <ul> 
+
+                    <!-- END SELECTED LINK -->
+
+
                     <!-- END ONE LEVEL MENU -->
                     <!-- BEGIN TWO LEVEL MENU -->
                    <!--  <li class="">
