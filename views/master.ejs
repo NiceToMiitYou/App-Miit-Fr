@@ -1,8 +1,9 @@
 <!-- BEGIN CONTENT -->
 <div ng-controller="commonController" class="page-container master row-fluid" ng-init="accountType = 2; live=true">
 	<!-- BEGIN PAGE CONTAINER-->
-	<div ng-controller="masterController" class="page-content"> 
-		<div class="content">  
+	<div ng-controller="masterController" class="page-content">
+
+		<div ng-controller="liveController" class="content">
 			<!-- BEGIN PAGE TITLE -->
 			<div class="page-title">
 				<a class="listner listner-up btn btn-primary"><i class="fa fa-angle-double-up"  style="margin-right: 0px;"></i></a>
@@ -19,7 +20,7 @@
 				<div class="asktab" ng-class="{active:!live}" ng-click="live=false"><i class="fa fa-users" style="margin-right: 4px;"></i> Mur</div>
 			</div>
 
-			<div ng-controller="liveController" id="slides" class="presentation-slide flexslider" ng-show="live">
+			<div id="slides" class="presentation-slide" ng-show="live">
 				<div id="slides" class="presentation-slide">
 			        <div ng-repeat="slide in presentation.slides" class="slide slide-animation"
 			            ng-hide="!isCurrentSlide($index)"
@@ -72,13 +73,14 @@
 						</li>
 					</ol>
 				</div>
-
 			</div>
+
 			<div class="slides-nav-container">
 				<div class="slides-nav">
 					<div class="slides-nav-wrapper" ng-style="{width: (presentation.slides.length * 175)+55+'px', left: sl+'px'}">
 		                <div ng-repeat="slide in presentation.slides"
-		                     class="active dot-item">
+                    	 	 ng-class="{ active: isCurrentSlide($index) }"
+		                     class="dot-item">
 		                    <img ng-src="/images/slides/generated/small_{{ presentation.id }}_{{ slide.id }}.png"/>
 		                </div>
 					</div>

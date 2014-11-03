@@ -75,6 +75,7 @@ ITEventApp.controller(
                     $scope.accountType = 0;
                     $scope.useUsername = 0;
                     $scope.user.username = '';
+                    $scope.user.avatar = { c: 'red', a: 'm1' };
                 }
             }
 

@@ -6,14 +6,6 @@
                 <div class="pull-left">
                     <h3><i class="fa fa-pencil"></i> Questionnaire</h3>
                 </div>
-                <div class="pull-right">
-                    <ul class="nav quick-section">
-                        <li class="quicklinks"> <a href="#" class="">
-                            <div class="iconset top-menu-toggle-dark"></div>
-                        </a> </li>
-                    </ul>
-                </div>
-
             </div>
         </div>
     </div>
@@ -27,9 +19,8 @@
         </div>
     </div>
     <div class="col-md-12 timeline">
-
         <ul class="cbp_tmtimeline">
-<!--             <li class="animate-repeat" ng-show="!hideFirst">
+             <li class="animate-repeat" ng-show="!hideFirst">
                 <div class="cbp_tmicon user-profile">
                         <img src="/images/profiles/icon.png"  alt="" data-src="/images/profiles/icon.png" width="60" height="60">
                     </div>
@@ -46,7 +37,8 @@
                     <a class="close" ng-click="hideFirst=true"><i class="fa fa-times"></i></a>
                     <div class="clearfix"></div>
                 </div>
-            </li> -->
+            </li>
+            
             <li class="animate-repeat" ng-repeat="question in questions | toArray | orderBy:'-like' | filter:q as results">
                 <div ng-show="question.user.avatar.c && question.user.avatar.a" class="cbp_tmicon avatar" ng-class="question.user.avatar.c + ' avatar-'+question.user.avatar.a"></div>
                 <div ng-show="!question.user.avatar.c || !question.user.avatar.a" class="cbp_tmicon avatar black anonymous"></div>

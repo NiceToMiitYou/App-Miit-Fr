@@ -8,9 +8,19 @@
                 </div>
                 <div class="pull-right">
                     <ul class="nav quick-section">
-                        <li class="quicklinks"> <a href="#" class="">
-                            <div class="iconset top-menu-toggle-dark"></div>
-                        </a> </li>
+                        <li class="quicklinks">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <div class="iconset top-menu-toggle-dark"></div>
+                            </a>
+                            <ul class="dropdown-menu pull-right" role="menu">
+                                <li role="presentation" class="dropdown-header">Liste des salles</li>
+                                <li ng-repeat="chatroom in chatrooms">
+                                    <a href="#" ng-click="changeChatroom(chatroom)">
+                                        {{ chatroom.name }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
 
@@ -62,17 +72,5 @@
             <button ng-class="{disabled:!text}" ng-click="post()" class="btn btn-primary send-chat"><i class="fa fa-caret-right arrow"></i><i class="fa fa-chevron-right"></i> Envoyer</button>
         </div>
 
-    </div>
-
-    <div class="sider right">
-        <!-- BEGIN FAVORITES WIDGET -->
-        <ul class="chatrooms-list">
-            <li ng-repeat="chatroom in chatrooms">
-                <a href="#" ng-click="changeChatroom(chatroom)">
-                    <i ng-class="{'fa-users' : chatroom.type == 1, 'fa-user-md' : chatroom.type == 2}" class="fa"></i>
-                    <span>{{ chatroom.name }}</span>
-                </a>
-            </li>
-        </ul>
     </div>
 </div>
