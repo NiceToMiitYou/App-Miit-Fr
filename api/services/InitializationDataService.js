@@ -1,4 +1,18 @@
 
+var fs = require('fs'),
+    webshot = require('webshot'),
+    lwip = require('lwip'),
+    size = {
+        big : {
+            width: 2048,
+            height: 1536
+        },
+        small : {
+            width: 227,
+            height: 170
+        }
+    };
+
 // Create all data
 function create( cb ) {
 
@@ -279,15 +293,151 @@ function createQuizzQuestionAnswers( cb ) {
             });
 }
 
+function deleteFolderRecursive( path ) {
+
+    if( fs.existsSync( path ) ) {
+
+        fs.readdirSync( path )
+            .forEach( function( file, index ) {
+
+            var curPath = path + '/' + file;
+
+            if( file !== '.gitkeep' ) { // delete file
+
+                fs.unlinkSync(curPath);
+            }
+        } );
+    }
+};
+
+
+function beautifyHtml( html ) {
+
+    return '<html>' +
+            '<head>' +
+            '<link rel="stylesheet" href="http://127.0.0.1:' + sails.config.port + '/styles/css/main.css"/>' +
+            '</head>' +
+            '<body>' +
+                '<div id="slides" class="presentation-slide">' +
+                    '<div class="slide">' +
+                        html +
+                    '</div>' +
+                '</div>' +
+                '<script>' +
+                    'var inputs = document.getElementsByTagName("img");' +
+                    'for(var i = 0; i < inputs.length; i++) {' +
+                    '    inputs[i].src = "http://127.0.0.1:' + sails.config.port + '" + inputs[i].src;' +
+                    '    document.write(inputs[i].src);' +
+                    '}' +
+                '</script>' +
+            '</body>' +
+           '</html>';
+}
+
+function generateImagePath( base, size, presentation, slide ) {
+
+    return base + '/' + size + '_' + presentation + '_' + slide + '.png';
+}
+
+function generateBigImage( path, presentation, slide, html ) {
+
+    setTimeout(function() {
+
+        var saveFile = generateImagePath( path, 'big', presentation, slide );
+
+        var options = {
+            screenSize: size.big,
+            siteType: 'html',
+            renderDelay: 5000,
+            settings: {
+                localToRemoteUrlAccessEnabled: true
+            }
+        };
+
+        webshot( beautifyHtml( html ), saveFile, options, function( err ) {
+
+            if( !err ) {
+
+                sails.log.debug('File generated: ' + saveFile);
+
+                setTimeout(function() {
+
+                    // Genrate small image
+                    generateSmallImage( saveFile, path, presentation, slide );
+                }, 500);
+
+            } else {
+
+                sails.log.debug('Can\'t generate file: ' + saveFile);
+
+                sails.log.debug( err );
+            }
+        } );
+    }, 2500);
+}
+
+function generateSmallImage( origin, path, presentation, slide ) {
+
+    var saveFile = generateImagePath( path, 'small', presentation, slide );
+
+    lwip.open( origin, function( err, image ) {
+
+        image
+            .batch()
+            .resize(size.small.width, size.small.height)
+            .writeFile( saveFile, 'png', {
+                compression: 'high',
+                transparency: false
+            }, function( err ) {
+
+                if( !err ) {
+
+                    sails.log.debug('File generated: ' + saveFile);
+
+                } else {
+
+                    sails.log.debug('Can\'t generate file: ' + saveFile);
+                }
+            } );
+    } );
+}
+
+function generateThumbnail( path, cb ) {
+
+    deleteFolderRecursive( path );
+
+    ConfPresentation.find( { conference: 1 } )
+        .populate( 'slides' )
+        .exec( function(err, presentations) {
+            
+            if( ! err ) {
+
+                // For each presentations
+                _.forEach( presentations, function( presentation ){
+
+                    // For each slides of the presentation
+                    _.forEach( presentation.slides, function( slide ) {
+
+                        // Genrate big image
+                        generateBigImage( path, presentation.id, slide.id, slide.content );
+                    } );
+                } );
+            }
+            
+            cb();
+        } );
+}
 
 module.exports = {
 
     initialize: function( cb ) {
 
+        var thumbnailPath = sails.config.rootPath + '/assets/images/slides/generated';
+
         if( sails.config.environment === 'development' ) {
             
             ConfConference.findOne( 1 ).exec(function(err, conference) {
-                if ( err || conference ) return cb();
+                if ( err || conference ) return generateThumbnail( thumbnailPath, cb );
 
                 sails.log.debug('Initialize data...');
 
@@ -295,14 +445,14 @@ module.exports = {
 
                     sails.log.debug('Initialize data... DONE!');
                     
-                    cb();
+                    generateThumbnail( thumbnailPath, cb );
 
                 });
             }); 
 
         } else {
 
-            cb();
+            generateThumbnail( thumbnailPath, cb );
         }
     }
 }

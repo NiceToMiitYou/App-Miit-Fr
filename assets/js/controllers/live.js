@@ -5,7 +5,10 @@ ITEventApp.controller(
             $scope.current = 0;
             $scope.direction = 'left';
 
-            $scope.presentation.current = 0;
+            if ( ! $scope.presentation ) {
+
+                $scope.presentation = { current: 0, slides: [] };
+            }
 
             refreshShared();
 
