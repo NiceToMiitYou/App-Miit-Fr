@@ -122,8 +122,8 @@ ITEventApp.controller(
                 $scope.openmenu = !$scope.openmenu;
 
                 setTimeout(function() {
-                  window.scaleSlider();
-                }, 500);
+                    window.scaleSlider();
+                },50);
             }
 
             function handlerMenu() {
@@ -151,6 +151,8 @@ ITEventApp.controller(
             $scope.askForUserIfNotExist = askForUserIfNotExist;
 
             $scope.fullscreen = fullscreen;
+
+            $scope.isfullscreen = true;
 
             ITStorage.db.options.bind('user', refreshUser);
 

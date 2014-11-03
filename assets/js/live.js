@@ -18,10 +18,12 @@ function scaleSlider() {
         var maxW = $(".page-content").width() / slideW ;
     }
 
-    var zoom = Math.min(maxH, maxW);
-    $(".live-content .slides-nav").width(slideW*zoom);
 
-    var style = 'zoom: '+zoom+'; -ms-zoom: '+zoom+'; -webkit-zoom: '+zoom+'; -moz-transform:  scale('+zoom+','+zoom+'); -moz-transform-origin: '+ ($(".page-content").width() - (slideW * zoom))*2 +'px top';
+    var zoom = Math.min(maxH, maxW);
+    $(".slider-container").width(slideW*zoom);
+    $(".slider-container").height(slideH*zoom);
+
+    var style = '-webkit-transform: scale('+zoom+','+zoom+'); -o-transform: scale('+zoom+','+zoom+'); transform: scale('+zoom+','+zoom+');  transform-origin: left top; -moz-transform:  scale('+zoom+','+zoom+'); -moz-transform-origin: left top';
     $("#slides").attr("style",style);
 
 }
