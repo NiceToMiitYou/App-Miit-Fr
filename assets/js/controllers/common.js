@@ -115,7 +115,32 @@ ITEventApp.controller(
                 }
             }
 
+
+            function fullscreen() {
+
+                $scope.isfullscreen = !$scope.isfullscreen;
+                $scope.openmenu = !$scope.openmenu;
+
+                setTimeout(function() {
+                  window.scaleSlider();
+                }, 500);
+            }
+
+            function handlerMenu() {
+                if($scope.isfullscreen) {
+                    $scope.fullscreen();
+                }
+
+                $scope.openmenu = !$scope.openmenu;
+
+            }
+
+
             $scope.logout = logout;
+
+            $scope.handlerMenu = handlerMenu;
+
+            $scope.openmenu = false;
             
             $scope.safeHTML = safeHTML;
 
@@ -124,6 +149,8 @@ ITEventApp.controller(
             $scope.getUsername = getUsername;
 
             $scope.askForUserIfNotExist = askForUserIfNotExist;
+
+            $scope.fullscreen = fullscreen;
 
             ITStorage.db.options.bind('user', refreshUser);
 

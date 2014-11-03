@@ -1,6 +1,6 @@
 
 <!-- BEGIN CONTENT -->
-<div ng-controller="commonController" class="page-container row-fluid" ng-init="accountType = 1" >
+<div ng-controller="commonController" class="page-container row-fluid" ng-init="accountType = 1; activetool = 'note';" ng-class="{fullscreen : isfullscreen}" >
 
     <ul class="user-sub" ng-show="openStats">
         <li class="active"><a href="#" ng-click="openStats=false"><span class="status-icon green"></span> <span class="title">Online</span></a></li>
@@ -8,20 +8,19 @@
     </ul>
 
     <!-- BEGIN PAGE CONTAINER-->
-    <div class="page-content"> 
+    <div class="page-content">
 
         <% include viewer/live %>
 
     </div>
 
-    <div class="tools-content" ng-init="activetool = 'note'">
-
+    <div class="tools-content">
 
         <div class="menu-component">
-            <button class="btn btn-primary menu-btn cn-button" id="cn-button"></button>
-                <ul class="cn-wrapper" id="cn-wrapper">
+            <button class="btn btn-primary menu-btn cn-button" ng-class="{'open' : openmenu}" id="cn-button" ng-click="handlerMenu()"></button>
+                <ul class="cn-wrapper" id="cn-wrapper" ng-class="{'opened-nav' : openmenu}">
                     <li>
-                        <a href="#">
+                        <a href="#" id="cn-fullscreen" ng-click="fullscreen()">
                             <span><i class="fa fa-4x fa-angle-double-down"></i></span>
                         </a>
                     </li>

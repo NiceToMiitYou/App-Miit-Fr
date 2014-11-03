@@ -688,6 +688,7 @@ Pace.on('hide', function() {
 });
 
 $(window).load(function() {
+    $(".pace, body:not(.login) > #map").remove();
     if(window.location.hash) {
         var $link = $("#main-menu-wrapper ul li > a[href="+window.location.hash+"]");
       $link.trigger("click");

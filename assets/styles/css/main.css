@@ -74,7 +74,10 @@ a {
 	overflow: visible;
 	min-height: 0;
 	height: 100%;
-	transition: margin 200ms;
+	
+	-webkit-transition: all .5s ease;
+	-moz-transition: all .5s ease;
+	transition: all .5s ease;
 }
 
 
@@ -94,6 +97,10 @@ a {
 
 .tools-content {
 	box-shadow: 1px -1px 10px -2px #676767;
+
+	-webkit-transition: all .5s ease;
+	-moz-transition: all .5s ease;
+	transition: all .5s ease;
 }
 
 .tools-content .content {
@@ -209,6 +216,7 @@ a {
 
 .header {
 	position: static;
+	min-height: 56px;
 }
 
 .header .navbar-inner {
@@ -258,23 +266,6 @@ a {
 }
 
 /* --- LIVE --- */
-
-.fullscreen {
-	position: absolute;
-	right: 0px;
-	top: 0px;
-	border-radius: 0;
-	background-color: #F5F5F5;
-	padding: 20px 18px;
-	border-left: 1px solid #DEDEDE;
-}
-
-.fullscreen i {
-	font-size: 15px;
-	line-height: 20px;
-	color: #5e5e5e;
-	top: 1px;
-}
 
 .fullscreen-layer {
 	position: fixed;
@@ -1075,8 +1066,8 @@ ul.table-list li a span.title {
 		-webkit-animation: border-beat 800ms infinite; /* Chrome, Safari, Opera */
 	    animation: border-beat 800ms infinite;
 	    margin-right: 120px!important;
-	    position: absolute;
-	    bottom: 0;
+/*	    position: absolute;
+	    bottom: 0;*/
 }
 
 .timeline-search {
@@ -1241,6 +1232,7 @@ ul.table-list li a span.title {
 .page-container.master .page-content {
 	margin-left: 170px;
 	margin-right: 170px;
+	width: calc(100% - 340px);
 }
 
 .page-container.master .next-slide i, 
@@ -1995,4 +1987,12 @@ ul.messenger.messenger-fixed.messenger-on-top, ul.messenger.messenger-fixed.mess
 	top: 50%;
 	width: 1px;
 	display: block;*/
+}
+
+.fullscreen .page-content {
+	width: 100%;
+}
+
+.fullscreen .tools-content {
+	width: 0;
 }
