@@ -14,7 +14,9 @@
             <div class="side-widget-content">
                 <div ng-repeat="slide in presentation.slides"
                      ng-show="$index <= presentation.current"
-                     class="active dot-item">
+                     ng-class="{ active: isCurrentSlide($index) }"
+                     ng-click="gotToSlide($index)"
+                     class="dot-item">
                     <img ng-src="/images/slides/generated/small_{{ presentation.id }}_{{ slide.id }}.png"/>
                 </div>
                 <div class="clearfix"></div>

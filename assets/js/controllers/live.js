@@ -25,6 +25,27 @@ ITEventApp.controller(
                 }
             }
 
+            function gotToSlide( slideIndex ) {
+
+                if( 0 <= slideIndex && slideIndex <= $scope.presentation.current ) {
+
+                    $timeout( function() {
+                        var loopBreak = 2000; // In case of infinite loop, just in case (master binding could block the loop)
+                        var direction = ( slideIndex > $scope.current ) ? 1 : -1;
+
+                        for(var i = slideIndex; slideIndex != $scope.current && loopBreak > 0; i += direction) {
+
+                            if( direction > 0 ) {
+                                next();
+                            } else {
+                                previous();
+                            }
+                            loopBreak--;
+                        }
+                    } );
+                }
+            }
+
             function isCurrentSlide( index ) {
                 return ( index === $scope.current );
             }
@@ -96,6 +117,14 @@ ITEventApp.controller(
                     previous();
                 }
             };
+
+            $scope.gotToSlide = function( slideIndex ) {
+                if( $scope.presentation && 
+                    $scope.isAllowed('LIVE_SLIDER_INTERACTIONS') ) {
+                    
+                    gotToSlide( slideIndex );
+                }
+            }
 
             var pressed = false;
 
