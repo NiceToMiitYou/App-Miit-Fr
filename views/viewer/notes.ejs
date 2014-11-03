@@ -17,11 +17,15 @@
                                 <div class="iconset top-menu-toggle-dark"></div>
                             </a>
                             <ul class="dropdown-menu pull-right" role="menu">
+                                <li role="presentation" class="dropdown-header">Actions</li>
+                                
                                 <li>
                                     <a href="#" ng-click="addNote();">Créer une note.</a>
                                 </li>
 
                                 <li class="divider"></li>
+
+                                <li role="presentation" class="dropdown-header">Liste des notes</li>
 
                                 <li ng-repeat="note in notes">
                                     <a href="#" ng-click="changeNote(note);">
