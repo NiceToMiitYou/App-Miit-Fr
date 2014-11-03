@@ -37,7 +37,7 @@ module.exports = {
             }
         },
 
-        bypass: true
+        bypass: false
     },
 
     webservice: {
