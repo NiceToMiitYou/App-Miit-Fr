@@ -79,7 +79,7 @@
 				<div class="slides-nav">
 					<div class="slides-nav-wrapper" ng-style="{width: (presentation.slides.length * 175)+55+'px', left: sl+'px'}">
 		                <div ng-repeat="slide in presentation.slides"
-                    	 	 ng-class="{ active: isCurrentSlide($index) }"
+                    	 	 ng-class="{ 'active': $index === current }"
 		                     class="dot-item">
 		                    <img ng-src="/images/slides/generated/small_{{ presentation.id }}_{{ slide.id }}.png"/>
 		                </div>
