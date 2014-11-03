@@ -74,7 +74,7 @@ a {
 	overflow: visible;
 	min-height: 0;
 	height: 100%;
-	
+
 	-webkit-transition: all .5s ease;
 	-moz-transition: all .5s ease;
 	transition: all .5s ease;
@@ -312,7 +312,25 @@ a {
     z-index: 9;
 	position: relative;
     overflow: hidden;
+	-webkit-transition: all .4s ease .1s;
+	-moz-transition: all .4s ease .1s;
+	transition: all .4s ease .1s;
 }
+
+.slider-container {
+	margin-top: 0px;
+	margin-left: auto;
+	margin-right: auto;
+	-webkit-transition: all .5s ease;
+	-moz-transition: all .5s ease;
+	transition: all .5s ease;
+}
+
+.fullscreen .slider-container {
+
+}
+
+
 
 #slides .slide {
     position: absolute;
@@ -424,7 +442,7 @@ a {
 }
 
 .live-thumb {
-	background-color: #1b1e24;
+	background-color: #CDCDCD;
 	padding: 10px;
 }
 .live-thumb .dot-item {
@@ -1900,6 +1918,10 @@ ul.messenger.messenger-fixed.messenger-on-top, ul.messenger.messenger-fixed.mess
 	transition: all .3s ease;
 }
 
+.csstransforms .opened-nav li:first-child a > span {
+	line-height: 160px
+}
+
 .csstransforms .cn-wrapper li a > span .avatar {
 	margin-left: 180px;
 }
@@ -1929,6 +1951,10 @@ ul.messenger.messenger-fixed.messenger-on-top, ul.messenger.messenger-fixed.mess
 .csstransforms .opened-nav li:first-child a {
 	transform: skewY(0deg) rotate(45deg); 
 	background: rgba(34, 38, 46, 0.25);
+}
+
+.csstransforms .opened-nav li:first-child a:hover > span {
+	line-height: 230px
 }
 
 .csstransforms .opened-nav li:nth-child(2) {
