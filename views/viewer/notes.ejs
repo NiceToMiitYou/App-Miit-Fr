@@ -6,8 +6,6 @@
             <div class="header-quick-nav">
                 <div class="pull-left">
                     <h3><i class="fa fa-pencil"></i> Notes</h3>
-
-                    <small ng-show="saving">sauvegarde...</small>
                 </div>
 
                 <div class="pull-right">
@@ -18,9 +16,13 @@
                             </a>
                             <ul class="dropdown-menu pull-right" role="menu">
                                 <li role="presentation" class="dropdown-header">Actions</li>
-                                
+
                                 <li>
                                     <a href="#" ng-click="addNote();">Créer une note.</a>
+                                </li>
+
+                                <li>
+                                    <a href="#" ng-click="send();">Me l'envoyer par mail.</a>
                                 </li>
 
                                 <li class="divider"></li>
@@ -40,24 +42,6 @@
             </div>
         </div>
     </div>
-
-<!-- BEGIN FAVORITES WIDGET 
-<ul class="notes-list">
-
-    <li ng-repeat="note in notes">
-        <a ng-click="changeNote(note)"
-        href="#">
-        <i class="fa fa-paperclip"></i>
-        <span>{{ note.title }}</span>
-    </a>
-</li>
-
-<li ng-click="addNote()" class="add-note">
-    <a href="#">
-        <img src="/images/plussign.png">
-    </a>
-</li>
-</ul>-->
 
 <textarea ng-model="current.content"
 ng-change="hasChange = true"
