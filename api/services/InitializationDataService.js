@@ -46,7 +46,7 @@ function createConference( cb ) {
     ConfConference
         .create({
             name: 'ITEvents test',
-            description: 'ITEvents vous présente ça conférence de test.',
+            description: 'ITEvents vous présente sa conférence de test.',
             clientName: 'ITEvents Society',
             colorScheme: 'html {}',
             logo: '/images/logodark.png'
@@ -63,7 +63,7 @@ function createPresentations( cb ) {
     ConfPresentation
         .create( [ {
             name: 'ITEvents presentation',
-            description: 'ITEvents vous présente ça présentation de test.',
+            description: 'ITEvents vous présente sa présentation de test.',
             authors: 'Cortet Jordan, Tacyniak Boris',
             conference: 1
         } ] )
