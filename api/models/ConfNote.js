@@ -12,7 +12,8 @@ module.exports = {
         title: {
             type: 'string',
             required: true,
-            minLength: 1
+            minLength: 1,
+            maxLength: 50
         },
 
         content: {
