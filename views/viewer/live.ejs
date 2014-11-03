@@ -39,8 +39,8 @@
     <div class="footer-widget"> 
 
         <div class="progress transparent progress-small no-radius no-margin">
-            <div data-percentage="{{(presentation.current*100)/presentation.slides.length}}%"
-                    style="width: {{(presentation.current*100)/presentation.slides.length}}%;" 
+            <div data-percentage="{{ shared.liveProgress }}%"
+                    style="width: {{ shared.liveProgress }}%;" 
                     class="progress-bar progress-bar-success animate-progress-bar"></div>        
         </div>
         <div class="pull-right">
