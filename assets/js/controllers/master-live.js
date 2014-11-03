@@ -21,4 +21,20 @@ ITEventApp.controller(
             $scope.next = next;
 
             $scope.previous = previous;
+            
+            function onKeyPress(e) {
+
+                var keyCode = e.keyCode;
+
+                if( keyCode == 27 ) { 
+
+                    $timeout(function() {
+
+                        $scope.logout();
+                    });
+                }
+            };
+
+            document.addEventListener('keydown', onKeyPress, false);
+
         } ] );
