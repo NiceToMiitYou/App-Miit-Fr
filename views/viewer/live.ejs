@@ -1,9 +1,4 @@
 <div ng-controller="liveController" class="content live-content">  
-    <!-- BEGIN PAGE TITLE -->
-<!--     <div class="page-title">
-        <h3>Présentation de ITEvents</h3>
-        <button type="button" class="fullscreen btn"><i class="fa fa-arrows-alt"></i>  Plein écran</button>
-    </div> -->
 
     <div id="slides" class="presentation-slide">
         <div ng-repeat="slide in presentation.slides" class="slide slide-animation"
@@ -12,56 +7,22 @@
             ng-swipe-left="next()"
             ng-bind-html="safeHTML(slide.content)"></div>
     </div>
-<!-- 
-    <div class="slides-nav">
-
-        <a ng-class="{ disabled: current <= 0 }"
-           ng-click="previous()"
-           ng-disabled="current <= 0"
-           class="btn btn-large">
-            <i class="fa fa-arrow-left"></i>&nbsp; Précedent
-        </a><a ng-class="{ disabled: current >= presentation.current }"
-               ng-click="next()"
-               ng-disabled="current >= presentation.current"
-               class="btn btn-large btn-primary">
-            Suivant &nbsp;<i class="fa fa-arrow-right"></i>
-        </a>
-    </div> -->
-
-
 
     <div class="live-thumb">
         <!-- BEGIN FAVORITES WIDGET -->
-        <!-- <button class="btn btn-warning btn-cons">Question wall</button> -->
         <div class="side-widget">
             <div class="side-widget-content">
-                <div class="active dot-item" data-number='0'>
-                    <img src="/images/slides/1.png"/>
-                </div>
-
-                <div class="active dot-item" data-number='0'>
-                    <img src="/images/slides/2.png"/>
-                </div>
-                <div class="active dot-item" data-number='0'>
-                    <img src="/images/slides/3.png"/>
+                <div ng-repeat="slide in presentation.slides"
+                     ng-show="$index <= presentation.current"
+                     class="active dot-item">
+                    <img ng-src="/images/slides/generated/small_{{ presentation.id }}_{{ slide.id }}.png"/>
                 </div>
                 <div class="clearfix"></div>
             </div>
         </div>
     </div>
      <div class="live-info p-t-15 p-l-20" >
-<!--        <div class="info-slides">
-            <div class="form-wizard-steps">
-                <ul class="wizard-steps">
-                    <li data-target="#step1" style="min-width: 20%;" class="active dot-item" data-number='0'> <a href="#tab1" data-toggle="tab"> <span class="step">1</span> <span class="title">Présentation</span> </a> </li>
-                    <li data-target="#step2" class="dot-item" data-number='[1,2]' style="min-width: 20%;"> <a href="#tab2" data-toggle="tab"> <span class="step">2</span> <span class="title">Expérience</span> </a> </li>
-                    <li style="min-width: 20%;" data-target="#step3"  class="dot-item" data-number='[3,4]'> <a href="#tab3" data-toggle="tab"> <span class="step">3</span> <span class="title">Taux de<br/> transformation</span> </a> </li>
-                    <li data-target="#step4" style="min-width: 20%;" class="dot-item" data-number='5'> <a href="#tab4" data-toggle="tab"> <span class="step">4</span> <span class="title">Conclusion <br></span> </a> </li>
-                    <li data-target="#step5" style="min-width: 19%;"  class="dot-item" data-number='6'> <a href="#tab6" data-toggle="tab"> <span class="step">5</span> <span class="title">Questions <br></span> </a> </li>
-                </ul>
-                <div class="clearfix"></div>
-            </div>
-        </div>-->
+
         <div class="text-center"><img ng-show="conference.logo"
              ng-src="{{conference.logo}}"
              class="p-5-10"
@@ -78,7 +39,9 @@
     <div class="footer-widget"> 
 
         <div class="progress transparent progress-small no-radius no-margin">
-            <div data-percentage="{{(presentation.current*100)/presentation.slides.length}}%" style="width: {{(presentation.current*100)/presentation.slides.length}}%;" class="progress-bar progress-bar-success animate-progress-bar"></div>        
+            <div data-percentage="{{(presentation.current*100)/presentation.slides.length}}%"
+                    style="width: {{(presentation.current*100)/presentation.slides.length}}%;" 
+                    class="progress-bar progress-bar-success animate-progress-bar"></div>        
         </div>
         <div class="pull-right">
             <div class="details-status">
