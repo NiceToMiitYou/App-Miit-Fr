@@ -1,11 +1,5 @@
 var nodemailer = require( 'nodemailer' );
 var smtpTransport = require( 'nodemailer-smtp-transport' );
-var transporter = nodemailer.createTransport(
-    smtpTransport(
-        sails.config.mailer.smtp
-    )
-);
-
 
 function sendEmail( email, title, contentText, contentHtml ) {
     if ( sails.config.mailer.bypass ) {
@@ -16,6 +10,12 @@ function sendEmail( email, title, contentText, contentHtml ) {
         sails.log.info( 'EMAIL : HTML -> ', contentHtml );
 
     } else {
+        
+        var transporter = nodemailer.createTransport(
+            smtpTransport(
+                sails.config.mailer.smtp
+            )
+        );
 
         transporter.sendMail( {
             from: sails.config.mailer.from,

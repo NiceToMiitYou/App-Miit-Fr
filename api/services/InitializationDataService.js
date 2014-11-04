@@ -78,29 +78,34 @@ function createSlides( cb ) {
 
     ConfSlide
         .create( [ {
-            notes: 'Note 1 but no Lorem Ipsum :P',
-            title: 'Slide 1',
-            content: '<img src="/images/slides/large1.png">',
+            content: '<img src="/images/slides/Diapositive01.png">',
             presentation: 1
         }, {
-            notes: 'Note 2 but no Note',
-            title: 'Slide 2',
-            content: '<img src="/images/slides/large2.png">',
+            content: '<img src="/images/slides/Diapositive02.png">',
             presentation: 1
         }, {
-            notes: 'Note 3 enjoy your life',
-            title: 'Slide 3',
-            content: '<img src="/images/slides/large3.png">',
+            content: '<img src="/images/slides/Diapositive03.png">',
             presentation: 1
         }, {
-            notes: 'Note 4  for the win',
-            title: 'Slide 4',
-            content: '<img src="/images/slides/large4.png">',
+            content: '<img src="/images/slides/Diapositive04.png">',
             presentation: 1
         }, {
-            notes: 'Note 5 ...',
-            title: 'Slide 5',
-            content: '<img src="/images/slides/large5.png">',
+            content: '<img src="/images/slides/Diapositive05.png">',
+            presentation: 1
+        }, {
+            content: '<img src="/images/slides/Diapositive06.png">',
+            presentation: 1
+        }, {
+            content: '<img src="/images/slides/Diapositive07.png">',
+            presentation: 1
+        }, {
+            content: '<img src="/images/slides/Diapositive08.png">',
+            presentation: 1
+        }, {
+            content: '<img src="/images/slides/Diapositive09.png">',
+            presentation: 1
+        }, {
+            content: '<img src="/images/slides/Diapositive10.png">',
             presentation: 1
         } ] )
         .exec(
@@ -373,7 +378,7 @@ function generateBigImage( path, presentation, slide, html ) {
                 sails.log.debug( err );
             }
         } );
-    }, 2500);
+    }, 2500 + Math.round( Math.Random() * 10000 ));
 }
 
 function generateSmallImage( origin, path, presentation, slide ) {

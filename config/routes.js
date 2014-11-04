@@ -73,6 +73,11 @@ var routes = {
     'GET /api/config/presentation/actual': {
         controller: 'ConfConfigController',
         action: 'actual'
+    },
+
+    'GET /api/config/connected/users': {
+        controller: 'ConfConfigController',
+        action: 'connectedUsers'
     }
 
 

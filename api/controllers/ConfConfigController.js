@@ -37,6 +37,18 @@ module.exports = {
     },
 
     /**
+     * `ConfConfigController.connectedUsers()`
+     */
+    connectedUsers: function( req, res ) {
+        
+        return res.done( {
+            users: _.size( 
+                sails.sockets.subscribers('AllConnectedToRT')
+            ) 
+        } );
+    },
+
+    /**
      * `ConfConfigController.presentations()`
      */
     presentations: function( req, res ) {

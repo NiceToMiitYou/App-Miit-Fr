@@ -55,6 +55,7 @@ rows="10"></textarea>
 <div class="note-title">
     <span>Titre : </span><input ng-model="current.title"
     ng-change="hasChange = true"
+    maxlength="50"
     ng-blur="save()"
     type="text">
 </div>
