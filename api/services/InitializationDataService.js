@@ -46,7 +46,7 @@ function createConference( cb ) {
     ConfConference
         .create({
             name: 'ITEvents test',
-            description: 'ITEvents vous présente sa conférence de test.',
+            description: 'ITEvents vous présente sa conférence de test avec Karim Bakrimi, Pascal Fossé et Jodan Cortet',
             clientName: 'ITEvents Society',
             colorScheme: 'html {}',
             logo: '/images/logodark.png'

@@ -449,6 +449,7 @@ a {
 .live-thumb {
 	background-color: #D2D2D2;
 	padding: 10px;
+	overflow-x:scroll;
 }
 .live-thumb .dot-item {
 	position: relative;
@@ -664,21 +665,23 @@ top: 9px;
 }
 
 .counter {
-	color: #DDD;
+	color: #22262e;
 	font-weight: 100;
 	text-align: center;
 	font-family: 'Open Sans';
-	display: block;
+	display: inline-block;
 	padding: 0;
 	text-align: center;
 	font-size: 16px;
 	line-height: 50px;
 	padding-right: 24px;
 	padding-bottom: 4px;
+	position: absolute;
+	bottom: 50px;
 }
 
 .counter i {
-	color: #DDD;
+	color: #22262e;
 	margin-left: 4px;
 	font-size: 16px;
 } 
@@ -1061,7 +1064,7 @@ ul.table-list li a span.title {
 }
 
 .timeline {
-	height: calc(100% - 273px);
+	height: calc(100% - 268px);
 	overflow-y: auto;
 }
 
@@ -1075,7 +1078,17 @@ ul.table-list li a span.title {
 .timeline-post .select2-choices {
 	border-radius: 0;
 	border: 0;
-	background: #FFF;
+	background: #FEFEFE;
+	-webkit-transition:all linear 0.3s;
+	transition:all linear 0.3s;
+}
+
+.timeline-post:hover .select2-choices {
+	background-color: #365d98;
+}
+
+.timeline-post:hover .select2-container-multi .select2-choices .select2-search-field input {
+  	color: #EFEFEF!important;
 }
 
 .timeline-post textarea {
@@ -1156,6 +1169,17 @@ ul.table-list li a span.title {
   	bottom: 5px;
   	height: 105px;
   	width: 105px;
+  }
+
+  .select2-dropdown-open.select2-drop-above .select2-choice, 
+  .select2-dropdown-open.select2-drop-above .select2-choices,
+  .select2-container-multi.select2-container-active .select2-choices {
+  	border: 0;
+  	background: #365d98;
+  }
+
+  .select2-container-multi .select2-choices .select2-search-field input {
+  	color: #BBB!important;
   }
 
 /* --------- ANIMATIONS ---------- */
@@ -1734,6 +1758,17 @@ ul.messenger.messenger-fixed.messenger-on-top, ul.messenger.messenger-fixed.mess
 	width: 60px;
 	height: 60px;
 	padding:0;
+	-webkit-transition: all .5s ease;
+	-moz-transition: all .5s ease;
+	transition: all .5s ease;
+}
+
+.menu-btn:not(.open) {
+	opacity: 0.5;
+}
+
+.menu-btn:hover {
+	opacity: 1;
 }
 
 .menu-btn:after {
@@ -1821,6 +1856,7 @@ ul.messenger.messenger-fixed.messenger-on-top, ul.messenger.messenger-fixed.mess
 	-moz-transition: all .4s linear .2s;
 	transition: all .4s linear .2s;
 	opacity: 0;
+	overflow: hidden;
 }
 
 .csstransforms .cn-wrapper.opened-nav {

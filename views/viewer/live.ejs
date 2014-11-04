@@ -24,17 +24,17 @@
             </div>
         </div>
     </div>
-     <div class="live-info p-t-15 p-l-20" >
+     <div class="live-info p-t-15 p-l-20" ng-hide="$parent.isfullscreen">
 
         <div class="text-center"><img ng-show="conference.logo"
              ng-src="{{conference.logo}}"
              class="p-5-10"
              width="130" style="float: right; margin-right: 30px;"/></div>
         <h3>{{ presentation.name }}</h3>
-        <p class="text-center">{{ presentation.description }}</p>
-        <p><i>Par {{ presentation.authors }}</i></p>
+        <p class="text-center m-t-30">{{ presentation.description }}</p>
+        <p style="position: absolute; bottom: 62px; right: 30px;"><i>Par {{ presentation.authors }}</i></p>
         <div class="counter"> 
-            <span>00:00</span> <i class="fa fa-clock-o"></i>
+            <!-- <span>00:00</span> <i class="fa fa-clock-o"></i> -->
         </div>
     </div> 
 
@@ -48,7 +48,7 @@
         </div>
         <div class="pull-right">
             <div class="details-status">
-                <span>{{(presentation.current*100)/presentation.slides.length}}</span>%
+                <span>{{(presentation.current*100)/(presentation.slides.length-1)}}</span>%
             </div>  
         </div>
     </div>

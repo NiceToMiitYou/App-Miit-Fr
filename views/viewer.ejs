@@ -8,15 +8,14 @@
     </ul>
 
     <!-- BEGIN PAGE CONTAINER-->
-    <div class="page-content">
+    <div class="page-content" ng-click="closeMenu()">
 
         <% include viewer/live %>
 
     </div>
 
     <div class="tools-content">
-
-        <div class="menu-component" ng-mouseleave="handlerMenu()">
+        <div class="menu-component">
             <button class="btn btn-primary menu-btn cn-button" ng-class="{'open' : openmenu}" id="cn-button" ng-click="handlerMenu()"></button>
                 <ul class="cn-wrapper" id="cn-wrapper" ng-class="{'opened-nav' : openmenu}">
                     <li>
@@ -121,7 +120,7 @@
         </div>
         <!-- END SIDEBAR --> 
 
-        <div class="tools-wrapper">
+        <div class="tools-wrapper" ng-click="closeMenu()">
             <% include viewer/resources %>
 
             <% include viewer/wall-questions %>

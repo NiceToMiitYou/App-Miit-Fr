@@ -43,8 +43,8 @@
                 <div ng-show="question.user.avatar.c && question.user.avatar.a" class="cbp_tmicon avatar" ng-class="question.user.avatar.c + ' avatar-'+question.user.avatar.a"></div>
                 <div ng-show="!question.user.avatar.c || !question.user.avatar.a" class="cbp_tmicon avatar black anonymous"></div>
                 <div class="cbp_tmlabel">
-                    <div class="p-t-10 p-l-30 p-r-20 p-b-20 xs-p-r-10 xs-p-l-10 xs-p-t-5">
-                        <h4 class="inline m-b-5">
+                    <div class="p-t-15 p-l-20 p-r-15 p-b-10">
+                        <h4 class="inline m-b-5" style="margin-top: 0; font-size: 15px;">
                             <span class="text-success semi-bold m-r-10" ng-show="question.user.username">
                                 {{question.user.username}}
                             </span>
@@ -55,18 +55,20 @@
                                 Anonyme
                             </span>
                         </h4>
-                        <span class="muted semi-bold m-b-5 label m-l-5" ng-repeat="tag in question.tags">
+                        <div class="muted inline">à&nbsp;&nbsp;{{question.createdAt | date:'mediumTime'}}</div>
+                        <span class="muted semi-bold m-b-5 label m-l-5" ng-repeat="tag in question.tags" style="line-height: 16px; float: right;">
                             {{getTagName(tag)}}
                         </span>
-                        <div class="muted">{{question.createdAt | date:'mediumTime'}}</div>
+                        
                         <p class="m-t-5 dark-text"> {{question.question}} </p>
                     </div>
                     <div class="clearfix"></div>
-                    <div class="tiles p-t-10 p-b-10 p-l-20" style="background-color:#2d3139;">
+                    <div class="tiles p-t-5 p-b-5 p-l-15" style="background-color:#2d3139; line-height: 20px;">
                         <ul class="action-links">
                             <li class="text-white" ng-show="question.likes > 1">{{question.likes}} Likes</li>
                             <li class="text-white" ng-show="question.likes <= 1">{{question.likes}} Like</li>
                         </ul>
+                        
                         <a ng-show="question.user.id != user.id"
                            ng-class="{disabled : isLike(question)}"
                            ng-click="like(question)"

@@ -132,13 +132,19 @@ ITEventApp.controller(
                 }
 
                 $scope.openmenu = !$scope.openmenu;
+            }
 
+
+            function closeMenu() {
+                $scope.openmenu = false;
             }
 
 
             $scope.logout = logout;
 
             $scope.handlerMenu = handlerMenu;
+
+            $scope.closeMenu = closeMenu;
 
             $scope.openmenu = false;
             
