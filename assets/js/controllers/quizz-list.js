@@ -19,7 +19,8 @@ ITEventApp.controller(
             }
 
             function openInner( quizz ) {
-
+                $scope.$parent.activetool = "quizz-inner";
+                console.log("open")
                 ITStorage.db.options.set('quizz.current', quizz);
             }
 

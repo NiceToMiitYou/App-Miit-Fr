@@ -18,7 +18,6 @@ function scaleSlider() {
         var maxW = $(".page-content").width() / slideW ;
     }
 
-
     var zoom = Math.min(maxH, maxW);
     $(".slider-container").width(slideW*zoom);
     $(".slider-container").height(slideH*zoom);

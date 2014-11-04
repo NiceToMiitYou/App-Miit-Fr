@@ -24,6 +24,10 @@ a {
 	padding: 15px;
 }
 
+.modal {
+	z-index: 9999999;
+}
+
 .modal-dialog {
 	width: 600px;
 	margin: 12px auto;
@@ -93,6 +97,7 @@ a {
 	transition: opacity 350ms;
 	width: 100%;
 	background-color: #e5e9ec;
+	overflow: hidden;
 }
 
 .tools-content {
@@ -442,7 +447,7 @@ a {
 }
 
 .live-thumb {
-	background-color: #CDCDCD;
+	background-color: #D2D2D2;
 	padding: 10px;
 }
 .live-thumb .dot-item {
@@ -739,7 +744,7 @@ top: 9px;
 	padding: 17px 12px;
 	width: 170px;
 	right: 0;
-	position: fixed;
+	position: absolute;
 	bottom: 0;
 	text-transform: uppercase;
 }
@@ -860,7 +865,7 @@ top: 9px;
 }
 
 .send-notes {
-	position: fixed;
+	position: absolute;
 	bottom: 0;
 	border-radius: 0;
 	width: 170px;
@@ -1576,7 +1581,6 @@ ul.table-list li a span.title {
 	line-height: 45px;
 	width: 45px;
 	text-align: center;
-	}
 }
 
 .avatar.red {
@@ -1651,9 +1655,9 @@ ul.messenger.messenger-fixed.messenger-on-top, ul.messenger.messenger-fixed.mess
 
 .previous-quizz {
 	float: left;
-	line-height: 60px;
+	line-height: 56px;
 	padding:0;
-	width: 60px;
+	width: 56px;
 	border-radius: 0;
 	margin-right: 15px;
 }
@@ -1923,7 +1927,7 @@ ul.messenger.messenger-fixed.messenger-on-top, ul.messenger.messenger-fixed.mess
 }
 
 .csstransforms .cn-wrapper li a > span .avatar {
-	margin-left: 180px;
+	margin-left: 195px;
 }
 
 .csstransforms .cn-wrapper.opened-nav li a span {
@@ -1939,9 +1943,12 @@ ul.messenger.messenger-fixed.messenger-on-top, ul.messenger.messenger-fixed.mess
 	text-transform: uppercase;
 }*/
 
-.csstransforms .cn-wrapper.opened-nav li:hover a,
 .csstransforms .cn-wrapper.opened-nav li.active a {
 	background-color: #186761;
+}
+
+.csstransforms .cn-wrapper.opened-nav li:hover a {
+	background-color: #365d98;
 }
 
 .csstransforms .opened-nav li:first-child {
@@ -2003,7 +2010,7 @@ ul.messenger.messenger-fixed.messenger-on-top, ul.messenger.messenger-fixed.mess
 }
 
 .csstransforms .opened-nav li:nth-child(7) a > span{
-	transform: rotate(-249deg);
+	transform: rotate(-253deg);
 }
 
 
@@ -2022,3 +2029,6 @@ ul.messenger.messenger-fixed.messenger-on-top, ul.messenger.messenger-fixed.mess
 .fullscreen .tools-content {
 	width: 0;
 }
+
+.quicklinks > .dropdown-toggle >  .dropdown-menu { margin-right: 10px; }
+

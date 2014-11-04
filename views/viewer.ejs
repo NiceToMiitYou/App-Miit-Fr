@@ -16,7 +16,7 @@
 
     <div class="tools-content">
 
-        <div class="menu-component">
+        <div class="menu-component" ng-mouseleave="handlerMenu()">
             <button class="btn btn-primary menu-btn cn-button" ng-class="{'open' : openmenu}" id="cn-button" ng-click="handlerMenu()"></button>
                 <ul class="cn-wrapper" id="cn-wrapper" ng-class="{'opened-nav' : openmenu}">
                     <li>
@@ -58,7 +58,7 @@
                             <span class="title"><i class="fa fa-3x fa-question"></i><!-- Questionnaires --></span>
                         </a>
                     </li>
-                    <li><a href="#"><span>
+                    <li><a href="#" style="transform: skewY(44deg) rotate(28deg);"><span>
                         <span ng-show="user.avatar.c && user.avatar.a" class="avatar" ng-class="user.avatar.c + ' avatar-'+user.avatar.a"></span>
                         <span ng-show="!user.avatar.c || !user.avatar.a" class="avatar black anonymous"></span>
                     </span></a></li>
