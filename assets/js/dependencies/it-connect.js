@@ -125,6 +125,11 @@ window.ITConnect = ( function() {
                 io.socket.get( '/api/config/conference', {}, cb );
             },
 
+            // Get conference settings
+            connectedUsers: function( cb ) {
+                io.socket.get( '/api/config/connected/users', {}, cb );
+            },
+
             // Get presentation config
             presentation: {
                 // Get the list of all presentations
