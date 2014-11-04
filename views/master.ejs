@@ -20,15 +20,16 @@
 				<div class="livetab" ng-class="{active:live}" ng-click="live=true"><i class="fa fa-paper-plane" style="margin-right: 4px;"></i> Live</div>
 				<div class="asktab" ng-class="{active:!live}" ng-click="live=false"><i class="fa fa-users" style="margin-right: 4px;"></i> Mur</div>
 			</div>
-
-			<div id="slides" class="presentation-slide" ng-show="live">
-				<div id="slides" class="presentation-slide">
-			        <div ng-repeat="slide in presentation.slides" class="slide slide-animation"
-			            ng-hide="!isCurrentSlide($index)"
-			            ng-swipe-right="previous()"
-			            ng-swipe-left="next()"
-			            ng-bind-html="safeHTML(slide.content)"></div>
-			    </div>
+			<div class="slider-container">
+				<div id="slides" class="presentation-slide" ng-show="live">
+					<div id="slides" class="presentation-slide">
+				        <div ng-repeat="slide in presentation.slides" class="slide slide-animation"
+				            ng-hide="!isCurrentSlide($index)"
+				            ng-swipe-right="previous()"
+				            ng-swipe-left="next()"
+				            ng-bind-html="safeHTML(slide.content)"></div>
+				    </div>
+				</div>
 			</div>
 
 			<div ng-controller="wallController" class="wall" ng-show="!live" >

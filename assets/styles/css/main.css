@@ -2058,6 +2058,35 @@ ul.messenger.messenger-fixed.messenger-on-top, ul.messenger.messenger-fixed.mess
 	display: block;*/
 }
 
+.fullscreen .menu-layer {
+	display: none;
+}
+
+
+.menu-layer {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(34, 38, 46, 0.2);
+	z-index: 9;
+}
+
+.menu-layer .menu-label {
+	color: #FFF;
+	font-size: 3em;
+	font-weight: 100;
+	width: 50%;
+	text-align: right;
+	margin-top: -1em;
+	position: absolute;
+	top: 50%;
+	right: 10%;
+	padding: 10px 20px;
+	border-radius: 50%;
+}
+
 .fullscreen .page-content {
 	width: 100%;
 }

@@ -15,23 +15,23 @@
     </div>
 
     <div class="tools-content">
-        <div class="menu-component">
+        <div class="menu-component" ng-mouseleave="menulabel=false">
             <button class="btn btn-primary menu-btn cn-button" ng-class="{'open' : openmenu}" id="cn-button" ng-click="handlerMenu()"></button>
                 <ul class="cn-wrapper" id="cn-wrapper" ng-class="{'opened-nav' : openmenu}">
                     <li>
-                        <a href="#" id="cn-fullscreen" ng-click="fullscreen()">
+                        <a href="#" id="cn-fullscreen" ng-click="fullscreen()" ng-mouseover="menulabel='Plein écran'">
                             <span><i class="fa fa-4x fa-angle-double-down"></i></span>
                         </a>
                     </li>
                     <li ng-class="{active : activetool === 'ressource'}">
-                        <a class="light" href="#ressources" ng-click="activetool='ressource'">
+                        <a class="light" href="#ressources" ng-click="activetool='ressource'" ng-mouseover="menulabel='Ressources'">
                             <span class="title"><i class="fa fa-3x fa-folder-open"></i><!-- Ressources --></span>
                         </a>
                     </li>
 
                     <!-- BEGIN SINGLE LINK -->
                     <li ng-class="{active : activetool === 'wall'}">
-                        <a href="#wall" ng-click="activetool='wall'">
+                        <a href="#wall" ng-click="activetool='wall'" ng-mouseover="menulabel='Mur'">
                             <span class="title"><i class="fa fa-3x fa-users"></i><!-- Mur --></span>
                         </a>
                     </li>
@@ -39,25 +39,25 @@
 
                     <!-- BEGIN BADGE LINK -->
                     <li ng-class="{active : activetool === 'chat'}">
-                        <a class="light" href="#chat" ng-click="activetool='chat'">
+                        <a class="light" href="#chat" ng-click="activetool='chat'" ng-mouseover="menulabel='Discussions'">
                             <span class="title"><i class="fa fa-3x fa-weixin"></i><!-- Discussions --></span>
                         </a>
                     </li>
                     <!-- END BADGE LINK -->     
                     <!-- BEGIN SINGLE LINK -->
                     <li ng-class="{active : activetool === 'note'}">
-                        <a href="#notes" ng-click="activetool='note'">
+                        <a href="#notes" ng-click="activetool='note'"  ng-mouseover="menulabel='Bloc-note'">
                             <span class="title"><i class="fa fa-3x fa-pencil"></i><!-- Bloc-note --></span>
                         </a>
                     </li ng-class="{active : activetool === 'wall'}">
                     <!-- END SINGLE LINK -->    
                     <!-- BEGIN ONE LEVEL MENU -->
-                    <li ng-class="{active : activetool === 'quizz'}">
+                    <li ng-class="{active : activetool === 'quizz'}" ng-mouseover="menulabel='Questionnaires'">
                         <a class="light" href="#quizz" ng-click="activetool='quizz'">
                             <span class="title"><i class="fa fa-3x fa-question"></i><!-- Questionnaires --></span>
                         </a>
                     </li>
-                    <li><a href="#" style="transform: skewY(44deg) rotate(28deg);"><span>
+                    <li><a href="#" style="transform: skewY(44deg) rotate(28deg);" ng-click="logout();" ng-mouseover="menulabel='Déconnexion'"><span>
                         <span ng-show="user.avatar.c && user.avatar.a" class="avatar" ng-class="user.avatar.c + ' avatar-'+user.avatar.a"></span>
                         <span ng-show="!user.avatar.c || !user.avatar.a" class="avatar black anonymous"></span>
                     </span></a></li>
@@ -134,7 +134,13 @@
             <% include viewer/quizz-inner %>
 
             <% include viewer/planning %>
+
         </div>
+
+        <div class="menu-layer" ng-show="menulabel">
+            <span class="menu-label">{{ menulabel }}</span>
+        </div>
+
     </div>
     <!-- END PAGE CONTAINER-->
     <% include viewer/user-modal %>

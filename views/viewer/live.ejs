@@ -12,7 +12,7 @@
     <div class="live-thumb"  ng-hide="$parent.isfullscreen">
         <!-- BEGIN FAVORITES WIDGET -->
         <div class="side-widget">
-            <div class="side-widget-content" ng-style="{width: (presentation.slides.length * 135)+'px', left: sl+'px'}">
+            <div class="side-widget-content" ng-style="{width: (presentation.slides.current * 135)+'px', left: sl+'px'}">
                 <div ng-repeat="slide in presentation.slides"
                      ng-show="$index <= presentation.current"
                      ng-class="{ 'active': $index === current }"

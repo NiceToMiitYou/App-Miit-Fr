@@ -11,16 +11,20 @@
     </div>
     
     <div class="timeline-search">
-        <div class="input-group transparent">
-            <span class="input-group-addon ">
+        <div class="input-group transparent" style="width:100%">
+            <!-- <span class="input-group-addon ">
                 <i class="fa fa-search"></i>
-            </span>
-            <input type="search" class="form-control" placeholder="Rechercher une question" ng-model="q"/>
+            </span> -->
+            <!-- <input type="search" class="form-control" placeholder="Rechercher une question" ng-model="q"/> -->
+            <select ng-model="filter" style="width:100%">
+                <option value="" selected="selected">Toutes les catégories</option>
+                <option ng-repeat="tag in tags" value="{{tag.id}}">{{tag.name}}</option>
+            </select>
         </div>
     </div>
     <div class="col-md-12 timeline">
         <ul class="cbp_tmtimeline">
-             <li class="animate-repeat" ng-show="!hideFirst">
+             <li class="animate-repeat" ng-show="!hideFirst && questions.length < 4">
                 <div class="cbp_tmicon user-profile">
                         <img src="/images/profiles/icon.png"  alt="" data-src="/images/profiles/icon.png" width="60" height="60">
                     </div>
@@ -39,7 +43,7 @@
                 </div>
             </li>
             
-            <li class="animate-repeat" ng-repeat="question in questions | toArray | orderBy:'-createdAt' | filter:q as results">
+            <li class="animate-repeat" ng-repeat="question in questions | toArray | orderBy:'-createdAt' | filter:{tags : filter}">
                 <div ng-show="question.user.avatar.c && question.user.avatar.a" class="cbp_tmicon avatar" ng-class="question.user.avatar.c + ' avatar-'+question.user.avatar.a"></div>
                 <div ng-show="!question.user.avatar.c || !question.user.avatar.a" class="cbp_tmicon avatar black anonymous"></div>
                 <div class="cbp_tmlabel">

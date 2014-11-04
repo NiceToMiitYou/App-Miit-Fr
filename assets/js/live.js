@@ -8,12 +8,18 @@ function scaleSlider() {
     var slideH = $("#slides").height()
 
     var fullscreen = $(".page-container").hasClass('fullscreen');
+    var master = $(".page-container").hasClass('master');
 
     if(fullscreen) {
         var maxH = ($(".page-content").height()- 55) / slideH;
-        var maxW = $("body").width() / slideW ;
+        var maxW = $(".page-content").width() / slideW ;
 
-    } else {
+    } else if(master) {
+        var maxH = ($(".page-content").height()- 290) / slideH;
+        var maxW = $(".page-content").width() / slideW ;
+
+    } 
+     else {
         var maxH = ($(".page-content").height()/2) / slideH;
         var maxW = $(".page-content").width() / slideW ;
     }
