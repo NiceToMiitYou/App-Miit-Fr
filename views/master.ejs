@@ -6,7 +6,8 @@
 		<div ng-controller="liveController" class="content">
 			<!-- BEGIN PAGE TITLE -->
 			<div class="page-title">
-				<a class="listner listner-up btn btn-primary"><i class="fa fa-angle-double-up"  style="margin-right: 0px;"></i></a>
+				<a class="listner listner-up btn btn-primary"
+					ng-class="{'btn-primary': usersConnectedUp, 'btn-info': usersConnectedSame, 'btn-danger': usersConnectedDown}"><i class="fa" ng-class="{'fa-angle-double-up': usersConnectedUp, 'fa-angle-double-right': usersConnectedSame, 'fa-angle-double-down': usersConnectedDown}"  style="margin-right: 0px;"></i></a>
 				<h3><i class="fa fa-user"></i> {{ connectedUsers }}</h3>
 				<span class="speaker-time">07:18</span>
 			</div>
