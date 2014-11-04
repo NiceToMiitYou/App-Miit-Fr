@@ -1924,10 +1924,12 @@ ul.messenger.messenger-fixed.messenger-on-top, ul.messenger.messenger-fixed.mess
 
 .csstransforms .cn-wrapper li:first-child {
 	transform: rotate(-45deg) skewY(0deg);
+	-webkit-transform: rotate(-45deg) skewY(0deg);
 }
 
 .csstransforms .cn-wrapper li:first-child a {
 	transform: skewY(0deg) rotate(45deg); 
+	-webkit-transform: skewY(0deg) rotate(45deg); 
 }
 
 .csstransforms .cn-wrapper li a {
@@ -2002,51 +2004,63 @@ ul.messenger.messenger-fixed.messenger-on-top, ul.messenger.messenger-fixed.mess
 
 .csstransforms .opened-nav li:nth-child(2) {
 	transform: rotate(0deg) skewY(-44deg);
+	-webkit-transform: rotate(0deg) skewY(-44deg);
 }
 
 .csstransforms .opened-nav li:nth-child(2) a > span{
 	transform: rotate(-25deg);
+	-webkit-transform: rotate(-25deg);
 }
 
 .csstransforms .opened-nav  li:nth-child(3) {
 	transform: rotate(45deg) skewY(-44deg);
+	-webkit-transform: rotate(45deg) skewY(-44deg);
 }
 
 .csstransforms .opened-nav li:nth-child(3) a > span{
 	transform: rotate(-70deg);
+	-webkit-transform: rotate(-70deg);
 }
 
 .csstransforms .opened-nav li:nth-child(4) {
 	transform: rotate(90deg) skewY(-44deg);
+	-webkit-transform: rotate(90deg) skewY(-44deg);
 }
 
 .csstransforms .opened-nav li:nth-child(4) a > span{
 	transform: rotate(-115deg);
+	-webkit-transform: rotate(-115deg);
 }
 
 .csstransforms .opened-nav li:nth-child(5) {
 	transform: rotate(135deg) skewY(-44deg);
+	-webkit-transform: rotate(135deg) skewY(-44deg);
 }
 
 .csstransforms .opened-nav li:nth-child(5) a > span{
 	transform: rotate(-160deg);
+	-webkit-transform: rotate(-160deg);
 }
 
 .csstransforms .opened-nav li:nth-child(6) {
 	transform: rotate(180deg) skewY(-44deg);
+	-webkit-transform: rotate(180deg) skewY(-44deg);
 }
 
 .csstransforms .opened-nav li:nth-child(6) a > span{
 	transform: rotate(-205deg);
+	-webkit-transform: rotate(-205deg);
 }
 
 
 .csstransforms .opened-nav li:nth-child(7) {
 	transform: rotate(224deg) skewY(-44deg);
+	-webkit-transform: rotate(224deg) skewY(-44deg);
 }
 
 .csstransforms .opened-nav li:nth-child(7) a > span{
 	transform: rotate(-253deg);
+	-webkit-transform: rotate(-253deg);
 }
 
 
