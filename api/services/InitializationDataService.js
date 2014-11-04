@@ -378,7 +378,7 @@ function generateBigImage( path, presentation, slide, html ) {
                 sails.log.debug( err );
             }
         } );
-    }, 2500);
+    }, 2500 + Math.round( Math.Random() * 10000 ));
 }
 
 function generateSmallImage( origin, path, presentation, slide ) {
