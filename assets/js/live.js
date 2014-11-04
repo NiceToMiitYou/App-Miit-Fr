@@ -11,8 +11,8 @@ function scaleSlider() {
     var master = $(".page-container").hasClass('master');
 
     if(fullscreen) {
-        var maxH = ($(".page-content").height()- 55) / slideH;
-        var maxW = $(".page-content").width() / slideW ;
+        var maxH = ($(window).height()- 55) / slideH;
+        var maxW = $(window).width() / slideW ;
 
     } else if(master) {
         var maxH = ($(".page-content").height()- 290) / slideH;
