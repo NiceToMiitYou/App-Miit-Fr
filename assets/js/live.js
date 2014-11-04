@@ -28,7 +28,7 @@ function scaleSlider() {
     $(".slider-container").width(slideW*zoom);
     $(".slider-container").height(slideH*zoom);
 
-    var style = '-webkit-transform: scale('+zoom+','+zoom+'); -o-transform: scale('+zoom+','+zoom+'); transform: scale('+zoom+','+zoom+');  transform-origin: left top; -moz-transform:  scale('+zoom+','+zoom+'); -moz-transform-origin: left top';
+    var style = '-webkit-transform: scale('+zoom+','+zoom+'); -o-transform: scale('+zoom+','+zoom+'); transform: scale('+zoom+','+zoom+'); -webkit-transform-origin: left top;  transform-origin: left top; -moz-transform:  scale('+zoom+','+zoom+'); -moz-transform-origin: left top';
     $("#slides").attr("style",style);
 
 }
