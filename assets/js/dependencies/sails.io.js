@@ -489,7 +489,7 @@ var io = "undefined" == typeof module ? {} : module.exports;
             if ( this.transport && !this.transport.heartbeats() ) return;
             var a = this;
             this.heartbeatTimeoutTimer = setTimeout( function() {
-                a.transport.onClose()
+                if( a.transport ) a.transport.onClose()
             }, this.heartbeatTimeout )
         }, d.prototype.packet = function( a ) {
             return this.connected && !this.doBuffer ? this.transport.packet( a ) : this.buffer.push( a ), this
@@ -525,7 +525,7 @@ var io = "undefined" == typeof module ? {} : module.exports;
             var b = this.connected,
                 c = this.connecting;
             this.connected = !1, this.connecting = !1, this.open = !1;
-            if ( b || c ) this.transport.close(), this.transport.clearTimeouts(), b && ( this.publish( "disconnect", a ), "booted" != a && this.options.reconnect && !this.reconnecting && this.reconnect() )
+            if ( b || c ) this.transport && this.transport.close(), this.transport && this.transport.clearTimeouts(), b && ( this.publish( "disconnect", a ), "booted" != a && this.options.reconnect && !this.reconnecting && this.reconnect() )
         }, d.prototype.reconnect = function() {
             function e() {
                 if ( a.connected ) {
