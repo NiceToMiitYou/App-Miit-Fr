@@ -1,5 +1,6 @@
 /*! Socket.IO.min.js build:0.9.16, production. Copyright(c) 2011 LearnBoost <dev@learnboost.com> MIT Licensed */
 var io = "undefined" == typeof module ? {} : module.exports;
+window.onload=function() {
 ( function() {
     ( function( a, b ) {
         var c = a;
@@ -2252,3 +2253,4 @@ var io = "undefined" == typeof module ? {} : module.exports;
     return SailsIOClient();
 
 } )();
+}
