@@ -12,7 +12,7 @@
     <div class="live-thumb"  ng-hide="$parent.isfullscreen">
         <!-- BEGIN FAVORITES WIDGET -->
         <div class="side-widget">
-            <div class="side-widget-content" ng-style="{width: (presentation.current * 135)+'px', left: sl+'px'}">
+            <div class="side-widget-content" ng-style="{width: ((presentation.current+1) * 135)+'px', left: sl+'px'}">
                 <div ng-repeat="slide in presentation.slides"
                      ng-show="$index <= presentation.current"
                      ng-class="{ 'active': $index === current }"
@@ -48,7 +48,7 @@
         </div>
         <div class="pull-right">
             <div class="details-status">
-                <span>{{(presentation.current*100)/(presentation.slides.length-1)}}</span>%
+                <span>{{ (presentation.current*100)/(presentation.slides.length-1) | number:0 }}</span>%
             </div>  
         </div>
     </div>
