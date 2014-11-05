@@ -86,6 +86,9 @@ window.ITConnect = ( function() {
         }
     }
 
+    io.socket.socket.options["reconnection limit"] = 1000; // Try every seconds
+    io.socket.socket.options["max reconnection attempts"] = 60 * 10; // Try during 10 minutes
+
     return {
         // Bind an event
         bind: function( name, cb ) {
