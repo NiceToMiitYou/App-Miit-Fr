@@ -2141,7 +2141,12 @@ var io = "undefined" == typeof module ? {} : module.exports;
                 // Replay event bindings from the existing TmpSocket
                 io.socket = io.socket.become( actualSocket );
 
-
+                io.socket.socket.options["force new connection"] = true;
+                io.socket.socket.options["connect timeout"] = 5000; // Fix connection time out to 5 seconds
+                io.socket.socket.options["reconnection limit"] = 1000; // Try every seconds
+                io.socket.socket.options["max reconnection attempts"] = 60 * 10; // Try during 10 minutes
+                io.socket.socket.options["flash policy port"] = "8080";
+                
                 /**
                  * 'connect' event is triggered when the socket establishes a connection
                  *  successfully.
@@ -2233,7 +2238,6 @@ var io = "undefined" == typeof module ? {} : module.exports;
             // onto the URL used to fetch this file.)
 
         }, 0 ); // </setTimeout>
-
 
         // Return the `io` object.
         return io;

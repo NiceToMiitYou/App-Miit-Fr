@@ -86,14 +86,6 @@ window.ITConnect = ( function() {
         }
     }
 
-    window.onload = function() {
-        setTimeout(function() {
-            io.socket.socket.options["connect timeout"] = 5000; // Fix connection time out to 5 seconds
-            io.socket.socket.options["reconnection limit"] = 1000; // Try every seconds
-            io.socket.socket.options["max reconnection attempts"] = 60 * 10; // Try during 10 minutes
-        }, 1000);
-    };
-
     return {
         // Bind an event
         bind: function( name, cb ) {
