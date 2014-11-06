@@ -25,6 +25,8 @@ ITEventApp.controller(
                 }
             } );
 
+            var alreadyAskedUsers = {};
+
             function safeHTML( html ) {
                 return $sce.trustAsHtml(html);
             }
@@ -32,6 +34,8 @@ ITEventApp.controller(
             function refreshUser( user ) {
                 $timeout( function() {
                     $scope.user = user;
+
+                    alreadyAskedUsers[user.id] = true;
 
                     ITStorage.db.users.set(user.id, user);
                 } );
@@ -97,22 +101,24 @@ ITEventApp.controller(
 
             function askForUserIfNotExist( object, userField, userId ) {
 
-                object[userField] = ITStorage.db.users.get(userId);
+                ITStorage.db.users.bind(userId, true, function(user) {
+
+                    $timeout(function() {
+                        object[userField] = user;
+                    });
+                });
 
                 // If user not registered request him
-                if( !object[userField] ) {
+                if( !alreadyAskedUsers[userId] ) {
+
+                    alreadyAskedUsers[userId] = true;
                     
                     ITConnect.user.get(userId, function( data ){
                         
-                        $timeout(function() {
+                        if( data.done ) {
 
-                            if( data.done ) {
-
-                                ITStorage.db.users.set(data.user.id, data.user);
-
-                                object[userField] = data.user;
-                            }
-                        });
+                            ITStorage.db.users.set(data.user.id, data.user);
+                        }
                     });
                 }
             }
