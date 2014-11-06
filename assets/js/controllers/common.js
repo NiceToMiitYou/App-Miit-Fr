@@ -32,6 +32,8 @@ ITEventApp.controller(
             function refreshUser( user ) {
                 $timeout( function() {
                     $scope.user = user;
+
+                    ITStorage.db.users.set(user.id, user);
                 } );
             }
 
