@@ -2,10 +2,20 @@ ITEventApp.controller(
     'masterController', [ '$scope', '$timeout',
         function( $scope, $timeout ) {
 
-            $scope.connectedUsers = 1;
+            var minTime = 10000;
+            var maxTime = 30000;
+            var refreshTime = 10000;
+
+            $scope.connectedUsers = 0;
             $scope.usersConnectedUp = true;
             $scope.usersConnectedSame = false;
             $scope.usersConnectedDown = false;
+
+            function calculateTime() {
+                refreshTime = Math.round( Math.max( minTime, Math.min( maxTime,
+                    ( maxTime - minTime) * $scope.connectedUsers / 500 + minTime
+                ) ) );
+            }
 
             function refreshConnectedUsers() {
 
@@ -21,7 +31,9 @@ ITEventApp.controller(
                         });
                     }
 
-                    setTimeout(refreshConnectedUsers, 10000);
+                    setTimeout(refreshConnectedUsers, refreshTime);
+
+                    calculateTime();
                 });
             }
 
