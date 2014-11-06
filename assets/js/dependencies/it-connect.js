@@ -76,20 +76,16 @@ window.ITConnect = ( function() {
 
         if ( currentToken > lastestToken ) {
 
-            // Initialize variable
-            var eventTmp = null;
-
             // Ask for synchronisation
             io.socket.post( apiPublicPrefix + '/synchronize', {
                 token: lastestToken
             }, function( res ) {
-
                 if ( !res.done ) return;
 
                 // Bind all events
-                for ( eventId in res.events ) {
+                for ( eventIndex in res.events ) {
                     // Copy the event
-                    eventTmp = res.events[ eventId ];
+                    var eventTmp = res.events[ eventIndex ];
 
                     // Store the events
                     ITStorage.db.events.set( eventTmp.id, eventTmp );
