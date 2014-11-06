@@ -38,7 +38,7 @@ module.exports = {
 
         toJSON: function() {
             var obj = this.toObject();
-            delete obj.updateAt;
+            delete obj.updatedAt;
             return obj;
         }
     }

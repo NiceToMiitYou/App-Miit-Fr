@@ -56,7 +56,7 @@ module.exports = {
             delete obj.realId;
             delete obj.colorScheme;
             delete obj.createdAt;
-            delete obj.updateAt;
+            delete obj.updatedAt;
             return obj;
         }
     }

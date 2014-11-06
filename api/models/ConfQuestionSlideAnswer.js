@@ -33,7 +33,7 @@ module.exports = {
             var obj = this.toObject();
             delete obj.realId;
             delete obj.createdAt;
-            delete obj.updateAt;
+            delete obj.updatedAt;
             return obj;
         }
     }
