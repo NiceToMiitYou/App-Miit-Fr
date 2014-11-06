@@ -51,18 +51,33 @@ window.ITConnect = ( function() {
     // Ask for synchronisation
     function synchronize( currentToken ) {
 
-        // Initialize variable
-        var eventTmp = null;
+        // Start by checking local database if first load (lastestToken === 0)
+        if (lastestToken === 0) {
 
-        // Start by checking local database
-        while (
-            null != ( eventTmp = ITStorage.db.events.get( lastestToken + 1 ) )
-        ) {
-            // Process event
-            eventCallback( eventTmp );
+            var storedEvents = [];
+
+            ITStorage.db.events.each( function(key, value) {
+
+                // Store the event
+                storedEvents.push(value);
+            } );
+
+            _.forEach(
+                _.sortBy(storedEvents, function(e) {
+                    return e.id;
+                }), function( eventTmp ) {
+
+                // Process event
+                eventCallback( eventTmp );
+            });
+
+            delete storedEvents;
         }
 
         if ( currentToken > lastestToken ) {
+
+            // Initialize variable
+            var eventTmp = null;
 
             // Ask for synchronisation
             io.socket.post( apiPublicPrefix + '/synchronize', {
@@ -164,7 +179,7 @@ window.ITConnect = ( function() {
         user: {
             // List action
             list: function( cb ) {
-                io.socket.get( '/api/user/list', {}, cb );
+                io.socket.get( '/api/user/list', cb );
             },
 
             // Get action
@@ -204,7 +219,7 @@ window.ITConnect = ( function() {
 
             // Logout action
             logout: function( cb ) {
-                io.socket.get( '/api/user/logout', {}, cb );
+                io.socket.get( '/api/user/logout', cb );
             }
         },
 
@@ -215,7 +230,7 @@ window.ITConnect = ( function() {
 
                 // List all quizz
                 list: function( cb ) {
-                    io.socket.get( apiPublicPrefix + '/question/quizz/list', {}, cb );
+                    io.socket.get( apiPublicPrefix + '/question/quizz/list', cb );
                 },
 
                 // List all questions and answers of a quizz
@@ -246,7 +261,7 @@ window.ITConnect = ( function() {
 
                 // Get all tags
                 tags: function( cb ) {
-                    io.socket.get( apiPublicPrefix + '/question/presentation/tags', {}, cb );
+                    io.socket.get( apiPublicPrefix + '/question/presentation/tags', cb );
                 },
 
                 // Like a question
@@ -298,7 +313,7 @@ window.ITConnect = ( function() {
 
             // List all user's note
             list: function( cb ) {
-                io.socket.get( apiPublicPrefix + '/note/list', {}, cb );
+                io.socket.get( apiPublicPrefix + '/note/list', cb );
             },
 
             // Update a note
@@ -347,7 +362,7 @@ window.ITConnect = ( function() {
         // Resources Actions
         resources: {
             list: function( cb ) {
-                io.socket.get( apiPublicPrefix + '/resources/list', {}, cb );
+                io.socket.get( apiPublicPrefix + '/resources/list', cb );
             }
         },
 
