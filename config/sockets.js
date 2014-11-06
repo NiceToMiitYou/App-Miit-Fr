@@ -23,12 +23,12 @@ module.exports.sockets = {
      ***************************************************************************/
     onConnect: function( session, socket ) {
 
-        if ( session.user &&
-            session.roles &&
-            _.contains( session.roles, 'ROLE_LOGIN' ) ) {
-            sails.sockets.join( socket, 'AllConnectedToRT' );
-        }
+        if ( session.roles ) {
 
+            _.forEach(session.roles, function(role) {
+                sails.sockets.join( socket, role );
+            });
+        }
     },
 
 
@@ -40,8 +40,12 @@ module.exports.sockets = {
      ***************************************************************************/
     onDisconnect: function( session, socket ) {
 
-        sails.sockets.leave( socket, 'AllConnectedToRT' );
+        if ( session.roles ) {
 
+            _.forEach(session.roles, function(role) {
+                sails.sockets.leave( socket, role );
+            });
+        }
     },
 
 

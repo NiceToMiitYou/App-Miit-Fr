@@ -33,11 +33,9 @@ module.exports = {
             .exec( function( err, created ) {
                 if ( err ) return res.notDone();
 
-                SocketEventCachingService.sendToAll( 'chatroom-new', created, 5 * 60 ); // Keep them 5 minutes
+                SocketEventCachingService.sendToAll( 'chatroom-new', created, 5 * 60, true ); // Keep them 5 minutes but apply coefficient
 
-                return res.done( {
-                    message: created
-                } );
+                return res.done();
             } );
     }
 };

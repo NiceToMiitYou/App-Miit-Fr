@@ -43,7 +43,7 @@ module.exports = {
         
         return res.done( {
             users: _.size( 
-                sails.sockets.subscribers('AllConnectedToRT')
+                sails.sockets.subscribers('ROLE_VIEWER')
             ) 
         } );
     },
