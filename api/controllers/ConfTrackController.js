@@ -20,7 +20,7 @@ module.exports = {
                 if ( err ) return res.notDone();
 
                 return res.done( {
-                    track: track
+                    track: track.id
                 } );
             } );
     },

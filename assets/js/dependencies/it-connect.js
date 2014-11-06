@@ -2,7 +2,7 @@ window.ITConnect = ( function() {
     var apiPublicPrefix = '/api/viewer';
     var apiMasterPrefix = '/api/master';
 
-    var lastestTrack = null;
+    var lastestTrack = false;
 
     var eventsCallbacks = {};
 
@@ -353,7 +353,7 @@ window.ITConnect = ( function() {
 
         track: {
             create: function( action, cb ) {
-                if ( lastestTrack ) {
+                if ( lastestTrack !== false) {
                     io.socket.post( apiPublicPrefix + '/track/end', {
                         track: lastestTrack
                     } );
@@ -362,7 +362,7 @@ window.ITConnect = ( function() {
                 io.socket.post( apiPublicPrefix + '/track/start', {
                     action: action
                 }, function( data ) {
-                    lastestTrack = data.track.id;
+                    lastestTrack = data.track;
 
                     if ( typeof cb == 'function' ) {
                         cb( data );
