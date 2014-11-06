@@ -6,7 +6,9 @@
  */
 
 module.exports = {
+
     colorScheme: function( req, res ) {
+    
         ConfConference.findOne( 1 )
             .exec( function( err, conference ) {
                 if ( err || !conference ) return res.send( 404 );

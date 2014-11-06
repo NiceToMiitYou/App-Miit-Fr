@@ -5,6 +5,8 @@
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
+var liveDuration = 6 * 60 * 60; // Store them 6 hours
+
 module.exports = {
 
     /**
@@ -16,8 +18,8 @@ module.exports = {
                 'live-presentation-next', {
                     presentation: req.param( 'presentation' )
                 },
-                4 * 60 * 60
-            ); // Store them 4 hours
+                liveDuration
+            );
         }
     },
 
@@ -30,8 +32,8 @@ module.exports = {
                 'live-presentation-previous', {
                     presentation: req.param( 'presentation' )
                 },
-                4 * 60 * 60
-            ); // Store them 4 hours
+                liveDuration
+            );
         }
     }
 

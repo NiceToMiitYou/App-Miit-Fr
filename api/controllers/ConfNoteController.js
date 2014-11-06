@@ -66,7 +66,6 @@ module.exports = {
                 } else {
 
                     return res.notDone();
-
                 }
             } );
     },
@@ -91,7 +90,6 @@ module.exports = {
                 } else {
 
                     return res.notDone();
-
                 }
             } );
     },

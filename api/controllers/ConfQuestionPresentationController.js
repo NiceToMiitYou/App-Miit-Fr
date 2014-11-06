@@ -5,6 +5,8 @@
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
+var questionDuration = 6 * 60 * 60;
+
 module.exports = {
 
     /**
@@ -26,7 +28,7 @@ module.exports = {
                             question: created,
                             tags: req.param( 'tags' )
                         },
-                        4 * 60 * 60
+                        questionDuration
                     );
 
                     // If no like before, let's like it
@@ -41,7 +43,7 @@ module.exports = {
                             SocketEventCachingService.sendToAll(
                                 'question-presentation-like',
                                 createdLike,
-                                4 * 60 * 60
+                                questionDuration
                             );
                         } );
 
@@ -72,6 +74,7 @@ module.exports = {
      * `ConfQuestionPresentationController.like()`
      */
     like: function( req, res ) {
+        // Find the question
         ConfQuestionPresentation.findOne( {
             id: req.param( 'question' ),
             isAnswered: false
@@ -79,6 +82,7 @@ module.exports = {
             .exec( function( err, question ) {
                 if ( err || !question ) return res.notDone();
 
+                // Find if already liked
                 ConfQuestionPresentationLike.findOne( {
                     question: question.id,
                     user: req.session.user
@@ -101,7 +105,7 @@ module.exports = {
                                 SocketEventCachingService.sendToAll(
                                     'question-presentation-like',
                                     created,
-                                    4 * 60 * 60
+                                    questionDuration
                                 );
 
                                 return res.done( {
