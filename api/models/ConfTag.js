@@ -20,7 +20,13 @@ module.exports = {
             collection: 'ConfQuestionPresentation',
             via: 'tags',
             dominant: true
-        }
+        },
 
+        toJSON: function() {
+            var obj = this.toObject();
+            delete obj.createdAt;
+            delete obj.updateAt;
+            return obj;
+        }
     }
 };

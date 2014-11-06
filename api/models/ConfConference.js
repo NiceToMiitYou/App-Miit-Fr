@@ -55,6 +55,8 @@ module.exports = {
             var obj = this.toObject();
             delete obj.realId;
             delete obj.colorScheme;
+            delete obj.createdAt;
+            delete obj.updateAt;
             return obj;
         }
     }

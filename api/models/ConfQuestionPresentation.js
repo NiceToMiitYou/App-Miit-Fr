@@ -34,6 +34,12 @@ module.exports = {
             collection: 'ConfTag',
             via: 'questions',
             required: true
+        },
+
+        toJSON: function() {
+            var obj = this.toObject();
+            delete obj.updateAt;
+            return obj;
         }
     }
 };

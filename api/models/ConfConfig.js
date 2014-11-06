@@ -19,6 +19,13 @@ module.exports = {
 
         value: {
             type: 'string'
+        },
+
+        toJSON: function() {
+            var obj = this.toObject();
+            delete obj.createdAt;
+            delete obj.updateAt;
+            return obj;
         }
     }
 };

@@ -23,6 +23,13 @@ module.exports = {
         messages: {
             collection: 'ConfChatMessage',
             via: 'chatroom'
+        },
+
+        toJSON: function() {
+            var obj = this.toObject();
+            delete obj.createdAt;
+            delete obj.updateAt;
+            return obj;
         }
     }
 };

@@ -99,6 +99,9 @@ module.exports = {
             delete obj.mail;
             delete obj.realId;
             delete obj.roles;
+            delete obj.messages;
+            delete obj.createdAt;
+            delete obj.updateAt;
             return obj;
         }
     },

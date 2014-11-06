@@ -36,6 +36,13 @@ module.exports = {
         questions: {
             collection: 'ConfQuestionQuizz',
             via: 'quizz'
+        },
+
+        toJSON: function() {
+            var obj = this.toObject();
+            delete obj.createdAt;
+            delete obj.updateAt;
+            return obj;
         }
     }
 };
