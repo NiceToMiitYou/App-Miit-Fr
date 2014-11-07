@@ -353,7 +353,7 @@ function generateBigImage( path, presentation, slide, html ) {
         var options = {
             screenSize: size.big,
             siteType: 'html',
-            renderDelay: 5000,
+            renderDelay: 4000,
             settings: {
                 localToRemoteUrlAccessEnabled: true
             }
@@ -378,7 +378,7 @@ function generateBigImage( path, presentation, slide, html ) {
                 sails.log.debug( err );
             }
         } );
-    }, 2500 + Math.round( Math.random() * 10000 ));
+    }, 500 + Math.round( Math.random() * 2500 ));
 }
 
 function generateSmallImage( origin, path, presentation, slide ) {
