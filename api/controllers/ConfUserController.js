@@ -130,6 +130,20 @@ module.exports = {
         if ( req.session.user ) req.session.user = null;
         if ( req.session.roles ) req.session.roles = null;
 
-        return res.done();
+        // Set last track to end
+        ConfTrack.findOne( {
+            user: req.session.user,
+            sort: 'id DESC'
+        } )
+            .exec( function( err, track ) {
+                if ( err ) return res.notDone();
+                if ( track ) {
+
+                    track.end = new Date();
+                    track.save();
+                }
+
+                return res.done();
+            } ) ;
     }
 };

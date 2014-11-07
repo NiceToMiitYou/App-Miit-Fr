@@ -1,6 +1,6 @@
 
 <!-- BEGIN CONTENT -->
-<div ng-controller="commonController" class="page-container row-fluid" ng-init="accountType = 1; activetool = 'note';" ng-class="{fullscreen : isfullscreen}" >
+<div ng-controller="commonController" class="page-container row-fluid" ng-init="accountType = 1; activetool = 'NOTE';" ng-class="{fullscreen : isfullscreen}" >
 
     <ul class="user-sub" ng-show="openStats">
         <li class="active"><a href="#" ng-click="openStats=false"><span class="status-icon green"></span> <span class="title">Online</span></a></li>
@@ -23,44 +23,44 @@
                             <span><i class="fa fa-4x fa-angle-double-down"></i></span>
                         </a>
                     </li>
-                    <li ng-class="{active : activetool === 'ressource'}">
-                        <a class="light" href="#ressources" ng-click="activetool='ressource'" ng-mouseover="menulabel='Ressources'">
+
+                    <li ng-class="{active : activetool === 'RESSOURCE'}">
+                        <a class="light" href="#ressources" ng-click="track('RESSOURCE')" ng-mouseover="menulabel='Ressources'">
                             <span class="title"><i class="fa fa-3x fa-folder-open"></i><!-- Ressources --></span>
                         </a>
                     </li>
 
-                    <!-- BEGIN SINGLE LINK -->
-                    <li ng-class="{active : activetool === 'wall'}">
-                        <a href="#wall" ng-click="activetool='wall'" ng-mouseover="menulabel='Mur'">
+                    <li ng-class="{active : activetool === 'WALL'}">
+                        <a href="#wall" ng-click="track('WALL')" ng-mouseover="menulabel='Mur'">
                             <span class="title"><i class="fa fa-3x fa-users"></i><!-- Mur --></span>
                         </a>
                     </li>
-                    <!-- END SINGLE LINK --> 
 
-                    <!-- BEGIN BADGE LINK -->
-                    <li ng-class="{active : activetool === 'chat'}">
-                        <a class="light" href="#chat" ng-click="activetool='chat'" ng-mouseover="menulabel='Discussions'">
+                    <li ng-class="{active : activetool === 'CHAT'}">
+                        <a class="light" href="#chat" ng-click="track('CHAT')" ng-mouseover="menulabel='Discussions'">
                             <span class="title"><i class="fa fa-3x fa-weixin"></i><!-- Discussions --></span>
                         </a>
                     </li>
-                    <!-- END BADGE LINK -->     
-                    <!-- BEGIN SINGLE LINK -->
-                    <li ng-class="{active : activetool === 'note'}">
-                        <a href="#notes" ng-click="activetool='note'"  ng-mouseover="menulabel='Bloc-note'">
+
+                    <li ng-class="{active : activetool === 'NOTE'}">
+                        <a href="#notes" ng-click="track('NOTE')"  ng-mouseover="menulabel='Bloc-note'">
                             <span class="title"><i class="fa fa-3x fa-pencil"></i><!-- Bloc-note --></span>
                         </a>
-                    </li ng-class="{active : activetool === 'wall'}">
-                    <!-- END SINGLE LINK -->    
-                    <!-- BEGIN ONE LEVEL MENU -->
-                    <li ng-class="{active : activetool === 'quizz'}" ng-mouseover="menulabel='Questionnaires'">
-                        <a class="light" href="#quizz" ng-click="activetool='quizz'">
+                    </li>
+
+                    <li ng-class="{active : activetool === 'QUIZZ'}" ng-mouseover="menulabel='Questionnaires'">
+                        <a class="light" href="#quizz" ng-click="track('QUIZZ')">
                             <span class="title"><i class="fa fa-3x fa-question"></i><!-- Questionnaires --></span>
                         </a>
                     </li>
-                    <li><a href="#" style="transform: skewY(44deg) rotate(28deg);" ng-click="logout();" ng-mouseover="menulabel='Déconnexion'"><span>
-                        <span ng-show="user.avatar.c && user.avatar.a" class="avatar" ng-class="user.avatar.c + ' avatar-'+user.avatar.a"></span>
-                        <span ng-show="!user.avatar.c || !user.avatar.a" class="avatar black anonymous"></span>
-                    </span></a></li>
+
+                    <li>
+                        <a href="#" style="transform: skewY(44deg) rotate(28deg);" ng-click="logout();" ng-mouseover="menulabel='Déconnexion'"><span>
+                            <span ng-show="user.avatar.c && user.avatar.a" class="avatar" ng-class="user.avatar.c + ' avatar-'+user.avatar.a"></span>
+                            <span ng-show="!user.avatar.c || !user.avatar.a" class="avatar black anonymous"></span>
+                        </span>
+                        </a>
+                    </li>
                  </ul>
             <!-- End of Nav Structure -->
         </div>
@@ -68,55 +68,14 @@
         <!-- BEGIN SIDEBAR -->
         <div id="main-menu" class="hide">
             <div id="main-menu-wrapper">
-                <!-- BEGIN MINI-PROFILE -->
-<!--                 <div class="user-info-wrapper">
-                    <img style="padding-top:14px;" src="/images/logo.png" alt="" data-src="/images/logo.png" width="140" />
-                </div>
-
- -->
-
-                <!-- END MINI-PROFILE -->
-
-                <!-- BEGIN SIDEBAR MENU --> 
-                <ul> 
-
-                    <!-- END SELECTED LINK -->
-
-
-                    <!-- END ONE LEVEL MENU -->
-                    <!-- BEGIN TWO LEVEL MENU -->
-                   <!--  <li class="">
-                        <a href="#planning">
-                            <i class="fa fa-calendar"></i>
-                            <span class="title">Planning</span>
-                        </a>
-                    </li> -->
-                    <!-- END TWO LEVEL MENU -->         
-                </ul>
-                <!-- END SIDEBAR MENU -->
-                <!-- END SIDEBAR WIDGETS --> 
 
                 <div class="user-info-wrapper user-show" ng-click="openStats=true">
                     <a ng-show="user.avatar.c && user.avatar.a" class="avatar" ng-class="user.avatar.c + ' avatar-'+user.avatar.a"></a>
                     <a ng-show="!user.avatar.c || !user.avatar.a" class="avatar black anonymous"></a>
-                   <!--  <div class="user-info m-l-5">
-                        <div class="username" ng-class="{small : getUsername().length > 12}">
-
-                            <span>
-                                {{ getUsername() }}
-                            </span>
-
-                        </div>
-                        <div class="status">Status<a href="#">
-                            <div class="status-icon green"></div>
-                            Online</a>
-                        </div>
-                    </div> -->
                 </div>
 
                 <div class="clearfix"></div>
             </div>
-
         </div>
         <!-- END SIDEBAR --> 
 

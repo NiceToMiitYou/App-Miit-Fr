@@ -131,9 +131,18 @@ ITEventApp.controller(
                 $scope.isfullscreen = !$scope.isfullscreen;
                 $scope.openmenu = !$scope.openmenu;
 
+                if($scope.isfullscreen) {
+
+                    ITConnect.track.create('LIVE');
+
+                } else {
+
+                    track($scope.activetool);
+                }
+
                 setTimeout(function() {
                     window.scaleSlider();
-                },50);
+                }, 50);
             }
 
             function handlerMenu() {
@@ -149,6 +158,25 @@ ITEventApp.controller(
                 $scope.openmenu = false;
             }
 
+            function track( id ) {
+
+                ITConnect.track.create( id );
+
+                $scope.activetool = id;
+            }
+
+            setTimeout(function(){
+                if( $scope.accountType === 1 ) {
+
+                    ITConnect.track.create( 'LIVE' );
+
+                    // Track it away
+                    window.onbeforeunload = function( e ) {
+
+                        ITConnect.track.create( 'LEAVING' );
+                    };
+                }
+            }, 250);
 
             $scope.logout = logout;
 
@@ -157,6 +185,8 @@ ITEventApp.controller(
             $scope.closeMenu = closeMenu;
 
             $scope.openmenu = false;
+
+            $scope.track = track;
             
             $scope.safeHTML = safeHTML;
 

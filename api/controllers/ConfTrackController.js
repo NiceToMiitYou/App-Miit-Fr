@@ -8,42 +8,30 @@
 module.exports = {
 
     /**
-     * `ConfTrackController.start()`
+     * `ConfTrackController.create()`
      */
-    start: function( req, res ) {
-        ConfTrack.create( {
-            action: req.param( 'action' ),
-            start: new Date(),
-            user: req.session.user
-        } )
-            .exec( function( err, track ) {
-                if ( err ) return res.notDone();
+    create: function( req, res ) {
 
-                return res.done( {
-                    track: track.id
-                } );
-            } );
-    },
+        var DateNow = new Date();
 
-    /**
-     * `ConfTrackController.end()`
-     */
-    end: function( req, res ) {
         ConfTrack.findOne( {
             user: req.session.user,
-            id: req.param( 'track' ),
+            sort: 'id DESC'
         } )
             .exec( function( err, track ) {
-                if ( err || !track ) return res.notDone();
+                if ( err ) return;
+                if ( track ) {
 
-                track.end = new Date();
+                    track.end = DateNow;
+                    track.save();
+                }
 
-                track.save( function( err, saved ) {
-                    if ( err || !saved ) return res.notDone();
-
-                    return res.done();
-                } );
+                ConfTrack.create( {
+                    action: req.param( 'action' ),
+                    start: DateNow,
+                    user: req.session.user
+                } )
+                    .exec( function( err, track ) {} );
             } );
-    }
-
+    },
 };

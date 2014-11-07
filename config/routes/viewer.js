@@ -153,15 +153,9 @@ routes[ 'GET ' + apiPublicPrefix + '/resources/list' ] = {
  * Track Controller
  ******************/
 
-routes[ 'POST ' + apiPublicPrefix + '/track/start' ] = {
+routes[ 'POST ' + apiPublicPrefix + '/track' ] = {
     controller: 'ConfTrackController',
-    action: 'start'
+    action: 'create'
 };
-
-routes[ 'POST ' + apiPublicPrefix + '/track/end' ] = {
-    controller: 'ConfTrackController',
-    action: 'end'
-};
-
 
 module.exports = routes;

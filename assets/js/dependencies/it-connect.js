@@ -2,8 +2,6 @@ window.ITConnect = ( function() {
     var apiPublicPrefix = '/api/viewer';
     var apiMasterPrefix = '/api/master';
 
-    var lastestTrack = false;
-
     var eventsCallbacks = {};
 
     ITStorage.create( 'events', true );
@@ -363,21 +361,12 @@ window.ITConnect = ( function() {
         },
 
         track: {
-            create: function( action, cb ) {
-                if ( lastestTrack !== false) {
-                    io.socket.post( apiPublicPrefix + '/track/end', {
-                        track: lastestTrack
-                    } );
-                }
+            create: function( action ) {
 
-                io.socket.post( apiPublicPrefix + '/track/start', {
+                io.socket.post( apiPublicPrefix + '/track', {
                     action: action
                 }, function( data ) {
                     lastestTrack = data.track;
-
-                    if ( typeof cb == 'function' ) {
-                        cb( data );
-                    }
                 } );
             }
         }
