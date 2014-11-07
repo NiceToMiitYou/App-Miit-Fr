@@ -60,7 +60,9 @@ ITEventApp.controller(
 
                 $scope.shared.liveProgress = 
                     ( !$scope.presentation ) ? 0 :
-                    ( $scope.presentation.current * 100 ) / Math.max( 1, $scope.presentation.slides.length - 1 );
+                    Math.round(
+                        ( $scope.presentation.current * 100 ) / Math.max( 1, $scope.presentation.slides.length - 1 )
+                    );
             }
 
             function liveNext( data ) {
