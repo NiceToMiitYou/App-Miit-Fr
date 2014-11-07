@@ -37,6 +37,12 @@ function initData() {
         } );
     }
 
+    // Mark it as not connected
+    if ( notLogged ) {
+
+        ITStorage.db.options.set( 'user.isConnected', false );
+    }
+
     // Load data if not loaded and have to be loaded
     if ( ITStorage.db.options.get( 'user.isConnected' ) &&
         !ITStorage.db.options.get( 'data.isLoaded' ) ) {

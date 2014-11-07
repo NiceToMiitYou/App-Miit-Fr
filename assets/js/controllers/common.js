@@ -86,6 +86,8 @@ ITEventApp.controller(
                             type: 'info'
                         });
 
+                        ITStorage.db.options.set( 'user.isConnected', false );
+
                         $timeout(function() {
                             window.location.reload();
                         }, 1750);
