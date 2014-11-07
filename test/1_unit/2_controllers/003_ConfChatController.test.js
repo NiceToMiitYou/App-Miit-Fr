@@ -75,14 +75,6 @@ describe( 'ConfChatController', function() {
                             done: true
                         } );
 
-                    ( res.body.message )
-                        .should.be.an.instanceOf( Object );
-                    ( res.body.message )
-                        .should.have.properties( {
-                            chatroom: 1,
-                            message: 'Hello world!'
-                        } );
-
                     done();
                 } );
         } );
