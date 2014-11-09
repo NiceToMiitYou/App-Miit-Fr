@@ -24,7 +24,7 @@ ITEventApp.filter('toArray', function() {
  * Use it as it-blur="(condition === true) to blur a field, like ng-show=""
  */
 
-ITEventApp.directive('itBlur', function($timeout) {
+ITEventApp.directive('itBlur', [ '$timeout', function($timeout) {
     return {
         link: function(scope, element, attrs) {
 
@@ -40,13 +40,13 @@ ITEventApp.directive('itBlur', function($timeout) {
             });
         }
     };
-});
+} ] );
 
 /*
  * Use it as it-focus="(condition === true) to focus a field, like ng-show=""
  */
 
-ITEventApp.directive('itFocus', function($timeout) {
+ITEventApp.directive('itFocus', [ '$timeout', function($timeout) {
     return {
         link: function(scope, element, attrs) {
 
@@ -62,7 +62,8 @@ ITEventApp.directive('itFocus', function($timeout) {
             });
         }
     };
-});
+} ] );
+
 
 ITEventApp.animation('.slide-animation', function () {
     return {
@@ -104,4 +105,3 @@ ITEventApp.animation('.slide-animation', function () {
         }
     };
 });
-
