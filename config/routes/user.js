@@ -11,7 +11,7 @@ routes[ 'GET ' + apiUserPrefix + '/list' ] = {
     action: 'list'
 };
 
-routes[ 'POST ' + apiUserPrefix + '/get' ] = {
+routes[ 'GET ' + apiUserPrefix + '/:user/get' ] = {
     controller: 'ConfUserController',
     action: 'get'
 };

@@ -75,23 +75,22 @@ window.ITConnect = ( function() {
         if ( currentToken > lastestToken ) {
 
             // Ask for synchronisation
-            io.socket.post( apiPublicPrefix + '/synchronize', {
-                token: lastestToken
-            }, function( res ) {
-                if ( !res.done ) return;
+            io.socket.get( apiPublicPrefix + '/synchronize/' + lastestToken,
+                function( res ) {
+                    if ( !res.done ) return;
 
-                // Bind all events
-                for ( eventIndex in res.events ) {
-                    // Copy the event
-                    var eventTmp = res.events[ eventIndex ];
+                    // Bind all events
+                    for ( eventIndex in res.events ) {
+                        // Copy the event
+                        var eventTmp = res.events[ eventIndex ];
 
-                    // Store the events
-                    ITStorage.db.events.set( eventTmp.id, eventTmp );
+                        // Store the events
+                        ITStorage.db.events.set( eventTmp.id, eventTmp );
 
-                    // Process event
-                    eventCallback( eventTmp );
-                }
-            } );
+                        // Process event
+                        eventCallback( eventTmp );
+                    }
+                } );
         }
     }
 
@@ -162,9 +161,8 @@ window.ITConnect = ( function() {
 
             // Send a message to the chatroom
             send: function( chatroom, message, cb ) {
-                io.socket.post( apiPublicPrefix + '/chatroom/send', {
-                    message: message,
-                    chatroom: chatroom
+                io.socket.post( apiPublicPrefix + '/chatroom/' + chatroom + '/send', {
+                    message: message
                 }, cb );
             }
         },
@@ -178,9 +176,7 @@ window.ITConnect = ( function() {
 
             // Get action
             get: function( user, cb ) {
-                io.socket.post( '/api/user/get', {
-                    user: user
-                }, cb );
+                io.socket.get( '/api/user/' + user + '/get', cb );
             },
 
             // Update action
@@ -224,20 +220,17 @@ window.ITConnect = ( function() {
 
                 // List all quizz
                 list: function( cb ) {
-                    io.socket.get( apiPublicPrefix + '/question/quizz/list', cb );
+                    io.socket.get( apiPublicPrefix + '/quizz/list', cb );
                 },
 
                 // List all questions and answers of a quizz
                 questions: function( quizz, cb ) {
-                    io.socket.post( apiPublicPrefix + '/question/quizz/questions', {
-                        quizz: quizz
-                    }, cb );
+                    io.socket.get( apiPublicPrefix + '/quizz/' + quizz + '/questions', cb );
                 },
 
                 // Answer to a question
                 answer: function( question, answers, cb ) {
-                    io.socket.post( apiPublicPrefix + '/question/quizz/answer', {
-                        question: question,
+                    io.socket.post( apiPublicPrefix + '/quizz/question/' + question + '/answer', {
                         answers: answers
                     }, cb );
                 }
@@ -247,7 +240,7 @@ window.ITConnect = ( function() {
             presentation: {
                 // Create a new question
                 create: function( question, tags, cb ) {
-                    io.socket.post( apiPublicPrefix + '/question/presentation/create', {
+                    io.socket.post( apiPublicPrefix + '/presentation/question/create', {
                         question: question,
                         tags: tags
                     }, cb );
@@ -255,21 +248,19 @@ window.ITConnect = ( function() {
 
                 // Get all tags
                 tags: function( cb ) {
-                    io.socket.get( apiPublicPrefix + '/question/presentation/tags', cb );
+                    io.socket.get( apiPublicPrefix + '/presentation/question/tags', cb );
                 },
 
                 // Like a question
                 like: function( question, cb ) {
-                    io.socket.post( apiPublicPrefix + '/question/presentation/like', {
-                        question: question,
+                    io.socket.post( apiPublicPrefix + '/presentation/question/' + question + '/like', {
                         like: true
                     }, cb );
                 },
 
                 // Dislike a question
                 dislike: function( question, cb ) {
-                    io.socket.post( apiPublicPrefix + '/question/presentation/like', {
-                        question: question,
+                    io.socket.post( apiPublicPrefix + '/presentation/question/' + question + '/like', {
                         like: false
                     }, cb );
                 }
@@ -280,15 +271,12 @@ window.ITConnect = ( function() {
 
                 // Get question of a slide
                 question: function( slide, cb ) {
-                    io.socket.get( apiPublicPrefix + '/question/slide/question', {
-                        slide: slide
-                    }, cb );
+                    io.socket.get( apiPublicPrefix + '/question/slide/' + slide + '/question', cb );
                 },
 
                 // Answer to a question
                 answer: function( question, answers, cb ) {
-                    io.socket.post( apiPublicPrefix + '/question/slide/answer', {
-                        question: question,
+                    io.socket.post( apiPublicPrefix + '/question/slide/question/' + question + '/answer', {
                         answers: answers
                     }, cb );
                 }
@@ -312,8 +300,7 @@ window.ITConnect = ( function() {
 
             // Update a note
             update: function( note, title, content, cb ) {
-                io.socket.post( apiPublicPrefix + '/note/update', {
-                    note: note,
+                io.socket.post( apiPublicPrefix + '/note/' + note + '/update', {
                     title: title,
                     content: content
                 }, cb );
@@ -321,16 +308,12 @@ window.ITConnect = ( function() {
 
             // delete a note
             delete: function( note, cb ) {
-                io.socket.post( apiPublicPrefix + '/note/delete', {
-                    note: note
-                }, cb );
+                io.socket.get( apiPublicPrefix + '/note/' + note + '/delete', cb );
             },
 
             // send me a note
             send: function( note, cb ) {
-                io.socket.post( apiPublicPrefix + '/note/send', {
-                    note: note
-                }, cb );
+                io.socket.get( apiPublicPrefix + '/note/' + note + '/send', cb );
             }
         },
 
@@ -359,11 +342,7 @@ window.ITConnect = ( function() {
         track: {
             create: function( action ) {
 
-                io.socket.post( apiPublicPrefix + '/track', {
-                    action: action
-                }, function( data ) {
-                    lastestTrack = data.track;
-                } );
+                io.socket.get( apiPublicPrefix + '/track/' + action );
             }
         }
     };

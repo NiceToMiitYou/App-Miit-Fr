@@ -30,7 +30,7 @@ describe( 'ConfQuestionQuizzController', function() {
         it( 'list quizzes', function( done ) {
 
             agent
-                .get( '/api/viewer/question/quizz/list' )
+                .get( '/api/viewer/quizz/list' )
                 .expect( 200 )
                 .end( function( err, res ) {
                     should.not.exist( err );
@@ -59,10 +59,8 @@ describe( 'ConfQuestionQuizzController', function() {
         it( 'get the list of questions from a quizz', function( done ) {
 
             agent
-                .post( '/api/viewer/question/quizz/questions' )
-                .send( {
-                    quizz: 1
-                } )
+                .get( '/api/viewer/quizz/1/questions' )
+                .send()
                 .expect( 200 )
                 .end( function( err, res ) {
                     should.not.exist( err );
@@ -94,10 +92,8 @@ describe( 'ConfQuestionQuizzController', function() {
         it( 'get the list of questions from an inexistant quizz', function( done ) {
 
             agent
-                .post( '/api/viewer/question/quizz/questions' )
-                .send( {
-                    quizz: 2
-                } )
+                .get( '/api/viewer/quizz/2/questions' )
+                .send()
                 .expect( 200 )
                 .end( function( err, res ) {
                     should.not.exist( err );
@@ -127,9 +123,8 @@ describe( 'ConfQuestionQuizzController', function() {
         it( 'answer to the first question without answer ( Ahahah )', function( done ) {
 
             agent
-                .post( '/api/viewer/question/quizz/answer' )
+                .post( '/api/viewer/quizz/question/' + 1 + '/answer' )
                 .send( {
-                    question: 1,
                     answers: []
                 } )
                 .expect( 200 )
@@ -152,9 +147,8 @@ describe( 'ConfQuestionQuizzController', function() {
         it( 'answer to the first question with 2 answers', function( done ) {
 
             agent
-                .post( '/api/viewer/question/quizz/answer' )
+                .post( '/api/viewer/quizz/question/' + 1 + '/answer' )
                 .send( {
-                    question: 1,
                     answers: [ 1, 2 ]
                 } )
                 .expect( 200 )
@@ -176,9 +170,8 @@ describe( 'ConfQuestionQuizzController', function() {
         it( 'answer to the second question with 2 answers', function( done ) {
 
             agent
-                .post( '/api/viewer/question/quizz/answer' )
+                .post( '/api/viewer/quizz/question/' + 1 + '/answer' )
                 .send( {
-                    question: 1,
                     answers: [ 3, 4 ]
                 } )
                 .expect( 200 )
@@ -200,7 +193,7 @@ describe( 'ConfQuestionQuizzController', function() {
         it( 'answer to the second question with an answer from another question', function( done ) {
 
             agent
-                .post( '/api/viewer/question/quizz/answer' )
+                .post( '/api/viewer/quizz/question/' + 1 + '/answer' )
                 .send( {
                     question: 1,
                     answers: [ 1 ]
@@ -224,9 +217,8 @@ describe( 'ConfQuestionQuizzController', function() {
         it( 'answer to the second question with right answer', function( done ) {
 
             agent
-                .post( '/api/viewer/question/quizz/answer' )
+                .post( '/api/viewer/quizz/question/' + 2 + '/answer' )
                 .send( {
-                    question: 2,
                     answers: [ 3 ]
                 } )
                 .expect( 200 )
@@ -248,9 +240,8 @@ describe( 'ConfQuestionQuizzController', function() {
         it( 'answer to the second question with right answer twice', function( done ) {
 
             agent
-                .post( '/api/viewer/question/quizz/answer' )
+                .post( '/api/viewer/quizz/question/' + 2 + '/answer' )
                 .send( {
-                    question: 2,
                     answers: [ 3 ]
                 } )
                 .expect( 200 )

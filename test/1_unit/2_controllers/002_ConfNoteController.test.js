@@ -68,9 +68,8 @@ describe( 'ConfNoteController', function() {
         it( 'update a note of someone else -> fail', function( done ) {
 
             agent
-                .post( '/api/viewer/note/update' )
+                .post( '/api/viewer/note/' + 1 + '/update' )
                 .send( {
-                    note: 1,
                     title: 'Title test UP!',
                     content: 'Updated content of the note'
                 } )
@@ -92,9 +91,8 @@ describe( 'ConfNoteController', function() {
         it( 'update a note', function( done ) {
 
             agent
-                .post( '/api/viewer/note/update' )
+                .post( '/api/viewer/note/' + 3 + '/update' )
                 .send( {
-                    note: 3,
                     title: 'Title test UP!',
                     content: 'Updated content of the note'
                 } )
@@ -128,10 +126,8 @@ describe( 'ConfNoteController', function() {
         it( 'delete a note', function( done ) {
 
             agent
-                .post( '/api/viewer/note/delete' )
-                .send( {
-                    note: 3
-                } )
+                .get( '/api/viewer/note/' + 3 + '/delete' )
+                .send()
                 .expect( 200 )
                 .end( function( err, res ) {
                     should.not.exist( err );

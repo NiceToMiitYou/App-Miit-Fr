@@ -33,10 +33,8 @@ describe( 'ConfLiveApplicationEventController', function() {
             function( done ) {
 
                 agent
-                    .post( '/api/viewer/synchronize' )
-                    .send( {
-                        token: 0
-                    } )
+                    .get( '/api/viewer/synchronize/0' )
+                    .send()
                     .expect( 200 )
                     .end( function( err, res ) {
                         should.not.exist( err );
@@ -62,10 +60,8 @@ describe( 'ConfLiveApplicationEventController', function() {
             function( done ) {
 
                 agent
-                    .post( '/api/viewer/synchronize' )
-                    .send( {
-                        token: 1
-                    } )
+                    .get( '/api/viewer/synchronize/1' )
+                    .send()
                     .expect( 200 )
                     .end( function( err, res ) {
                         should.not.exist( err );

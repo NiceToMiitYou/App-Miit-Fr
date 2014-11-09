@@ -30,7 +30,7 @@ describe( 'ConfQuestionPresentationController', function() {
         it( 'create a question', function( done ) {
 
             agent
-                .post( '/api/viewer/question/presentation/create' )
+                .post( '/api/viewer/presentation/question/create' )
                 .send( {
                     question: 'Is there ok?',
                     tags: [ 1 ]
@@ -63,7 +63,7 @@ describe( 'ConfQuestionPresentationController', function() {
         it( 'create a question without tags', function( done ) {
 
             agent
-                .post( '/api/viewer/question/presentation/create' )
+                .post( '/api/viewer/presentation/question/create' )
                 .send( {
                     question: 'Is there ok?',
                     tags: []
@@ -87,7 +87,7 @@ describe( 'ConfQuestionPresentationController', function() {
         it( 'create an empty question', function( done ) {
 
             agent
-                .post( '/api/viewer/question/presentation/create' )
+                .post( '/api/viewer/presentation/question/create' )
                 .send( {
                     question: '',
                     tags: [ 1 ]
@@ -115,7 +115,7 @@ describe( 'ConfQuestionPresentationController', function() {
         it( 'get all tags', function( done ) {
 
             agent
-                .get( '/api/viewer/question/presentation/tags' )
+                .get( '/api/viewer/presentation/question/tags' )
                 .expect( 200 )
                 .end( function( err, res ) {
                     should.not.exist( err );
@@ -144,9 +144,8 @@ describe( 'ConfQuestionPresentationController', function() {
         it( 'like a question', function( done ) {
 
             agent
-                .post( '/api/viewer/question/presentation/like' )
+                .post( '/api/viewer/presentation/question/2/like' )
                 .send( {
-                    question: 2,
                     like: true
                 } )
                 .expect( 200 )
@@ -168,9 +167,8 @@ describe( 'ConfQuestionPresentationController', function() {
         it( 'double like of a question', function( done ) {
 
             agent
-                .post( '/api/viewer/question/presentation/like' )
+                .post( '/api/viewer/presentation/question/2/like' )
                 .send( {
-                    question: 2,
                     like: true
                 } )
                 .expect( 200 )
@@ -192,9 +190,8 @@ describe( 'ConfQuestionPresentationController', function() {
         it( 'dislike an already liked question', function( done ) {
 
             agent
-                .post( '/api/viewer/question/presentation/like' )
+                .post( '/api/viewer/presentation/question/2/like' )
                 .send( {
-                    question: 2,
                     like: false
                 } )
                 .expect( 200 )

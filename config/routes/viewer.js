@@ -16,7 +16,7 @@ routes[ 'GET ' + apiPublicPrefix + '/chatroom/list' ] = {
     restriction: 'CHAT_INTERACTIONS'
 };
 
-routes[ 'POST ' + apiPublicPrefix + '/chatroom/send' ] = {
+routes[ 'POST ' + apiPublicPrefix + '/chatroom/:chatroom/send' ] = {
     controller: 'ConfChatController',
     action: 'send',
     restriction: 'CHAT_INTERACTIONS',
@@ -30,7 +30,7 @@ routes[ 'POST ' + apiPublicPrefix + '/chatroom/send' ] = {
  * LiveApplicationEvent Controller
  ******************/
 
-routes[ 'POST ' + apiPublicPrefix + '/synchronize' ] = {
+routes[ 'GET ' + apiPublicPrefix + '/synchronize/:token' ] = {
     controller: 'ConfLiveApplicationEventController',
     action: 'list'
 };
@@ -39,7 +39,7 @@ routes[ 'POST ' + apiPublicPrefix + '/synchronize' ] = {
  * Presentation Question Controller
  ******************/
 
-routes[ 'POST ' + apiPublicPrefix + '/question/presentation/create' ] = {
+routes[ 'POST ' + apiPublicPrefix + '/presentation/question/create' ] = {
     controller: 'ConfQuestionPresentationController',
     action: 'create',
     restriction: 'WALL_INTERACTIONS',
@@ -49,13 +49,13 @@ routes[ 'POST ' + apiPublicPrefix + '/question/presentation/create' ] = {
     }
 };
 
-routes[ 'GET ' + apiPublicPrefix + '/question/presentation/tags' ] = {
+routes[ 'GET ' + apiPublicPrefix + '/presentation/question/tags' ] = {
     controller: 'ConfQuestionPresentationController',
     action: 'tags',
     restriction: 'WALL_INTERACTIONS'
 };
 
-routes[ 'POST ' + apiPublicPrefix + '/question/presentation/like' ] = {
+routes[ 'POST ' + apiPublicPrefix + '/presentation/question/:question/like' ] = {
     controller: 'ConfQuestionPresentationController',
     action: 'like',
     restriction: 'WALL_INTERACTIONS',
@@ -69,12 +69,12 @@ routes[ 'POST ' + apiPublicPrefix + '/question/presentation/like' ] = {
  * Slide Question Controller
  ******************/
 
-routes[ 'POST ' + apiPublicPrefix + '/question/slide/question' ] = {
+routes[ 'GET ' + apiPublicPrefix + '/slide/:slide/question' ] = {
     controller: 'ConfQuestionSlideController',
     action: 'question'
 };
 
-routes[ 'POST ' + apiPublicPrefix + '/question/slide/answer' ] = {
+routes[ 'POST ' + apiPublicPrefix + '/slide/question/:question/answer' ] = {
     controller: 'ConfQuestionSlideController',
     action: 'answer'
 };
@@ -83,19 +83,19 @@ routes[ 'POST ' + apiPublicPrefix + '/question/slide/answer' ] = {
  * Quizz Question Controller
  ******************/
 
-routes[ 'GET ' + apiPublicPrefix + '/question/quizz/list' ] = {
+routes[ 'GET ' + apiPublicPrefix + '/quizz/list' ] = {
     controller: 'ConfQuestionQuizzController',
     action: 'list',
     restriction: 'QUIZZ_INTERACTIONS'
 };
 
-routes[ 'POST ' + apiPublicPrefix + '/question/quizz/questions' ] = {
+routes[ 'GET ' + apiPublicPrefix + '/quizz/:quizz/questions' ] = {
     controller: 'ConfQuestionQuizzController',
     action: 'questions',
     restriction: 'QUIZZ_INTERACTIONS'
 };
 
-routes[ 'POST ' + apiPublicPrefix + '/question/quizz/answer' ] = {
+routes[ 'POST ' + apiPublicPrefix + '/quizz/question/:question/answer' ] = {
     controller: 'ConfQuestionQuizzController',
     action: 'answer',
     restriction: 'QUIZZ_INTERACTIONS'
@@ -117,19 +117,19 @@ routes[ 'GET ' + apiPublicPrefix + '/note/list' ] = {
     restriction: 'NOTE_INTERACTIONS'
 };
 
-routes[ 'POST ' + apiPublicPrefix + '/note/update' ] = {
+routes[ 'POST ' + apiPublicPrefix + '/note/:note/update' ] = {
     controller: 'ConfNoteController',
     action: 'update',
     restriction: 'NOTE_INTERACTIONS'
 };
 
-routes[ 'POST ' + apiPublicPrefix + '/note/delete' ] = {
+routes[ 'GET ' + apiPublicPrefix + '/note/:note/delete' ] = {
     controller: 'ConfNoteController',
     action: 'delete',
     restrictions: [ 'NOTE_INTERACTIONS', 'NOTE_MULTIPLE' ]
 };
 
-routes[ 'POST ' + apiPublicPrefix + '/note/send' ] = {
+routes[ 'GET ' + apiPublicPrefix + '/note/:note/send' ] = {
     controller: 'ConfNoteController',
     action: 'send',
     restrictions: [ 'NOTE_INTERACTIONS', 'NOTE_SEND' ]
@@ -153,7 +153,7 @@ routes[ 'GET ' + apiPublicPrefix + '/resources/list' ] = {
  * Track Controller
  ******************/
 
-routes[ 'POST ' + apiPublicPrefix + '/track' ] = {
+routes[ 'GET ' + apiPublicPrefix + '/track/:action' ] = {
     controller: 'ConfTrackController',
     action: 'create'
 };

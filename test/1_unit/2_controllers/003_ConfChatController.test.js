@@ -59,9 +59,8 @@ describe( 'ConfChatController', function() {
         it( 'send a message', function( done ) {
 
             agent
-                .post( '/api/viewer/chatroom/send' )
+                .post( '/api/viewer/chatroom/1/send' )
                 .send( {
-                    chatroom: 1,
                     message: 'Hello world!'
                 } )
                 .expect( 200 )
