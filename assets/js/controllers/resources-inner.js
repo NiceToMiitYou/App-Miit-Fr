@@ -14,5 +14,13 @@ ITEventApp.controller(
                 });
             }
 
+            function openResource( resource ) {
+
+                var win = window.open(resource.path, '_blank');
+                win.focus();
+            }
+
+            $scope.openResource = openResource;
+
             ITStorage.db.options.bind('category.current', loadCategory);
         } ] );

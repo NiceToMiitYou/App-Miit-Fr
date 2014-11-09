@@ -1,11 +1,23 @@
-<div class="content ressources-content" ng-class="{active : activetool === 'RESSOURCE'}">  
- <div class="header navbar navbar-inverse ">
-     <div class="navbar-inner">
-         <div class="header-quick-nav">
-             <div class="pull-left">
-                 <h3><i class="fa fa-pencil"></i> Ressources</h3>
-             </div>
-         </div>
-     </div>
- </div>
+<div ng-controller="resourcesController" class="content ressources-content" ng-class="{active : activetool === 'RESSOURCE'}">  
+    <div class="header navbar navbar-inverse ">
+        <div class="navbar-inner">
+            <div class="header-quick-nav">
+                <div class="pull-left">
+                    <h3><i class="fa fa-folder-open"></i> Ressources</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="resources-category"
+         ng-repeat="category in categories"
+         ng-click="openInner( category )">
+        
+        <span>
+            {{ category.name }}
+        </span>
+
+    </div>
+
 </div>
