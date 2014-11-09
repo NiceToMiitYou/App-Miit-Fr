@@ -1,3 +1,5 @@
+"use strict";
+
 window.ITConnect = ( function() {
     var apiPublicPrefix = '/api/viewer';
     var apiMasterPrefix = '/api/master';
@@ -6,7 +8,7 @@ window.ITConnect = ( function() {
 
     ITStorage.create( 'events', true );
 
-    lastestToken = 0;
+    var lastestToken = 0;
 
     function cleanerEventsStorage() {
 
@@ -68,8 +70,6 @@ window.ITConnect = ( function() {
                 // Process event
                 eventCallback( eventTmp );
             });
-
-            delete storedEvents;
         }
 
         if ( currentToken > lastestToken ) {

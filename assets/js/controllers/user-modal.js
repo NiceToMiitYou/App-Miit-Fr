@@ -1,3 +1,5 @@
+"use strict";
+
 ITEventApp.controller(
     'userModalController', [ '$scope', '$timeout',
         function( $scope, $timeout ) {

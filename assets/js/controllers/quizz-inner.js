@@ -1,3 +1,5 @@
+"use strict";
+
 ITEventApp.controller(
     'quizzInnerController', [ '$scope', '$timeout',
         function( $scope, $timeout ) {

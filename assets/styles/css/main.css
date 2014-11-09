@@ -1677,7 +1677,7 @@ ul.messenger.messenger-fixed.messenger-on-top, ul.messenger.messenger-fixed.mess
 	margin-left: -25%;
 }
 
-.previous-quizz {
+.previous-quizz, .previous-ressource {
 	float: left;
 	line-height: 56px;
 	padding:0;
@@ -1685,7 +1685,6 @@ ul.messenger.messenger-fixed.messenger-on-top, ul.messenger.messenger-fixed.mess
 	border-radius: 0;
 	margin-right: 15px;
 }
-
 
 /**************** V2 *****************/
 

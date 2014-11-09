@@ -1,3 +1,5 @@
+"use strict";
+
 ITEventApp.controller(
     'wallController', [ '$scope', '$timeout',
         function( $scope, $timeout ) {

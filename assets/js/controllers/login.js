@@ -1,3 +1,5 @@
+"use strict";
+
 ITEventApp.controller(
     'loginController', [ '$scope', '$timeout',
         function( $scope, $timeout ) {

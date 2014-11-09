@@ -1,3 +1,5 @@
+"use strict";
+
 ITEventApp.controller(
     'commonController', [ '$scope', '$timeout', '$sce',
         function( $scope, $timeout, $sce ) {

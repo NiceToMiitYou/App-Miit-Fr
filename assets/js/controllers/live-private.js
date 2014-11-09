@@ -1,3 +1,5 @@
+"use strict";
+
 ITEventApp.controller(
     'livePrivateController', [ '$scope', '$timeout',
         function( $scope, $timeout ) {

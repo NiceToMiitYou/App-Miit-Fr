@@ -1,3 +1,5 @@
+"use strict";
+
 window.ITStorage = ( function() {
 
     var db = {},
@@ -219,7 +221,7 @@ window.ITStorage = ( function() {
         } catch ( e ) {}
 
         // list them all
-        for ( database in databasesPersisted ) {
+        for ( var database in databasesPersisted ) {
 
             // Recreate the area
             ithis.create( database, true );

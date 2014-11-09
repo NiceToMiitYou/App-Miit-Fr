@@ -19,6 +19,7 @@ ITEventApp.controller(
             }
 
             function openInner( quizz ) {
+                
                 ITStorage.db.options.set('quizz.current', quizz);
 
                 $scope.track('QUIZZ-INNER');

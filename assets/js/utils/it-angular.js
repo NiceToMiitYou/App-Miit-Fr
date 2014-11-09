@@ -1,3 +1,5 @@
+"use strict";
+
 window.ITEventApp = angular.module( 'ITEventApp', ['ngTouch', 'ngAnimate'] );
 
 /*

@@ -1,3 +1,5 @@
+"use strict";
+
 window.ITGarbage = ( function() { 
 
     var garbageId,

@@ -1,3 +1,5 @@
+"use strict";
+
 ITEventApp.controller(
     'liveController', [ '$scope', '$timeout',
         function( $scope, $timeout ) {
