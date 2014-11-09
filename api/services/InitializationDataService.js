@@ -30,6 +30,10 @@ function create( cb ) {
 
         createTags,
 
+        createResourcesCategories,
+
+        createResources,
+
         createQuizzes,
 
         createQuizzQuestions,
@@ -186,6 +190,58 @@ function createTags( cb ) {
         }, {
             name: 'Economie'
         } ])
+        .exec(
+            function( err, created ){
+                cb();
+            });
+}
+
+// Create Categories of resources
+function createResourcesCategories( cb ) {
+
+    ConfResourceCategory
+        .create( [ {
+            name: 'NotVisible',
+            isVisible: false,
+            conference: 1
+        }, {
+            name: 'Photos',
+            conference: 1
+        }, {
+            name: 'Vidéos',
+            conference: 1
+        }, {
+            name: 'Rapports',
+            conference: 1
+        } ] )
+        .exec(
+            function( err, created ){
+                cb();
+            });
+}
+
+
+// Create Categories of resources
+function createResources( cb ) {
+
+    ConfResource
+        .create( [ {
+            name: 'NotVisible',
+            path: 'http://img.wikinut.com/img/gycf69_-6rv_5fol/jpeg/0/Best-Friends-Img-Src%3AImage%3A-FreeDigitalPhotos.net.jpeg',
+            category: 1
+        }, {
+            name: 'Photo #1',
+            path: 'http://captainkimo.com/wp-content/uploads/2010/09/hdr-photo-1.jpg',
+            category: 2
+        }, {
+            name: 'Vidéo #1',
+            path: 'https://www.youtube.com/watch?v=y6Sxv-sUYtM',
+            category: 3
+        }, {
+            name: 'Rapport #1',
+            path: 'http://www.nestle.com/asset-library/documents/library/documents/annual_reports/2013-annual-report-en.pdf',
+            category: 4
+        } ] )
         .exec(
             function( err, created ){
                 cb();
