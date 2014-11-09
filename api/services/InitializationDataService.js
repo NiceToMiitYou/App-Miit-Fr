@@ -354,24 +354,6 @@ function createQuizzQuestionAnswers( cb ) {
             });
 }
 
-function deleteFolderRecursive( path ) {
-
-    if( fs.existsSync( path ) ) {
-
-        fs.readdirSync( path )
-            .forEach( function( file, index ) {
-
-            var curPath = path + '/' + file;
-
-            if( file !== '.gitkeep' ) { // delete file
-
-                fs.unlinkSync(curPath);
-            }
-        } );
-    }
-};
-
-
 function beautifyHtml( html ) {
 
     return '<html>' +
@@ -434,7 +416,7 @@ function generateBigImage( path, presentation, slide, html ) {
                 sails.log.debug( err );
             }
         } );
-    }, 500 + Math.round( Math.random() * 2500 ));
+    }, 2500 + Math.round( Math.random() * 2500 ));
 }
 
 function generateSmallImage( origin, path, presentation, slide ) {
@@ -465,8 +447,6 @@ function generateSmallImage( origin, path, presentation, slide ) {
 
 function generateThumbnail( path, cb ) {
 
-    deleteFolderRecursive( path );
-
     ConfPresentation.find( { conference: 1 } )
         .populate( 'slides' )
         .exec( function(err, presentations) {
@@ -493,7 +473,7 @@ module.exports = {
 
     initialize: function( cb ) {
 
-        var thumbnailPath = sails.config.rootPath + '/assets/images/slides/generated';
+        var thumbnailPath = sails.config.rootPath + '/.tmp/public/images/slides';
 
         if( sails.config.environment === 'development' ) {
             
