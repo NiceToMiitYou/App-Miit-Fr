@@ -125,9 +125,9 @@ function initData() {
                         if ( data.done ) {
 
                             // Add each resource in the area
-                            for ( index in data.resources ) {
+                            for ( index in data.categories ) {
 
-                                ITStorage.db.resources.set( data.resources[index].id, data.resources[index] );
+                                ITStorage.db.resources.set( data.categories[index].id, data.categories[index] );
                             }
                         }
 
