@@ -2,12 +2,12 @@ var apiMasterPrefix = '/api/master';
 
 var routes = {};
 
-routes[ 'POST ' + apiMasterPrefix + '/live/next' ] = {
+routes[ 'GET ' + apiMasterPrefix + '/live/:presentation/next' ] = {
     controller: 'ConfLiveController',
     action: 'next'
 };
 
-routes[ 'POST ' + apiMasterPrefix + '/live/previous' ] = {
+routes[ 'GET ' + apiMasterPrefix + '/live/:presentation/previous' ] = {
     controller: 'ConfLiveController',
     action: 'previous'
 };

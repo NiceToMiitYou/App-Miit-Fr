@@ -339,16 +339,12 @@ window.ITConnect = ( function() {
 
             // Next slide
             next: function(presentation, cb) {
-                io.socket.post( apiMasterPrefix + '/live/next', {
-                    presentation: presentation
-                }, cb);
+                io.socket.get( apiMasterPrefix + '/live/' + presentation + '/next', cb);
             },
 
             // Previous slide
             previous: function(presentation, cb) {
-                io.socket.post( apiMasterPrefix + '/live/previous', {
-                    presentation: presentation
-                }, cb);
+                io.socket.get( apiMasterPrefix + '/live/' + presentation + '/previous', cb);
             }
         },
 

@@ -69,7 +69,7 @@ ITEventApp.controller(
 
                 $timeout(function() {
 
-                    if( data.presentation === $scope.presentation.id &&
+                    if( data.presentation == $scope.presentation.id &&
                         $scope.presentation.current < $scope.presentation.slides.length - 1 ) {
 
                         $scope.presentation.current++;
@@ -87,7 +87,7 @@ ITEventApp.controller(
 
                 $timeout(function() {
 
-                    if( data.presentation === $scope.presentation.id &&
+                    if( data.presentation == $scope.presentation.id &&
                         0 < $scope.presentation.current) {
 
                         $scope.presentation.current--;
