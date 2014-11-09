@@ -31,7 +31,6 @@ describe( 'ConfQuestionSlideController', function() {
 
             agent
                 .get( '/api/viewer/slide/1/question' )
-                .send()
                 .expect( 200 )
                 .end( function( err, res ) {
                     should.not.exist( err );

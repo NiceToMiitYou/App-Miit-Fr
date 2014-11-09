@@ -226,7 +226,6 @@ describe( 'ConfUserController', function() {
             agent
                 .get( '/api/user/' + 3 + '/get' )
                 .expect( 200 )
-                .send()
                 .end( function( err, res ) {
                     should.not.exist( err );
 

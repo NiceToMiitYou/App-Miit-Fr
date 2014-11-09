@@ -60,7 +60,6 @@ describe( 'ConfQuestionQuizzController', function() {
 
             agent
                 .get( '/api/viewer/quizz/1/questions' )
-                .send()
                 .expect( 200 )
                 .end( function( err, res ) {
                     should.not.exist( err );
@@ -93,7 +92,6 @@ describe( 'ConfQuestionQuizzController', function() {
 
             agent
                 .get( '/api/viewer/quizz/2/questions' )
-                .send()
                 .expect( 200 )
                 .end( function( err, res ) {
                     should.not.exist( err );

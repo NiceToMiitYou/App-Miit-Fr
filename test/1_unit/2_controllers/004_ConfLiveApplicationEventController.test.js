@@ -34,7 +34,6 @@ describe( 'ConfLiveApplicationEventController', function() {
 
                 agent
                     .get( '/api/viewer/synchronize/0' )
-                    .send()
                     .expect( 200 )
                     .end( function( err, res ) {
                         should.not.exist( err );
@@ -61,7 +60,6 @@ describe( 'ConfLiveApplicationEventController', function() {
 
                 agent
                     .get( '/api/viewer/synchronize/1' )
-                    .send()
                     .expect( 200 )
                     .end( function( err, res ) {
                         should.not.exist( err );
