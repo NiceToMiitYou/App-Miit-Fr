@@ -33,6 +33,7 @@ module.exports = {
 
         toJSON: function() {
             var obj = this.toObject();
+            delete obj.isVisible;
             delete obj.createdAt;
             delete obj.updatedAt;
             return obj;
