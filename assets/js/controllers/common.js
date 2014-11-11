@@ -150,21 +150,20 @@ ITEventApp.controller(
             }
 
             function handlerMenu() {
-                $scope.isanimate = true
+
                 if($scope.isfullscreen) {
                     $scope.fullscreen();
                 } else {
+
                     $scope.openmenu = !$scope.openmenu;
-                    setTimeout(function() {
-                        $scope.isanimate = false
-                    }, 300);
+
                 }
 
             }
 
 
             function closeMenu() {
-                if(!$scope.isfullscreen && !$scope.isanimate && !$scope.openmenu) {
+                if(!$scope.isfullscreen && $scope.openmenu) {
                     $scope.openmenu = false;
                 }
             }
