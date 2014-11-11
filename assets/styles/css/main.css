@@ -1112,7 +1112,8 @@ ul.table-list li a span.title {
 }
 
 .cbp_tmtimeline > li .cbp_tmlabel {
-	margin-left: 90px
+	margin-left: 90px;
+	border-right: 2px solid #099a8c;
 }
 
 .cbp_tmtimeline > li .cbp_tmlabel .close {
@@ -2115,3 +2116,26 @@ ul.messenger.messenger-fixed.messenger-on-top, ul.messenger.messenger-fixed.mess
 
 .quicklinks > .dropdown-toggle >  .dropdown-menu { margin-right: 10px; }
 
+
+.ressources-content .resource-item {
+	float: left;
+	width: 150px;
+	padding: 15px;
+	text-align: center;
+	border-bottom: 2px solid transparent;
+	cursor: pointer;
+}
+
+.ressources-content .resource-item:hover {
+	background-color: #EFEFEF;
+	border-bottom: 2px solid #099a8c;
+}
+
+.ressources-content .resource-item span{
+	display: block;
+	margin-top: 8px;
+}
+
+.ressources-content .resource-item img {
+	width: 100%;
+}

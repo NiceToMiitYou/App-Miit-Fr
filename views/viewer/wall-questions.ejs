@@ -4,7 +4,7 @@
         <div class="navbar-inner">
             <div class="header-quick-nav">
                 <div class="pull-left">
-                    <h3><i class="fa fa-pencil"></i> Questionnaire</h3>
+                    <h3><i class="fa fa-pencil"></i> Mur</h3>
                 </div>
             </div>
         </div>
@@ -45,7 +45,7 @@
                 <div ng-show="question.user.avatar.c && question.user.avatar.a" class="cbp_tmicon avatar" ng-class="question.user.avatar.c + ' avatar-'+question.user.avatar.a"></div>
                 <div ng-show="!question.user.avatar.c || !question.user.avatar.a" class="cbp_tmicon avatar black anonymous"></div>
                 <div class="cbp_tmlabel">
-                    <div class="p-t-15 p-l-20 p-r-15 p-b-10">
+                    <div class="p-t-15 p-l-20 p-r-15">
                         <h4 class="inline m-b-5" style="margin-top: 0; font-size: 15px;">
                             <span class="text-success semi-bold m-r-10">
                                 {{ getUsername( question.user ) }}
@@ -60,16 +60,16 @@
                         <p class="m-t-5 dark-text"> {{question.question}} </p>
                     </div>
                     <div class="clearfix"></div>
-                    <div class="tiles p-t-5 p-b-5 p-l-15" style="background-color:#2d3139; line-height: 20px;">
+                    <div class="p-b-10 p-l-20" style="line-height: 20px;">
                         <ul class="action-links">
-                            <li class="text-white" ng-show="question.likes > 1">{{question.likes}} Likes</li>
-                            <li class="text-white" ng-show="question.likes <= 1">{{question.likes}} Like</li>
+                            <li class="text-error" ng-show="question.likes > 1"><i class="fa fa-heart"></i> {{question.likes}} Likes</li>
+                            <li class="text-error" ng-show="question.likes <= 1"><i class="fa fa-heart"></i> {{question.likes}} Like</li>
                         </ul>
                         
                         <a ng-show="question.user.id != user.id"
                            ng-class="{disabled : isLike(question)}"
                            ng-click="like(question)"
-                           class="btn btn-primary btn-small m-r-10 fright">
+                           class="m-r-20 fright">
                             <i class="fa fa-thumbs-o-up"></i> Like
                         </a>
                         <div class="clearfix"></div>
