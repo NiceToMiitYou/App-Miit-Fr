@@ -157,10 +157,9 @@ ITEventApp.controller(
 
 
             function closeMenu() {
-                if($scope.isfullscreen && $scope.openmenu) {
-                    $scope.fullscreen();
+                if(!$scope.isfullscreen && $scope.openmenu) {
+                    $scope.openmenu = false;
                 }
-                $scope.openmenu = false;
             }
 
             function track( id ) {
