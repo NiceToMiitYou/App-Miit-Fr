@@ -131,7 +131,9 @@ ITEventApp.controller(
             function fullscreen() {
 
                 $scope.isfullscreen = !$scope.isfullscreen;
-                $scope.openmenu = !$scope.openmenu;
+                if($scope.openmenu) {
+                    $scope.openmenu = false;
+                }
 
                 if($scope.isfullscreen) {
 
@@ -148,16 +150,21 @@ ITEventApp.controller(
             }
 
             function handlerMenu() {
+                $scope.isanimate = true
                 if($scope.isfullscreen) {
                     $scope.fullscreen();
+                } else {
+                    $scope.openmenu = !$scope.openmenu;
+                    setTimeout(function() {
+                        $scope.isanimate = false
+                    }, 300);
                 }
 
-                $scope.openmenu = !$scope.openmenu;
             }
 
 
             function closeMenu() {
-                if(!$scope.isfullscreen && $scope.openmenu) {
+                if(!$scope.isfullscreen && !$scope.isanimate && !$scope.openmenu) {
                     $scope.openmenu = false;
                 }
             }
