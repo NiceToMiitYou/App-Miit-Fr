@@ -15,7 +15,7 @@
     </div>
 
     <div class="tools-content">
-        <div class="menu-component" ng-mouseleave="menulabel=false">
+        <div class="menu-component" ng-mouseleave="menulabel=false; closeMenu();">
             <button class="btn btn-primary menu-btn cn-button" ng-class="{'open' : openmenu}" id="cn-button" ng-click="handlerMenu()"></button>
                 <ul class="cn-wrapper" id="cn-wrapper" ng-class="{'opened-nav' : openmenu}">
                     <li>

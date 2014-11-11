@@ -157,6 +157,9 @@ ITEventApp.controller(
 
 
             function closeMenu() {
+                if($scope.isfullscreen && $scope.openmenu) {
+                    $scope.fullscreen();
+                }
                 $scope.openmenu = false;
             }
 
