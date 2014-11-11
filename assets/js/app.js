@@ -1,3 +1,5 @@
+"use strict";
+
 // Create
 function init() {
     ITStorage.create( 'options', true );
@@ -109,7 +111,7 @@ function initData() {
                         if ( data.done ) {
 
                             // Add each note in the area
-                            for ( index in data.notes ) {
+                            for ( var index in data.notes ) {
 
                                 ITStorage.db.notes.set( data.notes[index].id, data.notes[index] );
                             }
@@ -125,7 +127,7 @@ function initData() {
                         if ( data.done ) {
 
                             // Add each resource in the area
-                            for ( index in data.categories ) {
+                            for ( var index in data.categories ) {
 
                                 ITStorage.db.resources.set( data.categories[index].id, data.categories[index] );
                             }
@@ -141,7 +143,7 @@ function initData() {
                         if ( data.done ) {
 
                             // Add each tag in the area
-                            for ( index in data.tags ) {
+                            for ( var index in data.tags ) {
 
                                 ITStorage.db.tags.set( data.tags[index].id, data.tags[index] );
                             }
@@ -163,7 +165,7 @@ function initData() {
                             var user = ITStorage.db.options.get( 'user' );
 
                             // Add each resource in the area
-                            for ( index in data.quizzes ) {
+                            for ( var index in data.quizzes ) {
 
                                 max++;
 
@@ -182,16 +184,16 @@ function initData() {
                                             quizz.answered = false;
 
                                             // Foreach questions
-                                            for( index in dataQuestion.questions ) {
+                                            for( var index in dataQuestion.questions ) {
 
                                                 // Foreach answers
-                                                for( indexAnswer in dataQuestion.questions[index].answers ) {
+                                                for( var indexAnswer in dataQuestion.questions[index].answers ) {
 
                                                     // Default not selected
                                                     var selected = false;
 
                                                     // Check if answered
-                                                    for ( indexUserAnswer in user.quizzAnswers ) {
+                                                    for ( var indexUserAnswer in user.quizzAnswers ) {
 
                                                         // Check if same id
                                                         if ( user.quizzAnswers[indexUserAnswer].id === dataQuestion.questions[index].answers[indexAnswer].id) {
@@ -240,7 +242,6 @@ function initData() {
                     ITStorage.db.options.set( 'data.isLoaded', true );
                 }
             } );
-
     }
 }
 

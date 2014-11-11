@@ -80,7 +80,7 @@ window.ITConnect = ( function() {
                     if ( !res.done ) return;
 
                     // Bind all events
-                    for ( eventIndex in res.events ) {
+                    for ( var eventIndex in res.events ) {
                         // Copy the event
                         var eventTmp = res.events[ eventIndex ];
 

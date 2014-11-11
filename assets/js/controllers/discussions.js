@@ -116,7 +116,7 @@ ITEventApp.controller(
 
                         var i = 0;
 
-                        for(index in $scope.chatrooms[chatroomId].messages) {
+                        for( var index in $scope.chatrooms[chatroomId].messages) {
 
                             i++;
                         }
@@ -125,7 +125,7 @@ ITEventApp.controller(
 
                             var min = 0; i = -1;
 
-                            for(index in $scope.chatrooms[chatroomId].messages) {
+                            for( var index in $scope.chatrooms[chatroomId].messages) {
                                 i++;
                                 if( min > index || min === 0) min = index;
                             }

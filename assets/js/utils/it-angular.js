@@ -11,7 +11,7 @@ ITEventApp.filter('toArray', function() {
         
         var out = []; 
 
-        for(i in input){
+        for(var i in input){
         
             out.push(input[i]);
         
