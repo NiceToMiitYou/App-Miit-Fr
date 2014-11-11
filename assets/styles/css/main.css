@@ -408,6 +408,10 @@ a {
 	margin-bottom: 0px;
 }
 
+.chat-window-wrapper .user-details-wrapper > .user-details {
+	max-width: calc(100% - 50px);
+}
+
 .chat-window-wrapper .user-details-wrapper > .user-profile.ownm {
 	float: right;
 	margin: 3px 0px 0 15px;
