@@ -71,17 +71,6 @@ ITEventApp.controller(
 
                                         cb($scope.notes[data.note.id]);
                                     }
-
-                                    $scope.messenger.post({
-                                        message: 'Votre note a bien été créée.',
-                                        type: 'info'
-                                    });        
-                                } else {
-
-                                    $scope.messenger.post({
-                                        message: 'Une erreur s\'est produite lors de la création de la note.',
-                                        type: 'error'
-                                    });
                                 }
                             });
                         });
@@ -108,17 +97,6 @@ ITEventApp.controller(
 
                                         cb($scope.notes[data.note.id]);
                                     }
-
-                                    $scope.messenger.post({
-                                        message: 'Votre note a bien été enregistrée.',
-                                        type: 'info'
-                                    });
-                                } else {
-
-                                    $scope.messenger.post({
-                                        message: 'Une erreur s\'est produite lors de la sauvegarde de la note.',
-                                        type: 'error'
-                                    });
                                 }
                             });
 

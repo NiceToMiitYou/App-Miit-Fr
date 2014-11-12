@@ -156,9 +156,7 @@ ITEventApp.controller(
                 } else {
 
                     $scope.openmenu = !$scope.openmenu;
-
                 }
-
             }
 
 
