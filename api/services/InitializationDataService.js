@@ -234,11 +234,23 @@ function createResources( cb ) {
             path: 'http://captainkimo.com/wp-content/uploads/2010/09/hdr-photo-1.jpg',
             category: 2
         }, {
+            name: 'Photo #2',
+            path: 'http://captainkimo.com/wp-content/uploads/2010/09/hdr-photo-1.jpg',
+            category: 2
+        }, {
             name: 'Vidéo #1',
             path: 'https://www.youtube.com/watch?v=y6Sxv-sUYtM',
             category: 3
         }, {
             name: 'Rapport #1',
+            path: 'http://www.nestle.com/asset-library/documents/library/documents/annual_reports/2013-annual-report-en.pdf',
+            category: 4
+        }, {
+            name: 'Rapport #2',
+            path: 'http://www.nestle.com/asset-library/documents/library/documents/annual_reports/2013-annual-report-en.pdf',
+            category: 4
+        }, {
+            name: 'Rapport #3',
             path: 'http://www.nestle.com/asset-library/documents/library/documents/annual_reports/2013-annual-report-en.pdf',
             category: 4
         } ] )

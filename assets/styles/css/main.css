@@ -24,6 +24,12 @@ a {
 	padding: 15px;
 }
 
+.dropdown-header {
+	padding: 7px 20px 5px 20px;
+	line-height: 2;
+	border-bottom: 1px solid #EEE;
+}
+
 .modal {
 	z-index: 9999999;
 }
@@ -2120,19 +2126,29 @@ ul.messenger.messenger-fixed.messenger-on-top, ul.messenger.messenger-fixed.mess
 
 .quicklinks > .dropdown-toggle >  .dropdown-menu { margin-right: 10px; }
 
+.ressources-content .resources-categories {
+	display: block;
+}
+
+.ressources-content .resources-categories h4 {
+	padding: 10px;
+	margin: 3px 0px;
+	background: rgb(255, 255, 255);
+	border-left: 2px solid rgb(9, 154, 140);
+}
 
 .ressources-content .resource-item {
 	float: left;
 	width: 150px;
 	padding: 15px;
 	text-align: center;
-	border-bottom: 2px solid transparent;
+	border-left: 2px solid transparent;
 	cursor: pointer;
 }
 
 .ressources-content .resource-item:hover {
 	background-color: #EFEFEF;
-	border-bottom: 2px solid #099a8c;
+	border-left: 2px solid #099a8c;
 }
 
 .ressources-content .resource-item span{
