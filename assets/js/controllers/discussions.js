@@ -87,7 +87,7 @@ ITEventApp.controller(
                  
                     changeChatroom( chatroom );
                 }
-            }
+            };
 
             ITStorage.db.options.bind( 'data.isLoaded', true, loadChatrooms );
 
@@ -116,7 +116,7 @@ ITEventApp.controller(
 
                         var i = 0;
 
-                        for( var index in $scope.chatrooms[chatroomId].messages) {
+                        for( var index in $scope.chatrooms[chatroomId].messages ) {
 
                             i++;
                         }

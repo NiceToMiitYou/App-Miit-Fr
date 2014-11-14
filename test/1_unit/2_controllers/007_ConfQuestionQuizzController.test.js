@@ -47,7 +47,7 @@ describe( 'ConfQuestionQuizzController', function() {
                         .should.be.an.instanceOf( Array );
 
                     ( _.size( res.body.quizzes ) )
-                        .should.equal( 1 )
+                        .should.equal( 1 );
 
                     done();
                 } );

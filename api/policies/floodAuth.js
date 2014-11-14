@@ -9,7 +9,7 @@
 
 module.exports = function( req, res, next ) {
 
-    var allowed = true
+    var allowed = true;
 
     if( sails.config.environment !== 'testing' &&
         req.options.flood &&

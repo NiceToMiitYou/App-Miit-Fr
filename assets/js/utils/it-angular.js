@@ -17,8 +17,8 @@ ITEventApp.filter('toArray', function() {
         
         }        
         return out;
-    }
-});
+    };
+} );
 
 /*
  * Use it as it-blur="(condition === true) to blur a field, like ng-show=""

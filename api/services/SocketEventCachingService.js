@@ -18,7 +18,7 @@ var calculatedMessagesPerMinute = estimatedParticipant * estimatedMessagesPerMin
 var durationCoefficient = 1;
 
 // Calculate the duration minimal to keep max messages limitations
-if( calculatedMessagesPerMinute != 0) {
+if( calculatedMessagesPerMinute !== 0) {
 
     durationCoefficient = maxMessages / calculatedMessagesPerMinute;
 }
@@ -50,7 +50,7 @@ module.exports = {
             data = data.toJSON();
         }
 
-        for( index in data ) {
+        for( var index in data ) {
             if( typeof data[index].toJSON === 'function') {
                 data[index] = data[index].toJSON();
             }
@@ -70,7 +70,7 @@ module.exports = {
                     _.forEach(eventsRooms[model.name], function(role) {
 
                         sails.sockets.broadcast( role, model.name, model );
-                    })
+                    } );
                 }
             } );
     }

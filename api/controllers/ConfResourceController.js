@@ -13,7 +13,7 @@ module.exports = {
             .exec( function( err, conference ) {
                 if ( err || !conference ) return res.send( 404 );
 
-                var less = require( 'less' )
+                var less = require( 'less' );
 
                 less.render( conference.colorScheme, function( e, css ) {
                     if ( e ) res.send( 404 );

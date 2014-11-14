@@ -145,8 +145,7 @@ describe( 'ConfNote', function() {
 
                         done();
                     } );
-                } )
-
+                } );
         } );
     } );
 

@@ -153,7 +153,7 @@ ITEventApp.controller(
                     login( true );
                 }
 
-            }
+            };
 
             // Handle previous
             $scope.previous = function() {
@@ -163,7 +163,7 @@ ITEventApp.controller(
 
                     $scope.s--;
                 }
-            }
+            };
 
             if ( document.getElementById( 'login_email' ) ) {
 
@@ -173,7 +173,7 @@ ITEventApp.controller(
                         if ( e.keyCode == 9 ) {
                             return false;
                         }
-                }
+                };
             }
 
             // Log it out

@@ -500,12 +500,12 @@ module.exports = {
                     
                     generateThumbnail( thumbnailPath, cb );
 
-                });
-            }); 
+                } );
+            } ); 
 
         } else {
 
             generateThumbnail( thumbnailPath, cb );
         }
     }
-}
+};

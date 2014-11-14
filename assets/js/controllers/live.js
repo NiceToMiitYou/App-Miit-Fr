@@ -128,7 +128,7 @@ ITEventApp.controller(
                     
                     gotToSlide( slideIndex );
                 }
-            }
+            };
 
             var pressed = false;
 
@@ -151,7 +151,7 @@ ITEventApp.controller(
                         }, 500);
                     });
                 }
-            };
+            }
 
             document.addEventListener('keydown', onKeyPress, false);
 

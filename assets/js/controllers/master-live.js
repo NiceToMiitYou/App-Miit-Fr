@@ -35,7 +35,7 @@ ITEventApp.controller(
                         $scope.logout();
                     });
                 }
-            };
+            }
 
             document.addEventListener('keydown', onKeyPress, false);
 

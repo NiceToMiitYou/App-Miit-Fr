@@ -20,7 +20,7 @@ module.exports.bootstrap = function( cb ) {
             .toString()
             .split( '\n' );
 
-        for ( line in logo ) {
+        for ( var line in logo ) {
             sails.log.info( logo[ line ] );
         }
     };

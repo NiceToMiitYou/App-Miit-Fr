@@ -26,9 +26,9 @@ ITEventApp.controller(
                     if( data.done ) {
 
                         $timeout(function() {
-                            $scope.usersConnectedUp = ( $scope.connectedUsers < data.users );;
+                            $scope.usersConnectedUp = ( $scope.connectedUsers < data.users );
                             $scope.usersConnectedSame = ( $scope.connectedUsers === data.users );
-                            $scope.usersConnectedDown = ( $scope.connectedUsers > data.users );;
+                            $scope.usersConnectedDown = ( $scope.connectedUsers > data.users );
                             $scope.connectedUsers = data.users;
                         });
                     }

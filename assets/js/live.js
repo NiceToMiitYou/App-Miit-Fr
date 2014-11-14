@@ -2,28 +2,28 @@
 
 $(window).resize(function() {
     scaleSlider();
-})
+});
 
 function scaleSlider() {
 
     var slideW = $("#slides").width();
-    var slideH = $("#slides").height()
+    var slideH = $("#slides").height();
+    var maxH, maxW;
 
     var fullscreen = $(".page-container").hasClass('fullscreen');
     var master = $(".page-container").hasClass('master');
 
     if(fullscreen) {
-        var maxH = ($(window).height()- 55) / slideH;
-        var maxW = $(window).width() / slideW ;
+        maxH = ($(window).height()- 55) / slideH;
+        maxW = $(window).width() / slideW ;
 
     } else if(master) {
-        var maxH = ($(".page-content").height()- 290) / slideH;
-        var maxW = $(".page-content").width() / slideW ;
+        maxH = ($(".page-content").height()- 290) / slideH;
+        maxW = $(".page-content").width() / slideW ;
 
-    } 
-     else {
-        var maxH = ($(".page-content").height()/2) / slideH;
-        var maxW = $(".page-content").width() / slideW ;
+    } else {
+        maxH = ($(".page-content").height()/2) / slideH;
+        maxW = $(".page-content").width() / slideW ;
     }
 
     var zoom = Math.min(maxH, maxW);
