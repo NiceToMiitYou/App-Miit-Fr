@@ -2,7 +2,7 @@
  * 200 notDone
  *
  * Usage:
- * return res.notDone(data);
+ * return res.notDone( data );
  */
 
 module.exports = function done( data ) {
@@ -13,9 +13,14 @@ module.exports = function done( data ) {
     // Set status code
     res.status( 200 );
 
-    if ( !data ) data = {};
+    if ( !data ) {
+        data = {};
+    }
 
-    data.done = false;
+    // Set the response to not done
+    if ( typeof data.done === 'undefined' ) {
+        data.done = false;
+    }
 
     res.json( data );
 };

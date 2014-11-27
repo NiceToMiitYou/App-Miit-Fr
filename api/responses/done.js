@@ -2,7 +2,7 @@
  * 200 done
  *
  * Usage:
- * return res.done(data);
+ * return res.done( data );
  */
 
 module.exports = function done( data ) {
@@ -13,9 +13,14 @@ module.exports = function done( data ) {
     // Set status code
     res.status( 200 );
 
-    if ( !data ) data = {};
+    if ( !data ) { 
+        data = {};
+    }
 
-    data.done = true;
+    // Set the response to done
+    if ( typeof data.done === 'undefined' ) {
+        data.done = true;
+    }
 
     res.json( data );
 };
