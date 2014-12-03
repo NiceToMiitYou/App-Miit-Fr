@@ -36,6 +36,7 @@
     "supertest": "~0.13.0",
     "should": "~4.0.4",
     "mocha": "~1.21.4",
+    "mocha-bamboo-reporter": "*",
     "grunt-mocha-test": "~0.12.0",
     "sinon": "~1.10.3",
     "assert": "~1.1.2",
