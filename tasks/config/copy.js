@@ -22,7 +22,7 @@ module.exports = function( grunt ) {
                 cwd: './assets',
                 src: [ '**/*.!(coffee|less)' ],
                 dest: '.tmp/public'
-   } ]
+            } ]
         },
         build: {
             files: [ {
