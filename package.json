@@ -50,7 +50,7 @@
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jord14k/ITEvents.git"
+    "url": "http://stash.priv.itevents.fr/scm/miit/app-miit-fr.git"
   },
   "author": "Tacyniak Boris",
   "license": ""
