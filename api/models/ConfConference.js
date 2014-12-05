@@ -24,6 +24,11 @@ module.exports = {
             required: true
         },
 
+        token: {
+            type: 'string',
+            required: true
+        },
+
         colorScheme: {
             type: 'text',
             required: true
