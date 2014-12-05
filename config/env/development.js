@@ -40,9 +40,15 @@ module.exports = {
         bypass: false
     },
 
-    webservice: {
-        host: 'developement.ws.itevents.fr',
-        port: 443
+    connections: {
+        DwhWebService: {
+            args: {
+                accessToken: 'qVZDWicwFjh49O9PQUKJ8Ur8r3YKSrx3YqUll2L6'
+            },
+            protocol: 'http',
+            host: 'localhost',
+            port: 1337
+        }
     }
 
 };
