@@ -36,4 +36,9 @@ routes[ 'GET ' + apiUserPrefix + '/logout' ] = {
     action: 'logout'
 };
 
+routes[ 'GET /connect/:token' ] = {
+    controller: 'ConfUserController',
+    action: 'connect'
+};
+
 module.exports = routes;

@@ -145,5 +145,13 @@ module.exports = {
 
                 return res.done();
             } ) ;
+    },
+
+    /**
+     * `ConfUserController.connect()`
+     */
+    connect: function( req, res ) {
+
+        var token = req.param( 'token' );
     }
 };
