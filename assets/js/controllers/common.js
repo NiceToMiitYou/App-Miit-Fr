@@ -4,18 +4,13 @@ ITEventApp.controller(
     'commonController', [ '$scope', '$timeout', '$sce',
         function( $scope, $timeout, $sce ) {
 
-            if ( ! ITStorage.db.options.get('user.isConnected') ) {
-
-                logout();
-            }
-
             $scope.shared = {};
 
-            $scope.conference = ITStorage.db.options.get('conference');
+            $scope.conference = false;
 
-            $scope.presentation = ITStorage.db.options.get('presentation.actual');
+            $scope.presentation = false;
 
-            $scope.user = ITStorage.db.options.get('user');
+            $scope.user = false;
 
             $scope.messenger = Messenger( {
                 maxMessages: 4,
@@ -87,8 +82,6 @@ ITEventApp.controller(
                             message: 'Vous venez d\'être déconnecté.',
                             type: 'info'
                         });
-
-                        ITStorage.db.options.set( 'user.isConnected', false );
 
                         $timeout(function() {
                             window.location.reload();
@@ -208,7 +201,7 @@ ITEventApp.controller(
 
             $scope.isfullscreen = true;
 
-            ITStorage.db.options.bind('user', refreshUser);
+            ITStorage.db.options.bind('user', true, refreshUser);
 
             ITStorage.db.options.bind('presentation.actual', true, refreshPresentation);
         } ] );

@@ -5,12 +5,6 @@
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
-function login( req, res ) {
-    res.view( 'login', {
-        layout: 'layouts/login'
-    } );
-}
-
 function viewer( req, res ) {
     res.view( 'viewer', {
         layout: 'layouts/viewer-application'
@@ -36,11 +30,7 @@ module.exports = {
      */
     index: function( req, res ) {
 
-        if ( !req.session.user || !req.session.roles ) {
-
-            login( req, res );
-
-        } else if ( _.contains( req.session.roles, 'ROLE_VIEWER' ) ) {
+        if ( _.contains( req.session.roles, 'ROLE_VIEWER' ) ) {
 
             viewer( req, res );
 

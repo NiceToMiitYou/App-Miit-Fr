@@ -16,19 +16,14 @@ routes[ 'GET ' + apiUserPrefix + '/:user/get' ] = {
     action: 'get'
 };
 
+routes[ 'GET ' + apiUserPrefix + '/me' ] = {
+    controller: 'ConfUserController',
+    action: 'me'
+};
+
 routes[ 'POST ' + apiUserPrefix + '/update' ] = {
     controller: 'ConfUserController',
     action: 'update'
-};
-
-routes[ 'POST ' + apiUserPrefix + '/login' ] = {
-    controller: 'ConfUserController',
-    action: 'login'
-};
-
-routes[ 'POST ' + apiUserPrefix + '/register' ] = {
-    controller: 'ConfUserController',
-    action: 'register'
 };
 
 routes[ 'GET ' + apiUserPrefix + '/logout' ] = {

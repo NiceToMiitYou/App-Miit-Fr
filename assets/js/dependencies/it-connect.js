@@ -179,6 +179,11 @@ window.ITConnect = ( function() {
                 io.socket.get( '/api/user/' + user + '/get', cb );
             },
 
+            // Me action
+            me: function( cb ) {
+                io.socket.get( '/api/user/me', cb );
+            },
+
             // Update action
             update: function( firstname, lastname, society, username, avatar, cb ) {
                 io.socket.post( '/api/user/update', {
@@ -187,23 +192,6 @@ window.ITConnect = ( function() {
                     society: society,
                     username: username,
                     avatar: avatar
-                }, cb );
-            },
-
-            // Login action
-            login: function( mail, password, connect, cb ) {
-                io.socket.post( '/api/user/login', {
-                    mail: mail,
-                    password: password,
-                    connect: connect
-                }, cb );
-            },
-
-            // Login action
-            register: function( mail, password, cb ) {
-                io.socket.post( '/api/user/register', {
-                    mail: mail,
-                    password: password
                 }, cb );
             },
 

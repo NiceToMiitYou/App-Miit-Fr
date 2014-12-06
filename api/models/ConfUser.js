@@ -34,11 +34,6 @@ module.exports = {
             type: 'json'
         },
 
-        password: {
-            type: 'string',
-            required: true
-        },
-
         mail: {
             type: 'email',
             unique: true,
@@ -85,17 +80,8 @@ module.exports = {
             type: 'array'
         },
 
-        isCorrectPassword: function( password, cb ) {
-            bcrypt.compare( password, this.password, function( err, res ) {
-                if ( err ) cb( false );
-
-                cb( res );
-            } );
-        },
-
         toJSON: function() {
             var obj = this.toObject();
-            delete obj.password;
             delete obj.mail;
             delete obj.realId;
             delete obj.roles;
@@ -104,20 +90,5 @@ module.exports = {
             delete obj.updatedAt;
             return obj;
         }
-    },
-
-    beforeCreate: function( user, cb ) {
-        bcrypt.genSalt( 8, function( err, salt ) {
-            bcrypt.hash( user.password, salt, function( err, hash ) {
-
-                if ( err ) {
-                    cb( err );
-                } else {
-
-                    user.password = hash;
-                    cb( null, user );
-                }
-            } );
-        } );
     }
 };

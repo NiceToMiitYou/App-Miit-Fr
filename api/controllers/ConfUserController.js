@@ -5,6 +5,8 @@
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
+var redirectUrl = 'http://www.itevents.fr';
+
 module.exports = {
 
     /**
@@ -29,6 +31,23 @@ module.exports = {
 
         ConfUser.findOne(
             req.param( 'user' )
+        )
+            .exec( function( err, user ) {
+                if ( err || !user ) return res.notDone();
+
+                return res.done( {
+                    user: user
+                } );
+            } );
+    },
+
+    /**
+     * `ConfUserController.me()`
+     */
+    me: function( req, res ) {
+
+        ConfUser.findOne(
+            req.session.user
         )
             .exec( function( err, user ) {
                 if ( err || !user ) return res.notDone();
@@ -66,63 +85,6 @@ module.exports = {
     },
 
     /**
-     * `ConfUserController.login()`
-     */
-    login: function( req, res ) {
-
-        ConfUser.findOneByMail(
-            req.param( 'mail' )
-        )
-            .populate( 'quizzAnswers' )
-            .exec( function( err, user ) {
-                if ( err ) return res.notDone();
-
-                if ( !user ) return res.done( {
-                    exist: false
-                } );
-
-                user.isCorrectPassword( req.param( 'password' ), function( result ) {
-                    if ( result ) {
-
-                        if( req.param( 'connect' ) === true ) {
-                            req.session.user = user.id;
-                            req.session.roles = user.roles;
-                        }
-
-                        return res.done( {
-                            exist: true,
-                            connected: true,
-                            user: user
-                        } );
-                    } else {
-                        return res.done( {
-                            exist: true,
-                            connected: false
-                        } );
-                    }
-                } );
-            } );
-    },
-
-    /**
-     * `ConfUserController.register()`
-     */
-    register: function( req, res ) {
-        ConfUser.create( {
-            mail: req.param( 'mail' ),
-            password: req.param( 'password' ),
-            roles: [ 'ROLE_LOGIN', 'ROLE_VIEWER' ]
-        } )
-            .exec( function( err, user ) {
-                if ( err ) return res.notDone();
-
-                return res.done( {
-                    user: user
-                } );
-            } );
-    },
-
-    /**
      * `ConfUserController.logout()`
      */
     logout: function( req, res ) {
@@ -143,7 +105,7 @@ module.exports = {
                     track.save();
                 }
 
-                return res.done();
+                return res.redirect( redirectUrl );
             } ) ;
     },
 
@@ -153,5 +115,40 @@ module.exports = {
     connect: function( req, res ) {
 
         var token = req.param( 'token' );
+
+        if ( token ) {
+
+            ItUser
+                .custom( {
+                    method: 'postJson',
+                    action: 'connect',
+                    data: {
+                        conference: 1,
+                        token: token
+                    }
+                }, function( err, response ) {
+                    if( err || !response || !response.user ) {
+
+                        return res.redirect( redirectUrl );
+                    }
+
+                    UserService
+                        .createFromConnect( response.user,  function( errRetrieve, user ) {
+                            if( errRetrieve ) {
+
+                                return res.redirect( redirectUrl );
+                            }
+
+                            // If connected add informations to the session
+                            req.session.user  = user.id;
+                            req.session.roles = user.roles;
+
+                            return res.redirect( '/' );
+                        } );
+                } );
+        } else {
+
+            return res.redirect( redirectUrl );
+        }
     }
 };

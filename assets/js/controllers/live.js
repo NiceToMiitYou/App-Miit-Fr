@@ -7,8 +7,6 @@ ITEventApp.controller(
             $scope.current = 0;
             $scope.direction = 'left';
 
-            refreshShared();
-
             function next() {
 
                 if( $scope.current < $scope.presentation.current) {
@@ -52,19 +50,22 @@ ITEventApp.controller(
                 return ( index === $scope.current );
             }
 
-            function refreshShared() {
+            function refreshShared( isLoad ) {
 
-                $scope.shared.isLastSlide = 
-                    ( $scope.presentation && $scope.presentation.current === $scope.presentation.slides.length - 1 );
+                if( isLoad ) {
+                 
+                    $scope.shared.isLastSlide = 
+                        ( $scope.presentation && $scope.presentation.current === $scope.presentation.slides.length - 1 );
 
-                $scope.shared.isFirstSlide = 
-                    ( $scope.presentation && $scope.presentation.current === 0 );
+                    $scope.shared.isFirstSlide = 
+                        ( $scope.presentation && $scope.presentation.current === 0 );
 
-                $scope.shared.liveProgress = 
-                    ( !$scope.presentation ) ? 0 :
-                    Math.round(
-                        ( $scope.presentation.current * 100 ) / Math.max( 1, $scope.presentation.slides.length - 1 )
-                    );
+                    $scope.shared.liveProgress = 
+                        ( !$scope.presentation ) ? 0 :
+                        Math.round(
+                            ( $scope.presentation.current * 100 ) / Math.max( 1, $scope.presentation.slides.length - 1 )
+                        );
+                }
             }
 
             function liveNext( data ) {
@@ -82,7 +83,7 @@ ITEventApp.controller(
                         }
                     }
 
-                    refreshShared();
+                    refreshShared( true );
                 });
             }
             function livePrevious( data ) {
@@ -100,7 +101,7 @@ ITEventApp.controller(
                         }
                     }
 
-                    refreshShared();
+                    refreshShared( true );
                 });
             }
 
@@ -154,6 +155,8 @@ ITEventApp.controller(
             }
 
             document.addEventListener('keydown', onKeyPress, false);
+
+            ITStorage.db.options.bind('data.isLoaded', true, refreshShared);
 
             ITConnect.bind('live-presentation-next', liveNext);
 

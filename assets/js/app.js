@@ -24,34 +24,39 @@ function init() {
 // Request data
 function initData() {
 
-    // Get the conference if it is not loaded
-    if ( !ITStorage.db.options.get( 'conference.initialized' ) ) {
-
-        // Request the conference
-        ITConnect.config.conference( function( data ) {
-
-            if ( data.done ) {
-
-                ITStorage.db.options.set( 'conference', data.conference );
-
-                ITStorage.db.options.set( 'conference.initialized', true );
-            }
-        } );
-    }
-
-    // Mark it as not connected
-    if ( notLogged ) {
-
-        ITStorage.db.options.set( 'user.isConnected', false );
-    }
-
     // Load data if not loaded and have to be loaded
-    if ( ITStorage.db.options.get( 'user.isConnected' ) &&
-        !ITStorage.db.options.get( 'data.isLoaded' ) ) {
+    if ( !ITStorage.db.options.get( 'data.isLoaded' ) ) {
 
         // Call initialization of data one by one and set them loaded after
         async.waterfall(
             [
+                function( callback ) {
+
+                    // Request the current user
+                    ITConnect.user.me( function( data ) {
+
+                        if ( data.done ) {
+
+                            ITStorage.db.options.set( 'user', data.user );
+                        }
+
+                        callback( null );
+                    } );
+                },
+
+                function( callback ) {
+
+                    // Request the conference
+                    ITConnect.config.conference( function( data ) {
+
+                        if ( data.done ) {
+
+                            ITStorage.db.options.set( 'conference', data.conference );
+                        }
+
+                        callback( null );
+                    } );
+                },
 
                 function( callback ) {
                     // Load presentations

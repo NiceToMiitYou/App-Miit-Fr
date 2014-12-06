@@ -21,14 +21,7 @@
 
 module.exports.connections = {
 
-    /***************************************************************************
-     *                                                                          *
-     * MySQL is the world's most popular relational database.                   *
-     * http://en.wikipedia.org/wiki/MySQL                                       *
-     *                                                                          *
-     * Run: npm install sails-mysql                                             *
-     *                                                                          *
-     ***************************************************************************/
+    // Storage of live events
     LiveApplicationDatabase: {
         adapter: 'sails-mysql',
         host: 'localhost',
@@ -37,6 +30,7 @@ module.exports.connections = {
         database: 'itevents'
     },
 
+    // Storage of the conference
     ConferenceDatabase: {
         adapter: 'sails-mysql',
         host: 'localhost',
@@ -45,4 +39,12 @@ module.exports.connections = {
         database: 'itevents'
     },
 
+    // Access to online data
+    DwhWebService: {
+        adapter: 'sails-rest',
+        port: 1337,
+        prefix: '/api',
+        groupByLimit: 1000,
+        destroyIfEmptyLimit: 1000
+    }
 };

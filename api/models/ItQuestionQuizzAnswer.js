@@ -9,7 +9,7 @@ module.exports = {
 
     connection: 'DwhWebService',
     
-    tableName: 'questionQuizzAnswer',
+    tableName: 'questionquizzanswer',
 
     attributes: {
 

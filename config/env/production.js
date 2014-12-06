@@ -48,7 +48,9 @@ module.exports = {
                 user: 'no-reply@itevents.fr',
                 pass: 'nopeReply'
             }
-        }
+        },
+
+        bypass: false
     },
 
     connections: {

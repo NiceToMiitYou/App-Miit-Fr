@@ -31,7 +31,8 @@ module.exports.policies = {
     ConfUserController: {
 
         'register': 'anonymAuth',
-        'login': 'anonymAuth'
+        'login': 'anonymAuth',
+        'connect': 'anonymAuth'
     },
 
     ConfLiveController: {
