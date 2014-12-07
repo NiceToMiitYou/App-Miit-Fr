@@ -63,25 +63,35 @@ module.exports = {
      */
     update: function (req, res) {
 
-        ConfUser.findOne(
-            req.session.user
-        ).exec( function( err, user ){
-            if ( err || !user ) return res.notDone();
+        var firstname = req.param('firstname'),
+            lastname  = req.param('lastname'),
+            username  = req.param('username'),
+            society   = req.param('society'),
+            avatar    = req.param('avatar');
 
-            user.firstname = req.param('firstname');
-            user.lastname = req.param('lastname');
-            user.username = req.param('username');
-            user.society = req.param('society');
-            user.avatar = req.param('avatar');
+        if( firstname || lastname || username ) {
 
-            user.save(function(err, user) {
-                if ( err || !user ) return res.notDone();
+            UserService
+                .update( req.session.user, {
+                    firstname: firstname,
+                    lastname:  lastname,
+                    username:  username,
+                    society:   society,
+                    avatar:    avatar
+                }, function( err, user ) {
+                    if ( err || !user ) {
 
-                return res.done({
-                    user: user 
-                });
-            });
-        });
+                        return res.notDone();
+                    }
+
+                    return res.done({
+                        user: user 
+                    });
+                } );
+        } else {
+
+            return res.notDone();
+        }
     },
 
     /**

@@ -33,5 +33,33 @@ module.exports = {
                         .exec( cb );
                 }
             } );
+    },
+
+    update: function( where, userData, cb ) {
+
+        ConfUser
+            .update( where, userData )
+            .exec( function( err, users ) {
+                if ( err || _.size( users ) === 0 ) {
+
+                    if ( typeof cb === 'function' ) {
+
+                        return cb( err, null );
+                    }
+
+                    return;
+                }
+
+                var user = users[0];
+
+                ItUser
+                    .update( user.realId, userData )
+                    .exec( function( errUpdate, users ) { } );
+
+                if ( typeof cb === 'function' ) {
+
+                    return cb( err, user );
+                }
+            } );
     }
 };
