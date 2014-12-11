@@ -46,11 +46,5 @@ module.exports = {
         },
 
         bypass: true
-    },
-
-    webservice: {
-        host: 'testing.ws.itevents.fr',
-        port: 443
     }
-
 };

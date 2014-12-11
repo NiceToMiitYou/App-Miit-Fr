@@ -58,7 +58,7 @@ module.exports = {
 
         DwhWebService: {
             args: {
-                accessToken: 'qVZDWicwFjh49O9PQUKJ8Ur8r3YKSrx3YqUll2L6'
+                accessToken: 'x0otR1PEMiv1uvZ8WSq52GzzO4BShWw286OdgGAg'
             },
             protocol: 'http',
             host: 'dwh.qlf.priv.miit.fr',
