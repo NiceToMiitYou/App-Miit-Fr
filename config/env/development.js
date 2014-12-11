@@ -24,7 +24,7 @@ module.exports = {
 
     mailer: {
         from: {
-            name: 'ITEvents',
+            name: 'Miit',
             address: 'no-reply@itevents.fr'
         },
 
@@ -37,10 +37,11 @@ module.exports = {
             }
         },
 
-        bypass: false
+        bypass: true
     },
 
     connections: {
+        
         DwhWebService: {
             args: {
                 accessToken: 'qVZDWicwFjh49O9PQUKJ8Ur8r3YKSrx3YqUll2L6'
@@ -50,5 +51,4 @@ module.exports = {
             port: 1337
         }
     }
-
 };

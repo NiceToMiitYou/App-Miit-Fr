@@ -1,5 +1,5 @@
 /**
- * Testing environment settings
+ * Development environment settings
  *
  * This file can include shared settings for a development team,
  * such as API keys or remote database passwords.  If you're using
@@ -13,27 +13,19 @@
 module.exports = {
 
     /***************************************************************************
-     * Set the default database connection for models in the testing           *
+     * Set the default database connection for models in the development       *
      * environment (see config/connections.js and config/models.js )           *
      ***************************************************************************/
 
-    port: 18080,
-
-    connections: {
-
-        LiveApplicationDatabase: {
-            adapter: 'sails-memory'
-        },
-
-        ConferenceDatabase: {
-            adapter: 'sails-memory'
-        }
-    },
+    // models: {
+    //   connection: 'someMongodbServer'
+    // }
+    port: 8080,
 
     mailer: {
         from: {
             name: 'Miit',
-            mail: 'no-reply@itevents.fr'
+            address: 'no-reply@itevents.fr'
         },
 
         smtp: {
@@ -45,12 +37,32 @@ module.exports = {
             }
         },
 
-        bypass: true
+        bypass: false
     },
 
-    webservice: {
-        host: 'testing.ws.itevents.fr',
-        port: 443
-    }
+    connections: {
 
+        // Storage of the conference
+        LiveApplicationDatabase: {
+            user: 'root',
+            password: '',
+            database: 'fr_miit_app'
+        },
+
+        // Storage of the conference
+        ConferenceDatabase: {
+            user: 'root',
+            password: '',
+            database: 'fr_miit_app'
+        },
+
+        DwhWebService: {
+            args: {
+                accessToken: 'qVZDWicwFjh49O9PQUKJ8Ur8r3YKSrx3YqUll2L6'
+            },
+            protocol: 'http',
+            host: 'dwh.qlf.priv.miit.fr',
+            port: 80
+        }
+    }
 };

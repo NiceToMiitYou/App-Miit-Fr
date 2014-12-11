@@ -24,8 +24,6 @@ function create( cb ) {
 
         createSlides,
 
-        createUsers,
-
         createChatrooms,
 
         createTags,
@@ -112,33 +110,6 @@ function createSlides( cb ) {
             content: '<img src="/images/slides/Diapositive10.png">',
             presentation: 1
         } ] )
-        .exec(
-            function( err, created ){
-                cb();
-            });
-}
-
-// Create users
-function createUsers( cb ) {
-
-    ConfUser
-        .create([ {
-            mail: 'viewer@itevents.fr',
-            password: 'itevents',
-            roles: [ 'ROLE_LOGIN', 'ROLE_VIEWER' ]
-        }, {
-            mail: 'master@itevents.fr',
-            password: 'itevents',
-            roles: [ 'ROLE_LOGIN', 'ROLE_MASTER' ]
-        }, {
-            mail: 'admin@itevents.fr',
-            password: 'itevents',
-            roles: [ 'ROLE_LOGIN', 'ROLE_ADMIN' ]
-        }, {
-            mail: 'live@itevents.fr',
-            password: 'itevents',
-            roles: [ 'ROLE_LOGIN', 'ROLE_LIVE' ]
-        } ])
         .exec(
             function( err, created ){
                 cb();
@@ -487,7 +458,8 @@ module.exports = {
 
         var thumbnailPath = sails.config.rootPath + '/.tmp/public/images/slides';
 
-        if( sails.config.environment === 'development' ) {
+        if( sails.config.environment === 'development' ||
+            sails.config.environment === 'qualification' ) {
             
             ConfConference.findOne( 1 ).exec(function(err, conference) {
                 if ( err || conference ) return generateThumbnail( thumbnailPath, cb );

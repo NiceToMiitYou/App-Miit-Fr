@@ -37,7 +37,7 @@ module.exports = {
 
     mailer: {
         from: {
-            name: 'ITEvents',
+            name: 'Miit',
             mail: 'no-reply@itevents.fr'
         },
 
@@ -61,7 +61,21 @@ module.exports = {
             protocol: 'http',
             host: 'localhost',
             port: 1337
-        }
+        },
+
+        // Storage of the conference
+        LiveApplicationDatabase: {
+            user: 'itevents',
+            password: 'password',
+            database: 'itevents'
+        },
+
+        // Storage of the conference
+        ConferenceDatabase: {
+            user: 'itevents',
+            password: 'password',
+            database: 'itevents'
+        },
     }
 
 };
