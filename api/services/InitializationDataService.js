@@ -65,7 +65,7 @@ function createPresentations( cb ) {
     ConfPresentation
         .create( [ {
             name: 'ITEvents presentation',
-            description: 'ITEvents vous présente sa présentation de test avec Karim Bakrimi, Pascal Fossé et Jodan Cortet.',
+            description: 'ITEvents vous présente sa présentation de test avec Karim Bakrimi, Pascal Fossé et Jordan Cortet.',
             authors: 'Cortet Jordan, Tacyniak Boris',
             conference: 1
         } ] )
