@@ -1,5 +1,6 @@
 
 var fs = require('fs'),
+    appRoot = require('app-root-path'),
     webshot = require('webshot'),
     lwip = require('lwip'),
     size = {
@@ -456,7 +457,7 @@ module.exports = {
 
     initialize: function( cb ) {
 
-        var thumbnailPath = sails.config.rootPath + '/.tmp/public/images/slides';
+        var thumbnailPath = appRoot + '/.tmp/public/images/slides';
 
         if( sails.config.environment === 'development' ||
             sails.config.environment === 'qualification' ) {
