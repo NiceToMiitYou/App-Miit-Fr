@@ -4,7 +4,7 @@ describe( 'ConfQuestionSlide', function() {
 
     describe( '#create()', function() {
 
-        it( 'create an question without question ( brain fucked oO )', function( done ) {
+        it( 'create a question without question ( brain fucked oO )', function( done ) {
 
             ConfQuestionSlide.create( {
                 slide: 1
