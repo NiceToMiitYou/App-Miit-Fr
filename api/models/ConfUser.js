@@ -77,7 +77,8 @@ module.exports = {
         },
 
         roles: {
-            type: 'array'
+            type: 'array',
+            required: true
         },
 
         toJSON: function() {

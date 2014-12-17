@@ -8,6 +8,7 @@ describe( 'ConfConference', function() {
 
             ConfConference.create( {
                 name: 'Awesome test',
+                token: 'ConfTest',
                 clientName: 'ITEvents',
                 logo: 'NotYet.png',
                 colorScheme: 'body{ background: #312312; }'
@@ -22,6 +23,7 @@ describe( 'ConfConference', function() {
                     ( created )
                         .should.have.properties( {
                             name: 'Awesome test',
+                            token: 'ConfTest',
                             clientName: 'ITEvents',
                             logo: 'NotYet.png',
                             colorScheme: 'body{ background: #312312; }'
@@ -49,6 +51,7 @@ describe( 'ConfConference', function() {
                         .should.have.properties( {
                             id: 1,
                             name: 'Awesome test',
+                            token: 'ConfTest',
                             clientName: 'ITEvents',
                             logo: 'NotYet.png',
                             colorScheme: 'body{ background: #312312; }'
