@@ -49,6 +49,7 @@ function createConference( cb ) {
     ConfConference
         .create({
             name: 'ITEvents test',
+            token: 'ConfToken',
             description: 'ITEvents vous présente sa conférence de test.',
             clientName: 'ITEvents Society',
             colorScheme: 'html {}',
