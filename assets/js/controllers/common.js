@@ -84,7 +84,7 @@ ITEventApp.controller(
                         });
 
                         $timeout(function() {
-                            window.location.reload();
+                            window.location = data.url;
                         }, 1750);
                     }
                 });

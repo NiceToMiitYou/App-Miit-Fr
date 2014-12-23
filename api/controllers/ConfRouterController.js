@@ -5,20 +5,25 @@
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
+var redirectUrl = 'http://www.itevents.fr';
+
 function viewer( req, res ) {
-    res.view( 'viewer', {
+
+    return res.view( 'viewer', {
         layout: 'layouts/viewer-application'
     } );
 }
 
 function master( req, res ) {
-    res.view( 'master', {
+
+    return res.view( 'master', {
         layout: 'layouts/master-application'
     } );
 }
 
 function live( req, res ) {
-    res.view( 'live', {
+
+    return res.view( 'live', {
         layout: 'layouts/live-application'
     } );
 }
@@ -32,18 +37,19 @@ module.exports = {
 
         if ( _.contains( req.session.roles, 'ROLE_VIEWER' ) ) {
 
-            viewer( req, res );
+            return viewer( req, res );
 
         } else if ( _.contains( req.session.roles, 'ROLE_MASTER' ) ) {
 
-            master( req, res );
+            return master( req, res );
 
         } else if ( _.contains( req.session.roles, 'ROLE_LIVE' ) ) {
 
-            live( req, res );
+            return live( req, res );
 
         } else {
-            res.send( 404 );
+
+            return res.redirect( redirectUrl );
         }
     }
 };

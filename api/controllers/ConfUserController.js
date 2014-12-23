@@ -115,7 +115,9 @@ module.exports = {
                     track.save();
                 }
 
-                return res.redirect( redirectUrl );
+                return res.done( {
+                    url: redirectUrl
+                } );
             } ) ;
     },
 
