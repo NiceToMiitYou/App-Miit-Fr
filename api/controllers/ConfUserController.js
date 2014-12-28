@@ -127,7 +127,7 @@ module.exports = {
     connect: function( req, res ) {
 
         var token = req.param( 'token' );
-
+        
         if ( token ) {
 
             ItUser
@@ -143,6 +143,9 @@ module.exports = {
 
                         return res.redirect( redirectUrl );
                     }
+
+                    if ( req.session.user ) req.session.user = null;
+                    if ( req.session.roles ) req.session.roles = null;
 
                     UserService
                         .createFromConnect( response.user,  function( errRetrieve, user ) {

@@ -30,7 +30,7 @@ module.exports.policies = {
 
     ConfUserController: {
 
-        'connect': 'anonymAuth'
+        'connect': true
     },
 
     ConfLiveController: {

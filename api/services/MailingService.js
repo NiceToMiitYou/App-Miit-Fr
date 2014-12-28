@@ -2,6 +2,7 @@ var nodemailer = require( 'nodemailer' );
 var smtpTransport = require( 'nodemailer-smtp-transport' );
 
 function sendEmail( email, title, contentText, contentHtml ) {
+    
     if ( sails.config.mailer.bypass ) {
 
         sails.log.info( 'EMAIL : TO -> ', email );
