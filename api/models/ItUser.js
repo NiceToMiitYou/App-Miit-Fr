@@ -1,5 +1,5 @@
 /**
- * User.js
+ * ItUser.js
  *
  * @description :: User representation
  */
