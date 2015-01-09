@@ -13,14 +13,20 @@ module.exports = {
      * `ConfQuestionPresentationController.create()`
      */
     create: function( req, res ) {
+
         if ( _.size( req.param( 'tags' ) ) >= 1 ) {
-            ConfQuestionPresentation.create( {
-                question: req.param( 'question' ),
-                user: req.session.user,
-                tags: req.param( 'tags' )
-            } )
+
+            ConfQuestionPresentation
+                .create( {
+                    question: req.param( 'question' ),
+                    user: req.session.user,
+                    tags: req.param( 'tags' )
+                } )
                 .exec( function( err, created ) {
-                    if ( err ) return res.notDone();
+                    if ( err ) {
+
+                        return res.notDone();
+                    }
 
                     SocketEventCachingService.sendToAll(
                         'question-presentation-new',
@@ -32,13 +38,17 @@ module.exports = {
                     );
 
                     // If no like before, let's like it
-                    ConfQuestionPresentationLike.create( {
-                        question: created.id,
-                        user: req.session.user,
-                        isLiked: true
-                    } )
+                    ConfQuestionPresentationLike
+                        .create( {
+                            question: created.id,
+                            user: req.session.user,
+                            isLiked: true
+                        } )
                         .exec( function( err, createdLike ) {
-                            if ( err ) return res.notDone();
+                            if ( err ) {
+
+                                return res.notDone();
+                            }
 
                             SocketEventCachingService.sendToAll(
                                 'question-presentation-like',
@@ -60,9 +70,13 @@ module.exports = {
      * `ConfQuestionPresentationController.tags()`
      */
     tags: function( req, res ) {
-        ConfTag.find()
+        ConfTag
+            .find()
             .exec( function( err, tags ) {
-                if ( err || !tags ) return res.notDone();
+                if ( err || !tags ) {
+
+                    return res.notDone();
+                }
 
                 return res.done( {
                     tags: tags
@@ -75,23 +89,30 @@ module.exports = {
      */
     like: function( req, res ) {
         // Find the question
-        ConfQuestionPresentation.findOne( {
-            id: req.param( 'question' ),
-            isAnswered: false
-        } )
+        ConfQuestionPresentation
+            .findOne( {
+                id: req.param( 'question' ),
+                isAnswered: false
+            } )
             .exec( function( err, question ) {
-                if ( err || !question ) return res.notDone();
+                if ( err || !question ) {
+
+                    return res.notDone();
+                }
 
                 // Find if already liked
-                ConfQuestionPresentationLike.findOne( {
-                    question: question.id,
-                    user: req.session.user
-                } )
+                ConfQuestionPresentationLike
+                    .findOne( {
+                        question: question.id,
+                        user: req.session.user
+                    } )
                     .exec( function( err, like ) {
-                        if ( err ) return res.notDone();
-                        if ( like ) return res.notDone({
-                            like: like
-                        });
+                        if ( err || like ) {
+
+                            return res.notDone({
+                                like: like
+                            });
+                        }
 
                         // If no like before, let's like it
                         ConfQuestionPresentationLike.create( {
@@ -100,7 +121,10 @@ module.exports = {
                             isLiked: req.param( 'like' )
                         } )
                             .exec( function( err, created ) {
-                                if ( err ) return res.notDone();
+                                if ( err ) {
+
+                                    return res.notDone();
+                                }
 
                                 SocketEventCachingService.sendToAll(
                                     'question-presentation-like',

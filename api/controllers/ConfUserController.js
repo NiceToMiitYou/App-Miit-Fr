@@ -14,9 +14,13 @@ module.exports = {
      */
     list: function( req, res ) {
 
-        ConfUser.find()
+        ConfUser
+            .find()
             .exec( function( err, users ) {
-                if ( err || !users ) return res.notDone();
+                if ( err || !users ) {
+
+                    return res.notDone();
+                }
 
                 return res.done( {
                     users: users
@@ -29,11 +33,15 @@ module.exports = {
      */
     get: function( req, res ) {
 
-        ConfUser.findOne(
-            req.param( 'user' )
-        )
+        ConfUser
+            .findOne(
+                req.param( 'user' )
+            )
             .exec( function( err, user ) {
-                if ( err || !user ) return res.notDone();
+                if ( err || !user ) {
+
+                    return res.notDone();
+                }
 
                 return res.done( {
                     user: user
@@ -46,9 +54,10 @@ module.exports = {
      */
     me: function( req, res ) {
 
-        ConfUser.findOne(
-            req.session.user
-        )
+        ConfUser
+            .findOne(
+                req.session.user
+            )
             .exec( function( err, user ) {
                 if ( err || !user ) return res.notDone();
 
@@ -103,12 +112,17 @@ module.exports = {
         if ( req.session.roles ) req.session.roles = null;
 
         // Set last track to end
-        ConfTrack.findOne( {
-            user: req.session.user,
-            sort: 'id DESC'
-        } )
+        ConfTrack
+            .findOne( {
+                user: req.session.user,
+                sort: 'id DESC'
+            } )
             .exec( function( err, track ) {
-                if ( err ) return res.notDone();
+                if ( err ) {
+
+                    return res.notDone();
+                }
+
                 if ( track ) {
 
                     track.end = new Date();

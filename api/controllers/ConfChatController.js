@@ -12,8 +12,14 @@ module.exports = {
      */
     list: function( req, res ) {
 
-        ConfChatRoom.find()
+        ConfChatRoom
+            .find()
             .exec( function( err, chatrooms ) {
+                if( err ) {
+
+                    return notDone();
+                }
+
                 return res.done( {
                     chatrooms: chatrooms
                 } );
@@ -25,13 +31,17 @@ module.exports = {
      */
     send: function( req, res ) {
 
-        ConfChatMessage.create( {
-            message: req.param( 'message' ),
-            user: req.session.user,
-            chatroom: req.param( 'chatroom' )
-        } )
+        ConfChatMessage
+            .create( {
+                message: req.param( 'message' ),
+                user: req.session.user,
+                chatroom: req.param( 'chatroom' )
+            } )
             .exec( function( err, created ) {
-                if ( err ) return res.notDone();
+                if ( err ) {
+
+                    return res.notDone();
+                }
 
                 SocketEventCachingService.sendToAll( 'chatroom-new', created, 5 * 60, true ); // Keep them 5 minutes but apply coefficient
 

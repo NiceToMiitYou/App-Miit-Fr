@@ -30,7 +30,7 @@ module.exports.bootstrap = function( cb ) {
 
 
     // Initialize data if in developpement
-    InitializationDataService.initialize( function() { 
+    ImportationDataService.initialize( function() { 
     
         // Load the restrictions of the conference
         RestrictionService.initialize();

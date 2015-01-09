@@ -12,7 +12,14 @@ module.exports = {
      */
     conference: function( req, res ) {
 
-        ConfConference.findOne( 1 )
+        ConfConference
+            .findOne({
+                'where': {
+                    'id': {
+                        'not': null
+                    }
+                }
+            })
             .exec( function( err, conference ) {
                 if ( err || !conference ) conference = {
                     logo: '/images/logodark.png',
@@ -31,9 +38,26 @@ module.exports = {
      */
     actual: function( req, res ) {
         
-        return res.done( {
-            presentation: 1
-        } );
+        ConfPresentation
+            .findOne({
+                'where': {
+                    'id': {
+                        'not': null
+                    }
+                }
+            })
+            .sort('id ASC')
+            .exec(
+                function( err, presentation ) {
+                    if( err && !presentation ) {
+                     
+                        return res.notDone();
+                    }
+
+                    return res.done( {
+                        presentation: presentation.id
+                    } );
+                });
     },
 
     /**
@@ -53,7 +77,8 @@ module.exports = {
      */
     presentations: function( req, res ) {
 
-        ConfPresentation.find()
+        ConfPresentation
+            .find()
             .populate( 'slides' )
             .exec( function( err, presentations ) {
                 if ( err || ! presentations ) res.notDone();

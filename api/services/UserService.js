@@ -10,9 +10,7 @@ module.exports = {
     createFromConnect: function( user, cb ) {
 
         ConfUser
-            .findOne( {
-                realId: user.id
-            } )
+            .findOne( user.id )
             .exec( function( errFind, userLocal ) {
                 
                 if ( errFind || userLocal ) { // If an error ocurred or user already exist
@@ -22,10 +20,6 @@ module.exports = {
                         return cb( errFind, userLocal );
                     }
                 } else { // If weed need to create it
-
-                    // Format
-                    user.realId = user.id;
-                    delete user.id;
 
                     // Create the user
                     ConfUser
@@ -53,7 +47,7 @@ module.exports = {
                 var user = users[0];
 
                 ItUser
-                    .update( user.realId, userData )
+                    .update( user.id, userData )
                     .exec( function( errUpdate, users ) { } );
 
                 if ( typeof cb === 'function' ) {

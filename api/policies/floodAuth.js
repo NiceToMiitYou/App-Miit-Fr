@@ -16,9 +16,9 @@ module.exports = function( req, res, next ) {
         req.options.flood.id &&
         req.options.flood.time ) {
 
-        var floodId = req.options.flood.id;
-        var floodTime = req.options.flood.time;
-        var requestTime = (new Date() ).getTime();
+        var floodId     = req.options.flood.id,
+            floodTime   = req.options.flood.time,
+            requestTime = (new Date() ).getTime();
 
         // Check last request time
         if ( req.session.flood &&
@@ -32,11 +32,13 @@ module.exports = function( req, res, next ) {
 
             // Check if flood variable exist
             if ( ! req.session.flood ) {
+
                 req.session.flood = {};
             }
 
             // Check if flood id registered set new flood time
             if ( ! req.session.flood[floodId] || req.session.flood[floodId] <= requestTime ) {
+
                 req.session.flood[floodId] = requestTime + floodTime;
             }
         }
@@ -45,6 +47,7 @@ module.exports = function( req, res, next ) {
     // User is allowed, proceed to the next policy, 
     // or if this is the last policy, the controller
     if ( allowed ) {
+
         return next();
     }
 

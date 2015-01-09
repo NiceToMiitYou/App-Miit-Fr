@@ -36,7 +36,7 @@ module.exports = {
         stayAlive *= 1000;
 
         // Apply duration coefficient to have a good comportement in conference
-        if(shouldApplyCoef) {
+        if( shouldApplyCoef ) {
             
             stayAlive = Math.round(stayAlive * durationCoefficient);
         }
@@ -56,13 +56,17 @@ module.exports = {
             }
         }
 
-        ConfLiveApplicationEvent.create( {
-            name: event,
-            data: JSON.stringify( data ),
-            expire: expire
-        } )
+        ConfLiveApplicationEvent
+            .create( {
+                name: event,
+                data: JSON.stringify( data ),
+                expire: expire
+            } )
             .exec( function( err, model ) {
-                if ( err ) return sails.log.debug( err );
+                if ( err ) {
+
+                    return sails.log.debug( err );
+                }
 
                 // Broadcast to all concerned events
                 if ( eventsRooms[model.name] ) {

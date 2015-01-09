@@ -9,30 +9,48 @@ module.exports = {
 
     colorScheme: function( req, res ) {
     
-        ConfConference.findOne( 1 )
-            .exec( function( err, conference ) {
-                if ( err || !conference ) return res.send( 404 );
+        ConfConference
+            .findOne({
+                'where': {
+                    'id': {
+                        'not': null
+                    }
+                }
+            })
+            .exec( 
+                function( err, conference ) {
+                    if ( err || !conference ) {
 
-                var less = require( 'less' );
+                        return res.send( 404 );
+                    }
 
-                less.render( conference.colorScheme, function( e, css ) {
-                    if ( e ) res.send( 404 );
+                    var less = require( 'less' );
 
-                    res.set( 'Content-Type', 'text/css' );
+                    less.render( conference.colorScheme, function( e, css ) {
+                        if ( e ) {
+                         
+                            res.send( 404 );
+                        }
 
-                    res.send( css );
+                        res.set( 'Content-Type', 'text/css' );
+
+                        res.send( css );
+                    } );
                 } );
-            } );
     },
 
     list: function( req, res ) {
-        ConfResourceCategory.find()
+        ConfResourceCategory
+            .find()
             .where( {
                 'isVisible': true
             } )
             .populate( 'resources' )
             .exec( function( err, categories ) {
-                if ( err ) return res.notDone();
+                if ( err ) {
+                 
+                    return res.notDone();
+                }
 
                 return res.done( {
                     categories: categories

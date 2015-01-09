@@ -5,7 +5,14 @@ module.exports = {
 
     initialize: function() {
 
-        ConfConference.findOne( 1 )
+        ConfConference
+            .findOne({
+                'where': {
+                    'id': {
+                        'not': null
+                    }
+                }
+            })
             .exec(function(err, model) {
 
                 if( !err && model )
