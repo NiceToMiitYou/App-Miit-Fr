@@ -85,7 +85,6 @@ CREATE TABLE `confconference` (
   `colorScheme` longtext,
   `description` longtext,
   `restrictions` longtext,
-  `realId` int(11) DEFAULT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
@@ -329,7 +328,6 @@ DROP TABLE IF EXISTS `confquestionquizzanswer`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `confquestionquizzanswer` (
   `answer` varchar(255) DEFAULT NULL,
-  `realId` int(11) DEFAULT NULL,
   `question` int(11) DEFAULT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `createdAt` datetime DEFAULT NULL,
@@ -408,7 +406,6 @@ DROP TABLE IF EXISTS `confquestionslideanswer`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `confquestionslideanswer` (
   `answer` varchar(255) DEFAULT NULL,
-  `realId` int(11) DEFAULT NULL,
   `question` int(11) DEFAULT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `createdAt` datetime DEFAULT NULL,
@@ -658,7 +655,6 @@ CREATE TABLE `confuser` (
   `society` varchar(255) DEFAULT NULL,
   `avatar` longtext,
   `mail` varchar(255) DEFAULT NULL,
-  `realId` int(11) DEFAULT NULL,
   `roles` longtext,
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `createdAt` datetime DEFAULT NULL,
