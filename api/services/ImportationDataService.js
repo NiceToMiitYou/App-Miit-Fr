@@ -32,6 +32,8 @@ function importData( conference, cb ) {
 
         importConference,
 
+        importPresentations,
+
         importResourcesCategories,
 
         importQuizzes
