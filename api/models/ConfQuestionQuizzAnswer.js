@@ -15,10 +15,6 @@ module.exports = {
             minLength: 1
         },
 
-        realId: {
-            type: 'integer'
-        },
-
         question: {
             model: 'ConfQuestionQuizz',
             required: true
@@ -31,7 +27,6 @@ module.exports = {
 
         toJSON: function() {
             var obj = this.toObject();
-            delete obj.realId;
             delete obj.createdAt;
             delete obj.updatedAt;
             return obj;

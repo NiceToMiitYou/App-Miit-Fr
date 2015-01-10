@@ -42,10 +42,6 @@ module.exports = {
             type: 'array'
         },
 
-        realId: {
-            type: 'integer'
-        },
-
         presentations: {
             collection: 'ConfPresentation',
             via: 'conference'
@@ -58,7 +54,6 @@ module.exports = {
 
         toJSON: function() {
             var obj = this.toObject();
-            delete obj.realId;
             delete obj.colorScheme;
             delete obj.createdAt;
             delete obj.updatedAt;

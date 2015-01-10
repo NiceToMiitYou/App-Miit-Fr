@@ -50,10 +50,6 @@ module.exports = {
             via: 'user'
         },
 
-        realId: {
-            type: 'integer'
-        },
-
         slideAnswers: {
             collection: 'ConfQuestionSlideAnswer',
             via: 'users',
@@ -84,7 +80,6 @@ module.exports = {
         toJSON: function() {
             var obj = this.toObject();
             delete obj.mail;
-            delete obj.realId;
             delete obj.roles;
             delete obj.messages;
             delete obj.createdAt;
