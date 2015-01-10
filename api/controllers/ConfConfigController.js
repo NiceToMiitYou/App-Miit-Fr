@@ -49,7 +49,7 @@ module.exports = {
             .sort('id ASC')
             .exec(
                 function( err, presentation ) {
-                    if( err && !presentation ) {
+                    if( err || !presentation ) {
                      
                         return res.notDone();
                     }
