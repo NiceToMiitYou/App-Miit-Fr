@@ -1079,10 +1079,12 @@ ul.table-list li a span.title {
 }
 
 .timeline-post {
-	height: 154px;
+	height: 54px;
 	position: absolute;
+	text-align: center;
 	bottom: 0;
 	width: 100%;
+	background-color: #22262e;
 }
 
 .timeline-post .select2-choices {
@@ -1101,19 +1103,13 @@ ul.table-list li a span.title {
   	color: #EFEFEF!important;
 }
 
-.timeline-post textarea {
+.modal-body.ask-question textarea {
 	width: 100%;
 	border:0;
-	height: calc(100% - 37px);
-		background-color: #22262e;
-		border-left: 2px solid rgba(11, 161, 149, 0.4);
-		border-radius: 0;
-		color: #FFF;
-		-webkit-animation: border-beat 800ms infinite; /* Chrome, Safari, Opera */
-	    animation: border-beat 800ms infinite;
-	    margin-right: 120px!important;
-/*	    position: absolute;
-	    bottom: 0;*/
+	height: 128px;
+	border-radius: 0;
+	margin-top: 10px;
+	color: #000;
 }
 
 .timeline-search {
@@ -1175,11 +1171,11 @@ ul.table-list li a span.title {
   }
 
   .wall-content .send-wall-question {
-  	position: absolute;
-  	right: 5px;
+  	position: relative;
+  	top: 5px;
   	bottom: 5px;
-  	height: 105px;
-  	width: 105px;
+  	height: 44px;
+  	width: 50%;
   }
 
   .select2-dropdown-open.select2-drop-above .select2-choice, 

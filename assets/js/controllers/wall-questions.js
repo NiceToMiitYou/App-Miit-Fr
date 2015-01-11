@@ -4,11 +4,6 @@ ITEventApp.controller(
     'wallController', [ '$scope', '$timeout',
         function( $scope, $timeout ) {
 
-            // Conference model
-            $scope.text = '';
-
-            $scope.tags = {};
-
             $scope.questions = {};
 
             function loadTags( isLoaded ) {
@@ -19,7 +14,7 @@ ITEventApp.controller(
 
                         ITStorage.db.tags.each(function( id, tag ) {
                             
-                            $scope.tags[id] = tag;
+                            $scope.shared.tags[id] = tag;
                         } );
                     } );
                 }
@@ -70,39 +65,9 @@ ITEventApp.controller(
                 return ITStorage.db.tags.get( tag ).name;
             }
 
-            function post() {
+            function askQuestion() {
 
-                if ( $scope.text && $( '#multi' ).val() ) {
-
-                    ITConnect.question.presentation.create( $scope.text, $( '#multi' ).val(), function(data) {
-                        if( data.done ) {
-
-                            $timeout(function() {
-
-                                $scope.text = '';
-
-                                $scope.messenger.post({
-                                    message: 'Votre question vient d\'être postée.',
-                                    type: 'info'
-                                });
-                            });
-
-                        } else {
-
-                            $scope.messenger.post({
-                                message: 'Une erreur s\'est produite lors de la création de la question.',
-                                type: 'error'
-                            });
-                        }
-                    });
-                } else {
-
-                    $scope.messenger.post({
-                        message: 'Veuillez renseigner tout les champs afin de pouvoir poster une question.',
-                        type: 'error'
-                    });
-
-                }
+                $scope.shared.wantToAskQuestion = true;
             }
 
             $scope.like = function( question ) {
@@ -116,10 +81,10 @@ ITEventApp.controller(
 
             $scope.getTagName = getTagName;
             
-            $scope.post = function() {
+            $scope.askQuestion = function() {
                 if( $scope.isAllowed('WALL_INTERACTIONS') ) {
 
-                    post();
+                    askQuestion();
                 }
             };
 

@@ -80,12 +80,6 @@
 
     </div>
     <div class="timeline-post">
-        <div class="col-md-12 no-padding">
-            <select id="multi" style="width:100%" placeholder="Sélectionnez un catégorie" multiple>
-                <option ng-repeat="tag in tags" value="{{tag.id}}">{{tag.name}}</option>
-            </select>
-        </div>
-        <textarea ng-model="text" placeholder="Posez votre question" ></textarea>
-        <button class="send-wall-question btn btn-primary" id="click" ng-click="post()">Envoyer</button>
+        <button class="send-wall-question btn btn-primary" id="click" ng-click="askQuestion()">Poser une question</button>
     </div>
 </div>

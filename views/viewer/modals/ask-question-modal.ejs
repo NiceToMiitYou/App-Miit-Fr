@@ -1,0 +1,42 @@
+<div ng-controller="askQuestionModalController" class="modal show" id="userinfo-modal" ng-show="shared.wantToAskQuestion">
+    <form role="form">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <i class="fa fa-question fa-6x"></i>
+
+                    <h4 id="myQuestionModalLabel" class="semi-bold">
+                        Poser une question
+                    </h4>
+                </div>
+
+                <div class="modal-body ask-question" style="padding:10px;">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <select id="multi" style="width:100%" placeholder="Sélectionnez une catégorie" multiple>
+                                <option ng-repeat="tag in shared.tags" value="{{tag.id}}">{{tag.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <textarea ng-model="text" placeholder="Posez votre question" ></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" ng-click="post();" class="btn btn-primary">Poser la question</button>
+                    <button type="button" ng-click="shared.wantToAskQuestion = false" class="btn btn-danger">Annuler</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+        <div class="modal-backdrop fade in"></div>
+    </form>
+</div>

@@ -4,7 +4,12 @@ ITEventApp.controller(
     'commonController', [ '$scope', '$timeout', '$sce',
         function( $scope, $timeout, $sce ) {
 
-            $scope.shared = {};
+            $scope.shared = {
+
+                tags: {},
+                
+                wantToAskQuestion: false
+            };
 
             $scope.conference = false;
 
