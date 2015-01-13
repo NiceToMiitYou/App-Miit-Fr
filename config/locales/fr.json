@@ -1,4 +1,5 @@
 {
-	"Welcome": "Bienvenue",
-	"A brand new app.": "Une toute nouvelle application."
+	"app.live.title": "Miit - Live",
+    "app.master.title": "Miit - Master",
+    "app.viewer.title": "Miit - Présentation"
 }
