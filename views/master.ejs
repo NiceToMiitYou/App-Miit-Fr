@@ -9,26 +9,27 @@
 				<a class="listner listner-up btn btn-primary"
 					ng-class="{'btn-primary': usersConnectedUp, 'btn-info': usersConnectedSame, 'btn-danger': usersConnectedDown}"><i class="fa" ng-class="{'fa-angle-double-up': usersConnectedUp, 'fa-angle-double-right': usersConnectedSame, 'fa-angle-double-down': usersConnectedDown}"  style="margin-right: 0px;"></i></a>
 				<h3><i class="fa fa-user"></i> {{ connectedUsers }}</h3>
-				<span class="speaker-time">07:18</span>
+				<span class="speaker-time">00:00</span>
 			</div>
+
 			<div class="progress transparent progress-small no-radius no-margin">
 	            <div data-percentage="{{ shared.liveProgress }}%"
 	                    style="width: {{ shared.liveProgress }}%;" 
 	                    class="progress-bar progress-bar-success animate-progress-bar"></div>     
 			</div>
+			
 			<div class="liveorask">
 				<div class="livetab" ng-class="{active:live}" ng-click="live=true"><i class="fa fa-paper-plane" style="margin-right: 4px;"></i> Live</div>
 				<div class="asktab" ng-class="{active:!live}" ng-click="live=false"><i class="fa fa-users" style="margin-right: 4px;"></i> Mur</div>
 			</div>
-			<div class="slider-container">
-				<div id="slides" class="presentation-slide" ng-show="live">
-					<div id="slides" class="presentation-slide">
-				        <div ng-repeat="slide in presentation.slides" class="slide slide-animation"
-				            ng-hide="!isCurrentSlide($index)"
-				            ng-swipe-right="previous()"
-				            ng-swipe-left="next()"
-				            ng-bind-html="safeHTML(slide.content)"></div>
-				    </div>
+
+			<div class="slider-container" ng-show="live">
+				<div id="slides" class="presentation-slide">
+			        <div ng-repeat="slide in presentation.slides" class="slide slide-animation"
+			            ng-hide="!isCurrentSlide($index)"
+			            ng-swipe-right="previous()"
+			            ng-swipe-left="next()"
+			            ng-bind-html="safeHTML(slide.content)"></div>
 				</div>
 			</div>
 

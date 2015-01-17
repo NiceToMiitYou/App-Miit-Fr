@@ -1839,6 +1839,18 @@ ul.messenger.messenger-fixed.messenger-on-top, ul.messenger.messenger-fixed.mess
 	width: calc(100% - 60px);
 }
 
+/* ol padding wall-list */
+
+#wall-list ol {
+
+	padding: 0;
+}
+
+#wall-list ol > li {
+
+	list-style-type: none;
+}
+
 /* CIRCLE MENU */
 
 .cn-button {
