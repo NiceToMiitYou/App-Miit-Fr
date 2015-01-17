@@ -1,7 +1,7 @@
 "use strict";
 
 ITEventApp.controller(
-    'resourcesController', [ '$scope', '$timeout',
+    'ResourcesController', [ '$scope', '$timeout',
         function( $scope, $timeout ) {
 
             $scope.categories = {};

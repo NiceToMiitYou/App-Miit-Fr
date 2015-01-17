@@ -1,7 +1,7 @@
 "use strict";
 
 ITEventApp.controller(
-    'livePrivateController', [ '$scope', '$timeout',
+    'LivePrivateController', [ '$scope', '$timeout',
         function( $scope, $timeout ) {
         
             function onKeyPress(e) {

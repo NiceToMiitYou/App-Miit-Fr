@@ -1,7 +1,7 @@
 "use strict";
 
 ITEventApp.controller(
-    'chatController', [ '$scope', '$timeout',
+    'ChatController', [ '$scope', '$timeout',
         function( $scope, $timeout ) {
 
             $scope.chatrooms = {};

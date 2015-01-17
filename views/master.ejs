@@ -1,9 +1,9 @@
 <!-- BEGIN CONTENT -->
-<div ng-controller="commonController" class="page-container master row-fluid" ng-init="accountType = 2; live=true">
+<div ng-controller="CommonController" class="page-container master row-fluid" ng-init="accountType = 2; live=true">
 	<!-- BEGIN PAGE CONTAINER-->
-	<div ng-controller="masterController" class="page-content">
+	<div ng-controller="MasterController" class="page-content">
 
-		<div ng-controller="liveController" class="content">
+		<div ng-controller="LiveController" class="content">
 			<!-- BEGIN PAGE TITLE -->
 			<div class="page-title">
 				<a class="listner listner-up btn btn-primary"
@@ -33,7 +33,7 @@
 				</div>
 			</div>
 
-			<div ng-controller="wallController" class="wall" ng-show="!live" >
+			<div ng-controller="WallController" class="wall" ng-show="!live" >
 				<div class="dd" id="wall-list">
 					<ol class="dd-list">
 						<li class="animate-repeat dd-item dd-handle" ng-hide="question.remove" data-id="{{ question.id }}" ng-repeat="question in questions | toArray | orderBy:['-favorite','-likes'] | filter:q as results" ng-init="question.favorite=false">
@@ -95,7 +95,8 @@
 		</div>
 		<!-- END CONTENT --> 
 	</div>
-	<div ng-controller="masterLiveController">
+	
+	<div ng-controller="MasterLiveController">
 		<div class="next-slide sn-next" data="next" ng-click="next()"><i class="fa fa-arrow-right fa-3x"></i></div>
 		<div class="previous-slide sn-prev" data="prev" ng-click="previous()"><i class="fa fa-arrow-left fa-3x"></i></div>
 	</div>

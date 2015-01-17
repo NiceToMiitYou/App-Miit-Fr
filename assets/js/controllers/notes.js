@@ -1,7 +1,7 @@
 "use strict";
 
 ITEventApp.controller(
-    'notesController', [ '$scope', '$timeout',
+    'NotesController', [ '$scope', '$timeout',
         function( $scope, $timeout ) {
 
             $scope.notes = {};

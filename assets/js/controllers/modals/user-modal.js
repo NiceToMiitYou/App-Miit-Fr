@@ -1,7 +1,7 @@
 "use strict";
 
 ITEventApp.controller(
-    'userModalController', [ '$scope', '$timeout',
+    'UserModalController', [ '$scope', '$timeout',
         function( $scope, $timeout ) {
 
             $scope.agreeAnonyme = false;

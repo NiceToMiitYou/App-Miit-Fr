@@ -1,7 +1,7 @@
 "use strict";
 
 ITEventApp.controller(
-    'askQuestionModalController', [ '$scope', '$timeout',
+    'AskQuestionModalController', [ '$scope', '$timeout',
         function( $scope, $timeout ) {
 
             $scope.text = '';

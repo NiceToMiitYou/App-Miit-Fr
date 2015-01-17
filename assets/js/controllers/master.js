@@ -1,7 +1,7 @@
 "use strict";
 
 ITEventApp.controller(
-    'masterController', [ '$scope', '$timeout',
+    'MasterController', [ '$scope', '$timeout',
         function( $scope, $timeout ) {
 
             var minTime = 10000;

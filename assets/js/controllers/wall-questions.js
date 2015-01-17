@@ -1,7 +1,7 @@
 "use strict";
 
 ITEventApp.controller(
-    'wallController', [ '$scope', '$timeout',
+    'WallController', [ '$scope', '$timeout',
         function( $scope, $timeout ) {
 
             $scope.questions = {};

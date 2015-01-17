@@ -1,7 +1,7 @@
 "use strict";
 
 ITEventApp.controller(
-    'commonController', [ '$scope', '$timeout', '$sce',
+    'CommonController', [ '$scope', '$timeout', '$sce',
         function( $scope, $timeout, $sce ) {
 
             $scope.shared = {

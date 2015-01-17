@@ -1,5 +1,7 @@
+"use strict";
+
 ITEventApp.controller(
-    'quizzListController', [ '$scope', '$timeout',
+    'QuizzListController', [ '$scope', '$timeout',
         function( $scope, $timeout ) {
 
             $scope.quizzes = {};

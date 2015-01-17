@@ -1,7 +1,7 @@
 "use strict";
 
 ITEventApp.controller(
-    'resourcesInnerController', [ '$scope', '$timeout',
+    'ResourcesInnerController', [ '$scope', '$timeout',
         function( $scope, $timeout ) {
 
             $scope.current = {};

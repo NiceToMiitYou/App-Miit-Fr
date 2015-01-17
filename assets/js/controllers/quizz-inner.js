@@ -1,7 +1,7 @@
 "use strict";
 
 ITEventApp.controller(
-    'quizzInnerController', [ '$scope', '$timeout',
+    'QuizzInnerController', [ '$scope', '$timeout',
         function( $scope, $timeout ) {
 
             $scope.current = {};
