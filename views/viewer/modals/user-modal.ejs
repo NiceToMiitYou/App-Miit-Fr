@@ -8,9 +8,9 @@
                     <i class="fa fa-user fa-6x"></i>
 
                     <h4 id="myUserModalLabel" class="semi-bold">
-                        Bienvenue pour votre premiere experience ITEvents
+                        <%= __('app.viewer.modal.user.welcome') %>
                     </h4>
-                    <p class="no-margin">Choisissez le type de compte que vous souhaitez utiliser sur la plateforme</p>
+                    <p class="no-margin"><%= __('app.viewer.modal.user.choice') %></p>
                 </div>
 
                 <div class="modal-body" style="padding:10px;">
@@ -21,7 +21,7 @@
                             <div class="panel-heading collapsed">
                                 <h4 class="panel-title">
                                     <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" ng-click="resetToClassic()">
-                                        Classique
+                                        <%= __('app.viewer.modal.user.classic') %>
                                     </a>
                                 </h4>
                             </div>
@@ -30,22 +30,28 @@
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <h4 class="semi-bold">Informations :</h4>
+                                            <h4 class="semi-bold">Informations</h4>
                                             <div class="col-md-6">
-                                                <label>Nom :</label>
-                                                <input type="text" placeholder="Smith" ng-model="user.lastname"/>
+                                                <label><%= __('app.viewer.modal.user.lastname') %></label>
+                                                <input type="text"
+                                                       placeholder="<%= __('app.viewer.modal.user.lastname.placeholder') %>"
+                                                       ng-model="user.lastname"/>
                                             </div>
                                             <div class="col-md-6">
-                                                <label>Prénom :</label>
-                                                <input type="text" placeholder="John" ng-model="user.firstname"/>
+                                                <label><%= __('app.viewer.modal.user.firstname') %></label>
+                                                <input type="text"
+                                                        placeholder="<%= __('app.viewer.modal.user.firstname.placeholder') %>"
+                                                        ng-model="user.firstname"/>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="col-md-12 m-t-5">
-                                                <label>Société :</label>
-                                                <input type="text" placeholder="Société" ng-model="user.society" />
+                                                <label><%= __('app.viewer.modal.user.society') %></label>
+                                                <input type="text"
+                                                        placeholder="<%= __('app.viewer.modal.user.society.placeholder') %>"
+                                                        ng-model="user.society" />
                                             </div>
                                         </div>
                                     </div>
@@ -58,53 +64,62 @@
 
                                                 <label for="checkbox-pseudo">
                                                     <span ng-show="!useUsername">
-                                                        Utiliser un pseudonyme lors de mes publications
+                                                        <%= __('app.viewer.modal.user.username.label') %>
                                                     </span>
                                                 </label>
                                             </div>
 
                                             <div class="col-md-11" ng-show="useUsername">
-                                                <input type="text" placeholder="Pseudonyme" ng-model="user.username"/> 
+                                                <input type="text" placeholder="<%= __('app.viewer.modal.user.username.placeholder') %>" ng-model="user.username"/> 
                                             </div>
                                         </div>
                                         
                                     </div>
                                     <div class="row m-t-10">
                                         <div class="col-md-12">
-                                            <h4 class="semi-bold">Choisissez un Avatar :</h4>
+                                            <h4 class="semi-bold"><%= __('app.viewer.modal.user.avatar') %></h4>
                                             <div class="avatar-choice">
-                                                <a class="avatar" ng-class="user.avatar.c + ' avatar-' + user.avatar.a" ng-click="changeAvatar=true"></a>
-                                                <ul class="avatar-choice-list" ng-show="changeAvatar" ng-click="changeAvatar=false">
-                                                    <li><a ng-click="user.avatar.a='m1'" class="avatar avatar-m1"></a></li>
-                                                    <li><a ng-click="user.avatar.a='m2'" class="avatar avatar-m2"></a></li>
-                                                    <li><a ng-click="user.avatar.a='m3'" class="avatar avatar-m3"></a></li>
-                                                    <li><a ng-click="user.avatar.a='m4'" class="avatar avatar-m4"></a></li>
-                                                    <li><a ng-click="user.avatar.a='m5'" class="avatar avatar-m5"></a></li>
-                                                    <li><a ng-click="user.avatar.a='m6'" class="avatar avatar-m6"></a></li>
-                                                    <li><a ng-click="user.avatar.a='m7'" class="avatar avatar-m7"></a></li>
-                                                    <li><a ng-click="user.avatar.a='m8'" class="avatar avatar-m8"></a></li>
-                                                    <li><a ng-click="user.avatar.a='m9'" class="avatar avatar-m9"></a></li>
-                                                    <li><a ng-click="user.avatar.a='f1'" class="avatar avatar-f1"></a></li>
-                                                    <li><a ng-click="user.avatar.a='f2'" class="avatar avatar-f2"></a></li>
-                                                    <li><a ng-click="user.avatar.a='f3'" class="avatar avatar-f3"></a></li>
-                                                    <li><a ng-click="user.avatar.a='f4'" class="avatar avatar-f4"></a></li>
-                                                    <li><a ng-click="user.avatar.a='f5'" class="avatar avatar-f5"></a></li>
-                                                    <li><a ng-click="user.avatar.a='f6'" class="avatar avatar-f6"></a></li>
-                                                    <li><a ng-click="user.avatar.a='f7'" class="avatar avatar-f7"></a></li>
-                                                    <li><a ng-click="user.avatar.a='f8'" class="avatar avatar-f8"></a></li>
-                                                    <li><a ng-click="user.avatar.a='f9'" class="avatar avatar-f9"></a></li>
+                                                <a class="avatar"
+                                                   ng-class="user.avatar.c + ' avatar-' + user.avatar.a"
+                                                   ng-click="changeAvatar=true"></a>
+                                                <ul class="avatar-choice-list" 
+                                                    ng-show="changeAvatar" 
+                                                    ng-click="changeAvatar=false">
+
+                                                <%
+                                                var avatars = {
+                                                    gender: [ 'm', 'f'],
+                                                    type: [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+                                                };
+
+                                                for(var i = 0; i < avatars.gender.length; i++) {
+                                                    for(var j = 0; j < avatars.type.length; j++) {
+                                                        var avatar = avatars.gender[i] + avatars.type[j]
+                                                %>
+                                                    <li>
+                                                        <a ng-click="user.avatar.a='<%= avatar %>'"
+                                                           class="avatar avatar-<%= avatar %>"></a>
+                                                    </li>
+                                                <%
+                                                    }
+                                                }
+                                                %>
                                                 </ul>
                                             </div>
                                             <ul class="color-choice">
-                                                <li ng-class="{selected:user.avatar.c=='red'}" ng-click="user.avatar.c='red'" class="tiles red"></li>
-                                                <li ng-class="{selected:user.avatar.c=='purple'}" ng-click="user.avatar.c='purple'" class="tiles purple"></li>
-                                                <li ng-class="{selected:user.avatar.c=='blue'}" ng-click="user.avatar.c='blue'" class="tiles blue"></li>
-                                                <li ng-class="{selected:user.avatar.c=='green'}" ng-click="user.avatar.c='green'" class="tiles green"></li>
-                                                <li ng-class="{selected:user.avatar.c=='black'}" ng-click="user.avatar.c='black'" class="tiles black"></li>
-                                                <li ng-class="{selected:user.avatar.c=='dark-blue'}" ng-click="user.avatar.c='dark-blue'" class="tiles dark-blue"></li>
-                                                <li ng-class="{selected:user.avatar.c=='light-blue'}" ng-click="user.avatar.c='light-blue'" class="tiles light-blue"></li>
-                                                <li ng-class="{selected:user.avatar.c=='light-red'}" ng-click="user.avatar.c='light-red'" class="tiles light-red"></li>
-                                                <li ng-class="{selected:user.avatar.c=='grey'}" ng-click="user.avatar.c='grey'" class="tiles grey"></li>
+                                            <% 
+                                            var colors = ['red', 'purple', 'blue', 'green', 'black',
+                                                          'dark-blue', 'light-blue', 'light-red', 'grey'];
+
+                                            for(var i = 0; i < colors.length; i++) {
+                                                var color = colors[i];
+                                            %>
+                                                <li ng-class="{selected:user.avatar.c=='<%= color %>'}"
+                                                    ng-click="user.avatar.c='<%= color %>'"
+                                                    class="tiles <%= color %>"></li>
+                                            <%
+                                            }
+                                            %>
                                             </ul>
                                         </div>
                                     </div>
@@ -115,21 +130,27 @@
                             <div class="panel-heading collapsed">
                                 <h4 class="panel-title">
                                     <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" ng-click="generateAnonym()">
-                                        Anonyme
+                                        <%= __('app.viewer.modal.user.anonym') %>
                                     </a>
                                 </h4>
                             </div>
                             <div id="collapseThree" class="panel-collapse collapse" style="height: 0px;">
                                 <div class="panel-body">
                                     <div class="row m-t-10">
-                                        <div class="col-md-3"><label style="line-height: 34px;">Pseudonyme : </label></div>
-                                        <div class="col-md-9"><input type="text" ng-model="user.username" /></div>
+                                        <div class="col-md-3">
+                                            <label style="line-height: 34px;"><%= __('app.viewer.modal.user.username') %></label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text"
+                                                   placeholder="<%= __('app.viewer.modal.user.username.placeholder') %>"
+                                                   ng-model="user.username" />
+                                        </div>
                                     </div>
                                     <div class="col-md-12 text-center m-t-20">
                                         <div class="checkbox check-primary">
                                             <input id="checkbox-anonyme" type="checkbox" ng-model="agreeAnonyme" value="1">
                                             <label for="checkbox-anonyme">
-                                                En utilisant la navigation anonyme vous vous engagez à respecter les règles de politesse et de respect élémentaires
+                                                <%= __('app.viewer.modal.user.anonym.cgu') %>
                                             </label>
                                         </div>
                                     </div>
@@ -139,7 +160,9 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" ng-click="saveUser();" class="btn btn-primary">Sauvegarder</button>
+                    <button type="button" ng-click="saveUser();" class="btn btn-primary">
+                        <%= __('app.viewer.modal.user.save') %>
+                    </button>
                 </div>
             </div>
             <!-- /.modal-content -->
