@@ -63,8 +63,8 @@
 						            <div class="action-links">
 						            	<span ng-hide="question.favorite"><button class="btn btn-primary" ng-click="question.favorite=true"> <i class="fa fa-star"></i> </button></span>
 						            	<span ng-show="question.favorite"><button class="btn btn-warning" ng-click="question.favorite=false"> <i class="fa fa-star-o"></i> </button></span>
-						                <span class="text-white" ng-show="question.likes > 1">{{question.likes}} Likes</span>
-						                <span class="text-white" ng-show="question.likes <= 1">{{question.likes}} Like</span>
+						                <span class="text-white" ng-show="question.likes > 1">{{question.likes}} <%= __('app.master.wall.likes') %></span>
+						                <span class="text-white" ng-show="question.likes <= 1">{{question.likes}} <%= __('app.master.wall.like') %></span>
 
 						                <div class="pull-right">
 						                	<button class="btn btn-danger" ng-click="question.remove = true"> <i class="fa fa-times"></i> </button>

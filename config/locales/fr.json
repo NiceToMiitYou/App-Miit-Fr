@@ -1,5 +1,17 @@
 {
 	"app.live.title": "Miit - Live",
     "app.master.title": "Miit - Master",
-    "app.viewer.title": "Miit - Présentation"
+    "app.viewer.title": "Miit - Présentation",
+
+    "app.master.wall.like": "Like",
+    "app.master.wall.likes": "Likes",
+
+    "app.viewer.menu.online": "En ligne",
+    "app.viewer.menu.disconnect": "Déconnexion",
+    "app.viewer.menu.fullscreen": "Plein écran",
+    "app.viewer.menu.resources": "Ressources",
+    "app.viewer.menu.wall": "Mur",
+    "app.viewer.menu.chat": "Discussions",
+    "app.viewer.menu.notes": "Bloc-note",
+    "app.viewer.menu.quizz": "Questionnaires"
 }

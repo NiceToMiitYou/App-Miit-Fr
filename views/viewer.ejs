@@ -3,8 +3,16 @@
 <div ng-controller="commonController" class="page-container row-fluid" ng-init="accountType = 1; activetool = 'NOTE';" ng-class="{fullscreen : isfullscreen}" >
 
     <ul class="user-sub" ng-show="openStats">
-        <li class="active"><a href="#" ng-click="openStats=false"><span class="status-icon green"></span> <span class="title">Online</span></a></li>
-        <li><a ng-click="logout()"><div class="status-icon red"></div> <span class="title">Déconnexion</span></a></li>
+        <li class="active">
+            <a href="#" ng-click="openStats=false">
+                <span class="status-icon green"></span> <span class="title"><%= __('app.viewer.menu.online') %></span>
+            </a>
+        </li>
+        <li>
+            <a ng-click="logout()">
+                <div class="status-icon red"></div> <span class="title"><%= __('app.viewer.menu.disconnect') %></span>
+            </a>
+        </li>
     </ul>
 
     <!-- BEGIN PAGE CONTAINER-->
@@ -17,51 +25,51 @@
     <div class="tools-content">
         <div class="menu-component" ng-mouseleave="menulabel=false; closeMenu();">
             <button class="btn btn-primary menu-btn cn-button" ng-class="{'open' : openmenu}" id="cn-button" ng-click="handlerMenu()"></button>
-                <ul class="cn-wrapper" id="cn-wrapper" ng-class="{'opened-nav' : openmenu}">
-                    <li>
-                        <a href="#" id="cn-fullscreen" ng-click="fullscreen()" ng-mouseover="menulabel='Plein écran'">
-                            <span><i class="fa fa-4x fa-angle-double-down"></i></span>
-                        </a>
-                    </li>
+            <ul class="cn-wrapper" id="cn-wrapper" ng-class="{'opened-nav' : openmenu}">
+                <li>
+                    <a href="#" id="cn-fullscreen" ng-click="fullscreen()" ng-mouseover="menulabel='<%= __('app.viewer.menu.fullscreen') %>'">
+                        <span><i class="fa fa-4x fa-angle-double-down"></i></span>
+                    </a>
+                </li>
 
-                    <li ng-class="{active : activetool === 'RESSOURCE'}">
-                        <a class="light" href="#ressources" ng-click="track('RESSOURCE')" ng-mouseover="menulabel='Ressources'">
-                            <span class="title"><i class="fa fa-3x fa-folder-open"></i><!-- Ressources --></span>
-                        </a>
-                    </li>
+                <li ng-class="{active : activetool === 'RESSOURCE'}">
+                    <a class="light" href="#ressources" ng-click="track('RESSOURCE')" ng-mouseover="menulabel='<%= __('app.viewer.menu.resources') %>'">
+                        <span class="title"><i class="fa fa-3x fa-folder-open"></i></span>
+                    </a>
+                </li>
 
-                    <li ng-class="{active : activetool === 'WALL'}">
-                        <a href="#wall" ng-click="track('WALL')" ng-mouseover="menulabel='Mur'">
-                            <span class="title"><i class="fa fa-3x fa-users"></i><!-- Mur --></span>
-                        </a>
-                    </li>
+                <li ng-class="{active : activetool === 'WALL'}">
+                    <a href="#wall" ng-click="track('WALL')" ng-mouseover="menulabel='<%= __('app.viewer.menu.wall') %>'">
+                        <span class="title"><i class="fa fa-3x fa-users"></i></span>
+                    </a>
+                </li>
 
-                    <li ng-class="{active : activetool === 'CHAT'}">
-                        <a class="light" href="#chat" ng-click="track('CHAT')" ng-mouseover="menulabel='Discussions'">
-                            <span class="title"><i class="fa fa-3x fa-weixin"></i><!-- Discussions --></span>
-                        </a>
-                    </li>
+                <li ng-class="{active : activetool === 'CHAT'}">
+                    <a class="light" href="#chat" ng-click="track('CHAT')" ng-mouseover="menulabel='<%= __('app.viewer.menu.chat') %>'">
+                        <span class="title"><i class="fa fa-3x fa-weixin"></i></span>
+                    </a>
+                </li>
 
-                    <li ng-class="{active : activetool === 'NOTE'}">
-                        <a href="#notes" ng-click="track('NOTE')"  ng-mouseover="menulabel='Bloc-note'">
-                            <span class="title"><i class="fa fa-3x fa-pencil"></i><!-- Bloc-note --></span>
-                        </a>
-                    </li>
+                <li ng-class="{active : activetool === 'NOTE'}">
+                    <a href="#notes" ng-click="track('NOTE')"  ng-mouseover="menulabel='<%= __('app.viewer.menu.notes') %>'">
+                        <span class="title"><i class="fa fa-3x fa-pencil"></i></span>
+                    </a>
+                </li>
 
-                    <li ng-class="{active : activetool === 'QUIZZ'}" ng-mouseover="menulabel='Questionnaires'">
-                        <a class="light" href="#quizz" ng-click="track('QUIZZ')">
-                            <span class="title"><i class="fa fa-3x fa-question"></i><!-- Questionnaires --></span>
-                        </a>
-                    </li>
+                <li ng-class="{active : activetool === 'QUIZZ'}" ng-mouseover="menulabel='<%= __('app.viewer.menu.quizz') %>'">
+                    <a class="light" href="#quizz" ng-click="track('QUIZZ')">
+                        <span class="title"><i class="fa fa-3x fa-question"></i></span>
+                    </a>
+                </li>
 
-                    <li>
-                        <a href="#" style="transform: skewY(44deg) rotate(28deg);" ng-click="logout();" ng-mouseover="menulabel='Déconnexion'"><span>
-                            <span ng-show="user.avatar.c && user.avatar.a" class="avatar" ng-class="user.avatar.c + ' avatar-'+user.avatar.a"></span>
-                            <span ng-show="!user.avatar.c || !user.avatar.a" class="avatar black anonymous"></span>
-                        </span>
-                        </a>
-                    </li>
-                 </ul>
+                <li>
+                    <a href="#" style="transform: skewY(44deg) rotate(28deg);" ng-click="logout();" ng-mouseover="menulabel='<%= __('app.viewer.menu.disconnect') %>'"><span>
+                        <span ng-show="user.avatar.c && user.avatar.a" class="avatar" ng-class="user.avatar.c + ' avatar-'+user.avatar.a"></span>
+                        <span ng-show="!user.avatar.c || !user.avatar.a" class="avatar black anonymous"></span>
+                    </span>
+                    </a>
+                </li>
+             </ul>
             <!-- End of Nav Structure -->
         </div>
 
@@ -109,4 +117,3 @@
     <% include viewer/modals/user-modal %>
 </div>
 <!-- END CONTENT --> 
-
