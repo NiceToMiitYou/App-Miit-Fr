@@ -5,7 +5,7 @@
         <div class="navbar-inner">
             <div class="header-quick-nav">
                 <div class="pull-left">
-                    <h3><i class="fa fa-pencil"></i> Notes</h3>
+                    <h3><i class="fa fa-pencil"></i> <%= __('viewer.notes.title') %></h3>
                 </div>
 
                 <div class="pull-right">
@@ -15,19 +15,17 @@
                                 <div class="iconset top-menu-toggle-dark"></div>
                             </a>
                             <ul class="dropdown-menu pull-right" role="menu">
-                                <li role="presentation" class="dropdown-header">Actions</li>
+                                <li role="presentation" class="dropdown-header"><%= __('viewer.notes.actions') %></li>
 
                                 <li>
-                                    <a href="#" ng-click="addNote();">Créer une note</a>
+                                    <a href="#" ng-click="addNote();"><%= __('viewer.notes.new_note') %></a>
                                 </li>
 
                                 <li>
-                                    <a href="#" ng-click="send();">Me l'envoyer par mail</a>
+                                    <a href="#" ng-click="send();"><%= __('viewer.notes.send_me') %></a>
                                 </li>
 
-                                <!-- <li class="divider"></li> -->
-
-                                <li role="presentation" class="dropdown-header">Liste des notes</li>
+                                <li role="presentation" class="dropdown-header"><%= __('viewer.notes.send_me') %></li>
 
                                 <li ng-repeat="note in notes">
                                     <a href="#" ng-click="changeNote(note);">
@@ -43,21 +41,23 @@
         </div>
     </div>
 
-<textarea ng-model="current.content"
-ng-change="hasChange = true"
-ng-blur="save()" 
-id="text-editor"
-placeholder="Tapez vos notes ici"
-class="form-control"
-rows="10"></textarea>
+    <textarea ng-model="current.content"
+              ng-change="hasChange = true"
+              ng-blur="save()" 
+              id="text-editor"
+              placeholder="<%= __('viewer.notes.write_here') %>"
+              class="form-control"
+              rows="10"><%= __('viewer.notes.default_content') %></textarea>
 
 
-<div class="note-title">
-    <span>Titre : </span><input ng-model="current.title"
-    ng-change="hasChange = true"
-    maxlength="50"
-    ng-blur="save()"
-    type="text">
-</div>
+    <div class="note-title">
+        <span><%= __('viewer.notes.name') %></span>
+        <input ng-model="current.title"
+               ng-change="hasChange = true"
+               maxlength="50"
+               ng-blur="save()"
+               value="<%= __("viewer.notes.default_title") %>"
+               type="text">
+    </div>
 
 </div>

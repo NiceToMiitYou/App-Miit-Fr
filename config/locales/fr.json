@@ -72,6 +72,20 @@
 
         "live": {
             "by": "Par {{ authors }}"
+        },
+
+        "notes": {
+            "title": "Notes",
+            "actions": "Actions",
+            "new_note": "Créer une note",
+            "send_me": "Me l'envoyer par mail",
+            "notes": "Liste des notes",
+
+            "default_content": "Bienvenue sur votre bloc-note!\nVous pouvez dès à présent modifier ou créer des notes.\nSi vous souhaitez les recevoir dans votre boîte mail, appuyez sur le bouton \"Envoyer\".",
+            "default_title": "Nouvelle note",
+
+            "name": "Titre",
+            "write_here": "Ecrivez vos notes ici"
         }
     }
 }

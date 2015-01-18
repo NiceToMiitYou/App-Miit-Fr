@@ -8,14 +8,11 @@ ITEventApp.controller(
 
             $scope.current = {
 
-                title: 'Note 1',
+                title: '',
 
-                content: 'Bienvenue sur votre bloc-note!\n' + 
-                         'Vous pouvez dès à présent modifier ou créer des notes.\n' + 
-                         'Si vous souhaitez les recevoir dans votre boîte mail, appuyez sur le bouton "Envoyer".',
+                content: '',
 
                 new: true
-
             };
 
             $scope.hasChange = false;
