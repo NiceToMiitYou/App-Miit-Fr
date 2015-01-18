@@ -8,7 +8,7 @@
                     <i class="fa fa-question fa-6x"></i>
 
                     <h4 id="myQuestionModalLabel" class="semi-bold">
-                        <%= __('app.viewer.modal.wall.title') %>
+                        <%= __('viewer.modal.wall.title') %>
                     </h4>
                 </div>
 
@@ -18,7 +18,7 @@
                         <div class="col-md-12">
                             <select id="multi"
                                     style="width:100%"
-                                    placeholder="<%= __('app.viewer.modal.wall.select.category') %>" multiple>
+                                    placeholder="<%= __('viewer.modal.wall.select_category') %>" multiple>
                                 <option ng-repeat="tag in shared.tags"
                                         value="{{tag.id}}">{{tag.name}}</option>
                             </select>
@@ -27,18 +27,18 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <textarea ng-model="text" placeholder="<%= __('app.viewer.modal.wall.your.question') %>" ></textarea>
+                            <textarea ng-model="text" placeholder="<%= __('viewer.modal.wall.your_question') %>" ></textarea>
                         </div>
                     </div>
                 </div>
 
                 <div class="modal-footer">
                     <button type="button" ng-click="post();" class="btn btn-primary">
-                        <%= __('app.viewer.modal.wall.sumit') %>
+                        <%= __('viewer.modal.wall.sumit') %>
                     </button>
 
                     <button type="button" ng-click="shared.wantToAskQuestion = false" class="btn btn-danger">
-                        <%= __('app.viewer.modal.wall.cancel') %>
+                        <%= __('viewer.modal.wall.cancel') %>
                     </button>
                 </div>
             </div>

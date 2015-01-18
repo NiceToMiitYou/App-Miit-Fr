@@ -1,47 +1,77 @@
 {
-	"app.live.title": "Miit - Live",
-    "app.master.title": "Miit - Master",
-    "app.viewer.title": "Miit - Présentation",
+    "live": {
+        "title": "Miit - Live"
+    },
 
-    "app.master.wall.like": "Like",
-    "app.master.wall.likes": "Likes",
+    "master": {
+        "title": "Miit - Master",
 
-    "app.viewer.menu.online": "En ligne",
-    "app.viewer.menu.disconnect": "Déconnexion",
-    "app.viewer.menu.fullscreen": "Plein écran",
-    "app.viewer.menu.resources": "Ressources",
-    "app.viewer.menu.wall": "Mur",
-    "app.viewer.menu.chat": "Discussions",
-    "app.viewer.menu.notes": "Bloc-note",
-    "app.viewer.menu.quizz": "Questionnaires",
+        "wall": {
+            "like": "Like",
+            "likes": "Likes"
+        }
+    },
 
-    "app.viewer.modal.wall.title": "Poser une question",
-    "app.viewer.modal.wall.select.category": "Sélectionnez une catégorie",
-    "app.viewer.modal.wall.your.question": "Votre question",
-    "app.viewer.modal.wall.submit": "Poser la question",
-    "app.viewer.modal.wall.cancel": "Annuler",
+    "viewer": {
+        "title": "Miit - Présentation",
 
-    "app.viewer.modal.user.welcome": "Bienvenue pour votre premiere experience ITEvents",
-    "app.viewer.modal.user.choice": "Choisissez le type de compte que vous souhaitez utiliser sur la plateforme",
-    "app.viewer.modal.user.informations": "Informations",
-    "app.viewer.modal.user.classic": "Classique",
-    "app.viewer.modal.user.anonym": "Anonyme",
-    "app.viewer.modal.user.anonym.cgu": "En utilisant la navigation anonyme vous vous engagez à respecter les règles de politesse et de respect élémentaires",
-    "app.viewer.modal.user.lastname": "Nom",
-    "app.viewer.modal.user.lastname.placeholder": "Smith",
-    "app.viewer.modal.user.firstname": "Prénom",
-    "app.viewer.modal.user.firstname.placeholder": "John",
-    "app.viewer.modal.user.username": "Pseudonyme",
-    "app.viewer.modal.user.username.label": "Utiliser un pseudonyme lors de mes publications",
-    "app.viewer.modal.user.username.placeholder": "Pseudonyme",
-    "app.viewer.modal.user.society": "Société",
-    "app.viewer.modal.user.society.placeholder": "Société",
-    "app.viewer.modal.user.avatar": "Choisissez un Avatar",
-    "app.viewer.modal.user.save": "Sauvegarder",
+        "menu": {
+            "online": "En ligne",
+            "disconnect": "Déconnexion",
+            "fullscreen": "Plein écran",
+            "resources": "Ressources",
+            "wall": "Mur",
+            "chat": "Discussions",
+            "notes": "Bloc-note",
+            "quizz": "Questionnaires"
+        },
 
-    "app.viewer.chat.title": "Discussions",
-    "app.viewer.chat.chatrooms": "Liste des salles",
-    "app.viewer.chat.welcome": "Bienvenue sur la chat {{ current.name }}. Vous pouvez dès à présent poster vos messages.",
-    "app.viewer.chat.message.placeholder": "Tapez votre message",
-    "app.viewer.chat.send": "Envoyer"
+        "modal": {
+            "wall": {
+                "title": "Poser une question",
+                "select_category": "Sélectionnez une catégorie",
+                "your_question": "Votre question",
+                "submit": "Poser la question",
+                "cancel": "Annuler"
+            },
+
+            "user": {
+                "welcome": "Bienvenue pour votre premiere experience ITEvents",
+                "choice": "Choisissez le type de compte que vous souhaitez utiliser sur la plateforme",
+                "informations": "Informations",
+                "classic": "Classique",
+                
+                "anonym": "Anonyme",
+                "anonym_cgu": "En utilisant la navigation anonyme vous vous engagez à respecter les règles de politesse et de respect élémentaires",
+                
+                "lastname": "Nom",
+                "lastname_placeholder": "Smith",
+
+                "firstname": "Prénom",
+                "firstname_placeholder": "John",
+
+                "username": "Pseudonyme",
+                "username_label": "Utiliser un pseudonyme lors de mes publications",
+                "username_placeholder": "Pseudonyme",
+
+                "society": "Société",
+                "society_placeholder": "Société",
+
+                "avatar": "Choisissez un Avatar",
+                "save": "Sauvegarder"
+            }
+        },
+
+        "chat": {
+            "title": "Discussions",
+            "chatrooms": "Liste des salles",
+            "welcome": "Bienvenue sur la chat {{ name }}. Vous pouvez dès à présent poster vos messages.",
+            "message_placeholder": "Tapez votre message",
+            "send": "Envoyer"
+        },
+
+        "live": {
+            "by": "Par {{ authors }}"
+        }
+    }
 }

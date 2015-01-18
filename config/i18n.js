@@ -36,6 +36,9 @@ module.exports.i18n = {
 
     defaultLocale: 'fr',
 
+
+    objectNotation: true
+
     /****************************************************************************
      *                                                                           *
      * Automatically add new keys to locale (translation) files when they are    *

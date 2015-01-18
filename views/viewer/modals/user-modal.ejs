@@ -8,9 +8,9 @@
                     <i class="fa fa-user fa-6x"></i>
 
                     <h4 id="myUserModalLabel" class="semi-bold">
-                        <%= __('app.viewer.modal.user.welcome') %>
+                        <%= __('viewer.modal.user.welcome') %>
                     </h4>
-                    <p class="no-margin"><%= __('app.viewer.modal.user.choice') %></p>
+                    <p class="no-margin"><%= __('viewer.modal.user.choice') %></p>
                 </div>
 
                 <div class="modal-body" style="padding:10px;">
@@ -21,7 +21,7 @@
                             <div class="panel-heading collapsed">
                                 <h4 class="panel-title">
                                     <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" ng-click="resetToClassic()">
-                                        <%= __('app.viewer.modal.user.classic') %>
+                                        <%= __('viewer.modal.user.classic') %>
                                     </a>
                                 </h4>
                             </div>
@@ -30,17 +30,17 @@
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <h4 class="semi-bold"><%= __('app.viewer.modal.user.informations') %></h4>
+                                            <h4 class="semi-bold"><%= __('viewer.modal.user.informations') %></h4>
                                             <div class="col-md-6">
-                                                <label><%= __('app.viewer.modal.user.lastname') %></label>
+                                                <label><%= __('viewer.modal.user.lastname') %></label>
                                                 <input type="text"
-                                                       placeholder="<%= __('app.viewer.modal.user.lastname.placeholder') %>"
+                                                       placeholder="<%= __('viewer.modal.user.lastname_placeholder') %>"
                                                        ng-model="user.lastname"/>
                                             </div>
                                             <div class="col-md-6">
-                                                <label><%= __('app.viewer.modal.user.firstname') %></label>
+                                                <label><%= __('viewer.modal.user.firstname') %></label>
                                                 <input type="text"
-                                                        placeholder="<%= __('app.viewer.modal.user.firstname.placeholder') %>"
+                                                        placeholder="<%= __('viewer.modal.user.firstname_placeholder') %>"
                                                         ng-model="user.firstname"/>
                                             </div>
                                         </div>
@@ -48,9 +48,9 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="col-md-12 m-t-5">
-                                                <label><%= __('app.viewer.modal.user.society') %></label>
+                                                <label><%= __('viewer.modal.user.society') %></label>
                                                 <input type="text"
-                                                        placeholder="<%= __('app.viewer.modal.user.society.placeholder') %>"
+                                                        placeholder="<%= __('viewer.modal.user.society_placeholder') %>"
                                                         ng-model="user.society" />
                                             </div>
                                         </div>
@@ -64,20 +64,20 @@
 
                                                 <label for="checkbox-pseudo">
                                                     <span ng-show="!useUsername">
-                                                        <%= __('app.viewer.modal.user.username.label') %>
+                                                        <%= __('viewer.modal.user.username_label') %>
                                                     </span>
                                                 </label>
                                             </div>
 
                                             <div class="col-md-11" ng-show="useUsername">
-                                                <input type="text" placeholder="<%= __('app.viewer.modal.user.username.placeholder') %>" ng-model="user.username"/> 
+                                                <input type="text" placeholder="<%= __('viewer.modal.user.username_placeholder') %>" ng-model="user.username"/> 
                                             </div>
                                         </div>
                                         
                                     </div>
                                     <div class="row m-t-10">
                                         <div class="col-md-12">
-                                            <h4 class="semi-bold"><%= __('app.viewer.modal.user.avatar') %></h4>
+                                            <h4 class="semi-bold"><%= __('viewer.modal.user.avatar') %></h4>
                                             <div class="avatar-choice">
                                                 <a class="avatar"
                                                    ng-class="user.avatar.c + ' avatar-' + user.avatar.a"
@@ -130,7 +130,7 @@
                             <div class="panel-heading collapsed">
                                 <h4 class="panel-title">
                                     <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" ng-click="generateAnonym()">
-                                        <%= __('app.viewer.modal.user.anonym') %>
+                                        <%= __('viewer.modal.user.anonym') %>
                                     </a>
                                 </h4>
                             </div>
@@ -138,11 +138,11 @@
                                 <div class="panel-body">
                                     <div class="row m-t-10">
                                         <div class="col-md-3">
-                                            <label style="line-height: 34px;"><%= __('app.viewer.modal.user.username') %></label>
+                                            <label style="line-height: 34px;"><%= __('viewer.modal.user.username') %></label>
                                         </div>
                                         <div class="col-md-9">
                                             <input type="text"
-                                                   placeholder="<%= __('app.viewer.modal.user.username.placeholder') %>"
+                                                   placeholder="<%= __('viewer.modal.user.username_placeholder') %>"
                                                    ng-model="user.username" />
                                         </div>
                                     </div>
@@ -150,7 +150,7 @@
                                         <div class="checkbox check-primary">
                                             <input id="checkbox-anonyme" type="checkbox" ng-model="agreeAnonyme" value="1">
                                             <label for="checkbox-anonyme">
-                                                <%= __('app.viewer.modal.user.anonym.cgu') %>
+                                                <%= __('viewer.modal.user.anonym_cgu') %>
                                             </label>
                                         </div>
                                     </div>
@@ -161,7 +161,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" ng-click="saveUser();" class="btn btn-primary">
-                        <%= __('app.viewer.modal.user.save') %>
+                        <%= __('viewer.modal.user.save') %>
                     </button>
                 </div>
             </div>
