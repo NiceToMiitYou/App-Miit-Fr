@@ -23,8 +23,8 @@
 
     "app.viewer.modal.user.welcome": "Bienvenue pour votre premiere experience ITEvents",
     "app.viewer.modal.user.choice": "Choisissez le type de compte que vous souhaitez utiliser sur la plateforme",
+    "app.viewer.modal.user.informations": "Informations",
     "app.viewer.modal.user.classic": "Classique",
-    "app.viewer.modal.user.avatar": "Choisissez un Avatar",
     "app.viewer.modal.user.anonym": "Anonyme",
     "app.viewer.modal.user.anonym.cgu": "En utilisant la navigation anonyme vous vous engagez à respecter les règles de politesse et de respect élémentaires",
     "app.viewer.modal.user.lastname": "Nom",
@@ -36,5 +36,12 @@
     "app.viewer.modal.user.username.placeholder": "Pseudonyme",
     "app.viewer.modal.user.society": "Société",
     "app.viewer.modal.user.society.placeholder": "Société",
-    "app.viewer.modal.user.save": "Sauvegarder"
+    "app.viewer.modal.user.avatar": "Choisissez un Avatar",
+    "app.viewer.modal.user.save": "Sauvegarder",
+
+    "app.viewer.chat.title": "Discussions",
+    "app.viewer.chat.chatrooms": "Liste des salles",
+    "app.viewer.chat.welcome": "Bienvenue sur la chat {{ current.name }}. Vous pouvez dès à présent poster vos messages.",
+    "app.viewer.chat.message.placeholder": "Tapez votre message",
+    "app.viewer.chat.send": "Envoyer"
 }

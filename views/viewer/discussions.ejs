@@ -4,7 +4,7 @@
         <div class="navbar-inner">
             <div class="header-quick-nav">
                 <div class="pull-left">
-                    <h3><i class="fa fa-pencil"></i> Discussions</h3>
+                    <h3><i class="fa fa-pencil"></i> <%= __('app.viewer.chat.title') %></h3>
                 </div>
                 <div class="pull-right">
                     <ul class="nav quick-section">
@@ -13,7 +13,7 @@
                                 <div class="iconset top-menu-toggle-dark"></div>
                             </a>
                             <ul class="dropdown-menu pull-right" role="menu">
-                                <li role="presentation" class="dropdown-header">Liste des salles</li>
+                                <li role="presentation" class="dropdown-header"><%= __('app.viewer.chat.chatrooms') %></li>
                                 <li ng-repeat="chatroom in chatrooms">
                                     <a href="#" ng-click="changeChatroom(chatroom)">
                                         {{ chatroom.name }}
@@ -39,7 +39,7 @@
 
                     <div class="user-details">
                         <div class="bubble">    
-                            Bienvenue sur la chat {{ current.name }}. Vous pouvez dès à présent poster vos messages.
+                            <%= __('app.viewer.chat.welcome') %>
                         </div>
                     </div>                  
                     <div class="clearfix"></div>
@@ -68,8 +68,14 @@
             </div>
         </div>
         <div class="chat-input-wrapper">
-            <textarea ng-model="text" id="chat-message-input" class="quick-note" placeholder="Tapez votre message"></textarea>
-            <button ng-class="{disabled:!text}" ng-click="post()" class="btn btn-primary send-chat"><i class="fa fa-caret-right arrow"></i><i class="fa fa-chevron-right"></i> Envoyer</button>
+            <textarea ng-model="text"
+                      id="chat-message-input"
+                      class="quick-note"
+                      placeholder="<%= __('app.viewer.chat.message.placeholder') %>"></textarea>
+
+            <button ng-class="{disabled:!text}" ng-click="post()" class="btn btn-primary send-chat">
+                <i class="fa fa-caret-right arrow"></i><i class="fa fa-chevron-right"></i> <%= __('app.viewer.chat.send') %>
+            </button>
         </div>
 
     </div>
