@@ -44,7 +44,8 @@
     "sails-memory": "~0.10.3"
   },
   "scripts": {
-    "start": "node app.js --verbose",
+    "postinstall": "bash ./install/post-install.sh",
+    "start": "node app.js lift import 1",
     "test": "grunt test",
     "beautify": "echo 'js-beautify --config js-beautify.json -r -f ./api/**/*.js ./assets/**/*.js ./config/**/*.js ./tasks/**/*.js ./test/**/*.js' | zsh"
   },
