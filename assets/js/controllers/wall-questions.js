@@ -4,6 +4,8 @@ ITEventApp.controller(
     'WallController', [ '$scope', '$timeout',
         function( $scope, $timeout ) {
 
+            $scope.filter = "";
+
             $scope.questions = {};
 
             function loadTags( isLoaded ) {
@@ -110,6 +112,7 @@ ITEventApp.controller(
             // Retrieve new questions
             ITConnect.bind('question-presentation-new', function( data ) {
                 $timeout(function(){
+
                     var userId = data.question.user;
                     var questionId = data.question.id;
 

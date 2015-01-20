@@ -14,7 +14,7 @@
         <div class="input-group transparent" style="width:100%">
             <select ng-model="filter" style="width:100%">
                 <option value="" selected="selected">Toutes les catégories</option>
-                <option ng-repeat="tag in tags" value="{{ tag.id }}">{{ tag.name }}</option>
+                <option ng-repeat="tag in shared.tags" value="{{ tag.id }}">{{ tag.name }}</option>
             </select>
         </div>
     </div>
