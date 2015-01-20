@@ -34,13 +34,16 @@ ITEventApp.controller(
             }
 
             function refreshUser( user ) {
-                $timeout( function() {
-                    $scope.user = user;
 
-                    alreadyAskedUsers[user.id] = true;
+                if( user ) {
+                    $timeout( function() {
+                        $scope.user = user;
 
-                    ITStorage.db.users.set(user.id, user);
-                } );
+                        alreadyAskedUsers[user.id] = true;
+
+                        ITStorage.db.users.set(user.id, user);
+                    } );
+                }
             }
 
             function refreshPresentation( presentation ) {
@@ -54,7 +57,7 @@ ITEventApp.controller(
             function getUsername( user ) {
 
                 if( !user ) {
-                    var user = $scope.user;
+                    user = $scope.user;
                 }
 
                 var username = 'Anonyme';
