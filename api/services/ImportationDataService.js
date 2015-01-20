@@ -471,7 +471,8 @@ module.exports = {
 
         if ( 
             (
-                sails.config.environment === 'development'
+                sails.config.environment === 'development' ||
+                sails.config.environment === 'qualification'
             ) && ( 
                 typeof sails.config._ !== 'undefined' &&
                 sails.config._.length === 3 &&
