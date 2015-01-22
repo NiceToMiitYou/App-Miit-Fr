@@ -1,6 +1,5 @@
 
-var fs = require('fs'),
-    appRoot = require('app-root-path'),
+var appRoot = require('app-root-path'),
     webshot = require('webshot'),
     lwip = require('lwip'),
     size = {
