@@ -1,4 +1,6 @@
 {
+    "app_name": "Miit",
+
     "live": {
         "title": "Miit - Live"
     },
@@ -86,6 +88,33 @@
 
             "name": "Titre",
             "write_here": "Ecrivez vos notes ici"
+        },
+
+        "quizz-inner": {
+            "already_answered": "Vous avez déjà répondu et validé ce quizz. Vous pouvez toujours le visionner mais il n'est plus possible de le modifier.",
+            "validate": "Valider les réponses"
+        },
+
+        "quizz-list": {
+            "title": "Questionnaire"
+        },
+
+        "resources-list": {
+            "title": "Ressources"
+        },
+
+        "wall": {
+            "title": "Mur",
+            "categories": "Toutes les catégories",
+            "like": "Like",
+            "likes": "Likes",
+            "ask_question": "Poser une question",
+            "first": {
+                "welcome": "Bienvenue sur le mur de questions de Miit.",
+                "ask_question": "Vous pouvez à tout moment réagir à la présentation et poser vos questions.",
+                "respect": "Nous vous prions de bien vouloir réspecter les règles élémentaires de la politesse et de respect. Ce mur est votre lieux d'expression, alors gardez le propre.",
+                "enjoy": "Miit vous souhaite une très bonne présentation."
+            }
         }
     }
 }

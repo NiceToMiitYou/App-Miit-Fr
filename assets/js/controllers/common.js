@@ -29,6 +29,11 @@ ITEventApp.controller(
 
             var alreadyAskedUsers = {};
 
+            function count( collection ) {
+
+                return _.size( collection );
+            }
+
             function safeHTML( html ) {
                 return $sce.trustAsHtml(html);
             }
@@ -192,6 +197,8 @@ ITEventApp.controller(
             $scope.handlerMenu = handlerMenu;
 
             $scope.closeMenu = closeMenu;
+
+            $scope.count = count;
 
             $scope.openmenu = false;
 

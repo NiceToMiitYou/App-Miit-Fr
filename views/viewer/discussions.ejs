@@ -31,10 +31,10 @@
     <div class="chat-area">
         <div class="chat-window-wrapper" id="messages-wrapper">
             <div class="chat-messages">
-                <div class="user-details-wrapper" >
 
+                <div class="user-details-wrapper" >
                     <div class="user-profile">
-                        <img src="/images/profiles/icon.png" alt="" data-src="/images/profiles/icon.png" width="35" height="35">
+                        <img src="/images/profiles/icon.png" alt="<%= __('app_name') %>" width="35" height="35">
                     </div>
 
                     <div class="user-details">
@@ -44,7 +44,8 @@
                     </div>                  
                     <div class="clearfix"></div>
                     <div class="sent_time off"></div>
-                </div>  
+                </div>
+
                 <div ng-repeat="message in current.messages | toArray | orderBy:'+createdAt'"
                      ng-class="{'pull-right':message.user.id === user.id}"
                      class="user-details-wrapper">
