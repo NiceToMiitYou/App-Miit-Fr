@@ -31,7 +31,7 @@ module.exports = {
                     start: DateNow,
                     user: req.session.user
                 } )
-                    .exec( function( err, track ) {
+                    .exec( function() {
 
                         return res.done();
                     } );

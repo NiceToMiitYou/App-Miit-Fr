@@ -21,11 +21,10 @@ module.exports = {
                 }
             })
             .exec( function( err, conference ) {
-                if ( err || !conference ) conference = {
-                    logo: '/images/logodark.png',
-                    name: 'ITEvents',
-                    description: 'ITEvents ne trouve pas de conférence active.'
-                };
+                if ( err || !conference ) {
+
+                    return res.notDone();
+                }
 
                 return res.done( {
                     conference: conference

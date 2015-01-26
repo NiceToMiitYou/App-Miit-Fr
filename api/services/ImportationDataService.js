@@ -94,7 +94,7 @@ function importConference( conferenceId, cb ) {
                                     clientName:     client.name
                                 } )
                                 .exec(
-                                    function( err, created ) {
+                                    function( err ) {
                                         if( err ) throw err;
 
                                         cb( null, conferenceId );
@@ -117,7 +117,7 @@ function importChatrooms( conferenceId, cb ) {
                 ConfChatRoom
                     .create( chatrooms )
                     .exec(
-                        function( err, created ) {
+                        function( err ) {
                             if( err ) throw err;
 
                             cb( null, conferenceId );
@@ -139,7 +139,7 @@ function importTags( conferenceId, cb ) {
                 ConfTag
                     .create( tags )
                     .exec(
-                        function( err, created ) {
+                        function( err ) {
                             if( err ) throw err;
 
                             cb( null, conferenceId );
@@ -228,7 +228,7 @@ function importQuestionsSlidesAnswers( questionId, cb ) {
                 ConfQuestionSlideAnswer
                     .create( answers )
                     .exec( 
-                        function( err, created ) {
+                        function( err ) {
                             if( err ) throw err;
 
                             cb();
@@ -273,7 +273,7 @@ function importResources( categoryId, cb ) {
                 ConfResource
                     .create( resources )
                     .exec(
-                        function( err, created ) {
+                        function( err ) {
                             if( err ) throw err;
 
                             cb();
@@ -339,7 +339,7 @@ function importQuizzesQuestionsAnswers( questionId, cb ) {
                 ConfQuestionQuizzAnswer
                     .create( answers )
                     .exec(
-                        function( err, created ) {
+                        function( err ) {
                             if( err ) throw err;
 
                             cb();

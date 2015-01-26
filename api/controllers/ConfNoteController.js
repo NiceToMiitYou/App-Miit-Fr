@@ -88,7 +88,7 @@ module.exports = {
 
                 if ( note.user == req.session.user ) {
                     ConfNote.destroy( req.param( 'note' ) )
-                        .exec( function( err, deleted ) {
+                        .exec( function( err ) {
                             if ( err ) return res.notDone();
 
                             return res.done();

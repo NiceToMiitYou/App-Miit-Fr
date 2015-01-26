@@ -48,7 +48,7 @@ module.exports = {
 
                 ItUser
                     .update( user.id, userData )
-                    .exec( function( errUpdate, users ) { } );
+                    .exec( function() { } );
 
                 if ( typeof cb === 'function' ) {
 

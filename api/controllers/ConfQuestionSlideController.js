@@ -59,9 +59,12 @@ module.exports = {
                                     } );
 
                                 // Save result
-                                user.save( function( err, result ) {
+                                user.save( function( err ) {
 
-                                    if ( err ) return res.notDone();
+                                    if ( err ) {
+
+                                        return res.notDone();
+                                    }
 
                                     return res.done();
                                 } );
