@@ -1,0 +1,48 @@
+<script>
+
+window.ItNotifications = {
+    modal: {
+        question: {
+            post: {
+                success: "<%= __('notifications.modal.question.post.success') %>",
+                error: "<%= __('notifications.modal.question.post.error') %>",
+                required: "<%= __('notifications.modal.question.post.required') %>"
+            }
+        },
+        user: {
+            save: {
+                success: "<%= __('notifications.modal.user.save.success') %>",
+                error: "<%= __('notifications.modal.user.save.error') %>",
+                missing: "<%= __('notifications.modal.user.save.missing') %>",
+                required: "<%= __('notifications.modal.user.save.required') %>"
+            }
+        }
+    },
+    chat: {
+        post: {
+            error: "<%= __('notifications.chat.post.error') %>",
+            required: "<%= __('notifications.chat.post.required') %>"
+        }
+    },
+    notes: {
+        send: {
+            success: "<%= __('notifications.notes.send.success') %>",
+            error: "<%= __('notifications.notes.send.error') %>"
+        }
+    },
+    quizzInner: {
+        save: {
+            success: "<%= __('notifications.quizzInner.save.success') %>",
+            error: "<%= __('notifications.quizzInner.save.error') %>"
+        }
+    },
+    wall: {
+        like: {
+            error: "<%= __('notifications.wall.like.error') %>",
+            already: "<%= __('notifications.wall.like.already') %>"
+        }
+    },
+    logout: "<%= __('notifications.logout') %>"
+};
+
+</script>

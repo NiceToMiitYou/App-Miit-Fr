@@ -38,13 +38,13 @@ ITEventApp.controller(
                                     $scope.firstInit = false;
 
                                     $scope.messenger.post({
-                                        message: 'Bienvenue parmis nous!',
+                                        message: ItNotifications.modal.user.save.success,
                                         type: 'infos'
                                     });
                                 } else {
 
                                     $scope.messenger.post({
-                                        message: 'Une erreur c\'est produite lors de la modification de vos informations.',
+                                        message: ItNotifications.modal.user.save.error,
                                         type: 'error'
                                     });
                                 }
@@ -53,14 +53,14 @@ ITEventApp.controller(
                     } else {
 
                         $scope.messenger.post({
-                            message: 'Merci de renseigner un des champs obligatoire (pseudonyme, nom ou prénom).',
+                            message: ItNotifications.modal.user.save.missing,
                             type: 'error'
                         });
                     }
                 } else {
 
                     $scope.messenger.post({
-                        message: 'Merci de renseigner les champs obligatoire.',
+                        message: ItNotifications.modal.user.save.required,
                         type: 'error'
                     });
                 }

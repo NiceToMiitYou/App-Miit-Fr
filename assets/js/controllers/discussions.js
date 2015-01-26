@@ -55,7 +55,7 @@ ITEventApp.controller(
                         } else {
 
                             $scope.messenger.post({
-                                message: 'Une erreur s\'est produite lors de l\'envoi de votre message.',
+                                message: ItNotifications.chat.post.error,
                                 type: 'error'
                             });
                         }
@@ -63,7 +63,7 @@ ITEventApp.controller(
                 } else {
 
                     $scope.messenger.post({
-                        message: 'Il n\'y a aucun message à envoyer.',
+                        message: ItNotifications.chat.post.required,
                         type: 'error'
                     });
                 }

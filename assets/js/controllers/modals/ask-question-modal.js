@@ -21,7 +21,7 @@ ITEventApp.controller(
                                 $( '#multi' ).select2('val', '');
 
                                 $scope.messenger.post({
-                                    message: 'Votre question vient d\'être postée.',
+                                    message: ItNotifications.modal.question.post.success,
                                     type: 'info'
                                 });
                             });
@@ -29,7 +29,7 @@ ITEventApp.controller(
                         } else {
 
                             $scope.messenger.post({
-                                message: 'Une erreur s\'est produite lors de la création de la question.',
+                                message: ItNotifications.modal.question.post.error,
                                 type: 'error'
                             });
                         }
@@ -37,7 +37,7 @@ ITEventApp.controller(
                 } else {
 
                     $scope.messenger.post({
-                        message: 'Veuillez renseigner tout les champs afin de pouvoir poster une question.',
+                        message: ItNotifications.modal.question.post.required,
                         type: 'error'
                     });
 

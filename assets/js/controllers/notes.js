@@ -160,13 +160,13 @@ ITEventApp.controller(
                             if( data.done ) {
 
                                 $scope.messenger.post({
-                                    message: 'Votre note a bien été envoyée dans votre boite mail.',
+                                    message: ItNotifications.notes.send.success,
                                     type: 'info'
                                 });
                             } else {
 
                                 $scope.messenger.post({
-                                    message: 'Une erreur c\'est produite lors de l\'envoi par notre service.',
+                                    message: ItNotifications.notes.send.error,
                                     type: 'error'
                                 });
                             }

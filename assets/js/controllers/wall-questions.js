@@ -34,7 +34,7 @@ ITEventApp.controller(
                         } else {
 
                             $scope.messenger.post({
-                                message: 'Une erreur s\'est produite lors du like de la question.',
+                                message: ItNotifications.wall.like.error,
                                 type: 'error'
                             });
                         }
@@ -43,7 +43,7 @@ ITEventApp.controller(
                 } else {
 
                     $scope.messenger.post({
-                        message: 'Vous aimez déjà cette question.',
+                        message: ItNotifications.wall.like.already,
                         type: 'error'
                     });
                 }

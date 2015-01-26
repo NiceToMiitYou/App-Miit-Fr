@@ -92,7 +92,7 @@ ITEventApp.controller(
                     if( data.done ) {
                     
                         $scope.messenger.post({
-                            message: 'Vous venez d\'être déconnecté.',
+                            message: ItNotifications.logout,
                             type: 'info'
                         });
 

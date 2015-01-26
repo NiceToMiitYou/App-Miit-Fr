@@ -40,6 +40,11 @@ ITEventApp.controller(
                             listIdAnswer,
                             function( data ) { } );
 
+                        if( !$scope.user.quizzAnswers ) {
+                            
+                            $scope.user.quizzAnswers = [];
+                        }
+
                         _.forEach(listIdAnswer, function( idAnswer ) {
 
                             var answer = {};
@@ -62,14 +67,14 @@ ITEventApp.controller(
                     ITStorage.db.quizzes.set( $scope.current.id, $scope.current );
 
                     $scope.messenger.post({
-                        message: 'Merci d\'avoir répondu à ce questionnaire!',
+                        message: ItNotifications.quizzInner.save.success,
                         type: 'info'
                     });
 
                 } else {
 
                     $scope.messenger.post({
-                        message: 'Vous devez répondre à toute les questions.',
+                        message: ItNotifications.quizzInner.save.error,
                         type: 'error'
                     });
                 }
