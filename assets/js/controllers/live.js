@@ -68,36 +68,55 @@ ITEventApp.controller(
                 }
             }
 
-            function liveNext( data ) {
+            var offset = 0,
+                offsetTimeout;
 
-                $timeout(function() {
+            function handleLiveEvent( direction, data ) {
 
-                    if( data.presentation == $scope.presentation.id &&
-                        $scope.presentation.current < $scope.presentation.slides.length - 1 ) {
+                if( data.presentation == $scope.presentation.id &&
+                    0 <= ($scope.presentation.current + offset + direction) &&
+                    ($scope.presentation.current + offset + direction) < $scope.presentation.slides.length ) {
 
-                        $scope.presentation.current++;
+                    offset += direction;
 
-                        if( $scope.current + 1 === $scope.presentation.current ) {
+                    // Clear the previous delay
+                    clearTimeout(offsetTimeout);
 
-                            next();
+                    // Delay the visual update
+                    offsetTimeout = setTimeout(function() {
+
+                        if(offset !== 0) {
+
+                            var copy = offset; offset = 0;
+
+                            liveMoveTo( copy );
                         }
-                    }
-
-                    refreshShared( true );
-                });
+                    }, 175);
+                }
             }
-            function livePrevious( data ) {
+
+            function liveMoveTo( offset ) {
 
                 $timeout(function() {
 
-                    if( data.presentation == $scope.presentation.id &&
-                        0 < $scope.presentation.current) {
+                    for(var i = 0; i < Math.abs(offset); i++) {
 
-                        $scope.presentation.current--;
+                        if( offset > 0 ) {
 
-                        if( $scope.current - 1 === $scope.presentation.current ) {
+                            $scope.presentation.current++;
 
-                            previous();
+                            if( $scope.current + 1 === $scope.presentation.current ) {
+
+                                next();
+                            }
+                        } else if ( offset < 0 ) {
+
+                            $scope.presentation.current--;
+
+                            if( $scope.current - 1 === $scope.presentation.current ) {
+
+                                previous();
+                            }
                         }
                     }
 
@@ -158,8 +177,12 @@ ITEventApp.controller(
 
             ITStorage.db.options.bind('data.isLoaded', true, refreshShared);
 
-            ITConnect.bind('live-presentation-next', liveNext);
+            ITConnect.bind('live-presentation-next', function( data ) {
+                handleLiveEvent( 1, data );
+            });
 
-            ITConnect.bind('live-presentation-previous', livePrevious);
+            ITConnect.bind('live-presentation-previous', function( data ) {
+                handleLiveEvent( -1, data );
+            });
 
         } ] );
