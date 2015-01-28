@@ -57,6 +57,12 @@
 
     <% include ../i18n/js-notifications %>
 
+    <script>
+        window.paceOptions = {
+            ajax: false // disabled ajax and websocket tracking
+        };
+    </script>
+    
     <!--SCRIPTS-->
     <script src="/js/dependencies/sails.io.js"></script>
     <script src="/js/dependencies/it-storage.js"></script>
