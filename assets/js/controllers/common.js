@@ -51,6 +51,14 @@ ITEventApp.controller(
                 }
             }
 
+            function refreshConference( conference ) {
+                $timeout( function() {
+                    if( conference ) {
+                        $scope.conference = conference;
+                    }
+                } );
+            }
+
             function refreshPresentation( presentation ) {
                 $timeout( function() {
                     if( presentation ) {
@@ -217,6 +225,8 @@ ITEventApp.controller(
             $scope.isfullscreen = true;
 
             ITStorage.db.options.bind('user', true, refreshUser);
+
+            ITStorage.db.options.bind('conference', true, refreshConference);
 
             ITStorage.db.options.bind('presentation.actual', true, refreshPresentation);
         } ] );

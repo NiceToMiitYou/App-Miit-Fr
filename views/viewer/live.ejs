@@ -1,7 +1,7 @@
 <div ng-controller="LiveController" class="content live-content">  
     <div class="slider-container">
         <div id="slides" class="presentation-slide">
-            <div ng-repeat="slide in presentation.slides" class="slide slide-animation"
+            <div ng-repeat="slide in presentation.slides track by slide.id" class="slide slide-animation"
                 ng-hide="!isCurrentSlide($index)"
                 ng-swipe-right="previous()"
                 ng-swipe-left="next()"
@@ -12,10 +12,11 @@
     <div class="live-thumb"  ng-hide="$parent.isfullscreen">
         <!-- BEGIN FAVORITES WIDGET -->
         <div class="side-widget">
-            <div class="side-widget-content" ng-style="{width: ((presentation.current+1) * 135)+'px', left: sl+'px'}">
-                <div ng-repeat="slide in presentation.slides"
+            <div class="side-widget-content"
+                 ng-style="{width: ((presentation.current+1) * 135)+'px', left: sl+'px'}">
+                <div ng-repeat="slide in presentation.slides track by slide.id"
                      ng-show="$index <= presentation.current"
-                     ng-class="{ 'active': $index === current }"
+                     ng-class="{ 'active': isCurrentSlide($index) }"
                      ng-click="gotToSlide($index)"
                      class="dot-item">
                     <img ng-src="/images/slides/small_{{ presentation.id }}_{{ slide.id }}.png"/>

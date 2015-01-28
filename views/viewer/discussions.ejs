@@ -46,7 +46,7 @@
                     <div class="sent_time off"></div>
                 </div>
 
-                <div ng-repeat="message in current.messages | toArray | orderBy:'+createdAt'"
+                <div ng-repeat="message in current.messages track by message.id | toArray | orderBy:'+createdAt'"
                      ng-class="{'pull-right':message.user.id === user.id}"
                      class="user-details-wrapper">
                     <div ng-class="{'text-right text-success' : message.user.id == user.id, 'text-info' : message.user.id !== user.id}" class="m-b-5">
