@@ -1074,7 +1074,7 @@ ul.table-list li a span.title {
 }
 
 .timeline {
-	height: calc(100% - 268px);
+	height: calc(100% - 164px);
 	overflow-y: auto;
 }
 
