@@ -32,6 +32,15 @@ function initData() {
             [
                 function( callback ) {
 
+                    // Request to subscribe to the rooms
+                    ITConnect.subscribe( function( data ) {
+
+                        callback( null );
+                    } );
+                },
+
+                function( callback ) {
+
                     // Request the current user
                     ITConnect.user.me( function( data ) {
 

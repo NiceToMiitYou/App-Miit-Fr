@@ -14,38 +14,13 @@ module.exports.sockets = {
 
     /***************************************************************************
      *                                                                          *
-     * This custom onConnect function will be run each time AFTER a new socket  *
-     * connects (To control whether a socket is allowed to connect, check out   *
-     * `authorization` config.) Keep in mind that Sails' RESTful simulation for *
-     * sockets mixes in socket.io events for your routes and blueprints         *
-     * automatically.                                                           *
-     *                                                                          *
-     ***************************************************************************/
-    onConnect: function( session, socket ) {
-
-        if ( session.roles ) {
-
-            _.forEach(session.roles, function(role) {
-                sails.sockets.join( socket, role );
-            });
-        }
-    },
-
-
-    /***************************************************************************
-     *                                                                          *
      * This custom onDisconnect function will be run each time a socket         *
      * disconnects                                                              *
      *                                                                          *
      ***************************************************************************/
-    onDisconnect: function( session, socket ) {
+    afterDisconnect: function( session, socket, cb ) {
 
-        if ( session.roles ) {
-
-            _.forEach(session.roles, function(role) {
-                sails.sockets.leave( socket, role );
-            });
-        }
+        return cb();
     },
 
 

@@ -54,6 +54,11 @@ var routes = {
         action: 'index'
     },
 
+    '/api/subscribe': {
+        controller: 'ConfRouterController',
+        action: 'subscribe'
+    },
+
     /******************
      * Config Controller
      ******************/

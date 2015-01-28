@@ -118,6 +118,11 @@ window.ITConnect = ( function() {
             } );
         },
 
+        // Subscribe to rooms
+        subscribe: function( cb ) {
+            io.socket.get( '/api/subscribe', {}, cb );
+        },
+
         // synchronize from cache
         synchronize: function() {
             // Force first synchronization from cache

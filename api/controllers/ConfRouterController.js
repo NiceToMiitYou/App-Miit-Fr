@@ -51,5 +51,22 @@ module.exports = {
 
             return res.redirect( redirectUrl );
         }
+    },
+
+    /**
+     * `ConfRouterController.subscribe`
+     */
+    subscribe: function( req, res ) {
+
+        if ( req.isSocket && req.session.roles ) {
+
+            _.forEach(req.session.roles, function(role) {
+                sails.sockets.join( req.socket, role );
+            });
+
+            return res.done();
+        }
+
+        return res.notDone();
     }
 };
