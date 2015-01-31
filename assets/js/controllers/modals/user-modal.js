@@ -12,7 +12,7 @@ ITEventApp.controller(
             
             function refreshUser( user ) {
                 $timeout( function() {
-                    $scope.firstInit = ! ( !user && user.firstname || user.lastname || user.username);
+                    $scope.firstInit = ! ( user && ( user.firstname || user.lastname || user.username ) );
                 } );
             }
 
