@@ -25,44 +25,58 @@
 
 			<div class="slider-container" ng-show="live">
 				<div id="slides" class="presentation-slide">
-			        <div ng-repeat="slide in presentation.slides" class="slide slide-animation"
+			        <div ng-repeat="slide in presentation.slides track by slide.id" class="slide slide-animation"
 			            ng-hide="!isCurrentSlide($index)"
 			            ng-swipe-right="previous()"
 			            ng-swipe-left="next()"
-			            ng-bind-html="safeHTML(slide.content)"></div>
+			            ng-bind-html="::safeHTML(slide.content)"></div>
 				</div>
 			</div>
 
 			<div ng-controller="WallController" class="wall" ng-show="!live" >
 				<div class="dd" id="wall-list">
 					<ol class="dd-list">
-						<li class="animate-repeat dd-item dd-handle" ng-hide="question.remove" data-id="{{ question.id }}" ng-repeat="question in questions | toArray | orderBy:['-favorite','-likes'] | filter:q as results" ng-init="question.favorite=false">
-						    <div ng-show="question.user.avatar.c && question.user.avatar.a" class="cbp_tmicon avatar" ng-class="question.user.avatar.c + ' avatar-'+question.user.avatar.a"></div>
-						    <div ng-show="!question.user.avatar.c || !question.user.avatar.a" class="cbp_tmicon avatar black anonymous"></div>
+						<li class="animate-repeat dd-item dd-handle"
+							ng-if="!question.remove"
+							ng-repeat="question in questions | toArray | orderBy:['-favorite','-likes'] | filter:q as results track by question.id"
+							ng-init="question.favorite=false">
+
+						    <div ng-if="question.user.avatar.c && question.user.avatar.a" class="cbp_tmicon avatar" ng-class="question.user.avatar.c + ' avatar-'+question.user.avatar.a"></div>
+						    <div ng-if="!question.user.avatar.c || !question.user.avatar.a" class="cbp_tmicon avatar black anonymous"></div>
+
 						    <div class="cbp_tmlabel">
 						        <div class="p-t-15">
 						            <h4 class="inline m-b-5">
-						                <span class="text-success semi-bold m-r-10" ng-show="question.user.username">
-						                    {{question.user.username}}
-						                </span>
-						                <span class="text-success semi-bold m-r-10" ng-show="!question.user.username && (question.user.lastname || question.user.firstname)">
-						                    {{question.user.firstname}} {{question.user.lastname}}
-						                </span>
-						                <span class="text-success semi-bold m-r-10" ng-show="!question.user.username && !question.user.lastname && !question.user.firstname">
-						                    Anonyme
+						                <span class="text-success semi-bold m-r-10">
+						                    {{ getUsername( question.user ) }}
 						                </span>
 						            </h4>
-						            <span class="muted semi-bold m-b-5 label m-l-5" ng-repeat="tag in question.tags">
-						                {{getTagName(tag)}}
+						            <span class="muted semi-bold m-b-5 label m-l-5"
+						            	  ng-repeat="tag in question.tags track by tag.id">
+						                {{ ::getTagName(tag) }}
 						            </span>
-						            <div class="muted">{{question.createdAt | date:'mediumTime'}}</div>
-						            <p class="m-t-10 m-l-20 dark-text"> {{question.question}} </p>
+						            <div class="muted">{{ ::question.createdAt | date:'mediumTime' }}</div>
+						            <p class="m-t-10 m-l-20 dark-text"> {{ ::question.question }} </p>
 						        </div>
 						        <div class="clearfix"></div>
-						        <div class="tiles" ng-class="{favorite: question.favorite}">
+						        <div class="tiles" ng-class="{ favorite: question.favorite }">
 						            <div class="action-links">
-						            	<span ng-hide="question.favorite"><button class="btn btn-primary" ng-click="question.favorite=true"> <i class="fa fa-star"></i> </button></span>
-						            	<span ng-show="question.favorite"><button class="btn btn-warning" ng-click="question.favorite=false"> <i class="fa fa-star-o"></i> </button></span>
+						            	<span>
+						            		<button class="btn"
+						            				ng-class="{
+						            					'btn-primary':  question.favorite,
+						            					'btn-warning': !question.favorite
+						            				}"
+						            				ng-click="question.favorite=!question.favorite">
+
+						            				<i class="fa"
+						            				   ng-class="{
+						            				   		'fa-star':    question.favorite,
+						            				   		'fa-star-o': !question.favorite
+						            				   }"></i>
+						            		</button>
+						            	</span>
+
 						                <span class="text-white" ng-show="question.likes > 1">{{question.likes}} <%= __('master.wall.likes') %></span>
 						                <span class="text-white" ng-show="question.likes <= 1">{{question.likes}} <%= __('master.wall.like') %></span>
 
@@ -81,7 +95,7 @@
 			<div class="slides-nav-container">
 				<div class="slides-nav">
 					<div class="slides-nav-wrapper" ng-style="{width: (presentation.slides.length * 175)+55+'px', left: sl+'px'}">
-		                <div ng-repeat="slide in presentation.slides"
+		                <div ng-repeat="slide in presentation.slides track by slide.id"
                     	 	 ng-class="{ 'active': $index === current }"
 		                     class="dot-item">
 		                    <img ng-src="/images/slides/small_{{ presentation.id }}_{{ slide.id }}.png"/>
