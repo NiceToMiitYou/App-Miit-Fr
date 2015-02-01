@@ -19,8 +19,12 @@
 			</div>
 			
 			<div class="liveorask">
-				<div class="livetab" ng-class="{active:live}" ng-click="live=true"><i class="fa fa-paper-plane" style="margin-right: 4px;"></i> Live</div>
-				<div class="asktab" ng-class="{active:!live}" ng-click="live=false"><i class="fa fa-users" style="margin-right: 4px;"></i> Mur</div>
+				<div class="livetab" ng-class="{active:live}" ng-click="live=true">
+					<i class="fa fa-paper-plane" style="margin-right: 4px;"></i> <%= __('master.tabs.live') %>
+				</div>
+				<div class="asktab" ng-class="{active:!live}" ng-click="live=false">
+					<i class="fa fa-users" style="margin-right: 4px;"></i> <%= __('master.tabs.wall') %>
+				</div>
 			</div>
 
 			<div class="slider-container" ng-show="live">

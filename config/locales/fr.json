@@ -8,6 +8,11 @@
     "master": {
         "title": "Miit - Master",
 
+        "tabs": {
+            "live": "Live",
+            "wall": "Mur"
+        },
+
         "wall": {
             "like": "Like",
             "likes": "Likes"
