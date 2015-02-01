@@ -42,6 +42,9 @@ ITEventApp.controller(
 
                 if( user ) {
                     $timeout( function() {
+
+                        $scope.firstInit = ! ( user && ( user.firstname || user.lastname || user.username ) );
+                        
                         $scope.user = user;
 
                         alreadyAskedUsers[user.id] = true;
