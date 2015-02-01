@@ -25,18 +25,18 @@ module.exports.connections = {
     LiveApplicationDatabase: {
         adapter: 'sails-mysql',
         host: 'localhost',
-        user: 'itevents',
-        password: 'password',
-        database: 'itevents'
+        user: 'fr_miit_app',
+        password: 'fr_miit_app',
+        database: 'fr_miit_app'
     },
 
     // Storage of the conference
     ConferenceDatabase: {
         adapter: 'sails-mysql',
         host: 'localhost',
-        user: 'itevents',
-        password: 'password',
-        database: 'itevents'
+        user: 'fr_miit_app',
+        password: 'fr_miit_app',
+        database: 'fr_miit_app'
     },
 
     // Access to online data
