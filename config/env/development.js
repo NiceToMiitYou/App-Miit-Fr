@@ -13,6 +13,12 @@
 module.exports = {
 
     /***************************************************************************
+    * Set the port in the development environment to 8080                     *
+    ***************************************************************************/
+
+    port: 8080,
+
+    /***************************************************************************
      * Set the default database connection for models in the development       *
      * environment (see config/connections.js and config/models.js )           *
      ***************************************************************************/
@@ -20,7 +26,6 @@ module.exports = {
     // models: {
     //   connection: 'someMongodbServer'
     // }
-    port: 8080,
 
     mailer: {
         from: {
