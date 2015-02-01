@@ -16,12 +16,14 @@ module.exports = {
 
         question: {
             model: 'ConfQuestionPresentation',
-            required: true
+            required: true,
+            index: true
         },
 
         user: {
             model: 'ConfUser',
-            required: true
+            required: true,
+            index: true
         },
 
         toJSON: function() {

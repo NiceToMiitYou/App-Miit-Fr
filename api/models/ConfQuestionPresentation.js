@@ -17,7 +17,8 @@ module.exports = {
 
         isAnswered: {
             type: 'boolean',
-            defaultsTo: false
+            defaultsTo: false,
+            index: true
         },
 
         user: {

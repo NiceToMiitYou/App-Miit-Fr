@@ -32,7 +32,8 @@ module.exports = {
 
         quizz: {
             model: 'ConfQuizz',
-            required: true
+            required: true,
+            index: true
         },
 
         toJSON: function() {

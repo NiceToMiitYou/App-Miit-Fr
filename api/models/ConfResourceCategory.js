@@ -18,7 +18,8 @@ module.exports = {
 
         isVisible: {
             type: 'boolean',
-            defaultsTo: true
+            defaultsTo: true,
+            index: true
         },
 
         resources: {

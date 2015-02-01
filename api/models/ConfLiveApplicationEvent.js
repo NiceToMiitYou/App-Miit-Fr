@@ -20,7 +20,8 @@ module.exports = {
         },
 
         expire: {
-            type: 'datetime'
+            type: 'datetime',
+            index: true
         },
 
         toJSON: function() {

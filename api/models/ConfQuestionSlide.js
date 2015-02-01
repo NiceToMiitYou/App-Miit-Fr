@@ -27,7 +27,8 @@ module.exports = {
 
         slide: {
             model: 'ConfSlide',
-            required: true
+            required: true,
+            index: true
         },
 
         answers: {

@@ -4,7 +4,7 @@ USE `fr_miit_app`;
 --
 -- Host: 127.0.0.1    Database: fr_miit_app
 -- ------------------------------------------------------
--- Server version	5.5.39-MariaDB
+-- Server version 5.5.41-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -28,7 +28,7 @@ CREATE TABLE `confchatmessage` (
   `message` varchar(255) DEFAULT NULL,
   `chatroom` int(11) DEFAULT NULL,
   `user` int(11) DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -54,7 +54,7 @@ DROP TABLE IF EXISTS `confchatroom`;
 CREATE TABLE `confchatroom` (
   `name` varchar(255) DEFAULT NULL,
   `type` int(11) DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -85,7 +85,7 @@ CREATE TABLE `confconference` (
   `colorScheme` longtext,
   `description` longtext,
   `restrictions` longtext,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -111,7 +111,7 @@ DROP TABLE IF EXISTS `confconfig`;
 CREATE TABLE `confconfig` (
   `key` varchar(255) DEFAULT NULL,
   `value` varchar(255) DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -139,10 +139,11 @@ CREATE TABLE `confliveapplicationevent` (
   `name` varchar(255) DEFAULT NULL,
   `data` longtext,
   `expire` datetime DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `expire` (`expire`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -166,10 +167,11 @@ CREATE TABLE `confnote` (
   `title` varchar(255) DEFAULT NULL,
   `content` longtext,
   `user` int(11) DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `user` (`user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -196,7 +198,7 @@ CREATE TABLE `confpresentation` (
   `startTime` datetime DEFAULT NULL,
   `endTime` datetime DEFAULT NULL,
   `conference` int(11) DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -223,11 +225,12 @@ CREATE TABLE `confquestionpresentation` (
   `question` varchar(255) DEFAULT NULL,
   `isAnswered` tinyint(1) DEFAULT NULL,
   `user` int(11) DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `question` (`question`)
+  UNIQUE KEY `question` (`question`),
+  KEY `isAnswered` (`isAnswered`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -248,7 +251,7 @@ DROP TABLE IF EXISTS `confquestionpresentation_tags__conftag_questions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `confquestionpresentation_tags__conftag_questions` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `confquestionpresentation_tags` int(11) DEFAULT NULL,
   `conftag_questions` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -275,10 +278,12 @@ CREATE TABLE `confquestionpresentationlike` (
   `isLiked` tinyint(1) DEFAULT NULL,
   `question` int(11) DEFAULT NULL,
   `user` int(11) DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `question` (`question`),
+  KEY `user` (`user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -303,10 +308,11 @@ CREATE TABLE `confquestionquizz` (
   `required` tinyint(1) DEFAULT NULL,
   `type` int(11) DEFAULT NULL,
   `quizz` int(11) DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `quizz` (`quizz`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -329,7 +335,7 @@ DROP TABLE IF EXISTS `confquestionquizzanswer`;
 CREATE TABLE `confquestionquizzanswer` (
   `answer` varchar(255) DEFAULT NULL,
   `question` int(11) DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -353,7 +359,7 @@ DROP TABLE IF EXISTS `confquestionquizzanswer_users__confuser_quizzanswers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `confquestionquizzanswer_users__confuser_quizzanswers` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `confquestionquizzanswer_users` int(11) DEFAULT NULL,
   `confuser_quizzAnswers` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -381,10 +387,11 @@ CREATE TABLE `confquestionslide` (
   `type` int(11) DEFAULT NULL,
   `isClosed` tinyint(1) DEFAULT NULL,
   `slide` int(11) DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `slide` (`slide`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -407,10 +414,11 @@ DROP TABLE IF EXISTS `confquestionslideanswer`;
 CREATE TABLE `confquestionslideanswer` (
   `answer` varchar(255) DEFAULT NULL,
   `question` int(11) DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `question` (`question`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -431,7 +439,7 @@ DROP TABLE IF EXISTS `confquestionslideanswer_users__confuser_slideanswers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `confquestionslideanswer_users__confuser_slideanswers` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `confquestionslideanswer_users` int(11) DEFAULT NULL,
   `confuser_slideAnswers` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -460,7 +468,7 @@ CREATE TABLE `confquizz` (
   `maxTime` int(11) DEFAULT NULL,
   `startTime` datetime DEFAULT NULL,
   `endTime` datetime DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -488,7 +496,7 @@ CREATE TABLE `confresource` (
   `name` varchar(255) DEFAULT NULL,
   `path` longtext,
   `category` int(11) DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -512,7 +520,7 @@ DROP TABLE IF EXISTS `confresource_slides__confslide_resources`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `confresource_slides__confslide_resources` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `confresource_slides` int(11) DEFAULT NULL,
   `confslide_resources` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -539,11 +547,12 @@ CREATE TABLE `confresourcecategory` (
   `name` varchar(255) DEFAULT NULL,
   `isVisible` tinyint(1) DEFAULT NULL,
   `conference` int(11) DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`)
+  UNIQUE KEY `name` (`name`),
+  KEY `isVisible` (`isVisible`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -571,7 +580,7 @@ CREATE TABLE `confslide` (
   `type` int(11) DEFAULT NULL,
   `presentation` int(11) DEFAULT NULL,
   `question` int(11) DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -596,7 +605,7 @@ DROP TABLE IF EXISTS `conftag`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `conftag` (
   `name` varchar(255) DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -625,7 +634,7 @@ CREATE TABLE `conftrack` (
   `start` datetime DEFAULT NULL,
   `end` datetime DEFAULT NULL,
   `user` int(11) DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -656,7 +665,7 @@ CREATE TABLE `confuser` (
   `avatar` longtext,
   `mail` varchar(255) DEFAULT NULL,
   `roles` longtext,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -682,4 +691,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-12-11 23:43:24
+-- Dump completed on 2015-02-01 23:16:03

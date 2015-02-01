@@ -23,7 +23,8 @@ module.exports = {
 
         user: {
             model: 'ConfUser',
-            required: true
+            required: true,
+            index: true
         },
 
         toJSON: function() {

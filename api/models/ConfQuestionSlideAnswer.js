@@ -17,7 +17,8 @@ module.exports = {
 
         question: {
             model: 'ConfQuestionSlide',
-            required: true
+            required: true,
+            index: true
         },
 
         users: {
