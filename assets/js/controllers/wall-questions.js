@@ -102,6 +102,12 @@ ITEventApp.controller(
 
                 $timeout(function(){
 
+                    if( ! isLike({ id: like.question }) &&
+                          $scope.user.id === like.user ) {
+
+                        ITStorage.db.likes.set(like.question, like.id);
+                    }
+
                     if( $scope.questions[like.question] ) {
 
                         $scope.questions[like.question].likes++;

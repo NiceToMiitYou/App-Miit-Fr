@@ -64,8 +64,8 @@
 
                 <li>
                     <a href="#" style="transform: skewY(44deg) rotate(28deg);" ng-click="logout();" ng-mouseover="menulabel='<%= __('viewer.menu.disconnect') %>'"><span>
-                        <span ng-show="user.avatar.c && user.avatar.a" class="avatar" ng-class="user.avatar.c + ' avatar-'+user.avatar.a"></span>
-                        <span ng-show="!user.avatar.c || !user.avatar.a" class="avatar black anonymous"></span>
+                        <span ng-if="user.avatar.c && user.avatar.a" class="avatar" ng-class="user.avatar.c + ' avatar-'+user.avatar.a"></span>
+                        <span ng-if="!user.avatar.c || !user.avatar.a" class="avatar black anonymous"></span>
                     </span>
                     </a>
                 </li>
@@ -78,8 +78,8 @@
             <div id="main-menu-wrapper">
 
                 <div class="user-info-wrapper user-show" ng-click="openStats=true">
-                    <a ng-show="user.avatar.c && user.avatar.a" class="avatar" ng-class="user.avatar.c + ' avatar-'+user.avatar.a"></a>
-                    <a ng-show="!user.avatar.c || !user.avatar.a" class="avatar black anonymous"></a>
+                    <a ng-if="user.avatar.c && user.avatar.a" class="avatar" ng-class="user.avatar.c + ' avatar-'+user.avatar.a"></a>
+                    <a ng-if="!user.avatar.c || !user.avatar.a" class="avatar black anonymous"></a>
                 </div>
 
                 <div class="clearfix"></div>
@@ -89,9 +89,7 @@
 
         <div class="tools-wrapper" ng-click="closeMenu()">
             <% include viewer/resources %>
-
-            <% include viewer/resources-inner %>
-
+            
             <% include viewer/wall-questions %>
 
             <% include viewer/discussions %>
@@ -101,8 +99,6 @@
             <% include viewer/quizz-list %>
 
             <% include viewer/quizz-inner %>
-
-            <% include viewer/planning %>
 
         </div>
 

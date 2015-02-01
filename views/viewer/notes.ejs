@@ -27,7 +27,7 @@
 
                                 <li role="presentation" class="dropdown-header"><%= __('viewer.notes.notes') %></li>
 
-                                <li ng-repeat="note in notes">
+                                <li ng-repeat="note in notes track by note.id">
                                     <a href="#" ng-click="changeNote(note);">
                                         {{ note.title }}
                                     </a>

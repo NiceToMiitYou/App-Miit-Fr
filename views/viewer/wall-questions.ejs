@@ -14,7 +14,7 @@
         <div class="input-group transparent" style="width:100%">
             <select ng-model="filter" style="width:100%">
                 <option value="" selected="selected"><%= __('viewer.wall.categories') %></option>
-                <option ng-repeat="tag in shared.tags" value="{{ tag.id }}">{{ tag.name }}</option>
+                <option ng-repeat="tag in shared.tags track by tag.id" value="{{ ::tag.id }}">{{ ::tag.name }}</option>
             </select>
         </div>
     </div>
@@ -46,9 +46,9 @@
                 </div>
             </li>
             
-            <li class="animate-repeat" ng-repeat="question in questions | toArray | orderBy:'-createdAt' | filter:{tags : filter}">
-                <div ng-show="question.user.avatar.c && question.user.avatar.a" class="cbp_tmicon avatar" ng-class="question.user.avatar.c + ' avatar-'+question.user.avatar.a"></div>
-                <div ng-show="!question.user.avatar.c || !question.user.avatar.a" class="cbp_tmicon avatar black anonymous"></div>
+            <li class="animate-repeat" ng-repeat="question in questions | toArray | orderBy:'-createdAt' | filter:{tags : filter} track by question.id">
+                <div ng-if="question.user.avatar.c && question.user.avatar.a" class="cbp_tmicon avatar" ng-class="question.user.avatar.c + ' avatar-'+question.user.avatar.a"></div>
+                <div ng-if="!question.user.avatar.c || !question.user.avatar.a" class="cbp_tmicon avatar black anonymous"></div>
                 <div class="cbp_tmlabel">
                     <div class="p-t-15 p-l-20 p-r-15">
                         <h4 class="inline m-b-5" style="margin-top: 0; font-size: 15px;">
@@ -57,12 +57,12 @@
                             </span>
                         </h4>
 
-                        <div class="muted inline">à&nbsp;&nbsp;{{question.createdAt | date:'mediumTime'}}</div>
-                        <span class="muted semi-bold m-b-5 label m-l-5" ng-repeat="tag in question.tags" style="line-height: 16px; float: right;">
+                        <div class="muted inline">à&nbsp;&nbsp;{{ ::question.createdAt | date: 'mediumTime'}}</div>
+                        <span class="muted semi-bold m-b-5 label m-l-5" ng-repeat="tag in ::question.tags" style="line-height: 16px; float: right;">
                             {{ getTagName( tag ) }}
                         </span>
                         
-                        <p class="m-t-5 dark-text"> {{question.question}} </p>
+                        <p class="m-t-5 dark-text"> {{ ::question.question }} </p>
                     </div>
                     <div class="clearfix"></div>
                     <div class="p-b-10 p-l-20" style="line-height: 20px;">
@@ -71,8 +71,7 @@
                             <li class="text-error" ng-show="question.likes <= 1"><i class="fa fa-heart"></i> {{question.likes}} <%= __('viewer.wall.like') %></li>
                         </ul>
                         
-                        <a ng-show="question.user.id != user.id"
-                           ng-class="{disabled : isLike(question)}"
+                        <a ng-if="!isLike(question)"
                            ng-click="like(question)"
                            class="m-r-20 fright">
                             <i class="fa fa-thumbs-o-up"></i> <%= __('viewer.wall.like') %>

@@ -6,7 +6,7 @@ window.ITConnect = ( function() {
 
     var eventsCallbacks = {};
 
-    ITStorage.create( 'events', true );
+    ITStorage.create( 'events', !ITEventDebug );
 
     var lastestToken = 0;
 

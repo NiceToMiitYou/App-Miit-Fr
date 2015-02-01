@@ -43,6 +43,8 @@ var jsFilesToInject = [
   // Load sails.io before everything else
   'js/dependencies/sails.io.js',
 
+  'js/dependencies/it-debug.js',
+
   // Load ITStorage before ITConnect
   'js/dependencies/it-storage.js',
 
@@ -72,8 +74,6 @@ var jsFilesToInject = [
 
   // All of the rest of your client-side js files
   // will be injected here in no particular order.
-
-  'js/utils/**/*.js',
 
   'js/app.js',
 

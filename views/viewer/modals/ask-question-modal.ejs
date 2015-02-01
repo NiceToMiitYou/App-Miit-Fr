@@ -20,7 +20,7 @@
                                     style="width:100%"
                                     placeholder="<%= __('viewer.modal.wall.select_category') %>" multiple>
                                 <option ng-repeat="tag in shared.tags"
-                                        value="{{tag.id}}">{{tag.name}}</option>
+                                        value="{{ ::tag.id }}">{{ ::tag.name }}</option>
                             </select>
                         </div>
                     </div>

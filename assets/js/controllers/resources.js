@@ -20,18 +20,6 @@ ITEventApp.controller(
                 }
             }
 
-            function openInner( category ) {
-
-                ITStorage.db.options.set('category.current', category);
-
-                $scope.track('RESSOURCE-INNER');
-            }
-
-            $scope.openInner = function( category ) {
-
-                openInner( category );
-            };
-
             ITStorage.db.options.bind( 'data.isLoaded', true, loadCategories );
 
         } ] );

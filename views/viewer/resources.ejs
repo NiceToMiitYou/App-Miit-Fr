@@ -11,14 +11,14 @@
 
 
     <div class="resources-categories"
-         ng-repeat="category in categories">
+         ng-repeat="category in categories track by category.id">
         
         <h4>
-            {{ category.name }}
+            {{ ::category.name }}
         </h4>
 
         <div class="resource-item"
-             ng-repeat="ressource in category.resources">
+             ng-repeat="ressource in ::category.resources track by ressource.id">
             
             <img src="/images/fileicons/fileicon_pdf.jpg"/>
             <span>

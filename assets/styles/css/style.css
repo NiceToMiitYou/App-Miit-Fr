@@ -1480,7 +1480,7 @@ body.bottom-header .page-content .content {
   text-decoration: none;
 }
 .status-icon {
-  background: url('/image/icon/status.png') no-repeat;
+  background: url('/images/icon/status.png') no-repeat;
   position: relative;
   display: inline-block;
   margin-right: 10px;

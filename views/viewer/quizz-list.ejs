@@ -11,16 +11,18 @@
     </div>
     <ul class="table-list quizz">
 
-        <li ng-repeat="quizz in quizzes"
+        <li ng-repeat="quizz in quizzes track by quizz.id"
             ng-click="openInner( quizz )"
             style="background-color: #EEE">
 
             <a href="#quizz-inner">
-                <i class="fa fa-question" ng-hide="quizz.answered === true"></i>
-                <i class="fa fa-exclamation tiles dark-blue" ng-show="quizz.answered === true"></i>
-                <span class="title">{{ quizz.name }}</span>
+                <i class="fa" ng-class="{
+                    'fa-question'                       : quizz.answered !== true,
+                    'fa-exclamation dark-blue tiles'    : quizz.answered === true
+                }"></i>
+                <span class="title">{{ ::quizz.name }}</span>
                 <p class="desc">
-                    {{ quizz.description }}
+                    {{ ::quizz.description }}
                 </p>
             </a>
         </li>
