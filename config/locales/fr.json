@@ -166,5 +166,20 @@
             }
         },
         "logout": "Vous venez d'être déconnecté."
+    },
+
+    "errors": {
+        "403": {
+            "title": "Accés non autorisé",
+            "text": "La page demandée nécessite des droits supplémentaires."
+        },
+        "404": {
+            "title": "Page introuvable",
+            "text": "La page demandée n'existe pas."
+        },
+        "500": {
+            "title": "Une erreur c'est produite",
+            "text": "Lors de l'accès à cette page, une erreur a été rencontrée. Merci de la remonter à l'administrateur."
+        }
     }
 }
