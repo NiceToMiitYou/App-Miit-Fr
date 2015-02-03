@@ -9,12 +9,6 @@ ITEventApp.controller(
             $scope.useUsername = false;
 
             $scope.accountType = null;
-            
-            function refreshUser( user ) {
-                $timeout( function() {
-                    $scope.firstInit = ! ( user && ( user.firstname || user.lastname || user.username ) );
-                } );
-            }
 
             function saveUser() {
 
@@ -102,8 +96,5 @@ ITEventApp.controller(
             $scope.generateAnonym = generateAnonym;
 
             $scope.saveUser = saveUser;
-
-
-            ITStorage.db.options.bind('user', true, refreshUser);
 
         } ] );

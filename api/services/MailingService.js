@@ -34,7 +34,7 @@ module.exports = {
     sendEmailNote: function( email, title, note ) {
         sendEmail(
             email,
-            'ITEvents - Your note: ' + title,
+            'Miit - Your note: ' + title,
             note,
             note
         );
