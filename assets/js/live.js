@@ -10,7 +10,7 @@ function scaleSlider() {
     var slideH = $("#slides").height();
     var maxH, maxW;
 
-    var fullscreen = $(".page-container").hasClass('fullscreen');
+    var fullscreen = $(".page-container").hasClass('fullscreen') && !$(".page-container").hasClass('fullscreen-remove');
     var isMaster = $(".page-container").hasClass('master');
     var isLive = $(".page-container").hasClass('live');
 
@@ -27,8 +27,8 @@ function scaleSlider() {
         maxW = $(".page-content").width() / slideW ;
 
     } else {
-        maxH = ($(".page-content").height()/2) / slideH;
-        maxW = $(".page-content").width() / slideW ;
+        maxH = ($(window).height()/1.7) / slideH;
+        maxW = ($(window).width()/2.05) / slideW ;
     }
 
     var zoom = Math.min(maxH, maxW);

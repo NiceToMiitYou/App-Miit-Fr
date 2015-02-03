@@ -25,7 +25,7 @@ body {
   direction: ltr;
   background-color: #1b1e24;
   color: #6f7b8a;
-  font-family: 'Arial';
+  font-family: 'Roboto';
   font-size: 13px;
   padding: 0px !important;
   margin: 0px !important;
@@ -153,8 +153,6 @@ body.bottom-header .page-content .content {
   min-height: 60px;
 }
 .header .navbar-inner {
-  background-image: none !important;
-  background-color: #ffffff !important;
   width: 100%;
   margin: 0;
   border: 0px;
@@ -434,7 +432,7 @@ body.bottom-header .page-content .content {
 .page-sidebar {
   background-color: #1b1e24 !important;
   height: 100%;
-  font-family: 'Open Sans';
+  font-family: 'Roboto';
 }
 .page-sidebar .outer-tab-nav-section {
   display: inline-block;
@@ -987,7 +985,7 @@ body.bottom-header .page-content .content {
   position: fixed;
   bottom: 0px;
   display: block;
-  padding: 11px 21px;
+  padding: 5px 21px;
   background-color: #22262e;
   width: 250px;
   clear: both;
@@ -1236,7 +1234,7 @@ body.bottom-header .page-content .content {
   font-size: 18px;
 }
 .page-content .breadcrumb {
-  font-family: 'Open Sans';
+  font-family: 'Roboto';
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
   border-radius: 0px;
@@ -1267,7 +1265,7 @@ body.bottom-header .page-content .content {
   display: inline-block;
   position: absolute;
   width: 200px;
-  font-family: 'Open Sans';
+  font-family: 'Roboto';
   background-color: #1b1e24;
   height: 100%;
 }
@@ -1558,7 +1556,7 @@ h4,
 h5,
 h6 {
   margin: 10px 0;
-  font-family: 'Open Sans';
+  font-family: 'Roboto';
   font-weight: 300;
   color: #505458;
 }
@@ -1577,7 +1575,7 @@ h4 {
 h3 small,
 h4 small,
 h5 small {
-  font-family: 'Open Sans';
+  font-family: 'Roboto';
   font-weight: 300;
   color: #444;
 }
@@ -1844,7 +1842,7 @@ hr {
   color: #666;
   margin: 0 0 10px;
   font-weight: 300;
-  font-family: 'Open Sans';
+  font-family: 'Roboto';
 }
 .page-title h3 {
   display: inline-block;
@@ -4988,13 +4986,13 @@ form legend,
   font-size: 11px;
   text-shadow: none;
   background-color: #d1dade;
-  font-family: 'Open Sans';
+  font-family: 'Roboto';
   font-weight: 600;
   color: #5E5E5E;
 }
 .badge {
   text-shadow: none;
-  font-family: 'Open Sans';
+  font-family: 'Roboto';
   font-weight: 600;
   background-color: #d1dade;
   font-size: 11px;
@@ -5128,7 +5126,7 @@ form legend,
 }
 .tiles .tiles-title {
   font-size: 10.5px;
-  font-family: 'Open Sans';
+  font-family: 'Roboto';
   letter-spacing: 0.5px;
   font-weight: 600;
 }
@@ -5275,7 +5273,7 @@ form legend,
 .tiles .heading {
   font-size: 25px;
   display: block;
-  font-family: 'Open Sans';
+  font-family: 'Roboto';
   font-weight: 600;
   margin: 4px 0px;
 }
@@ -7164,7 +7162,7 @@ input[type="checkbox"] {
 }
 .error-body {
   background-color: #e5e9ec !important;
-  font-family: 'Open Sans';
+  font-family: 'Roboto';
   height: 100%;
 }
 .error-wrapper {

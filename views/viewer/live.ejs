@@ -1,4 +1,14 @@
 <div ng-controller="LiveController" class="content live-content">  
+
+    <div class="live-header valign-wrapper">
+        <h3>{{ ::presentation.name }}</h3>
+        <img ng-show="conference.logo"
+             ng-src="{{ ::conference.logo }}"
+             class="p-5-10 valign"
+             width="130" style="float: right; margin-right: 30px;"/>
+             <div class="clearfix"></div>
+    </div>
+
     <div class="slider-container">
         <div id="slides" class="presentation-slide">
             <div ng-repeat="slide in ::presentation.slides track by slide.id" class="slide slide-animation"
@@ -8,6 +18,23 @@
                  ng-bind-html="safeHTML( slide.content )"></div>
         </div>
     </div>
+
+    
+     <div class="live-info p-t-15 p-l-20" ng-hide="$parent.isfullscreen">
+
+        
+        
+        <p class="text-center m-t-30 m-r-30">
+            {{ ::presentation.description }}
+        </p>
+        <p style="position: absolute; bottom: 140px; right: 30px;">
+            <i><%= __('viewer.live.by', { authors: '{{ ::presentation.authors }}' } ) %></i>
+        </p>
+        
+        <div class="counter"> 
+            <!-- <span>00:00</span> <i class="fa fa-clock-o"></i> -->
+        </div>
+    </div> 
 
     <div class="live-thumb" ng-hide="$parent.isfullscreen">
         <!-- BEGIN FAVORITES WIDGET -->
@@ -27,27 +54,6 @@
             </div>
         </div>
     </div>
-     <div class="live-info p-t-15 p-l-20" ng-hide="$parent.isfullscreen">
-
-        <div class="text-center"><img ng-show="conference.logo"
-             ng-src="{{ ::conference.logo }}"
-             class="p-5-10"
-             width="130" style="float: right; margin-right: 30px;"/></div>
-        <h3>{{ ::presentation.name }}</h3>
-        
-        <p class="text-center m-t-30">
-            {{ ::presentation.description }}
-        </p>
-        <p style="position: absolute; bottom: 62px; right: 30px;">
-            <i><%= __('viewer.live.by', { authors: '{{ ::presentation.authors }}' } ) %></i>
-        </p>
-        
-        <div class="counter"> 
-            <!-- <span>00:00</span> <i class="fa fa-clock-o"></i> -->
-        </div>
-    </div> 
-
-
     <div class="footer-widget"> 
 
         <div class="progress transparent progress-small no-radius no-margin">

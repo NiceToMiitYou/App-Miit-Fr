@@ -160,7 +160,7 @@ ITEventApp.controller(
 
                 setTimeout(function() {
                     window.scaleSlider();
-                }, 50);
+                }, 10);
             }
 
             function handlerMenu() {
