@@ -6,7 +6,7 @@
                 <div class="pull-left">
                     <h3><i class="fa fa-pencil"></i> <%= __('viewer.chat.title') %></h3>
                 </div>
-                <div class="pull-right">
+               <!--  <div class="pull-right">
                     <ul class="nav quick-section">
                         <li class="quicklinks">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -22,7 +22,7 @@
                             </ul>
                         </li>
                     </ul>
-                </div>
+                </div> -->
 
             </div>
         </div>
@@ -74,7 +74,7 @@
         <div class="chat-input-wrapper">
             <textarea ng-model="text"
                       id="chat-message-input"
-                      class="quick-note"
+                      class="materialize-textarea"
                       placeholder="<%= __('viewer.chat.message_placeholder') %>"></textarea>
 
             <button ng-class="{disabled:!text}" ng-click="post()" class="btn btn-primary send-chat">

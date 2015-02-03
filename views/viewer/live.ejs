@@ -56,23 +56,22 @@
     </div>
     <div class="footer-widget"> 
 
+        <div class="pull-left">
+            <div class="details-status">
+                <span>{{ shared.liveProgress }}</span>%
+            </div>  
+        </div>
+
         <div class="progress transparent progress-small no-radius no-margin">
             <div data-percentage="{{ shared.liveProgress }}%"
                     style="width: {{ shared.liveProgress }}%;" 
                     class="progress-bar progress-bar-success animate-progress-bar"></div>        
         </div>
-        <div class="pull-right">
-            <div class="details-status">
-                <span>{{ shared.liveProgress }}</span>%
-            </div>  
-        </div>
-    </div>
 
-    <div class="fullscreen-layer"></div>
-    <a href="#" class="close-fs"><i class="fa fa-times"></i></a>
-    <div class="slides-nav-fullscreen" style="display:none;">
-        <a class="sn-prev" data="prev" href="#"><i class="fa fa-chevron-left fa-4x"></i></a>
-        <a class="sn-next" data="next" href="#"><i class="fa fa-chevron-right fa-4x"></i></a>
+        <div class="pull-right">
+            <a href="#" ng-click="fullscreen()"> <i style="color: white;" class="fa fa-arrows-alt"></i> </a>
+        </div>
+
     </div>
 
 </div>
