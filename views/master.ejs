@@ -14,12 +14,12 @@
 					}">
 					<i class="fa"
 					   ng-class="{
-							'fa-angle-double-up': usersConnectedUp,
-							'fa-angle-double-right': usersConnectedSame,
-							'fa-angle-double-down': usersConnectedDown
+							'mdi-navigation-expand-less': usersConnectedUp,
+							'mdi-navigation-unfold-less': usersConnectedSame,
+							'mdi-navigation-expand-more': usersConnectedDown
 						}"  style="margin-right: 0px;"></i>
 				</a>
-				<h3><i class="fa fa-user"></i> {{ connectedUsers }}</h3>
+				<h3><i class="mdi-social-person"></i> {{ connectedUsers }}</h3>
 				<!-- <span class="speaker-time">00:00</span> -->
 			</div>
 
@@ -31,10 +31,10 @@
 			
 			<div class="liveorask">
 				<div class="livetab" ng-class="{active:live}" ng-click="live=true">
-					<i class="fa fa-paper-plane" style="margin-right: 4px;"></i> <%= __('master.tabs.live') %>
+					<i class="mdi-hardware-cast" style="margin-right: 4px;"></i> <%= __('master.tabs.live') %>
 				</div>
 				<div class="asktab" ng-class="{active:!live}" ng-click="live=false">
-					<i class="fa fa-users" style="margin-right: 4px;"></i> <%= __('master.tabs.wall') %>
+					<i class="mdi-communication-live-help" style="margin-right: 4px;"></i> <%= __('master.tabs.wall') %>
 				</div>
 			</div>
 
@@ -84,11 +84,7 @@
 						            				}"
 						            				ng-click="question.favorite=!question.favorite">
 
-						            				<i class="fa"
-						            				   ng-class="{
-						            				   		'fa-star':    question.favorite,
-						            				   		'fa-star-o': !question.favorite
-						            				   }"></i>
+						            				<i class="mdi-action-star-rate"></i>
 						            		</button>
 						            	</span>
 
@@ -96,7 +92,7 @@
 						                <span class="text-white" ng-show="question.likes <= 1">{{question.likes}} <%= __('master.wall.like') %></span>
 
 						                <div class="pull-right">
-						                	<button class="btn btn-danger" ng-click="question.remove = true"> <i class="fa fa-times"></i> </button>
+						                	<button class="btn btn-danger" ng-click="question.remove = true"> <i class="mdi-navigation-closes"></i> </button>
 						                </div>
 						            </div>
 						            <div class="clearfix"></div>
@@ -118,15 +114,15 @@
 					</div>
 				</div>
 
-				<a class="slides-nav-prev btn btn-primary" ng-click="sl=sl+175"><i class="fa fa-chevron-left"></i></a>
-				<a class="slides-nav-next btn btn-primary"><i class="fa fa-chevron-right"></i></a>
+				<a class="slides-nav-prev btn btn-primary" ng-click="sl=sl+175"><i class="mdi-navigation-chevron-left"></i></a>
+				<a class="slides-nav-next btn btn-primary"><i class="mdi-navigation-chevron-right"></i></a>
 			</div>
 		</div>
 		<!-- END CONTENT --> 
 	</div>
 	
 	<div ng-controller="MasterLiveController">
-		<div class="next-slide sn-next" data="next" ng-click="next()"><i class="fa fa-arrow-right fa-3x"></i></div>
-		<div class="previous-slide sn-prev" data="prev" ng-click="previous()"><i class="fa fa-arrow-left fa-3x"></i></div>
+		<div class="next-slide sn-next" data="next" ng-click="next()"><i class="mdi-navigation-chevron-right"></i></div>
+		<div class="previous-slide sn-prev" data="prev" ng-click="previous()"><i class="mdi-navigation-chevron-left"></i></div>
 	</div>
 </div>

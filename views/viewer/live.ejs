@@ -22,22 +22,16 @@
     
      <div class="live-info p-t-15 p-l-20" ng-hide="$parent.isfullscreen">
 
-        
-        
         <p class="text-center m-t-30 m-r-30">
             {{ ::presentation.description }}
         </p>
+
         <p style="position: absolute; bottom: 140px; right: 30px;">
             <i><%= __('viewer.live.by', { authors: '{{ ::presentation.authors }}' } ) %></i>
         </p>
-        
-        <div class="counter"> 
-            <!-- <span>00:00</span> <i class="fa fa-clock-o"></i> -->
-        </div>
     </div> 
 
     <div class="live-thumb">
-        <!-- BEGIN FAVORITES WIDGET -->
         <div class="side-widget">
             <div class="side-widget-content"
                  ng-style="{width: ((presentation.current + 1) * 135)+'px', left: sl+'px'}">
@@ -54,6 +48,7 @@
             </div>
         </div>
     </div>
+
     <div class="footer-widget"> 
 
         <div class="pull-left">
@@ -73,5 +68,4 @@
         </div>
 
     </div>
-
 </div>

@@ -4,7 +4,7 @@
         <div class="navbar-inner">
             <div class="header-quick-nav">
                 <div class="pull-left">
-                    <h3><i class="fa fa-pencil"></i> <%= __('viewer.wall.title') %></h3>
+                    <h3><i class="mdi-communication-live-help"></i> <%= __('viewer.wall.title') %></h3>
                 </div>
             </div>
         </div>
@@ -34,12 +34,12 @@
                         <p class="m-t-5 dark-text">
                             <%= __('viewer.wall.first.welcome') %><br/><br/>
                             <%= __('viewer.wall.first.ask_question') %><br/>
-                            <%= __('viewer.wall.first.respect') %> <i class="fa fa-smile-o"></i><br/><br/>
+                            <%= __('viewer.wall.first.respect') %> <i class="mdi-social-mood"></i><br/><br/>
                             <%= __('viewer.wall.first.enjoy') %>
                         </p>
                     </div>
 
-                    <a class="close" ng-click="hideFirst=true"><i class="fa fa-times"></i></a>
+                    <a class="close" ng-click="hideFirst=true"><i class="mdi-navigation-closes"></i></a>
                     <div class="clearfix"></div>
                 </div>
             </li>
@@ -65,14 +65,14 @@
                     <div class="clearfix"></div>
                     <div class="p-b-10 p-l-20" style="line-height: 20px;">
                         <ul class="action-links">
-                            <li class="text-error" ng-show="question.likes > 1"><i class="fa fa-heart"></i> {{question.likes}} <%= __('viewer.wall.likes') %></li>
-                            <li class="text-error" ng-show="question.likes <= 1"><i class="fa fa-heart"></i> {{question.likes}} <%= __('viewer.wall.like') %></li>
+                            <li class="text-error" ng-show="question.likes > 1"><i class="mdi-action-favorite"></i> {{question.likes}} <%= __('viewer.wall.likes') %></li>
+                            <li class="text-error" ng-show="question.likes <= 1"><i class="mdi-action-favorite"></i> {{question.likes}} <%= __('viewer.wall.like') %></li>
                         </ul>
                         
                         <a ng-if="!isLike(question)"
                            ng-click="like(question)"
                            class="m-r-20 fright">
-                            <i class="fa fa-thumbs-o-up"></i> <%= __('viewer.wall.like') %>
+                            <i class="mdi-action-thumb-up"></i> <%= __('viewer.wall.like') %>
                         </a>
                         <div class="clearfix"></div>
                     </div>

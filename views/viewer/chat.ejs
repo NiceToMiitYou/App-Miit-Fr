@@ -4,26 +4,8 @@
         <div class="navbar-inner">
             <div class="header-quick-nav">
                 <div class="pull-left">
-                    <h3><i class="fa fa-pencil"></i> <%= __('viewer.chat.title') %></h3>
+                    <h3><i class="mdi-action-question-answer"></i> <%= __('viewer.chat.title') %></h3>
                 </div>
-               <!--  <div class="pull-right">
-                    <ul class="nav quick-section">
-                        <li class="quicklinks">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <div class="iconset top-menu-toggle-dark"></div>
-                            </a>
-                            <ul class="dropdown-menu pull-right" role="menu">
-                                <li role="presentation" class="dropdown-header"><%= __('viewer.chat.chatrooms') %></li>
-                                <li ng-repeat="chatroom in chatrooms track by chatroom.id">
-                                    <a href="#" ng-click="changeChatroom(chatroom)">
-                                        {{ chatroom.name }}
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div> -->
-
             </div>
         </div>
     </div>
@@ -71,25 +53,16 @@
 
             </div>
         </div>
+
         <div class="chat-input">
-                <div class="input-field col s12">
-                        <input id="email" type="text" class="validate">
-                        <label for="email">Email</label>
-                </div>
-
-       <!--      <textarea ng-model="text"
-                      class="materialize-textarea"
-                      placeholder="<%= __('viewer.chat.message_placeholder') %>"></textarea>
- -->
-
-           <!--  <button ng-class="{disabled:!text}" ng-click="post()" class="btn btn-primary send-chat">
-                <i class="fa fa-caret-right arrow"></i><i class="fa fa-chevron-right"></i> <%= __('viewer.chat.send') %>
-            </button> -->
+            <div class="input-field col s12">
+                <input id="email" type="text" class="validate">
+                <label for="email">Email</label>
+            </div>
         </div>
 
         <button class="btn waves-effect waves-light send-chat" ng-click="post()" name="action">Submit
-          <i class="mdi-content-send right"></i>
+            <i class="mdi-content-send right"></i>
         </button>
-
     </div>
 </div>

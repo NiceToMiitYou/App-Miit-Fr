@@ -4,7 +4,7 @@
         <div class="navbar-inner">
             <div class="header-quick-nav">
                 <div class="pull-left">
-                    <h3><i class="fa fa-pencil"></i> <%= __('viewer.quizz-list.title') %></h3>
+                    <h3><i class="mdi-content-content-paste"></i> <%= __('viewer.quizz-list.title') %></h3>
                 </div>
             </div>
         </div>
@@ -15,10 +15,10 @@
             ng-click="openInner( quizz )"
             style="background-color: #EEE">
 
-            <a href="#quizz-inner">
-                <i class="fa" ng-class="{
-                    'fa-question'                       : quizz.answered !== true,
-                    'fa-exclamation dark-blue tiles'    : quizz.answered === true
+            <a>
+                <i ng-class="{
+                    'dummy-ok'        : quizz.answered !== true,
+                    'dummy-not-ok'    : quizz.answered === true
                 }"></i>
                 <span class="title">{{ ::quizz.name }}</span>
                 <p class="desc">
