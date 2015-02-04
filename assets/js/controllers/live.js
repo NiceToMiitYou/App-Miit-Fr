@@ -68,8 +68,43 @@ ITEventApp.controller(
                 }
             }
 
-            var offset = 0,
-                offsetTimeout;
+            var offset = 0;
+
+            function liveMoveTo() {
+
+                if( offset !== 0 ) {
+
+                    var copy = offset; offset = 0;
+
+                    $timeout(function() {
+
+                        for(var i = 0; i < Math.abs(copy); i++) {
+
+                            if( copy > 0 ) {
+
+                                $scope.presentation.current++;
+
+                                if( $scope.current + 1 === $scope.presentation.current ) {
+
+                                    next();
+                                }
+                            } else if ( copy < 0 ) {
+
+                                $scope.presentation.current--;
+
+                                if( $scope.current - 1 === $scope.presentation.current ) {
+
+                                    previous();
+                                }
+                            }
+                        }
+
+                        refreshShared( true );
+                    });
+                }
+            }
+            
+            var debouncedLiveMoveTo = _.debounce(liveMoveTo, 175);
 
             function handleLiveEvent( direction, data ) {
 
@@ -79,49 +114,8 @@ ITEventApp.controller(
 
                     offset += direction;
 
-                    // Clear the previous delay
-                    clearTimeout(offsetTimeout);
-
-                    // Delay the visual update
-                    offsetTimeout = setTimeout(function() {
-
-                        if(offset !== 0) {
-
-                            var copy = offset; offset = 0;
-
-                            liveMoveTo( copy );
-                        }
-                    }, 175);
+                    debouncedLiveMoveTo();
                 }
-            }
-
-            function liveMoveTo( offset ) {
-
-                $timeout(function() {
-
-                    for(var i = 0; i < Math.abs(offset); i++) {
-
-                        if( offset > 0 ) {
-
-                            $scope.presentation.current++;
-
-                            if( $scope.current + 1 === $scope.presentation.current ) {
-
-                                next();
-                            }
-                        } else if ( offset < 0 ) {
-
-                            $scope.presentation.current--;
-
-                            if( $scope.current - 1 === $scope.presentation.current ) {
-
-                                previous();
-                            }
-                        }
-                    }
-
-                    refreshShared( true );
-                });
             }
 
             $scope.isCurrentSlide = isCurrentSlide;
