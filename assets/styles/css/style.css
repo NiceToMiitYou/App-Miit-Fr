@@ -1587,11 +1587,6 @@ h5.block,
 h6.block {
   padding-bottom: 10px;
 }
-a {
-  text-shadow: none !important;
-  color: #0d638f;
-  transition: color 0.1s linear 0s, background-color 0.1s linear 0s !important;
-}
 a.icon:hover {
   text-decoration: none;
   -webkit-transition: all 0.1s ease-in-out;

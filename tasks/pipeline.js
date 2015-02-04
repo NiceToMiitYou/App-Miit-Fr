@@ -16,9 +16,9 @@
 //  to change `assets/styles/importer.less` instead.)
 var cssFilesToInject = [
 
-  //'vendor/materialize/bin/materialize.css',
+  'vendor/materialize/bin/materialize.css',
 
-  'plugins/bootstrap*/**/*.css',
+  //'plugins/bootstrap*/**/*.css',
 
   'plugins/jquery-notifications/css/messenger.css',
   
