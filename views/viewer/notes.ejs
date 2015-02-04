@@ -7,36 +7,6 @@
                 <div class="pull-left">
                     <h3><i class="mdi-content-create"></i> <%= __('viewer.notes.title') %></h3>
                 </div>
-
-<!--                 <div class="pull-right">
-                    <ul class="nav quick-section">
-                        <li class="quicklinks">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <div class="iconset top-menu-toggle-dark"></div>
-                            </a>
-                            <ul class="dropdown-menu pull-right" role="menu">
-                                <li role="presentation" class="dropdown-header"><%= __('viewer.notes.actions') %></li>
-
-                                <li>
-                                    <a href="#" ng-click="addNote();"><%= __('viewer.notes.new_note') %></a>
-                                </li>
-
-                                <li>
-                                    <a href="#" ng-click="send();"><%= __('viewer.notes.send_me') %></a>
-                                </li>
-
-                                <li role="presentation" class="dropdown-header"><%= __('viewer.notes.notes') %></li>
-
-                                <li ng-repeat="note in notes track by note.id">
-                                    <a href="#" ng-click="changeNote(note);">
-                                        {{ note.title }}
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div> -->
-
             </div>
         </div>
     </div>
@@ -48,16 +18,4 @@
               placeholder="<%= __('viewer.notes.write_here') %>"
               class="form-control"
               rows="10"><%= __('viewer.notes.default_content') %></textarea>
-
-
-<!--     <div class="note-title">
-        <span><%= __('viewer.notes.name') %></span>
-        <input ng-model="current.title"
-               ng-change="hasChange = true"
-               maxlength="50"
-               ng-blur="save()"
-               value="<%= __("viewer.notes.default_title") %>"
-               type="text">
-    </div> -->
-
 </div>
