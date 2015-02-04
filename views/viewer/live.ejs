@@ -57,10 +57,9 @@
             </div>  
         </div>
 
-        <div class="progress transparent progress-small no-radius no-margin">
-            <div data-percentage="{{ shared.liveProgress }}%"
-                    style="width: {{ shared.liveProgress }}%;" 
-                    class="progress-bar progress-bar-success animate-progress-bar"></div>        
+        <div class="progress transparent no-radius no-margin">
+            <div class="determinate"
+                 style="width: {{ shared.liveProgress }}%;"></div>        
         </div>
 
         <div class="pull-right">
