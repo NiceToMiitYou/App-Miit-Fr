@@ -20,8 +20,6 @@ var cssFilesToInject = [
 
   'plugins/**/*.css',
 
-  'styles/css/responsive.css',
-  
   'styles/css/style.css',
   
   'styles/**/*.css',
@@ -73,8 +71,6 @@ var jsFilesToInject = [
 
   // Dependencies like jQuery, or Angular are brought in here
   'js/dependencies/**/*.js',
-
-  'plugins/bootstrap*/**/*.js',
 
   'plugins/**/*.js',
 

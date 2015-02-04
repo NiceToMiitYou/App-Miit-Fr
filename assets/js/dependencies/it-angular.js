@@ -78,7 +78,13 @@ ITEventApp.animation('.slide-animation', function () {
                     finishPoint = -finishPoint;
                 }
 
-                TweenMax.to(element, 0.5, { left: finishPoint, onComplete: done });
+                element
+                    .css( { 
+                        left: 0
+                    } )
+                    .animate( {
+                        left: finishPoint
+                    }, 500, done );
             }
             else {
                 done();
@@ -97,7 +103,13 @@ ITEventApp.animation('.slide-animation', function () {
                     startPoint = -startPoint;
                 }
 
-                TweenMax.fromTo(element, 0.5, { left: startPoint }, {left: 0, onComplete: done });
+                element
+                    .css( { 
+                        left: startPoint
+                    } )
+                    .animate( {
+                        left: 0
+                    }, 500, done );
 
             } else {
                 done();
