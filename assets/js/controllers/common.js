@@ -159,9 +159,7 @@ ITEventApp.controller(
                     track($scope.activetool);
                 }
 
-                setTimeout(function() {
-                    window.scaleSlider();
-                }, 10);
+                window.scaleSlider();
             }
 
             function handlerMenu() {

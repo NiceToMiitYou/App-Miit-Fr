@@ -5,12 +5,12 @@ $(window).resize(function() {
 });
 
 Pace.on('hide', function() {
-  scaleSlider();
+    scaleSlider();
     $('select').material_select();
-  
+    $("#multi, #multi-search").select2();
 });
 
-function scaleSlider() {
+function scaleSliderBounce() {
 
     var slideW = $("#slides").width();
     var slideH = $("#slides").height();
@@ -46,7 +46,4 @@ function scaleSlider() {
 
 }
 
-$(document).ready(function() {
-    $("#multi, #multi-search").select2();
-});
-
+window.scaleSlider = _.debounce(scaleSliderBounce, 100);
