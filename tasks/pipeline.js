@@ -16,6 +16,8 @@
 //  to change `assets/styles/importer.less` instead.)
 var cssFilesToInject = [
 
+  //'vendor/materialize/bin/materialize.css',
+
   'plugins/bootstrap*/**/*.css',
 
   'plugins/jquery-notifications/css/messenger.css',
@@ -32,7 +34,7 @@ var cssFilesToInject = [
   
   'styles/**/*.css',
 
-  'slides/**/*.css',
+  'styles/importer.css'
  ];
 
 
@@ -40,8 +42,30 @@ var cssFilesToInject = [
 // (uses Grunt-style wildcard/glob/splat expressions)
 var jsFilesToInject = [
 
+  // Preloader
+  'vendor/pace/pace.js',
+
   // Load sails.io before everything else
   'js/dependencies/sails.io.js',
+
+  // Libraries
+  // jQuery
+  'vendor/jquery/dist/jquery.js',
+
+  // Angular
+  'vendor/angular/angular.js',
+  'vendor/angular-animate/angular-animate.js',
+  'vendor/angular-sanitize/angular-sanitize.js',
+  'vendor/angular-touch/angular-touch.js',
+
+  // Async
+  'vendor/async/lib/async.js',
+
+  // Lodash
+  'vendor/lodash/lodash.js',
+
+  // Materialize
+  'vendor/materialize/bin/materialize.js',
 
   'js/dependencies/it-debug.js',
 
@@ -50,12 +74,6 @@ var jsFilesToInject = [
 
   // Load ITGarbage before ITConnect
   'js/dependencies/it-garbage.js',
-
-  'js/dependencies/jquery-1.8.3.js',
-
-  'js/dependencies/angular.js',
-
-  'js/dependencies/angular-*.js',
 
   // Dependencies like jQuery, or Angular are brought in here
   'js/dependencies/**/*.js',
@@ -79,9 +97,7 @@ var jsFilesToInject = [
 
   'js/controllers/**/*.js',
 
-  'js/**/*.js',
-
-  'slides/**/*.js'
+  'js/**/*.js'
  ];
 
 

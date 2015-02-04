@@ -4,6 +4,10 @@ $(window).resize(function() {
     scaleSlider();
 });
 
+Pace.on('hide', function() {
+  scaleSlider();
+});
+
 function scaleSlider() {
 
     var slideW = $("#slides").width();
@@ -39,3 +43,5 @@ function scaleSlider() {
     $("#slides").attr("style",style);
 
 }
+
+$("#multi, #multi-search").select2();

@@ -8,11 +8,6 @@ a {
 	cursor: pointer;
 }
 
-.status-icon {
-	background: url('/images/icon/status.png') no-repeat;
-
-}
-
 .clear {clear: both;}
 .fright {float:right;}
 

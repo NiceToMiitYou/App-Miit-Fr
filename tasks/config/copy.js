@@ -17,20 +17,19 @@ module.exports = function( grunt ) {
 
     grunt.config.set( 'copy', {
         dev: {
-            files: [ {
+            files: [{
                 expand: true,
                 cwd: './assets',
-                src: [ '**/*.!(coffee|less)' ],
+                src: ['**/*.!(less)', '!**/vendor/**'],
                 dest: '.tmp/public'
-            } ]
+            }]
         },
         build: {
             files: [ {
                 expand: true,
-                flatten: true,
-                cwd: './assets/plugins',
-                src: [ '**/fonts/*.*' ],
-                dest: '.tmp/public/fonts'
+                cwd: './.tmp/public/vendor/materialize/font',
+                src: [ '**' ],
+                dest: '.tmp/public/font'
             } ]
         }
     } );

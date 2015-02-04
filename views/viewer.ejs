@@ -2,19 +2,6 @@
 <!-- BEGIN CONTENT -->
 <div ng-controller="CommonController" class="page-container row-fluid" ng-init="accountType = 1; activetool = 'NOTE';" ng-class="{fullscreen : isfullscreen, 'open' : openmenu}" >
 
-    <ul class="user-sub" ng-show="openStats">
-        <li class="active">
-            <a href="#" ng-click="openStats=false">
-                <span class="status-icon green"></span> <span class="title"><%= __('viewer.menu.online') %></span>
-            </a>
-        </li>
-        <li>
-            <a ng-click="logout()">
-                <div class="status-icon red"></div> <span class="title"><%= __('viewer.menu.disconnect') %></span>
-            </a>
-        </li>
-    </ul>
-
     <!-- BEGIN PAGE CONTAINER-->
     <div class="page-content" ng-click="closeMenu()">
 
@@ -107,7 +94,7 @@
             
             <% include viewer/wall-questions %>
 
-            <% include viewer/discussions %>
+            <% include viewer/chat %>
 
             <% include viewer/notes %>
 
