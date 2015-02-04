@@ -1115,7 +1115,7 @@ body.bottom-header .page-content .content {
   border-color: transparent #e5e9ec;
   display: block;
   width: 0;
-  z-index: 1;
+  z-index: 0;
   left: -7px;
   top: 12px;
 }
@@ -1136,11 +1136,6 @@ body.bottom-header .page-content .content {
   width: 256px;
   padding: 7px;
   z-index: 110;
-}
-.chat-input-wrapper textarea {
-  background-color: #ffffff;
-  padding: 0;
-  margin: 0;
 }
 .user-chat-wrapper {
   display: block;
@@ -2828,46 +2823,7 @@ select,
 textarea {
   font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-.uneditable-input,
-textarea,
-input[type="text"],
-input[type="password"],
-input[type="datetime"],
-input[type="datetime-local"],
-input[type="date"],
-input[type="month"],
-input[type="time"],
-input[type="week"],
-input[type="number"],
-input[type="email"],
-input[type="url"],
-input[type="search"],
-input[type="tel"],
-input[type="color"] {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  -webkit-appearance: none !important;
-  color: #282323;
-  outline: 0;
-  height: 16px;
-  padding: 6px 11px !important;
-  line-height: 15px;
-  font-size: 13px;
-  font-weight: normal;
-  vertical-align: top;
-  background-color: #ffffff;
-  min-height: 37px;
-  -webkit-box-shadow: none !important;
-  -moz-box-shadow: none !important;
-  box-shadow: none !important;
-  -webkit-border-radius: 0px;
-  -moz-border-radius: 0px;
-  border-radius: 0px;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  border-radius: 2px;
-  border: 1px solid #e5e9ec;
-  transition: background 0.2s linear 0s, box-shadow 0.2s linear 0s;
-}
+
 input {
   border: 1px solid #cecece;
 }
@@ -2886,31 +2842,7 @@ textarea {
   padding-left: 12px !important;
   padding-top: 10px !important;
 }
-.uneditable-input.focus,
-textarea:focus,
-select:focus,
-input[type="text"]:focus,
-input[type="password"]:focus,
-input[type="datetime"]:focus,
-input[type="datetime-local"]:focus,
-input[type="date"]:focus,
-input[type="month"]:focus,
-input[type="time"]:focus,
-input[type="week"]:focus,
-input[type="number"]:focus,
-input[type="email"]:focus,
-input[type="url"]:focus,
-input[type="search"]:focus,
-input[type="tel"]:focus,
-input[type="color"]:focus,
-.m-uneditable-input:focus {
-  border-color: #f1f1f1;
-  background-color: #f4f5f7;
-  outline: 0 !important;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-}
+
 input[type="radio"],
 input[type="checkbox"] {
   margin: 4px 0 0;
@@ -5684,26 +5616,7 @@ form legend,
   display: block;
   font-weight: bold;
 }
-.btn {
-  display: inline-block;
-  padding: 9px 12px;
-  padding-top: 7px;
-  margin-bottom: 0;
-  font-size: 14px;
-  line-height: 20px;
-  color: #5e5e5e;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  background-color: #d1dade;
-  -webkit-border-radius: 3px;
-  background-image: none !important;
-  border: none;
-  text-shadow: none;
-  box-shadow: none;
-  transition: all 0.12s linear 0s !important;
-  font: 14px/20px "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
+
 .btn:focus {
   outline: none;
 }

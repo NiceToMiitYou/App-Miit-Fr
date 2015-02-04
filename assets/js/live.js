@@ -6,6 +6,8 @@ $(window).resize(function() {
 
 Pace.on('hide', function() {
   scaleSlider();
+    $('select').material_select();
+  
 });
 
 function scaleSlider() {
@@ -44,4 +46,7 @@ function scaleSlider() {
 
 }
 
-$("#multi, #multi-search").select2();
+$(document).ready(function() {
+    $("#multi, #multi-search").select2();
+});
+

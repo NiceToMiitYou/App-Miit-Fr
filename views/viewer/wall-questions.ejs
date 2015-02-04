@@ -11,12 +11,10 @@
     </div>
     
     <div class="timeline-search">
-        <div class="input-group transparent" style="width:100%">
             <select ng-model="filter" style="width:100%">
                 <option value="" selected="selected"><%= __('viewer.wall.categories') %></option>
                 <option ng-repeat="tag in shared.tags track by tag.id" value="{{ ::tag.id }}">{{ ::tag.name }}</option>
             </select>
-        </div>
     </div>
 
     <div class="col-md-12 timeline">
