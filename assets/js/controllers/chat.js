@@ -114,12 +114,7 @@ ITEventApp.controller(
                             'user', userId
                         );
 
-                        var i = 0;
-
-                        for( var index in $scope.chatrooms[chatroomId].messages ) {
-
-                            i++;
-                        }
+                        var i = _.size( $scope.chatrooms[chatroomId].messages );
 
                         while( i > 40 ) {
 
