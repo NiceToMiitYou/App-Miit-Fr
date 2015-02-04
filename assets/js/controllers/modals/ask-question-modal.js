@@ -20,7 +20,7 @@ ITEventApp.controller(
 
                                 $( '#multi' ).select2('val', '');
 
-                                $scope.messenger.post({
+                                $scope.toast({
                                     message: ItNotifications.modal.question.post.success,
                                     type: 'info'
                                 });
@@ -28,7 +28,7 @@ ITEventApp.controller(
 
                         } else {
 
-                            $scope.messenger.post({
+                            $scope.toast({
                                 message: ItNotifications.modal.question.post.error,
                                 type: 'error'
                             });
@@ -36,7 +36,7 @@ ITEventApp.controller(
                     });
                 } else {
 
-                    $scope.messenger.post({
+                    $scope.toast({
                         message: ItNotifications.modal.question.post.required,
                         type: 'error'
                     });

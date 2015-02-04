@@ -54,7 +54,7 @@ ITEventApp.controller(
 
                         } else {
 
-                            $scope.messenger.post({
+                            $scope.toast({
                                 message: ItNotifications.chat.post.error,
                                 type: 'error'
                             });
@@ -62,7 +62,7 @@ ITEventApp.controller(
                     });
                 } else {
 
-                    $scope.messenger.post({
+                    $scope.toast({
                         message: ItNotifications.chat.post.required,
                         type: 'error'
                     });

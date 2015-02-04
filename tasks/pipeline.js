@@ -18,14 +18,6 @@ var cssFilesToInject = [
 
   'vendor/materialize/bin/materialize.css',
 
-  //'plugins/bootstrap*/**/*.css',
-
-  'plugins/jquery-notifications/css/messenger.css',
-  
-  'plugins/jquery-notifications/css/messenger-*.css',
-
-  'plugins/jquery-*/**/*.css',
-
   'plugins/**/*.css',
 
   'styles/css/responsive.css',
@@ -70,6 +62,7 @@ var jsFilesToInject = [
   // Modernizr
   'vendor/modernizr/modernizr.js',
 
+  // Debug file
   'js/dependencies/it-debug.js',
 
   // Load ITStorage before ITConnect
@@ -81,15 +74,7 @@ var jsFilesToInject = [
   // Dependencies like jQuery, or Angular are brought in here
   'js/dependencies/**/*.js',
 
-  'plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js',
-
   'plugins/bootstrap*/**/*.js',
-
-  'plugins/jquery-notifications/js/messenger.js',
-  
-  'plugins/jquery-notifications/js/messenger-*.js',
-
-  'plugins/jquery-*/**/*.js',
 
   'plugins/**/*.js',
 

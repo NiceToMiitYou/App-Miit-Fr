@@ -33,7 +33,7 @@ ITEventApp.controller(
                             ITStorage.db.likes.set( question.id, data.like.id );
                         } else {
 
-                            $scope.messenger.post({
+                            $scope.toast({
                                 message: ItNotifications.wall.like.error,
                                 type: 'error'
                             });
@@ -42,7 +42,7 @@ ITEventApp.controller(
 
                 } else {
 
-                    $scope.messenger.post({
+                    $scope.toast({
                         message: ItNotifications.wall.like.already,
                         type: 'error'
                     });

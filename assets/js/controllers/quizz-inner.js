@@ -66,14 +66,14 @@ ITEventApp.controller(
 
                     ITStorage.db.quizzes.set( $scope.current.id, $scope.current );
 
-                    $scope.messenger.post({
+                    $scope.toast({
                         message: ItNotifications.quizzInner.save.success,
                         type: 'info'
                     });
 
                 } else {
 
-                    $scope.messenger.post({
+                    $scope.toast({
                         message: ItNotifications.quizzInner.save.error,
                         type: 'error'
                     });

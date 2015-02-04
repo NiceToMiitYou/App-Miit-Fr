@@ -159,13 +159,13 @@ ITEventApp.controller(
                         $timeout(function() {
                             if( data.done ) {
 
-                                $scope.messenger.post({
+                                $scope.toast({
                                     message: ItNotifications.notes.send.success,
                                     type: 'info'
                                 });
                             } else {
 
-                                $scope.messenger.post({
+                                $scope.toast({
                                     message: ItNotifications.notes.send.error,
                                     type: 'error'
                                 });

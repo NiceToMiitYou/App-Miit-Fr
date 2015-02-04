@@ -17,15 +17,13 @@ ITEventApp.controller(
 
             $scope.user = false;
 
-            $scope.messenger = Messenger( {
-                maxMessages: 4,
-                extraClasses: 'messenger-on-top messenger-fixed',
-                theme: 'flat',
-                messageDefaults: {
-                    showCloseButton: true,
-                    hideAfter: 2
+            $scope.toast = function( options ) {
+
+                if( options && options.message ) {
+
+                    toast(options.message, 2000);
                 }
-            } );
+            };
 
             var alreadyAskedUsers = {};
 
@@ -102,7 +100,7 @@ ITEventApp.controller(
 
                     if( data.done ) {
                     
-                        $scope.messenger.post({
+                        $scope.toast({
                             message: ItNotifications.logout,
                             type: 'info'
                         });
@@ -169,6 +167,7 @@ ITEventApp.controller(
             function handlerMenu() {
 
                 if($scope.isfullscreen) {
+                    
                     $scope.fullscreen();
                 } else {
 

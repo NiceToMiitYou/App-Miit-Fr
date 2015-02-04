@@ -31,13 +31,13 @@ ITEventApp.controller(
 
                                     $scope.firstInit = false;
 
-                                    $scope.messenger.post({
+                                    $scope.toast({
                                         message: ItNotifications.modal.user.save.success,
                                         type: 'infos'
                                     });
                                 } else {
 
-                                    $scope.messenger.post({
+                                    $scope.toast({
                                         message: ItNotifications.modal.user.save.error,
                                         type: 'error'
                                     });
@@ -46,14 +46,14 @@ ITEventApp.controller(
                         );
                     } else {
 
-                        $scope.messenger.post({
+                        $scope.toast({
                             message: ItNotifications.modal.user.save.missing,
                             type: 'error'
                         });
                     }
                 } else {
 
-                    $scope.messenger.post({
+                    $scope.toast({
                         message: ItNotifications.modal.user.save.required,
                         type: 'error'
                     });
