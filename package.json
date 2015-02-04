@@ -27,7 +27,7 @@
     "nodemailer": "^1.3.0",
     "nodemailer-smtp-transport": "^0.1.13",
     "rc": "^0.5.5",
-    "sails": "^0.11.0-rc9",
+    "sails": "^0.11.0-rc10",
     "sails-disk": "^0.10.7",
     "sails-mongo": "^0.10.5",
     "sails-mysql": "^0.10.11",
