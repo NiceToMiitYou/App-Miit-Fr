@@ -8,7 +8,7 @@ ITEventApp.controller(
 
             $scope.current = {
 
-                title: '',
+                title: 'Note',
 
                 content: '',
 
@@ -123,7 +123,7 @@ ITEventApp.controller(
                         
                         $scope.current = {
 
-                            title: 'Nouvelle note',
+                            title: 'Note',
 
                             content: '',
 
