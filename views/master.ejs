@@ -12,15 +12,13 @@
 						'btn-info': usersConnectedSame,
 						'btn-danger': usersConnectedDown
 					}">
-					<i class="fa"
-					   ng-class="{
+					<i ng-class="{
 							'mdi-navigation-expand-less': usersConnectedUp,
-							'mdi-navigation-unfold-less': usersConnectedSame,
+							'mdi-navigation-chevron-right': usersConnectedSame,
 							'mdi-navigation-expand-more': usersConnectedDown
 						}"  style="margin-right: 0px;"></i>
 				</a>
 				<h3><i class="mdi-social-person"></i> {{ connectedUsers }}</h3>
-				<!-- <span class="speaker-time">00:00</span> -->
 			</div>
 
 			<div class="progress transparent progress-small no-radius no-margin">
