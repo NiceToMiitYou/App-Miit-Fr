@@ -65,21 +65,7 @@
 
     <div class="tools-content">
 
-        <a href="#" class="bt-menu-trigger" ng-click="handlerMenu()"><span>Menu</span></a>
-
-        <!-- BEGIN SIDEBAR -->
-        <div id="main-menu" class="hide">
-            <div id="main-menu-wrapper">
-
-                <div class="user-info-wrapper user-show" ng-click="openStats=true">
-                    <a ng-if="user.avatar.c && user.avatar.a" class="avatar" ng-class="user.avatar.c + ' avatar-'+user.avatar.a"></a>
-                    <a ng-if="!user.avatar.c || !user.avatar.a" class="avatar black anonymous"></a>
-                </div>
-
-                <div class="clearfix"></div>
-            </div>
-        </div>
-        <!-- END SIDEBAR --> 
+        <a href="#" class="bt-menu-trigger" ng-click="handlerMenu()"><span></span></a>
 
         <div class="tools-wrapper" ng-click="closeMenu()">
             <% include viewer/resources %>
@@ -94,10 +80,6 @@
 
             <% include viewer/quizz-inner %>
 
-        </div>
-
-        <div class="menu-layer" ng-show="menulabel">
-            <span class="menu-label">{{ menulabel }}</span>
         </div>
 
     </div>
