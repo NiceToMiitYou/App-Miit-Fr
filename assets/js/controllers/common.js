@@ -68,6 +68,22 @@ ITEventApp.controller(
                 } );
             }
 
+            function getAvatar( user ) {
+
+                if( !user ) {
+                    user = $scope.user;
+                }
+
+                var avatar = 'black anonymous';
+
+                if( user && user.avatar && user.avatar.c && user.avatar.a ) {
+
+                    avatar = user.avatar.c + ' avatar-' + user.avatar.a;
+                }
+                
+                return avatar;
+            }
+
             function getUsername( user ) {
 
                 if( !user ) {
@@ -215,6 +231,8 @@ ITEventApp.controller(
             $scope.safeHTML = safeHTML;
 
             $scope.isAllowed = isAllowed;
+
+            $scope.getAvatar = getAvatar;
 
             $scope.getUsername = getUsername;
 

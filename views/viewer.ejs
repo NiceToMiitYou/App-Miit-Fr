@@ -54,8 +54,7 @@
             <li>
                 <a ng-click="logout();">
                     <span class="icon">
-                        <i ng-show="user.avatar.c && user.avatar.a" class="avatar" ng-class="user.avatar.c + ' avatar-'+user.avatar.a"></i>
-                        <i ng-show="!user.avatar.c || !user.avatar.a" class="avatar black anonymous"></i>
+                        <i class="avatar" ng-class="getAvatar()"></i>
                     </span>
                     <span><%= __('viewer.menu.disconnect') %></span>
                 </a>

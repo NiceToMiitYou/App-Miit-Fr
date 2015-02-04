@@ -45,8 +45,9 @@
             </li>
             
             <li class="animate-repeat" ng-repeat="question in questions | toArray | orderBy:'-createdAt' | filter:{tags : filter} track by question.id">
-                <div ng-if="question.user.avatar.c && question.user.avatar.a" class="cbp_tmicon avatar" ng-class="question.user.avatar.c + ' avatar-'+question.user.avatar.a"></div>
-                <div ng-if="!question.user.avatar.c || !question.user.avatar.a" class="cbp_tmicon avatar black anonymous"></div>
+                
+                <div class="cbp_tmicon avatar" ng-class="getAvatar(question.user)"></div>
+
                 <div class="cbp_tmlabel">
                     <div class="p-t-15 p-l-20 p-r-15">
                         <h4 class="inline m-b-5" style="margin-top: 0; font-size: 15px;">

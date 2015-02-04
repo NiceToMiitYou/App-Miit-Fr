@@ -53,8 +53,7 @@
 							ng-repeat="question in questions | toArray | orderBy:['-favorite','-likes'] | filter:q as results track by question.id"
 							ng-init="question.favorite=false">
 
-						    <div ng-if="question.user.avatar.c && question.user.avatar.a" class="cbp_tmicon avatar" ng-class="question.user.avatar.c + ' avatar-'+question.user.avatar.a"></div>
-						    <div ng-if="!question.user.avatar.c || !question.user.avatar.a" class="cbp_tmicon avatar black anonymous"></div>
+						    <div class="cbp_tmicon avatar" ng-class="getAvatar( question.user )"></div>
 
 						    <div class="cbp_tmlabel">
 						        <div class="p-t-15">
