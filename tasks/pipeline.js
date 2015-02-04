@@ -67,6 +67,9 @@ var jsFilesToInject = [
   // Materialize
   'vendor/materialize/bin/materialize.js',
 
+  // Modernizr
+  'vendor/modernizr/modernizr.js',
+
   'js/dependencies/it-debug.js',
 
   // Load ITStorage before ITConnect
