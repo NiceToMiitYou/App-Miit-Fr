@@ -19,6 +19,8 @@
               class="form-control"
               rows="10"><%= __('viewer.notes.default_content') %></textarea>
 
-    <a class="waves-effect waves-light btn send-note" ng-click="addNote()"><i class="mdi-file-cloud left"></i>NO TRAD SEND</a>
+    <a class="waves-effect waves-light btn send-note" ng-click="send()">
+      <i class="mdi-file-cloud left"></i><%= __('viewer.notes.send_me') %>
+    </a>
 
 </div>

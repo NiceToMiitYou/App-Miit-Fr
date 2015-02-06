@@ -43,7 +43,7 @@
             },
 
             "user": {
-                "welcome": "Bienvenue pour votre premiere experience ITEvents",
+                "welcome": "Bienvenue pour votre premiere experience Miit",
                 "choice": "Choisissez le type de compte que vous souhaitez utiliser sur la plateforme",
                 "informations": "Informations",
                 "classic": "Classique",
@@ -85,7 +85,7 @@
             "title": "Notes",
             "actions": "Actions",
             "new_note": "Créer une note",
-            "send_me": "Me l'envoyer par mail",
+            "send_me": "Me l'envoyer",
             "notes": "Liste des notes",
 
             "default_content": "Bienvenue sur votre bloc-note!\nVous pouvez dès à présent modifier ou créer des notes.\nSi vous souhaitez les recevoir dans votre boîte mail, appuyez sur le bouton \"Envoyer\".",
