@@ -8,6 +8,7 @@ Pace.on('hide', function() {
     scaleSlider();
     $('select').material_select();
     $("#multi, #multi-search").select2();
+    $('.modal-trigger').leanModal();
 });
 
 function scaleSliderBounce() {
@@ -21,7 +22,7 @@ function scaleSliderBounce() {
     var isLive = $(".page-container").hasClass('live');
 
     if(fullscreen) {
-        maxH = ($(window).height()- 55) / slideH;
+        maxH = ($(window).height()) / slideH;
         maxW = $(window).width() / slideW ;
 
     } else if( isMaster ) {

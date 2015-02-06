@@ -1,50 +1,38 @@
-<div ng-controller="AskQuestionModalController" class="modal show" id="userinfo-modal" ng-show="shared.wantToAskQuestion">
+<div ng-controller="AskQuestionModalController" class="modal askModal" style="display:block;" id="ask" ><!-- ng-show="shared.wantToAskQuestion" -->
     <form role="form">
-        <div class="modal-dialog">
-            <div class="modal-content">
 
-                <div class="modal-header">
+            <h4 id="myQuestionModalLabel">
+                <i class="mdi-communication-live-help m-r-10"></i> <%= __('viewer.modal.wall.title') %>
+            </h4>
+            <p class="m-b-30 m-l-55">Choisissez une catégorie et entrez la question que vous souhaitez poser au maitre de conférence.</p>
 
-                    <i class="mdi-communication-live-help"></i>
-
-                    <h4 id="myQuestionModalLabel" class="semi-bold">
-                        <%= __('viewer.modal.wall.title') %>
-                    </h4>
-                </div>
-
-                <div class="modal-body ask-question" style="padding:10px;">
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <select id="multi"
-                                    style="width:100%"
-                                    placeholder="<%= __('viewer.modal.wall.select_category') %>" multiple>
-                                <option ng-repeat="tag in shared.tags"
-                                        value="{{ ::tag.id }}">{{ ::tag.name }}</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <textarea ng-model="text" placeholder="<%= __('viewer.modal.wall.your_question') %>" ></textarea>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" ng-click="post();" class="btn btn-primary">
-                        <%= __('viewer.modal.wall.submit') %>
-                    </button>
-
-                    <button type="button" ng-click="shared.wantToAskQuestion = false" class="btn btn-danger">
-                        <%= __('viewer.modal.wall.cancel') %>
-                    </button>
+            <div class="row m-b-40">
+                <div class="col-md-12 input-field">
+                     <i class="mdi-image-style prefix"></i>
+                    <select id="multi"
+                            placeholder="<%= __('viewer.modal.wall.select_category') %>" multiple>
+                        <option ng-repeat="tag in shared.tags"
+                                value="{{ ::tag.id }}">{{ ::tag.name }}</option>
+                    </select>
                 </div>
             </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-        <div class="modal-backdrop fade in"></div>
+
+            <div class="row m-b-40">
+                <div class="col-md-12 input-field">
+                    <i class="mdi-editor-mode-edit prefix"></i>
+                            <textarea ng-model="text" id="icon_prefix2" class="materialize-textarea"></textarea>
+                            <label for="icon_prefix2"><%= __('viewer.modal.wall.your_question') %></label>
+                </div>
+            </div>
+            <div class="pull-right">
+                <button type="button" ng-click="post();" class="btn btn-primary">
+                    <%= __('viewer.modal.wall.submit') %>
+                </button>
+
+                <button type="button" ng-click="shared.wantToAskQuestion = false" class="btn btn-danger">
+                    <%= __('viewer.modal.wall.cancel') %>
+                </button>
+            </div>
+           
     </form>
 </div>
