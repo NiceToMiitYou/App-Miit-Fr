@@ -39,14 +39,6 @@ MiitApp.controller(
                 }
             }
 
-            function autoScroll() {
-                var scrollT = document.getElementById("chat-scroll").scrollTop;
-                var scrollH = document.getElementById("messages-wrapper").offsetHeight;
-                if(scrollT == scrollH) {
-                    document.getElementById("chat-scroll").scrollTop = scrollH;
-                }
-            }
-
             function post() {
 
                 if( $scope.text ) {
@@ -96,6 +88,14 @@ MiitApp.controller(
                 }
             };
 
+            var autoScroll = _.debounce(function() {
+
+                // Scroll Down
+                var chatArea = document.getElementById("chat-area");
+                chatArea.scrollTop = chatArea.scrollHeight;
+
+            }, 175);
+
             ITStorage.db.options.bind( 'data.isLoaded', true, loadChatrooms );
 
             // Retrieve new message
@@ -135,7 +135,7 @@ MiitApp.controller(
                             delete $scope.chatrooms[chatroomId].messages[min];
                         }
 
-                        //autoScroll()
+                        autoScroll();
                     }
                 });
             });

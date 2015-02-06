@@ -10,7 +10,7 @@
         </div>
     </div>
 
-    <div class="chat-area" >
+    <div class="chat-area" id="chat-area" >
         <div class="chat-window-wrapper" id="messages-wrapper">
             <div class="chat-messages">
 
@@ -25,7 +25,6 @@
                         </div>
                     </div>                  
                     <div class="clearfix"></div>
-                    <div class="sent_time off"></div>
                 </div>
 
                 <div ng-repeat="message in current.messages | toArray | orderBy:'+createdAt' track by message.id"
@@ -46,23 +45,24 @@
                         <div ng-class="{sender:message.user.id === user.id}" class="bubble">    
                             {{ ::message.message }}
                         </div>
-                    </div>                  
+                    </div>
                     <div class="clearfix"></div>
-                    <div class="sent_time off">{{ ::question.createdAt | date:'mediumTime'}}</div>
-                </div>     
+                </div>
 
+                <div class="clearfix" id="bottom-chatroom"></div>
             </div>
         </div>
-
-        <div class="chat-input">
-            <div class="input-field col s12">
-                <input id="message" ng-model="text" type="text" class="validate">
-                <label for="message">Message</label>
-            </div>
-        </div>
-
-        <button class="btn waves-effect waves-light send-chat" ng-click="post()" name="action">Submit
-            <i class="mdi-content-send right"></i>
-        </button>
     </div>
+
+    <div class="chat-input">
+        <div class="input-field col s12">
+            <input id="message" ng-model="text" type="text" class="validate">
+            <label for="message"><%= __('viewer.chat.message_placeholder') %></label>
+        </div>
+    </div>
+
+    <button class="btn waves-effect waves-light send-chat" ng-click="post()" name="action">
+        <%= __('viewer.chat.send') %>
+        <i class="mdi-content-send right"></i>
+    </button>
 </div>
