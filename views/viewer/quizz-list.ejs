@@ -9,23 +9,26 @@
             </div>
         </div>
     </div>
-    <ul class="table-list quizz">
-
-        <li ng-repeat="quizz in quizzes track by quizz.id"
+    <div class="row p-t-20">
+        <div class="card col m10 offset-m1" 
+            ng-repeat="quizz in quizzes track by quizz.id"
             ng-click="openInner( quizz )"
-            style="background-color: #EEE">
+            ng-class="{'answered' : quizz.answered === true}">
 
-            <a>
-                <i ng-class="{
-                    'dummy-ok'        : quizz.answered !== true,
-                    'dummy-not-ok'    : quizz.answered === true
+            <div class="card-image">
+               <i ng-class="{
+                    'mdi-toggle-check-box-outline-blank'        : quizz.answered !== true,
+                    'mdi-toggle-check-box'    : quizz.answered === true
                 }"></i>
-                <span class="title">{{ ::quizz.name }}</span>
-                <p class="desc">
-                    {{ ::quizz.description }}
-                </p>
-            </a>
-        </li>
+              <span class="card-title">{{ ::quizz.name }}</span>
+            </div>
+            <div class="card-content">
+              <p>{{ ::quizz.description }}</p>
+            </div>
+            <div class="card-action">
+              <a href="#">This is a link</a>
+            </div>
 
-    </ul>
+        </div>
+    </div>
 </div>

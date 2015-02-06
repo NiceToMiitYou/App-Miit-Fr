@@ -39,6 +39,14 @@ ITEventApp.controller(
                 }
             }
 
+            function autoScroll() {
+                var scrollT = document.getElementById("chat-scroll").scrollTop;
+                var scrollH = document.getElementById("messages-wrapper").offsetHeight;
+                if(scrollT == scrollH) {
+                    document.getElementById("chat-scroll").scrollTop = scrollH;
+                }
+            }
+
             function post() {
 
                 if( $scope.text ) {
@@ -48,7 +56,6 @@ ITEventApp.controller(
                         if(data.done) {
 
                             $timeout(function() {
-
                                 $scope.text = '';
                             });
 
@@ -127,6 +134,8 @@ ITEventApp.controller(
 
                             delete $scope.chatrooms[chatroomId].messages[min];
                         }
+
+                        //autoScroll()
                     }
                 });
             });

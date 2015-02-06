@@ -242,6 +242,17 @@ a {
 	box-shadow:         0px 0px 5px 0px rgba(150, 150, 150, 0.1);
 }
 
+#logout-modal {
+	width: 540px;
+}
+
+#logout-modal .card-content .card-title {
+	font-size: 22px;
+}
+
+#logout-modal.card a {
+	color: #FFF;
+}
 /* --- LIVE --- */
 
 .live-header {
@@ -432,7 +443,7 @@ a {
 	padding-left: 15px;
 }
 
-.input-field label.active {
+.chat-input .input-field label.active {
 	background-color: #ECEFF1; 
 	padding: 5px 25px;
 	left: 0;
@@ -488,6 +499,11 @@ a {
 	border: 0;
 }
 
+.send-note {
+	position: absolute;
+	top: 12px;
+	right: 80px;
+}
 
 .page-loader {
 	position: absolute;
@@ -926,12 +942,39 @@ a {
 	opacity: .9;
 }
 
+#userinfo-modal {
+/*	display: block;
+	opacity: 1;
+	top: 20px;*/
+	max-height: 600px;
+	padding: 0;
+}
+
+#userinfo-modal .modal-header {
+	padding: 25px;
+	text-align: left;
+}
+
+#userinfo-modal .row {
+	margin-bottom: 0;
+}
+
+#userinfo-modal .modal-header h4 {
+	font-size: 22px;
+	line-height: 25px;
+}
+
 #userinfo-modal .panel.selected .panel-heading{
 	background: #099a8c;
 }
 
 #userinfo-modal .panel .panel-body {
 	padding-top: 5px;
+}
+
+#userinfo-modal label[for=checkbox-anonyme], #userinfo-modal label[for=checkbox-pseudo] {
+	font-size: 14px;
+	color: #5A5A5A;
 }
 
 #userinfo-modal .panel.selected h4 a, #userinfo-modal .panel.selected h4 a:after, 
@@ -949,6 +992,10 @@ a {
 
 #userinfo-modal ul {
 	list-style: none;
+	margin: 0;
+	box-shadow: none;
+	border-left: 0;
+	border-right: 0;
 }
 
 #userinfo-modal .panel h4 {
@@ -1110,6 +1157,26 @@ ul.messenger.messenger-fixed.messenger-on-top, ul.messenger.messenger-fixed.mess
 	width: 56px;
 	border-radius: 0;
 	margin-right: 15px;
+}
+
+.quizz-content .card {
+	padding: 0;
+}
+
+.quizz-content .card .card-image {
+	background-color: #26a69a;
+	height: 100px;
+}
+
+.quizz-content .card.open .card-image {
+	background-color: rgb(22, 107, 162);
+}
+
+.quizz-content .card .card-image i {
+	float: right;
+	font-size: 2.6em;
+	color: #FFF;
+	margin-right: 8px;
 }
 
 /**************** V2 *****************/

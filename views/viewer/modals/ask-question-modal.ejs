@@ -1,4 +1,4 @@
-<div ng-controller="AskQuestionModalController" class="modal askModal" style="display:block;" id="ask" ><!-- ng-show="shared.wantToAskQuestion" -->
+<div ng-controller="AskQuestionModalController" class="modal askModal" style="display:block;" id="ask">
     <form role="form">
 
             <h4 id="myQuestionModalLabel">
@@ -25,11 +25,11 @@
                 </div>
             </div>
             <div class="pull-right">
-                <button type="button" ng-click="post();" class="btn btn-primary">
+                <button type="button" ng-click="post();" class="btn btn-primary modal-action modal-close">
                     <%= __('viewer.modal.wall.submit') %>
                 </button>
 
-                <button type="button" ng-click="shared.wantToAskQuestion = false" class="btn btn-danger">
+                <button type="button" ng-click="shared.wantToAskQuestion = false" class="btn btn-danger modal-action modal-close">
                     <%= __('viewer.modal.wall.cancel') %>
                 </button>
             </div>

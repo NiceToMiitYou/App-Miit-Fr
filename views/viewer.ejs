@@ -52,7 +52,7 @@
                 </a>
             </li>
             <li>
-                <a ng-click="logout();">
+                <a href="#logout-modal" class="modal-trigger">
                     <span class="icon">
                         <i class="avatar" ng-class="getAvatar()"></i>
                     </span>
@@ -86,6 +86,55 @@
     <% include viewer/modals/ask-question-modal %>
 
     <% include viewer/modals/user-modal %>
+
+    <!-- Modal Structure -->
+    <div id="logout-modal" class="modal card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">Êtes-vous sûr de vouloir vous déconnecter ?</span>
+        </div>
+        <div class="card-action">
+          <div class="pull-right">
+            <a href="#logout-modal2" class="btn modal-trigger">Oui NOTRAD</a>
+            <a href='#' class="btn red modal-action modal-close">Non NOTRAD</a>
+          </div>
+        </div>
+    </div>
+
+    <div id="logout-modal2" class="modal card blue-grey darken-1" style="width:550px;">
+        <div class="card-content white-text">
+          <span class="card-title">Certain ?</span>
+        </div>
+        <div class="card-action">
+          <div class="pull-right">
+            <a href="#logout-modal3" class="btn modal-trigger">Oui NOTRAD</a>
+            <a href='#' class="btn red modal-action modal-close">Non NOTRAD</a>
+          </div>
+        </div>
+    </div>
+
+    <div id="logout-modal3" class="modal card blue-grey darken-1" style="width:550px;">
+        <div class="card-content white-text">
+          <span class="card-title">Karim ? Pascal ? Vous voulez vraiment partir ?</span>
+        </div>
+        <div class="card-action">
+          <div class="pull-right">
+            <a href="#logout-modal4" class="btn modal-trigger">Oui NOTRAD</a>
+            <a href='#' class="btn red modal-action modal-close">Non NOTRAD</a>
+          </div>
+        </div>
+    </div>
+
+    <div id="logout-modal4" class="modal card blue-grey darken-1" style="width:550px;">
+        <div class="card-content white-text">
+          <span class="card-title">Last chance ?</span>
+        </div>
+        <div class="card-action">
+          <div class="pull-right">
+            <a href="#" ng-click="logout()" class="btn">Oui NOTRAD</a>
+            <a href='#' class="btn red modal-action modal-close">Non NOTRAD</a>
+          </div>
+        </div>
+    </div>
     
 </div>
 <!-- END CONTENT --> 
