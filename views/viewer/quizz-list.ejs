@@ -4,29 +4,39 @@
         <div class="navbar-inner">
             <div class="header-quick-nav">
                 <div class="pull-left">
-                    <h3><i class="mdi-content-content-paste"></i> <%= __('viewer.quizz-list.title') %></h3>
+                    <h3>
+                        <i class="mdi-content-content-paste"></i> <%= __('viewer.quizz-list.title') %>
+                    </h3>
                 </div>
             </div>
         </div>
     </div>
+
     <div class="row p-t-20">
         <div class="card col m10 offset-m1" 
-            ng-repeat="quizz in quizzes track by quizz.id"
-            ng-click="openInner( quizz )"
-            ng-class="{'answered' : quizz.answered === true}">
+             ng-repeat="quizz in quizzes track by quizz.id"
+             ng-class="{ 'answered' : quizz.answered === true} ">
 
-            <div class="card-image">
+            <div class="card-image"
+                 ng-class="{ 'blue' : quizz.answered === true }">
                <i ng-class="{
-                    'mdi-toggle-check-box-outline-blank'        : quizz.answered !== true,
-                    'mdi-toggle-check-box'    : quizz.answered === true
+                    'mdi-toggle-check-box-outline-blank' : quizz.answered !== true,
+                    'mdi-toggle-check-box'               : quizz.answered === true
                 }"></i>
-              <span class="card-title">{{ ::quizz.name }}</span>
+                <span class="card-title">{{ ::quizz.name }}</span>
             </div>
+            
             <div class="card-content">
-              <p>{{ ::quizz.description }}</p>
+                <p>
+                    {{ ::quizz.description }}
+                </p>
             </div>
-            <div class="card-action">
-              <a href="#">This is a link</a>
+
+            <div class="card-action"
+                 ng-show="quizz.answered !== true">
+                <a href="#"
+                   class="green-text"
+                   ng-click="openInner( quizz )"><%= __('viewer.quizz-list.answer') %></a>
             </div>
 
         </div>

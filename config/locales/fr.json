@@ -107,7 +107,8 @@
         },
 
         "quizz-list": {
-            "title": "Questionnaire"
+            "title": "Questionnaire",
+            "answer": "Répondre à ce questionnaire"
         },
 
         "resources-list": {
