@@ -33,6 +33,12 @@
             "quizz": "Questionnaires"
         },
 
+        "logout": {
+            "sure": "Etes-vous sûr de vouloir vous déconnecter ?",
+            "yes": "Oui",
+            "no": "Non"
+        },
+
         "modal": {
             "wall": {
                 "title": "Poser une question",
