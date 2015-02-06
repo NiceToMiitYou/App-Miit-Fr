@@ -23,6 +23,7 @@
         "title": "Miit - Présentation",
 
         "menu": {
+            "disconnect": "Déconnexion",
             "fullscreen": "Plein écran",
             "resources": "Ressources",
             "wall": "Mur",
