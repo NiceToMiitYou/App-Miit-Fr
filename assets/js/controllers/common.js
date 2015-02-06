@@ -178,6 +178,15 @@ ITEventApp.controller(
                 window.scaleSlider();
             }
 
+            function showcontrols() {
+                if(!$scope.showcontrol) {
+                    $scope.showcontrol = true;
+                    $timeout(function() {
+                        $scope.showcontrol = false;
+                    }, 4000);
+                }
+            }
+
             function handlerMenu() {
 
                 if($scope.isfullscreen) {
@@ -239,6 +248,10 @@ ITEventApp.controller(
             $scope.askForUserIfNotExist = askForUserIfNotExist;
 
             $scope.fullscreen = fullscreen;
+
+            $scope.showcontrol = false;
+
+            $scope.showcontrols = showcontrols;
 
             $scope.isfullscreen = true;
 

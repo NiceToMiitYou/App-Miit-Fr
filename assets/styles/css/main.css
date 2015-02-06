@@ -366,6 +366,17 @@ a {
 	bottom: -100px; 
 }
 
+.fullscreen.showcontrol .footer-widget {
+	bottom: 0;
+}
+
+.fullscreen .footer-widget {
+	-webkit-transition: all .5s ease;
+	-moz-transition: all .5s ease;
+	transition: all .5s ease;
+	bottom: -50px;
+}
+
 .live-thumb {
 	background-color: #37474f;
 	padding: 10px;
