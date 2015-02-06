@@ -11,15 +11,17 @@
     </div>
     
     <div class="timeline-search">
-            <select ng-model="filter" style="width:100%">
-                <option value="" selected="selected"><%= __('viewer.wall.categories') %></option>
-                <option ng-repeat="tag in shared.tags track by tag.id" value="{{ ::tag.id }}">{{ ::tag.name }}</option>
-            </select>
+        <select ng-model="filter" style="width:100%">
+            <option value="" selected="selected"><%= __('viewer.wall.categories') %></option>
+            <option ng-repeat="tag in shared.tags track by tag.id" value="{{ ::tag.id }}">
+                {{ ::tag.name }}
+            </option>
+        </select>
     </div>
 
     <div class="col-md-12 timeline">
         <ul class="cbp_tmtimeline">
-             <li class="animate-repeat" ng-show="!hideFirst && count( questions ) < 4">
+            <li class="animate-repeat" ng-show="!hideFirst && count( questions ) < 4">
                 <div class="cbp_tmicon user-profile">
                     <img src="/images/profiles/icon.png" alt="<%= __('app_name') %>" width="60" height="60">
                 </div>
@@ -44,7 +46,16 @@
                 </div>
             </li>
             
-            <li class="animate-repeat" ng-repeat="question in questions | toArray | orderBy:'-createdAt' | filter:{tags : filter} track by question.id">
+            <li class="animate-repeat"
+                ng-repeat="question in questions | toArray | orderBy:'-createdAt' | filter:{tags : filter}:!!filter track by question.id">
+                <% /*
+                    explenation of '!!filter'
+                    if filter empty, !filter === true, so !!filter === false,
+                        and when not empty !!filter === true
+
+                    then when empty, no strict mode (to display all result)
+                    and when not empty, activate strict mode (then 1 match with 1 and not 1, 10, 11, 12, ...)
+                */ %>
                 
                 <div class="cbp_tmicon avatar" ng-class="getAvatar(question.user)"></div>
 
