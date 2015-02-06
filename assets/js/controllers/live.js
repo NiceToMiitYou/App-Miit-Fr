@@ -1,6 +1,6 @@
 "use strict";
 
-ITEventApp.controller(
+MiitApp.controller(
     'LiveController', [ '$scope', '$timeout',
         function( $scope, $timeout ) {
 

@@ -1,6 +1,6 @@
 "use strict";
 
-ITEventApp.controller(
+MiitApp.controller(
     'CommonController', [ '$scope', '$timeout', '$sce',
         function( $scope, $timeout, $sce ) {
 

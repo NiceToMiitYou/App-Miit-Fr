@@ -1,12 +1,12 @@
 "use strict";
 
-window.ITEventApp = angular.module( 'ITEventApp', ['ngTouch', 'ngAnimate'] );
+window.MiitApp = angular.module( 'MiitApp', ['ngTouch', 'ngAnimate'] );
 
 /*
  * Use it as "| toArray " in ng-repeat
  */
 
-ITEventApp.filter('toArray', function() {
+MiitApp.filter('toArray', function() {
     return function(input) {
         
         var out = []; 
@@ -24,7 +24,7 @@ ITEventApp.filter('toArray', function() {
  * Use it as it-blur="(condition === true) to blur a field, like ng-show=""
  */
 
-ITEventApp.directive('itBlur', [ '$timeout', function($timeout) {
+MiitApp.directive('itBlur', [ '$timeout', function($timeout) {
     return {
         link: function(scope, element, attrs) {
 
@@ -46,7 +46,7 @@ ITEventApp.directive('itBlur', [ '$timeout', function($timeout) {
  * Use it as it-focus="(condition === true) to focus a field, like ng-show=""
  */
 
-ITEventApp.directive('itFocus', [ '$timeout', function($timeout) {
+MiitApp.directive('itFocus', [ '$timeout', function($timeout) {
     return {
         link: function(scope, element, attrs) {
 
@@ -65,7 +65,11 @@ ITEventApp.directive('itFocus', [ '$timeout', function($timeout) {
 } ] );
 
 
-ITEventApp.animation('.slide-animation', function () {
+/*
+ * Use it to display animation on slides
+ */
+
+MiitApp.animation('.slide-animation', function () {
     return {
         addClass: function (element, className, done) {
             var scope = element.scope();

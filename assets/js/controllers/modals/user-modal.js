@@ -1,6 +1,6 @@
 "use strict";
 
-ITEventApp.controller(
+MiitApp.controller(
     'UserModalController', [ '$scope', '$timeout',
         function( $scope, $timeout ) {
 

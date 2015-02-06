@@ -1,6 +1,6 @@
 "use strict";
 
-ITEventApp.controller(
+MiitApp.controller(
     'WallController', [ '$scope', '$timeout',
         function( $scope, $timeout ) {
 

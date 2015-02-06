@@ -1,6 +1,6 @@
 "use strict";
 
-ITEventApp.controller(
+MiitApp.controller(
     'ResourcesController', [ '$scope', '$timeout',
         function( $scope, $timeout ) {
 
