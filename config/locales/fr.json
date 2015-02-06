@@ -23,8 +23,6 @@
         "title": "Miit - Présentation",
 
         "menu": {
-            "online": "En ligne",
-            "disconnect": "Déconnexion",
             "fullscreen": "Plein écran",
             "resources": "Ressources",
             "wall": "Mur",
@@ -42,6 +40,7 @@
         "modal": {
             "wall": {
                 "title": "Poser une question",
+                "description": "Choisissez une catégorie et entrez la question que vous souhaitez poser au maitre de conférence.",
                 "select_category": "Sélectionnez une catégorie",
                 "your_question": "Votre question",
                 "submit": "Poser la question",

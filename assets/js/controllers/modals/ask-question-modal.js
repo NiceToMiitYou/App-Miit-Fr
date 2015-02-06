@@ -20,6 +20,8 @@ MiitApp.controller(
 
                                 $( '#multi' ).select2('val', '');
 
+                                $( '#ask' ).closeModal();
+
                                 $scope.toast({
                                     message: ItNotifications.modal.question.post.success,
                                     type: 'info'

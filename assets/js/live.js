@@ -8,7 +8,9 @@ Pace.on('hide', function() {
     scaleSlider();
     $('select').material_select();
     $("#multi, #multi-search").select2();
-    $('.modal-trigger').leanModal();
+    $('.modal-trigger').leanModal({
+      dismissible: false
+    });
     $('.collapsible').collapsible();
 });
 
