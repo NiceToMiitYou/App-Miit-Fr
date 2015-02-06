@@ -179,8 +179,11 @@ ITEventApp.controller(
             }
 
             function showcontrols() {
-                if(!$scope.showcontrol) {
+
+                if( $scope.isfullscreen && !$scope.showcontrol ) {
+                    
                     $scope.showcontrol = true;
+
                     $timeout(function() {
                         $scope.showcontrol = false;
                     }, 4000);
