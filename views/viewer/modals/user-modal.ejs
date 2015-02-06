@@ -12,50 +12,177 @@
                 </div>
 
                 <ul class="collapsible" data-collapsible="accordion">
-                      <li>
-                            <div class="collapsible-header"  ng-click="resetToClassic()"><i class="mdi-action-face-unlock"></i><%= __('viewer.modal.user.classic') %></div>
-                            <div class="collapsible-body">
+                    <li>
+                        <div class="collapsible-header"  ng-click="resetToClassic()"><i class="mdi-action-face-unlock"></i><%= __('viewer.modal.user.classic') %></div>
+                        <div class="collapsible-body">
+                            <div class="row">
+                                <div class="col s12">
+                                    <h6><%= __('viewer.modal.user.informations') %></h6>
+                                    
+                                    <div class="input-field col s6">
+                                        <input ng-model="user.lastname" id="lastname" type="text" class="validate">
+                                        <label for="lastname"><%= __('viewer.modal.user.lastname') %></label>
+                                     </div>
+                                     <div class="input-field col s6">
+                                        <input ng-model="user.firstname" id="firstname" type="text" class="validate">
+                                        <label for="firstname"><%= __('viewer.modal.user.firstname') %></label>
+                                     </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    <div class="input-field col s6">
+                                        <input ng-model="user.society" id="society" type="text" class="validate">
+                                        <label for="society"><%= __('viewer.modal.user.society') %></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row m-t-10">
+                                <div class="col-md-12"  ng-class="{'col s1':useUsername}">
+                                    <div class="p-l-20 p-r-10 m-b-30">
+                                        <input type="checkbox" 
+                                               ng-model="useUsername"
+                                               ng-change="useUsernameChanged()"
+                                               id="checkbox-pseudo" />
+                                        <label for="checkbox-pseudo" ng-show="!useUsername"><%= __('viewer.modal.user.username_label') %></label>
+                                    </div>
+                                </div>
+
+                                <div class="col s11" ng-show="useUsername">
+                                    <input type="text" placeholder="<%= __('viewer.modal.user.username_placeholder') %>" ng-model="user.username"/> 
+                                </div>
+                                
+                            </div>
+                            <div class="row m-t-10">
+                                <div class="col s12">
+                                    <h6><%= __('viewer.modal.user.avatar') %></h6>
+                                    <div class="avatar-choice">
+                                        <a class="avatar"
+                                           ng-class="getAvatar()"
+                                           ng-click="changeAvatar=true"></a>
+                                        <ul class="avatar-choice-list" 
+                                            ng-show="changeAvatar" 
+                                            ng-click="changeAvatar=false">
+
+                                        <%
+                                        var avatars = {
+                                            gender: [ 'm', 'f'],
+                                            type: [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+                                        };
+
+                                        for(var i = 0; i < avatars.gender.length; i++) {
+                                            for(var j = 0; j < avatars.type.length; j++) {
+                                                var avatar = avatars.gender[i] + avatars.type[j]
+                                        %>
+                                            <li>
+                                                <a ng-click="user.avatar.a='<%= avatar %>'"
+                                                   class="avatar avatar-<%= avatar %>"></a>
+                                            </li>
+                                        <%
+                                            }
+                                        }
+                                        %>
+                                        </ul>
+                                    </div>
+                                    <ul class="color-choice">
+                                    <% 
+                                    var colors = ['red', 'purple', 'blue', 'green', 'black',
+                                                  'dark-blue', 'light-blue', 'light-red', 'grey'];
+
+                                    for(var i = 0; i < colors.length; i++) {
+                                        var color = colors[i];
+                                    %>
+                                        <li ng-class="{selected:user.avatar.c=='<%= color %>'}"
+                                            ng-click="user.avatar.c='<%= color %>'"
+                                            class="tiles <%= color %>"></li>
+                                    <%
+                                    }
+                                    %>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header"  ng-click="generateAnonym()"><i class="mdi-action-account-circle"></i><%= __('viewer.modal.user.anonym') %></div>
+                        <div class="collapsible-body p-l-10 p-r-10">
+                            <div class="row m-t-10">
+                                <div class="input-field col s6">
+                                    <input ng-model="user.username" id="ano-username" type="text" class="validate valid">
+                                    <label class="active" for="ano-username"><%= __('viewer.modal.user.username') %></label>
+                                 </div>
+                            </div>
+                            <div class="p-l-20 p-r-10 m-b-30">
+                                <input type="checkbox" id="checkbox-anonyme" ng-model="agreeAnonyme" />
+                                <label for="checkbox-anonyme"><%= __('viewer.modal.user.anonym_cgu') %></label>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="panel-group hide" id="accordion" data-toggle="collapse" style="margin-bottom:0;">
+
+                    <div class="panel panel-default" ng-class="{selected : accountType === 0}">
+                        <div class="panel-heading collapsed">
+                            <h4 class="panel-title">
+                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" ng-click="resetToClassic()">
+                                    <%= __('viewer.modal.user.classic') %>
+                                </a>
+                            </h4>
+                        </div>
+
+                        <div id="collapseOne" class="panel-collapse collapse" style="height: 0px;">
+                            <div class="panel-body">
                                 <div class="row">
-                                    <div class="col s12">
-                                        <h6><%= __('viewer.modal.user.informations') %></h6>
-                                        
-                                        <div class="input-field col s6">
-                                                <input ng-model="user.lastname" id="lastname" type="text" class="validate">
-                                                <label for="lastname"><%= __('viewer.modal.user.lastname') %></label>
-                                         </div>
-                                         <div class="input-field col s6">
-                                                <input ng-model="user.firstname" id="firstname" type="text" class="validate">
-                                                <label for="firstname"><%= __('viewer.modal.user.firstname') %></label>
-                                         </div>
+                                    <div class="col-md-12">
+                                        <h4 class="semi-bold"><%= __('viewer.modal.user.informations') %></h4>
+                                        <div class="col-md-6">
+                                            <label><%= __('viewer.modal.user.lastname') %></label>
+                                            <input type="text"
+                                                   placeholder="<%= __('viewer.modal.user.lastname_placeholder') %>"
+                                                   ng-model="user.lastname"/>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label><%= __('viewer.modal.user.firstname') %></label>
+                                            <input type="text"
+                                                    placeholder="<%= __('viewer.modal.user.firstname_placeholder') %>"
+                                                    ng-model="user.firstname"/>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col s12">
-                                         <div class="input-field col s6">
-                                                <input ng-model="user.society" id="society" type="text" class="validate">
-                                                <label for="society"><%= __('viewer.modal.user.society') %></label>
-                                         </div>
+                                    <div class="col-md-12">
+                                        <div class="col-md-12 m-t-5">
+                                            <label><%= __('viewer.modal.user.society') %></label>
+                                            <input type="text"
+                                                    placeholder="<%= __('viewer.modal.user.society_placeholder') %>"
+                                                    ng-model="user.society" />
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row m-t-10">
-                                    <div class="col-md-12"  ng-class="{'col s1':useUsername}">
-                                        <div class="p-l-20 p-r-10 m-b-30">
-                                            <input type="checkbox" 
-                                                   ng-model="useUsername"
+                                    <div class="col-md-12">
+                                        <div class="checkbox check-primary" ng-class="{'col-md-1':useUsername}">
+                                            <input ng-model="useUsername"
                                                    ng-change="useUsernameChanged()"
-                                                   id="checkbox-pseudo" />
-                                            <label for="checkbox-pseudo" ng-show="!useUsername"><%= __('viewer.modal.user.username_label') %></label>
-                                        </div>
-                                    </div>
+                                                   id="checkbox-pseudo" type="checkbox" value="1">
 
-                                        <div class="col s11" ng-show="useUsername">
+                                            <label for="checkbox-pseudo">
+                                                <span ng-show="!useUsername">
+                                                    <%= __('viewer.modal.user.username_label') %>
+                                                </span>
+                                            </label>
+                                        </div>
+
+                                        <div class="col-md-11" ng-show="useUsername">
                                             <input type="text" placeholder="<%= __('viewer.modal.user.username_placeholder') %>" ng-model="user.username"/> 
                                         </div>
+                                    </div>
                                     
                                 </div>
                                 <div class="row m-t-10">
-                                    <div class="col s12">
-                                        <h6><%= __('viewer.modal.user.avatar') %></h6>
+                                    <div class="col-md-12">
+                                        <h4 class="semi-bold"><%= __('viewer.modal.user.avatar') %></h4>
                                         <div class="avatar-choice">
                                             <a class="avatar"
                                                ng-class="getAvatar()"
@@ -102,170 +229,43 @@
                                     </div>
                                 </div>
                             </div>
-                      </li>
-                      <li>
-                            <div class="collapsible-header"  ng-click="generateAnonym()"><i class="mdi-action-account-circle"></i><%= __('viewer.modal.user.anonym') %></div>
-                            <div class="collapsible-body p-l-10 p-r-10">
-                                <div class="row m-t-10">
-                                    <div class="input-field col s6">
-                                            <input ng-model="user.username" id="ano-username" type="text" class="validate valid">
-                                            <label class="active" for="ano-username"><%= __('viewer.modal.user.username') %></label>
-                                     </div>
-                                </div>
-                                <div class="p-l-20 p-r-10 m-b-30">
-                                    <input type="checkbox" id="checkbox-anonyme" ng-model="agreeAnonyme" />
-                                    <label for="checkbox-anonyme"><%= __('viewer.modal.user.anonym_cgu') %></label>
-                                </div>
-                            </div>
-                      </li>
-                </ul>
-
-                    <div class="panel-group hide" id="accordion" data-toggle="collapse" style="margin-bottom:0;">
-
-                        <div class="panel panel-default" ng-class="{selected : accountType === 0}">
-                            <div class="panel-heading collapsed">
-                                <h4 class="panel-title">
-                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" ng-click="resetToClassic()">
-                                        <%= __('viewer.modal.user.classic') %>
-                                    </a>
-                                </h4>
-                            </div>
-
-                            <div id="collapseOne" class="panel-collapse collapse" style="height: 0px;">
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <h4 class="semi-bold"><%= __('viewer.modal.user.informations') %></h4>
-                                            <div class="col-md-6">
-                                                <label><%= __('viewer.modal.user.lastname') %></label>
-                                                <input type="text"
-                                                       placeholder="<%= __('viewer.modal.user.lastname_placeholder') %>"
-                                                       ng-model="user.lastname"/>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label><%= __('viewer.modal.user.firstname') %></label>
-                                                <input type="text"
-                                                        placeholder="<%= __('viewer.modal.user.firstname_placeholder') %>"
-                                                        ng-model="user.firstname"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="col-md-12 m-t-5">
-                                                <label><%= __('viewer.modal.user.society') %></label>
-                                                <input type="text"
-                                                        placeholder="<%= __('viewer.modal.user.society_placeholder') %>"
-                                                        ng-model="user.society" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row m-t-10">
-                                        <div class="col-md-12">
-                                            <div class="checkbox check-primary" ng-class="{'col-md-1':useUsername}">
-                                                <input ng-model="useUsername"
-                                                       ng-change="useUsernameChanged()"
-                                                       id="checkbox-pseudo" type="checkbox" value="1">
-
-                                                <label for="checkbox-pseudo">
-                                                    <span ng-show="!useUsername">
-                                                        <%= __('viewer.modal.user.username_label') %>
-                                                    </span>
-                                                </label>
-                                            </div>
-
-                                            <div class="col-md-11" ng-show="useUsername">
-                                                <input type="text" placeholder="<%= __('viewer.modal.user.username_placeholder') %>" ng-model="user.username"/> 
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                    <div class="row m-t-10">
-                                        <div class="col-md-12">
-                                            <h4 class="semi-bold"><%= __('viewer.modal.user.avatar') %></h4>
-                                            <div class="avatar-choice">
-                                                <a class="avatar"
-                                                   ng-class="getAvatar()"
-                                                   ng-click="changeAvatar=true"></a>
-                                                <ul class="avatar-choice-list" 
-                                                    ng-show="changeAvatar" 
-                                                    ng-click="changeAvatar=false">
-
-                                                <%
-                                                var avatars = {
-                                                    gender: [ 'm', 'f'],
-                                                    type: [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
-                                                };
-
-                                                for(var i = 0; i < avatars.gender.length; i++) {
-                                                    for(var j = 0; j < avatars.type.length; j++) {
-                                                        var avatar = avatars.gender[i] + avatars.type[j]
-                                                %>
-                                                    <li>
-                                                        <a ng-click="user.avatar.a='<%= avatar %>'"
-                                                           class="avatar avatar-<%= avatar %>"></a>
-                                                    </li>
-                                                <%
-                                                    }
-                                                }
-                                                %>
-                                                </ul>
-                                            </div>
-                                            <ul class="color-choice">
-                                            <% 
-                                            var colors = ['red', 'purple', 'blue', 'green', 'black',
-                                                          'dark-blue', 'light-blue', 'light-red', 'grey'];
-
-                                            for(var i = 0; i < colors.length; i++) {
-                                                var color = colors[i];
-                                            %>
-                                                <li ng-class="{selected:user.avatar.c=='<%= color %>'}"
-                                                    ng-click="user.avatar.c='<%= color %>'"
-                                                    class="tiles <%= color %>"></li>
-                                            <%
-                                            }
-                                            %>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
-                        <div class="panel panel-default" ng-class="{selected : accountType === 1}">
-                            <div class="panel-heading collapsed">
-                                <h4 class="panel-title">
-                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" ng-click="generateAnonym()">
-                                        <%= __('viewer.modal.user.anonym') %>
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="collapseThree" class="panel-collapse collapse" style="height: 0px;">
-                                <div class="panel-body">
-                                    <div class="row m-t-10">
-                                        <div class="col-md-3">
-                                            <label style="line-height: 34px;"><%= __('viewer.modal.user.username') %></label>
-                                        </div>
-                                        <div class="col-md-9">
-                                            <input type="text"
-                                                   placeholder="<%= __('viewer.modal.user.username_placeholder') %>"
-                                                   ng-model="user.username" />
-                                        </div>
+                    </div>
+                    <div class="panel panel-default" ng-class="{selected : accountType === 1}">
+                        <div class="panel-heading collapsed">
+                            <h4 class="panel-title">
+                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" ng-click="generateAnonym()">
+                                    <%= __('viewer.modal.user.anonym') %>
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse" style="height: 0px;">
+                            <div class="panel-body">
+                                <div class="row m-t-10">
+                                    <div class="col-md-3">
+                                        <label style="line-height: 34px;"><%= __('viewer.modal.user.username') %></label>
                                     </div>
-                                    <div class="col-md-12 text-center m-t-20">
-                                        <div class="checkbox check-primary">
-                                            <input id="checkbox-anonyme" type="checkbox" ng-model="agreeAnonyme" value="1">
-                                            <label for="checkbox-anonyme">
-                                                <%= __('viewer.modal.user.anonym_cgu') %>
-                                            </label>
-                                        </div>
+                                    <div class="col-md-9">
+                                        <input type="text"
+                                               placeholder="<%= __('viewer.modal.user.username_placeholder') %>"
+                                               ng-model="user.username" />
+                                    </div>
+                                </div>
+                                <div class="col-md-12 text-center m-t-20">
+                                    <div class="checkbox check-primary">
+                                        <input id="checkbox-anonyme" type="checkbox" ng-model="agreeAnonyme" value="1">
+                                        <label for="checkbox-anonyme">
+                                            <%= __('viewer.modal.user.anonym_cgu') %>
+                                        </label>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <button type="button" ng-click="saveUser();" class="btn btn-primary pull-right m-r-10 m-t-10">
-                        <%= __('viewer.modal.user.save') %>
-                    </button>
+                </div>
+                <button type="button" ng-click="saveUser();" class="btn btn-primary pull-right m-r-10 m-t-10">
+                    <%= __('viewer.modal.user.save') %>
+                </button>
             </div>
             <!-- /.modal-content -->
         </div>
