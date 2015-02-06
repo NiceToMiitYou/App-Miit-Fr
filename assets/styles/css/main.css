@@ -1570,7 +1570,9 @@ div#menu li:nth-child(6n+6) {
 	opacity: 0;
 }
 
-.quicklinks > .dropdown-toggle >  .dropdown-menu { margin-right: 10px; }
+.quicklinks > .dropdown-toggle >  .dropdown-menu { 
+	margin-right: 10px;
+}
 
 .ressources-content .resources-categories {
 	display: block;
