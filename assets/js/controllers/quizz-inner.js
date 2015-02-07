@@ -100,9 +100,13 @@ MiitApp.controller(
                     selected[question.id] = [];
 
                     // Find all selected
-                    _.chain( question.answers )
-                        .where( { 'selected' : true } )
-                        .forEach( function( answer ) {
+                    _.forEach(
+                        _.find(
+                            question.answers,
+                            {
+                                'selected' : true
+                            }
+                        ), function( answer ) {
 
                             // Question answered
                             isQuestionAnswered = true;

@@ -1169,13 +1169,24 @@ ul.messenger.messenger-fixed.messenger-on-top, ul.messenger.messenger-fixed.mess
 	margin-left: -25%;
 }
 
-.previous-quizz, .previous-ressource {
+.previous-quizz {
 	float: left;
-	line-height: 56px;
+	line-height: 60px;
 	padding:0;
 	width: 56px;
 	border-radius: 0;
-	margin-right: 15px;
+	height: 62px;
+	margin: 0;
+
+	color: #FFF;
+	background-color: #26a69a;
+	text-align: center;
+	letter-spacing: 0.5px;
+	cursor: pointer;
+}
+
+.previous-quizz i {
+	font-size: 2.8em;
 }
 
 .quizz-content .card {
@@ -1580,6 +1591,10 @@ div#menu li:nth-child(6n+6) {
 
 .quicklinks > .dropdown-toggle >  .dropdown-menu { 
 	margin-right: 10px;
+}
+
+.quizz-inner-content h3 {
+	font-size: 1.32rem;
 }
 
 .ressources-content .resources-categories {
