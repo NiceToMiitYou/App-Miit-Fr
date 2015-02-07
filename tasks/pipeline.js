@@ -47,6 +47,7 @@ var jsFilesToInject = [
   'vendor/angular-animate/angular-animate.js',
   'vendor/angular-sanitize/angular-sanitize.js',
   'vendor/angular-touch/angular-touch.js',
+  'vendor/angular-scroll-glue/src/scrollglue.js',
 
   // Async
   'vendor/async/lib/async.js',

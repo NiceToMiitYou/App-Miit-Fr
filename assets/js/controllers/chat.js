@@ -92,7 +92,9 @@ MiitApp.controller(
 
                 // Scroll Down
                 var chatArea = document.getElementById("chat-area");
-                chatArea.scrollTop = chatArea.scrollHeight;
+                if(chatArea.scrollHeight - chatArea.offsetHeight === chatArea.scrollTop) {
+                    chatArea.scrollTop = chatArea.scrollHeight;
+                }
 
             }, 175);
 
@@ -135,7 +137,7 @@ MiitApp.controller(
                             delete $scope.chatrooms[chatroomId].messages[min];
                         }
 
-                        autoScroll();
+                        //autoScroll();
                     }
                 });
             });

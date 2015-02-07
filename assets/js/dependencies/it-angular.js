@@ -1,6 +1,6 @@
 "use strict";
 
-window.MiitApp = angular.module( 'MiitApp', ['ngTouch', 'ngAnimate'] );
+window.MiitApp = angular.module( 'MiitApp', ['ngTouch', 'ngAnimate', 'luegg.directives'] );
 
 /*
  * Use it as "| toArray " in ng-repeat
