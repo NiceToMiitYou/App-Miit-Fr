@@ -1191,11 +1191,19 @@ ul.messenger.messenger-fixed.messenger-on-top, ul.messenger.messenger-fixed.mess
 
 .quizz-content .card {
 	padding: 0;
+	margin: 2%;
+	margin-right: 0;
+	width: 47%;
+	display: inline-table;
 }
 
 .quizz-content .card .card-image {
 	background-color: #26a69a;
-	height: 100px;
+	height: 68px;
+}
+
+.quizz-content .card .card-image .card-title {
+	font-size: 20px;
 }
 
 .quizz-content .card.open .card-image {
@@ -1327,9 +1335,6 @@ div#menu li:nth-child(6n+5) {
 div#menu li:nth-child(6n+6) {
 	background: rgb(21, 40, 54);
 }
-
-/* For screen bigger than 800px */
-@media (min-width: 50em) {
 
 
 	/* Transforms the list into a horizontal navigation */
@@ -1474,7 +1479,6 @@ div#menu li:nth-child(6n+6) {
 		transition: box-shadow .4s ease-in-out;
 	}
 		
-}
 
 @media (max-width: 1200px) {
 
@@ -1498,6 +1502,11 @@ div#menu li:nth-child(6n+6) {
 	div#menu a:active ,
 	div#menu a:focus {
 		height: 80px;
+	}
+
+	.quizz-content .card {
+		margin: 3%;
+		width: 94%;
 	}
 }
 
