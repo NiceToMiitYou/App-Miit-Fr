@@ -186,7 +186,7 @@ MiitApp.controller(
 
                     $timeout(function() {
                         $scope.showcontrol = false;
-                    }, 4000);
+                    }, 3000);
                 }
             }
 
