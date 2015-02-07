@@ -3,7 +3,7 @@
     <div class="header navbar navbar-inverse">
 
         <div class="navbar-inner">
-          <a class="btn btn-primary previous-quizz" ng-click="track('QUIZZ')"><i class="mdi-navigation-chevron-left"></i></a>
+            <a class="previous-quizz" ng-click="track('QUIZZ')"><i class="mdi-navigation-chevron-left"></i></a>
             <div class="header-quick-nav">
                 <div class="pull-left">
                     <h3><i class="mdi-content-content-paste"></i> {{ current.name }}</h3>
@@ -18,23 +18,18 @@
           &nbsp;&nbsp;<%= __('viewer.quizz-inner.already_answered') %>
     </div>
 
-    <p style="padding: 11px 17px 0 17px;">
-        
-    </p>
-
     <blockquote class="m-l-20 m-r-20">
         <p>{{ current.description }}</p>
     </blockquote>
 
-    <div>
+    <form>
 
-        <div ng-repeat="question in current.questions track by question.id" class="col-md-12">
+        <div ng-repeat="question in current.questions track by question.id" class="m-l-20 m-r-20">
             <h3>{{ ::question.question }}</h3>
 
-            <div ng-repeat="answer in question.answers track by answer.id" class="row-fluid">
+            <div ng-repeat="answer in question.answers track by answer.id">
 
-                <div ng-if="question.type === 1"
-                     class="radio check-default">
+                <div ng-show="question.type === 1">
 
                     <input id="radio-{{ question.id }}-{{ answer.id }}"
                            name="radio-{{ question.id }}"
@@ -48,8 +43,7 @@
                     </label>
                 </div>
 
-                <div ng-if="question.type === 2"
-                     class="checkbox check-default">
+                <div ng-show="question.type === 2">
 
                     <input id="checkbox-{{ question.id }}-{{ answer.id }}"
                            name="checkbox-{{ question.id }}"
@@ -66,7 +60,7 @@
             </div>
         </div>
 
-        <div class="col-md-12">
+        <div class="m-l-20 m-r-20">
             <button ng-click="saveQuizz();"
                     ng-disabled="current.answered || !isAnswered"
                     type="button"
@@ -74,5 +68,5 @@
                 <%= __('viewer.quizz-inner.validate') %>
             </button>
         </div>
-    </div>
+    </form>
 </div>
