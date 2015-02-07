@@ -653,7 +653,7 @@ a {
 .cbp_tmtimeline:before {
 	width: 6px;
 	left: 47px;
-	bottom: 130px;
+	bottom: 110px;
 }
 
 .cbp_tmtimeline .action-links li:after {
@@ -1446,7 +1446,6 @@ div#menu li:nth-child(6n+6) {
 		height: 50px;
 		font-size: 2.1em;
 		box-shadow: 0 0 0 30px transparent;
-		background-color: rgba(255,255,255,0.1);
 		-webkit-transform: translate3d(0, 0, 0);
 		-moz-transform: translate3d(0, 0, 0);
 		-o-transform: translate3d(0, 0, 0);
@@ -1459,6 +1458,10 @@ div#menu li:nth-child(6n+6) {
 		transition: box-shadow .6s ease-in-out;
 	}	
 	
+	div#menu i:not(.avatar) {
+		background-color: rgba(255,255,255,0.1);
+	}
+
 	/* Animate the box-shadow to create the effect */
 	.no-touch div#menu a:hover i,
 	.no-touch div#menu a:active i,
