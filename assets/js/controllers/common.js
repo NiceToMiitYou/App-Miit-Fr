@@ -158,7 +158,6 @@ MiitApp.controller(
                 }
             }
 
-
             function fullscreen() {
 
                 $scope.isfullscreen = !$scope.isfullscreen;

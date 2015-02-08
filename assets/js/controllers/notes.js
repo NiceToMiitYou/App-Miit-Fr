@@ -40,7 +40,7 @@ MiitApp.controller(
                 }
             }
 
-            function save(cb) {
+            function saveNotDebounced(cb) {
 
                 if ( !$scope.saving && $scope.current.title && $scope.current.content ) {
                     
@@ -115,6 +115,8 @@ MiitApp.controller(
                 }
             }
 
+            var save = _.debounce(saveNotDebounced, 250);
+
             function addNote() {
 
                 save( function( savedNote ) {
@@ -154,24 +156,27 @@ MiitApp.controller(
 
                 save( function( savedNote ) {
 
-                    ITConnect.note.send( savedNote.id, function(data) {
+                    if( savedNote.id ) {
 
-                        $timeout(function() {
-                            if( data.done ) {
+                        ITConnect.note.send( savedNote.id, function(data) {
 
-                                $scope.toast({
-                                    message: ItNotifications.notes.send.success,
-                                    type: 'info'
-                                });
-                            } else {
+                            $timeout(function() {
+                                if( data.done ) {
 
-                                $scope.toast({
-                                    message: ItNotifications.notes.send.error,
-                                    type: 'error'
-                                });
-                            }
+                                    $scope.toast({
+                                        message: ItNotifications.notes.send.success,
+                                        type: 'info'
+                                    });
+                                } else {
+
+                                    $scope.toast({
+                                        message: ItNotifications.notes.send.error,
+                                        type: 'error'
+                                    });
+                                }
+                            } );
                         } );
-                    } );
+                    }
                 } );
             }
 
