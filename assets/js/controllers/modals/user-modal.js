@@ -10,47 +10,51 @@ MiitApp.controller(
 
             $scope.accountType = null;
 
-            function saveUser() {
+            function canSave() {
 
                 if( $scope.agreeAnonyme && $scope.accountType === 1 || $scope.accountType === 0 ) {
 
                     if( $scope.accountType === 0 && ( $scope.user.firstname || $scope.user.lastname ) || $scope.user.username ) {
 
-                        ITConnect.user.update(
-                            ( $scope.accountType === 0 ) ? $scope.user.firstname : '', 
-                            ( $scope.accountType === 0 ) ? $scope.user.lastname : '', 
-                            ( $scope.accountType === 0 ) ? $scope.user.society : '',
-                            ( $scope.accountType === 1 || $scope.useUsername ) ? $scope.user.username : '',
-                            ( $scope.accountType === 0 ) ? $scope.user.avatar : {} ,
-
-                            function (data) {
-
-                                if ( data.done ) {
-                                
-                                    ITStorage.db.options.set( 'user', data.user );
-
-                                    $scope.firstInit = false;
-
-                                    $scope.toast({
-                                        message: ItNotifications.modal.user.save.success,
-                                        type: 'infos'
-                                    });
-                                } else {
-
-                                    $scope.toast({
-                                        message: ItNotifications.modal.user.save.error,
-                                        type: 'error'
-                                    });
-                                }
-                            }
-                        );
-                    } else {
-
-                        $scope.toast({
-                            message: ItNotifications.modal.user.save.missing,
-                            type: 'error'
-                        });
+                        return true;
                     }
+                }
+
+                return false;
+            }
+
+            function saveUser() {
+
+                if( canSave() ) {
+
+                    ITConnect.user.update(
+                        ( $scope.accountType === 0 ) ? $scope.user.firstname : '', 
+                        ( $scope.accountType === 0 ) ? $scope.user.lastname : '', 
+                        ( $scope.accountType === 0 ) ? $scope.user.society : '',
+                        ( $scope.accountType === 1 || $scope.useUsername ) ? $scope.user.username : '',
+                        ( $scope.accountType === 0 ) ? $scope.user.avatar : {} ,
+
+                        function (data) {
+
+                            if ( data.done ) {
+                            
+                                ITStorage.db.options.set( 'user', data.user );
+
+                                $scope.firstInit = false;
+
+                                $scope.toast({
+                                    message: ItNotifications.modal.user.save.success,
+                                    type: 'infos'
+                                });
+                            } else {
+
+                                $scope.toast({
+                                    message: ItNotifications.modal.user.save.error,
+                                    type: 'error'
+                                });
+                            }
+                        }
+                    );
                 } else {
 
                     $scope.toast({
@@ -97,4 +101,5 @@ MiitApp.controller(
 
             $scope.saveUser = saveUser;
 
+            $scope.canSave = canSave;
         } ] );

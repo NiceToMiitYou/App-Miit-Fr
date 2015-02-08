@@ -21,12 +21,12 @@ MiitApp.controller(
 
             function thmbScrollRight() {
                 var slideNav = document.getElementById("slides-nav-wrapper");
-                slideNav.scrollLeft = slideNav.scrollLeft - 175;
+                slideNav.scrollLeft = slideNav.scrollLeft + 175;
             }
 
             function thmbScrollLeft() {
                 var slideNav = document.getElementById("slides-nav-wrapper");
-                slideNav.scrollLeft = slideNav.scrollLeft + 175;
+                slideNav.scrollLeft = slideNav.scrollLeft - 175;
             }
 
             function refreshConnectedUsers() {
