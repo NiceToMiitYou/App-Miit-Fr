@@ -103,7 +103,8 @@
 
         "quizz-inner": {
             "already_answered": "Vous avez déjà répondu et validé ce quizz. Vous pouvez toujours le visionner mais il n'est plus possible de le modifier.",
-            "validate": "Valider les réponses"
+            "validate": "Valider les réponses",
+            "answer_modal" : "Une fois validé vous ne pourrez plus éditer le questionnaire.\nÊtes-vous certain de vouloir valider ?"
         },
 
         "quizz-list": {
