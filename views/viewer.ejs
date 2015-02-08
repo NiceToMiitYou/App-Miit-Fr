@@ -87,31 +87,9 @@
 
     <% include viewer/modals/user-modal %>
 
-    <!-- Modal Structure -->
-    <div id="logout-modal" class="modal card blue-grey darken-1">
-        <div class="card-content white-text">
-          <span class="card-title"><%= __('viewer.logout.sure') %></span>
-        </div>
-        <div class="card-action">
-          <div class="pull-right">
-            <a href="#" ng-click="logout()" class="btn"><%= __('viewer.logout.yes') %></a>
-            <a href='#' class="btn red modal-action modal-close"><%= __('viewer.logout.no') %></a>
-          </div>
-        </div>
-    </div>
+    <% include viewer/modals/logout-modal %>
     
-    <div id="answer-modal" class="modal card blue-grey darken-1">
-        <div class="card-content white-text">
-         <span class="card-title"><%= __('viewer.quizz-inner.validate') %> ?</span>
-          <p><%= __('viewer.quizz-inner.answer_modal') %></p>
-        </div>
-        <div class="card-action">
-          <div class="pull-right">
-            <a href="#" ng-click="shared.saveQuizz()" class="btn"><%= __('viewer.logout.yes') %></a>
-            <a href='#' class="btn red modal-action modal-close"><%= __('viewer.logout.no') %></a>
-          </div>
-        </div>
-    </div>
+    <% include viewer/modals/answer-modal %>
 
 </div>
 <!-- END CONTENT --> 
