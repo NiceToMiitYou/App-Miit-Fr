@@ -35,7 +35,13 @@ function initData() {
                     // Request to subscribe to the rooms
                     ITConnect.subscribe( function( data ) {
 
-                        callback( null );
+                        if( data.done ) {
+                            
+                            callback( null );
+                        } else {
+
+                            window.location.reload();
+                        }
                     } );
                 },
 
@@ -48,7 +54,7 @@ function initData() {
 
                             ITStorage.db.options.set( 'user', data.user );
                         }
-
+                        
                         callback( null );
                     } );
                 },
