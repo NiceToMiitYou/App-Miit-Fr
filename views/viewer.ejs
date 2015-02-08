@@ -100,5 +100,18 @@
         </div>
     </div>
     
+    <div id="answer-modal" class="modal card blue-grey darken-1">
+        <div class="card-content white-text">
+         <span class="card-title">Valider le questionnaire ?</span>
+          <p>Une fois validé vous ne pourrais plus éditer le questionnaire.<br> Êtes-vous certain de vouloir valider ?</p>
+        </div>
+        <div class="card-action">
+          <div class="pull-right">
+            <a href="#" ng-click="shared.saveQuizz()" class="btn"><%= __('viewer.logout.yes') %></a>
+            <a href='#' class="btn red modal-action modal-close"><%= __('viewer.logout.no') %></a>
+          </div>
+        </div>
+    </div>
+
 </div>
 <!-- END CONTENT --> 
