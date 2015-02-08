@@ -6,7 +6,7 @@ MiitApp.controller(
 
             $scope.current = {};
 
-            $scope.isAnswered = true;
+            $scope.isAnswered = false;
 
             function loadQuizz( quizz ) {
 
