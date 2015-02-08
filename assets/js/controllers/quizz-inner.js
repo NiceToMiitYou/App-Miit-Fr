@@ -29,6 +29,7 @@ MiitApp.controller(
             }
 
             function openAnswerModal() {
+
                 $('#answer-modal').openModal();
             }
 
@@ -84,7 +85,7 @@ MiitApp.controller(
                         type: 'info'
                     });
 
-                     $scope.track('QUIZZ');
+                    $scope.track('QUIZZ');
 
                 } else {
 
@@ -150,7 +151,12 @@ MiitApp.controller(
 
             $scope.checkRight = checkRight;
 
-            $scope.openAnswerModal = openAnswerModal;
+            $scope.openAnswerModal = function() {
+                if( $scope.isAllowed('QUIZZ_INTERACTIONS') ) {
+
+                    openAnswerModal();
+                }
+            };
 
             $scope.shared.saveQuizz = function() {
                 if( $scope.isAllowed('QUIZZ_INTERACTIONS') ) {
