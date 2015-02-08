@@ -6,7 +6,7 @@ MiitApp.controller(
 
             $scope.current = {};
 
-            $scope.isAnswered = false;
+            $scope.isAnswered = true;
 
             function loadQuizz( quizz ) {
 
@@ -18,8 +18,9 @@ MiitApp.controller(
 
             function checkRight( question, answer ) {
 
-                _(question.answers)
-                    .forEach( function( questionAnswer ) {
+                _.forEach(
+                    question.answers,
+                    function( questionAnswer ) {
 
                     questionAnswer.selected = false;
                 } );
@@ -33,12 +34,16 @@ MiitApp.controller(
 
                     $scope.current.answered = true;
 
+                    var i = 0;
+
                     _.forEach(selected, function( listIdAnswer, idQuestion ) {
 
-                        ITConnect.question.quizz.answer(
-                            idQuestion,
-                            listIdAnswer,
-                            function( data ) { } );
+                        setTimeout( function() {
+                            ITConnect.question.quizz.answer(
+                                idQuestion,
+                                listIdAnswer,
+                                function( data ) { } );
+                        }, i * 125);
 
                         if( !$scope.user.quizzAnswers ) {
                             
@@ -60,11 +65,15 @@ MiitApp.controller(
                             
                             $scope.user.quizzAnswers.push( answer );
                         });
+
+                        i++;
                     });
 
                     ITStorage.db.options.set( 'user', $scope.user );
 
                     ITStorage.db.quizzes.set( $scope.current.id, $scope.current );
+
+                    $scope.isAnswered = true;
 
                     $scope.toast({
                         message: ItNotifications.quizzInner.save.success,
@@ -101,7 +110,7 @@ MiitApp.controller(
 
                     // Find all selected
                     _.forEach(
-                        _.find(
+                        _.filter(
                             question.answers,
                             {
                                 'selected' : true
@@ -110,7 +119,7 @@ MiitApp.controller(
 
                             // Question answered
                             isQuestionAnswered = true;
-
+                            
                             // Add to selected
                             selected[question.id].push( answer.id );
                         } );
