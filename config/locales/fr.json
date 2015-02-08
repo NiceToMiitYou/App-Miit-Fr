@@ -146,8 +146,7 @@
                 "save": {
                     "success": "Bienvenue parmis nous!",
                     "error": "Une erreur c'est produite lors de la modification de vos informations.",
-                    "missing": "Merci de renseigner un des champs obligatoire (pseudonyme, nom ou prénom).",
-                    "required": "Merci de renseigner les champs obligatoire."
+                    "required": "Merci de renseigner un des champs obligatoire (pseudonyme, nom ou prénom)."
                 }
             }
         },
