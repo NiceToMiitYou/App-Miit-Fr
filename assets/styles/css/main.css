@@ -451,6 +451,10 @@ a {
 	bottom: 10px;
 }
 
+.chat-input .input-field {
+	padding-right: 172px;
+}
+
 .chat-input .input-field input[type=text].valid {
 	border-bottom: 1px solid #26a69a;
 	-webkit-box-shadow: 0 1px 0 0 #26a69a;
