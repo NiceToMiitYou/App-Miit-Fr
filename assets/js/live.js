@@ -22,7 +22,6 @@ function scaleSliderBounce() {
 
     var fullscreen = $(".page-container").hasClass('fullscreen') && !$(".page-container").hasClass('fullscreen-remove');
     var isMaster = $(".page-container").hasClass('master');
-    var isLive = $(".page-container").hasClass('live');
 
     if(fullscreen) {
         maxH = $(document).height() / slideH;
@@ -31,10 +30,6 @@ function scaleSliderBounce() {
     } else if( isMaster ) {
         maxH = ($(".page-content").height()- 290) / slideH;
         maxW = $(".page-content").width() / slideW ;
-
-    } else if( isLive ) {
-        maxH = $(document).height() / slideH;
-        maxW = $(document).width() / slideW ;
 
     } else {
         maxH = ($(document).height()/1.7) / slideH;
