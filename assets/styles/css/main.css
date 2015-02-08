@@ -222,6 +222,7 @@ a {
 	font-size: 0.9em;
 	margin-left: 25px;
 	margin-right: 15px;
+	float: left;
 }
 
 .footer-widget, .page-sidebar, .page-sidebar ul {
