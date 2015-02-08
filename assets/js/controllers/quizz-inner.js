@@ -28,6 +28,10 @@ MiitApp.controller(
                 answer.selected = true;
             }
 
+            function openAnswerModal() {
+                $('#answer-modal').openModal();
+            }
+
             function saveQuizz() {
 
                 if ( $scope.isAnswered && ! $scope.current.answered ) {
@@ -80,6 +84,8 @@ MiitApp.controller(
                         type: 'info'
                     });
 
+                     $scope.track('QUIZZ');
+
                 } else {
 
                     $scope.toast({
@@ -87,9 +93,12 @@ MiitApp.controller(
                         type: 'error'
                     });
                 }
+
+                $('#answer-modal').closeModal();
             }
 
             var selected = {};
+
 
             $scope.$watch('current', function (quizz) {
 
@@ -141,7 +150,9 @@ MiitApp.controller(
 
             $scope.checkRight = checkRight;
 
-            $scope.saveQuizz = function() {
+            $scope.openAnswerModal = openAnswerModal;
+
+            $scope.shared.saveQuizz = function() {
                 if( $scope.isAllowed('QUIZZ_INTERACTIONS') ) {
 
                     saveQuizz();

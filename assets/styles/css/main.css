@@ -253,6 +253,14 @@ a {
 #logout-modal.card a {
 	color: #FFF;
 }
+
+#answer-modal {
+	width: 475px;
+}
+
+#answer-modal.card a {
+	color: #FFF;
+}
 /* --- LIVE --- */
 
 .live-header {
@@ -1630,6 +1638,8 @@ div#menu li:nth-child(6n+6) {
 
 .quizz-inner-content h3 {
 	font-size: 1.32rem;
+	margin-top: 25px;
+	margin-bottom: 15px;
 }
 
 .ressources-content .resources-categories {
