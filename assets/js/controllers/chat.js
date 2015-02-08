@@ -88,16 +88,6 @@ MiitApp.controller(
                 }
             };
 
-            var autoScroll = _.debounce(function() {
-
-                // Scroll Down
-                var chatArea = document.getElementById("chat-area");
-                if(chatArea.scrollHeight - chatArea.offsetHeight === chatArea.scrollTop) {
-                    chatArea.scrollTop = chatArea.scrollHeight;
-                }
-
-            }, 175);
-
             ITStorage.db.options.bind( 'data.isLoaded', true, loadChatrooms );
 
             // Retrieve new message
@@ -127,17 +117,14 @@ MiitApp.controller(
 
                         while( i > 40 ) {
 
-                            var min = 0; i = -1;
+                            var min = 0; i = 0;
 
                             for( var index in $scope.chatrooms[chatroomId].messages) {
                                 i++;
-                                if( min > index || min === 0) min = index;
+                                if( min > +index || min === 0) min = index;
                             }
-
                             delete $scope.chatrooms[chatroomId].messages[min];
                         }
-
-                        //autoScroll();
                     }
                 });
             });
