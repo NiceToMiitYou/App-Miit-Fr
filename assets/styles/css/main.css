@@ -355,19 +355,30 @@ a {
 	clear: both;
 	margin-bottom: 0px;
 	margin-top: 5px;
+	position: relative;
 }
 
 .chat-window-wrapper .user-details-wrapper > .user-details {
-	max-width: calc(100% - 50px);
+	margin-left: 50px;
+}
+
+.chat-window-wrapper .user-details-wrapper.pull-right > .user-details {
+	float: right;
+	margin-right: 50px;
 }
 
 .chat-window-wrapper .user-details-wrapper > .user-profile.ownm {
-	float: right;
+	position: absolute;
 	margin: 3px 0px 0 15px;
+	right: 0;
+	left: inherit;
+	top: 30px;
 }
 
-.chat-window-wrapper .chat-messages .user-details-wrapper:hover {
-	background-color: initial;
+.chat-window-wrapper .user-details-wrapper > .user-profile {
+	left: 0;
+	top: 32px;
+	position: absolute;
 }
 
 .fullscreen .live-thumb {
@@ -384,6 +395,7 @@ a {
 	transition: all .5s ease;
 	bottom: -50px;
 }
+
 
 .live-thumb {
 	background-color: #37474f;
@@ -481,6 +493,11 @@ a {
 .bubble {
 	width: 101%;
 	background-color: #cfd8dc;
+}
+
+
+.bubble:after {
+	border-color: transparent #CFD8DC;
 }
 
 .counter {

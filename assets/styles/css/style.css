@@ -885,20 +885,6 @@ body.bottom-header .page-content .content {
   padding: 10px;
   border-radius: 3px;
 }
-.chat-window-wrapper .user-details-wrapper .status-icon {
-  margin-right: 0px;
-}
-.chat-window-wrapper .user-details-wrapper.active {
-  background-color: #372b32;
-}
-.chat-window-wrapper .user-details-wrapper.active:hover {
-  background-color: #482f36;
-  cursor: pointer;
-}
-.chat-window-wrapper .user-details-wrapper:hover {
-  background-color: #22262e;
-  cursor: pointer;
-}
 .chat-window-wrapper .user-details-wrapper > .user-profile {
   display: inline-block;
   float: left;
@@ -925,10 +911,7 @@ body.bottom-header .page-content .content {
 .chat-window-wrapper .chat-messages .user-details-wrapper {
   padding: 6px;
 }
-.chat-window-wrapper .chat-messages .user-details-wrapper:hover {
-  background-color: #22262e;
-  cursor: auto;
-}
+
 .chat-window-wrapper .user-details-status-wrapper {
   display: inline-block;
   float: left;
