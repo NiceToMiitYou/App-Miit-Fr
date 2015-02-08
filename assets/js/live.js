@@ -22,18 +22,13 @@ function scaleSliderBounce() {
 
     var fullscreen = $(".page-container").hasClass('fullscreen') && !$(".page-container").hasClass('fullscreen-remove');
     var isMaster = $(".page-container").hasClass('master');
-    var isLive = $(".page-container").hasClass('live');
 
     if(fullscreen) {
-        maxH = ($(document).height()) / slideH;
+        maxH = $(document).height() / slideH;
         maxW = $(document).width() / slideW ;
 
     } else if( isMaster ) {
         maxH = ($(".page-content").height()- 290) / slideH;
-        maxW = $(".page-content").width() / slideW ;
-
-    } else if( isLive ) {
-        maxH = $(".page-content").height() / slideH;
         maxW = $(".page-content").width() / slideW ;
 
     } else {
@@ -50,4 +45,4 @@ function scaleSliderBounce() {
 
 }
 
-window.scaleSlider = _.debounce(scaleSliderBounce, 100);
+window.scaleSlider = _.debounce(scaleSliderBounce, 150);
