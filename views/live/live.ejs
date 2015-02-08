@@ -1,10 +1,9 @@
 <div id="live-content" ng-controller="LiveController" class="page-content">  
-
     <div id="slides" class="presentation-slide fullscreen-slide">
         <div ng-repeat="slide in presentation.slides" class="slide slide-animation"
             ng-hide="!isCurrentSlide($index)"
             ng-swipe-right="previous()"
             ng-swipe-left="next()"
             ng-bind-html="::safeHTML(slide.content)"></div>
-    </div>
+    </div>    
 </div>
