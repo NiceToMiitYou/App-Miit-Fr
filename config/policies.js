@@ -47,7 +47,8 @@ module.exports.policies = {
     },
 
     ConfRouterController: {
-        'index': true
+        'index': true,
+        'subscribe': true
     },
     
 };

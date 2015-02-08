@@ -27,6 +27,8 @@ function initData() {
     // Load data if not loaded and have to be loaded
     if ( !ITStorage.db.options.get( 'data.isLoaded' ) ) {
 
+        var user;
+
         // Call initialization of data one by one and set them loaded after
         async.waterfall(
             [
@@ -35,7 +37,13 @@ function initData() {
                     // Request to subscribe to the rooms
                     ITConnect.subscribe( function( data ) {
 
-                        callback( null );
+                        if( data.done ) {
+                            
+                            callback( null );
+                        } else {
+
+                            window.location.reload();
+                        }
                     } );
                 },
 
@@ -46,9 +54,11 @@ function initData() {
 
                         if ( data.done ) {
 
-                            ITStorage.db.options.set( 'user', data.user );
+                            user = data.user;
+                    
+                            ITStorage.db.options.set( 'user', user );
                         }
-
+                        
                         callback( null );
                     } );
                 },
@@ -176,8 +186,6 @@ function initData() {
 
                         if ( data.done ) {
 
-                            var user = ITStorage.db.options.get( 'user' );
-
                             // Add each resource in the area
                             for ( var index in data.quizzes ) {
 
@@ -197,36 +205,45 @@ function initData() {
                                             // Set not answered
                                             quizz.answered = false;
 
-                                            // Foreach questions
-                                            for( var index in dataQuestion.questions ) {
+                                            // For each questions
+                                            _.forEach(
+                                                dataQuestion.questions,
+                                                function( question ) {
 
-                                                // Foreach answers
-                                                for( var indexAnswer in dataQuestion.questions[index].answers ) {
+                                                    // For each answers
+                                                    _.forEach(
+                                                        question.answers,
+                                                        function( answer ) {
 
-                                                    // Default not selected
-                                                    var selected = false;
+                                                            // Default not selected
+                                                            var selected = false;
 
-                                                    // Check if answered
-                                                    for ( var indexUserAnswer in user.quizzAnswers ) {
+                                                            // For each answers of user
+                                                            _.forEach(
+                                                                user.quizzAnswers,
+                                                                function( userAnswer ) {
 
-                                                        // Check if same id
-                                                        if ( user.quizzAnswers[indexUserAnswer].id === dataQuestion.questions[index].answers[indexAnswer].id) {
-                                                            
-                                                            // Set answered
-                                                            quizz.answered = true;
+                                                                    // Check if same id
+                                                                    if ( userAnswer.id === answer.id) {
+                                                                        
+                                                                        // Set answered
+                                                                        quizz.answered = true;
 
-                                                            // Set selected
-                                                            selected = true;
+                                                                        // Set selected
+                                                                        selected = true;
 
-                                                            // Stop the loop
-                                                            break;
+                                                                        // Stop the loop
+                                                                        //break;
+                                                                    }
+                                                                }
+                                                            );
+
+                                                            // Set selected if she is
+                                                            answer.selected = selected;
                                                         }
-                                                    }
-
-                                                    // Set selected if she is
-                                                    dataQuestion.questions[index].answers[indexAnswer].selected = selected;
+                                                    );
                                                 }
-                                            }
+                                            );
 
                                             // Add them to the current object
                                             quizz.questions = dataQuestion.questions;
@@ -253,6 +270,7 @@ function initData() {
 
                 // If all right, then set isLoaded
                 if ( !err ) {
+
                     ITStorage.db.options.set( 'data.isLoaded', true );
                 }
             } );

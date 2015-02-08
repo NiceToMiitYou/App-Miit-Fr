@@ -68,11 +68,15 @@ module.exports = {
 
                     ConfUser
                         .findOne( req.session.user )
-                        .populate( 'quizzAnswers', {
-                            question: question.id
-                        } )
+                        .populate( 'quizzAnswers' )
                         .exec( function( err, user ) {
-                            if ( err || !user || 0 < _.size( user.quizzAnswers ) ) {
+                            if (  err ||
+                                !user ||
+                                0 < _.size( _.filter( user.quizzAnswers, {
+                                        question: question.id
+                                    } )
+                                )
+                            ) {
                             
                                 return res.notDone();
                             }

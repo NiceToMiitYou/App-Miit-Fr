@@ -58,6 +58,7 @@ module.exports = {
             .findOne(
                 req.session.user
             )
+            .populate( 'quizzAnswers' )
             .exec( function( err, user ) {
                 if ( err || !user ) return res.notDone();
 
