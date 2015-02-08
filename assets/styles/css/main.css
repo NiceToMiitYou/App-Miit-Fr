@@ -966,9 +966,14 @@ a {
 	font-size: 18px;
 }
 
-.modal-backdrop.in {
-	filter: alpha(opacity=50);
-	opacity: .9;
+.modal-backdrop {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 9;
+	background: rgba(0,0,0,0.85)
 }
 
 #userinfo-modal {
