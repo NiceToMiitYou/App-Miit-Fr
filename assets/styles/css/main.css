@@ -734,8 +734,9 @@ a {
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	margin-left: -16px;
-	margin-top: -20px;
+	margin-left: -40px;
+	margin-top: -60px;
+	font-size: 5rem;
 }
 
 .page-container.master .next-slide {
@@ -777,7 +778,7 @@ a {
 .page-container.master .slides-nav .slides-nav-wrapper {
 	height: 140px;
 	font: 0/0 a;
-	margin-left: 40px;
+	margin-left: 64px;
 	position: relative;
 }
 
@@ -804,24 +805,28 @@ a {
 	bottom: 0;
 	top: 0;
 	width: 40px;
+	height: auto;
 	left: 0;
 	border-radius: 0;
+	margin: 0;
 }
 .page-container.master .slides-nav-next {
 	position: absolute;
 	bottom: 0;
 	top: 0;
 	width: 40px;
+	height: auto;
 	right: 0;
 	border-radius: 0;
+	margin: 0;
 }
 
 .page-container.master .slides-nav-prev i, .page-container.master .slides-nav-next i{
 	position: absolute;
 	top: 50%;
-	margin-top: -7px;
+	margin-top: -16px;
 	left: 50%;
-	margin-left: -5px;
+	margin-left: -10px;
 }
 
 .page-container.master .page-title {
@@ -861,9 +866,12 @@ a {
 	position: absolute;
 	left: 0;
 	top: 0;
+	height: 51px;
 	bottom: 0;
 	width: 60px;
+	padding: 0px;
 	text-align: center;
+	margin: 0;
 }
 
 .page-container.master .listner i {
@@ -907,7 +915,9 @@ a {
 	background-color: #FFF;
 	margin: 10px;
 }
-
+ .page-container.master .wall .dd-list {
+ 	padding: 0;
+ }
 .page-container.master .wall .dd .dd-item .avatar {
 	float: left;
 	margin: 16px 15px 0px 15px;
@@ -922,6 +932,10 @@ a {
 
 .page-container.master .wall .dd .dd-item .tiles.favorite {
 	background-color: #099a8c;
+}
+
+.page-container.master .wall .dd .dd-item .tiles.favorite i.mdi-action-star-rate {
+	color: yellow;
 }
 
 .page-container.master .wall .dd .dd-item .action-links {
@@ -946,6 +960,11 @@ a {
 .page-container.master .wall .dd .dd-handle {
 	height: auto;
 	padding: 0;
+	list-style: none;
+}
+
+.page-container.master .wall .dd .wall-username {
+	font-size: 18px;
 }
 
 .modal-backdrop.in {

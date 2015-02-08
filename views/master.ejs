@@ -58,7 +58,7 @@
 						    <div class="cbp_tmlabel">
 						        <div class="p-t-15">
 						            <h4 class="inline m-b-5">
-						                <span class="text-success semi-bold m-r-10">
+						                <span class="text-success semi-bold m-r-10 wall-username">
 						                    {{ getUsername( question.user ) }}
 						                </span>
 						            </h4>
@@ -100,8 +100,8 @@
 			</div>
 
 			<div class="slides-nav-container">
-				<div class="slides-nav">
-					<div class="slides-nav-wrapper" ng-style="{width: (presentation.slides.length * 175)+55+'px', left: sl+'px'}">
+				<div class="slides-nav" id="slides-nav-wrapper" >
+					<div class="slides-nav-wrapper" ng-style="{width: (presentation.slides.length * 175)+55+'px'}">
 		                <div ng-repeat="slide in presentation.slides track by slide.id"
                     	 	 ng-class="{ 'active': $index === current }"
 		                     class="dot-item">
@@ -110,8 +110,8 @@
 					</div>
 				</div>
 
-				<a class="slides-nav-prev btn btn-primary" ng-click="sl=sl+175"><i class="mdi-navigation-chevron-left"></i></a>
-				<a class="slides-nav-next btn btn-primary"><i class="mdi-navigation-chevron-right"></i></a>
+				<a class="slides-nav-prev btn btn-primary" ng-click="thmbScrollLeft()"><i class="mdi-navigation-chevron-left"></i></a>
+				<a class="slides-nav-next btn btn-primary" ng-click="thmbScrollRight()"><i class="mdi-navigation-chevron-right"></i></a>
 			</div>
 		</div>
 		<!-- END CONTENT --> 

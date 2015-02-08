@@ -19,6 +19,16 @@ MiitApp.controller(
                 ) ) );
             }
 
+            function thmbScrollRight() {
+                var slideNav = document.getElementById("slides-nav-wrapper");
+                slideNav.scrollLeft = slideNav.scrollLeft - 175;
+            }
+
+            function thmbScrollLeft() {
+                var slideNav = document.getElementById("slides-nav-wrapper");
+                slideNav.scrollLeft = slideNav.scrollLeft + 175;
+            }
+
             function refreshConnectedUsers() {
 
                 ITConnect.config.connectedUsers(function( data ) {
@@ -39,5 +49,7 @@ MiitApp.controller(
                 });
             }
 
+            $scope.thmbScrollRight = thmbScrollRight;
+            $scope.thmbScrollLeft = thmbScrollLeft;
             setTimeout(refreshConnectedUsers, 1000);
         } ] );
