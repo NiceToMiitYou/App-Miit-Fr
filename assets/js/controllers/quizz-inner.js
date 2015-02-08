@@ -30,7 +30,9 @@ MiitApp.controller(
 
             function openAnswerModal() {
 
-                $('#answer-modal').openModal();
+                $('#answer-modal').openModal({
+                    dismissible: false
+                });
             }
 
             function saveQuizz() {
