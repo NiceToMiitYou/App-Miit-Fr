@@ -34,11 +34,12 @@
                         'text-right text-success' : message.user.id === user.id,
                         'text-info' :               message.user.id !== user.id
                     }" class="m-b-5">
-                        <span class=" semi-bold">
+                        <span class="semi-bold">
                             {{ getUsername(message.user) }}
                         </span>
                     </div>
-                    <div class="user-profile avatar {{ getAvatar(message.user) }}" ng-class="{ownm : message.user.id == user.id}" >
+                    <div class="user-profile avatar {{ getAvatar(message.user) }}"
+                         ng-class="{ownm : message.user.id == user.id}" >
                     </div>
 
                     <div class="user-details">

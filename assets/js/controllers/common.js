@@ -138,6 +138,8 @@ MiitApp.controller(
 
                 ITStorage.db.users.bind(userId, true, function(user) {
 
+                    object[userField] = user;
+
                     $timeout(function() {
                         object[userField] = user;
                     });
