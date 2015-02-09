@@ -81,7 +81,7 @@
                             <li class="text-error" ng-show="question.likes <= 1"><i class="mdi-action-favorite"></i> {{question.likes}} <%= __('viewer.wall.like') %></li>
                         </ul>
                         
-                        <a ng-class="{'grey-text text-darken-3': isLike(question) }"
+                        <a ng-class="{'grey-text text-darken-3': !isLike(question) }"
                            ng-click="like(question)"
                            class="m-r-20 fright">
                             <i class="mdi-action-thumb-up"></i> <%= __('viewer.wall.like') %>
