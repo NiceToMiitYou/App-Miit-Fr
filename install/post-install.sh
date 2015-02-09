@@ -3,7 +3,7 @@
 ADAPTERS='api/adapters/sails-rest'
 
 # Install bower dependencies
-bower install
+bower install --allow-root
 
 # Install the adapter
 if [ "$(ls -A $ADAPTERS)" ]; then
