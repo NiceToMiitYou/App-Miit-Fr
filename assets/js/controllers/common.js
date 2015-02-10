@@ -136,14 +136,14 @@ MiitApp.controller(
 
             function askForUserIfNotExist( object, userField, userId ) {
 
-                ITStorage.db.users.bind(userId, true, function(user) {
-
-                    object[userField] = user;
+                ITStorage.db.users.bind(userId, false, function(user) {
 
                     $timeout(function() {
                         object[userField] = user;
                     });
                 });
+
+                object[userField] = ITStorage.db.users.get( userId );
 
                 // If user not registered request him
                 if( !alreadyAskedUsers[userId] ) {
