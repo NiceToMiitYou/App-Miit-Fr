@@ -6,10 +6,38 @@ window.ITConnect = ( function() {
 
     var eventsCallbacks = {};
 
-    ITStorage.create( 'events', !ITEventDebug );
-
     var lastestToken = 0;
 
+    var queue = async.queue(function (eventTmp, callback) {
+
+        // Check for duplicate (only id upper than lastest are allowed)
+        if( eventTmp.id > lastestToken ) {
+
+            // Update token
+            lastestToken = eventTmp.id;
+
+            // If not set already
+            if( !ITStorage.db.events.get( eventTmp.id ) ) {
+
+                // Store the events
+                ITStorage.db.events.set( eventTmp.id, eventTmp );
+            }
+
+            // Execute callback if not expire
+            if ( !eventTmp.expire ||
+                 ( new Date(eventTmp.expire) ).getTime() > ( new Date() ).getTime() ) {
+                
+                // handle if Callback exist
+                if ( typeof eventsCallbacks[ eventTmp.name ] === 'function' ) {
+                    eventsCallbacks[ eventTmp.name ]( eventTmp.data );
+                }
+            }
+        }
+
+        callback();
+    }, 1);
+
+    ITStorage.create( 'events', !ITEventDebug );
     function cleanerEventsStorage() {
 
         var removed = 0;
@@ -32,24 +60,21 @@ window.ITConnect = ( function() {
     // Add cleaner to Garbage
     ITGarbage.add( cleanerEventsStorage );
 
-    // handle the callback
-    function eventCallback( eventTmp ) {
-        // Update token
-        lastestToken = eventTmp.id;
+    // Handle the list of events
+    function processEvents( events ) {
 
-        // Execute callback if not expire
-        if ( !eventTmp.expire ||
-             ( new Date(eventTmp.expire) ).getTime() > ( new Date() ).getTime() ) {
-            
-            // handle if Callback exist
-            if ( typeof eventsCallbacks[ eventTmp.name ] === 'function' ) {
-                eventsCallbacks[ eventTmp.name ]( eventTmp.data );
+        _.forEach(
+            _.sortBy( events, 'id' ),
+            function( eventTmp ) {
+
+                // Process event
+                queue.push( eventTmp );
             }
-        }
+        );
     }
 
-    // Ask for synchronisation
-    function synchronize( currentToken ) {
+    // Ask for synchronisation and debounce the function
+    var synchronize = _.debounce( function( currentToken ) {
 
         // Start by checking local database if first load (lastestToken === 0)
         if (lastestToken === 0) {
@@ -62,14 +87,7 @@ window.ITConnect = ( function() {
                 storedEvents.push(value);
             } );
 
-            _.forEach(
-                _.sortBy(storedEvents, function(e) {
-                    return e.id;
-                }), function( eventTmp ) {
-
-                // Process event
-                eventCallback( eventTmp );
-            });
+            processEvents( storedEvents );
         }
 
         if ( currentToken > lastestToken ) {
@@ -80,19 +98,11 @@ window.ITConnect = ( function() {
                     if ( !res.done ) return;
 
                     // Bind all events
-                    for ( var eventIndex in res.events ) {
-                        // Copy the event
-                        var eventTmp = res.events[ eventIndex ];
-
-                        // Store the events
-                        ITStorage.db.events.set( eventTmp.id, eventTmp );
-
-                        // Process event
-                        eventCallback( eventTmp );
-                    }
-                } );
+                    processEvents( res.events );
+                }
+            );
         }
-    }
+    }, 250 );
 
     return {
         // Bind an event
@@ -109,7 +119,7 @@ window.ITConnect = ( function() {
                 // Check integrity
                 if ( lastestToken + 1 === cache.id ) {
 
-                    eventCallback( cache );
+                    queue.push( cache );
                 } else {
 
                     // Synchronise events

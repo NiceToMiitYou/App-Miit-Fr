@@ -68,51 +68,56 @@ MiitApp.controller(
                 }
             }
 
-            var offset = 0;
+            var actions = [],
+                offset  = 0;
 
             function liveMoveTo() {
+                
+                $timeout(function() {
 
-                if( offset !== 0 ) {
+                    var copy = false;
 
-                    var copy = offset; offset = 0;
+                    while( copy = actions.shift() ) {
 
-                    $timeout(function() {
+                        if( 
+                            copy > 0 &&
+                            $scope.presentation.current + 1 < $scope.presentation.slides.length
+                        ) {
 
-                        for(var i = 0; i < Math.abs(copy); i++) {
+                            $scope.presentation.current++;
 
-                            if( copy > 0 ) {
+                            if( $scope.current + 1 === $scope.presentation.current ) {
 
-                                $scope.presentation.current++;
+                                next();
+                            }
+                        } else if (
+                            copy < 0 &&
+                            0 <= $scope.presentation.current - 1
+                        ) {
 
-                                if( $scope.current + 1 === $scope.presentation.current ) {
+                            $scope.presentation.current--;
 
-                                    next();
-                                }
-                            } else if ( copy < 0 ) {
+                            if( $scope.current - 1 === $scope.presentation.current ) {
 
-                                $scope.presentation.current--;
-
-                                if( $scope.current - 1 === $scope.presentation.current ) {
-
-                                    previous();
-                                }
+                                previous();
                             }
                         }
+                    }
 
-                        refreshShared( true );
-                    });
-                }
+                    refreshShared( true );
+                });
             }
             
             var debouncedLiveMoveTo = _.debounce(liveMoveTo, 175);
 
+            // Filter event to add in the list
             function handleLiveEvent( direction, data ) {
 
-                if( data.presentation == $scope.presentation.id &&
-                    0 <= ($scope.presentation.current + offset + direction) &&
-                    ($scope.presentation.current + offset + direction) < $scope.presentation.slides.length ) {
+                if( data.presentation == $scope.presentation.id ) {
 
-                    offset += direction;
+//                    offset += direction;
+
+                    actions.push( direction );
 
                     debouncedLiveMoveTo();
                 }
