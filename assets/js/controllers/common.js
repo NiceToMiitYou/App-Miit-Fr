@@ -220,12 +220,6 @@ MiitApp.controller(
                 if( $scope.accountType === 1 ) {
 
                     ITConnect.track.create( 'LIVE' );
-
-                    // Track it away
-                    window.onbeforeunload = function( e ) {
-
-                        ITConnect.track.create( 'LEAVING' );
-                    };
                 }
             }, 250);
 
