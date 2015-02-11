@@ -8,7 +8,29 @@ window.ITConnect = ( function() {
 
     var lastestToken = 0;
 
-    var queue = async.queue(function (eventTmp, callback) {
+    ITStorage.create( 'events', !ITEventDebug );
+
+    // Add cleaner to Garbage
+    ITGarbage.add( function() {
+
+        var removed = 0;
+
+        ITStorage.db.events.each(function(key, eventTmp) {
+            
+            // Check if expire
+            if ( eventTmp.expire &&
+                 ( new Date(eventTmp.expire) ).getTime() < ( new Date() ).getTime() ) {
+
+                removed++;
+
+                ITStorage.db.events.remove( eventTmp.id );
+            }
+        });
+
+        return removed;
+    } );
+
+    var queue = async.priorityQueue(function (eventTmp, callback) {
 
         // Check for duplicate (only id upper than lastest are allowed)
         if( eventTmp.id > lastestToken ) {
@@ -37,28 +59,25 @@ window.ITConnect = ( function() {
         callback();
     }, 1);
 
-    ITStorage.create( 'events', !ITEventDebug );
-    function cleanerEventsStorage() {
+    // Create an actions queue to handle events with a specific order
+    var actions = async.priorityQueue(function (task, callback) {
 
-        var removed = 0;
+        // Store received event
+        ITStorage.db.events.set( task.id, task );
 
-        ITStorage.db.events.each(function(key, eventTmp) {
-            
-            // Check if expire
-            if ( eventTmp.expire &&
-                 ( new Date(eventTmp.expire) ).getTime() < ( new Date() ).getTime() ) {
+        // Check integrity
+        if ( lastestToken + 1 === task.id ) {
 
-                removed++;
+            queue.push( task, task.id );
+        } else {
 
-                ITStorage.db.events.remove( eventTmp.id );
-            }
-        });
+            // Synchronise events
+            synchronize( task.id );
+        }
 
-        return removed;
-    }
+        callback();
 
-    // Add cleaner to Garbage
-    ITGarbage.add( cleanerEventsStorage );
+    }, 1 );
 
     // Handle the list of events
     function processEvents( events ) {
@@ -68,7 +87,7 @@ window.ITConnect = ( function() {
             function( eventTmp ) {
 
                 // Process event
-                queue.push( eventTmp );
+                queue.push( eventTmp, eventTmp.id );
             }
         );
     }
@@ -84,7 +103,7 @@ window.ITConnect = ( function() {
             ITStorage.db.events.each( function(key, value) {
 
                 // Store the event
-                storedEvents.push(value);
+                storedEvents.push( value );
             } );
 
             processEvents( storedEvents );
@@ -113,18 +132,8 @@ window.ITConnect = ( function() {
             // Bind the event
             io.socket.on( name, function( cache ) {
 
-                // Store received event
-                ITStorage.db.events.set( cache.id, cache );
-
-                // Check integrity
-                if ( lastestToken + 1 === cache.id ) {
-
-                    queue.push( cache );
-                } else {
-
-                    // Synchronise events
-                    synchronize( cache.id );
-                }
+                // Add the action to the list
+                actions.push( cache, cache.id );
             } );
         },
 
