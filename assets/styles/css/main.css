@@ -1071,6 +1071,15 @@ a {
 
 #userinfo-modal .avatar-choice > a.avatar {
 	float: left;
+	webkit-transition: background-color 0.3s ease-out;
+	-moz-transition: background-color 0.3s ease-out;
+	-o-transition: background-color 0.3s ease-out;
+	-ms-transition: background-color 0.3s ease-out;
+	transition: background-color 0.3s ease-out;
+}
+
+#userinfo-modal .avatar-choice {
+	position: absolute;
 }
 
 #userinfo-modal .avatar-choice .avatar-choice-list {
@@ -1079,9 +1088,8 @@ a {
 	background: #FFF;
 	position: absolute;
 	z-index: 99;
-	bottom: 120px;
+	bottom: 0px;
 	left: 90px;
-
 }
 
 #userinfo-modal .avatar-choice .avatar-choice-list li {
@@ -1096,9 +1104,22 @@ a {
 }
 
 #userinfo-modal .color-choice {
-	margin-left: 45px;
-	margin-top: 20px;
+	margin-top: 10px;
+	margin-right: 22px;
 	margin-bottom: 15px;
+	float: right;
+}
+
+#userinfo-modal .btn-avatar {
+	position: absolute;
+	height: 30px;
+	width: 30px;
+	left: 47px;
+	top: -7px;
+}
+
+#userinfo-modal .btn-avatar i {
+	line-height: 30px;
 }
 
 #userinfo-modal .color-choice li.selected {

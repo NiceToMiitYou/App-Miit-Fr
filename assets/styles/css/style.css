@@ -5248,13 +5248,13 @@ form legend,
   background-color: rgba(0, 0, 0, 0.35);
   border: 0;
 }
-.tiles.dark-blue {
+.dark-blue {
   background-color: #365d98;
 }
 .tiles.light-blue {
   background-color: #00abea;
 }
-.tiles.light-red {
+.light-red {
   background-color: #f96773;
 }
 .tiles.grey {
