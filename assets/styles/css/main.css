@@ -323,6 +323,9 @@ a {
 	transition: all .5s ease;
 }
 
+.select-wrapper input.select-dropdown {
+	color: #fff;
+}
 
 #slides .slide {
     position: absolute;
