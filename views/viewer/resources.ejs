@@ -8,24 +8,24 @@
             </div>
         </div>
     </div>
-
-    <div class="resources-categories"
-         ng-repeat="category in categories track by category.id">
-        
-        <h4>
-            {{ ::category.name }}
-        </h4>
-
-        <div class="resource-item"
-             ng-repeat="ressource in ::category.resources track by ressource.id">
+    <div class="resources-container">
+        <div class="resources-categories"
+             ng-repeat="category in categories track by category.id">
             
-            <img src="/images/icons/fileicon_pdf.jpg"/>
-            <span>
-                {{ ressource.name }}
-            </span>
+            <h4>
+                {{ ::category.name }}
+            </h4>
 
+            <div class="resource-item"
+                 ng-repeat="ressource in ::category.resources track by ressource.id">
+                
+                <img src="/images/icons/fileicon_pdf.jpg"/>
+                <span>
+                    {{ ressource.name }}
+                </span>
+
+            </div>
+            <div class="clearfix"></div>
         </div>
-        <div class="clearfix"></div>
     </div>
-
 </div>
