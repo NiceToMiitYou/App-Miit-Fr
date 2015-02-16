@@ -470,8 +470,10 @@ module.exports = {
 
         if ( 
             (
-                sails.config.environment === 'development' ||
-                sails.config.environment === 'qualification'
+                sails.config.environment === 'development'   ||
+                sails.config.environment === 'qualification' ||
+                sails.config.environment === 'staging'       ||
+                sails.config.environment === 'production'
             ) && ( 
                 typeof sails.config._ !== 'undefined' &&
                 sails.config._.length === 3 &&
