@@ -469,19 +469,20 @@ module.exports = {
         var thumbnailPath = appRoot + '/.tmp/public/images/slides';
 
         if ( 
-            (
-                sails.config.environment === 'development'   ||
-                sails.config.environment === 'qualification' ||
-                sails.config.environment === 'staging'       ||
-                sails.config.environment === 'production'
-            ) && ( 
+            ( 
                 typeof sails.config._ !== 'undefined' &&
                 sails.config._.length === 3 &&
                 sails.config._[1] === 'import'
+            ) || ( 
+                typeof sails.config._ !== 'undefined' &&
+                sails.config._.length === 4 &&
+                sails.config._[2] === 'import'
             )
         ) {
 
-            var conferenceId = +sails.config._[2];
+            var conferenceId = ( sails.config._[1] === 'import' ) ?
+                                 +sails.config._[2] :
+                                 +sails.config._[3];
 
             sails.log.debug('Importation of data from id "' + conferenceId + '"...');
             
