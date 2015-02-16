@@ -18,6 +18,28 @@ MiitApp.controller(
                             
                             $scope.shared.tags[id] = tag;
                         } );
+
+                        setTimeout(function() {
+
+                            $('select').each(function() {
+                                var $select = $(this);
+
+                                if ( 
+                                    (
+                                        $select.hasClass('browser-default') ||
+                                        $select.hasClass('initialized')
+                                    ) && 
+                                    $select.prev().data('activates') 
+                                ) {
+                                    var uid = $select.prev().data('activates');
+                                    
+                                    $('#' + uid).remove();
+                                    $select.prev().remove();
+                                    $select.removeClass('initialized');
+                                    $select.material_select();
+                                }
+                            });
+                        }, 250);
                     } );
                 }
             }
