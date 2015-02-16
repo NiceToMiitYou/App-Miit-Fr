@@ -16,4 +16,4 @@ var urlThisScriptWasFetchedFrom = ( function() {
     return thisScript.src;
 } )();
 
-window.ITEventDebug = urlThisScriptWasFetchedFrom.match( /(\#production|\.min\.js)/ ) ? false : true;
+window.ITEventDebug = true; /* TEMPORARY DISABLE urlThisScriptWasFetchedFrom.match( /(\#production|\.min\.js)/ ) ? false : true; */

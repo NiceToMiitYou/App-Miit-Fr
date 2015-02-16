@@ -440,7 +440,8 @@ function generateSmallImage( origin, path, presentation, slide ) {
 
 function generateThumbnail( path, cb ) {
 
-    ConfPresentation.find( { conference: 1 } )
+    ConfPresentation
+        .find( { conference: 1 } )
         .populate( 'slides' )
         .exec( function(err, presentations) {
             
