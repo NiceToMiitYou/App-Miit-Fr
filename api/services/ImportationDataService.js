@@ -440,7 +440,8 @@ function generateSmallImage( origin, path, presentation, slide ) {
 
 function generateThumbnail( path, cb ) {
 
-    ConfPresentation.find( { conference: 1 } )
+    ConfPresentation
+        .find( { conference: 1 } )
         .populate( 'slides' )
         .exec( function(err, presentations) {
             
@@ -469,17 +470,20 @@ module.exports = {
         var thumbnailPath = appRoot + '/.tmp/public/images/slides';
 
         if ( 
-            (
-                sails.config.environment === 'development' ||
-                sails.config.environment === 'qualification'
-            ) && ( 
+            ( 
                 typeof sails.config._ !== 'undefined' &&
                 sails.config._.length === 3 &&
                 sails.config._[1] === 'import'
+            ) || ( 
+                typeof sails.config._ !== 'undefined' &&
+                sails.config._.length === 4 &&
+                sails.config._[2] === 'import'
             )
         ) {
 
-            var conferenceId = +sails.config._[2];
+            var conferenceId = ( sails.config._[1] === 'import' ) ?
+                                 +sails.config._[2] :
+                                 +sails.config._[3];
 
             sails.log.debug('Importation of data from id "' + conferenceId + '"...');
             

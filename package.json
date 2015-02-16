@@ -1,5 +1,5 @@
 {
-  "name": "ITEvents",
+  "name": "app-miit-fr",
   "private": true,
   "version": "0.0.0",
   "description": "a Sails application",
@@ -45,7 +45,7 @@
   },
   "scripts": {
     "postinstall": "bash ./install/post-install.sh",
-    "start": "node app.js lift import 1",
+    "start": "forever app.js lift import 1",
     "test": "grunt test",
     "beautify": "echo 'js-beautify --config js-beautify.json -r -f ./api/**/*.js ./assets/**/*.js ./config/**/*.js ./tasks/**/*.js ./test/**/*.js' | zsh"
   },

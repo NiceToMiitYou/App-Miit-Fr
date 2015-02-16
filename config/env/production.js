@@ -12,33 +12,12 @@
 
 module.exports = {
 
-    /***************************************************************************
-     * Set the default database connection for models in the production        *
-     * environment (see config/connections.js and config/models.js )           *
-     ***************************************************************************/
-
-    // models: {
-    //   connection: 'someMysqlServer'
-    // },
-
-    /***************************************************************************
-     * Set the port in the production environment to 80                        *
-     ***************************************************************************/
-
-    port: 8080,
-
-    /***************************************************************************
-     * Set the log level in production environment to "silent"                 *
-     ***************************************************************************/
-
-    // log: {
-    //   level: "silent"
-    // }
+    port: 80,
 
     mailer: {
         from: {
             name: 'Miit',
-            mail: 'no-reply@itevents.fr'
+            address: 'no-reply@itevents.fr'
         },
 
         smtp: {
@@ -54,28 +33,28 @@ module.exports = {
     },
 
     connections: {
+
+        // Storage of the conference
+        LiveApplicationDatabase: {
+            user: 'root',
+            password: '',
+            database: 'fr_miit_app'
+        },
+
+        // Storage of the conference
+        ConferenceDatabase: {
+            user: 'root',
+            password: '',
+            database: 'fr_miit_app'
+        },
+
         DwhWebService: {
             args: {
                 accessToken: 'x0otR1PEMiv1uvZ8WSq52GzzO4BShWw286OdgGAg'
             },
             protocol: 'http',
-            host: 'localhost',
-            port: 1337
-        },
-
-        // Storage of the conference
-        LiveApplicationDatabase: {
-            user: 'itevents',
-            password: 'password',
-            database: 'itevents'
-        },
-
-        // Storage of the conference
-        ConferenceDatabase: {
-            user: 'itevents',
-            password: 'password',
-            database: 'itevents'
-        },
+            host: 'dwh.miit.fr',
+            port: 80
+        }
     }
-
 };
