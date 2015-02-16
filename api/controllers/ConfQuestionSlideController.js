@@ -43,7 +43,7 @@ module.exports = {
 
                     // Single choice question
                     if ( _.size( req.param( 'answers' ) ) == 1 && question.type === 1 ||
-                        _.size( req.param( 'answers' ) ) >= 1 && question.type !== 1 ) {
+                         _.size( req.param( 'answers' ) ) >= 1 && question.type !== 1 ) {
 
                         ConfUser.findOne( req.session.user )
                             .populate( 'slideAnswers', {
