@@ -32,7 +32,7 @@ function scaleSliderBounce() {
         maxW = $(".page-content").width() / slideW ;
 
     } else {
-        maxH = ($(document).height()/1.7) / slideH;
+        maxH = ($(document).height() - 300) / slideH;
         maxW = ($(document).width()/2.05) / slideW ;
     }
 
