@@ -1324,10 +1324,10 @@ div#menu {
 	width: 50%;
 	top: -135px;
 	right: 0;
-	-webkit-transition: height .5s ease 0, width .5s ease 0;
-	-moz-transition: height .5s ease 0, width .5s ease 0;
-	-o-transition: height .5s ease 0, width .5s ease 0;
-	-ms-transition: height .5s ease 0, width .5s ease 0;
+	-webkit-transition: top .5s ease 0, width .5s ease 0;
+	-moz-transition: top .5s ease 0, width .5s ease 0;
+	-o-transition: top .5s ease 0, width .5s ease 0;
+	-ms-transition: top .5s ease 0, width .5s ease 0;
 	transition: top .5s ease 0, width .5s ease 0;
 	z-index: 99;
 }
