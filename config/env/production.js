@@ -56,5 +56,9 @@ module.exports = {
             host: 'dwh.miit.fr',
             port: 80
         }
+    },
+  
+    log: {
+        level: "silent"
     }
 };
