@@ -1,0 +1,22 @@
+<div ng-controller="RessourcesInnerController" class="content ressources-inner-content" ng-class="{active : activetool === 'RESSOURCES-INNER'}"> 
+
+    <div class="header navbar navbar-inverse">
+
+        <div class="navbar-inner">
+            <a class="previous-quizz" ng-click="track('RESSOURCE')"><i class="mdi-navigation-chevron-left"></i></a>
+            <div class="header-quick-nav">
+                <div class="pull-left">
+                    <h3><i class="mdi-content-content-paste"></i> {{ current.name }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+      <div ng-if="activetool === 'RESSOURCES-INNER' && current.id === 4" class="valign-wrapper" style="position: absolute;left: 0;right: 0;top: 60px;bottom: 0;">
+        <iframe src="//player.vimeo.com/video/65475425" class="valign" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      </div>
+
+      <div ng-if="activetool === 'RESSOURCES-INNER' && ( current.id === 2 || current.id === 3)" class="valign-wrapper" style="position: absolute;left: 0;right: 0;top: 60px;bottom: 0;">
+        <img ng-src="{{ current.path }}" class="valign" width="100%" />
+      </div>
+</div>

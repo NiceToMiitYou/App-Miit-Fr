@@ -17,7 +17,8 @@
             </h4>
 
             <div class="resource-item"
-                 ng-repeat="ressource in ::category.resources track by ressource.id">
+                 ng-repeat="ressource in ::category.resources track by ressource.id"
+                 ng-click="openInner( ressource )">
                 
                 <img src="/images/icons/fileicon_pdf.jpg"/>
                 <span>

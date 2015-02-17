@@ -20,6 +20,17 @@ MiitApp.controller(
                 }
             }
 
+            function openInner( ressource ) {
+                
+                ITStorage.db.options.set('ressources.current', ressource);
+
+                $scope.track('RESSOURCES-INNER');
+            }
+
+            $scope.openInner = function( quizz ) {
+                    openInner( quizz );
+            };
+
             ITStorage.db.options.bind( 'data.isLoaded', true, loadCategories );
 
         } ] );
