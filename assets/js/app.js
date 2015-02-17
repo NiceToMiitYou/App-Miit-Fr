@@ -1,5 +1,11 @@
 "use strict";
 
+if (typeof window.console === "undefined" || typeof window.console.log === "undefined") {
+
+    window.console = {};
+    window.console.log = function() {};
+}
+
 // Create
 function init() {
     ITStorage.create( 'options', !ITEventDebug );
@@ -20,7 +26,6 @@ function init() {
 
     initData();
 }
-
 // Request data
 function initData() {
 
