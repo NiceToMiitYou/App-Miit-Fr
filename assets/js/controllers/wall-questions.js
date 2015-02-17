@@ -24,12 +24,9 @@ MiitApp.controller(
                             $('select').each(function() {
                                 var $select = $(this);
 
-                                if ( 
-                                    (
-                                        $select.hasClass('browser-default') ||
-                                        $select.hasClass('initialized')
-                                    ) && 
-                                    $select.prev().data('activates') 
+                                if ( $select.hasClass('initialized') &&
+                                     $select.prev() &&  
+                                     $select.prev().data('activates') 
                                 ) {
                                     var uid = $select.prev().data('activates');
                                     
