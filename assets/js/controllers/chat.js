@@ -12,7 +12,7 @@ MiitApp.controller(
 
             function loadChatrooms( isLoaded ) {
 
-                if(isLoaded) {
+                if( isLoaded ) {
 
                     $timeout(function(){
                         
@@ -45,13 +45,7 @@ MiitApp.controller(
 
                     ITConnect.chatroom.send($scope.current.id, $scope.text, function(data) {
 
-                        if(data.done) {
-
-                            $timeout(function() {
-                                $scope.text = '';
-                            });
-
-                        } else {
+                        if( !data.done ) {
 
                             $scope.toast({
                                 message: ItNotifications.chat.post.error,
@@ -59,6 +53,8 @@ MiitApp.controller(
                             });
                         }
                     });
+
+                    $scope.text = '';
                 } else {
 
                     $scope.toast({

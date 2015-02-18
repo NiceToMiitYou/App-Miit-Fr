@@ -17,7 +17,7 @@ module.exports = {
             .exec( function( err, chatrooms ) {
                 if( err ) {
 
-                    return notDone();
+                    return res.notDone();
                 }
 
                 return res.done( {
