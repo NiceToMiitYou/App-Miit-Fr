@@ -16,6 +16,12 @@ module.exports = {
             maxLength: 50
         },
 
+        conference: {
+            model: 'ConfConference',
+            index: true,
+            required: true
+        },
+
         content: {
             type: 'text',
             required: true
@@ -29,6 +35,7 @@ module.exports = {
 
         toJSON: function() {
             var obj = this.toObject();
+            delete obj.conference;
             delete obj.createdAt;
             delete obj.updatedAt;
             return obj;

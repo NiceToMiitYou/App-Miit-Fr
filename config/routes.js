@@ -31,11 +31,11 @@ function extend( target ) {
     return target;
 }
 
-var userAppRoutes = require( './routes/user.js' );
+var userAppRoutes   = require( './routes/user.js' );
 var viewerAppRoutes = require( './routes/viewer.js' );
-var liveAppRoutes = require( './routes/live.js' );
+var liveAppRoutes   = require( './routes/live.js' );
 var masterAppRoutes = require( './routes/master.js' );
-var adminAppRoutes = require( './routes/admin.js' );
+var adminAppRoutes  = require( './routes/admin.js' );
 
 var routes = {
 
@@ -69,18 +69,18 @@ var routes = {
     },
 
 
-    'GET /api/config/presentation/list': {
+    'GET /api/config/presentations': {
         controller: 'ConfConfigController',
         action: 'presentations'
     },
 
 
-    'GET /api/config/presentation/actual': {
+    'GET /api/config/actual': {
         controller: 'ConfConfigController',
         action: 'actual'
     },
 
-    'GET /api/config/connected/users': {
+    'GET /api/config/users': {
         controller: 'ConfConfigController',
         action: 'connectedUsers'
     }

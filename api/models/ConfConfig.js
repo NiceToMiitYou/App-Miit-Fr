@@ -7,18 +7,21 @@
 
 module.exports = {
 
-    connection: 'LiveApplicationDatabase',
-
     attributes: {
 
         key: {
             type: 'string',
-            required: true,
-            unique: true
+            required: true
         },
 
         value: {
             type: 'string'
+        },
+
+        conference: {
+            model: 'ConfConference',
+            required: true,
+            index: true
         },
 
         toJSON: function() {

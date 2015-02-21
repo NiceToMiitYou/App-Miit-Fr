@@ -21,15 +21,6 @@
 
 module.exports.connections = {
 
-    // Storage of live events
-    LiveApplicationDatabase: {
-        adapter: 'sails-mysql',
-        host: 'localhost',
-        user: 'fr_miit_app',
-        password: 'fr_miit_app',
-        database: 'fr_miit_app'
-    },
-
     // Storage of the conference
     ConferenceDatabase: {
         adapter: 'sails-mysql',

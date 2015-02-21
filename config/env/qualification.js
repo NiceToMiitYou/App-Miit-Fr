@@ -17,9 +17,6 @@ module.exports = {
      * environment (see config/connections.js and config/models.js )           *
      ***************************************************************************/
 
-    // models: {
-    //   connection: 'someMongodbServer'
-    // }
     port: 80,
 
     mailer: {
@@ -41,13 +38,6 @@ module.exports = {
     },
 
     connections: {
-
-        // Storage of the conference
-        LiveApplicationDatabase: {
-            user: 'root',
-            password: '',
-            database: 'fr_miit_app'
-        },
 
         // Storage of the conference
         ConferenceDatabase: {

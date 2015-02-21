@@ -9,33 +9,42 @@
  * http://sailsjs.org/#/documentation/reference/sails.config/sails.config.bootstrap.html
  */
 
-var fs = require( 'fs' );
-var filename = 'logo.txt';
+var logo = require( 'fs' )
+            .readFileSync( 'logo.txt', 'utf8' )
+            .toString()
+            .split( '\n' );
 
 module.exports.bootstrap = function( cb ) {
 
+    // Change the logo of sails
     sails.log.ship = function() {
-
-        var logo = fs.readFileSync( filename, 'utf8' )
-            .toString()
-            .split( '\n' );
 
         for ( var line in logo ) {
             sails.log.info( logo[ line ] );
         }
     };
 
-    // It's very important to trigger this callback method when you are finished
-    // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
+    // Check for import
+    if ( 
+        ( 
+            typeof sails.config._ !== 'undefined' &&
+            sails.config._.length === 3 &&
+            sails.config._[1] === 'import'
+        ) || ( 
+            typeof sails.config._ !== 'undefined' &&
+            sails.config._.length === 4 &&
+            sails.config._[2] === 'import'
+        )
+    ) {
 
+        var conferenceId = ( sails.config._[1] === 'import' ) ?
+                             +sails.config._[2] :
+                             +sails.config._[3];
 
-    // Initialize data if in developpement
-    ImportationDataService.initialize( function() { 
-    
-        // Load the restrictions of the conference
-        RestrictionService.initialize();
+        // Initialize data if in developpement
+        return ImportationDataService.import( conferenceId, cb );
+    }
 
-        // Call next
-        cb();
-    } );
+    // Generate thumbnail
+    return ImportationDataService.thumbnail( cb );
 };

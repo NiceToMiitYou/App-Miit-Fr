@@ -39,7 +39,7 @@ routes[ 'GET ' + apiPublicPrefix + '/synchronize/:token' ] = {
  * Presentation Question Controller
  ******************/
 
-routes[ 'POST ' + apiPublicPrefix + '/presentation/question/create' ] = {
+routes[ 'POST ' + apiPublicPrefix + '/presentation/question' ] = {
     controller: 'ConfQuestionPresentationController',
     action: 'create',
     restriction: 'WALL_INTERACTIONS',
@@ -83,7 +83,7 @@ routes[ 'POST ' + apiPublicPrefix + '/slide/question/:question/answer' ] = {
  * Quizz Question Controller
  ******************/
 
-routes[ 'GET ' + apiPublicPrefix + '/quizz/list' ] = {
+routes[ 'GET ' + apiPublicPrefix + '/quizz' ] = {
     controller: 'ConfQuestionQuizzController',
     action: 'list',
     restriction: 'QUIZZ_INTERACTIONS'
@@ -105,25 +105,25 @@ routes[ 'POST ' + apiPublicPrefix + '/quizz/question/:question/answer' ] = {
  * Note Controller
  ******************/
 
-routes[ 'POST ' + apiPublicPrefix + '/note/create' ] = {
+routes[ 'POST ' + apiPublicPrefix + '/note' ] = {
     controller: 'ConfNoteController',
     action: 'create',
     restrictions: [ 'NOTE_INTERACTIONS', 'NOTE_MULTIPLE' ]
 };
 
-routes[ 'GET ' + apiPublicPrefix + '/note/list' ] = {
+routes[ 'GET ' + apiPublicPrefix + '/note' ] = {
     controller: 'ConfNoteController',
     action: 'list',
     restriction: 'NOTE_INTERACTIONS'
 };
 
-routes[ 'POST ' + apiPublicPrefix + '/note/:note/update' ] = {
+routes[ 'POST ' + apiPublicPrefix + '/note/:note' ] = {
     controller: 'ConfNoteController',
     action: 'update',
     restriction: 'NOTE_INTERACTIONS'
 };
 
-routes[ 'GET ' + apiPublicPrefix + '/note/:note/delete' ] = {
+routes[ 'DELETE ' + apiPublicPrefix + '/note/:note' ] = {
     controller: 'ConfNoteController',
     action: 'delete',
     restrictions: [ 'NOTE_INTERACTIONS', 'NOTE_MULTIPLE' ]
@@ -144,7 +144,7 @@ routes[ 'GET /assets/conference/color-scheme.css' ] = {
     action: 'colorScheme'
 };
 
-routes[ 'GET ' + apiPublicPrefix + '/resources/list' ] = {
+routes[ 'GET ' + apiPublicPrefix + '/resources' ] = {
     controller: 'ConfResourceController',
     action: 'list'
 };

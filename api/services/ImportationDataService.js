@@ -11,7 +11,8 @@ var appRoot = require('app-root-path'),
             width: 227,
             height: 170
         }
-    };
+    },
+    thumbnailPath = appRoot + '/.tmp/public/images/slides';
 
 // Import all data
 function importData( conference, cb ) {
@@ -25,15 +26,15 @@ function importData( conference, cb ) {
             cb( null, conference );
         },
 
-        importChatrooms,
-
-        importTags,
-
         importConference,
 
         importPresentations,
 
         importResourcesCategories,
+
+        importChatrooms,
+
+        importTags,
 
         importQuizzes
 
@@ -375,6 +376,8 @@ function generateImagePath( base, size, presentation, slide ) {
     return base + '/' + size + '_' + presentation + '_' + slide + '.png';
 }
 
+var i = 0;
+
 function generateBigImage( path, presentation, slide, html ) {
 
     setTimeout(function() {
@@ -409,7 +412,9 @@ function generateBigImage( path, presentation, slide, html ) {
                 sails.log.debug( err );
             }
         } );
-    }, 2500 + Math.round( Math.random() * 2500 ));
+    }, i * 2100 );
+
+    i++;
 }
 
 function generateSmallImage( origin, path, presentation, slide ) {
@@ -441,85 +446,62 @@ function generateSmallImage( origin, path, presentation, slide ) {
 function generateThumbnail( path, cb ) {
 
     ConfPresentation
-        .find( { conference: 1 } )
+        .find()
         .populate( 'slides' )
-        .exec( function(err, presentations) {
+        .exec(
+            function(err, presentations) {
             
-            if( ! err ) {
+                if( ! err ) {
 
-                // For each presentations
-                _.forEach( presentations, function( presentation ){
+                    // For each presentations
+                    _.forEach( presentations, function( presentation ){
 
-                    // For each slides of the presentation
-                    _.forEach( presentation.slides, function( slide ) {
+                        // For each slides of the presentation
+                        _.forEach( presentation.slides, function( slide ) {
 
-                        // Genrate big image
-                        generateBigImage( path, presentation.id, slide.id, slide.content );
+                            // Genrate big image
+                            generateBigImage( path, presentation.id, slide.id, slide.content );
+                        } );
                     } );
-                } );
-            }
-            
-            cb();
-        } );
+                }
+                
+                cb();
+            } );
 }
 
 module.exports = {
 
-    initialize: function( cb ) {
+    import: function( conferenceId, cb ) {
 
-        var thumbnailPath = appRoot + '/.tmp/public/images/slides';
+        sails.log.debug('Importation of data from id "' + conferenceId + '"...');
+        
+        ConfConference
+            .findOne( conferenceId )
+            .exec(
+                function( err, conference ) {
+                    if( err ) {
 
-        if ( 
-            ( 
-                typeof sails.config._ !== 'undefined' &&
-                sails.config._.length === 3 &&
-                sails.config._[1] === 'import'
-            ) || ( 
-                typeof sails.config._ !== 'undefined' &&
-                sails.config._.length === 4 &&
-                sails.config._[2] === 'import'
-            )
-        ) {
-
-            var conferenceId = ( sails.config._[1] === 'import' ) ?
-                                 +sails.config._[2] :
-                                 +sails.config._[3];
-
-            sails.log.debug('Importation of data from id "' + conferenceId + '"...');
-            
-            ConfConference
-                .findOne({
-                    'where': {
-                        'id': {
-                            'not': null
-                        }
+                        throw err;
                     }
-                })
-                .exec(
-                    function(err, conference) {
-                        if( err ) {
 
-                            throw err;
-                        }
+                    if ( conference ) {
 
-                        if ( conference ) {
+                        sails.log.debug('The conference is already imported...');
 
-                            sails.log.debug('A conference is already imported...');
+                        return generateThumbnail( thumbnailPath, cb );
+                    }
 
-                            return generateThumbnail( thumbnailPath, cb );
-                        }
+                    importData( conferenceId, function() {
 
-                        importData( conferenceId, function() {
+                        sails.log.debug('Importation of data... DONE!');
+                        
+                        return generateThumbnail( thumbnailPath, cb );
+                    } );
+                } );
+    },
 
-                            sails.log.debug('Importation of data... DONE!');
-                            
-                            return generateThumbnail( thumbnailPath, cb );
-                        } );
-                    } ); 
+    thumbnail: function( cb ) {
 
-        } else {
-
-            return generateThumbnail( thumbnailPath, cb );
-        }
+        return generateThumbnail( thumbnailPath, cb );
     }
 };

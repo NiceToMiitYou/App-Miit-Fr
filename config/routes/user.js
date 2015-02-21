@@ -6,22 +6,17 @@ var routes = {};
  * User Controller
  ******************/
 
-routes[ 'GET ' + apiUserPrefix + '/list' ] = {
-    controller: 'ConfUserController',
-    action: 'list'
-};
-
-routes[ 'GET ' + apiUserPrefix + '/:user/get' ] = {
+routes[ 'GET ' + apiUserPrefix + '/:user' ] = {
     controller: 'ConfUserController',
     action: 'get'
 };
 
-routes[ 'GET ' + apiUserPrefix + '/me' ] = {
+routes[ 'GET ' + apiUserPrefix ] = {
     controller: 'ConfUserController',
     action: 'me'
 };
 
-routes[ 'POST ' + apiUserPrefix + '/update' ] = {
+routes[ 'POST ' + apiUserPrefix ] = {
     controller: 'ConfUserController',
     action: 'update'
 };

@@ -38,8 +38,15 @@ module.exports = {
             via: 'quizz'
         },
 
+        conference: {
+            model: 'ConfConference',
+            required: true,
+            index: true
+        },
+
         toJSON: function() {
             var obj = this.toObject();
+            delete obj.conference;
             delete obj.createdAt;
             delete obj.updatedAt;
             return obj;

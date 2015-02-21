@@ -58,13 +58,14 @@ module.exports = {
      */
     subscribe: function( req, res ) {
 
-        if ( req.isSocket &&
-             req.session.user &&
+        if ( req.isSocket      &&
+             req.session.user  &&
              req.session.roles
         ) {
 
             _.forEach(req.session.roles, function(role) {
-                sails.sockets.join( req.socket, role );
+                // Register for the channel of the conference
+                sails.sockets.join( req.socket, role + '_' + +req.session.conference );
             });
 
             return res.done();

@@ -37,6 +37,12 @@ module.exports = {
             required: true
         },
 
+        presentation: {
+            model: 'ConfPresentation',
+            required: true,
+            index: true
+        },
+
         toJSON: function() {
             var obj = this.toObject();
             delete obj.updatedAt;

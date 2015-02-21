@@ -35,13 +35,6 @@ module.exports = {
     connections: {
 
         // Storage of the conference
-        LiveApplicationDatabase: {
-            user: 'root',
-            password: '',
-            database: 'fr_miit_app'
-        },
-
-        // Storage of the conference
         ConferenceDatabase: {
             user: 'root',
             password: '',

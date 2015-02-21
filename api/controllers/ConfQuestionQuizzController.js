@@ -11,8 +11,11 @@ module.exports = {
      * `ConfQuestionQuizzController.list()`
      */
     list: function( req, res ) {
+
         ConfQuizz
-            .find()
+            .find( {
+                conference: req.session.conference
+            } )
             .exec( function( err, quizzes ) {
                 if ( err || !quizzes ) {
 
@@ -29,9 +32,12 @@ module.exports = {
      * `ConfQuestionQuizzController.questions()`
      */
     questions: function( req, res ) {
+
+        var quizz = req.param( 'quizz' );
+
         ConfQuestionQuizz
             .find( {
-                quizz: req.param( 'quizz' )
+                quizz: quizz
             } )
             .populate( 'answers' )
             .exec( function( err, questions ) {
@@ -50,21 +56,27 @@ module.exports = {
      * `ConfQuestionQuizzController.answer()`
      */
     answer: function( req, res ) {
+
+        var questionId = req.param( 'question' ),
+            answers    = req.param( 'answers' );
+
         ConfQuestionQuizz
-            .findOne( req.param( 'question' ) )
+            .findOne( question )
             .populate( 'answers' )
             .exec( function( err, question ) {
                 if ( err || !question || _.size(
                         _.intersection(
-                            _.map( question.answers, 'id' ), req.param( 'answers' ) )
+                            _.map( question.answers, 'id' ), answers )
                     ) === 0 ) {
 
                     return res.notDone();
                 }
 
+                var answersSize = _.size( answers );
+
                 // Single choice question
-                if ( _.size( req.param( 'answers' ) ) == 1 && question.type === 1 ||
-                     _.size( req.param( 'answers' ) ) >= 1 && question.type !== 1 ) {
+                if ( answersSize == 1 && question.type === 1 ||
+                     answersSize >= 1 && question.type !== 1 ) {
 
                     ConfUser
                         .findOne( req.session.user )
@@ -82,10 +94,7 @@ module.exports = {
                             }
 
                             // Register answers
-                            _( req.param( 'answers' ) )
-                                .forEach( function( answer ) {
-                                    user.quizzAnswers.add( answer );
-                                } );
+                            user.quizzAnswers.concat( answers );
 
                             // Save result
                             user.save( function( err ) {

@@ -22,6 +22,12 @@ module.exports = {
             dominant: true
         },
 
+        conference: {
+            model: 'ConfConference',
+            required: true,
+            index: true
+        },
+
         toJSON: function() {
             var obj = this.toObject();
             delete obj.createdAt;

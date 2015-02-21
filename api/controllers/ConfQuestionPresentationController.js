@@ -14,13 +14,17 @@ module.exports = {
      */
     create: function( req, res ) {
 
-        if ( _.size( req.param( 'tags' ) ) >= 1 ) {
+        var question = req.param( 'question' ),
+            tags     = req.param( 'tags' );
+
+        if ( _.size( tags ) >= 1 ) {
 
             ConfQuestionPresentation
                 .create( {
-                    question: req.param( 'question' ),
-                    user: req.session.user,
-                    tags: req.param( 'tags' )
+                    question:     question,
+                    tags:         tags,
+                    user:         req.session.user,
+                    presentation: req.session.presentation
                 } )
                 .exec( function( err, created ) {
                     if ( err ) {
@@ -29,10 +33,11 @@ module.exports = {
                     }
 
                     SocketEventCachingService.sendToAll(
+                        req.session.conference,
                         'question-presentation-new',
                         { 
                             question: created,
-                            tags: req.param( 'tags' )
+                            tags:     tags
                         },
                         questionDuration
                     );
@@ -41,8 +46,8 @@ module.exports = {
                     ConfQuestionPresentationLike
                         .create( {
                             question: created.id,
-                            user: req.session.user,
-                            isLiked: true
+                            user:     req.session.user,
+                            isLiked:  true
                         } )
                         .exec( function( err, createdLike ) {
                             if ( err ) {
@@ -51,6 +56,7 @@ module.exports = {
                             }
 
                             SocketEventCachingService.sendToAll(
+                                req.session.conference,
                                 'question-presentation-like',
                                 createdLike,
                                 questionDuration
@@ -62,6 +68,7 @@ module.exports = {
                     } );
                 } );
         } else {
+
             return res.notDone();
         }
     },
@@ -70,8 +77,11 @@ module.exports = {
      * `ConfQuestionPresentationController.tags()`
      */
     tags: function( req, res ) {
+
         ConfTag
-            .find()
+            .find( {
+                conference: req.session.conference
+            } )
             .exec( function( err, tags ) {
                 if ( err || !tags ) {
 
@@ -88,14 +98,18 @@ module.exports = {
      * `ConfQuestionPresentationController.like()`
      */
     like: function( req, res ) {
+
+        var question = req.param( 'question' ),
+            isLike   = req.param( 'like' );
+
         // Find the question
         ConfQuestionPresentation
             .findOne( {
-                id: req.param( 'question' ),
+                id:         question,
                 isAnswered: false
             } )
-            .exec( function( err, question ) {
-                if ( err || !question ) {
+            .exec( function( err, questionPresentation ) {
+                if ( err || !questionPresentation ) {
 
                     return res.notDone();
                 }
@@ -103,8 +117,8 @@ module.exports = {
                 // Find if already liked
                 ConfQuestionPresentationLike
                     .findOne( {
-                        question: question.id,
-                        user: req.session.user
+                        question: questionPresentation.id,
+                        user:     req.session.user
                     } )
                     .exec( function( err, like ) {
                         if ( err || like ) {
@@ -116,9 +130,9 @@ module.exports = {
 
                         // If no like before, let's like it
                         ConfQuestionPresentationLike.create( {
-                            question: req.param( 'question' ),
-                            user: req.session.user,
-                            isLiked: req.param( 'like' )
+                            question: question,
+                            user:     req.session.user,
+                            isLiked:  isLike
                         } )
                             .exec( function( err, created ) {
                                 if ( err ) {
@@ -127,6 +141,7 @@ module.exports = {
                                 }
 
                                 SocketEventCachingService.sendToAll(
+                                    req.session.conference,
                                     'question-presentation-like',
                                     created,
                                     questionDuration

@@ -14,6 +14,12 @@ module.exports = {
             required: true
         },
 
+        conference: {
+            model: 'ConfConference',
+            required: true,
+            index: true
+        },
+
         start: {
             type: 'datetime'
         },

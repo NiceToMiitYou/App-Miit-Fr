@@ -13,13 +13,7 @@ module.exports = {
     conference: function( req, res ) {
 
         ConfConference
-            .findOne({
-                'where': {
-                    'id': {
-                        'not': null
-                    }
-                }
-            })
+            .findOne( req.session.conference )
             .exec( function( err, conference ) {
                 if ( err || !conference ) {
 
@@ -38,13 +32,9 @@ module.exports = {
     actual: function( req, res ) {
         
         ConfPresentation
-            .findOne({
-                'where': {
-                    'id': {
-                        'not': null
-                    }
-                }
-            })
+            .findOne( {
+                conference: req.session.conference
+            } )
             .sort('id ASC')
             .exec(
                 function( err, presentation ) {
@@ -52,6 +42,8 @@ module.exports = {
                      
                         return res.notDone();
                     }
+
+                    req.session.presentation = presentation.id;
 
                     return res.done( {
                         presentation: presentation.id
@@ -66,7 +58,7 @@ module.exports = {
         
         return res.done( {
             users: _.size( 
-                sails.sockets.subscribers('ROLE_VIEWER')
+                sails.sockets.subscribers('ROLE_VIEWER_' + +req.session.conference)
             ) 
         } );
     },
@@ -77,7 +69,9 @@ module.exports = {
     presentations: function( req, res ) {
 
         ConfPresentation
-            .find()
+            .find( {
+                conference: req.session.conference
+            } )
             .populate( 'slides' )
             .exec( function( err, presentations ) {
                 if ( err || ! presentations ) res.notDone();

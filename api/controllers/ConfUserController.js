@@ -7,36 +7,25 @@
 
 var redirectUrl = 'http://www.itevents.fr';
 
+function resetSession( session ) {
+
+    if ( session.user )       session.user         = null;
+    if ( session.roles )      session.roles        = null;
+    if ( session.conference ) session.conference   = null;
+    if ( session.conference ) session.presentation = null;
+}
+
 module.exports = {
-
-    /**
-     * `ConfUserController.list()`
-     */
-    list: function( req, res ) {
-
-        ConfUser
-            .find()
-            .exec( function( err, users ) {
-                if ( err || !users ) {
-
-                    return res.notDone();
-                }
-
-                return res.done( {
-                    users: users
-                } );
-            } );
-    },
 
     /**
      * `ConfUserController.get()`
      */
     get: function( req, res ) {
 
+        var userId = req.param( 'user' );
+
         ConfUser
-            .findOne(
-                req.param( 'user' )
-            )
+            .findOne( userId )
             .exec( function( err, user ) {
                 if ( err || !user ) {
 
@@ -55,12 +44,13 @@ module.exports = {
     me: function( req, res ) {
 
         ConfUser
-            .findOne(
-                req.session.user
-            )
+            .findOne( req.session.user )
             .populate( 'quizzAnswers' )
             .exec( function( err, user ) {
-                if ( err || !user ) return res.notDone();
+                if ( err || !user ) {
+
+                    return res.notDone();
+                }
 
                 return res.done( {
                     user: user
@@ -109,8 +99,7 @@ module.exports = {
      */
     logout: function( req, res ) {
 
-        if ( req.session.user ) req.session.user = null;
-        if ( req.session.roles ) req.session.roles = null;
+        resetSession( req.session );
 
         // Set last track to end
         ConfTrack
@@ -142,7 +131,10 @@ module.exports = {
     connect: function( req, res ) {
 
         var token = req.param( 'token' );
-        
+
+        // Reset the session to be sure
+        resetSession( req.session );
+
         if ( token ) {
 
             ItUser
@@ -150,7 +142,6 @@ module.exports = {
                     method: 'postJson',
                     action: 'connect',
                     data: {
-                        conference: 1,
                         token: token
                     }
                 }, function( err, response ) {
@@ -159,22 +150,32 @@ module.exports = {
                         return res.redirect( redirectUrl );
                     }
 
-                    if ( req.session.user ) req.session.user = null;
-                    if ( req.session.roles ) req.session.roles = null;
+                    // Check if the conference exist on the server
+                    ConfConference
+                        .findOne( response.conference )
+                        .exec( function( errConference, conference ) {
+                            if( errConference || !conference ) {
 
-                    UserService
-                        .createFromConnect( response.user,  function( errRetrieve, user ) {
-                            if( errRetrieve ) {
-
+                                // If no conference or error, redirect the user
                                 return res.redirect( redirectUrl );
                             }
 
-                            // If connected add informations to the session
-                            req.session.user  = user.id;
-                            req.session.roles = user.roles;
+                            // Create the user in local
+                            UserService
+                                .createFromConnect( response.user,  function( errRetrieve, user ) {
+                                    if( errRetrieve ) {
 
-                            return res.redirect( '/' );
-                        } );
+                                        return res.redirect( redirectUrl );
+                                    }
+
+                                    // If connected add informations to the session
+                                    req.session.user       = user.id;
+                                    req.session.roles      = user.roles;
+                                    req.session.conference = response.conference;
+
+                                    return res.redirect( '/' );
+                                } );
+                        });
                 } );
         } else {
 

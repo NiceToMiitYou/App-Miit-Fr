@@ -5,26 +5,21 @@
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
+
+var less = require( 'less' );
+
 module.exports = {
 
     colorScheme: function( req, res ) {
     
         ConfConference
-            .findOne({
-                'where': {
-                    'id': {
-                        'not': null
-                    }
-                }
-            })
+            .findOne( req.session.conference )
             .exec( 
                 function( err, conference ) {
                     if ( err || !conference ) {
 
                         return res.send( 404 );
                     }
-
-                    var less = require( 'less' );
 
                     less.render( conference.colorScheme, function( e, css ) {
                         if ( e ) {
@@ -40,9 +35,11 @@ module.exports = {
     },
 
     list: function( req, res ) {
+
         ConfResourceCategory
             .find( {
-                isVisible: true
+                isVisible:  true,
+                conference: req.session.conference
             } )
             .populate( 'resources' )
             .exec( function( err, categories ) {

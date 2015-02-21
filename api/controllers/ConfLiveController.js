@@ -13,12 +13,15 @@ module.exports = {
      * `ConfLiveController.next()`
      */
     next: function( req, res ) {
+
+        var presentation = req.param( 'presentation' );
         
-        if ( req.param( 'presentation' ) && req.param( 'presentation' ) > 0 ) {
+        if ( presentation && presentation > 0 ) {
         
             SocketEventCachingService.sendToAll(
+                req.session.conference,
                 'live-presentation-next', {
-                    presentation: req.param( 'presentation' )
+                    presentation: presentation
                 },
                 liveDuration
             );
@@ -34,9 +37,12 @@ module.exports = {
      */
     previous: function( req, res ) {
 
-        if ( req.param( 'presentation' ) && req.param( 'presentation' ) > 0 ) {
+        var presentation = req.param( 'presentation' );
         
+        if ( presentation && presentation > 0 ) {
+
             SocketEventCachingService.sendToAll(
+                req.session.conference,
                 'live-presentation-previous', {
                     presentation: req.param( 'presentation' )
                 },
