@@ -1,5 +1,5 @@
-var nodemailer = require( 'nodemailer' );
-var smtpTransport = require( 'nodemailer-smtp-transport' );
+var nodemailer    = require( 'nodemailer' ),
+    smtpTransport = require( 'nodemailer-smtp-transport' );
 
 function sendEmail( email, title, contentText, contentHtml ) {
     

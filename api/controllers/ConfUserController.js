@@ -5,8 +5,6 @@
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
-var redirectUrl = 'http://www.itevents.fr';
-
 function resetSession( session ) {
 
     if ( session.user )       session.user         = null;
@@ -120,7 +118,7 @@ module.exports = {
                 }
 
                 return res.done( {
-                    url: redirectUrl
+                    url: sails.config.application.redirect
                 } );
             } ) ;
     },
@@ -147,7 +145,7 @@ module.exports = {
                 }, function( err, response ) {
                     if( err || !response || !response.user ) {
 
-                        return res.redirect( redirectUrl );
+                        return res.redirect( sails.config.application.redirect );
                     }
 
                     // Check if the conference exist on the server
@@ -157,7 +155,7 @@ module.exports = {
                             if( errConference || !conference ) {
 
                                 // If no conference or error, redirect the user
-                                return res.redirect( redirectUrl );
+                                return res.redirect( sails.config.application.redirect );
                             }
 
                             // Create the user in local
@@ -165,12 +163,12 @@ module.exports = {
                                 .createFromConnect( response.user,  function( errRetrieve, user ) {
                                     if( errRetrieve ) {
 
-                                        return res.redirect( redirectUrl );
+                                        return res.redirect( sails.config.application.redirect );
                                     }
 
                                     // If connected add informations to the session
                                     req.session.user       = user.id;
-                                    req.session.roles      = user.roles;
+                                    req.session.roles      = response.roles;
                                     req.session.conference = response.conference;
 
                                     return res.redirect( '/' );
@@ -179,7 +177,26 @@ module.exports = {
                 } );
         } else {
 
-            return res.redirect( redirectUrl );
+            return res.redirect( sails.config.application.redirect );
         }
+    },
+
+    /**
+     * `ConfUserController.role()`
+     */
+    role: function( req, res ) {
+
+        var role = req.param( 'role' );
+
+        // If the role is not in the exclude list, we can accept it
+        if( role && !_.contains( sails.config.application.roles.exclude, role ) ) {
+
+            // Remove all roles not in the exclude list and not selected
+            _.remove( req.session.roles, function( value ) {
+                return value !== role && !_.contains( sails.config.application.roles.exclude, value );
+            });
+        }
+
+        return res.redirect( '/' );
     }
 };

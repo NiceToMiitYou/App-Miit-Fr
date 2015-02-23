@@ -5,8 +5,6 @@
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
-var liveDuration = 6 * 60 * 60; // Store them 6 hours
-
 module.exports = {
 
     /**
@@ -20,10 +18,10 @@ module.exports = {
         
             SocketEventCachingService.sendToAll(
                 req.session.conference,
-                'live-presentation-next', {
+                'live-presentation-next',
+                {
                     presentation: presentation
-                },
-                liveDuration
+                }
             );
 
             return res.done();
@@ -43,10 +41,10 @@ module.exports = {
 
             SocketEventCachingService.sendToAll(
                 req.session.conference,
-                'live-presentation-previous', {
+                'live-presentation-previous',
+                {
                     presentation: req.param( 'presentation' )
-                },
-                liveDuration
+                }
             );
 
             return res.done();

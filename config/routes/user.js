@@ -31,4 +31,9 @@ routes[ 'GET /connect/:token' ] = {
     action: 'connect'
 };
 
+routes[ 'GET /role/:role' ] = {
+    controller: 'ConfUserController',
+    action: 'role'
+};
+
 module.exports = routes;

@@ -1,6 +1,17 @@
 {
     "app_name": "Miit",
 
+    "choose": {
+        "title": "Sélectionnez votre mode",
+
+        "roles": {
+            "ROLE_VIEWER": "Mode spectateur",
+            "ROLE_MASTER": "Mode présentateur",
+            "ROLE_LIVE": "Mode projection",
+            "ROLE_ADMIN": "Mode administrateur"
+        }
+    },
+
     "live": {
         "title": "Miit - Live"
     },

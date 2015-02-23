@@ -52,9 +52,7 @@ module.exports = {
                     .sendToAll(
                         req.session.conference,
                         'chatroom-new',
-                        created,
-                        5 * 60, // Keep them 5 minutes
-                        true    // but apply coefficient
+                        created
                     );
 
                 return res.done();

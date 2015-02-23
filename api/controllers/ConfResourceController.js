@@ -10,6 +10,9 @@ var less = require( 'less' );
 
 module.exports = {
 
+    /**
+     * `ConfresourceController.colorScheme()`
+     */
     colorScheme: function( req, res ) {
     
         ConfConference
@@ -34,6 +37,9 @@ module.exports = {
                 } );
     },
 
+    /**
+     * `ConfResourceController.list()`
+     */
     list: function( req, res ) {
 
         ConfResourceCategory

@@ -1,12 +1,4 @@
 
-var eventsRooms = {
-    'chatroom-new':               ['ROLE_VIEWER'], // Chat message for viewers only cause master and live dont care of that
-    'live-presentation-next':     ['ROLE_LOGIN'],  // Live for all connected
-    'live-presentation-previous': ['ROLE_LOGIN'], // Live for all connected
-    'question-presentation-new':  ['ROLE_VIEWER', 'ROLE_MASTER'], // Live dont car of that
-    'question-presentation-like': ['ROLE_VIEWER', 'ROLE_MASTER'] // Same
-};
-
 var estimatedMessagesPerMinute  = 1 / 5; // 1 message per 5 minutes for one participant
 var estimatedParticipant        = 10;    // ACTUALLY STATIC, TO CHANGE AFTER
 var maxMessages                 = 40;    // Actual client limitation for displaying messages
@@ -24,16 +16,13 @@ if( calculatedMessagesPerMinute !== 0) {
 }
 
 module.exports = {
+    // TODO: refactor with an option argument
+    sendToAll: function( conference, event, data ) {
 
-    sendToAll: function( conference, event, data, stayAlive, shouldApplyCoef ) {
+        var stayAlive       = sails.config.application.events.duration[event] ||
+                              sails.config.application.events.duration.default,
 
-        if ( !stayAlive ) {
-            // By default, 24 hours
-            stayAlive = 24 * 60 * 60;
-        }
-
-        // Add milliseconds for time
-        stayAlive *= 1000;
+            shouldApplyCoef = sails.config.application.events.coefficient[event] || false;
 
         // Apply duration coefficient to have a good comportement in conference
         if( shouldApplyCoef ) {
@@ -72,15 +61,13 @@ module.exports = {
                     return sails.log.debug( err );
                 }
 
-                // Broadcast to all concerned events
-                if( eventsRooms[model.name] ) {
-
-                    _.forEach( eventsRooms[model.name], function( role ) {
+                _.forEach(
+                    sails.config.application.events.rooms[model.name] || [],
+                    function( role ) {
 
                         sails.sockets.broadcast( role + '_' + +conference, model.name, model );
-                    } );
-                }
+                    }
+                );
             } );
     }
-
 };

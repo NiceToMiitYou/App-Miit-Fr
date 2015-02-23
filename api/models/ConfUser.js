@@ -70,15 +70,9 @@ module.exports = {
             via: 'user'
         },
 
-        roles: {
-            type: 'array',
-            required: true
-        },
-
         toJSON: function() {
             var obj = this.toObject();
             delete obj.mail;
-            delete obj.roles;
             delete obj.messages;
             delete obj.createdAt;
             delete obj.updatedAt;

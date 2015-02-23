@@ -5,8 +5,6 @@
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
-var questionDuration = 6 * 60 * 60;
-
 module.exports = {
 
     /**
@@ -38,8 +36,7 @@ module.exports = {
                         { 
                             question: created,
                             tags:     tags
-                        },
-                        questionDuration
+                        }
                     );
 
                     // If no like before, let's like it
@@ -58,8 +55,7 @@ module.exports = {
                             SocketEventCachingService.sendToAll(
                                 req.session.conference,
                                 'question-presentation-like',
-                                createdLike,
-                                questionDuration
+                                createdLike
                             );
                         } );
 
@@ -143,8 +139,7 @@ module.exports = {
                                 SocketEventCachingService.sendToAll(
                                     req.session.conference,
                                     'question-presentation-like',
-                                    created,
-                                    questionDuration
+                                    created
                                 );
 
                                 return res.done( {
