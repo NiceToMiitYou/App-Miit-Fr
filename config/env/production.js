@@ -12,7 +12,14 @@
 
 module.exports = {
 
-    port: 80,
+    aws: {
+
+        accessKeyId:     'akid',
+    
+        secretAccessKey: 'secret',
+    
+        region:          'value'
+    },
 
     mailer: {
         from: {
@@ -50,6 +57,8 @@ module.exports = {
             port: 80
         }
     },
+
+    port: 80,
   
     log: {
         level: "silent"

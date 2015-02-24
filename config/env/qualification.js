@@ -1,5 +1,5 @@
 /**
- * Development environment settings
+ * Qualification environment settings
  *
  * This file can include shared settings for a development team,
  * such as API keys or remote database passwords.  If you're using
@@ -12,12 +12,14 @@
 
 module.exports = {
 
-    /***************************************************************************
-     * Set the default database connection for models in the development       *
-     * environment (see config/connections.js and config/models.js )           *
-     ***************************************************************************/
+    aws: {
 
-    port: 80,
+        accessKeyId:     'akid',
+    
+        secretAccessKey: 'secret',
+    
+        region:          'value'
+    },
 
     mailer: {
         from: {
@@ -54,5 +56,7 @@ module.exports = {
             host: 'dwh.qlf.priv.miit.fr',
             port: 80
         }
-    }
+    },
+
+    port: 80
 };
