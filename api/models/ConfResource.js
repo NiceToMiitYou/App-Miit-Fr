@@ -15,6 +15,11 @@ module.exports = {
             minLength: 1
         },
 
+        type: {
+            type: 'string',
+            required: true
+        },
+
         path: {
             type: 'text',
             required: true
