@@ -62,13 +62,13 @@ var jsFilesToInject = [
   'vendor/modernizr/modernizr.js',
 
   // Debug file
-  'js/dependencies/it-debug.js',
+  'js/dependencies/miit-debug.js',
 
   // Load ITStorage before ITConnect
-  'js/dependencies/it-storage.js',
+  'js/dependencies/miit-storage.js',
 
   // Load ITGarbage before ITConnect
-  'js/dependencies/it-garbage.js',
+  'js/dependencies/miit-garbage.js',
 
   // Dependencies like jQuery, or Angular are brought in here
   'js/dependencies/**/*.js',

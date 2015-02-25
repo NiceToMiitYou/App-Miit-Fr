@@ -22,6 +22,7 @@
 
 function extend( target ) {
     var sources = [].slice.call( arguments, 1 );
+
     sources.forEach( function( source ) {
         for ( var prop in source ) {
             target[ prop ] = source[ prop ];
@@ -31,11 +32,11 @@ function extend( target ) {
     return target;
 }
 
-var userAppRoutes   = require( './routes/user.js' );
-var viewerAppRoutes = require( './routes/viewer.js' );
-var liveAppRoutes   = require( './routes/live.js' );
-var masterAppRoutes = require( './routes/master.js' );
-var adminAppRoutes  = require( './routes/admin.js' );
+var userAppRoutes   = require( './routes/user.js' ),
+    viewerAppRoutes = require( './routes/viewer.js' ),
+    liveAppRoutes   = require( './routes/live.js' ),
+    masterAppRoutes = require( './routes/master.js' ),
+    adminAppRoutes  = require( './routes/admin.js' );
 
 var routes = {
 
@@ -97,10 +98,10 @@ var routes = {
      ***************************************************************************/
 };
 
-extend( routes, viewerAppRoutes );
-extend( routes, liveAppRoutes );
-extend( routes, masterAppRoutes );
-extend( routes, adminAppRoutes );
-extend( routes, userAppRoutes );
+extend( routes, viewerAppRoutes,
+                liveAppRoutes,
+                masterAppRoutes,
+                adminAppRoutes,
+                userAppRoutes );
 
 module.exports.routes = routes;
