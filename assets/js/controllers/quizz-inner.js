@@ -1,7 +1,9 @@
 "use strict";
 
-MiitApp.controller(
-    'QuizzInnerController', [ '$scope', '$timeout',
+angular
+    .module( 'MiitApp')
+    .controller( 'QuizzInnerController', [
+        '$scope', '$timeout',
         function( $scope, $timeout ) {
 
             $scope.current = {};
@@ -168,4 +170,5 @@ MiitApp.controller(
             };
 
             ITStorage.db.options.bind('quizz.current', loadQuizz);
-        } ] );
+        }
+    ] );

@@ -1,7 +1,9 @@
 "use strict";
 
-MiitApp.controller(
-    'MasterLiveController', [ '$scope', '$timeout',
+angular
+    .module( 'MiitApp')
+    .controller( 'MasterLiveController', [
+        '$scope', '$timeout',
         function( $scope, $timeout ) {
 
             function next() {
@@ -39,4 +41,5 @@ MiitApp.controller(
 
             document.addEventListener('keydown', onKeyPress, false);
 
-        } ] );
+        }
+    ] );

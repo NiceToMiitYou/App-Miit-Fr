@@ -1,7 +1,10 @@
 "use strict";
 
-MiitApp.controller(
-    'LiveController', [ '$scope', '$timeout',
+
+angular
+    .module( 'MiitApp')
+    .controller( 'LiveController', [
+        '$scope', '$timeout',
         function( $scope, $timeout ) {
 
             $scope.current = 0;
@@ -115,8 +118,6 @@ MiitApp.controller(
 
                 if( data.presentation == $scope.presentation.id ) {
 
-//                    offset += direction;
-
                     actions.push( direction );
 
                     debouncedLiveMoveTo();
@@ -184,4 +185,5 @@ MiitApp.controller(
                 handleLiveEvent( -1, data );
             });
 
-        } ] );
+        }
+    ] );

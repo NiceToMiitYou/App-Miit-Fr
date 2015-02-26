@@ -1,7 +1,10 @@
 "use strict";
 
-MiitApp.controller(
-    'CommonController', [ '$scope', '$timeout', '$sce',
+
+angular
+    .module( 'MiitApp')
+    .controller( 'CommonController', [
+        '$scope', '$timeout', '$sce',
         function( $scope, $timeout, $sce ) {
 
             $scope.shared = {
@@ -258,4 +261,5 @@ MiitApp.controller(
             ITStorage.db.options.bind('conference', true, refreshConference);
 
             ITStorage.db.options.bind('presentation.actual', true, refreshPresentation);
-        } ] );
+        }
+    ] );

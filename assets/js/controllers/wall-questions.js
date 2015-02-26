@@ -1,7 +1,10 @@
 "use strict";
 
-MiitApp.controller(
-    'WallController', [ '$scope', '$timeout',
+
+angular
+    .module( 'MiitApp')
+    .controller( 'WallController', [
+        '$scope', '$timeout',
         function( $scope, $timeout ) {
 
             $scope.filter = "";
@@ -151,4 +154,5 @@ MiitApp.controller(
                     );
                 });
             });
-    } ] );
+        }
+    ] );

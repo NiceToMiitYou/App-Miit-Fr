@@ -1,15 +1,17 @@
 "use strict";
 
-MiitApp.controller(
-    'MasterController', [ '$scope', '$timeout',
+angular
+    .module( 'MiitApp')
+    .controller( 'MasterController', [
+        '$scope', '$timeout',
         function( $scope, $timeout ) {
 
-            var minTime = 10000;
-            var maxTime = 30000;
-            var refreshTime = 10000;
+            var minTime     = 10000,
+                maxTime     = 30000,
+                refreshTime = 10000;
 
-            $scope.connectedUsers = 0;
-            $scope.usersConnectedUp = true;
+            $scope.connectedUsers     = 0;
+            $scope.usersConnectedUp   = true;
             $scope.usersConnectedSame = false;
             $scope.usersConnectedDown = false;
 
@@ -52,4 +54,5 @@ MiitApp.controller(
             $scope.thmbScrollRight = thmbScrollRight;
             $scope.thmbScrollLeft = thmbScrollLeft;
             setTimeout(refreshConnectedUsers, 1000);
-        } ] );
+        }
+    ] );

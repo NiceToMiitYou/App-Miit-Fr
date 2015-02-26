@@ -1,7 +1,10 @@
 "use strict";
 
-MiitApp.controller(
-    'RessourcesInnerController', [ '$scope', '$timeout',
+
+angular
+    .module( 'MiitApp')
+    .controller( 'RessourcesInnerController', [
+        '$scope', '$timeout',
         function( $scope, $timeout ) {
 
             $scope.current = {};
@@ -15,4 +18,5 @@ MiitApp.controller(
             }
 
             ITStorage.db.options.bind('ressources.current', loadRessource);
-        } ] );
+        }
+    ] );

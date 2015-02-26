@@ -1,7 +1,10 @@
 "use strict";
 
-MiitApp.controller(
-    'LivePrivateController', [ '$scope', '$timeout',
+
+angular
+    .module( 'MiitApp')
+    .controller( 'LivePrivateController', [
+        '$scope', '$timeout',
         function( $scope, $timeout ) {
         
             function onKeyPress(e) {
@@ -19,4 +22,5 @@ MiitApp.controller(
 
             document.addEventListener('keydown', onKeyPress, false);
 
-        } ] );
+        }
+    ] );

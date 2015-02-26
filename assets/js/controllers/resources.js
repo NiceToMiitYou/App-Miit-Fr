@@ -1,7 +1,10 @@
 "use strict";
 
-MiitApp.controller(
-    'ResourcesController', [ '$scope', '$timeout',
+
+angular
+    .module( 'MiitApp')
+    .controller( 'ResourcesController', [
+        '$scope', '$timeout',
         function( $scope, $timeout ) {
 
             $scope.categories = {};
@@ -33,4 +36,5 @@ MiitApp.controller(
 
             ITStorage.db.options.bind( 'data.isLoaded', true, loadCategories );
 
-        } ] );
+        }
+    ] );

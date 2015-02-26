@@ -1,7 +1,9 @@
 "use strict";
 
-MiitApp.controller(
-    'ChatController', [ '$scope', '$timeout',
+angular
+    .module( 'MiitApp')
+    .controller( 'ChatController', [
+        '$scope', '$timeout',
         function( $scope, $timeout ) {
 
             $scope.chatrooms = {};
@@ -124,4 +126,5 @@ MiitApp.controller(
                     }
                 });
             });
-    } ] );
+        }
+    ] );

@@ -1,7 +1,9 @@
 "use strict";
 
-MiitApp.controller(
-    'NotesController', [ '$scope', '$timeout',
+angular
+    .module( 'MiitApp')
+    .controller( 'NotesController', [
+        '$scope', '$timeout',
         function( $scope, $timeout ) {
 
             $scope.notes = {};
@@ -213,4 +215,5 @@ MiitApp.controller(
                 }
             };
 
-        } ] );
+        }
+    ] );

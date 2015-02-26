@@ -1,7 +1,9 @@
 "use strict";
 
-MiitApp.controller(
-    'AskQuestionModalController', [ '$scope', '$timeout',
+angular
+    .module( 'MiitApp')
+    .controller( 'AskQuestionModalController', [
+        '$scope', '$timeout',
         function( $scope, $timeout ) {
 
             $scope.text = '';
@@ -53,4 +55,5 @@ MiitApp.controller(
                 }
             };
 
-        } ] );
+        }
+    ] );

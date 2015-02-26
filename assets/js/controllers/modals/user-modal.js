@@ -1,7 +1,9 @@
 "use strict";
 
-MiitApp.controller(
-    'UserModalController', [ '$scope', '$timeout',
+angular
+    .module( 'MiitApp')
+    .controller( 'UserModalController', [
+        '$scope', '$timeout',
         function( $scope, $timeout ) {
 
             $scope.agreeAnonyme = false;
@@ -102,4 +104,5 @@ MiitApp.controller(
             $scope.saveUser = saveUser;
 
             $scope.canSave = canSave;
-        } ] );
+        }
+    ] );
