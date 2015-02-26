@@ -71,8 +71,7 @@ angular
                 }
             }
 
-            var actions = [],
-                offset  = 0;
+            var actions = [];
 
             function liveMoveTo() {
                 
