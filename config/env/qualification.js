@@ -12,13 +12,9 @@
 
 module.exports = {
 
-    aws: {
+    application: {
 
-        accessKeyId:     'akid',
-    
-        secretAccessKey: 'secret',
-    
-        region:          'value'
+        sqs: 'qlf-miit-fr'
     },
 
     mailer: {

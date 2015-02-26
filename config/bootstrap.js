@@ -24,7 +24,7 @@ module.exports.bootstrap = function( cb ) {
         }
     };
 
-    // Check for import
+    // Check for manual import
     if ( 
         ( 
             typeof sails.config._ !== 'undefined' &&
@@ -41,10 +41,15 @@ module.exports.bootstrap = function( cb ) {
                              +sails.config._[2] :
                              +sails.config._[3];
 
-        // Initialize data if in developpement
+        // Import data if in developpement
         return ImportationDataService.import( conferenceId, cb );
-    }
+    } else {
 
-    // Generate thumbnail
-    return ImportationDataService.thumbnail( cb );
+        // Or define import by SQS
+        QueueService.initialize( function() {
+
+            // Generate thumbnail
+            return ImportationDataService.thumbnail( cb );
+        } );
+    }
 };

@@ -75,7 +75,7 @@ function importConference( conferenceId, cb ) {
         .exec(
             function( err, conference ) {
                 if( err ) throw err;
-                if( !conference ) throw new Error('No conference found.'); 
+                if( !conference ) return cb( new Error('No conference found.') ); 
 
                 ItClient
                     .findOne( conference.client )
@@ -491,7 +491,12 @@ module.exports = {
                         return generateThumbnail( thumbnailPath, cb );
                     }
 
-                    importData( conferenceId, function() {
+                    importData( conferenceId, function( errImport ) {
+
+                        if( errImport ) {
+
+                            sails.log.debug( errImport.message );
+                        }
 
                         sails.log.debug('Importation of data... DONE!');
                         
