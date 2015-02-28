@@ -47,7 +47,11 @@ function initData() {
                             callback( null );
                         } else {
 
-                            window.location.reload();
+                            setTimeout( function() {
+
+                                // refresh if can't subscribe
+                                window.location = '/';    
+                            }, 10 * 1000);
                         }
                     } );
                 },
