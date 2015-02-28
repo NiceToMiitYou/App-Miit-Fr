@@ -7,10 +7,10 @@
 
 function resetSession( session ) {
 
-    if ( session.user )       session.user         = null;
-    if ( session.roles )      session.roles        = null;
-    if ( session.conference ) session.conference   = null;
-    if ( session.conference ) session.presentation = null;
+    if ( session.user )         session.user         = null;
+    if ( session.roles )        session.roles        = null;
+    if ( session.conference )   session.conference   = null;
+    if ( session.presentation ) session.presentation = null;
 }
 
 module.exports = {
