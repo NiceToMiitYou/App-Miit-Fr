@@ -28,7 +28,7 @@ angular
                 }
             }
 
-            function gotToSlide( slideIndex ) {
+            function goToSlide( slideIndex ) {
 
                 if( 0 <= slideIndex && slideIndex <= $scope.presentation.current ) {
 
@@ -141,11 +141,11 @@ angular
                 }
             };
 
-            $scope.gotToSlide = function( slideIndex ) {
+            $scope.goToSlide = function( slideIndex ) {
                 if( $scope.presentation && 
                     $scope.isAllowed('LIVE_SLIDER_INTERACTIONS') ) {
                     
-                    gotToSlide( slideIndex );
+                    goToSlide( slideIndex );
                 }
             };
 

@@ -19,11 +19,11 @@ function retrieveMessage() {
         }
         else
         {
-             // Handle each messages
-             _.forEach( data.Messages, function( message ) {
+            // Handle each messages
+            _.forEach( data.Messages, function( message ) {
 
-                 // Try to handle it
-                 try {
+                // Try to handle it
+                try {
 
                     var body = JSON.parse( message.Body );
 
@@ -37,14 +37,14 @@ function retrieveMessage() {
                         deleteMessage( message.ReceiptHandle );
                     } );
 
-                 } catch( e ) {
+                } catch( e ) {
 
                     sails.log.debug( message, e.message );
 
                     // Delete it
                     deleteMessage( message.ReceiptHandle );
-                 }
-             } );
+                }
+            } );
         }
     } );
 }

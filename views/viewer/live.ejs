@@ -25,9 +25,6 @@
             {{ ::presentation.description }}
         </p>
 
-<!--         <p style="position: absolute; bottom: 140px; right: 30px;">
-            <i><%= __('viewer.live.by', { authors: '{{ ::presentation.authors }}' } ) %></i>
-        </p> -->
     </div> 
 
     <div class="live-thumb">
@@ -38,7 +35,7 @@
                 <div ng-repeat="slide in ::presentation.slides track by slide.id"
                      ng-show="$index <= presentation.current"
                      ng-class="{ 'active': isCurrentSlide($index) }"
-                     ng-click="gotToSlide($index)"
+                     ng-click="goToSlide($index)"
                      class="dot-item">
                     <img ng-src="/images/slides/small_{{ presentation.id }}_{{ slide.id }}.png"/>
                 </div>
@@ -50,7 +47,7 @@
 
     <div class="footer-widget"> 
 
-        <div class=" fullscreen-toast"><div ng-click="fullscreen()" class="toast" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); bottom: 50px; opacity: 1; cursor: pointer;">Quitter le mode plein écran</div></div>
+        <div class=" fullscreen-toast"><div ng-click="fullscreen()" class="toast" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); bottom: 50px; opacity: 1; cursor: pointer;"><%= __('viewer.live.leave') %></div></div>
 
         <div class="pull-left">
             <div class="details-status">

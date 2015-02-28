@@ -95,7 +95,8 @@
         },
 
         "live": {
-            "by": "Par {{ authors }}"
+            "by": "Par {{ authors }}",
+            "leave": "Quitter le mode plein écran"
         },
 
         "notes": {
