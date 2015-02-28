@@ -51,6 +51,34 @@ module.exports = {
         }
 
         return res.notDone();
-    }
+    },
 
+    /**
+     * `ConfLiveController.capture()`
+     */
+    capture: function( req, res ) {
+
+        var conference   = req.param( 'conference' ),
+            presentation = req.param( 'presentation' ),
+            slide        = req.param( 'slide' );
+
+        if ( conference   &&
+             presentation &&
+             slide ) {
+
+            req.session.user         = true;
+            req.session.roles        = [ 'ROLE_LOGIN', 'ROLE_LIVE' ];
+            req.session.conference   = conference;
+            req.session.presentation = presentation;
+
+            return res.view( 'live', {
+                goTo:      true,
+                goToSlide: slide,
+                layout:    'layouts/live-application'
+            } );
+        } else {
+
+            return res.notDone();
+        }
+    }
 };

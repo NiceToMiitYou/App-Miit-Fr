@@ -29,16 +29,16 @@ module.exports.policies = {
     '*': [ 'loggedAuth', 'restrictionAuth', 'floodAuth' ],
 
     ConfUserController: {
-
         'connect': true
     },
 
     ConfLiveController: {
-        '*': 'masterAuth'
+        '*':       'masterAuth',
+        'capture': 'captureAuth'
     },
 
     ConfConfigController: {
-        'conference': true,
+        'conference':     true,
         'connectedUsers': 'masterAuth'
     },
 
@@ -47,7 +47,7 @@ module.exports.policies = {
     },
 
     ConfRouterController: {
-        'index': true,
+        'index':     true,
         'subscribe': true
     },
     

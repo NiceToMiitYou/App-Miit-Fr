@@ -7,7 +7,7 @@ angular
         '$scope', '$timeout',
         function( $scope, $timeout ) {
 
-            $scope.current = 0;
+            $scope.current   = 0;
             $scope.direction = 'left';
 
             function next() {
@@ -141,10 +141,31 @@ angular
                 }
             };
 
-            $scope.goToSlide = function( slideIndex ) {
-                if( $scope.presentation && 
-                    $scope.isAllowed('LIVE_SLIDER_INTERACTIONS') ) {
+            $scope.goToSlide = function( slideIndex, byPassMax, delay ) {
+
+
+                if( delay ) {
+
+                    $timeout( function() {
+                        
+                        if( byPassMax && 
+                            $scope.presentation.slides ) {
+
+                            $scope.presentation.current = $scope.presentation.slides.length - 1;
+                        }
+
+                        goToSlide( slideIndex );
+                    }, delay );
+
+                } else if( $scope.presentation && 
+                           $scope.isAllowed('LIVE_SLIDER_INTERACTIONS') ) {
                     
+                    if( byPassMax && 
+                        $scope.presentation.slides ) {
+
+                        $scope.presentation.current = $scope.presentation.slides.length - 1;
+                    }
+
                     goToSlide( slideIndex );
                 }
             };
@@ -176,13 +197,15 @@ angular
 
             ITStorage.db.options.bind('data.isLoaded', true, refreshShared);
 
-            ITConnect.bind('live-presentation-next', function( data ) {
-                handleLiveEvent( 1, data );
-            });
+            if( $scope.accountType !== 3 && !$scope.noSocket  ) {
 
-            ITConnect.bind('live-presentation-previous', function( data ) {
-                handleLiveEvent( -1, data );
-            });
+                ITConnect.bind('live-presentation-next', function( data ) {
+                    handleLiveEvent( 1, data );
+                });
 
+                ITConnect.bind('live-presentation-previous', function( data ) {
+                    handleLiveEvent( -1, data );
+                });
+            }
         }
     ] );

@@ -1,8 +1,8 @@
 
 var appRoot = require('app-root-path'),
     webshot = require('webshot'),
-    lwip = require('lwip'),
-    size = {
+    lwip    = require('lwip'),
+    size    = {
         big : {
             width: 2048,
             height: 1536
@@ -12,7 +12,37 @@ var appRoot = require('app-root-path'),
             height: 170
         }
     },
-    thumbnailPath = appRoot + '/.tmp/public/images/slides';
+    options = {
+        screenSize: size.big,
+        renderDelay: 10000,
+        customHeaders: {
+            'Need-Capture-A-Slide': 'Give-Me-The-Capture-Power-Please-!'
+        },
+        userAgent: 'Miit-Capture-User-Agent (secret => oiLu31zxaWmn4y8bCWV9U0Kk484LtJyFMU8NuwCIJcfpstcpSf8zuTBeWZvtRMB3gO3mpnCAFJ5wYbHYazaWYfNqk4F8ZcIYURUfq4JhmsWq7amSMkVlfGdPPwpFk6DQ)'
+    },
+    thumbnailPath = appRoot + '/.tmp/public/images/slides',
+    environment   = 'development';
+
+function getUrl() {
+    var url = 'http://127.0.0.1:8080/';
+
+    switch( environment ) {
+
+        case 'qualification':
+           url = 'http://app.qlf.priv.miit.fr/';
+           break;
+
+        case 'staging':
+           url = 'http://app.stg.priv.miit.fr/';
+           break;
+
+        case 'production':
+           url = 'http://app.miit.fr/';
+           break;
+    }
+
+    return url;
+}
 
 // Import all data
 function importData( conference, cb ) {
@@ -348,52 +378,22 @@ function importQuizzesQuestionsAnswers( questionId, cb ) {
             });
 }
 
-function beautifyHtml( html ) {
+function generateImagePath( size, presentation, slide ) {
 
-    return '<html>' +
-            '<head>' +
-            '<link rel="stylesheet" href="http://127.0.0.1:' + sails.config.port + '/styles/css/main.css"/>' +
-            '</head>' +
-            '<body>' +
-                '<div id="slides" class="presentation-slide">' +
-                    '<div class="slide">' +
-                        html +
-                    '</div>' +
-                '</div>' +
-                '<script>' +
-                    'var inputs = document.getElementsByTagName("img");' +
-                    'for(var i = 0; i < inputs.length; i++) {' +
-                    '    inputs[i].src = "http://127.0.0.1:' + sails.config.port + '" + inputs[i].src;' +
-                    '    document.write(inputs[i].src);' +
-                    '}' +
-                '</script>' +
-            '</body>' +
-           '</html>';
-}
-
-function generateImagePath( base, size, presentation, slide ) {
-
-    return base + '/' + size + '_' + presentation + '_' + slide + '.png';
+    return thumbnailPath + '/' + size + '_' + presentation + '_' + slide + '.png';
 }
 
 var i = 0;
 
-function generateBigImage( path, presentation, slide, html ) {
+function generateBigImage( conference, presentation, slide, count ) {
 
     setTimeout(function() {
 
-        var saveFile = generateImagePath( path, 'big', presentation, slide );
+        var saveFile = generateImagePath( 'big', presentation, slide );
 
-        var options = {
-            screenSize: size.big,
-            siteType: 'html',
-            renderDelay: 4000,
-            settings: {
-                localToRemoteUrlAccessEnabled: true
-            }
-        };
+        var url = getUrl() + 'api/live/capture/' + conference + '/' + presentation + '/' + count;
 
-        webshot( beautifyHtml( html ), saveFile, options, function( err ) {
+        webshot( url, saveFile, options, function( err ) {
 
             if( !err ) {
 
@@ -402,7 +402,7 @@ function generateBigImage( path, presentation, slide, html ) {
                 setTimeout(function() {
 
                     // Genrate small image
-                    generateSmallImage( saveFile, path, presentation, slide );
+                    generateSmallImage( saveFile, presentation, slide );
                 }, 500);
 
             } else {
@@ -417,9 +417,9 @@ function generateBigImage( path, presentation, slide, html ) {
     i++;
 }
 
-function generateSmallImage( origin, path, presentation, slide ) {
+function generateSmallImage( origin, presentation, slide ) {
 
-    var saveFile = generateImagePath( path, 'small', presentation, slide );
+    var saveFile = generateImagePath( 'small', presentation, slide );
 
     lwip.open( origin, function( err, image ) {
 
@@ -443,30 +443,35 @@ function generateSmallImage( origin, path, presentation, slide ) {
     } );
 }
 
-function generateThumbnail( path, cb ) {
+function generateThumbnail( cb ) {
 
     ConfPresentation
         .find()
+        .populate( 'conference' )
         .populate( 'slides' )
         .exec(
-            function(err, presentations) {
-            
+            function( err, presentations ) {
+
                 if( ! err ) {
 
                     // For each presentations
                     _.forEach( presentations, function( presentation ){
 
                         // For each slides of the presentation
-                        _.forEach( presentation.slides, function( slide ) {
+                        var count = 0;
+
+                        _.forEach( _.sortBy( presentation.slides, 'id' ), function( slide ) {
 
                             // Genrate big image
-                            generateBigImage( path, presentation.id, slide.id, slide.content );
+                            generateBigImage( presentation.conference.id, presentation.id, slide.id, count );
+
+                            count++;
                         } );
                     } );
                 }
-                
-                cb();
             } );
+                
+    cb();
 }
 
 module.exports = {
@@ -488,7 +493,7 @@ module.exports = {
 
                         sails.log.debug('The conference is already imported...');
 
-                        return generateThumbnail( thumbnailPath, cb );
+                        return generateThumbnail( cb );
                     }
 
                     importData( conferenceId, function( errImport ) {
@@ -500,13 +505,13 @@ module.exports = {
 
                         sails.log.debug('Importation of data... DONE!');
                         
-                        return generateThumbnail( thumbnailPath, cb );
+                        return generateThumbnail( cb );
                     } );
                 } );
     },
 
     thumbnail: function( cb ) {
 
-        return generateThumbnail( thumbnailPath, cb );
+        return generateThumbnail( cb );
     }
 };
