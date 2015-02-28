@@ -14,7 +14,8 @@ module.exports = {
 
     application: {
 
-        sqs: 'qlf-miit-fr'
+        sqs: 'qlf-miit-fr',
+        s3:  'qlf-miit-fr'
     },
 
     mailer: {

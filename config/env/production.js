@@ -14,7 +14,8 @@ module.exports = {
 
     application: {
 
-        sqs: 'prd-miit-fr'
+        sqs: 'prd-miit-fr',
+        s3:  'prd-miit-fr'
     },
 
     mailer: {
