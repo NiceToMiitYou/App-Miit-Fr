@@ -2,6 +2,8 @@
 var appRoot = require('app-root-path'),
     webshot = require('webshot'),
     lwip    = require('lwip'),
+    path    = require('path'),
+    fs      = require('fs'),
     size    = {
         big : {
             width: 2048,
@@ -20,8 +22,86 @@ var appRoot = require('app-root-path'),
         },
         userAgent: 'Miit-Capture-User-Agent (secret => oiLu31zxaWmn4y8bCWV9U0Kk484LtJyFMU8NuwCIJcfpstcpSf8zuTBeWZvtRMB3gO3mpnCAFJ5wYbHYazaWYfNqk4F8ZcIYURUfq4JhmsWq7amSMkVlfGdPPwpFk6DQ)'
     },
-    thumbnailPath = appRoot + '/.tmp/public/images/slides',
+    thumbnailPath = appRoot + '/.tmp/public/images/',
     environment   = 'development';
+
+// Create a ScreenShot Queue
+var ScreenshotQueue = async.queue( function ( infos, callback ) {
+
+    // Get infos
+    var count        = infos.count,
+        conference   = infos.conference,
+        presentation = infos.presentation,
+        slide        = infos.slide;
+    
+    var saveFile = generateImageInfo( infos ),
+        url      = getUrl() + 'api/live/capture/' + conference + '/' + presentation + '/' + count;
+
+    // Create file directory
+    mkdirpSync( saveFile.dir );
+
+    webshot( url, saveFile.path, options, function( err ) {
+
+        if( !err ) {
+
+            sails.log.debug('File generated: ' + saveFile.name);
+
+            // Genrate small image
+            ThumbnailQueue.push( {
+                origin:       saveFile, 
+                conference:   conference, 
+                presentation: presentation, 
+                slide:        slide,
+                size:         'small'
+            } );
+        } else {
+
+            sails.log.debug('Can\'t generate file: ' + saveFile.name);
+        }
+
+        callback();
+    } );
+}, 1 );
+
+// Create a Thumbnail Shot Queue
+var ThumbnailQueue = async.queue( function ( infos, callback ) {
+
+    var origin       = infos.origin,
+        conference   = infos.conference,
+        presentation = infos.presentation,
+        slide        = infos.slide;
+
+    var saveFile = generateImageInfo( infos );
+
+    // Create file directory
+    mkdirpSync( saveFile.dir );
+
+    lwip.open( origin.path, function( err, image ) {
+
+        image
+            .batch()
+            .resize( size.small.width, size.small.height )
+            .writeFile( saveFile.path, 'png', {
+                compression: 'high',
+                transparency: false
+            }, function( err ) {
+
+                if( !err ) {
+
+                    sails.log.debug('File generated: ' + saveFile.name);
+
+                    // Upload the thumbnail
+                    UploadService.upload( saveFile.name, saveFile.path );
+
+                } else {
+
+                    sails.log.debug('Can\'t generate file: ' + saveFile.path, err);
+                }
+
+                callback();
+            } );
+    } );
+}, 1 );
 
 function getUrl() {
     var url = 'http://127.0.0.1:8080/';
@@ -43,6 +123,37 @@ function getUrl() {
 
     return url;
 }
+
+// mkdir with EExist tolerant
+function mkdirSync( dirpath ) {
+
+    try {
+    
+        fs.mkdirSync( dirpath );
+    } catch(e) {
+    
+        if ( e.code != 'EEXIST' ) {
+            throw e;
+        }
+    }
+}
+
+// Like mkdir -p
+function mkdirpSync( dirpath ) {
+    var first = '',
+        parts = dirpath.split( path.sep );
+
+    if ( dirpath.charAt( 0 ) === path.sep ) {
+
+        first = path.sep;
+    }
+    
+    for( var i = 1; i <= parts.length; i++ ) {
+
+        mkdirSync( first + path.join.apply( null, parts.slice(0, i) ) );
+    }
+}
+
 
 // Import all data
 function importData( conference, cb ) {
@@ -378,75 +489,25 @@ function importQuizzesQuestionsAnswers( questionId, cb ) {
             });
 }
 
-function generateImagePath( size, presentation, slide ) {
+function generateImageInfo( infos ) {
 
-    return thumbnailPath + '/' + size + '_' + presentation + '_' + slide + '.png';
+    var size = ( infos.size === 'small' ) ? 'thumbnails' : infos.size,
+        dir  = size + '/' + infos.conference + '/' + infos.presentation,
+        name = dir + '/' + infos.slide + '.png';
+
+    return {
+        name: name,
+        path: thumbnailPath + name,
+        dir:  thumbnailPath + dir
+    };
 }
 
-var i = 0;
-
-function generateBigImage( conference, presentation, slide, count ) {
-
-    setTimeout(function() {
-
-        var saveFile = generateImagePath( 'big', presentation, slide );
-
-        var url = getUrl() + 'api/live/capture/' + conference + '/' + presentation + '/' + count;
-
-        webshot( url, saveFile, options, function( err ) {
-
-            if( !err ) {
-
-                sails.log.debug('File generated: ' + saveFile);
-
-                setTimeout(function() {
-
-                    // Genrate small image
-                    generateSmallImage( saveFile, presentation, slide );
-                }, 500);
-
-            } else {
-
-                sails.log.debug('Can\'t generate file: ' + saveFile);
-
-                sails.log.debug( err );
-            }
-        } );
-    }, i * 2100 );
-
-    i++;
-}
-
-function generateSmallImage( origin, presentation, slide ) {
-
-    var saveFile = generateImagePath( 'small', presentation, slide );
-
-    lwip.open( origin, function( err, image ) {
-
-        image
-            .batch()
-            .resize(size.small.width, size.small.height)
-            .writeFile( saveFile, 'png', {
-                compression: 'high',
-                transparency: false
-            }, function( err ) {
-
-                if( !err ) {
-
-                    sails.log.debug('File generated: ' + saveFile);
-
-                } else {
-
-                    sails.log.debug('Can\'t generate file: ' + saveFile);
-                }
-            } );
-    } );
-}
-
-function generateThumbnail( cb ) {
+function generateThumbnail( conference, cb ) {
 
     ConfPresentation
-        .find()
+        .find( { 
+            conference: conference
+        } )
         .populate( 'conference' )
         .populate( 'slides' )
         .exec(
@@ -463,15 +524,21 @@ function generateThumbnail( cb ) {
                         _.forEach( _.sortBy( presentation.slides, 'id' ), function( slide ) {
 
                             // Genrate big image
-                            generateBigImage( presentation.conference.id, presentation.id, slide.id, count );
+                            ScreenshotQueue.push( {
+                                conference:   presentation.conference.id,
+                                presentation: presentation.id,
+                                slide:        slide.id,
+                                count:        count,
+                                size:         'big'
+                            } );
 
                             count++;
                         } );
                     } );
                 }
-            } );
                 
-    cb();
+                cb();
+            } );
 }
 
 module.exports = {
@@ -493,7 +560,7 @@ module.exports = {
 
                         sails.log.debug('The conference is already imported...');
 
-                        return generateThumbnail( cb );
+                        return generateThumbnail( conferenceId, cb );
                     }
 
                     importData( conferenceId, function( errImport ) {
@@ -505,13 +572,8 @@ module.exports = {
 
                         sails.log.debug('Importation of data... DONE!');
                         
-                        return generateThumbnail( cb );
+                        return generateThumbnail( conferenceId, cb );
                     } );
                 } );
-    },
-
-    thumbnail: function( cb ) {
-
-        return generateThumbnail( cb );
     }
 };

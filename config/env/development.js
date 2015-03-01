@@ -15,7 +15,7 @@ module.exports = {
     application: {
 
         sqs: 'dev-miit-fr',
-        s3:  'dev-miit-fr'
+        s3:  'cdn.dev.priv.miit.fr'
     },
     
     mailer: {

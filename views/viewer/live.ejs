@@ -37,7 +37,7 @@
                      ng-class="{ 'active': isCurrentSlide($index) }"
                      ng-click="goToSlide($index)"
                      class="dot-item">
-                    <img ng-src="/images/slides/small_{{ presentation.id }}_{{ slide.id }}.png"/>
+                    <img ng-src="//<%= sails.config.application.s3 %>/thumbnails/{{ conference.id }}/{{ presentation.id }}/{{ slide.id }}.png"/>
                 </div>
 
                 <div class="clearfix"></div>

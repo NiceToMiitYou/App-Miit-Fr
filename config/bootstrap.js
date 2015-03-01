@@ -24,19 +24,24 @@ module.exports.bootstrap = function( cb ) {
         }
     };
 
+    // Initialize upload service
+    UploadService.initialize();
+
     // Check for manual import
     if ( 
-        ( 
-            typeof sails.config._ !== 'undefined' &&
-            sails.config._.length === 3 &&
-            sails.config._[1] === 'import'
-        ) || ( 
-            typeof sails.config._ !== 'undefined' &&
-            sails.config._.length === 4 &&
-            sails.config._[2] === 'import'
+        typeof sails.config._ !== 'undefined' &&
+        (
+            (
+                sails.config._.length === 3 &&
+                sails.config._[1] === 'import'
+            ) || (
+                sails.config._.length === 4 &&
+                sails.config._[2] === 'import'
+            )
         )
     ) {
 
+        // Find the conference id in the query
         var conferenceId = ( sails.config._[1] === 'import' ) ?
                              +sails.config._[2] :
                              +sails.config._[3];
@@ -44,12 +49,8 @@ module.exports.bootstrap = function( cb ) {
         // Import data if in developpement
         return ImportationDataService.import( conferenceId, cb );
     } else {
-
+        
         // Or define import by SQS
-        QueueService.initialize( function() {
-
-            // Generate thumbnail
-            return ImportationDataService.thumbnail( cb );
-        } );
+        QueueService.initialize( cb );
     }
 };
