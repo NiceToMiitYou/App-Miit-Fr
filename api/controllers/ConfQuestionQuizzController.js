@@ -61,7 +61,7 @@ module.exports = {
             answers    = req.param( 'answers' );
 
         ConfQuestionQuizz
-            .findOne( question )
+            .findOne( questionId )
             .populate( 'answers' )
             .exec( function( err, question ) {
                 if ( err || !question || _.size(
