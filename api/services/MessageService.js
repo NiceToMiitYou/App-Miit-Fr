@@ -25,6 +25,25 @@ actions.import = function( data, cb ) {
     }
 };
 
+actions.export = function( data, cb ) {
+
+    if( data.conference ) {
+        
+        try {
+        
+            ExportationDataService.export( data.conference, cb );
+        } catch( err ) {
+
+            sails.log.debug( err );
+
+            cb( err );
+        }
+    } else {
+
+        cb( new Error('No conference provided.') );
+    }
+};
+
 module.exports = {
 
     handle: function( data, cb ) {

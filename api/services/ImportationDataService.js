@@ -37,6 +37,7 @@ var ScreenshotQueue = async.queue( function ( infos, callback ) {
     var saveFile = generateImageInfo( infos ),
         url      = getUrl() + 'api/live/capture/' + conference + '/' + presentation + '/' + count;
 
+
     // Create file directory
     mkdirpSync( saveFile.dir );
 
@@ -545,6 +546,9 @@ module.exports = {
 
     import: function( conferenceId, cb ) {
 
+        // Set the environment
+        environment = sails.config.environment;
+
         sails.log.debug('Importation of data from id "' + conferenceId + '"...');
         
         ConfConference
@@ -560,7 +564,7 @@ module.exports = {
 
                         sails.log.debug('The conference is already imported...');
 
-                        return generateThumbnail( conferenceId, cb );
+                        return ThumbnailService.generate( conferenceId, getUrl(), cb );
                     }
 
                     importData( conferenceId, function( errImport ) {
@@ -572,7 +576,7 @@ module.exports = {
 
                         sails.log.debug('Importation of data... DONE!');
                         
-                        return generateThumbnail( conferenceId, cb );
+                        return ThumbnailService.generate( conferenceId, getUrl(), cb );
                     } );
                 } );
     }
