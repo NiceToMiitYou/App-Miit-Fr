@@ -18,6 +18,7 @@ var appRoot = require('app-root-path'),
         screenSize: size.big,
         renderDelay: 10000,
         customHeaders: {
+            'Accept-Language':      'fr',
             'Need-Capture-A-Slide': 'Give-Me-The-Capture-Power-Please-!'
         },
         userAgent: 'Miit-Capture-User-Agent (secret => oiLu31zxaWmn4y8bCWV9U0Kk484LtJyFMU8NuwCIJcfpstcpSf8zuTBeWZvtRMB3gO3mpnCAFJ5wYbHYazaWYfNqk4F8ZcIYURUfq4JhmsWq7amSMkVlfGdPPwpFk6DQ)'
@@ -145,13 +146,12 @@ function generateImageInfo( infos ) {
 }
 
 // Generate all thumbnails for a conference
-function generateThumbnail( conference, baseUrl, cb ) {
+function generateThumbnail( conferenceId, baseUrl, cb ) {
 
     ConfPresentation
         .find( { 
-            conference: conference
+            conference: conferenceId
         } )
-        .populate( 'conference' )
         .populate( 'slides' )
         .exec(
             function( err, presentations ) {
@@ -168,7 +168,7 @@ function generateThumbnail( conference, baseUrl, cb ) {
 
                             // Genrate big image
                             ScreenshotQueue.push( {
-                                conference:   presentation.conference.id,
+                                conference:   conferenceId,
                                 presentation: presentation.id,
                                 slide:        slide.id,
                                 count:        count,
