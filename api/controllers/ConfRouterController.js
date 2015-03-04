@@ -35,6 +35,7 @@ module.exports = {
         } else if ( _.contains( roles, 'ROLE_LIVE' ) ) {
 
             return res.view( 'live', {
+                goTo:   false,
                 layout: 'layouts/live-application'
             } );
 
