@@ -40,7 +40,6 @@ var ScreenshotQueue = async.queue( function ( infos, callback ) {
     // Create file directory
     mkdirpSync( saveFile.dir );
 
-
     webshot( url, saveFile.path, options, function( err ) {
 
         if( !err ) {
@@ -182,7 +181,10 @@ function generateThumbnail( conference, baseUrl, cb ) {
                     } );
                 }
                 
-                cb();
+                if ( typeof cb === 'function' ) {
+
+                    cb();
+                }
             } );
 }
 

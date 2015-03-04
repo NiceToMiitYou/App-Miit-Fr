@@ -378,7 +378,7 @@ module.exports = {
 
                         sails.log.debug('The conference is already imported...');
 
-                        return ThumbnailService.generate( conferenceId, getUrl(), cb );
+                        return ThumbnailService.generate( conferenceId, getUrl() );
                     }
 
                     importData( conferenceId, function( errImport ) {
@@ -390,8 +390,13 @@ module.exports = {
 
                         sails.log.debug('Importation of data... DONE!');
                         
-                        return ThumbnailService.generate( conferenceId, getUrl(), cb );
+                        return ThumbnailService.generate( conferenceId, getUrl() );
                     } );
                 } );
+
+        if ( typeof cb === 'function' ) {
+
+            cb();
+        }
     }
 };
