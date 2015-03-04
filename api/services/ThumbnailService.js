@@ -16,7 +16,7 @@ var appRoot = require('app-root-path'),
     },
     options = {
         screenSize: size.big,
-        renderDelay: 10000,
+        renderDelay: 15000,
         customHeaders: {
             'Accept-Language':      'fr',
             'Need-Capture-A-Slide': 'Give-Me-The-Capture-Power-Please-!'
