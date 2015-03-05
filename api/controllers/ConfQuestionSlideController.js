@@ -68,7 +68,9 @@ module.exports = {
                                 }
 
                                 // Register answers
-                                user.slideAnswers.concat( answers );
+                                _.forEach( answers, function( answer ) {
+                                    user.quizzAnswers.add( answer );
+                                } );
                                         
                                 // Save result
                                 user.save( function( err ) {

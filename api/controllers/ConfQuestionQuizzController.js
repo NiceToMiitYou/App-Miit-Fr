@@ -89,12 +89,14 @@ module.exports = {
                                     } )
                                 )
                             ) {
-                            
+                    
                                 return res.notDone();
                             }
 
                             // Register answers
-                            user.quizzAnswers.concat( answers );
+                            _.forEach( answers, function( answer ) {
+                                user.quizzAnswers.add( answer );
+                            } );
 
                             // Save result
                             user.save( function( err ) {
