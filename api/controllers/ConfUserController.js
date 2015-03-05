@@ -97,15 +97,15 @@ module.exports = {
      */
     logout: function( req, res ) {
 
-        resetSession( req.session );
-
         // Set last track to end
         ConfTrack
             .findOne( {
-                user: req.session.user,
-                sort: 'id DESC'
+                user:       req.session.user,
+                conference: req.session.conference,
+                sort:       'id DESC'
             } )
             .exec( function( err, track ) {
+
                 if ( err ) {
 
                     return res.notDone();
@@ -116,6 +116,8 @@ module.exports = {
                     track.end = new Date();
                     track.save();
                 }
+
+                resetSession( req.session );
 
                 return res.done( {
                     url: sails.config.application.redirect

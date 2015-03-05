@@ -6,9 +6,9 @@ var routes = {};
  * User Controller
  ******************/
 
-routes[ 'GET ' + apiUserPrefix + '/:user' ] = {
+routes[ 'GET ' + apiUserPrefix + '/logout' ] = {
     controller: 'ConfUserController',
-    action: 'get'
+    action: 'logout'
 };
 
 routes[ 'GET ' + apiUserPrefix ] = {
@@ -16,14 +16,14 @@ routes[ 'GET ' + apiUserPrefix ] = {
     action: 'me'
 };
 
+routes[ 'GET ' + apiUserPrefix + '/:user' ] = {
+    controller: 'ConfUserController',
+    action: 'get'
+};
+
 routes[ 'POST ' + apiUserPrefix ] = {
     controller: 'ConfUserController',
     action: 'update'
-};
-
-routes[ 'GET ' + apiUserPrefix + '/logout' ] = {
-    controller: 'ConfUserController',
-    action: 'logout'
 };
 
 routes[ 'GET /connect/:token' ] = {

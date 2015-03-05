@@ -16,8 +16,9 @@ module.exports = {
             action  = req.param( 'action' );
 
         ConfTrack.findOne( {
-            user: req.session.user,
-            sort: 'id DESC'
+            user:       req.session.user,
+            conference: req.session.conference,
+            sort:       'id DESC'
         } )
             .exec( function( err, track ) {
                 if ( err ) {
@@ -32,9 +33,10 @@ module.exports = {
                 }
 
                 ConfTrack.create( {
-                    action: action,
-                    start:  DateNow,
-                    user:   req.session.user
+                    action:     action,
+                    start:      DateNow,
+                    user:       req.session.user,
+                    conference: req.session.conference
                 } )
                     .exec( function() {
 
