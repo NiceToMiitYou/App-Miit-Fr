@@ -27,8 +27,8 @@ module.exports.bootstrap = function( cb ) {
     // Initialize upload service
     UploadService.initialize();
 
+    if (
     // Check for manual import
-    if ( 
         typeof sails.config._ !== 'undefined' &&
         (
             (
@@ -46,8 +46,27 @@ module.exports.bootstrap = function( cb ) {
                              +sails.config._[2] :
                              +sails.config._[3];
 
-        // Import data if in developpement
         return ImportationDataService.import( conferenceId, cb );
+    } else if ( 
+    // Check for manual export
+        typeof sails.config._ !== 'undefined' &&
+        (
+            (
+                sails.config._.length === 3 &&
+                sails.config._[1] === 'export'
+            ) || (
+                sails.config._.length === 4 &&
+                sails.config._[2] === 'export'
+            )
+        )
+    ) {
+
+        // Find the conference id in the query
+        var conferenceId = ( sails.config._[1] === 'export' ) ?
+                             +sails.config._[2] :
+                             +sails.config._[3];
+
+        return ExportationDataService.export( conferenceId, cb );
     } else {
         
         // Or define import by SQS
