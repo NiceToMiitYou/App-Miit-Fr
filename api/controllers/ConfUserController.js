@@ -145,14 +145,19 @@ module.exports = {
                         token: token
                     }
                 }, function( err, response ) {
-                    if( err || !response || !response.user ) {
+                    if(  err                      ||
+                        !response                 ||
+                        !response.user            ||
+                        !response.data            ||
+                        !response.data.conference ||
+                        !response.data.conference.id ) {
 
                         return res.redirect( sails.config.application.redirect );
                     }
 
                     // Check if the conference exist on the server
                     ConfConference
-                        .findOne( response.conference )
+                        .findOne( response.data.conference.id )
                         .exec( function( errConference, conference ) {
                             if( errConference || !conference ) {
 
@@ -171,7 +176,7 @@ module.exports = {
                                     // If connected add informations to the session
                                     req.session.user       = user.id;
                                     req.session.roles      = response.roles;
-                                    req.session.conference = response.conference;
+                                    req.session.conference = response.data.conference.id;
 
                                     return res.redirect( '/' );
                                 } );
