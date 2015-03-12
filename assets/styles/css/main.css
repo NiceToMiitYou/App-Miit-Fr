@@ -225,6 +225,18 @@ a {
 	float: left;
 }
 
+.tabs li.tab a {
+	color : #26a69a;
+}
+
+.tabs li.tab a:hover {
+	color: #b2dfdb;
+}
+
+.tabs .indicator {
+	background-color : #26a69a;
+}
+
 .footer-widget, .page-sidebar, .page-sidebar ul {
 	width: 100%;
 	position: absolute;
