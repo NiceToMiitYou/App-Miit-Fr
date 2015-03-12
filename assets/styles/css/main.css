@@ -225,6 +225,10 @@ a {
 	float: left;
 }
 
+.tabs {
+	margin-bottom: 20px;
+}
+
 .tabs li.tab a {
 	color : #26a69a;
 }
