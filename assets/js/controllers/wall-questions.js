@@ -24,21 +24,7 @@ angular
 
                         setTimeout(function() {
 
-                            $('select').each(function() {
-                                var $select = $(this);
-
-                                if ( $select.hasClass('initialized') &&
-                                     $select.prev() &&  
-                                     $select.prev().data('activates') 
-                                ) {
-                                    var uid = $select.prev().data('activates');
-                                    
-                                    $('#' + uid).remove();
-                                    $select.prev().remove();
-                                    $select.removeClass('initialized');
-                                    $select.material_select();
-                                }
-                            });
+                            $('#wall-select').material_select();
                         }, 250);
                     } );
                 }
