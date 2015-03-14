@@ -44,11 +44,6 @@ module.exports = {
 
         roles: {
             type: 'array'
-        },
-
-        toJSON: function() {
-            var obj = this.toObject();
-            return obj;
         }
     }
 };
