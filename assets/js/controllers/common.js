@@ -166,10 +166,9 @@ angular
             function fullscreen() {
 
                 $scope.isfullscreen = !$scope.isfullscreen;
-                if($scope.openmenu) {
-                    $scope.openmenu = false;
-                }
 
+                $scope.openmenu = false;
+                
                 if($scope.isfullscreen) {
 
                     ITConnect.track.create('LIVE');

@@ -196,63 +196,46 @@ function initData() {
                         if ( data.done ) {
 
                             // Add each resource in the area
-                            for ( var index in data.quizzes ) {
+                            _.forEach( data.quizzes, function( quizz ) {
 
                                 max++;
 
-                                ITStorage.db.quizzes.set( data.quizzes[index].id, data.quizzes[index] );
-                                
                                 // Get all questions of the quizz
                                 ITConnect.question.quizz.questions(
-                                    data.quizzes[index].id,
+                                    quizz.id,
                                     function( dataQuestion ) {
                                         if ( dataQuestion.done && dataQuestion.questions.length > 0 ) {
-
-                                            // Get quizz
-                                            var quizz = ITStorage.db.quizzes.get( dataQuestion.questions[0].quizz );
 
                                             // Set not answered
                                             quizz.answered = false;
 
-                                            // For each questions
+                                            // For each answers
                                             _.forEach(
-                                                dataQuestion.questions,
-                                                function( question ) {
+                                                _.map( dataQuestion.questions, 'answers'),
+                                                function( answer ) {
 
-                                                    // For each answers
+                                                    // Default not selected
+                                                    var selected = false;
+
+                                                    // For each answers of user
                                                     _.forEach(
-                                                        question.answers,
-                                                        function( answer ) {
+                                                        user.quizzAnswers,
+                                                        function( userAnswer ) {
 
-                                                            // Default not selected
-                                                            var selected = false;
+                                                            // Check if same id
+                                                            if ( userAnswer.id === answer.id) {
+                                                                
+                                                                // Set answered
+                                                                quizz.answered = true;
 
-                                                            // For each answers of user
-                                                            _.forEach(
-                                                                user.quizzAnswers,
-                                                                function( userAnswer ) {
+                                                                // Set selected
+                                                                selected = true;
+                                                            }
+                                                        } );
 
-                                                                    // Check if same id
-                                                                    if ( userAnswer.id === answer.id) {
-                                                                        
-                                                                        // Set answered
-                                                                        quizz.answered = true;
-
-                                                                        // Set selected
-                                                                        selected = true;
-
-                                                                        // Stop the loop
-                                                                        //break;
-                                                                    }
-                                                                }
-                                                            );
-
-                                                            // Set selected if she is
-                                                            answer.selected = selected;
-                                                        }
-                                                    );
-                                                }
-                                            );
+                                                    // Set selected if she is
+                                                    answer.selected = selected;
+                                                } );
 
                                             // Add them to the current object
                                             quizz.questions = dataQuestion.questions;
@@ -265,7 +248,7 @@ function initData() {
 
                                         if ( max === end ) callback( null );
                                     } );
-                            }
+                            } );
                         }
 
                         if( max === 0 ) callback( null ); 
