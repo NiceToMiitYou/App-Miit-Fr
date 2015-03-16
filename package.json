@@ -46,7 +46,7 @@
   },
   "scripts": {
     "postinstall": "bash ./install/post-install.sh",
-    "start": "forever app.js lift import 1",
+    "start": "forever app.js lift",
     "test": "grunt test",
     "beautify": "echo 'js-beautify --config js-beautify.json -r -f ./api/**/*.js ./assets/**/*.js ./config/**/*.js ./tasks/**/*.js ./test/**/*.js' | zsh"
   },
