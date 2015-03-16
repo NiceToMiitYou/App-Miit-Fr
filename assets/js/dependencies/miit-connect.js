@@ -143,11 +143,6 @@ window.ITConnect = ( function() {
             io.socket.on( name, cb );
         },
 
-        reconnect: function() {
-            // reconnect the socket
-            io.socket.reconnect();
-        },
-
         // Subscribe to rooms
         subscribe: function( cb ) {
             io.socket.get( '/api/subscribe', {}, cb );
@@ -157,7 +152,11 @@ window.ITConnect = ( function() {
         synchronize: function() {
             // Force first synchronization from cache
             if ( lastestToken === 0 ) {
+                
                 synchronize( 2147483647 );
+            } else {
+
+                synchronize( lastestToken );
             }
         },
 

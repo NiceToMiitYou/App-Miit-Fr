@@ -1768,3 +1768,39 @@ div#menu li:nth-child(6n+6) {
 .ressources-content .resource-item img {
 	width: 100%;
 }
+
+.connection-bar {
+	display: none;
+	height: 0;
+}
+
+.connection-bar span {
+  	margin-left: 18px;
+  	float: left;
+
+	font-size: 1.3rem;
+  	line-height: 3rem;
+  	color: #fff;
+}
+
+.connection-bar a {
+	margin-top: 2px;
+	float: right;
+
+	height: 38px;
+  	line-height: 38px;
+}
+
+.pace-done .connection-bar {
+	display: block;
+	height: 64px;
+	padding: 9px 32px;
+}
+
+.connection-bar.warn {
+	background-color: #ffa726;
+}
+
+.connection-bar.infos {
+	background-color: #8bc34a;
+}

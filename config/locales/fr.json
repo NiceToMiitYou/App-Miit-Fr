@@ -190,6 +190,11 @@
         "logout": "Vous venez d'être déconnecté."
     },
 
+    "connection-bar": {
+        "reconnected": "Vous venez d'être reconnecté.",
+        "disconnected": "Vous venez de perdre la connexion avec le serveur. Tentative de reconnexion en cours..."
+    },
+
     "errors": {
         "403": {
             "title": "Accés non autorisé",
