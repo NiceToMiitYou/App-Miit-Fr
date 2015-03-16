@@ -18,7 +18,7 @@ angular
 
                     $timeout(function(){
                         
-                        ITStorage.db.chatrooms.each(function( id, chatroom ) {
+                        MiitStorage.db.chatrooms.each(function( id, chatroom ) {
 
                             if( $scope.chatrooms[id] ) {
 
@@ -45,7 +45,7 @@ angular
 
                 if( $scope.text ) {
 
-                    ITConnect.chatroom.send($scope.current.id, $scope.text, function(data) {
+                    MiitConnect.chatroom.send($scope.current.id, $scope.text, function(data) {
 
                         if( !data.done ) {
 
@@ -86,10 +86,10 @@ angular
                 }
             };
 
-            ITStorage.db.options.bind( 'data.isLoaded', true, loadChatrooms );
+            MiitStorage.db.options.bind( 'data.isLoaded', true, loadChatrooms );
 
             // Retrieve new message
-            ITConnect.bind('chatroom-new', function( data ) {
+            MiitConnect.bind('chatroom-new', function( data ) {
 
                 $timeout(function() {
 

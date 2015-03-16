@@ -1,6 +1,6 @@
 "use strict";
 
-window.ITStorage = ( function() {
+window.MiitStorage = ( function() {
 
     var db = {},
         canPersist = false,

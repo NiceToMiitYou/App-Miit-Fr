@@ -50,7 +50,7 @@ angular
 
                         alreadyAskedUsers[user.id] = true;
 
-                        ITStorage.db.users.set(user.id, user);
+                        MiitStorage.db.users.set(user.id, user);
                     } );
                 }
             }
@@ -115,7 +115,7 @@ angular
 
             function logout() {
             	
-                ITConnect.user.logout(function(data) {
+                MiitConnect.user.logout(function(data) {
 
                     if( data.done ) {
                     
@@ -139,25 +139,25 @@ angular
 
             function askForUserIfNotExist( object, userField, userId ) {
 
-                ITStorage.db.users.bind(userId, false, function(user) {
+                MiitStorage.db.users.bind(userId, false, function(user) {
 
                     $timeout(function() {
                         object[userField] = user;
                     });
                 });
 
-                object[userField] = ITStorage.db.users.get( userId );
+                object[userField] = MiitStorage.db.users.get( userId );
 
                 // If user not registered request him
                 if( !alreadyAskedUsers[userId] ) {
 
                     alreadyAskedUsers[userId] = true;
                     
-                    ITConnect.user.get(userId, function( data ){
+                    MiitConnect.user.get(userId, function( data ){
                         
                         if( data.done ) {
 
-                            ITStorage.db.users.set(data.user.id, data.user);
+                            MiitStorage.db.users.set(data.user.id, data.user);
                         }
                     });
                 }
@@ -171,7 +171,7 @@ angular
                 
                 if($scope.isfullscreen) {
 
-                    ITConnect.track.create('LIVE');
+                    MiitConnect.track.create('LIVE');
 
                 } else {
 
@@ -213,7 +213,7 @@ angular
 
             function track( id ) {
 
-                ITConnect.track.create( id );
+                MiitConnect.track.create( id );
 
                 $scope.activetool = id;
             }
@@ -221,7 +221,7 @@ angular
             setTimeout(function(){
                 if( $scope.accountType === 1 ) {
 
-                    ITConnect.track.create( 'LIVE' );
+                    MiitConnect.track.create( 'LIVE' );
                 }
             }, 250);
 
@@ -255,10 +255,10 @@ angular
 
             $scope.isfullscreen = true;
 
-            ITStorage.db.options.bind('user', true, refreshUser);
+            MiitStorage.db.options.bind('user', true, refreshUser);
 
-            ITStorage.db.options.bind('conference', true, refreshConference);
+            MiitStorage.db.options.bind('conference', true, refreshConference);
 
-            ITStorage.db.options.bind('presentation.actual', true, refreshPresentation);
+            MiitStorage.db.options.bind('presentation.actual', true, refreshPresentation);
         }
     ] );

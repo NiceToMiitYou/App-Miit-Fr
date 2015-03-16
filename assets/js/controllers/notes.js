@@ -27,7 +27,7 @@ angular
 
                     $timeout(function() {
                         
-                        ITStorage.db.notes.each(function( id, note ) {
+                        MiitStorage.db.notes.each(function( id, note ) {
 
                             note.new = false;
 
@@ -50,7 +50,7 @@ angular
 
                         $scope.saving = true;
                     
-                        ITConnect.note.create($scope.current.title, $scope.current.content, function( data ) {
+                        MiitConnect.note.create($scope.current.title, $scope.current.content, function( data ) {
 
                             $timeout(function() {
 
@@ -78,7 +78,7 @@ angular
 
                         $scope.saving = true;
                     
-                        ITConnect.note.update($scope.current.id, $scope.current.title, $scope.current.content, function( data ) {
+                        MiitConnect.note.update($scope.current.id, $scope.current.title, $scope.current.content, function( data ) {
 
                             $timeout(function() {
                                 
@@ -94,7 +94,7 @@ angular
 
                                     if ( typeof cb === 'function' ) {
 
-                                        cb($scope.notes[data.note.id]);
+                                        cb( $scope.notes[data.note.id] );
                                     }
                                 }
                             });
@@ -160,7 +160,7 @@ angular
 
                     if( savedNote.id ) {
 
-                        ITConnect.note.send( savedNote.id, function(data) {
+                        MiitConnect.note.send( savedNote.id, function(data) {
 
                             $timeout(function() {
                                 if( data.done ) {
@@ -182,7 +182,7 @@ angular
                 } );
             }
 
-            ITStorage.db.options.bind( 'data.isLoaded', true, loadNotes );
+            MiitStorage.db.options.bind( 'data.isLoaded', true, loadNotes );
 
             $scope.addNote = function() {
                 if( $scope.isAllowed('NOTE_INTERACTIONS') && 

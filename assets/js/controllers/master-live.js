@@ -10,7 +10,7 @@ angular
 
                 if ( ! $scope.shared.isLastSlide ) {
                     
-                    ITConnect.live.next($scope.presentation.id, function(data) {});
+                    MiitConnect.live.next($scope.presentation.id, function(data) {});
                 }
             }
 
@@ -18,7 +18,7 @@ angular
                 
                 if ( ! $scope.shared.isFirstSlide ) {
 
-                    ITConnect.live.previous($scope.presentation.id, function(data) {});
+                    MiitConnect.live.previous($scope.presentation.id, function(data) {});
                 }
             }
 

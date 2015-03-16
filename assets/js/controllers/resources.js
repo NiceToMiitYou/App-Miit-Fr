@@ -15,7 +15,7 @@ angular
 
                     $timeout(function() {
                         
-                        ITStorage.db.resources.each(function( id, category ) {
+                        MiitStorage.db.resources.each(function( id, category ) {
 
                             $scope.categories[category.id] = category;
                         } );
@@ -25,7 +25,7 @@ angular
 
             function openInner( ressource ) {
                 
-                ITStorage.db.options.set('ressources.current', ressource);
+                MiitStorage.db.options.set('ressources.current', ressource);
 
                 $scope.track('RESSOURCES-INNER');
             }
@@ -34,7 +34,6 @@ angular
                     openInner( quizz );
             };
 
-            ITStorage.db.options.bind( 'data.isLoaded', true, loadCategories );
-
+            MiitStorage.db.options.bind( 'data.isLoaded', true, loadCategories );
         }
     ] );

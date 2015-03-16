@@ -14,7 +14,7 @@ angular
 
                     $timeout(function() {
                         
-                        ITStorage.db.quizzes.each(function( id, quizz ) {
+                        MiitStorage.db.quizzes.each(function( id, quizz ) {
 
                             $scope.quizzes[quizz.id] = quizz;
 
@@ -25,7 +25,7 @@ angular
 
             function openInner( quizz ) {
                 
-                ITStorage.db.options.set('quizz.current', quizz);
+                MiitStorage.db.options.set('quizz.current', quizz);
 
                 $scope.track('QUIZZ-INNER');
             }
@@ -37,7 +37,6 @@ angular
                 }
             };
 
-            ITStorage.db.options.bind( 'data.isLoaded', true, loadQuizzes );
-
+            MiitStorage.db.options.bind( 'data.isLoaded', true, loadQuizzes );
         }
     ] );

@@ -11,7 +11,7 @@ angular
             function post() {
                 if ( $scope.text && $( '#multi' ).val() ) {
 
-                    ITConnect.question.presentation.create( $scope.text, $( '#multi' ).val(), function(data) {
+                    MiitConnect.question.presentation.create( $scope.text, $( '#multi' ).val(), function(data) {
                         if( data.done ) {
 
                             $timeout(function() {

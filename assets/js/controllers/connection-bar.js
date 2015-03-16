@@ -59,7 +59,7 @@ angular
                 hide( function() {
 
                     // Check if already connected
-                    ITConnect.user.me( function( data ) {
+                    MiitConnect.user.me( function( data ) {
 
                         if( !data || !data.done ) {
                             // reload the window if session disconnected
@@ -67,7 +67,7 @@ angular
                         }
 
                         // Resynchronize the user
-                        ITConnect.synchronize();
+                        MiitConnect.synchronize();
                     } );
                 } );
             }
@@ -97,13 +97,13 @@ angular
             }
 
             // Bind all events
-            ITConnect.listen( 'connect',           onConnect );
-            ITConnect.listen( 'connect_error',     onConnectError );
-            ITConnect.listen( 'connect_timeout',   onConnect );
-            ITConnect.listen( 'reconnect',         onReconnect );
-            ITConnect.listen( 'reconnect_attempt', onReconnectAttempt );
-            ITConnect.listen( 'reconnecting',      onReconnecting); 
-            ITConnect.listen( 'reconnect_error',   onReconnectError); 
-            ITConnect.listen( 'reconnect_failed',  onReconnectFailed); 
+            MiitConnect.listen( 'connect',           onConnect );
+            MiitConnect.listen( 'connect_error',     onConnectError );
+            MiitConnect.listen( 'connect_timeout',   onConnect );
+            MiitConnect.listen( 'reconnect',         onReconnect );
+            MiitConnect.listen( 'reconnect_attempt', onReconnectAttempt );
+            MiitConnect.listen( 'reconnecting',      onReconnecting); 
+            MiitConnect.listen( 'reconnect_error',   onReconnectError); 
+            MiitConnect.listen( 'reconnect_failed',  onReconnectFailed); 
         }
     ] );

@@ -33,7 +33,7 @@ angular
 
             function refreshConnectedUsers() {
 
-                ITConnect.config.connectedUsers(function( data ) {
+                MiitConnect.config.connectedUsers(function( data ) {
 
                     if( data.done ) {
 

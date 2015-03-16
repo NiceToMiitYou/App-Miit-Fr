@@ -48,7 +48,7 @@ angular
 
                     $scope.current.answered = true;
 
-                    ITConnect.question.quizz.answer( $scope.current.id, selected, function( data ) {
+                    MiitConnect.question.quizz.answer( $scope.current.id, selected, function( data ) {
 
                         $timeout( function() {
 
@@ -59,7 +59,7 @@ angular
                                     type: 'info'
                                 });
 
-                                ITStorage.db.quizzes.set( $scope.current.id, $scope.current );
+                                MiitStorage.db.quizzes.set( $scope.current.id, $scope.current );
 
                                 $scope.track( 'QUIZZ' );
                             } else {
@@ -176,6 +176,6 @@ angular
                 }
             };
 
-            ITStorage.db.options.bind('quizz.current', loadQuizz);
+            MiitStorage.db.options.bind('quizz.current', loadQuizz);
         }
     ] );

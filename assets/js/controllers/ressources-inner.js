@@ -17,6 +17,6 @@ angular
                 });
             }
 
-            ITStorage.db.options.bind('ressources.current', loadRessource);
+            MiitStorage.db.options.bind('ressources.current', loadRessource);
         }
     ] );

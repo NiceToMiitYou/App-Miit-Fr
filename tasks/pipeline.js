@@ -64,10 +64,10 @@ var jsFilesToInject = [
   // Debug file
   'js/dependencies/miit-debug.js',
 
-  // Load ITStorage before ITConnect
+  // Load MiitStorage before MiitConnect
   'js/dependencies/miit-storage.js',
 
-  // Load ITGarbage before ITConnect
+  // Load MiitGarbage before MiitConnect
   'js/dependencies/miit-garbage.js',
 
   // Dependencies like jQuery, or Angular are brought in here

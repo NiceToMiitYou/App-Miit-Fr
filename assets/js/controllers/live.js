@@ -195,15 +195,15 @@ angular
 
             document.addEventListener('keydown', onKeyPress, false);
 
-            ITStorage.db.options.bind('data.isLoaded', true, refreshShared);
+            MiitStorage.db.options.bind('data.isLoaded', true, refreshShared);
 
             if( $scope.accountType !== 3 && !$scope.noSocket  ) {
 
-                ITConnect.bind('live-presentation-next', function( data ) {
+                MiitConnect.bind('live-presentation-next', function( data ) {
                     handleLiveEvent( 1, data );
                 });
 
-                ITConnect.bind('live-presentation-previous', function( data ) {
+                MiitConnect.bind('live-presentation-previous', function( data ) {
                     handleLiveEvent( -1, data );
                 });
             }

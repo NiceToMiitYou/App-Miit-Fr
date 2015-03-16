@@ -17,7 +17,7 @@ angular
 
                     $timeout(function() {
 
-                        ITStorage.db.tags.each(function( id, tag ) {
+                        MiitStorage.db.tags.each(function( id, tag ) {
                             
                             $scope.shared.tags[id] = tag;
                         } );
@@ -34,11 +34,11 @@ angular
 
                 if ( ! isLike(question) ) {
 
-                    ITConnect.question.presentation.like(question.id, function(data) {
+                    MiitConnect.question.presentation.like(question.id, function(data) {
 
                         if( data.done || data.like ) {
 
-                            ITStorage.db.likes.set( question.id, data.like.id );
+                            MiitStorage.db.likes.set( question.id, data.like.id );
                         } else {
 
                             $scope.toast({
@@ -59,7 +59,7 @@ angular
 
             function isLike( question ) {
 
-                if ( ! ITStorage.db.likes.get(question.id) ) {
+                if ( ! MiitStorage.db.likes.get(question.id) ) {
                     return false;
                 }
 
@@ -68,11 +68,11 @@ angular
 
             function getTagName( tag ) {
 
-                if ( ! ITStorage.db.tags.get( tag ) ) {
+                if ( ! MiitStorage.db.tags.get( tag ) ) {
                     return '';
                 }
 
-                return ITStorage.db.tags.get( tag ).name;
+                return MiitStorage.db.tags.get( tag ).name;
             }
 
             function askQuestion() {
@@ -98,10 +98,10 @@ angular
                 }
             };
 
-            ITStorage.db.options.bind( 'data.isLoaded', true, loadTags );
+            MiitStorage.db.options.bind( 'data.isLoaded', true, loadTags );
 
             // Retrieve likes
-            ITConnect.bind('question-presentation-like', function( like ) {
+            MiitConnect.bind('question-presentation-like', function( like ) {
                 var time = 0;
 
                 if( ! $scope.questions[like.question] ) {
@@ -113,7 +113,7 @@ angular
                     if( ! isLike({ id: like.question }) &&
                           $scope.user.id === like.user ) {
 
-                        ITStorage.db.likes.set(like.question, like.id);
+                        MiitStorage.db.likes.set(like.question, like.id);
                     }
 
                     if( $scope.questions[like.question] ) {
@@ -124,7 +124,7 @@ angular
             });
 
             // Retrieve new questions
-            ITConnect.bind('question-presentation-new', function( data ) {
+            MiitConnect.bind('question-presentation-new', function( data ) {
                 $timeout(function(){
 
                     var userId = data.question.user;

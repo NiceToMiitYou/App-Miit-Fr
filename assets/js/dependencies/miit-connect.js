@@ -1,6 +1,6 @@
 "use strict";
 
-window.ITConnect = ( function() {
+window.MiitConnect = ( function() {
     var apiPublicPrefix = '/api/viewer',
         apiMasterPrefix = '/api/master';
 
@@ -8,14 +8,14 @@ window.ITConnect = ( function() {
 
     var lastestToken = 0;
 
-    ITStorage.create( 'events', !ITEventDebug );
+    MiitStorage.create( 'events', !ITEventDebug );
 
     // Add cleaner to Garbage
-    ITGarbage.add( function() {
+    MiitGarbage.add( function() {
 
         var removed = 0;
 
-        ITStorage.db.events.each(function(key, eventTmp) {
+        MiitStorage.db.events.each(function(key, eventTmp) {
             
             // Check if expire
             if ( eventTmp.expire &&
@@ -23,7 +23,7 @@ window.ITConnect = ( function() {
 
                 removed++;
 
-                ITStorage.db.events.remove( eventTmp.id );
+                MiitStorage.db.events.remove( eventTmp.id );
             }
         });
 
@@ -39,10 +39,10 @@ window.ITConnect = ( function() {
             lastestToken = eventTmp.id;
 
             // If not set already
-            if( !ITStorage.db.events.get( eventTmp.id ) ) {
+            if( !MiitStorage.db.events.get( eventTmp.id ) ) {
 
                 // Store the events
-                ITStorage.db.events.set( eventTmp.id, eventTmp );
+                MiitStorage.db.events.set( eventTmp.id, eventTmp );
             }
 
             // Execute callback if not expire
@@ -63,7 +63,7 @@ window.ITConnect = ( function() {
     var actions = async.priorityQueue( function ( task, callback ) {
 
         // Store received event
-        ITStorage.db.events.set( task.id, task );
+        MiitStorage.db.events.set( task.id, task );
 
         // Check integrity
         if ( lastestToken + 1 === task.id ) {
@@ -100,7 +100,7 @@ window.ITConnect = ( function() {
 
             var storedEvents = [];
 
-            ITStorage.db.events.each( function(key, value) {
+            MiitStorage.db.events.each( function(key, value) {
 
                 // Store the event
                 storedEvents.push( value );

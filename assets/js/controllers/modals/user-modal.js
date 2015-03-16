@@ -29,7 +29,7 @@ angular
 
                 if( canSave() ) {
 
-                    ITConnect.user.update(
+                    MiitConnect.user.update(
                         ( $scope.accountType === 0 ) ? $scope.user.firstname : '', 
                         ( $scope.accountType === 0 ) ? $scope.user.lastname : '', 
                         ( $scope.accountType === 0 ) ? $scope.user.society : '',
@@ -40,7 +40,7 @@ angular
 
                             if ( data.done ) {
                             
-                                ITStorage.db.options.set( 'user', data.user );
+                                MiitStorage.db.options.set( 'user', data.user );
 
                                 $scope.firstInit = false;
 
