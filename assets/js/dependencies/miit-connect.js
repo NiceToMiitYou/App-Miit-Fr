@@ -137,6 +137,12 @@ window.ITConnect = ( function() {
             } );
         },
 
+        // Listen
+        listen: function( name, cb ) {
+            // Bind the event
+            io.socket.on( name, cb );
+        },
+
         // Subscribe to rooms
         subscribe: function( cb ) {
             io.socket.get( '/api/subscribe', {}, cb );

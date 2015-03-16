@@ -8,16 +8,16 @@ if (typeof window.console === "undefined" || typeof window.console.log === "unde
 
 // Create
 function init() {
-    ITStorage.create( 'options', !ITEventDebug );
+    ITStorage.create( 'options',       !ITEventDebug );
 
-    ITStorage.create( 'chatrooms', !ITEventDebug );
-    ITStorage.create( 'users', !ITEventDebug );
-    ITStorage.create( 'notes', !ITEventDebug );
-    ITStorage.create( 'resources', !ITEventDebug );
+    ITStorage.create( 'chatrooms',     !ITEventDebug );
+    ITStorage.create( 'users',         !ITEventDebug );
+    ITStorage.create( 'notes',         !ITEventDebug );
+    ITStorage.create( 'resources',     !ITEventDebug );
 
-    ITStorage.create( 'quizzes', !ITEventDebug );
-    ITStorage.create( 'tags', !ITEventDebug );
-    ITStorage.create( 'likes', !ITEventDebug );
+    ITStorage.create( 'quizzes',       !ITEventDebug );
+    ITStorage.create( 'tags',          !ITEventDebug );
+    ITStorage.create( 'likes',         !ITEventDebug );
     ITStorage.create( 'presentations', !ITEventDebug );
 
     if ( ITEventDebug ) {
