@@ -29,6 +29,15 @@ module.exports = {
             required: true
         },
 
+        extra: {
+            type: 'json'
+        },
+        
+        answers: {
+            collection: 'ItQuestionQuizzAnswer',
+            via: 'question'
+        },
+        
         quizz: {
             model: 'ItQuizz',
             required: true

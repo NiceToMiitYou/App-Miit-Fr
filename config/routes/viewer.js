@@ -95,7 +95,7 @@ routes[ 'GET ' + apiPublicPrefix + '/quizz/:quizz/questions' ] = {
     restriction: 'QUIZZ_INTERACTIONS'
 };
 
-routes[ 'POST ' + apiPublicPrefix + '/quizz/question/:question/answer' ] = {
+routes[ 'POST ' + apiPublicPrefix + '/quizz/:quizz/answer' ] = {
     controller: 'ConfQuestionQuizzController',
     action: 'answer',
     restriction: 'QUIZZ_INTERACTIONS'

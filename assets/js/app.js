@@ -211,7 +211,7 @@ function initData() {
 
                                             // For each answers
                                             _.forEach(
-                                                _.map( dataQuestion.questions, 'answers'),
+                                                _.flatten( _.map( dataQuestion.questions, 'answers') ),
                                                 function( answer ) {
 
                                                     // Default not selected
@@ -223,7 +223,7 @@ function initData() {
                                                         function( userAnswer ) {
 
                                                             // Check if same id
-                                                            if ( userAnswer.id === answer.id) {
+                                                            if ( userAnswer.answer === answer.id) {
                                                                 
                                                                 // Set answered
                                                                 quizz.answered = true;

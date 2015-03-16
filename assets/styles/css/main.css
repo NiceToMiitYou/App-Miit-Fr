@@ -1723,6 +1723,12 @@ div#menu li:nth-child(6n+6) {
 	margin-bottom: 15px;
 }
 
+.quizz-inner-content h4 {
+  font-size: 1.1rem;
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
+
 .resources-container {
 	overflow-y: auto;
 	max-height: calc(100% - 60px);	

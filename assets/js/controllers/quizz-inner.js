@@ -24,8 +24,8 @@ angular
                     question.answers,
                     function( questionAnswer ) {
 
-                    questionAnswer.selected = false;
-                } );
+                        questionAnswer.selected = false;
+                    } );
                 
                 answer.selected = true;
             }
@@ -41,55 +41,38 @@ angular
 
                 if ( $scope.isAnswered && ! $scope.current.answered ) {
 
+                    if( !$scope.user.quizzAnswers ) {
+                        
+                        $scope.user.quizzAnswers = [];
+                    }
+
                     $scope.current.answered = true;
 
-                    var i = 0;
+                    ITConnect.question.quizz.answer( $scope.current.id, selected, function( data ) {
 
-                    _.forEach(selected, function( listIdAnswer, idQuestion ) {
+                        $timeout( function() {
 
-                        setTimeout( function() {
-                            ITConnect.question.quizz.answer(
-                                idQuestion,
-                                listIdAnswer,
-                                function( data ) { } );
-                        }, i * 125);
+                            if( data.done ) {
 
-                        if( !$scope.user.quizzAnswers ) {
-                            
-                            $scope.user.quizzAnswers = [];
-                        }
+                                $scope.toast({
+                                    message: ItNotifications.quizzInner.save.success,
+                                    type: 'info'
+                                });
 
-                        _.forEach(listIdAnswer, function( idAnswer ) {
+                                ITStorage.db.quizzes.set( $scope.current.id, $scope.current );
 
-                            var answer = {};
+                                $scope.track( 'QUIZZ' );
+                            } else {
 
-                            // Find the answer by Id
-                            _.chain( $scope.current.questions )
-                                .flatten( 'answers' )
-                                .where( { 'id' : idAnswer } )
-                                .forEach( function( finalAnswer ) {
+                                $scope.toast({
+                                    message: ItNotifications.quizzInner.save.error,
+                                    type: 'error'
+                                });
 
-                                    answer = finalAnswer;
-                                } );
-                            
-                            $scope.user.quizzAnswers.push( answer );
-                        });
-
-                        i++;
-                    });
-
-                    ITStorage.db.options.set( 'user', $scope.user );
-
-                    ITStorage.db.quizzes.set( $scope.current.id, $scope.current );
-
-                    $scope.isAnswered = true;
-
-                    $scope.toast({
-                        message: ItNotifications.quizzInner.save.success,
-                        type: 'info'
-                    });
-
-                    $scope.track('QUIZZ');
+                                $scope.current.answered = false;
+                            }
+                        } );
+                    } );
 
                 } else {
 
@@ -104,7 +87,6 @@ angular
 
             var selected = {};
 
-
             $scope.$watch('current', function (quizz) {
 
                 // List of selected
@@ -116,27 +98,52 @@ angular
                 // Check all answers
                 _.forEach( quizz.questions, function( question ) {
 
+                    if( question.type === 0 ) {
+                        return;
+                    }
+
                     // She is not answered
                     var isQuestionAnswered = false;
 
                     // Define an array of id
                     selected[question.id] = [];
 
-                    // Find all selected
-                    _.forEach(
-                        _.filter(
-                            question.answers,
-                            {
-                                'selected' : true
-                            }
-                        ), function( answer ) {
+                    // Is an open question
+                    if( question.type === 3 ) {
+
+                        if( question.extra && question.extra.text && question.answers.length === 1 ) {
 
                             // Question answered
                             isQuestionAnswered = true;
                             
                             // Add to selected
-                            selected[question.id].push( answer.id );
-                        } );
+                            selected[question.id].push( {
+                                id:    _.first( question.answers ).id,
+                                extra: question.extra
+                            } );
+                        }
+
+                    } else {
+
+                        // Find all selected
+                        _.forEach(
+                            _.filter(
+                                question.answers,
+                                {
+                                    'selected' : true
+                                }
+                            ), function( answer ) {
+
+                                // Question answered
+                                isQuestionAnswered = true;
+                                
+                                // Add to selected
+                                selected[question.id].push( {
+                                    id: answer.id
+                                } );
+                            } );
+
+                    }
 
                     // If one question not answered, not answered quizz
                     if ( !isQuestionAnswered && question.required ) {
@@ -158,7 +165,7 @@ angular
             $scope.openAnswerModal = function() {
                 if( $scope.isAllowed('QUIZZ_INTERACTIONS') ) {
 
-                    openAnswerModal();
+                    saveQuizz();//openAnswerModal();
                 }
             };
 

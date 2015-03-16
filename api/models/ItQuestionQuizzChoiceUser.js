@@ -1,5 +1,5 @@
 /**
- * ItQuestionQuizzAnswer.js
+ * ItQuestionQuizzChoiceUser.js
  *
  * @description :: TODO: You might write a short summary of how this model works and what it represents here.
  * @docs        :: http://sailsjs.org/#!documentation/models
@@ -9,28 +9,27 @@ module.exports = {
 
     connection: 'DwhWebService',
     
-    tableName: 'questionquizzanswer',
+    tableName: 'questionquizzchoiceuser',
 
     attributes: {
-
-        answer: {
-            type: 'string',
-            defaultsTo: ''
-        },
 
         type: {
             type: 'integer',
             defaultsTo: 0
         },
 
-        question: {
-            model: 'ItQuestionQuizz',
+        extra: {
+            type: 'json'
+        },
+        
+        answer: {
+            model: 'ItQuestionQuizzAnswer',
             required: true
         },
 
-        usersChoices: {
-            collection: 'ItQuestionQuizzChoiceUser',
-            via: 'answer'
+        user: {
+            model: 'ItUser',
+            required: true
         }
     }
 };

@@ -208,10 +208,10 @@ window.ITConnect = ( function() {
             update: function( firstname, lastname, society, username, avatar, cb ) {
                 io.socket.post( '/api/user', {
                     firstname: firstname,
-                    lastname: lastname,
-                    society: society,
-                    username: username,
-                    avatar: avatar
+                    lastname:  lastname,
+                    society:   society,
+                    username:  username,
+                    avatar:    avatar
                 }, cb );
             },
 
@@ -237,9 +237,9 @@ window.ITConnect = ( function() {
                 },
 
                 // Answer to a question
-                answer: function( question, answers, cb ) {
-                    io.socket.post( apiPublicPrefix + '/quizz/question/' + question + '/answer', {
-                        answers: answers
+                answer: function( quizz, selected, cb ) {
+                    io.socket.post( apiPublicPrefix + '/quizz/' + quizz + '/answer', {
+                        selected: selected
                     }, cb );
                 }
             },

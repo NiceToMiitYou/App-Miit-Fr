@@ -55,9 +55,8 @@ module.exports = {
         },
 
         quizzAnswers: {
-            collection: 'ConfQuestionQuizzAnswer',
-            via: 'users',
-            dominant: true
+            collection: 'ConfQuestionQuizzChoiceUser',
+            via: 'user'
         },
 
         questionAsked: {

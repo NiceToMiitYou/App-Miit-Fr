@@ -118,7 +118,8 @@
             "validate": "Valider les réponses",
             "validate_modal": "Valider les réponses",
             "alert_modal" : "Une fois validé vous ne pourrez plus éditer le questionnaire.",
-            "answer_modal" : "Êtes-vous certain de vouloir valider ?"
+            "answer_modal" : "Êtes-vous certain de vouloir valider ?",
+            "answer_open": "Écrivez votre réponse ici..."
         },
 
         "quizz-list": {
