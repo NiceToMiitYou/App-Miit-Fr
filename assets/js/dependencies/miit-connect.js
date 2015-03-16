@@ -143,6 +143,11 @@ window.ITConnect = ( function() {
             io.socket.on( name, cb );
         },
 
+        reconnect: function() {
+            // reconnect the socket
+            io.socket.reconnect();
+        },
+
         // Subscribe to rooms
         subscribe: function( cb ) {
             io.socket.get( '/api/subscribe', {}, cb );
