@@ -6,6 +6,7 @@
 	<div ng-controller="MasterController" class="page-content">
 
 		<div ng-controller="LiveController" class="content">
+
 			<!-- BEGIN PAGE TITLE -->
 			<div class="page-title">
 				<a class="listner listner-up btn btn-primary"
@@ -21,6 +22,66 @@
 						}"  style="margin-right: 0px;"></i>
 				</a>
 				<h3><i class="mdi-social-person"></i> {{ connectedUsers }}</h3>
+				<!-- Dropdown Trigger -->
+				<a class='dropdown-button btn right' href='#' data-activates='dropdown'>OPTIONS</a>
+
+				<!-- Dropdown Structure -->
+				<ul id='dropdown' class='dropdown-content'>
+				  <li>RESSOURCES
+				  	<div class="switch">
+				  	  <label>
+				  	    Off
+				  	    <input type="checkbox">
+				  	    <span class="lever"></span>
+				  	    On
+				  	  </label>
+				  	</div>
+				  </li>
+				  <li class="divider"></li>
+				  <li>MUR
+				  <div class="switch">
+				    <label>
+				      Off
+				      <input type="checkbox">
+				      <span class="lever"></span>
+				      On
+				    </label>
+				  </div>
+				  </li>
+				  <li class="divider"></li>
+				  <li>DISCUSSIONS
+				  <div class="switch">
+				    <label>
+				      Off
+				      <input type="checkbox">
+				      <span class="lever"></span>
+				      On
+				    </label>
+				  </div>
+				  </li>
+				  <li class="divider"></li>
+				  <li>QUESTIONNAIRES
+				  <div class="switch">
+				    <label>
+				      Off
+				      <input type="checkbox">
+				      <span class="lever"></span>
+				      On
+				    </label>
+				  </div>
+				  </li>
+				  <li class="divider"></li>
+				  <li>BLOC-NOTE
+				  <div class="switch">
+				    <label>
+				      Off
+				      <input type="checkbox">
+				      <span class="lever"></span>
+				      On
+				    </label>
+				  </div>
+				  </li>
+				</ul>
 			</div>
 
 			<div class="progress transparent progress-small no-radius no-margin">

@@ -113,17 +113,6 @@ a {
 	margin-top: 0;
 }
 
-.page-title h3 {
-	display: inline-block;
-	top: -5px;
-	position: relative;
-	width: 83%;
-	margin-bottom: 6px;
-	margin-top: 15px;
-	font-size: 23px;
-	margin-left: 14px;
-}
-
 .page-title i {
 	position: static;
 }
@@ -1807,4 +1796,29 @@ div#menu li:nth-child(6n+6) {
 
 .pull-right.label-menu {
 	margin-right: 85px;
+}
+
+.dropdown-content li {
+	padding-top: 10px;
+	font-size: 14px;
+	color: #26a69a;
+	line-height: 15px;
+}
+
+a.dropdown-button.btn {
+	width: 200px;
+	padding: 0;
+	margin-top: 7px;
+	margin-right: 7px;
+	margin-bottom: 0px;
+}
+
+ul#dropdown {
+	width: 200px;
+	height: auto;
+	text-align: center;
+}
+
+.switch label {
+	padding-bottom: 10px;
 }
