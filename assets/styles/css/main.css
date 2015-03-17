@@ -558,7 +558,7 @@ a {
 .send-note {
 	position: absolute;
 	top: 12px;
-	right: 80px;
+	right: 195px;
 }
 
 .page-loader {
@@ -1803,4 +1803,8 @@ div#menu li:nth-child(6n+6) {
 
 .connection-bar.infos {
 	background-color: #8bc34a;
+}
+
+.pull-right.label-menu {
+	margin-right: 85px;
 }
