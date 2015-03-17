@@ -38,7 +38,6 @@ module.exports = {
 
         mail: {
             type: 'email',
-            unique: true,
             required: true
         },
 

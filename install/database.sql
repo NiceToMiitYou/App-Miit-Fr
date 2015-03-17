@@ -72,7 +72,8 @@ CREATE TABLE `confconference` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `token` (`token`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -177,7 +178,6 @@ CREATE TABLE `confquestionpresentation` (
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `question` (`question`),
   KEY `isAnswered` (`isAnswered`),
   KEY `presentation` (`presentation`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -347,7 +347,6 @@ CREATE TABLE `confquizz` (
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`),
   KEY `conference` (`conference`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -401,7 +400,6 @@ CREATE TABLE `confresourcecategory` (
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`),
   KEY `isVisible` (`isVisible`),
   KEY `conference` (`conference`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -443,7 +441,6 @@ CREATE TABLE `conftag` (
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`),
   KEY `conference` (`conference`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;

@@ -35,8 +35,7 @@ module.exports = {
 
         token: {
             type: 'string',
-            required: true,
-            unique: true
+            required: true
         },
 
         description: {
