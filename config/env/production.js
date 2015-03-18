@@ -82,7 +82,7 @@ module.exports = {
         db:      'app-miit-fr'
     },
 
-    port: 80,
+    port: 443,
   
     log: {
         level: "silent"
