@@ -10,6 +10,8 @@
  *
  */
 
+var fs = require('fs');
+
 module.exports = {
 
     application: {
@@ -40,9 +42,12 @@ module.exports = {
 
         // Storage of the conference
         ConferenceDatabase: {
-            user: 'root',
-            password: '',
-            database: 'fr_miit_app'
+
+            host:     process.env.MIIT_MYSQL_HOST,
+            port:      3306,
+            user:     process.env.MIIT_MYSQL_USER,
+            password: process.env.MIIT_MYSQL_PASS,
+            database: process.env.MIIT_MYSQL_DB
         },
 
         DwhWebService: {
@@ -53,6 +58,28 @@ module.exports = {
             host: 'dwh.miit.fr',
             port: 80
         }
+    },
+
+    ssl: {
+        key:  fs.readFileSync('/home/ubuntu/certificates/miit-key.pem'),
+        cert: fs.readFileSync('/home/ubuntu/certificates/miit-fr.crt'),
+        ca:   fs.readFileSync('/home/ubuntu/certificates/digi-cert-ca.crt')
+    },
+
+    session: {
+        adapter: 'redis',
+        host:    'miit-fr-001.xidhqo.0001.euc1.cache.amazonaws.com',
+        port:     6379,
+        prefix:  'sess:',
+        db:      'app-miit-fr'
+    },
+
+    sockets: {
+        adapter: 'redis',
+        host:    'miit-fr-001.xidhqo.0001.euc1.cache.amazonaws.com',
+        port:     6379,
+        prefix:  'sock:',
+        db:      'app-miit-fr'
     },
 
     port: 80,
