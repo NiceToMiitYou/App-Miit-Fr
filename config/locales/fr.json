@@ -21,7 +21,7 @@
 
         "tabs": {
             "live": "Live",
-            "wall": "Mur"
+            "wall": "Questions"
         },
 
         "wall": {
@@ -37,10 +37,11 @@
             "disconnect": "Déconnexion",
             "fullscreen": "Plein écran",
             "resources": "Ressources",
-            "wall": "Mur",
+            "wall": "Vos questions",
             "chat": "Discussions",
             "notes": "Bloc-note",
-            "quizz": "Questionnaires"
+            "quizz": "Questionnaires",
+            "label": "Menu"
         },
 
         "logout": {
@@ -132,7 +133,7 @@
         },
 
         "wall": {
-            "title": "Mur",
+            "title": "Vos questions",
             "categories": "Toutes les catégories",
             "like": "Like",
             "likes": "Likes",
