@@ -60,6 +60,10 @@ module.exports = {
         }
     },
 
+    grunt: {
+        _hookTimeout: 1000000
+    },
+
     ssl: {
         key:  fs.readFileSync('/home/ubuntu/certificates/miit-key.pem'),
         cert: fs.readFileSync('/home/ubuntu/certificates/miit-fr.crt'),
