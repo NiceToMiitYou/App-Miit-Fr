@@ -12,72 +12,74 @@
         </div>
     </div>
 
-    <blockquote class="m-l-20 m-r-20">
-        <p>{{ current.description }}</p>
-    </blockquote>
+    <div class="scroll-container">
+      <blockquote class="m-l-20 m-r-20">
+          <p>{{ current.description }}</p>
+      </blockquote>
 
-    <form>
+      <form>
 
-        <div ng-repeat="question in current.questions track by question.id" class="m-l-20 m-r-20">
-            <h3 ng-if="!( question.extra && question.extra.small )" >{{ ::question.question }}</h3>
-            <h4 ng-if="( question.extra && question.extra.small )" >{{ ::question.question }}</h4>
+          <div ng-repeat="question in current.questions track by question.id" class="m-l-20 m-r-20">
+              <h3 ng-if="!( question.extra && question.extra.small )" >{{ ::question.question }}</h3>
+              <h4 ng-if="( question.extra && question.extra.small )" >{{ ::question.question }}</h4>
 
-            <div ng-repeat="answer in question.answers track by answer.id">
+              <div ng-repeat="answer in question.answers track by answer.id">
 
-                <div ng-show="question.type === 1 && answer.type === 0">
+                  <div ng-show="question.type === 1 && answer.type === 0">
 
-                    <input id="radio-{{ question.id }}-{{ answer.id }}"
-                           name="radio-{{ question.id }}"
-                           type="radio"
-                           ng-checked="answer.selected"
-                           ng-disabled="current.answered"
-                           ng-click="checkRight(question, answer)">
+                      <input id="radio-{{ question.id }}-{{ answer.id }}"
+                             name="radio-{{ question.id }}"
+                             type="radio"
+                             ng-checked="answer.selected"
+                             ng-disabled="current.answered"
+                             ng-click="checkRight(question, answer)">
 
-                    <label for="radio-{{ question.id }}-{{ answer.id }}">
-                        {{ ::answer.answer }}
-                    </label>
-                </div>
+                      <label for="radio-{{ question.id }}-{{ answer.id }}">
+                          {{ ::answer.answer }}
+                      </label>
+                  </div>
 
-                <div ng-show="question.type === 2 && answer.type === 0">
+                  <div ng-show="question.type === 2 && answer.type === 0">
 
-                    <input id="checkbox-{{ question.id }}-{{ answer.id }}"
-                           name="checkbox-{{ question.id }}"
-                           type="checkbox"
-                           ng-checked="answer.selected"
-                           ng-disabled="current.answered"
-                           ng-true-value="true" ng-false-value="false"
-                           ng-model="answer.selected">
+                      <input id="checkbox-{{ question.id }}-{{ answer.id }}"
+                             name="checkbox-{{ question.id }}"
+                             type="checkbox"
+                             ng-checked="answer.selected"
+                             ng-disabled="current.answered"
+                             ng-true-value="true" ng-false-value="false"
+                             ng-model="answer.selected">
 
-                    <label for="checkbox-{{ question.id }}-{{ answer.id }}">
-                        {{ ::answer.answer }}
-                    </label>
-                </div>
+                      <label for="checkbox-{{ question.id }}-{{ answer.id }}">
+                          {{ ::answer.answer }}
+                      </label>
+                  </div>
 
-                <div ng-show="question.type === 3 && answer.type === 0"
-                     class="input-field">
+                  <div ng-show="question.type === 3 && answer.type === 0"
+                       class="input-field">
 
-                    <i class="mdi-editor-mode-edit prefix"></i>
-                    
-                    <textarea id="open-{{ question.id }}-{{ answer.id }}"
-                              name="open-{{ question.id }}-{{ answer.id }}"
-                              class="materialize-textarea"
-                              ng-disabled="current.answered"
-                              ng-model="question.extra.text"></textarea>
-                    
-                    <label for="open-{{ question.id }}-{{ answer.id }}">
-                        <%= __('viewer.quizz-inner.answer_open') %>
-                    </label>
-                </div>
-            </div>
-        </div>
+                      <i class="mdi-editor-mode-edit prefix"></i>
+                      
+                      <textarea id="open-{{ question.id }}-{{ answer.id }}"
+                                name="open-{{ question.id }}-{{ answer.id }}"
+                                class="materialize-textarea"
+                                ng-disabled="current.answered"
+                                ng-model="question.extra.text"></textarea>
+                      
+                      <label for="open-{{ question.id }}-{{ answer.id }}">
+                          <%= __('viewer.quizz-inner.answer_open') %>
+                      </label>
+                  </div>
+              </div>
+          </div>
 
-        <div class="m-l-20 m-r-20 m-t-20">
-            <button ng-click="openAnswerModal()"
-                    ng-disabled="current.answered || !isAnswered"
-                    type="button"
-                    class="btn btn-primary">
-                <%= __('viewer.quizz-inner.validate') %>
-            </button>
-        </div>
-    </form>
+          <div class="m-l-20 m-r-20 m-t-20">
+              <button ng-click="openAnswerModal()"
+                      ng-disabled="current.answered || !isAnswered"
+                      type="button"
+                      class="btn btn-primary">
+                  <%= __('viewer.quizz-inner.validate') %>
+              </button>
+          </div>
+      </form>
+    </div>
 </div>
