@@ -64,12 +64,6 @@ module.exports = {
         _hookTimeout: 1000000
     },
 
-    ssl: {
-        key:  fs.readFileSync('/home/ubuntu/certificates/miit-key.pem'),
-        cert: fs.readFileSync('/home/ubuntu/certificates/miit-fr.crt'),
-        ca:   fs.readFileSync('/home/ubuntu/certificates/digi-cert-ca.crt')
-    },
-
     session: {
         adapter: 'redis',
         host:    'miit-fr-001.xidhqo.0001.euc1.cache.amazonaws.com',
@@ -87,7 +81,7 @@ module.exports = {
         db:           'app-miit-fr'
     },
 
-    port: 443,
+    port: 80,
   
     log: {
         level: "silent"
