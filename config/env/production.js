@@ -79,7 +79,7 @@ module.exports = {
     },
 
     sockets: {
-        _hookTimeout:  1000000
+        _hookTimeout:  1000000,
         adapter:      'socket.io-redis',
         host:         'miit-fr-001.xidhqo.0001.euc1.cache.amazonaws.com',
         port:          6379,
