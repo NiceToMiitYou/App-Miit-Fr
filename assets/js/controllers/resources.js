@@ -24,10 +24,19 @@ angular
             }
 
             function openInner( ressource ) {
-                
-                MiitStorage.db.options.set('ressources.current', ressource);
 
-                $scope.track('RESSOURCES-INNER');
+                switch( ressource.type ) {                
+                
+                    case 'pdf':
+                        window.open(ressource.path);
+
+                        break;
+
+                    default:
+                        MiitStorage.db.options.set('ressources.current', ressource);
+
+                        $scope.track('RESSOURCES-INNER');
+                }
             }
 
             $scope.openInner = function( quizz ) {
