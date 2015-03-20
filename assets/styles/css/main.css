@@ -286,7 +286,7 @@ a {
 /* --- LIVE --- */
 
 .live-header {
-	height: 68px;
+	height: 58px;
 	-webkit-transition: height .5s ease;
 	-moz-transition: height .5s ease;
 	transition: height .5s ease;
@@ -306,9 +306,13 @@ a {
 
 .live-header img{
 	float: right;
-	margin: 3px 20px;
+	margin: 8px 20px;
 }
 
+.live-info {
+    font-size: 0.9rem;
+    font-weight: 300;
+}
 
 #live-content {
 	display: block;
