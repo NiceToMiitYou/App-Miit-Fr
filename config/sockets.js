@@ -20,7 +20,28 @@ module.exports.sockets = {
      ***************************************************************************/
     afterDisconnect: function( session, socket, cb ) {
 
-        return cb();
+        if( session.user && session.conference ) {
+
+            ConfTrack.findOne( {
+                user:       session.user,
+                conference: session.conference,
+                sort:       'id DESC'
+            } )
+                .exec( function( err, track ) {
+
+                    if ( !err && track ) {
+
+                        track.end = new Date();
+                        track.save();
+                    }
+
+                    return cb();
+                } );
+
+        } else {
+
+            return cb();
+        }
     },
 
 
