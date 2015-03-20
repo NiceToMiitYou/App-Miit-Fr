@@ -1115,7 +1115,7 @@ a {
 	position: absolute;
 	z-index: 99;
 	bottom: 0px;
-	left: 90px;
+	left: 70px;
 }
 
 #userinfo-modal .avatar-choice .avatar-choice-list li {
@@ -1131,7 +1131,6 @@ a {
 
 #userinfo-modal .color-choice {
 	margin-top: 10px;
-	margin-right: 22px;
 	margin-bottom: 15px;
 	float: right;
 }
