@@ -10,8 +10,7 @@
  *
  */
 
-var fs              = require('fs'),
-    accessLogStream = fs.createWriteStream( __dirname + '/../logs/access.log', { flags: 'a' } );
+var fs = require('fs');
 
 module.exports = {
 
@@ -65,11 +64,6 @@ module.exports = {
         _hookTimeout: 1000000
     },
 
-    middleware: {
-
-        morgan: require('morgan')('combined', { stream: accessLogStream })
-    },
-
     session: {
         adapter: 'redis',
         host:    'miit-fr-001.xidhqo.0001.euc1.cache.amazonaws.com',
@@ -90,6 +84,6 @@ module.exports = {
     port: 80,
   
     log: {
-        level: 'silent'
+        level: "silent"
     }
 };
