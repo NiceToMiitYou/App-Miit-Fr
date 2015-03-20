@@ -567,7 +567,7 @@ a {
 .send-note {
 	position: absolute;
 	top: 12px;
-	right: 80px;
+	right: 128px;
 }
 
 .page-loader {
@@ -1618,9 +1618,9 @@ div#menu li:nth-child(6n+6) {
 .bt-menu-trigger {
 	position: absolute;
 	top: 5px;
-	right: 15px;
+	right: 10px;
 	display: block;
-	width: 50px;
+	width: 105px;
 	height: 50px;
 	cursor: pointer;
 	z-index: 9;
@@ -1631,12 +1631,12 @@ div#menu li:nth-child(6n+6) {
 	transition: right .4s ease;
 }
 
-.bt-menu-trigger > span {
+.bt-menu-trigger > span.bt-menu-cross {
 	position: absolute;
 	top: 50%;
 	left: 0;
 	display: block;
-	width: 100%;
+	width: 42px;
 	height: 4px;
 	margin-top: -2px;
 	background-color: #fff;
@@ -1645,6 +1645,14 @@ div#menu li:nth-child(6n+6) {
     -ms-transition: background-color 0.3s; /* IE 9 */
     -webkit-transition : background-color 0.3s;
 	transition: background-color 0.3s;
+}
+
+.bt-menu-trigger > span.bt-menu-label {
+	float: right;
+    margin-top: 8px;
+    font-size: 1.4rem;
+    font-weight: 300;
+	color: #fff;
 }
 
 .bt-menu-trigger span .before,
