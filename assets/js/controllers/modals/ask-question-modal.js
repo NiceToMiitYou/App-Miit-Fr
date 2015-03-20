@@ -9,9 +9,9 @@ angular
             $scope.text = '';
 
             function post() {
-                if ( $scope.text && $( '#multi' ).val() ) {
+                if ( $scope.text && $( '#wall-category-select' ).val() ) {
 
-                    MiitConnect.question.presentation.create( $scope.text, $( '#multi' ).val(), function(data) {
+                    MiitConnect.question.presentation.create( $scope.text, $( '#wall-category-select' ).val(), function(data) {
                         if( data.done ) {
 
                             $timeout(function() {
@@ -20,7 +20,7 @@ angular
 
                                 $scope.text = '';
 
-                                $( '#multi' ).select2('val', '');
+                                $( '#wall-category-select' ).select2('val', '');
 
                                 $( '#ask' ).closeModal();
 
