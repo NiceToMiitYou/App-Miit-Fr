@@ -1086,7 +1086,7 @@ body.bottom-header .page-content .content {
 .bubble.sender:after {
   border-color: transparent #0ba195;
   border-width: 9px 0 9px 7px;
-  right: -7px !important;
+  right: -6px !important;
   left: auto;
 }
 .bubble:after {
@@ -1098,7 +1098,7 @@ body.bottom-header .page-content .content {
   display: block;
   width: 0;
   z-index: 0;
-  left: -7px;
+  left: -6px;
   top: 12px;
 }
 .chat-messages .sent_time {
