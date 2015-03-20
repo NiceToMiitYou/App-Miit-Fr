@@ -10,8 +10,6 @@
  *
  */
 
-var fs = require('fs');
-
 module.exports = {
 
     application: {
