@@ -36,7 +36,7 @@
         "menu": {
             "disconnect": "Déconnexion",
             "fullscreen": "Plein écran",
-            "resources": "Ressources",
+            "resources": "Documents",
             "wall": "Vos questions",
             "chat": "Discussions",
             "notes": "Bloc-note",
@@ -129,7 +129,7 @@
         },
 
         "resources-list": {
-            "title": "Ressources"
+            "title": "Documents"
         },
 
         "wall": {
