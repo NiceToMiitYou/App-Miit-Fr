@@ -17,7 +17,7 @@ module.exports.application = {
     },
 
     // redirect url
-    redirect: 'http://www.itevents.fr/',
+    redirect: 'http://miit.events/',
 
     // Roles list
     roles: {
