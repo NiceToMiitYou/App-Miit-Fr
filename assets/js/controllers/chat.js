@@ -113,7 +113,7 @@ angular
 
                         var i = _.size( $scope.chatrooms[chatroomId].messages );
 
-                        while( i > 40 ) {
+                        while( i > 100 ) {
 
                             var min = 0; i = 0;
 
