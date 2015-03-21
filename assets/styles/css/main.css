@@ -1349,11 +1349,11 @@ div#menu {
 	width: 50%;
 	top: -135px;
 	right: 0;
-	-webkit-transition: top .5s ease 0, width .5s ease 0;
-	-moz-transition: top .5s ease 0, width .5s ease 0;
-	-o-transition: top .5s ease 0, width .5s ease 0;
-	-ms-transition: top .5s ease 0, width .5s ease 0;
-	transition: top .5s ease 0, width .5s ease 0;
+	-webkit-transition: top .5s ease, width .5s ease;
+	-moz-transition: top .5s ease, width .5s ease;
+	-o-transition: top .5s ease, width .5s ease;
+	-ms-transition: top .5s ease, width .5s ease;
+	transition: top .5s ease, width .5s ease;
 	z-index: 99;
 }
 
@@ -1381,7 +1381,7 @@ div#menu a {
 	-moz-transition: color .5s, background .5s, height .5s, border .5s!important;
 	-o-transition: color .5s, background .5s, height .5s, border .5s!important;
 	-ms-transition: color .5s, background .5s, height .5s, border .5s!important;
-	transition: color .5s, background .5s, height .5s, border-width .5s!important;
+	transition: color .5s, background .5s, height .5s, border .5s!important;
 }
 
 div#menu i{
