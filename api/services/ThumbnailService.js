@@ -57,7 +57,7 @@ var ScreenshotQueue = async.queue( function ( infos, callback ) {
             } );
         } else {
 
-            sails.log.debug('Can\'t generate file:', saveFile.name);
+            sails.log.debug('Can\'t generate file:', saveFile.name, err);
         }
 
         callback();
