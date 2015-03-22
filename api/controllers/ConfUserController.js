@@ -203,7 +203,9 @@ module.exports = {
                 return value !== role && !_.contains( sails.config.application.roles.exclude, value );
             });
         }
-
-        return res.redirect( '/' );
+        
+        req.session.save( function( err ) {
+            return res.redirect( '/' );
+        } );
     }
 };
