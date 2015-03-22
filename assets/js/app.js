@@ -8,20 +8,20 @@ if (typeof window.console === "undefined" || typeof window.console.log === "unde
 
 // Create
 function init() {
-    ITStorage.create( 'options', !ITEventDebug );
+    MiitStorage.create( 'options',       !ITEventDebug );
 
-    ITStorage.create( 'chatrooms', !ITEventDebug );
-    ITStorage.create( 'users', !ITEventDebug );
-    ITStorage.create( 'notes', !ITEventDebug );
-    ITStorage.create( 'resources', !ITEventDebug );
+    MiitStorage.create( 'chatrooms',     !ITEventDebug );
+    MiitStorage.create( 'users',         !ITEventDebug );
+    MiitStorage.create( 'notes',         !ITEventDebug );
+    MiitStorage.create( 'resources',     !ITEventDebug );
 
-    ITStorage.create( 'quizzes', !ITEventDebug );
-    ITStorage.create( 'tags', !ITEventDebug );
-    ITStorage.create( 'likes', !ITEventDebug );
-    ITStorage.create( 'presentations', !ITEventDebug );
+    MiitStorage.create( 'quizzes',       !ITEventDebug );
+    MiitStorage.create( 'tags',          !ITEventDebug );
+    MiitStorage.create( 'likes',         !ITEventDebug );
+    MiitStorage.create( 'presentations', !ITEventDebug );
 
     if ( ITEventDebug ) {
-        ITStorage.db.options.set( 'data.isLoaded', false );
+        MiitStorage.db.options.set( 'data.isLoaded', false );
     }
 
     initData();
@@ -30,7 +30,7 @@ function init() {
 function initData() {
 
     // Load data if not loaded and have to be loaded
-    if ( !ITStorage.db.options.get( 'data.isLoaded' ) ) {
+    if ( !MiitStorage.db.options.get( 'data.isLoaded' ) ) {
 
         var user;
 
@@ -40,14 +40,18 @@ function initData() {
                 function( callback ) {
 
                     // Request to subscribe to the rooms
-                    ITConnect.subscribe( function( data ) {
+                    MiitConnect.subscribe( function( data ) {
 
                         if( data.done ) {
                             
                             callback( null );
                         } else {
 
-                            window.location.reload();
+                            setTimeout( function() {
+
+                                // refresh if can't subscribe
+                                window.location = '/';    
+                            }, 10 * 1000);
                         }
                     } );
                 },
@@ -55,13 +59,13 @@ function initData() {
                 function( callback ) {
 
                     // Request the current user
-                    ITConnect.user.me( function( data ) {
+                    MiitConnect.user.me( function( data ) {
 
                         if ( data.done ) {
 
                             user = data.user;
                     
-                            ITStorage.db.options.set( 'user', user );
+                            MiitStorage.db.options.set( 'user', user );
                         }
                         
                         callback( null );
@@ -71,11 +75,11 @@ function initData() {
                 function( callback ) {
 
                     // Request the conference
-                    ITConnect.config.conference( function( data ) {
+                    MiitConnect.config.conference( function( data ) {
 
                         if ( data.done ) {
 
-                            ITStorage.db.options.set( 'conference', data.conference );
+                            MiitStorage.db.options.set( 'conference', data.conference );
                         }
 
                         callback( null );
@@ -84,7 +88,7 @@ function initData() {
 
                 function( callback ) {
                     // Load presentations
-                    ITConnect.config.presentation.list( function( data ) {
+                    MiitConnect.config.presentation.list( function( data ) {
                         if ( data.done ) {
 
                             // Add each chatroom in the area
@@ -96,7 +100,7 @@ function initData() {
                                 // Set default thubnail
                                 presentation.thumbnail = null;
 
-                                ITStorage.db.presentations.set( presentation.id, presentation );
+                                MiitStorage.db.presentations.set( presentation.id, presentation );
                             });
                         }
 
@@ -106,11 +110,11 @@ function initData() {
 
                 function( callback ) {
                     // Get actual presentation
-                    ITConnect.config.presentation.actual( function( data ) {
+                    MiitConnect.config.presentation.actual( function( data ) {
                         if ( data.done ) {
 
-                            ITStorage.db.options.set('presentation.actual', 
-                                ITStorage.db.presentations.get( data.presentation )
+                            MiitStorage.db.options.set('presentation.actual', 
+                                MiitStorage.db.presentations.get( data.presentation )
                             );
                         }
 
@@ -120,13 +124,13 @@ function initData() {
 
                 function( callback ) {
                     // Load chatrooms
-                    ITConnect.chatroom.list( function( data ) {
+                    MiitConnect.chatroom.list( function( data ) {
                         if ( data.done ) {
 
                             // Add each chatroom in the area
                             _.forEach(data.chatrooms, function( chatroom ) {
 
-                                ITStorage.db.chatrooms.set( chatroom.id, chatroom );
+                                MiitStorage.db.chatrooms.set( chatroom.id, chatroom );
                             });
                         }
 
@@ -136,13 +140,13 @@ function initData() {
 
                 function( callback ) {
                     // Load notes
-                    ITConnect.note.list( function( data ) {
+                    MiitConnect.note.list( function( data ) {
                         if ( data.done ) {
 
                             // Add each note in the area
                             for ( var index in data.notes ) {
 
-                                ITStorage.db.notes.set( data.notes[index].id, data.notes[index] );
+                                MiitStorage.db.notes.set( data.notes[index].id, data.notes[index] );
                             }
                         }
 
@@ -152,13 +156,13 @@ function initData() {
 
                 function( callback ) {
                     // Load resources
-                    ITConnect.resources.list( function( data ) {
+                    MiitConnect.resources.list( function( data ) {
                         if ( data.done ) {
 
                             // Add each resource in the area
                             for ( var index in data.categories ) {
 
-                                ITStorage.db.resources.set( data.categories[index].id, data.categories[index] );
+                                MiitStorage.db.resources.set( data.categories[index].id, data.categories[index] );
                             }
                         }
 
@@ -168,13 +172,13 @@ function initData() {
 
                 function( callback ) {
                     // Load tags
-                    ITConnect.question.presentation.tags( function( data ) {
+                    MiitConnect.question.presentation.tags( function( data ) {
                         if ( data.done ) {
 
                             // Add each tag in the area
                             for ( var index in data.tags ) {
 
-                                ITStorage.db.tags.set( data.tags[index].id, data.tags[index] );
+                                MiitStorage.db.tags.set( data.tags[index].id, data.tags[index] );
                             }
                         }
 
@@ -184,7 +188,7 @@ function initData() {
 
                 function( callback ) {
                     // Load quizzes
-                    ITConnect.question.quizz.list( function( data ) {
+                    MiitConnect.question.quizz.list( function( data ) {
 
                         var max = 0;
                         var end = 0;
@@ -192,76 +196,59 @@ function initData() {
                         if ( data.done ) {
 
                             // Add each resource in the area
-                            for ( var index in data.quizzes ) {
+                            _.forEach( data.quizzes, function( quizz ) {
 
                                 max++;
 
-                                ITStorage.db.quizzes.set( data.quizzes[index].id, data.quizzes[index] );
-                                
                                 // Get all questions of the quizz
-                                ITConnect.question.quizz.questions(
-                                    data.quizzes[index].id,
+                                MiitConnect.question.quizz.questions(
+                                    quizz.id,
                                     function( dataQuestion ) {
                                         if ( dataQuestion.done && dataQuestion.questions.length > 0 ) {
-
-                                            // Get quizz
-                                            var quizz = ITStorage.db.quizzes.get( dataQuestion.questions[0].quizz );
 
                                             // Set not answered
                                             quizz.answered = false;
 
-                                            // For each questions
+                                            // For each answers
                                             _.forEach(
-                                                dataQuestion.questions,
-                                                function( question ) {
+                                                _.flatten( _.map( dataQuestion.questions, 'answers') ),
+                                                function( answer ) {
 
-                                                    // For each answers
+                                                    // Default not selected
+                                                    var selected = false;
+
+                                                    // For each answers of user
                                                     _.forEach(
-                                                        question.answers,
-                                                        function( answer ) {
+                                                        user.quizzAnswers,
+                                                        function( userAnswer ) {
 
-                                                            // Default not selected
-                                                            var selected = false;
+                                                            // Check if same id
+                                                            if ( userAnswer.answer === answer.id) {
+                                                                
+                                                                // Set answered
+                                                                quizz.answered = true;
 
-                                                            // For each answers of user
-                                                            _.forEach(
-                                                                user.quizzAnswers,
-                                                                function( userAnswer ) {
+                                                                // Set selected
+                                                                selected = true;
+                                                            }
+                                                        } );
 
-                                                                    // Check if same id
-                                                                    if ( userAnswer.id === answer.id) {
-                                                                        
-                                                                        // Set answered
-                                                                        quizz.answered = true;
-
-                                                                        // Set selected
-                                                                        selected = true;
-
-                                                                        // Stop the loop
-                                                                        //break;
-                                                                    }
-                                                                }
-                                                            );
-
-                                                            // Set selected if she is
-                                                            answer.selected = selected;
-                                                        }
-                                                    );
-                                                }
-                                            );
+                                                    // Set selected if she is
+                                                    answer.selected = selected;
+                                                } );
 
                                             // Add them to the current object
                                             quizz.questions = dataQuestion.questions;
 
                                             // Store the quizz
-                                            ITStorage.db.quizzes.set( quizz.id, quizz );
+                                            MiitStorage.db.quizzes.set( quizz.id, quizz );
                                         }
 
                                         end++;
 
                                         if ( max === end ) callback( null );
                                     } );
-                            }
+                            } );
                         }
 
                         if( max === 0 ) callback( null ); 
@@ -271,12 +258,12 @@ function initData() {
             function( err ) {
 
                 // If connected, synchronize
-                ITConnect.synchronize();
+                MiitConnect.synchronize();
 
                 // If all right, then set isLoaded
                 if ( !err ) {
 
-                    ITStorage.db.options.set( 'data.isLoaded', true );
+                    MiitStorage.db.options.set( 'data.isLoaded', true );
                 }
             } );
     }

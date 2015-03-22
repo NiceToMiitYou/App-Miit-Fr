@@ -1,7 +1,9 @@
 "use strict";
 
-MiitApp.controller(
-    'UserModalController', [ '$scope', '$timeout',
+angular
+    .module( 'MiitApp')
+    .controller( 'UserModalController', [
+        '$scope', '$timeout',
         function( $scope, $timeout ) {
 
             $scope.agreeAnonyme = false;
@@ -27,7 +29,7 @@ MiitApp.controller(
 
                 if( canSave() ) {
 
-                    ITConnect.user.update(
+                    MiitConnect.user.update(
                         ( $scope.accountType === 0 ) ? $scope.user.firstname : '', 
                         ( $scope.accountType === 0 ) ? $scope.user.lastname : '', 
                         ( $scope.accountType === 0 ) ? $scope.user.society : '',
@@ -38,7 +40,7 @@ MiitApp.controller(
 
                             if ( data.done ) {
                             
-                                ITStorage.db.options.set( 'user', data.user );
+                                MiitStorage.db.options.set( 'user', data.user );
 
                                 $scope.firstInit = false;
 
@@ -102,4 +104,5 @@ MiitApp.controller(
             $scope.saveUser = saveUser;
 
             $scope.canSave = canSave;
-        } ] );
+        }
+    ] );

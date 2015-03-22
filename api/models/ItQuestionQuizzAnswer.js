@@ -15,13 +15,22 @@ module.exports = {
 
         answer: {
             type: 'string',
-            required: true,
-            minLength: 1
+            defaultsTo: ''
+        },
+
+        type: {
+            type: 'integer',
+            defaultsTo: 0
         },
 
         question: {
             model: 'ItQuestionQuizz',
             required: true
+        },
+
+        usersChoices: {
+            collection: 'ItQuestionQuizzChoiceUser',
+            via: 'answer'
         }
     }
 };

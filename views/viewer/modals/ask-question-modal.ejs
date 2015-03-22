@@ -1,5 +1,5 @@
 <div ng-controller="AskQuestionModalController" class="modal askModal" style="display:block;" id="ask">
-    <form role="form">
+    <form role="form" class="modal-content">
 
         <h4 id="myQuestionModalLabel">
             <i class="mdi-communication-live-help m-r-10"></i>
@@ -11,8 +11,9 @@
 
         <div class="row m-b-40">
             <div class="col-md-12 input-field">
-                 <i class="mdi-image-style prefix"></i>
-                <select id="multi"
+                <i class="mdi-image-style prefix"></i>
+                <select id="wall-category-select"
+                        class="select2"
                         placeholder="<%= __('viewer.modal.wall.select_category') %>" multiple>
                     <option ng-repeat="tag in shared.tags"
                             value="{{ ::tag.id }}">{{ ::tag.name }}</option>

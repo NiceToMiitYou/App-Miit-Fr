@@ -1,5 +1,5 @@
 <div id="live-content" ng-controller="LiveController" class="content">
-    <div class="slider-container">  
+    <div class="slider-container">
         <div id="slides" class="presentation-slide fullscreen-slide">
             <div ng-repeat="slide in presentation.slides" class="slide slide-animation"
                 ng-hide="!isCurrentSlide($index)"
@@ -8,4 +8,12 @@
                 ng-bind-html="::safeHTML(slide.content)"></div>
         </div>
     </div>
+
+<% // Capture Hack %>
+<% if( goTo ) { %>
+    <div ng-init="noSocket = true" style="display: none;">
+        <div ng-init="goToSlide(<%= goToSlide %>, true, 2500)"></div>
+    </div>
+<% } %>
+
 </div>

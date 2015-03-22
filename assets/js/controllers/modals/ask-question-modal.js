@@ -1,15 +1,17 @@
 "use strict";
 
-MiitApp.controller(
-    'AskQuestionModalController', [ '$scope', '$timeout',
+angular
+    .module( 'MiitApp')
+    .controller( 'AskQuestionModalController', [
+        '$scope', '$timeout',
         function( $scope, $timeout ) {
 
             $scope.text = '';
 
             function post() {
-                if ( $scope.text && $( '#multi' ).val() ) {
+                if ( $scope.text && $( '#wall-category-select' ).val() ) {
 
-                    ITConnect.question.presentation.create( $scope.text, $( '#multi' ).val(), function(data) {
+                    MiitConnect.question.presentation.create( $scope.text, $( '#wall-category-select' ).val(), function(data) {
                         if( data.done ) {
 
                             $timeout(function() {
@@ -18,7 +20,7 @@ MiitApp.controller(
 
                                 $scope.text = '';
 
-                                $( '#multi' ).select2('val', '');
+                                $( '#wall-category-select' ).select2('val', '');
 
                                 $( '#ask' ).closeModal();
 
@@ -53,4 +55,5 @@ MiitApp.controller(
                 }
             };
 
-        } ] );
+        }
+    ] );

@@ -33,6 +33,7 @@ module.exports = {
 
         conference: {
             model: 'ConfConference',
+            index: true,
             required: true
         },
 
@@ -43,6 +44,7 @@ module.exports = {
 
         toJSON: function() {
             var obj = this.toObject();
+            delete obj.conference;
             delete obj.createdAt;
             delete obj.updatedAt;
             return obj;

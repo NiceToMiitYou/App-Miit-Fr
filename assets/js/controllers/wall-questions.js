@@ -1,7 +1,10 @@
 "use strict";
 
-MiitApp.controller(
-    'WallController', [ '$scope', '$timeout',
+
+angular
+    .module( 'MiitApp')
+    .controller( 'WallController', [
+        '$scope', '$timeout',
         function( $scope, $timeout ) {
 
             $scope.filter = "";
@@ -14,28 +17,14 @@ MiitApp.controller(
 
                     $timeout(function() {
 
-                        ITStorage.db.tags.each(function( id, tag ) {
+                        MiitStorage.db.tags.each(function( id, tag ) {
                             
                             $scope.shared.tags[id] = tag;
                         } );
 
                         setTimeout(function() {
 
-                            $('select').each(function() {
-                                var $select = $(this);
-
-                                if ( $select.hasClass('initialized') &&
-                                     $select.prev() &&  
-                                     $select.prev().data('activates') 
-                                ) {
-                                    var uid = $select.prev().data('activates');
-                                    
-                                    $('#' + uid).remove();
-                                    $select.prev().remove();
-                                    $select.removeClass('initialized');
-                                    $select.material_select();
-                                }
-                            });
+                            $('#wall-select').material_select();
                         }, 250);
                     } );
                 }
@@ -45,11 +34,11 @@ MiitApp.controller(
 
                 if ( ! isLike(question) ) {
 
-                    ITConnect.question.presentation.like(question.id, function(data) {
+                    MiitConnect.question.presentation.like(question.id, function(data) {
 
                         if( data.done || data.like ) {
 
-                            ITStorage.db.likes.set( question.id, data.like.id );
+                            MiitStorage.db.likes.set( question.id, data.like.id );
                         } else {
 
                             $scope.toast({
@@ -70,7 +59,7 @@ MiitApp.controller(
 
             function isLike( question ) {
 
-                if ( ! ITStorage.db.likes.get(question.id) ) {
+                if ( ! MiitStorage.db.likes.get(question.id) ) {
                     return false;
                 }
 
@@ -79,11 +68,11 @@ MiitApp.controller(
 
             function getTagName( tag ) {
 
-                if ( ! ITStorage.db.tags.get( tag ) ) {
+                if ( ! MiitStorage.db.tags.get( tag ) ) {
                     return '';
                 }
 
-                return ITStorage.db.tags.get( tag ).name;
+                return MiitStorage.db.tags.get( tag ).name;
             }
 
             function askQuestion() {
@@ -109,14 +98,14 @@ MiitApp.controller(
                 }
             };
 
-            ITStorage.db.options.bind( 'data.isLoaded', true, loadTags );
+            MiitStorage.db.options.bind( 'data.isLoaded', true, loadTags );
 
             // Retrieve likes
-            ITConnect.bind('question-presentation-like', function( like ) {
+            MiitConnect.bind('question-presentation-like', function( like ) {
                 var time = 0;
 
                 if( ! $scope.questions[like.question] ) {
-                    time = 250;
+                    time = 1000;
                 }
 
                 $timeout(function(){
@@ -124,7 +113,7 @@ MiitApp.controller(
                     if( ! isLike({ id: like.question }) &&
                           $scope.user.id === like.user ) {
 
-                        ITStorage.db.likes.set(like.question, like.id);
+                        MiitStorage.db.likes.set(like.question, like.id);
                     }
 
                     if( $scope.questions[like.question] ) {
@@ -135,7 +124,7 @@ MiitApp.controller(
             });
 
             // Retrieve new questions
-            ITConnect.bind('question-presentation-new', function( data ) {
+            MiitConnect.bind('question-presentation-new', function( data ) {
                 $timeout(function(){
 
                     var userId = data.question.user;
@@ -151,4 +140,5 @@ MiitApp.controller(
                     );
                 });
             });
-    } ] );
+        }
+    ] );

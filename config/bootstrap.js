@@ -9,33 +9,67 @@
  * http://sailsjs.org/#/documentation/reference/sails.config/sails.config.bootstrap.html
  */
 
-var fs = require( 'fs' );
-var filename = 'logo.txt';
-
 module.exports.bootstrap = function( cb ) {
 
+    // Change the logo of sails
     sails.log.ship = function() {
-
-        var logo = fs.readFileSync( filename, 'utf8' )
-            .toString()
-            .split( '\n' );
+        
+        var logo = require( 'fs' )
+                    .readFileSync( 'logo.txt', 'utf8' )
+                    .toString()
+                    .split( '\n' );
 
         for ( var line in logo ) {
             sails.log.info( logo[ line ] );
         }
     };
 
-    // It's very important to trigger this callback method when you are finished
-    // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
+    // Initialize upload service
+    UploadService.initialize();
 
+    if (
+    // Check for manual import
+        typeof sails.config._ !== 'undefined' &&
+        (
+            (
+                sails.config._.length === 3 &&
+                sails.config._[1] === 'import'
+            ) || (
+                sails.config._.length === 4 &&
+                sails.config._[2] === 'import'
+            )
+        )
+    ) {
 
-    // Initialize data if in developpement
-    ImportationDataService.initialize( function() { 
-    
-        // Load the restrictions of the conference
-        RestrictionService.initialize();
+        // Find the conference id in the query
+        var conferenceId = ( sails.config._[1] === 'import' ) ?
+                             +sails.config._[2] :
+                             +sails.config._[3];
 
-        // Call next
-        cb();
-    } );
+        return ImportationDataService.import( conferenceId, cb );
+    } else if ( 
+    // Check for manual export
+        typeof sails.config._ !== 'undefined' &&
+        (
+            (
+                sails.config._.length === 3 &&
+                sails.config._[1] === 'export'
+            ) || (
+                sails.config._.length === 4 &&
+                sails.config._[2] === 'export'
+            )
+        )
+    ) {
+
+        // Find the conference id in the query
+        var conferenceId = ( sails.config._[1] === 'export' ) ?
+                             +sails.config._[2] :
+                             +sails.config._[3];
+
+        return ExportationDataService.export( conferenceId, cb );
+    } else {
+        
+        // Or define import by SQS
+        QueueService.initialize( cb );
+    }
 };

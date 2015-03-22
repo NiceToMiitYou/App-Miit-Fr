@@ -1,7 +1,10 @@
 "use strict";
 
-MiitApp.controller(
-    'QuizzListController', [ '$scope', '$timeout',
+
+angular
+    .module( 'MiitApp')
+    .controller( 'QuizzListController', [
+        '$scope', '$timeout',
         function( $scope, $timeout ) {
 
             $scope.quizzes = {};
@@ -11,7 +14,7 @@ MiitApp.controller(
 
                     $timeout(function() {
                         
-                        ITStorage.db.quizzes.each(function( id, quizz ) {
+                        MiitStorage.db.quizzes.each(function( id, quizz ) {
 
                             $scope.quizzes[quizz.id] = quizz;
 
@@ -22,7 +25,7 @@ MiitApp.controller(
 
             function openInner( quizz ) {
                 
-                ITStorage.db.options.set('quizz.current', quizz);
+                MiitStorage.db.options.set('quizz.current', quizz);
 
                 $scope.track('QUIZZ-INNER');
             }
@@ -34,6 +37,6 @@ MiitApp.controller(
                 }
             };
 
-            ITStorage.db.options.bind( 'data.isLoaded', true, loadQuizzes );
-
-        } ] );
+            MiitStorage.db.options.bind( 'data.isLoaded', true, loadQuizzes );
+        }
+    ] );

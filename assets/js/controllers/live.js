@@ -1,10 +1,13 @@
 "use strict";
 
-MiitApp.controller(
-    'LiveController', [ '$scope', '$timeout',
+
+angular
+    .module( 'MiitApp')
+    .controller( 'LiveController', [
+        '$scope', '$timeout',
         function( $scope, $timeout ) {
 
-            $scope.current = 0;
+            $scope.current   = 0;
             $scope.direction = 'left';
 
             function next() {
@@ -25,7 +28,7 @@ MiitApp.controller(
                 }
             }
 
-            function gotToSlide( slideIndex ) {
+            function goToSlide( slideIndex ) {
 
                 if( 0 <= slideIndex && slideIndex <= $scope.presentation.current ) {
 
@@ -68,8 +71,7 @@ MiitApp.controller(
                 }
             }
 
-            var actions = [],
-                offset  = 0;
+            var actions = [];
 
             function liveMoveTo() {
                 
@@ -115,8 +117,6 @@ MiitApp.controller(
 
                 if( data.presentation == $scope.presentation.id ) {
 
-//                    offset += direction;
-
                     actions.push( direction );
 
                     debouncedLiveMoveTo();
@@ -141,11 +141,32 @@ MiitApp.controller(
                 }
             };
 
-            $scope.gotToSlide = function( slideIndex ) {
-                if( $scope.presentation && 
-                    $scope.isAllowed('LIVE_SLIDER_INTERACTIONS') ) {
+            $scope.goToSlide = function( slideIndex, byPassMax, delay ) {
+
+
+                if( delay ) {
+
+                    $timeout( function() {
+                        
+                        if( byPassMax && 
+                            $scope.presentation.slides ) {
+
+                            $scope.presentation.current = $scope.presentation.slides.length - 1;
+                        }
+
+                        goToSlide( slideIndex );
+                    }, delay );
+
+                } else if( $scope.presentation && 
+                           $scope.isAllowed('LIVE_SLIDER_INTERACTIONS') ) {
                     
-                    gotToSlide( slideIndex );
+                    if( byPassMax && 
+                        $scope.presentation.slides ) {
+
+                        $scope.presentation.current = $scope.presentation.slides.length - 1;
+                    }
+
+                    goToSlide( slideIndex );
                 }
             };
 
@@ -174,14 +195,17 @@ MiitApp.controller(
 
             document.addEventListener('keydown', onKeyPress, false);
 
-            ITStorage.db.options.bind('data.isLoaded', true, refreshShared);
+            MiitStorage.db.options.bind('data.isLoaded', true, refreshShared);
 
-            ITConnect.bind('live-presentation-next', function( data ) {
-                handleLiveEvent( 1, data );
-            });
+            if( $scope.accountType !== 3 && !$scope.noSocket  ) {
 
-            ITConnect.bind('live-presentation-previous', function( data ) {
-                handleLiveEvent( -1, data );
-            });
+                MiitConnect.bind('live-presentation-next', function( data ) {
+                    handleLiveEvent( 1, data );
+                });
 
-        } ] );
+                MiitConnect.bind('live-presentation-previous', function( data ) {
+                    handleLiveEvent( -1, data );
+                });
+            }
+        }
+    ] );

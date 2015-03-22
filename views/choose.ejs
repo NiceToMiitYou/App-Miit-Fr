@@ -1,0 +1,19 @@
+<div class="row">
+
+    <div class="card col s12 offset-m3 m6">
+
+        <div class="card-content text-center">
+            <span class="card-title black-text"><%= __('choose.title') %></span>
+
+            <ul>
+                <% _.forEach( roles, function( role ) { %>
+                    <li>
+                        <a class="waves-effect waves-light btn teal lighten-1 grey-text text-lighten-2" href="/role/<%= role %>">
+                            <%= __('choose.roles.' + role) %>
+                        </a>
+                    </li>
+                <% } ); %>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -36,15 +36,6 @@ CREATE TABLE `confchatmessage` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `confchatmessage`
---
-
-LOCK TABLES `confchatmessage` WRITE;
-/*!40000 ALTER TABLE `confchatmessage` DISABLE KEYS */;
-/*!40000 ALTER TABLE `confchatmessage` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `confchatroom`
 --
 
@@ -54,21 +45,14 @@ DROP TABLE IF EXISTS `confchatroom`;
 CREATE TABLE `confchatroom` (
   `name` varchar(255) DEFAULT NULL,
   `type` int(11) DEFAULT NULL,
+  `conference` int(11) DEFAULT NULL,
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `conference` (`conference`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `confchatroom`
---
-
-LOCK TABLES `confchatroom` WRITE;
-/*!40000 ALTER TABLE `confchatroom` DISABLE KEYS */;
-/*!40000 ALTER TABLE `confchatroom` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `confconference`
@@ -88,18 +72,10 @@ CREATE TABLE `confconference` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `token` (`token`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `confconference`
---
-
-LOCK TABLES `confconference` WRITE;
-/*!40000 ALTER TABLE `confconference` DISABLE KEYS */;
-/*!40000 ALTER TABLE `confconference` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `confconfig`
@@ -111,22 +87,14 @@ DROP TABLE IF EXISTS `confconfig`;
 CREATE TABLE `confconfig` (
   `key` varchar(255) DEFAULT NULL,
   `value` varchar(255) DEFAULT NULL,
+  `conference` int(11) DEFAULT NULL,
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `key` (`key`)
+  KEY `conference` (`conference`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `confconfig`
---
-
-LOCK TABLES `confconfig` WRITE;
-/*!40000 ALTER TABLE `confconfig` DISABLE KEYS */;
-/*!40000 ALTER TABLE `confconfig` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `confliveapplicationevent`
@@ -138,23 +106,18 @@ DROP TABLE IF EXISTS `confliveapplicationevent`;
 CREATE TABLE `confliveapplicationevent` (
   `name` varchar(255) DEFAULT NULL,
   `data` longtext,
+  `token` int(11) DEFAULT NULL,
+  `conference` int(11) DEFAULT NULL,
   `expire` datetime DEFAULT NULL,
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
+  KEY `token` (`token`),
+  KEY `conference` (`conference`),
   KEY `expire` (`expire`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `confliveapplicationevent`
---
-
-LOCK TABLES `confliveapplicationevent` WRITE;
-/*!40000 ALTER TABLE `confliveapplicationevent` DISABLE KEYS */;
-/*!40000 ALTER TABLE `confliveapplicationevent` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `confnote`
@@ -165,24 +128,17 @@ DROP TABLE IF EXISTS `confnote`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `confnote` (
   `title` varchar(255) DEFAULT NULL,
+  `conference` int(11) DEFAULT NULL,
   `content` longtext,
   `user` int(11) DEFAULT NULL,
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
+  KEY `conference` (`conference`),
   KEY `user` (`user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `confnote`
---
-
-LOCK TABLES `confnote` WRITE;
-/*!40000 ALTER TABLE `confnote` DISABLE KEYS */;
-/*!40000 ALTER TABLE `confnote` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `confpresentation`
@@ -201,18 +157,10 @@ CREATE TABLE `confpresentation` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `conference` (`conference`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `confpresentation`
---
-
-LOCK TABLES `confpresentation` WRITE;
-/*!40000 ALTER TABLE `confpresentation` DISABLE KEYS */;
-/*!40000 ALTER TABLE `confpresentation` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `confquestionpresentation`
@@ -225,23 +173,15 @@ CREATE TABLE `confquestionpresentation` (
   `question` varchar(255) DEFAULT NULL,
   `isAnswered` tinyint(1) DEFAULT NULL,
   `user` int(11) DEFAULT NULL,
+  `presentation` int(11) DEFAULT NULL,
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `question` (`question`),
-  KEY `isAnswered` (`isAnswered`)
+  KEY `isAnswered` (`isAnswered`),
+  KEY `presentation` (`presentation`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `confquestionpresentation`
---
-
-LOCK TABLES `confquestionpresentation` WRITE;
-/*!40000 ALTER TABLE `confquestionpresentation` DISABLE KEYS */;
-/*!40000 ALTER TABLE `confquestionpresentation` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `confquestionpresentation_tags__conftag_questions`
@@ -257,15 +197,6 @@ CREATE TABLE `confquestionpresentation_tags__conftag_questions` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `confquestionpresentation_tags__conftag_questions`
---
-
-LOCK TABLES `confquestionpresentation_tags__conftag_questions` WRITE;
-/*!40000 ALTER TABLE `confquestionpresentation_tags__conftag_questions` DISABLE KEYS */;
-/*!40000 ALTER TABLE `confquestionpresentation_tags__conftag_questions` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `confquestionpresentationlike`
@@ -288,15 +219,6 @@ CREATE TABLE `confquestionpresentationlike` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `confquestionpresentationlike`
---
-
-LOCK TABLES `confquestionpresentationlike` WRITE;
-/*!40000 ALTER TABLE `confquestionpresentationlike` DISABLE KEYS */;
-/*!40000 ALTER TABLE `confquestionpresentationlike` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `confquestionquizz`
 --
 
@@ -307,6 +229,7 @@ CREATE TABLE `confquestionquizz` (
   `question` varchar(255) DEFAULT NULL,
   `required` tinyint(1) DEFAULT NULL,
   `type` int(11) DEFAULT NULL,
+  `extra` longtext,
   `quizz` int(11) DEFAULT NULL,
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `createdAt` datetime DEFAULT NULL,
@@ -317,15 +240,6 @@ CREATE TABLE `confquestionquizz` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `confquestionquizz`
---
-
-LOCK TABLES `confquestionquizz` WRITE;
-/*!40000 ALTER TABLE `confquestionquizz` DISABLE KEYS */;
-/*!40000 ALTER TABLE `confquestionquizz` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `confquestionquizzanswer`
 --
 
@@ -334,6 +248,7 @@ DROP TABLE IF EXISTS `confquestionquizzanswer`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `confquestionquizzanswer` (
   `answer` varchar(255) DEFAULT NULL,
+  `type` int(11) DEFAULT NULL,
   `question` int(11) DEFAULT NULL,
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `createdAt` datetime DEFAULT NULL,
@@ -343,37 +258,23 @@ CREATE TABLE `confquestionquizzanswer` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `confquestionquizzanswer`
+-- Table structure for table `confquestionquizzchoiceuser`
 --
 
-LOCK TABLES `confquestionquizzanswer` WRITE;
-/*!40000 ALTER TABLE `confquestionquizzanswer` DISABLE KEYS */;
-/*!40000 ALTER TABLE `confquestionquizzanswer` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `confquestionquizzanswer_users__confuser_quizzanswers`
---
-
-DROP TABLE IF EXISTS `confquestionquizzanswer_users__confuser_quizzanswers`;
+DROP TABLE IF EXISTS `confquestionquizzchoiceuser`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `confquestionquizzanswer_users__confuser_quizzanswers` (
+CREATE TABLE `confquestionquizzchoiceuser` (
+  `type` int(11) DEFAULT NULL,
+  `extra` longtext,
+  `answer` int(11) DEFAULT NULL,
+  `user` int(11) DEFAULT NULL,
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `confquestionquizzanswer_users` int(11) DEFAULT NULL,
-  `confuser_quizzAnswers` int(11) DEFAULT NULL,
+  `createdAt` datetime DEFAULT NULL,
+  `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `confquestionquizzanswer_users__confuser_quizzanswers`
---
-
-LOCK TABLES `confquestionquizzanswer_users__confuser_quizzanswers` WRITE;
-/*!40000 ALTER TABLE `confquestionquizzanswer_users__confuser_quizzanswers` DISABLE KEYS */;
-/*!40000 ALTER TABLE `confquestionquizzanswer_users__confuser_quizzanswers` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `confquestionslide`
@@ -396,15 +297,6 @@ CREATE TABLE `confquestionslide` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `confquestionslide`
---
-
-LOCK TABLES `confquestionslide` WRITE;
-/*!40000 ALTER TABLE `confquestionslide` DISABLE KEYS */;
-/*!40000 ALTER TABLE `confquestionslide` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `confquestionslideanswer`
 --
 
@@ -423,15 +315,6 @@ CREATE TABLE `confquestionslideanswer` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `confquestionslideanswer`
---
-
-LOCK TABLES `confquestionslideanswer` WRITE;
-/*!40000 ALTER TABLE `confquestionslideanswer` DISABLE KEYS */;
-/*!40000 ALTER TABLE `confquestionslideanswer` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `confquestionslideanswer_users__confuser_slideanswers`
 --
 
@@ -447,15 +330,6 @@ CREATE TABLE `confquestionslideanswer_users__confuser_slideanswers` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `confquestionslideanswer_users__confuser_slideanswers`
---
-
-LOCK TABLES `confquestionslideanswer_users__confuser_slideanswers` WRITE;
-/*!40000 ALTER TABLE `confquestionslideanswer_users__confuser_slideanswers` DISABLE KEYS */;
-/*!40000 ALTER TABLE `confquestionslideanswer_users__confuser_slideanswers` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `confquizz`
 --
 
@@ -468,22 +342,14 @@ CREATE TABLE `confquizz` (
   `maxTime` int(11) DEFAULT NULL,
   `startTime` datetime DEFAULT NULL,
   `endTime` datetime DEFAULT NULL,
+  `conference` int(11) DEFAULT NULL,
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`)
+  KEY `conference` (`conference`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `confquizz`
---
-
-LOCK TABLES `confquizz` WRITE;
-/*!40000 ALTER TABLE `confquizz` DISABLE KEYS */;
-/*!40000 ALTER TABLE `confquizz` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `confresource`
@@ -494,6 +360,7 @@ DROP TABLE IF EXISTS `confresource`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `confresource` (
   `name` varchar(255) DEFAULT NULL,
+  `type` varchar(255) DEFAULT NULL,
   `path` longtext,
   `category` int(11) DEFAULT NULL,
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -502,15 +369,6 @@ CREATE TABLE `confresource` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `confresource`
---
-
-LOCK TABLES `confresource` WRITE;
-/*!40000 ALTER TABLE `confresource` DISABLE KEYS */;
-/*!40000 ALTER TABLE `confresource` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `confresource_slides__confslide_resources`
@@ -528,15 +386,6 @@ CREATE TABLE `confresource_slides__confslide_resources` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `confresource_slides__confslide_resources`
---
-
-LOCK TABLES `confresource_slides__confslide_resources` WRITE;
-/*!40000 ALTER TABLE `confresource_slides__confslide_resources` DISABLE KEYS */;
-/*!40000 ALTER TABLE `confresource_slides__confslide_resources` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `confresourcecategory`
 --
 
@@ -551,19 +400,10 @@ CREATE TABLE `confresourcecategory` (
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`),
-  KEY `isVisible` (`isVisible`)
+  KEY `isVisible` (`isVisible`),
+  KEY `conference` (`conference`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `confresourcecategory`
---
-
-LOCK TABLES `confresourcecategory` WRITE;
-/*!40000 ALTER TABLE `confresourcecategory` DISABLE KEYS */;
-/*!40000 ALTER TABLE `confresourcecategory` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `confslide`
@@ -588,15 +428,6 @@ CREATE TABLE `confslide` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `confslide`
---
-
-LOCK TABLES `confslide` WRITE;
-/*!40000 ALTER TABLE `confslide` DISABLE KEYS */;
-/*!40000 ALTER TABLE `confslide` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `conftag`
 --
 
@@ -605,22 +436,14 @@ DROP TABLE IF EXISTS `conftag`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `conftag` (
   `name` varchar(255) DEFAULT NULL,
+  `conference` int(11) DEFAULT NULL,
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`)
+  KEY `conference` (`conference`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `conftag`
---
-
-LOCK TABLES `conftag` WRITE;
-/*!40000 ALTER TABLE `conftag` DISABLE KEYS */;
-/*!40000 ALTER TABLE `conftag` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `conftrack`
@@ -631,24 +454,17 @@ DROP TABLE IF EXISTS `conftrack`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `conftrack` (
   `action` varchar(255) DEFAULT NULL,
+  `conference` int(11) DEFAULT NULL,
   `start` datetime DEFAULT NULL,
   `end` datetime DEFAULT NULL,
   `user` int(11) DEFAULT NULL,
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `conference` (`conference`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `conftrack`
---
-
-LOCK TABLES `conftrack` WRITE;
-/*!40000 ALTER TABLE `conftrack` DISABLE KEYS */;
-/*!40000 ALTER TABLE `conftrack` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `confuser`
@@ -664,7 +480,6 @@ CREATE TABLE `confuser` (
   `society` varchar(255) DEFAULT NULL,
   `avatar` longtext,
   `mail` varchar(255) DEFAULT NULL,
-  `roles` longtext,
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
@@ -672,15 +487,6 @@ CREATE TABLE `confuser` (
   UNIQUE KEY `mail` (`mail`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `confuser`
---
-
-LOCK TABLES `confuser` WRITE;
-/*!40000 ALTER TABLE `confuser` DISABLE KEYS */;
-/*!40000 ALTER TABLE `confuser` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -691,4 +497,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-02-01 23:16:03
+-- Dump completed on 2015-03-13 23:00:17

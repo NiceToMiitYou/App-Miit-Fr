@@ -1,17 +1,26 @@
 
-var appRoot = require('app-root-path'),
-    webshot = require('webshot'),
-    lwip = require('lwip'),
-    size = {
-        big : {
-            width: 2048,
-            height: 1536
-        },
-        small : {
-            width: 227,
-            height: 170
-        }
-    };
+var environment   = 'development';
+
+function getUrl() {
+    var url = 'http://127.0.0.1:8080/';
+
+    switch( environment ) {
+
+        case 'qualification':
+           url = 'http://app.qlf.priv.miit.fr/';
+           break;
+
+        case 'staging':
+           url = 'http://app.stg.priv.miit.fr/';
+           break;
+
+        case 'production':
+           url = 'http://app.miit.fr/';
+           break;
+    }
+
+    return url;
+}
 
 // Import all data
 function importData( conference, cb ) {
@@ -25,15 +34,15 @@ function importData( conference, cb ) {
             cb( null, conference );
         },
 
-        importChatrooms,
-
-        importTags,
-
         importConference,
 
         importPresentations,
 
         importResourcesCategories,
+
+        importChatrooms,
+
+        importTags,
 
         importQuizzes
 
@@ -74,7 +83,7 @@ function importConference( conferenceId, cb ) {
         .exec(
             function( err, conference ) {
                 if( err ) throw err;
-                if( !conference ) throw new Error('No conference found.'); 
+                if( !conference ) return cb( new Error('No conference found.') ); 
 
                 ItClient
                     .findOne( conference.client )
@@ -347,179 +356,47 @@ function importQuizzesQuestionsAnswers( questionId, cb ) {
             });
 }
 
-function beautifyHtml( html ) {
-
-    return '<html>' +
-            '<head>' +
-            '<link rel="stylesheet" href="http://127.0.0.1:' + sails.config.port + '/styles/css/main.css"/>' +
-            '</head>' +
-            '<body>' +
-                '<div id="slides" class="presentation-slide">' +
-                    '<div class="slide">' +
-                        html +
-                    '</div>' +
-                '</div>' +
-                '<script>' +
-                    'var inputs = document.getElementsByTagName("img");' +
-                    'for(var i = 0; i < inputs.length; i++) {' +
-                    '    inputs[i].src = "http://127.0.0.1:' + sails.config.port + '" + inputs[i].src;' +
-                    '    document.write(inputs[i].src);' +
-                    '}' +
-                '</script>' +
-            '</body>' +
-           '</html>';
-}
-
-function generateImagePath( base, size, presentation, slide ) {
-
-    return base + '/' + size + '_' + presentation + '_' + slide + '.png';
-}
-
-function generateBigImage( path, presentation, slide, html ) {
-
-    setTimeout(function() {
-
-        var saveFile = generateImagePath( path, 'big', presentation, slide );
-
-        var options = {
-            screenSize: size.big,
-            siteType: 'html',
-            renderDelay: 4000,
-            settings: {
-                localToRemoteUrlAccessEnabled: true
-            }
-        };
-
-        webshot( beautifyHtml( html ), saveFile, options, function( err ) {
-
-            if( !err ) {
-
-                sails.log.debug('File generated: ' + saveFile);
-
-                setTimeout(function() {
-
-                    // Genrate small image
-                    generateSmallImage( saveFile, path, presentation, slide );
-                }, 500);
-
-            } else {
-
-                sails.log.debug('Can\'t generate file: ' + saveFile);
-
-                sails.log.debug( err );
-            }
-        } );
-    }, 2500 + Math.round( Math.random() * 2500 ));
-}
-
-function generateSmallImage( origin, path, presentation, slide ) {
-
-    var saveFile = generateImagePath( path, 'small', presentation, slide );
-
-    lwip.open( origin, function( err, image ) {
-
-        image
-            .batch()
-            .resize(size.small.width, size.small.height)
-            .writeFile( saveFile, 'png', {
-                compression: 'high',
-                transparency: false
-            }, function( err ) {
-
-                if( !err ) {
-
-                    sails.log.debug('File generated: ' + saveFile);
-
-                } else {
-
-                    sails.log.debug('Can\'t generate file: ' + saveFile);
-                }
-            } );
-    } );
-}
-
-function generateThumbnail( path, cb ) {
-
-    ConfPresentation
-        .find( { conference: 1 } )
-        .populate( 'slides' )
-        .exec( function(err, presentations) {
-            
-            if( ! err ) {
-
-                // For each presentations
-                _.forEach( presentations, function( presentation ){
-
-                    // For each slides of the presentation
-                    _.forEach( presentation.slides, function( slide ) {
-
-                        // Genrate big image
-                        generateBigImage( path, presentation.id, slide.id, slide.content );
-                    } );
-                } );
-            }
-            
-            cb();
-        } );
-}
-
 module.exports = {
 
-    initialize: function( cb ) {
+    import: function( conferenceId, cb ) {
 
-        var thumbnailPath = appRoot + '/.tmp/public/images/slides';
+        // Set the environment
+        environment = sails.config.environment;
 
-        if ( 
-            ( 
-                typeof sails.config._ !== 'undefined' &&
-                sails.config._.length === 3 &&
-                sails.config._[1] === 'import'
-            ) || ( 
-                typeof sails.config._ !== 'undefined' &&
-                sails.config._.length === 4 &&
-                sails.config._[2] === 'import'
-            )
-        ) {
+        sails.log.debug('Importation of data from id "' + conferenceId + '"...');
+        
+        ConfConference
+            .findOne( conferenceId )
+            .exec(
+                function( err, conference ) {
+                    if( err ) {
 
-            var conferenceId = ( sails.config._[1] === 'import' ) ?
-                                 +sails.config._[2] :
-                                 +sails.config._[3];
-
-            sails.log.debug('Importation of data from id "' + conferenceId + '"...');
-            
-            ConfConference
-                .findOne({
-                    'where': {
-                        'id': {
-                            'not': null
-                        }
+                        throw err;
                     }
-                })
-                .exec(
-                    function(err, conference) {
-                        if( err ) {
 
-                            throw err;
+                    if ( conference ) {
+
+                        sails.log.debug('The conference is already imported...');
+
+                        return ThumbnailService.generate( conferenceId, getUrl() );
+                    }
+
+                    importData( conferenceId, function( errImport ) {
+
+                        if( errImport ) {
+
+                            sails.log.debug( errImport.message );
                         }
 
-                        if ( conference ) {
+                        sails.log.debug('Importation of data... DONE!');
+                        
+                        return ThumbnailService.generate( conferenceId, getUrl() );
+                    } );
+                } );
 
-                            sails.log.debug('A conference is already imported...');
+        if ( typeof cb === 'function' ) {
 
-                            return generateThumbnail( thumbnailPath, cb );
-                        }
-
-                        importData( conferenceId, function() {
-
-                            sails.log.debug('Importation of data... DONE!');
-                            
-                            return generateThumbnail( thumbnailPath, cb );
-                        } );
-                    } ); 
-
-        } else {
-
-            return generateThumbnail( thumbnailPath, cb );
+            cb();
         }
     }
 };

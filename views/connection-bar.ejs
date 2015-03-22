@@ -1,0 +1,11 @@
+<div ng-controller="ConnectionBarController" class="connection-bar"
+     ng-show="isDisplay"
+     ng-class="{
+        warn:   isAlert,
+        infos: !isAlert
+     }">
+
+    <span>
+        <div>{{ isAlert ? "<%= __('connection-bar.disconnected') %>" : "<%= __('connection-bar.reconnected') %>"}}</div>
+    </span>
+</div>

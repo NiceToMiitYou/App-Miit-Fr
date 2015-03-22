@@ -1,7 +1,9 @@
 "use strict";
 
-MiitApp.controller(
-    'NotesController', [ '$scope', '$timeout',
+angular
+    .module( 'MiitApp')
+    .controller( 'NotesController', [
+        '$scope', '$timeout',
         function( $scope, $timeout ) {
 
             $scope.notes = {};
@@ -25,7 +27,7 @@ MiitApp.controller(
 
                     $timeout(function() {
                         
-                        ITStorage.db.notes.each(function( id, note ) {
+                        MiitStorage.db.notes.each(function( id, note ) {
 
                             note.new = false;
 
@@ -48,7 +50,7 @@ MiitApp.controller(
 
                         $scope.saving = true;
                     
-                        ITConnect.note.create($scope.current.title, $scope.current.content, function( data ) {
+                        MiitConnect.note.create($scope.current.title, $scope.current.content, function( data ) {
 
                             $timeout(function() {
 
@@ -76,7 +78,7 @@ MiitApp.controller(
 
                         $scope.saving = true;
                     
-                        ITConnect.note.update($scope.current.id, $scope.current.title, $scope.current.content, function( data ) {
+                        MiitConnect.note.update($scope.current.id, $scope.current.title, $scope.current.content, function( data ) {
 
                             $timeout(function() {
                                 
@@ -92,7 +94,7 @@ MiitApp.controller(
 
                                     if ( typeof cb === 'function' ) {
 
-                                        cb($scope.notes[data.note.id]);
+                                        cb( $scope.notes[data.note.id] );
                                     }
                                 }
                             });
@@ -158,7 +160,7 @@ MiitApp.controller(
 
                     if( savedNote.id ) {
 
-                        ITConnect.note.send( savedNote.id, function(data) {
+                        MiitConnect.note.send( savedNote.id, function(data) {
 
                             $timeout(function() {
                                 if( data.done ) {
@@ -180,7 +182,7 @@ MiitApp.controller(
                 } );
             }
 
-            ITStorage.db.options.bind( 'data.isLoaded', true, loadNotes );
+            MiitStorage.db.options.bind( 'data.isLoaded', true, loadNotes );
 
             $scope.addNote = function() {
                 if( $scope.isAllowed('NOTE_INTERACTIONS') && 
@@ -213,4 +215,5 @@ MiitApp.controller(
                 }
             };
 
-        } ] );
+        }
+    ] );

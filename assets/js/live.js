@@ -6,8 +6,8 @@ $(window).resize(function() {
 
 Pace.on('hide', function() {
     scaleSlider();
-    $('select').material_select();
-    $("#multi, #multi-search").select2();
+    $('select:not(.select2):not(.delay)').material_select();
+    $('.select2').select2();
     $('.modal-trigger').leanModal({
       dismissible: false
     });

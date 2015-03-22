@@ -11,7 +11,6 @@ module.exports = {
 
         name: {
             type: 'string',
-            unique: true,
             required: true,
             minLength: 1
         },
@@ -29,12 +28,14 @@ module.exports = {
 
         conference: {
             model: 'ConfConference',
-            required: true
+            required: true,
+            index: true
         },
 
         toJSON: function() {
             var obj = this.toObject();
             delete obj.isVisible;
+            delete obj.conference;
             delete obj.createdAt;
             delete obj.updatedAt;
             return obj;

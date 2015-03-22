@@ -1,0 +1,36 @@
+
+.connection-bar {
+    display: none;
+    height: 0;
+
+    .pace-done & {
+        display: block;
+        height: 64px;
+        padding: 9px 32px;
+    }
+
+    &.warn {
+        background-color: #ffa726;
+    }
+
+    &.infos {
+        background-color: #8bc34a;
+    }
+
+    span {
+        margin-left: 18px;
+        float: left;
+
+        font-size: 1.3rem;
+        line-height: 3rem;
+        color: #fff;
+    }
+
+    a {
+        margin-top: 2px;
+        float: right;
+
+        height: 38px;
+        line-height: 38px;
+    }
+}

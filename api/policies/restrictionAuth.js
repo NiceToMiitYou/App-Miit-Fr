@@ -7,6 +7,7 @@
  * @docs        :: http://sailsjs.org/#!documentation/policies
  *
  */
+
 module.exports = function( req, res, next ) {
 
     var restrictions = [];
@@ -14,24 +15,26 @@ module.exports = function( req, res, next ) {
     if( req.options.restrictions ) {
 
         // If many restrictions
-        _.forEach(req.options.restrictions, function( restriction ) {
-
-            restrictions.push(restriction);
-        });
+        restrictions.concat( req.options.restrictions );
 
     } else if( req.options.restriction ) {
 
         // Only one restriction
-        restrictions.push(req.options.restriction);
+        restrictions.push( req.options.restriction );
     }
 
-    // User is allowed, proceed to the next policy, 
-    // or if this is the last policy, the controller
-    if ( RestrictionService.isAllowed( restrictions ) ) {
-        
-        return next();
-    }
+    var callback = function( allowed ) {
 
-    // User is not allowed
-    return res.notDone();
+        // User is allowed, proceed to the next policy, 
+        if ( allowed ) {
+
+            return next();
+        }
+
+        // User is not allowed
+        return res.notDone();
+    };
+
+    // Check the access
+    RestrictionService.checkAccess( req.session.conference, restrictions, callback );
 };

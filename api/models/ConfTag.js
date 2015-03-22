@@ -11,7 +11,6 @@ module.exports = {
 
         name: {
             type: 'string',
-            unique: true,
             required: true,
             minLength: 1
         },
@@ -20,6 +19,12 @@ module.exports = {
             collection: 'ConfQuestionPresentation',
             via: 'tags',
             dominant: true
+        },
+
+        conference: {
+            model: 'ConfConference',
+            required: true,
+            index: true
         },
 
         toJSON: function() {

@@ -12,7 +12,11 @@
 
 module.exports = {
 
-    port: 80,
+    application: {
+
+        sqs: 'prd-miit-fr',
+        s3:  'cdn.miit.fr'
+    },
 
     mailer: {
         from: {
@@ -35,17 +39,13 @@ module.exports = {
     connections: {
 
         // Storage of the conference
-        LiveApplicationDatabase: {
-            user: 'root',
-            password: '',
-            database: 'fr_miit_app'
-        },
-
-        // Storage of the conference
         ConferenceDatabase: {
-            user: 'root',
-            password: '',
-            database: 'fr_miit_app'
+
+            host:     process.env.MIIT_MYSQL_HOST,
+            port:      3306,
+            user:     process.env.MIIT_MYSQL_USER,
+            password: process.env.MIIT_MYSQL_PASS,
+            database: process.env.MIIT_MYSQL_DB
         },
 
         DwhWebService: {
@@ -57,6 +57,29 @@ module.exports = {
             port: 80
         }
     },
+
+    grunt: {
+        _hookTimeout: 1000000
+    },
+
+    session: {
+        adapter: 'redis',
+        host:    'miit-fr-001.xidhqo.0001.euc1.cache.amazonaws.com',
+        port:     6379,
+        prefix:  'sess:',
+        db:      'app-miit-fr'
+    },
+
+    sockets: {
+        _hookTimeout:  1000000,
+        adapter:      'socket.io-redis',
+        host:         'miit-fr-001.xidhqo.0001.euc1.cache.amazonaws.com',
+        port:          6379,
+        prefix:       'sock:',
+        db:           'app-miit-fr'
+    },
+
+    port: 8080,
   
     log: {
         level: "silent"

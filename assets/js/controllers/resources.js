@@ -1,7 +1,10 @@
 "use strict";
 
-MiitApp.controller(
-    'ResourcesController', [ '$scope', '$timeout',
+
+angular
+    .module( 'MiitApp')
+    .controller( 'ResourcesController', [
+        '$scope', '$timeout',
         function( $scope, $timeout ) {
 
             $scope.categories = {};
@@ -12,7 +15,7 @@ MiitApp.controller(
 
                     $timeout(function() {
                         
-                        ITStorage.db.resources.each(function( id, category ) {
+                        MiitStorage.db.resources.each(function( id, category ) {
 
                             $scope.categories[category.id] = category;
                         } );
@@ -21,16 +24,25 @@ MiitApp.controller(
             }
 
             function openInner( ressource ) {
-                
-                ITStorage.db.options.set('ressources.current', ressource);
 
-                $scope.track('RESSOURCES-INNER');
+                switch( ressource.type ) {                
+                
+                    case 'pdf':
+                        window.open(ressource.path);
+
+                        break;
+
+                    default:
+                        MiitStorage.db.options.set('ressources.current', ressource);
+
+                        $scope.track('RESSOURCES-INNER');
+                }
             }
 
             $scope.openInner = function( quizz ) {
                     openInner( quizz );
             };
 
-            ITStorage.db.options.bind( 'data.isLoaded', true, loadCategories );
-
-        } ] );
+            MiitStorage.db.options.bind( 'data.isLoaded', true, loadCategories );
+        }
+    ] );

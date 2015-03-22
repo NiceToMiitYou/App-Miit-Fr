@@ -1,7 +1,9 @@
 "use strict";
 
-MiitApp.controller(
-    'ChatController', [ '$scope', '$timeout',
+angular
+    .module( 'MiitApp')
+    .controller( 'ChatController', [
+        '$scope', '$timeout',
         function( $scope, $timeout ) {
 
             $scope.chatrooms = {};
@@ -16,7 +18,7 @@ MiitApp.controller(
 
                     $timeout(function(){
                         
-                        ITStorage.db.chatrooms.each(function( id, chatroom ) {
+                        MiitStorage.db.chatrooms.each(function( id, chatroom ) {
 
                             if( $scope.chatrooms[id] ) {
 
@@ -43,7 +45,7 @@ MiitApp.controller(
 
                 if( $scope.text ) {
 
-                    ITConnect.chatroom.send($scope.current.id, $scope.text, function(data) {
+                    MiitConnect.chatroom.send($scope.current.id, $scope.text, function(data) {
 
                         if( !data.done ) {
 
@@ -84,10 +86,10 @@ MiitApp.controller(
                 }
             };
 
-            ITStorage.db.options.bind( 'data.isLoaded', true, loadChatrooms );
+            MiitStorage.db.options.bind( 'data.isLoaded', true, loadChatrooms );
 
             // Retrieve new message
-            ITConnect.bind('chatroom-new', function( data ) {
+            MiitConnect.bind('chatroom-new', function( data ) {
 
                 $timeout(function() {
 
@@ -111,7 +113,7 @@ MiitApp.controller(
 
                         var i = _.size( $scope.chatrooms[chatroomId].messages );
 
-                        while( i > 40 ) {
+                        while( i > 100 ) {
 
                             var min = 0; i = 0;
 
@@ -124,4 +126,5 @@ MiitApp.controller(
                     }
                 });
             });
-    } ] );
+        }
+    ] );

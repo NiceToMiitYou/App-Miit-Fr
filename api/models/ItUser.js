@@ -38,17 +38,11 @@ module.exports = {
 
         mail: {
             type: 'email',
-            unique: true,
             required: true
         },
 
         roles: {
             type: 'array'
-        },
-
-        toJSON: function() {
-            var obj = this.toObject();
-            return obj;
         }
     }
 };

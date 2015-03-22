@@ -11,7 +11,6 @@ module.exports = {
 
         question: {
             type: 'string',
-            unique: true,
             required: true
         },
 
@@ -35,6 +34,12 @@ module.exports = {
             collection: 'ConfTag',
             via: 'questions',
             required: true
+        },
+
+        presentation: {
+            model: 'ConfPresentation',
+            required: true,
+            index: true
         },
 
         toJSON: function() {

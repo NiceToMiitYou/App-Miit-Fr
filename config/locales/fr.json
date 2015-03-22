@@ -1,16 +1,27 @@
 {
     "app_name": "Miit",
 
+    "choose": {
+        "title": "Sélectionnez votre mode",
+
+        "roles": {
+            "ROLE_VIEWER": "Mode spectateur",
+            "ROLE_MASTER": "Mode présentateur",
+            "ROLE_LIVE": "Mode projection",
+            "ROLE_ADMIN": "Mode administrateur"
+        }
+    },
+
     "live": {
         "title": "Miit - Live"
     },
 
     "master": {
-        "title": "Miit - Master",
+        "title": "Miit - Présentateur",
 
         "tabs": {
             "live": "Live",
-            "wall": "Mur"
+            "wall": "Questions"
         },
 
         "wall": {
@@ -25,11 +36,12 @@
         "menu": {
             "disconnect": "Déconnexion",
             "fullscreen": "Plein écran",
-            "resources": "Ressources",
-            "wall": "Mur",
+            "resources": "Documents",
+            "wall": "Vos questions",
             "chat": "Discussions",
             "notes": "Bloc-note",
-            "quizz": "Questionnaires"
+            "quizz": "Questionnaires",
+            "label": "Menu"
         },
 
         "logout": {
@@ -84,7 +96,8 @@
         },
 
         "live": {
-            "by": "Par {{ authors }}"
+            "by": "Par {{ authors }}",
+            "leave": "Quitter le mode plein écran"
         },
 
         "notes": {
@@ -106,7 +119,8 @@
             "validate": "Valider les réponses",
             "validate_modal": "Valider les réponses",
             "alert_modal" : "Une fois validé vous ne pourrez plus éditer le questionnaire.",
-            "answer_modal" : "Êtes-vous certain de vouloir valider ?"
+            "answer_modal" : "Êtes-vous certain de vouloir valider ?",
+            "answer_open": "Écrivez votre réponse ici..."
         },
 
         "quizz-list": {
@@ -115,11 +129,11 @@
         },
 
         "resources-list": {
-            "title": "Ressources"
+            "title": "Documents"
         },
 
         "wall": {
-            "title": "Mur",
+            "title": "Vos questions",
             "categories": "Toutes les catégories",
             "like": "Like",
             "likes": "Likes",
@@ -175,6 +189,11 @@
             }
         },
         "logout": "Vous venez d'être déconnecté."
+    },
+
+    "connection-bar": {
+        "reconnected": "Vous venez d'être reconnecté.",
+        "disconnected": "Vous venez de perdre la connexion avec le serveur. Tentative de reconnexion en cours..."
     },
 
     "errors": {

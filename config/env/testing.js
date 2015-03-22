@@ -12,18 +12,7 @@
 
 module.exports = {
 
-    /***************************************************************************
-     * Set the default database connection for models in the testing           *
-     * environment (see config/connections.js and config/models.js )           *
-     ***************************************************************************/
-
-    port: 18080,
-
     connections: {
-
-        LiveApplicationDatabase: {
-            adapter: 'sails-memory'
-        },
 
         ConferenceDatabase: {
             adapter: 'sails-memory'
@@ -46,5 +35,7 @@ module.exports = {
         },
 
         bypass: true
-    }
+    },
+
+    port: 18080
 };

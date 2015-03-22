@@ -1,8 +1,7 @@
+<% include connection-bar %>
 
-<!-- BEGIN CONTENT -->
 <div ng-controller="CommonController" class="page-container" ng-init="accountType = 1; activetool = 'NOTE';" ng-class="{fullscreen : isfullscreen, 'open' : openmenu, 'showcontrol' : showcontrol}" ng-mousemove="showcontrols()">
 
-    <!-- BEGIN PAGE CONTAINER-->
     <div class="page-content" ng-click="closeMenu()">
 
         <% include viewer/live %>
@@ -64,16 +63,17 @@
 
     <div class="tools-content">
 
-            <a class="bt-menu-trigger" ng-click="handlerMenu()">
-                <span>
-                    <span class="before"></span>
-                    <span class="after"></span>
-                </span>
-            </a>
+        <a class="bt-menu-trigger" ng-click="handlerMenu()">
+            <span class="bt-menu-cross">
+                <span class="before"></span>
+                <span class="after"></span>
+            </span>
+            <span class="bt-menu-label">
+                <%= __('viewer.menu.label') %>
+            </span>
+        </a>
 
         <div class="tools-wrapper" ng-click="closeMenu()">
-
-
 
             <% include viewer/resources %>
 
@@ -92,7 +92,7 @@
         </div>
 
     </div>
-    <!-- END PAGE CONTAINER-->
+
     <% include viewer/modals/ask-question-modal %>
 
     <% include viewer/modals/user-modal %>
@@ -102,4 +102,3 @@
     <% include viewer/modals/answer-modal %>
 
 </div>
-<!-- END CONTENT --> 

@@ -12,21 +12,12 @@
 
 module.exports = {
 
-    /***************************************************************************
-    * Set the port in the development environment to 8080                     *
-    ***************************************************************************/
+    application: {
 
-    port: 8080,
-
-    /***************************************************************************
-     * Set the default database connection for models in the development       *
-     * environment (see config/connections.js and config/models.js )           *
-     ***************************************************************************/
-
-    // models: {
-    //   connection: 'someMongodbServer'
-    // }
-
+        sqs: 'dev-miit-fr',
+        s3:  'cdn.dev.priv.miit.fr'
+    },
+    
     mailer: {
         from: {
             name: 'Miit',
@@ -55,5 +46,7 @@ module.exports = {
             host: 'localhost',
             port: 1337
         }
-    }
+    },
+
+    port: 8080
 };

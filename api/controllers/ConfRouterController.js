@@ -5,29 +5,6 @@
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
-var redirectUrl = 'http://www.itevents.fr';
-
-function viewer( req, res ) {
-
-    return res.view( 'viewer', {
-        layout: 'layouts/viewer-application'
-    } );
-}
-
-function master( req, res ) {
-
-    return res.view( 'master', {
-        layout: 'layouts/master-application'
-    } );
-}
-
-function live( req, res ) {
-
-    return res.view( 'live', {
-        layout: 'layouts/live-application'
-    } );
-}
-
 module.exports = {
 
     /**
@@ -35,36 +12,52 @@ module.exports = {
      */
     index: function( req, res ) {
 
-        if ( _.contains( req.session.roles, 'ROLE_VIEWER' ) ) {
+        var roles = _.intersection( req.session.roles, sails.config.application.roles.choose );
 
-            return viewer( req, res );
+        if ( roles.length > 1 ) {
 
-        } else if ( _.contains( req.session.roles, 'ROLE_MASTER' ) ) {
+            return res.view( 'choose', {
+                roles: roles
+            } );
 
-            return master( req, res );
+        } else if ( _.contains( roles, 'ROLE_VIEWER' ) ) {
 
-        } else if ( _.contains( req.session.roles, 'ROLE_LIVE' ) ) {
+            return res.view( 'viewer', {
+                layout: 'layouts/viewer-application'
+            } );
 
-            return live( req, res );
+        } else if ( _.contains( roles, 'ROLE_MASTER' ) ) {
+
+            return res.view( 'master', {
+                layout: 'layouts/master-application'
+            } );
+
+        } else if ( _.contains( roles, 'ROLE_LIVE' ) ) {
+
+            return res.view( 'live', {
+                goTo:   false,
+                layout: 'layouts/live-application'
+            } );
 
         } else {
 
-            return res.redirect( redirectUrl );
+            return res.redirect( sails.config.application.redirect );
         }
     },
 
     /**
-     * `ConfRouterController.subscribe`
+     * `ConfRouterController.subscribe()`
      */
     subscribe: function( req, res ) {
 
-        if ( req.isSocket &&
-             req.session.user &&
+        if ( req.isSocket      &&
+             req.session.user  &&
              req.session.roles
         ) {
 
             _.forEach(req.session.roles, function(role) {
-                sails.sockets.join( req.socket, role );
+                // Register for the channel of the conference
+                sails.sockets.join( req.socket, role + '_' + +req.session.conference );
             });
 
             return res.done();

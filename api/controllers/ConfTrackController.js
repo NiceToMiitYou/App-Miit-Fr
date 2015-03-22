@@ -12,14 +12,20 @@ module.exports = {
      */
     create: function( req, res ) {
 
-        var DateNow = new Date();
+        var DateNow = new Date(),
+            action  = req.param( 'action' );
 
         ConfTrack.findOne( {
-            user: req.session.user,
-            sort: 'id DESC'
+            user:       req.session.user,
+            conference: req.session.conference,
+            sort:       'id DESC'
         } )
             .exec( function( err, track ) {
-                if ( err ) return;
+                if ( err ) {
+
+                    return;
+                }
+
                 if ( track ) {
 
                     track.end = DateNow;
@@ -27,9 +33,10 @@ module.exports = {
                 }
 
                 ConfTrack.create( {
-                    action: req.param( 'action' ),
-                    start: DateNow,
-                    user: req.session.user
+                    action:     action,
+                    start:      DateNow,
+                    user:       req.session.user,
+                    conference: req.session.conference
                 } )
                     .exec( function() {
 

@@ -1,14 +1,16 @@
 "use strict";
 
-MiitApp.controller(
-    'MasterLiveController', [ '$scope', '$timeout',
+angular
+    .module( 'MiitApp')
+    .controller( 'MasterLiveController', [
+        '$scope', '$timeout',
         function( $scope, $timeout ) {
 
             function next() {
 
                 if ( ! $scope.shared.isLastSlide ) {
                     
-                    ITConnect.live.next($scope.presentation.id, function(data) {});
+                    MiitConnect.live.next($scope.presentation.id, function(data) {});
                 }
             }
 
@@ -16,7 +18,7 @@ MiitApp.controller(
                 
                 if ( ! $scope.shared.isFirstSlide ) {
 
-                    ITConnect.live.previous($scope.presentation.id, function(data) {});
+                    MiitConnect.live.previous($scope.presentation.id, function(data) {});
                 }
             }
 
@@ -39,4 +41,5 @@ MiitApp.controller(
 
             document.addEventListener('keydown', onKeyPress, false);
 
-        } ] );
+        }
+    ] );

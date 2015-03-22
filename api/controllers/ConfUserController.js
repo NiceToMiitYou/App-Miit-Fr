@@ -5,38 +5,25 @@
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
-var redirectUrl = 'http://www.itevents.fr';
+function resetSession( session ) {
+
+    if ( session.user )         session.user         = null;
+    if ( session.roles )        session.roles        = null;
+    if ( session.conference )   session.conference   = null;
+    if ( session.presentation ) session.presentation = null;
+}
 
 module.exports = {
-
-    /**
-     * `ConfUserController.list()`
-     */
-    list: function( req, res ) {
-
-        ConfUser
-            .find()
-            .exec( function( err, users ) {
-                if ( err || !users ) {
-
-                    return res.notDone();
-                }
-
-                return res.done( {
-                    users: users
-                } );
-            } );
-    },
 
     /**
      * `ConfUserController.get()`
      */
     get: function( req, res ) {
 
+        var userId = req.param( 'user' );
+
         ConfUser
-            .findOne(
-                req.param( 'user' )
-            )
+            .findOne( userId )
             .exec( function( err, user ) {
                 if ( err || !user ) {
 
@@ -55,12 +42,13 @@ module.exports = {
     me: function( req, res ) {
 
         ConfUser
-            .findOne(
-                req.session.user
-            )
+            .findOne( req.session.user )
             .populate( 'quizzAnswers' )
             .exec( function( err, user ) {
-                if ( err || !user ) return res.notDone();
+                if ( err || !user ) {
+
+                    return res.notDone();
+                }
 
                 return res.done( {
                     user: user
@@ -109,16 +97,15 @@ module.exports = {
      */
     logout: function( req, res ) {
 
-        if ( req.session.user ) req.session.user = null;
-        if ( req.session.roles ) req.session.roles = null;
-
         // Set last track to end
         ConfTrack
             .findOne( {
-                user: req.session.user,
-                sort: 'id DESC'
+                user:       req.session.user,
+                conference: req.session.conference,
+                sort:       'id DESC'
             } )
             .exec( function( err, track ) {
+
                 if ( err ) {
 
                     return res.notDone();
@@ -130,8 +117,10 @@ module.exports = {
                     track.save();
                 }
 
+                resetSession( req.session );
+
                 return res.done( {
-                    url: redirectUrl
+                    url: sails.config.application.redirect
                 } );
             } ) ;
     },
@@ -142,7 +131,10 @@ module.exports = {
     connect: function( req, res ) {
 
         var token = req.param( 'token' );
-        
+
+        // Reset the session to be sure
+        resetSession( req.session );
+
         if ( token ) {
 
             ItUser
@@ -150,35 +142,70 @@ module.exports = {
                     method: 'postJson',
                     action: 'connect',
                     data: {
-                        conference: 1,
                         token: token
                     }
                 }, function( err, response ) {
-                    if( err || !response || !response.user ) {
+                    if(  err                      ||
+                        !response                 ||
+                        !response.user            ||
+                        !response.data            ||
+                        !response.data.conference ||
+                        !response.data.conference.id ) {
 
-                        return res.redirect( redirectUrl );
+                        return res.redirect( sails.config.application.redirect );
                     }
 
-                    if ( req.session.user ) req.session.user = null;
-                    if ( req.session.roles ) req.session.roles = null;
+                    // Check if the conference exist on the server
+                    ConfConference
+                        .findOne( response.data.conference.id )
+                        .exec( function( errConference, conference ) {
+                            if( errConference || !conference ) {
 
-                    UserService
-                        .createFromConnect( response.user,  function( errRetrieve, user ) {
-                            if( errRetrieve ) {
-
-                                return res.redirect( redirectUrl );
+                                // If no conference or error, redirect the user
+                                return res.redirect( sails.config.application.redirect );
                             }
 
-                            // If connected add informations to the session
-                            req.session.user  = user.id;
-                            req.session.roles = user.roles;
+                            // Create the user in local
+                            UserService
+                                .createFromConnect( response.user,  function( errRetrieve, user ) {
+                                    if( errRetrieve ) {
 
-                            return res.redirect( '/' );
-                        } );
+                                        return res.redirect( sails.config.application.redirect );
+                                    }
+
+                                    // If connected add informations to the session
+                                    req.session.user       = user.id;
+                                    req.session.roles      = response.roles;
+                                    req.session.conference = response.data.conference.id;
+
+                                    return res.redirect( '/' );
+                                } );
+                        });
                 } );
         } else {
 
-            return res.redirect( redirectUrl );
+            return res.redirect( sails.config.application.redirect );
         }
+    },
+
+    /**
+     * `ConfUserController.role()`
+     */
+    role: function( req, res ) {
+
+        var role = req.param( 'role' );
+
+        // If the role is not in the exclude list, we can accept it
+        if( role && !_.contains( sails.config.application.roles.exclude, role ) ) {
+
+            // Remove all roles not in the exclude list and not selected
+            _.remove( req.session.roles, function( value ) {
+                return value !== role && !_.contains( sails.config.application.roles.exclude, value );
+            });
+        }
+        
+        req.session.save( function( err ) {
+            return res.redirect( '/' );
+        } );
     }
 };

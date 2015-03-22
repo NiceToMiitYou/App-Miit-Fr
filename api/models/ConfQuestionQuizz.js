@@ -25,6 +25,10 @@ module.exports = {
             required: true
         },
 
+        extra: {
+            type: 'json'
+        },
+        
         answers: {
             collection: 'ConfQuestionQuizzAnswer',
             via: 'question'

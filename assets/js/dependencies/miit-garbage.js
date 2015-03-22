@@ -1,6 +1,6 @@
 "use strict";
 
-window.ITGarbage = ( function() { 
+window.MiitGarbage = ( function() { 
 
     var garbageId,
 

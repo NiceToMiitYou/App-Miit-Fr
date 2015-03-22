@@ -1,3 +1,5 @@
+<% include connection-bar %>
+
 <!-- BEGIN CONTENT -->
 <div ng-controller="CommonController" class="page-container master" ng-init="accountType = 2; live=true">
 	<!-- BEGIN PAGE CONTAINER-->
@@ -25,15 +27,19 @@
 	            <div style="width: {{ shared.liveProgress }}%;" 
 	                 class="determinate"></div>     
 			</div>
-			
-			<div class="liveorask">
-				<div class="livetab" ng-class="{active:live}" ng-click="live=true">
-					<i class="mdi-hardware-cast" style="margin-right: 4px;"></i> <%= __('master.tabs.live') %>
-				</div>
-				<div class="asktab" ng-class="{active:!live}" ng-click="live=false">
-					<i class="mdi-communication-live-help" style="margin-right: 4px;"></i> <%= __('master.tabs.wall') %>
-				</div>
-			</div>
+
+			<ul class="tabs z-depth-1">
+			    <li class="tab">
+			        <a class="livetab" ng-class="{active:live}" ng-click="live=true" >
+			            <i class="mdi-hardware-cast" style="margin-right: 4px;"></i> <%= __('master.tabs.live') %>
+			        </a>
+			    </li>
+			    <li class="tab">
+			        <a class="asktab" ng-class="{active:!live}" ng-click="live=false">
+			            <i class="mdi-communication-live-help" style="margin-right: 4px;"></i> <%= __('master.tabs.wall') %>
+			        </a>
+			    </li>
+			</ul>
 
 			<div class="slider-container" ng-show="live">
 				<div id="slides" class="presentation-slide">
@@ -105,7 +111,7 @@
 		                <div ng-repeat="slide in presentation.slides track by slide.id"
                     	 	 ng-class="{ 'active': $index === current }"
 		                     class="dot-item">
-		                    <img ng-src="/images/slides/small_{{ ::presentation.id }}_{{ ::slide.id }}.png"/>
+		                    <img ng-src="//<%= sails.config.application.s3 %>/thumbnails/{{ conference.id }}/{{ presentation.id }}/{{ slide.id }}.png"/>
 		                </div>
 					</div>
 				</div>

@@ -5,22 +5,23 @@
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
-var liveDuration = 6 * 60 * 60; // Store them 6 hours
-
 module.exports = {
 
     /**
      * `ConfLiveController.next()`
      */
     next: function( req, res ) {
+
+        var presentation = req.param( 'presentation' );
         
-        if ( req.param( 'presentation' ) && req.param( 'presentation' ) > 0 ) {
+        if ( presentation && presentation > 0 ) {
         
             SocketEventCachingService.sendToAll(
-                'live-presentation-next', {
-                    presentation: req.param( 'presentation' )
-                },
-                liveDuration
+                req.session.conference,
+                'live-presentation-next',
+                {
+                    presentation: presentation
+                }
             );
 
             return res.done();
@@ -34,19 +35,50 @@ module.exports = {
      */
     previous: function( req, res ) {
 
-        if ( req.param( 'presentation' ) && req.param( 'presentation' ) > 0 ) {
+        var presentation = req.param( 'presentation' );
         
+        if ( presentation && presentation > 0 ) {
+
             SocketEventCachingService.sendToAll(
-                'live-presentation-previous', {
+                req.session.conference,
+                'live-presentation-previous',
+                {
                     presentation: req.param( 'presentation' )
-                },
-                liveDuration
+                }
             );
 
             return res.done();
         }
 
         return res.notDone();
-    }
+    },
 
+    /**
+     * `ConfLiveController.capture()`
+     */
+    capture: function( req, res ) {
+
+        var conference   = req.param( 'conference' ),
+            presentation = req.param( 'presentation' ),
+            slide        = req.param( 'slide' );
+
+        if ( conference   &&
+             presentation &&
+             slide ) {
+
+            req.session.user         = true;
+            req.session.roles        = [ 'ROLE_LOGIN', 'ROLE_LIVE' ];
+            req.session.conference   = conference;
+            req.session.presentation = presentation;
+
+            return res.view( 'live', {
+                goTo:      true,
+                goToSlide: slide,
+                layout:    'layouts/live-application'
+            } );
+        } else {
+
+            return res.notDone();
+        }
+    }
 };

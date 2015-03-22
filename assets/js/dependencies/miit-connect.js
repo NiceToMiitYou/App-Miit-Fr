@@ -1,21 +1,21 @@
 "use strict";
 
-window.ITConnect = ( function() {
-    var apiPublicPrefix = '/api/viewer';
-    var apiMasterPrefix = '/api/master';
+window.MiitConnect = ( function() {
+    var apiPublicPrefix = '/api/viewer',
+        apiMasterPrefix = '/api/master';
 
     var eventsCallbacks = {};
 
     var lastestToken = 0;
 
-    ITStorage.create( 'events', !ITEventDebug );
+    MiitStorage.create( 'events', !ITEventDebug );
 
     // Add cleaner to Garbage
-    ITGarbage.add( function() {
+    MiitGarbage.add( function() {
 
         var removed = 0;
 
-        ITStorage.db.events.each(function(key, eventTmp) {
+        MiitStorage.db.events.each(function(key, eventTmp) {
             
             // Check if expire
             if ( eventTmp.expire &&
@@ -23,7 +23,7 @@ window.ITConnect = ( function() {
 
                 removed++;
 
-                ITStorage.db.events.remove( eventTmp.id );
+                MiitStorage.db.events.remove( eventTmp.id );
             }
         });
 
@@ -39,10 +39,10 @@ window.ITConnect = ( function() {
             lastestToken = eventTmp.id;
 
             // If not set already
-            if( !ITStorage.db.events.get( eventTmp.id ) ) {
+            if( !MiitStorage.db.events.get( eventTmp.id ) ) {
 
                 // Store the events
-                ITStorage.db.events.set( eventTmp.id, eventTmp );
+                MiitStorage.db.events.set( eventTmp.id, eventTmp );
             }
 
             // Execute callback if not expire
@@ -60,10 +60,10 @@ window.ITConnect = ( function() {
     }, 1);
 
     // Create an actions queue to handle events with a specific order
-    var actions = async.priorityQueue(function (task, callback) {
+    var actions = async.priorityQueue( function ( task, callback ) {
 
         // Store received event
-        ITStorage.db.events.set( task.id, task );
+        MiitStorage.db.events.set( task.id, task );
 
         // Check integrity
         if ( lastestToken + 1 === task.id ) {
@@ -100,7 +100,7 @@ window.ITConnect = ( function() {
 
             var storedEvents = [];
 
-            ITStorage.db.events.each( function(key, value) {
+            MiitStorage.db.events.each( function(key, value) {
 
                 // Store the event
                 storedEvents.push( value );
@@ -137,6 +137,12 @@ window.ITConnect = ( function() {
             } );
         },
 
+        // Listen
+        listen: function( name, cb ) {
+            // Bind the event
+            io.socket.on( name, cb );
+        },
+
         // Subscribe to rooms
         subscribe: function( cb ) {
             io.socket.get( '/api/subscribe', {}, cb );
@@ -146,7 +152,11 @@ window.ITConnect = ( function() {
         synchronize: function() {
             // Force first synchronization from cache
             if ( lastestToken === 0 ) {
+                
                 synchronize( 2147483647 );
+            } else {
+
+                synchronize( lastestToken );
             }
         },
 
@@ -159,19 +169,19 @@ window.ITConnect = ( function() {
 
             // Get conference settings
             connectedUsers: function( cb ) {
-                io.socket.get( '/api/config/connected/users', {}, cb );
+                io.socket.get( '/api/config/users', {}, cb );
             },
 
             // Get presentation config
             presentation: {
                 // Get the list of all presentations
                 list: function( cb ) {
-                    io.socket.get( '/api/config/presentation/list', {}, cb );
+                    io.socket.get( '/api/config/presentations', {}, cb );
                 },
 
                 // Get actual presentation ID
                 actual: function( cb ) {
-                    io.socket.get( '/api/config/presentation/actual', {}, cb );
+                    io.socket.get( '/api/config/actual', {}, cb );
                 }
             }
         },
@@ -193,29 +203,25 @@ window.ITConnect = ( function() {
 
         // User actions
         user: {
-            // List action
-            list: function( cb ) {
-                io.socket.get( '/api/user/list', cb );
-            },
 
             // Get action
             get: function( user, cb ) {
-                io.socket.get( '/api/user/' + user + '/get', cb );
+                io.socket.get( '/api/user/' + user, cb );
             },
 
             // Me action
             me: function( cb ) {
-                io.socket.get( '/api/user/me', cb );
+                io.socket.get( '/api/user', cb );
             },
 
             // Update action
             update: function( firstname, lastname, society, username, avatar, cb ) {
-                io.socket.post( '/api/user/update', {
+                io.socket.post( '/api/user', {
                     firstname: firstname,
-                    lastname: lastname,
-                    society: society,
-                    username: username,
-                    avatar: avatar
+                    lastname:  lastname,
+                    society:   society,
+                    username:  username,
+                    avatar:    avatar
                 }, cb );
             },
 
@@ -232,7 +238,7 @@ window.ITConnect = ( function() {
 
                 // List all quizz
                 list: function( cb ) {
-                    io.socket.get( apiPublicPrefix + '/quizz/list', cb );
+                    io.socket.get( apiPublicPrefix + '/quizz', cb );
                 },
 
                 // List all questions and answers of a quizz
@@ -241,9 +247,9 @@ window.ITConnect = ( function() {
                 },
 
                 // Answer to a question
-                answer: function( question, answers, cb ) {
-                    io.socket.post( apiPublicPrefix + '/quizz/question/' + question + '/answer', {
-                        answers: answers
+                answer: function( quizz, selected, cb ) {
+                    io.socket.post( apiPublicPrefix + '/quizz/' + quizz + '/answer', {
+                        selected: selected
                     }, cb );
                 }
             },
@@ -252,7 +258,7 @@ window.ITConnect = ( function() {
             presentation: {
                 // Create a new question
                 create: function( question, tags, cb ) {
-                    io.socket.post( apiPublicPrefix + '/presentation/question/create', {
+                    io.socket.post( apiPublicPrefix + '/presentation/question', {
                         question: question,
                         tags: tags
                     }, cb );
@@ -299,7 +305,7 @@ window.ITConnect = ( function() {
         note: {
             // Create a new note
             create: function( title, content, cb ) {
-                io.socket.post( apiPublicPrefix + '/note/create', {
+                io.socket.post( apiPublicPrefix + '/note', {
                     title: title,
                     content: content
                 }, cb );
@@ -307,12 +313,12 @@ window.ITConnect = ( function() {
 
             // List all user's note
             list: function( cb ) {
-                io.socket.get( apiPublicPrefix + '/note/list', cb );
+                io.socket.get( apiPublicPrefix + '/note', cb );
             },
 
             // Update a note
             update: function( note, title, content, cb ) {
-                io.socket.post( apiPublicPrefix + '/note/' + note + '/update', {
+                io.socket.post( apiPublicPrefix + '/note/' + note, {
                     title: title,
                     content: content
                 }, cb );
@@ -320,7 +326,7 @@ window.ITConnect = ( function() {
 
             // delete a note
             delete: function( note, cb ) {
-                io.socket.get( apiPublicPrefix + '/note/' + note + '/delete', cb );
+                io.socket.delete( apiPublicPrefix + '/note/' + note, cb );
             },
 
             // send me a note
@@ -347,7 +353,7 @@ window.ITConnect = ( function() {
         // Resources Actions
         resources: {
             list: function( cb ) {
-                io.socket.get( apiPublicPrefix + '/resources/list', cb );
+                io.socket.get( apiPublicPrefix + '/resources', cb );
             }
         },
 

@@ -13,7 +13,9 @@ module.exports = {
     list: function( req, res ) {
 
         ConfChatRoom
-            .find()
+            .find( {
+                conference: req.session.conference
+            } )
             .exec( function( err, chatrooms ) {
                 if( err ) {
 
@@ -31,11 +33,14 @@ module.exports = {
      */
     send: function( req, res ) {
 
+        var message  = req.param( 'message' ),
+            chatroom = req.param( 'chatroom' );
+
         ConfChatMessage
             .create( {
-                message: req.param( 'message' ),
-                user: req.session.user,
-                chatroom: req.param( 'chatroom' )
+                message:  message,
+                chatroom: chatroom,
+                user:     req.session.user
             } )
             .exec( function( err, created ) {
                 if ( err ) {
@@ -43,7 +48,12 @@ module.exports = {
                     return res.notDone();
                 }
 
-                SocketEventCachingService.sendToAll( 'chatroom-new', created, 5 * 60, true ); // Keep them 5 minutes but apply coefficient
+                SocketEventCachingService
+                    .sendToAll(
+                        req.session.conference,
+                        'chatroom-new',
+                        created
+                    );
 
                 return res.done();
             } );

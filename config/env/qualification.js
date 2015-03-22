@@ -1,5 +1,5 @@
 /**
- * Development environment settings
+ * Qualification environment settings
  *
  * This file can include shared settings for a development team,
  * such as API keys or remote database passwords.  If you're using
@@ -12,15 +12,11 @@
 
 module.exports = {
 
-    /***************************************************************************
-     * Set the default database connection for models in the development       *
-     * environment (see config/connections.js and config/models.js )           *
-     ***************************************************************************/
+    application: {
 
-    // models: {
-    //   connection: 'someMongodbServer'
-    // }
-    port: 80,
+        sqs: 'qlf-miit-fr',
+        s3:  'cdn.qlf.priv.miit.fr'
+    },
 
     mailer: {
         from: {
@@ -43,13 +39,6 @@ module.exports = {
     connections: {
 
         // Storage of the conference
-        LiveApplicationDatabase: {
-            user: 'root',
-            password: '',
-            database: 'fr_miit_app'
-        },
-
-        // Storage of the conference
         ConferenceDatabase: {
             user: 'root',
             password: '',
@@ -64,5 +53,7 @@ module.exports = {
             host: 'dwh.qlf.priv.miit.fr',
             port: 80
         }
-    }
+    },
+
+    port: 80
 };
