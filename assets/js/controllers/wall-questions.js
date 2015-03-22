@@ -105,7 +105,7 @@ angular
                 var time = 0;
 
                 if( ! $scope.questions[like.question] ) {
-                    time = 250;
+                    time = 1000;
                 }
 
                 $timeout(function(){

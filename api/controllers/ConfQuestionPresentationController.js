@@ -57,11 +57,11 @@ module.exports = {
                                 'question-presentation-like',
                                 createdLike
                             );
-                        } );
 
-                    return res.done( {
-                        question: created
-                    } );
+                            return res.done( {
+                                question: created
+                            } );
+                        } );
                 } );
         } else {
 
