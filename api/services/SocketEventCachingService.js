@@ -42,7 +42,9 @@ module.exports = {
 
         for( var index in data ) {
 
-            if( typeof data[index].toJSON === 'function') {
+            if( data[index]          &&
+                data[index] !== null &&
+                typeof data[index].toJSON === 'function') {
 
                 data[index] = data[index].toJSON();
             }
