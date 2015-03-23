@@ -31,6 +31,12 @@ module.exports = {
         user: {
             model: 'ConfUser',
             required: true
+        },
+
+        toJSON: function() {
+            var obj = this.toObject();
+            obj.toJSON = null;
+            return obj;
         }
     }
 };

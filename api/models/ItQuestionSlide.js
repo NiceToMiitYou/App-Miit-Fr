@@ -27,6 +27,12 @@ module.exports = {
         slide: {
             model: 'ItSlide',
             required: true
+        },
+
+        toJSON: function() {
+            var obj = this.toObject();
+            obj.toJSON = null;
+            return obj;
         }
     }
 };

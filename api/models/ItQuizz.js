@@ -39,6 +39,12 @@ module.exports = {
         conference: {
             model: 'ItConference',
             required: true
+        },
+
+        toJSON: function() {
+            var obj = this.toObject();
+            obj.toJSON = null;
+            return obj;
         }
     }
 };

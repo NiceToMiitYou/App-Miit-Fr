@@ -41,6 +41,12 @@ module.exports = {
         quizz: {
             model: 'ItQuizz',
             required: true
+        },
+
+        toJSON: function() {
+            var obj = this.toObject();
+            obj.toJSON = null;
+            return obj;
         }
     }
 };
