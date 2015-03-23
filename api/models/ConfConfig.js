@@ -28,6 +28,7 @@ module.exports = {
             var obj = this.toObject();
             delete obj.createdAt;
             delete obj.updatedAt;
+            obj.toJSON = null;
             return obj;
         }
     }

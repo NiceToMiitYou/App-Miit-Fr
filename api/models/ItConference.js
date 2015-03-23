@@ -49,6 +49,12 @@ module.exports = {
         client: {
             model: 'ItClient',
             required: true
+        },
+
+        toJSON: function() {
+            var obj = this.toObject();
+            obj.toJSON = null;
+            return obj;
         }
     }
 };
