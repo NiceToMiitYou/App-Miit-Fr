@@ -27,6 +27,12 @@ module.exports = {
         category: {
             model: 'ItResourceCategory',
             required: true
+        },
+
+        toJSON: function() {
+            var obj = this.toObject();
+            obj.toJSON = null;
+            return obj;
         }
     }
 };

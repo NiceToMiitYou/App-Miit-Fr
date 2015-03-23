@@ -26,6 +26,12 @@ module.exports = {
         colorScheme: {
             type: 'text',
             defaultTo: ''
+        },
+
+        toJSON: function() {
+            var obj = this.toObject();
+            obj.toJSON = null;
+            return obj;
         }
     }
 };

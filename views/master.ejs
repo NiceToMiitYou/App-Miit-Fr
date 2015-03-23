@@ -111,7 +111,7 @@
 		                <div ng-repeat="slide in presentation.slides track by slide.id"
                     	 	 ng-class="{ 'active': $index === current }"
 		                     class="dot-item">
-		                    <img ng-src="//<%= sails.config.application.s3 %>/thumbnails/{{ conference.id }}/{{ presentation.id }}/{{ slide.id }}.png"/>
+		                    <img ng-src="http://<%= sails.config.application.s3 %>/thumbnails/{{ conference.id }}/{{ presentation.id }}/{{ slide.id }}.png"/>
 		                </div>
 					</div>
 				</div>

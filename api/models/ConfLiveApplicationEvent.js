@@ -42,6 +42,7 @@ module.exports = {
             delete obj.token;
             delete obj.createdAt;
             delete obj.updatedAt;
+            obj.toJSON = null;
             return obj;
         }
     },

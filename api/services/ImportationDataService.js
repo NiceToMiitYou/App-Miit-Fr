@@ -13,10 +13,6 @@ function getUrl() {
         case 'staging':
            url = 'http://app.stg.priv.miit.fr/';
            break;
-
-        case 'production':
-           url = 'http://app.miit.fr/';
-           break;
     }
 
     return url;
