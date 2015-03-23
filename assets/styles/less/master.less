@@ -46,6 +46,113 @@ body#master-body {
                 i {
                     position: static;
                 }
+
+                .options {
+
+                      display: inline-block;
+                      float: right;
+                      height: 51px;
+                      background: #26A69A;
+                      position: relative;
+
+                    a.options-dropdown-trigger {
+                          color: #FFF;
+                          display: block;
+                          height: 100%;
+                          line-height: 51px;
+                          font-size: 1.3rem;
+                          padding: 0 20px;
+
+                          i {
+                            color: #FFF;
+                          }
+                    }
+
+                    ul.dropdown-options {
+                        /*display: none;*/
+                        position: absolute;
+                        top: 100%;
+                        right: 0;
+                        width: 400px;
+                        z-index: 99999;
+                        margin: 0;
+
+                        li {
+                            display: block;
+                            list-style: none;
+                            position: relative;
+
+                            .switch {
+                                right: 0;
+                                top: 0;
+
+                                label {
+                                    position: absolute;
+                                    height: 69px;
+                                    top: 0;
+                                    width: 400px;
+                                    text-align: right;
+                                    line-height: 69px;
+                                }
+
+                                .lever {
+                                                                    
+                                    background-color: #F44336;
+
+                                    &:after {
+                                        background-color: #F44336;
+                                    }
+                                }
+
+                                input[type=checkbox]:checked + .lever {
+
+                                    background-color: #66BB6A;
+
+                                    &:after {
+                                        background-color: #66BB6A;
+                                    }
+                                }
+
+                            }
+
+                            a {
+                                padding: 15px 20px;
+                                color: #FFF;
+                                font-size: 2em;
+                                display: block;
+                            }
+
+                            i {
+                                color:#FFF;
+                            }
+                        }
+
+                        li:nth-child(6n+1) {
+                            background: rgb(208, 101, 3);
+                        }
+
+                        li:nth-child(6n+2) {
+                            background: rgb(233, 147, 26);
+                        }
+
+                        li:nth-child(6n+3) {
+                            background: rgb(22, 145, 190);
+                        }
+
+                        li:nth-child(6n+4) {
+                            background: rgb(22, 107, 162);
+                        }
+
+                        li:nth-child(6n+5) {
+                            background: rgb(27, 54, 71);
+                        }
+
+                        li:nth-child(6n+6) {
+                            background: rgb(21, 40, 54);
+                        }
+
+                    }
+                }
             }
         }
         

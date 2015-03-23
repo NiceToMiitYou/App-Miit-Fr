@@ -9,122 +9,196 @@
 			<!-- BEGIN PAGE TITLE -->
 			<div class="page-title">
 				<a class="listner listner-up btn btn-primary"
-					ng-class="{
-						'btn-primary': usersConnectedUp,
-						'btn-info': usersConnectedSame,
-						'btn-danger': usersConnectedDown
-					}">
-					<i ng-class="{
-							'mdi-navigation-expand-less': usersConnectedUp,
-							'mdi-navigation-chevron-right': usersConnectedSame,
-							'mdi-navigation-expand-more': usersConnectedDown
-						}"  style="margin-right: 0px;"></i>
+				ng-class="{
+				'btn-primary': usersConnectedUp,
+				'btn-info': usersConnectedSame,
+				'btn-danger': usersConnectedDown
+			}">
+			<i ng-class="{
+			'mdi-navigation-expand-less': usersConnectedUp,
+			'mdi-navigation-chevron-right': usersConnectedSame,
+			'mdi-navigation-expand-more': usersConnectedDown
+		}"  style="margin-right: 0px;"></i>
+	</a>
+	<h3><i class="mdi-social-person"></i> {{ connectedUsers }}</h3>
+	<div class="options">
+		<a class="options-dropdown-trigger"><i class="mdi-action-settings left"></i> Options</a>
+		<ul class="dropdown-options">
+			<li>
+				<a onclick="$(this).closest('.switch').click()">
+					<i class="mdi-file-folder-open"></i>
+					<span>Documents</span>
 				</a>
-				<h3><i class="mdi-social-person"></i> {{ connectedUsers }}</h3>
-			</div>
 
-			<div class="progress transparent progress-small no-radius no-margin">
-	            <div style="width: {{ shared.liveProgress }}%;" 
-	                 class="determinate"></div>     
-			</div>
-
-			<ul class="tabs z-depth-1">
-			    <li class="tab">
-			        <a class="livetab" ng-class="{active:live}" ng-click="live=true" >
-			            <i class="mdi-hardware-cast" style="margin-right: 4px;"></i> <%= __('master.tabs.live') %>
-			        </a>
-			    </li>
-			    <li class="tab">
-			        <a class="asktab" ng-class="{active:!live}" ng-click="live=false">
-			            <i class="mdi-communication-live-help" style="margin-right: 4px;"></i> <%= __('master.tabs.wall') %>
-			        </a>
-			    </li>
-			</ul>
-
-			<div class="slider-container" ng-show="live">
-				<div id="slides" class="presentation-slide">
-			        <div ng-repeat="slide in presentation.slides track by slide.id" class="slide slide-animation"
-			            ng-hide="!isCurrentSlide($index)"
-			            ng-swipe-right="previous()"
-			            ng-swipe-left="next()"
-			            ng-bind-html="::safeHTML(slide.content)"></div>
+				<div class="switch">
+				  <label>
+				    <input type="checkbox" checked>
+				    <span class="lever"></span>
+				  </label>
 				</div>
-			</div>
+			</li>
 
-			<div ng-controller="WallController" class="wall" ng-show="!live" >
-				<div class="dd" id="wall-list">
-					<ol class="dd-list">
-						<li class="animate-repeat dd-item dd-handle"
-							ng-if="!question.remove"
-							ng-repeat="question in questions | toArray | orderBy:['-favorite','-likes'] | filter:q as results track by question.id"
-							ng-init="question.favorite=false">
-
-						    <div class="cbp_tmicon avatar" ng-class="getAvatar( question.user )"></div>
-
-						    <div class="cbp_tmlabel">
-						        <div class="p-t-15">
-						            <h4 class="inline m-b-5">
-						                <span class="text-success semi-bold m-r-10 wall-username">
-						                    {{ getUsername( question.user ) }}
-						                </span>
-						            </h4>
-						            <span class="muted semi-bold m-b-5 label m-l-5"
-						            	  ng-repeat="tag in question.tags track by tag.id">
-						                {{ ::getTagName(tag) }}
-						            </span>
-						            <div class="muted">{{ ::question.createdAt | date:'mediumTime' }}</div>
-						            <p class="m-t-10 m-l-20 dark-text"> {{ ::question.question }} </p>
-						        </div>
-						        <div class="clearfix"></div>
-						        <div class="tiles" ng-class="{ favorite: question.favorite }">
-						            <div class="action-links">
-						            	<span>
-						            		<button class="btn"
-						            				ng-class="{
-						            					'btn-primary':  question.favorite,
-						            					'btn-warning': !question.favorite
-						            				}"
-						            				ng-click="question.favorite=!question.favorite">
-
-						            				<i class="mdi-action-star-rate"></i>
-						            		</button>
-						            	</span>
-
-						                <span class="text-white" ng-show="question.likes > 1">{{question.likes}} <%= __('master.wall.likes') %></span>
-						                <span class="text-white" ng-show="question.likes <= 1">{{question.likes}} <%= __('master.wall.like') %></span>
-
-						                <div class="pull-right">
-						                	<button class="btn btn-danger" ng-click="question.remove = true"> <i class="mdi-navigation-close"></i> </button>
-						                </div>
-						            </div>
-						            <div class="clearfix"></div>
-						        </div>
-						    </div>
-						</li>
-					</ol>
+			<li>
+				<a>
+					<i class="mdi-communication-live-help"></i>
+					<span>Vos questions</span>
+				</a>
+				
+				<div class="switch">
+				  <label>
+				    <input type="checkbox" checked>
+				    <span class="lever"></span>
+				  </label>
 				</div>
-			</div>
+			</li>
 
-			<div class="slides-nav-container">
-				<div class="slides-nav" id="slides-nav-wrapper" >
-					<div class="slides-nav-wrapper" ng-style="{width: (presentation.slides.length * 175)+55+'px'}">
-		                <div ng-repeat="slide in presentation.slides track by slide.id"
-                    	 	 ng-class="{ 'active': $index === current }"
-		                     class="dot-item">
-		                    <img ng-src="http://<%= sails.config.application.s3 %>/thumbnails/{{ conference.id }}/{{ presentation.id }}/{{ slide.id }}.png"/>
-		                </div>
-					</div>
+			<li>
+				<a>
+					<i class="mdi-action-question-answer"></i>
+					<span>Discussions</span>
+				</a>
+				
+				<div class="switch">
+				  <label>
+				    <input type="checkbox" checked>
+				    <span class="lever"></span>
+				  </label>
 				</div>
+			</li>
 
-				<a class="slides-nav-prev btn btn-primary" ng-click="thmbScrollLeft()"><i class="mdi-navigation-chevron-left"></i></a>
-				<a class="slides-nav-next btn btn-primary" ng-click="thmbScrollRight()"><i class="mdi-navigation-chevron-right"></i></a>
+			<li>
+				<a>
+					<i class="mdi-content-content-paste"></i>
+					<span>Questionnaires</span>
+				</a>
+				
+				<div class="switch">
+				  <label>
+				    <input type="checkbox" checked>
+				    <span class="lever"></span>
+				  </label>
+				</div>
+			</li>
+
+			<li>
+				<a>
+					<i class="mdi-content-create"></i>
+					<span>Bloc-note</span>
+				</a>
+				
+				<div class="switch">
+				  <label>
+				    <input type="checkbox" checked>
+				    <span class="lever"></span>
+				  </label>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<div class="progress transparent progress-small no-radius no-margin">
+	<div style="width: {{ shared.liveProgress }}%;" 
+	class="determinate"></div>     
+</div>
+
+<ul class="tabs z-depth-1">
+	<li class="tab">
+		<a class="livetab" ng-class="{active:live}" ng-click="live=true" >
+			<i class="mdi-hardware-cast" style="margin-right: 4px;"></i> <%= __('master.tabs.live') %>
+		</a>
+	</li>
+	<li class="tab">
+		<a class="asktab" ng-class="{active:!live}" ng-click="live=false">
+			<i class="mdi-communication-live-help" style="margin-right: 4px;"></i> <%= __('master.tabs.wall') %>
+		</a>
+	</li>
+</ul>
+
+<div class="slider-container" ng-show="live">
+	<div id="slides" class="presentation-slide">
+		<div ng-repeat="slide in presentation.slides track by slide.id" class="slide slide-animation"
+		ng-hide="!isCurrentSlide($index)"
+		ng-swipe-right="previous()"
+		ng-swipe-left="next()"
+		ng-bind-html="::safeHTML(slide.content)"></div>
+	</div>
+</div>
+
+<div ng-controller="WallController" class="wall" ng-show="!live" >
+	<div class="dd" id="wall-list">
+		<ol class="dd-list">
+			<li class="animate-repeat dd-item dd-handle"
+			ng-if="!question.remove"
+			ng-repeat="question in questions | toArray | orderBy:['-favorite','-likes'] | filter:q as results track by question.id"
+			ng-init="question.favorite=false">
+
+			<div class="cbp_tmicon avatar" ng-class="getAvatar( question.user )"></div>
+
+			<div class="cbp_tmlabel">
+				<div class="p-t-15">
+					<h4 class="inline m-b-5">
+						<span class="text-success semi-bold m-r-10 wall-username">
+							{{ getUsername( question.user ) }}
+						</span>
+					</h4>
+					<span class="muted semi-bold m-b-5 label m-l-5"
+					ng-repeat="tag in question.tags track by tag.id">
+					{{ ::getTagName(tag) }}
+				</span>
+				<div class="muted">{{ ::question.createdAt | date:'mediumTime' }}</div>
+				<p class="m-t-10 m-l-20 dark-text"> {{ ::question.question }} </p>
+			</div>
+			<div class="clearfix"></div>
+			<div class="tiles" ng-class="{ favorite: question.favorite }">
+				<div class="action-links">
+					<span>
+						<button class="btn"
+						ng-class="{
+						'btn-primary':  question.favorite,
+						'btn-warning': !question.favorite
+					}"
+					ng-click="question.favorite=!question.favorite">
+
+					<i class="mdi-action-star-rate"></i>
+				</button>
+			</span>
+
+			<span class="text-white" ng-show="question.likes > 1">{{question.likes}} <%= __('master.wall.likes') %></span>
+			<span class="text-white" ng-show="question.likes <= 1">{{question.likes}} <%= __('master.wall.like') %></span>
+
+			<div class="pull-right">
+				<button class="btn btn-danger" ng-click="question.remove = true"> <i class="mdi-navigation-close"></i> </button>
 			</div>
 		</div>
-		<!-- END CONTENT --> 
+		<div class="clearfix"></div>
 	</div>
-	
-	<div ng-controller="MasterLiveController">
-		<div class="next-slide sn-next" data="next" ng-click="next()"><i class="mdi-navigation-chevron-right"></i></div>
-		<div class="previous-slide sn-prev" data="prev" ng-click="previous()"><i class="mdi-navigation-chevron-left"></i></div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+
+<div class="slides-nav-container">
+	<div class="slides-nav" id="slides-nav-wrapper" >
+		<div class="slides-nav-wrapper" ng-style="{width: (presentation.slides.length * 175)+55+'px'}">
+			<div ng-repeat="slide in presentation.slides track by slide.id"
+			ng-class="{ 'active': $index === current }"
+			class="dot-item">
+			<img ng-src="http://<%= sails.config.application.s3 %>/thumbnails/{{ conference.id }}/{{ presentation.id }}/{{ slide.id }}.png"/>
+		</div>
 	</div>
+</div>
+
+<a class="slides-nav-prev btn btn-primary" ng-click="thmbScrollLeft()"><i class="mdi-navigation-chevron-left"></i></a>
+<a class="slides-nav-next btn btn-primary" ng-click="thmbScrollRight()"><i class="mdi-navigation-chevron-right"></i></a>
+</div>
+</div>
+<!-- END CONTENT --> 
+</div>
+
+<div ng-controller="MasterLiveController">
+	<div class="next-slide sn-next" data="next" ng-click="next()"><i class="mdi-navigation-chevron-right"></i></div>
+	<div class="previous-slide sn-prev" data="prev" ng-click="previous()"><i class="mdi-navigation-chevron-left"></i></div>
+</div>
 </div>
