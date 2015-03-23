@@ -30,6 +30,12 @@ module.exports = {
         user: {
             model: 'ItUser',
             required: true
+        },
+
+        toJSON: function() {
+            var obj = this.toObject();
+            obj.toJSON = null;
+            return obj;
         }
     }
 };

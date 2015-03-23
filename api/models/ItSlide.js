@@ -43,6 +43,12 @@ module.exports = {
 
         question: {
             model: 'ItQuestionSlide'
+        },
+
+        toJSON: function() {
+            var obj = this.toObject();
+            obj.toJSON = null;
+            return obj;
         }
     }
 };
