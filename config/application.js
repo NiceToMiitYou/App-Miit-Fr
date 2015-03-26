@@ -33,15 +33,15 @@ module.exports.application = {
         // Duration of events
         duration: {
 
-            'default':                        24 * 60 * 60 * 1000, // default 24 hours
+            'default':                    24 * 60 * 60 * 1000, // default 24 hours
 
-            'chatroom-new':               2 * 24 * 60 * 60 * 1000, // 2 days
+            'chatroom-new':                     5 * 60 * 1000, // 5 minutes
             
-            'live-presentation-next':     2 * 24 * 60 * 60 * 1000, // 2 days
-            'live-presentation-previous': 2 * 24 * 60 * 60 * 1000, // 2 days
+            'live-presentation-next':      6 * 60 * 60 * 1000, // 6 hours
+            'live-presentation-previous':  6 * 60 * 60 * 1000, // 6 hours
 
-            'question-presentation-new':  2 * 24 * 60 * 60 * 1000, // 2 days
-            'question-presentation-like': 2 * 24 * 60 * 60 * 1000  // 2 days
+            'question-presentation-new':   6 * 60 * 60 * 1000, // 6 hours
+            'question-presentation-like':  6 * 60 * 60 * 1000  // 6 hours
         },
 
         // Events name and the rooms where data are send
