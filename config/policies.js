@@ -50,5 +50,8 @@ module.exports.policies = {
         'index':     true,
         'subscribe': true
     },
-    
+
+    ConfQuestionQuizzController: {
+        'extract':  'masterAuth'
+    }
 };

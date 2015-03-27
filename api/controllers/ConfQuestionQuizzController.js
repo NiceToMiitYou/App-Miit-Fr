@@ -314,5 +314,24 @@ module.exports = {
 
             return res.notDone();
         }
+    },
+
+    extract: function( req, res ) {
+
+        var quizz = req.param('quizz');
+
+        if( quizz ) {
+
+            QuizzExtractService.extract( quizz, function( text ) {
+                
+                res.set('Content-Type', 'text/plain;charset=UTF-8');
+                res.set('Content-Disposition', 'attachment; filename="extract-quizz-' + quizz + '.txt"');
+                
+                return res.send( text );
+            } );
+        } else {
+
+            return res.notFound();
+        }
     }
 };
