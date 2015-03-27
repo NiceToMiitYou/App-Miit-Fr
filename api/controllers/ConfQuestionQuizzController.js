@@ -324,7 +324,8 @@ module.exports = {
 
             QuizzExtractService.extract( quizz, function( text ) {
                 
-                res.set('Content-Type', 'text/plain');
+                res.set('Content-Type', 'text/plain;charset=UTF-8');
+                res.set('Content-Disposition', 'attachment; filename="extract-quizz-' + quizz + '.txt"');
                 
                 return res.send( text );
             } );
