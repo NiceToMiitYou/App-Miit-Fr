@@ -23,7 +23,7 @@ function extractAnswers( question, cb ) {
                 if( ! counter[ answer.id ] ) {
 
                     counter[ answer.id ] = {
-                        object: answer,
+                        object:  answer,
                         counter: 0
                     };
                 }
@@ -56,13 +56,11 @@ function extractAnswers( question, cb ) {
                 // for each storage
                 _.forEach( storage, function( store ) {
 
+                    data += store.text.replace(/(\r\n|\n|\r)/gm, ' ');
+
                     data += '\t';
                     
                     data += store.counter;
-
-                    data += '\t';
-
-                    data += store.text;
 
                     data += '\n';
                 } );
@@ -71,13 +69,12 @@ function extractAnswers( question, cb ) {
                 
                 // for each answer in the counter
                 _.forEach( counter, function( answer ) {
+
+                    data += answer.object.answer.replace(/(\r\n|\n|\r)/gm, ' ');
+
                     data += '\t';
 
                     data += answer.counter;
-
-                    data += '\t';
-
-                    data += answer.object.answer;
 
                     data += '\n';
                 } );
