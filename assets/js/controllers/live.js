@@ -193,6 +193,21 @@ angular
                 }
             }
 
+            // Binder for slide action
+            window.MiitLiveAction = function(name, parameter) {
+                if( $scope.accountType === 1 ) {
+                    switch(name) {
+                        case 'menu':
+                            $scope.track(parameter);
+                            break;
+
+                        case 'fullscreen':
+                            $scope.fullscreen();
+                            break;
+                    }
+                }
+            };
+
             document.addEventListener('keydown', onKeyPress, false);
 
             MiitStorage.db.options.bind('data.isLoaded', true, refreshShared);
