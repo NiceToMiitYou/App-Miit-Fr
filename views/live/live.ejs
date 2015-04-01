@@ -4,8 +4,6 @@
             <div ng-repeat="slide in presentation.slides" class="slide slide-animation"
                  ng-class="'slide-index-' + $index"
                  ng-hide="!isCurrentSlide($index)"
-                 ng-swipe-right="previous()"
-                 ng-swipe-left="next()"
                  ng-bind-html="::safeHTML(slide.content)"></div>
         </div>
     </div>
