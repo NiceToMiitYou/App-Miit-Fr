@@ -367,7 +367,7 @@ a {
     left: 0;
 }
 
-#slides .slide img {
+#slides .slide > img {
 	height: 100%;
 	width: 100%;
 }
