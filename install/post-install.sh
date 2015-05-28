@@ -17,7 +17,7 @@ else
 
     cd $ADAPTERS
 
-    git clone ssh://git@stash.priv.itevents.fr:7999/utils/sails-rest.git .
+    git clone git@github.com:NiceToMiitYou/Sails-Rest.git .
 
     npm install
 
